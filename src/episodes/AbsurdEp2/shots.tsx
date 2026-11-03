@@ -8,8 +8,8 @@ import {ev, V3, sm, cl, lerp, lerp3, shake, pop, LN} from './data';
 import {BOMBS} from './cast';
 import {autoFace, setFace} from '../AbsurdEp1/boxcast';
 import {Bedroom, Street, Interro, Court, Cell, TABLE_TOP} from '../AbsurdEp1/sets';
-import {Mosquito, Handcuffs, Jar, Van, makeGavel, makePhone, ChargePlate} from '../AbsurdEp1/props';
-import {Fan, btnWorld, Arm, Bolt, Wind, EchoRing, PowerStrip, Plug, Cord, CaseFolder, ReportForm, CellPlate, CutterPole, HairSpikes} from './props';
+import {Mosquito, Handcuffs, Jar, Van, makeGavel, makePhone} from '../AbsurdEp1/props';
+import {BigPlate, Fan, btnWorld, Arm, Bolt, Wind, EchoRing, PowerStrip, Plug, Cord, CaseFolder, ReportForm, CellPlate, CutterPole, HairSpikes} from './props';
 
 type Inst = any;
 type Cast = Record<string, Inst>;
@@ -161,17 +161,20 @@ export const SHOT_FN: Record<string, (t: number, lt: number, C: Cast) => ShotOut
       <Bolt t={t} seed={1} a={BTN3} b={hd} n={5} amp={0.03} w={0.008} />
       <Bolt t={t} seed={2} a={hd} b={ua} n={5} amp={0.03} w={0.008} />
       <Bolt t={t} seed={3} a={ua} b={add3(head, [0.05, 0.12, 0.08])} n={4} amp={0.03} w={0.007} />
+      {t >= ev('zapPeak') && [0, 1, 2, 3].map((i) => <Bolt key={i} t={t} seed={i + 7} a={add3(head, [0, 0.1, 0])} b={add3(head, [Math.cos(i * 1.57 + 0.6) * 0.5, -0.1 + i * 0.12, Math.sin(i * 1.57 + 0.6) * 0.5])} n={5} amp={0.05} w={0.01} />)}
       </>, cam: {pos: [0.62, 1.5, 2.2], look: [-0.12, 1.42, 0.72], fov: 46}};
   },
   fanScale: (t, lt, C) => {
-    // the offender fills the room; the man is small behind it, fried, looking up
+    // the offender fills the room; the man is small behind it. The charge slams in on the cut.
     const s = ps('nai', -1.75, 0.15, 1.1, t, {clip: 'idle_neutral_01', fear: 1, lookW: [0.2, 2.3, 0.6]});
     const w = body(C.nai, s, t);
-    const a = lt * 0.05; const camP: V3 = [1.62, 0.2, 1.0 + Math.sin(a) * 0.2];
-    const plate: V3 = [-0.45, 1.72, 0.8];
+    const u = t - ev('titleCharge');
+    const a = lt * 0.05; const look: V3 = [-0.2, 1.42, 0.45];
+    const camP: V3 = add3([1.62, 0.2, 1.0 + Math.sin(a) * 0.2], shake(t, ev('titleCharge'), 0.05, 7));
+    const k = u < 0 ? 0 : u < 0.08 ? lerp(1.9, 0.94, u / 0.08) : u < 0.2 ? lerp(0.94, 1, (u - 0.08) / 0.12) : 1;
     return {node: <><Bedroom st={{t, lamp: 1}} /><P o={w} /><Fan position={[0.42, 0, 0.42]} yaw={Math.PI / 2 + 0.42} scale={2.0} headYaw={SWEEP(t) * 0.2} tilt={0.42} blade={bladeRun(t)} blur={1} /><HairSpikes head={headTop(C.nai)} />
-      <ChargePlate text="พยายามฆ่า" position={plate} lookAt={camP} width={0.82} />
-      </>, cam: {pos: camP, look: [-0.2, 1.42, 0.45], fov: 72}};
+      <BigPlate text="พยายามฆ่า" cam={camP} look={look} k={k} up={0.2} />
+      </>, cam: {pos: camP, look, fov: 72}};
   },
   phone: (t, lt, C) => phoneShot(t, lt, C),
   callUI: (t, lt, C) => phoneShot(t, lt, C),

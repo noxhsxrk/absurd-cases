@@ -183,3 +183,19 @@ export const HairSpikes: React.FC<{head: V3}> = ({head}) => {
   return <group position={head}>{Array.from({length: 11}, (_, i) => { const a = i * 2.39996, r = 0.03 + 0.085 * Math.sqrt(i / 10), x = Math.cos(a) * r, z = Math.sin(a) * r;
     return <mesh key={i} castShadow position={[x, 0.07, z]} rotation={[z * 3.2, 0, -x * 3.2]} material={m}><coneGeometry args={[0.018, 0.14, 4]} /></mesh>; })}</group>;
 };
+
+/** the charge, big: a slab of brick red slammed in right in front of the camera */
+const bigPlateTex = (text: string) => tex('bigplate-' + text, 1024, 300, (g) => {
+  g.fillStyle = '#B0402E'; g.fillRect(0, 0, 1024, 300);
+  g.fillStyle = 'rgba(255,255,255,0.05)'; for (let i = 0; i < 500; i++) g.fillRect(hash(i) * 1024, hash(i * 2.3) * 300, 3, 3);
+  g.strokeStyle = '#E6E7CF'; g.lineWidth = 12; g.strokeRect(20, 20, 984, 260);
+  g.fillStyle = '#F7F4E6'; g.font = F(700, 172); g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText(text, 512, 158);
+});
+export const BigPlate: React.FC<{text: string; cam: V3; look: V3; k: number; up?: number; dist?: number; width?: number; roll?: number}> = ({text, cam, look, k, up = 0.2, dist = 0.9, width = 0.62, roll = -0.05}) => {
+  const mat = useMemo(() => new THREE.MeshBasicMaterial({map: bigPlateTex(text), toneMapped: false, transparent: true, depthTest: false}), [text]);
+  if (k <= 0) return null;
+  const C = new THREE.Vector3(...cam), f = new THREE.Vector3(...look).sub(C).normalize(), r = f.clone().cross(new THREE.Vector3(0, 1, 0)).normalize(), u = r.clone().cross(f);
+  const q = new THREE.Quaternion().setFromRotationMatrix(new THREE.Matrix4().makeBasis(r, u, f.clone().negate())).multiply(new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0, 0, 1), roll));
+  const pos = C.clone().add(f.clone().multiplyScalar(dist)).add(u.clone().multiplyScalar(up));
+  return <mesh position={pos} quaternion={q} scale={k} material={mat} renderOrder={10}><planeGeometry args={[width, width * 300 / 1024]} /></mesh>;
+};

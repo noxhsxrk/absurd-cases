@@ -44,6 +44,8 @@ export const AbsurdEp2: React.FC<{quality?: Quality}> = ({quality = 'fast'}) => 
       <Stamp text="รับสารภาพ" t={t} t0={ev('stamp')} t1={LN.l011.t0 - 0.06} />
       <TitlePlate text="จำคุก 20 ปี" t={t} t0={ev('sentence')} t1={ev('cellDoor')} />
       <Flash t={t} t0={ev('zap')} max={0.5} />
+      {[0, 0.13, 0.26, 0.39].map((d) => <Flash key={d} t={t} t0={ev('zapPeak') + d} d={0.06} color="#FFF3B0" max={0.42} />)}
+      <Flash t={t} t0={ev('titleCharge')} d={0.1} max={0.6} />
       <Flash t={t} t0={ev('cut')} max={0.45} />
       <Flash t={t} t0={ev('cuff')} max={0.3} />
       <Flash t={t} t0={ev('stamp')} max={0.25} />

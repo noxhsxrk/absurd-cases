@@ -37,10 +37,25 @@ def buzz(sec=1.0, f=560):
     """the mosquito's answer: a thin saw with a nervous pitch"""
     n = int(sec * R); t = np.arange(n) / R; ph = 2 * np.pi * np.cumsum(f * (1 + 0.035 * np.sin(2 * np.pi * 7.3 * t) + 0.012 * np.sin(2 * np.pi * 23 * t))) / R
     s = sum(np.sin(k * ph) / k for k in range(1, 9)); return edge(bp(s, 300, 6000), 0.03, 0.2)
+def electric(sec):
+    """mains-hum buzz with random snaps"""
+    n = int(sec * R); t = np.arange(n) / R; f = 120 * (1 + 0.02 * np.sin(2 * np.pi * 37 * t))
+    ph = 2 * np.pi * np.cumsum(f) / R; hum = np.tanh(3 * sum(np.sin(k * ph) / k for k in range(1, 26)))
+    gate = np.repeat(g.random(n // 240 + 1) > 0.42, 240)[:n]; nz_ = bp(g.standard_normal(n), 1500, 7500) * gate
+    snaps = np.zeros(n); 
+    for i in g.integers(0, max(1, n - 400), int(sec * 34)): snaps[i:i + 300] += g.choice([-1, 1]) * np.exp(-np.arange(300) / 45)
+    return bp(hum, 90, 6500) * 0.55 + nz_ * 0.7 + snaps * 0.9
+def tung():
+    """the dramatic sting: a pitched-down drum body, a sub tail and a hard attack"""
+    n = int(1.3 * R); t = np.arange(n) / R; f = 46 + 125 * np.exp(-t * 24); ph = 2 * np.pi * np.cumsum(f) / R
+    body = np.tanh(2.2 * np.sin(ph) * np.exp(-t * 4.6)); oct2 = 0.28 * np.sin(2 * ph + 0.4) * np.exp(-t * 7)
+    att = 0.55 * bp(g.standard_normal(n), 900, 5200) * np.exp(-t * 95)
+    return edge(body + oct2 + att, 0.0005, 0.2)
 def fade_tail(x, keep, f=0.15):
     y = x[:int(keep * R)].copy(); k = int(f * R); y[-k:] *= np.linspace(1, 0, k); return y
 def to_st(x): return np.stack([x, x], 1)
 
+ZAP, BOOM, SPARK, ZAP_GAIN = 'zap_shock_v1', 'boom_hit_v1', 'power_spark_v1', 0.3
 M = Mix(seconds=TOTAL, sfx_dir=str(AI))
 # ---------------------------------------------------------------- narration (one tightened take; keeps Fenrir's dynamics)
 vo = read('public/absurd-cases/ep2/ep2_narration_tight.wav')
@@ -50,7 +65,7 @@ for r in json.load(open('episodes/absurd-cases/ep2_line_timing.json')):
     for a, b in r['parts']: M.vo_env[int(a * R):int(b * R)] = 1.0
 
 # ---------------------------------------------------------------- ambience: starts on the cut, about -40 dBFS
-BED = 0.0028
+BED = 0.0038
 T = lambda n: SH[n]['t0']; E = lambda n: SH[n]['t1']
 M.bed(to_st(rms_to(A('fan_motor_v1'), BED * 1.15)), 0, T('squadWalk'), width=0.2, xf=0.8, fade=0.03)
 M.bed(to_st(rms_to(A('crickets_v1'), BED)), T('squadWalk'), T('doorway'), width=0.6, xf=0.6, fade=0.03)
@@ -64,18 +79,22 @@ w = to_st(rms_to(lp(A('wind_gust_v1'), 6000), BED * 1.7))
 M.bed(w, T('cellBlock'), TOTAL, width=0.8, xf=0.6, fade=0.25)
 
 # ---------------------------------------------------------------- spot SFX. Levels are peaks; the voice peaks around 0.3 here.
-P = lambda x, pk, t, pan=0.0: M.put(peak_to(x, pk * 0.72), t, pan)
+P = lambda x, pk, t, pan=0.0: M.put(peak_to(x, pk * 0.9), t, pan)
 P(click(), 0.12, EV['press'])
 bz = A('electric_buzz_v1')
-P(fade_tail(bz, 1.25), 0.15, EV['zap'] - 0.32)
-P(fade_tail(bz[int(0.4 * R):], 0.9), 0.1, T('zapped'))
-P(clunk(55, 0.5, 0.1), 0.16, T('fanScale'))
+# the shock: an AI take + a synth layer, runs from the finger shot and stops dead on the cut to the charge
+Z0, Z1 = EV['zap'] - 0.03, EV['titleCharge']; nz = int((Z1 - Z0) * R)
+zs = rms_to(np.resize(A(ZAP), nz), 0.5) + rms_to(np.resize(A('zap_taser_v1'), nz), 0.34) + rms_to(electric(Z1 - Z0), 0.28)
+zk = np.interp(Z0 + np.arange(nz) / R, [Z0, Z0 + 0.02, EV['zapPeak'] - 0.05, EV['zapPeak'] + 0.02, Z1 - 0.008, Z1], [0, 0.15, 0.15, 1, 1, 0])
+M.put(zs * zk, Z0, 0, ZAP_GAIN)
+# "ตึ้ง": the charge lands on the cut
+P(tung() + rms_to(fade_tail(lp(A(BOOM), 700), 1.6, 0.8), rms(tung()) * 0.5)[:len(tung())], 0.55, EV['titleCharge'])
 M.put2(to_st(env(int(6.0 * R), [(0, 0), (0.6, 1), (4.2, 1), (6, 0)])[:, 0] * rms_to(A('police_arrive_v1')[:int(6 * R)], 0.011)), EV['dial'] + 0.25, 1.0, width=0.5)
 P(click(), 0.08, EV['dial'])
 P(fade_tail(A('heavy_boots_v1'), 1.2, 0.3), 0.16, T('squadWalk'))
 P(door_kick(), 0.15, EV['door'])
 P(fade_tail(A('suit_breath_v1'), 1.2, 0.3), 0.07, T('surround'))
-P(fade_tail(bz, 0.5, 0.1), 0.09, EV['cut'])
+P(fade_tail(A(SPARK), 0.7, 0.2), 0.16, EV['cut'])
 for k, pan in (('out1', -0.3), ('out2', 0.2), ('out3', 0)): P(clunk(62, 0.34, 0.6), 0.14, EV[k], pan)
 P(fade_tail(A('cuff_click_v1'), 0.6), 0.13, EV['cuff'] - 0.04)
 P(clunk(120, 0.14, 0.8), 0.1, EV['cuff'])
