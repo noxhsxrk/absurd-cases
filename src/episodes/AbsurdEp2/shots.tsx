@@ -203,6 +203,18 @@ export const SHOT_FN: Record<string, (t: number, lt: number, C: Cast) => ShotOut
       {sparks && [0, 1, 2].map((i) => <Bolt key={i} t={t} seed={i + 4} a={[2.6, 8.05, -3.7]} b={[2.6 + (i - 1) * 0.9, 7.0 + i * 0.3, -3.3]} n={5} amp={0.14} w={0.04} />)}
       </>, cam: {pos: add3([5.9, 1.05, 4.0], shake(t, ev('cut'), 0.03, 7)), look: [1.2, 4.35, -3.7], fov: 66}, bg: {color: '#1A2648', fog: ['#1A2648', 18, 60]}};
   },
+  seize: (t, lt, C) => {
+    // blackout: two bomb-suit officers take hold of the fan by moonlight
+        const grab = (id: string, x: number, yaw: number, sd: 'L' | 'R', o: 'L' | 'R', hx: number) => {
+      const s = ps(id, x, FAN_P[2] + 0.02, yaw, t, {clip: 'idle_neutral_01'}); const w = body(C[id], s, t); const I = C[id]; resetTurn(I); const k = sm(lt / 0.22);
+      ik(I, sd, new THREE.Vector3(...(toLocal(I, s, [hx, 1.05, FAN_P[2] + 0.12]) as any)), new THREE.Vector3(0.6, -1, -0.5), k);
+      ik(I, o, new THREE.Vector3(...(toLocal(I, s, [hx, 0.85, FAN_P[2] - 0.12]) as any)), new THREE.Vector3(-0.6, -1, -0.5), k); w.updateMatrixWorld(true); return <P key={id} o={w} />;
+    };
+    return {node: <><Bedroom st={{t, lamp: 0, door: 1, hideS: true}} />
+      {grab(BOMBS[2], FAN_P[0] - 0.6, Math.PI / 2, 'R', 'L', FAN_P[0] - 0.05)}{grab(BOMBS[3], FAN_P[0] + 0.6, -Math.PI / 2, 'L', 'R', FAN_P[0] + 0.05)}
+      <Fan position={FAN_P} yaw={0} blade={0.6} blur={0} lit={0} />
+      </>, cam: {pos: lerp3([FAN_P[0] + 1.25, 1.42, 3.05], [FAN_P[0] + 1.1, 1.42, 2.8], sm(lt / 1.2)), look: [FAN_P[0], 1.0, FAN_P[2]], fov: 52}};
+  },
   cuffECU: (t, lt) => {
     const k = pop((t - ev('cuff')) / 0.28);
     return {node: <><Bedroom st={{t, lamp: 0, door: 1}} /><Fan position={FAN_P} yaw={FAN_YAW} blade={0.6} blur={0} lit={0} />
