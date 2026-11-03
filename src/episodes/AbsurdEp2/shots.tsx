@@ -204,7 +204,7 @@ export const SHOT_FN: Record<string, (t: number, lt: number, C: Cast) => ShotOut
     const k = pop((t - ev('cuff')) / 0.28);
     return {node: <><Bedroom st={{t, lamp: 0, door: 1}} /><Fan position={FAN_P} yaw={FAN_YAW} blade={0.6} blur={0} lit={0} />
       <Handcuffs k={k} position={[FAN_P[0] + 0.024 * 2.2 * 1.45, 0.62, FAN_P[2]]} rotation={[Math.PI / 2, 0, 0]} size={2.2} />
-      </>, cam: {pos: add3([FAN_P[0] - 0.42, 0.86, FAN_P[2] + 0.44], shake(t, ev('cuff') + 0.03, 0.008, 8)), look: [FAN_P[0] + 0.03, 0.64, FAN_P[2]], fov: 38}};
+      </>, cam: {pos: add3(lerp3([FAN_P[0] - 0.5, 0.9, FAN_P[2] + 0.52], [FAN_P[0] - 0.38, 0.84, FAN_P[2] + 0.4], sm(lt / 1.2)), shake(t, ev('cuff') + 0.03, 0.008, 8)), look: [FAN_P[0] + 0.03, 0.64, FAN_P[2]], fov: 38}};
   },
   interroFront: (t, lt, C) => interro(t, lt, C, 'front'),
   caseFile: (t, lt) => ({node: <><Interro t={t} swing={1} hideS /><CaseFolder position={[-0.45, TABLE_TOP + 0.012, 0.1]} rotation={[0, 0.12, 0]} /></>,

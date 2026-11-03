@@ -24,7 +24,7 @@ for a, b in zip(cards, cards[1:]):
 ans = E('l013') + 0.12
 cards.insert(next(i for i, c in enumerate(cards) if c['line'] == 'l014'), {'id': 'l013c9', 'line': 'l013', 'text': 'หึ่ง…', 'hl': 'หึ่ง', 't0': round(ans, 3), 't1': round(P('l014') - 0.02, 3), 'echo': True})
 ev.update(press=0.55, zap=P('l002', 1) - 0.25, titleCharge=3.75, dial=P('l004') - 0.05, callUI=P('l004') + 0.65, callElec=P('l004', 1) - 0.05, squad=P('l005'), door=P('l005', 1) - 0.05, ring=P('l006'),
-          cut=P('l006', 1) + 0.03, out1=P('l006', 1) + 0.1, out2=P('l006', 1) + 0.3, out3=P('l006', 1) + 0.5, cuff=13.34 + 0.08, interro=P('l007') - 0.05, shake0=P('l008') - 0.1, shake1=P('l008') + 1.0, unplug=P('l009') + 0.33,
+          cut=P('l006', 1) + 0.03, out1=P('l006', 1) + 0.1, out2=P('l006', 1) + 0.3, out3=P('l006', 1) + 0.5, cuff=13.34 + 0.28, interro=P('l007') - 0.05, shake0=P('l008') - 0.1, shake1=P('l008') + 1.0, unplug=P('l009') + 0.33,
           windDown=P('l009') + 0.42, stamp=P('l010') + 0.25, gavel=P('l011') + 0.1, sentence=P('l011') + 0.2, cellDoor=P('l011', 1) - 0.05, press3=P('l012') + 0.28, wind=(P('l012') + E('l012')) / 2, peel=P('l013') + 0.25, splat=P('l013') + 0.62, answer=ans, form=P('l014') - 0.05)
 ev = {k: round(v, 3) for k, v in ev.items()}
 SHOTS = [('fanPress', 0.0), ('fingerECU', P('l002') - .05), ('zapped', P('l002', 1) - .05), ('fanScale', 3.75), ('phone', P('l004') - .05), ('callUI', P('l004', 1) - .05), ('squadWalk', P('l005') - .05), ('doorway', P('l005', 1) - .05),

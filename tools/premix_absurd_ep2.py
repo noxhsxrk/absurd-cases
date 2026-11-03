@@ -79,6 +79,8 @@ P(fade_tail(bz, 0.5, 0.1), 0.09, EV['cut'])
 for k, pan in (('out1', -0.3), ('out2', 0.2), ('out3', 0)): P(clunk(62, 0.34, 0.6), 0.14, EV[k], pan)
 P(fade_tail(A('cuff_click_v1'), 0.6), 0.13, EV['cuff'] - 0.04)
 P(clunk(120, 0.14, 0.8), 0.1, EV['cuff'])
+for k in (1, 2, 3): P(click(), 0.09, EV['cuff'] + k * 0.055)     # the ratchet
+M.bed(to_st(rms_to(A('crickets_v1'), BED * 0.8)), T('cuffECU'), T('interroFront'), width=0.6, xf=0.2, fade=0.03)
 P(clunk(85, 0.3, 0.3), 0.14, T('caseFile'))     # folder dropped on the table
 yaw_t = np.arange(int((T('plugECU') - T('shakeNo')) * R)) / R
 sweep = rms_to(A('fan_motor_v1')[:len(yaw_t)], 0.012)

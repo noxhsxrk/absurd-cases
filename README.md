@@ -5,7 +5,7 @@ Thai deadpan-narrator shorts, low-poly 3D, 1080×1920 @ 30 fps: "ชายคน
 | Episode | Composition | Runtime | Source |
 |---|---|---|---|
 | EP1 ยุงทำร้ายร่างกาย | `AbsurdEp1` | 33.7 s | `src/episodes/AbsurdEp1` |
-| EP2 คดีช็อตไม่เลือกหน้า | `AbsurdEp2` | 31.7 s | `src/episodes/AbsurdEp2` (reuses EP1's sets and cast) |
+| EP2 คดีช็อตไม่เลือกหน้า | `AbsurdEp2` | 32.4 s | `src/episodes/AbsurdEp2` (reuses EP1's sets and cast) |
 
 ## Run
 
