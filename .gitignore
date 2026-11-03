@@ -1,0 +1,13 @@
+node_modules/
+out/
+qa/
+.rocketbox/
+.DS_Store
+__pycache__/
+*.pyc
+# fetched by tools/rb_setup.sh
+public/rb/*.glb
+public/rb/manifest.json
+public/rb/av/
+# AudioLDM2 takes: regenerate with episodes/absurd-cases/sfx/gen_sfx*.py
+public/absurd-cases/*/sfx_ai/
