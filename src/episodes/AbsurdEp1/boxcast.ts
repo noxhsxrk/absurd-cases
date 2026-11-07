@@ -53,10 +53,8 @@ const inkFace = (g: CanvasRenderingContext2D, id: string, f: FaceSpec, mode: Fac
   paint(g, W, H, f.skin, sd, 24, 0.03);
   if (f.mask) { paint(g, W, H, f.mask, sd + 3, 30, 0.03); g.fillStyle = f.skin; g.beginPath(); g.roundRect(cx - 62, 92, 124, 46, 20); g.fill(); }
   g.strokeStyle = ink; g.fillStyle = ink; g.lineCap = 'round'; g.lineJoin = 'round';
-  // the head's 8 vertical edges + top/bottom rims, wobbly hand-drawn
+  // no lines on the head's edges or rims: on an 8-sided head they cut straight across the face (EP4 feedback)
   const wob = (x0: number, y0: number, x1: number, y1: number, w: number, k: number) => { g.lineWidth = w; g.beginPath(); g.moveTo(x0, y0); const n = 6; for (let i = 1; i <= n; i++) { const u = i / n; g.lineTo(x0 + (x1 - x0) * u + (r(k + i) - 0.5) * 2.4, y0 + (y1 - y0) * u + (r(k + i * 2) - 0.5) * 2.4); } g.stroke(); };
-  for (let e = 0; e < 8; e++) wob(e * W / 8 + W / 16, 0, e * W / 8 + W / 16, H, 3.2, e * 10);
-  wob(0, 3, W, 3, 5, 90); wob(0, H - 3, W, H - 3, 5, 95);
   // stubble dots on the jaw + hatched blush
   if ((f.stubble ?? 0) > 0 && !f.mask) for (let i = 0; i < 160 * f.stubble; i++) { const a = r(i * 3) * Math.PI, rr = 70 + r(i * 5) * 26; g.globalAlpha = 0.55; g.fillRect(cx + Math.cos(a) * rr * 1.1 - 1, 150 + Math.sin(a) * rr * 0.75 - 1, 2.2, 2.2); }
   g.globalAlpha = 0.5; if (!f.mask) for (const dx of [-60, 60]) for (let i = 0; i < 5; i++) wob(cx + dx - 14 + i * 6, 158, cx + dx - 6 + i * 6, 146, 2, 200 + i + dx);
@@ -112,7 +110,7 @@ const faceTex = (id: string, f: FaceSpec, mode: FaceMode) => FACE_STYLE === 'ink
 const hairTop = (id: string, f: FaceSpec) => ctex(`hairtop:${id}:${FACE_STYLE}`, 128, 128, (g) => {
   if (f.mask) { paint(g, 128, 128, f.mask, 7, 30, 0.04); return; }
   paint(g, 128, 128, f.hairStyle === 'none' ? f.skin : f.hair, 9, 30, 0.08);
-  if (FACE_STYLE === 'ink' && f.hairStyle !== 'none') { g.strokeStyle = 'rgba(0,0,0,0.75)'; g.lineWidth = 2; for (let i = 0; i < 70; i++) { const x = hash(i) * 128, y = hash(i * 3) * 128; g.beginPath(); g.moveTo(x, y); g.lineTo(x + 10, y + 6); g.stroke(); } g.lineWidth = 5; g.strokeRect(2, 2, 124, 124); }
+  if (FACE_STYLE === 'ink' && f.hairStyle !== 'none') { g.strokeStyle = 'rgba(0,0,0,0.75)'; g.lineWidth = 2; for (let i = 0; i < 70; i++) { const x = hash(i) * 128, y = hash(i * 3) * 128; g.beginPath(); g.moveTo(x, y); g.lineTo(x + 10, y + 6); g.stroke(); } }
   if (f.hairStyle === 'messy') { g.strokeStyle = 'rgba(0,0,0,0.6)'; g.lineWidth = 3; for (let i = 0; i < 40; i++) { g.beginPath(); g.arc(hash(i) * 128, hash(i * 3) * 128, 4 + hash(i * 5) * 6, 0, Math.PI * 1.5); g.stroke(); } }
 });
 
