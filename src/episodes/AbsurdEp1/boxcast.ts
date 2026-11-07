@@ -42,10 +42,46 @@ export const PM = (base: string, key = '', amt?: number) => {
 };
 
 // ---------------------------------------------------------------- faces
-export type FaceMode = 'open' | 'blink' | 'talk' | 'wide' | 'closed';
+export type FaceMode = 'open' | 'blink' | 'talk' | 'wide' | 'closed' | 'half';
+/** 'bean' = EP1–3 glossy bean eyes; 'ink' = ref8 hand-drawn ink face (edge lines, hatched hair, stubble dots, hatched blush). Set per episode before the cast is built. */
+export let FACE_STYLE: 'bean' | 'ink' = 'bean';
+export const setFaceStyle = (s: 'bean' | 'ink') => { FACE_STYLE = s; };
 export type FaceSpec = {skin: string; hair: string; hairStyle: 'messy' | 'short' | 'slick' | 'none'; stubble: number; mustache?: boolean; glasses?: boolean; mask?: string; brows?: number};
 const ink = '#14110F';
-const faceTex = (id: string, f: FaceSpec, mode: FaceMode) => ctex(`face:${id}:${mode}`, 512, 256, (g) => {
+const inkFace = (g: CanvasRenderingContext2D, id: string, f: FaceSpec, mode: FaceMode) => {
+  const W = 512, H = 256, cx = W / 2, sd = id.length * 13.7; const r = (i: number) => hash(sd + i);
+  paint(g, W, H, f.skin, sd, 24, 0.03);
+  if (f.mask) { paint(g, W, H, f.mask, sd + 3, 30, 0.03); g.fillStyle = f.skin; g.beginPath(); g.roundRect(cx - 62, 92, 124, 46, 20); g.fill(); }
+  g.strokeStyle = ink; g.fillStyle = ink; g.lineCap = 'round'; g.lineJoin = 'round';
+  // the head's 8 vertical edges + top/bottom rims, wobbly hand-drawn
+  const wob = (x0: number, y0: number, x1: number, y1: number, w: number, k: number) => { g.lineWidth = w; g.beginPath(); g.moveTo(x0, y0); const n = 6; for (let i = 1; i <= n; i++) { const u = i / n; g.lineTo(x0 + (x1 - x0) * u + (r(k + i) - 0.5) * 2.4, y0 + (y1 - y0) * u + (r(k + i * 2) - 0.5) * 2.4); } g.stroke(); };
+  for (let e = 0; e < 8; e++) wob(e * W / 8 + W / 16, 0, e * W / 8 + W / 16, H, 3.2, e * 10);
+  wob(0, 3, W, 3, 5, 90); wob(0, H - 3, W, H - 3, 5, 95);
+  // stubble dots on the jaw + hatched blush
+  if ((f.stubble ?? 0) > 0 && !f.mask) for (let i = 0; i < 160 * f.stubble; i++) { const a = r(i * 3) * Math.PI, rr = 70 + r(i * 5) * 26; g.globalAlpha = 0.55; g.fillRect(cx + Math.cos(a) * rr * 1.1 - 1, 150 + Math.sin(a) * rr * 0.75 - 1, 2.2, 2.2); }
+  g.globalAlpha = 0.5; if (!f.mask) for (const dx of [-60, 60]) for (let i = 0; i < 5; i++) wob(cx + dx - 14 + i * 6, 158, cx + dx - 6 + i * 6, 146, 2, 200 + i + dx);
+  g.globalAlpha = 1;
+  // eyes: ink dots under heavy lids (deadpan); blink/closed = a line; wide = rings
+  const ey = 114, ex = [cx - 34, cx + 34];
+  ex.forEach((x, i) => {
+    if (mode === 'blink' || mode === 'closed') { wob(x - 12, ey + 2, x + 12, ey + 2, 4, 300 + i); return; }
+    if (mode === 'wide') { g.lineWidth = 3.5; g.beginPath(); g.arc(x, ey, 13, 0, Math.PI * 2); g.stroke(); g.beginPath(); g.arc(x, ey, 4.5, 0, Math.PI * 2); g.fill(); return; }
+    g.beginPath(); g.ellipse(x, ey + 2, 5.5, 6.5, 0, 0, Math.PI * 2); g.fill();
+    wob(x - 13, ey - (mode === 'half' ? 1 : 5), x + 13, ey - (mode === 'half' ? 1 : 5), 4, 310 + i);   // the lid line
+  });
+  // brows: hatched strokes
+  const by = mode === 'wide' ? 82 : 90, tilt = f.brows ?? 0;
+  ex.forEach((x, i) => { const s2 = i ? -1 : 1; g.save(); g.translate(x, by); g.rotate(tilt * 0.35 * s2); for (let k = 0; k < 4; k++) wob(-14 + k * 3, 2 + k * 0.5, 12 + k * 1.5, -2 + k * 0.5, 2.6, 400 + k + i * 9); g.restore(); });
+  // nose: an ink hook
+  if (!f.mask) { g.lineWidth = 3; g.beginPath(); g.moveTo(cx - 2, 124); g.quadraticCurveTo(cx + 9, 142, cx - 5, 146); g.stroke(); }
+  // mouth
+  if (mode === 'talk') { g.fillStyle = '#3A1A1A'; g.beginPath(); g.ellipse(cx, 178, 12, 8, 0, 0, Math.PI * 2); g.fill(); g.lineWidth = 3; g.stroke(); }
+  else if (mode === 'wide') { g.lineWidth = 3; g.beginPath(); g.ellipse(cx, 180, 8, 11, 0, 0, Math.PI * 2); g.stroke(); }
+  else wob(cx - 15, 172, cx + 15, 172, 3.5, 500);
+  if (f.mustache) { g.fillStyle = f.hair; g.beginPath(); g.roundRect(cx - 26, 156, 52, 10, 5); g.fill(); }
+  if (f.glasses) { g.strokeStyle = '#2B2B33'; g.lineWidth = 4; ex.forEach((x) => { g.beginPath(); g.arc(x, ey, 22, 0, Math.PI * 2); g.stroke(); }); g.beginPath(); g.moveTo(cx - 12, ey); g.lineTo(cx + 12, ey); g.stroke(); }
+};
+const faceTex = (id: string, f: FaceSpec, mode: FaceMode) => FACE_STYLE === 'ink' ? ctex(`inkface:${id}:${mode}`, 512, 256, (g) => inkFace(g, id, f, mode)) : ctex(`face:${id}:${mode}`, 512, 256, (g) => {
   // wrap-around skin for an 8-sided head; the face sits in the middle of the canvas (u = 0.5 = front)
   const W = 512, H = 256, cx = W / 2, sd = id.length * 13.7;
   paint(g, W, H, f.skin, sd, 24, 0.025);
@@ -73,9 +109,10 @@ const faceTex = (id: string, f: FaceSpec, mode: FaceMode) => ctex(`face:${id}:${
   if (f.mustache) { g.fillStyle = f.hair; g.beginPath(); g.roundRect(cx - 26, 156, 52, 10, 5); g.fill(); }
   if (f.glasses) { g.strokeStyle = '#2B2B33'; g.lineWidth = 4; ex.forEach((x) => { g.beginPath(); g.arc(x, ey, 22, 0, Math.PI * 2); g.stroke(); }); g.beginPath(); g.moveTo(cx - 12, ey); g.lineTo(cx + 12, ey); g.stroke(); }
 });
-const hairTop = (id: string, f: FaceSpec) => ctex(`hairtop:${id}`, 128, 128, (g) => {
+const hairTop = (id: string, f: FaceSpec) => ctex(`hairtop:${id}:${FACE_STYLE}`, 128, 128, (g) => {
   if (f.mask) { paint(g, 128, 128, f.mask, 7, 30, 0.04); return; }
   paint(g, 128, 128, f.hairStyle === 'none' ? f.skin : f.hair, 9, 30, 0.08);
+  if (FACE_STYLE === 'ink' && f.hairStyle !== 'none') { g.strokeStyle = 'rgba(0,0,0,0.75)'; g.lineWidth = 2; for (let i = 0; i < 70; i++) { const x = hash(i) * 128, y = hash(i * 3) * 128; g.beginPath(); g.moveTo(x, y); g.lineTo(x + 10, y + 6); g.stroke(); } g.lineWidth = 5; g.strokeRect(2, 2, 124, 124); }
   if (f.hairStyle === 'messy') { g.strokeStyle = 'rgba(0,0,0,0.6)'; g.lineWidth = 3; for (let i = 0; i < 40; i++) { g.beginPath(); g.arc(hash(i) * 128, hash(i * 3) * 128, 4 + hash(i * 5) * 6, 0, Math.PI * 1.5); g.stroke(); } }
 });
 

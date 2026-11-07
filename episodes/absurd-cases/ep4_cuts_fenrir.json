@@ -1,0 +1,16 @@
+{
+ "_note": "EP4 Fenrir take: line ranges + card splits from Whisper words + silencedetect (-35 dB). {q:[a,b]} squeezes a pause inside a card. l004 ends mid-word on 'ตำ' (the interruption).",
+ "ep4-l001": {"range": [0.24, 2.93], "splits": [[1.05, 1.53]]},
+ "ep4-l002": {"range": [3.62, 6.26], "splits": [[4.63, 4.86]]},
+ "ep4-l003": {"range": [7.11, 10.05], "splits": [{"q": [7.48, 8.0]}, [8.98, 9.077]]},
+ "ep4-l004": {"range": [10.9, 11.78], "splits": []},
+ "ep4-l005": {"range": [12.66, 16.05], "splits": [13.34, [14.52, 14.757]]},
+ "ep4-l006": {"range": [16.69, 19.22], "splits": [[17.458, 17.667]]},
+ "ep4-l007": {"range": [19.85, 22.37], "splits": [[20.912, 21.65]]},
+ "ep4-l008": {"range": [23.47, 27.71], "splits": [[24.497, 25.14], [26.02, 26.56]]},
+ "ep4-l009": {"range": [28.64, 29.49], "splits": []},
+ "ep4-l010": {"range": [30.31, 32.29], "splits": [[31.3, 31.75]]},
+ "ep4-l011": {"range": [33.21, 35.73], "splits": [[34.81, 35.11]]},
+ "ep4-l012": {"range": [36.66, 40.99], "splits": [[37.886, 38.32], [39.6, 40.12]]},
+ "ep4-l013": {"range": [41.91, 42.98], "splits": []}
+}

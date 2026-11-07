@@ -12,6 +12,7 @@ import './pov/ui/fonts';
 import {AbsurdEp1, TOTAL as ABSURD1_TOTAL} from './episodes/AbsurdEp1/Episode';
 import {AbsurdEp2, TOTAL as ABSURD2_TOTAL} from './episodes/AbsurdEp2/Episode';
 import {AbsurdEp3, TOTAL as ABSURD3_TOTAL} from './episodes/AbsurdEp3/Episode';
+import {AbsurdEp4, TOTAL as ABSURD4_TOTAL} from './episodes/AbsurdEp4/Episode';
 import {qualitySchema} from './pov/ui/quality';
 
 export const Root: React.FC = () => (
@@ -22,6 +23,8 @@ export const Root: React.FC = () => (
     <Composition id="AbsurdEp2" component={AbsurdEp2} durationInFrames={ABSURD2_TOTAL} fps={30} width={1080} height={1920} schema={qualitySchema} defaultProps={{quality: 'fast' as const}} />
     {/* absurd-cases EP3 — คดีบุกรุกปอด */}
     <Composition id="AbsurdEp3" component={AbsurdEp3} durationInFrames={ABSURD3_TOTAL} fps={30} width={1080} height={1920} schema={qualitySchema} defaultProps={{quality: 'fast' as const}} />
+    {/* absurd-cases EP4 — คดีกลิ่นเดือดร้อน */}
+    <Composition id="AbsurdEp4" component={AbsurdEp4} durationInFrames={ABSURD4_TOTAL} fps={30} width={1080} height={1920} schema={qualitySchema} defaultProps={{quality: 'fast' as const}} />
     {/* demo shot: eye-level POV in the living office, toon cast on mocap, viewer's hand with a mug */}
     <Composition id="OfficePOV" component={PovScene} durationInFrames={240} fps={30} width={1080} height={1920} />
     {/* model sheets */}

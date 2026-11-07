@@ -1,0 +1,200 @@
+{
+ "fridge_open": [
+  {
+   "rank": 1,
+   "score": 0.1584,
+   "prompt": 1
+  },
+  {
+   "rank": 2,
+   "score": 0.1223,
+   "prompt": 0
+  },
+  {
+   "rank": 3,
+   "score": 0.1174,
+   "prompt": 1
+  },
+  {
+   "rank": 4,
+   "score": 0.1088,
+   "prompt": 0
+  }
+ ],
+ "fridge_hum": [
+  {
+   "rank": 1,
+   "score": 0.1828,
+   "prompt": 0
+  },
+  {
+   "rank": 2,
+   "score": 0.1727,
+   "prompt": 0
+  },
+  {
+   "rank": 3,
+   "score": 0.1589,
+   "prompt": 0
+  },
+  {
+   "rank": 4,
+   "score": 0.1064,
+   "prompt": 0
+  }
+ ],
+ "door_crash": [
+  {
+   "rank": 1,
+   "score": 0.0668,
+   "prompt": 0
+  },
+  {
+   "rank": 2,
+   "score": 0.0579,
+   "prompt": 1
+  },
+  {
+   "rank": 3,
+   "score": 0.0501,
+   "prompt": 0
+  },
+  {
+   "rank": 4,
+   "score": 0.0398,
+   "prompt": 0
+  }
+ ],
+ "swat_boots": [
+  {
+   "rank": 1,
+   "score": 0.0931,
+   "prompt": 0
+  },
+  {
+   "rank": 2,
+   "score": 0.0183,
+   "prompt": 0
+  },
+  {
+   "rank": 3,
+   "score": -0.0832,
+   "prompt": 0
+  },
+  {
+   "rank": 4,
+   "score": -0.1393,
+   "prompt": 0
+  }
+ ],
+ "mask_breath": [
+  {
+   "rank": 1,
+   "score": 0.0992,
+   "prompt": 0
+  },
+  {
+   "rank": 2,
+   "score": 0.0685,
+   "prompt": 0
+  },
+  {
+   "rank": 3,
+   "score": 0.0244,
+   "prompt": 0
+  },
+  {
+   "rank": 4,
+   "score": 0.0167,
+   "prompt": 0
+  }
+ ],
+ "tape_unroll": [
+  {
+   "rank": 1,
+   "score": 0.0878,
+   "prompt": 0
+  },
+  {
+   "rank": 2,
+   "score": 0.0305,
+   "prompt": 0
+  },
+  {
+   "rank": 3,
+   "score": -0.023,
+   "prompt": 0
+  },
+  {
+   "rank": 4,
+   "score": -0.0313,
+   "prompt": 0
+  }
+ ],
+ "smell_puff": [
+  {
+   "rank": 1,
+   "score": 0.0516,
+   "prompt": 0
+  },
+  {
+   "rank": 2,
+   "score": 0.032,
+   "prompt": 0
+  },
+  {
+   "rank": 3,
+   "score": 0.0025,
+   "prompt": 0
+  },
+  {
+   "rank": 4,
+   "score": -0.0287,
+   "prompt": 0
+  }
+ ],
+ "body_fall": [
+  {
+   "rank": 1,
+   "score": 0.1639,
+   "prompt": 0
+  },
+  {
+   "rank": 2,
+   "score": 0.1373,
+   "prompt": 0
+  },
+  {
+   "rank": 3,
+   "score": 0.089,
+   "prompt": 0
+  },
+  {
+   "rank": 4,
+   "score": -0.0041,
+   "prompt": 0
+  }
+ ],
+ "night_kitchen": [
+  {
+   "rank": 1,
+   "score": 0.0198,
+   "prompt": 0
+  },
+  {
+   "rank": 2,
+   "score": -0.004,
+   "prompt": 0
+  },
+  {
+   "rank": 3,
+   "score": -0.0326,
+   "prompt": 0
+  },
+  {
+   "rank": 4,
+   "score": -0.0332,
+   "prompt": 0
+  }
+ ]
+}

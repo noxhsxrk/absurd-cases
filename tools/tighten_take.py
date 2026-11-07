@@ -13,18 +13,24 @@ for i, (id, c) in enumerate(cuts.items()):
     g = GAPS.get(id, 0.25 if i else 0.0); out.append(np.zeros(int(g * sr), np.float32)); t += g
     a, b = c['range']; pieces = []; bounds = [a]
     for s in c['splits']:
-        if isinstance(s, list): pieces.append(('cut', s)); 
+        if isinstance(s, dict): pieces.append(('sq', s['q']))          # squeeze a pause without starting a new card
+        elif isinstance(s, list): pieces.append(('cut', s))
         else: pieces.append(('pt', s))
     start = t; parts = []; cur = a; pt0 = t
     for kind, s in pieces:
         if kind == 'cut':
             seg = fade(x[int(cur * sr):int(s[0] * sr)].copy()); out.append(seg); t += len(seg) / sr; parts.append([round(pt0, 3), round(t, 3)])
             gap = min(INNER, s[1] - s[0]); out.append(np.zeros(int(gap * sr), np.float32)); t += gap; cur = s[1]; pt0 = t
+        elif kind == 'sq':
+            seg = fade(x[int(cur * sr):int(s[0] * sr)].copy()); out.append(seg); t += len(seg) / sr
+            gap = min(INNER, s[1] - s[0]); out.append(np.zeros(int(gap * sr), np.float32)); t += gap; cur = s[1]
         else:
             seg = x[int(cur * sr):int(s * sr)].copy(); out.append(seg); t += len(seg) / sr; parts.append([round(pt0, 3), round(t, 3)]); cur = s; pt0 = t
     seg = fade(x[int(cur * sr):int(b * sr)].copy()); out.append(seg); t += len(seg) / sr; parts.append([round(pt0, 3), round(t, 3)])
     rows.append({'id': id, 'start': round(start, 3), 'end': round(t, 3), 'parts': parts})
 y = np.concatenate(out); o = wave.open(outw, 'wb'); o.setnchannels(1); o.setsampwidth(2); o.setframerate(sr); o.writeframes((np.clip(y, -1, 1) * 32767).astype(np.int16).tobytes()); o.close()
 json.dump(rows, open(outj, 'w'), indent=1)
+MAP = []  # (rawT, tightT) anchors written for word-level events
+
 print('tight', round(len(y) / sr, 2), 's (raw', round(len(x) / sr, 2), ')')
 for r in rows: print(r['id'], r['start'], r['end'], len(r['parts']))
