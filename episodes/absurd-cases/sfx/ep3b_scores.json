@@ -1,0 +1,200 @@
+{
+ "window_open": [
+  {
+   "rank": 1,
+   "score": 0.105,
+   "prompt": 1
+  },
+  {
+   "rank": 2,
+   "score": 0.104,
+   "prompt": 1
+  },
+  {
+   "rank": 3,
+   "score": 0.0861,
+   "prompt": 0
+  },
+  {
+   "rank": 4,
+   "score": 0.0222,
+   "prompt": 1
+  }
+ ],
+ "sneeze": [
+  {
+   "rank": 1,
+   "score": 0.1926,
+   "prompt": 0
+  },
+  {
+   "rank": 2,
+   "score": 0.1757,
+   "prompt": 2
+  },
+  {
+   "rank": 3,
+   "score": 0.155,
+   "prompt": 3
+  },
+  {
+   "rank": 4,
+   "score": 0.1512,
+   "prompt": 2
+  }
+ ],
+ "sniff": [
+  {
+   "rank": 1,
+   "score": 0.0639,
+   "prompt": 1
+  },
+  {
+   "rank": 2,
+   "score": -0.0026,
+   "prompt": 0
+  },
+  {
+   "rank": 3,
+   "score": -0.0038,
+   "prompt": 1
+  },
+  {
+   "rank": 4,
+   "score": -0.02,
+   "prompt": 1
+  }
+ ],
+ "breath_in": [
+  {
+   "rank": 1,
+   "score": 0.0736,
+   "prompt": 0
+  },
+  {
+   "rank": 2,
+   "score": 0.0195,
+   "prompt": 0
+  },
+  {
+   "rank": 3,
+   "score": 0.0095,
+   "prompt": 0
+  },
+  {
+   "rank": 4,
+   "score": -0.0216,
+   "prompt": 0
+  }
+ ],
+ "fan_gear": [
+  {
+   "rank": 1,
+   "score": 0.1364,
+   "prompt": 0
+  },
+  {
+   "rank": 2,
+   "score": 0.129,
+   "prompt": 0
+  },
+  {
+   "rank": 3,
+   "score": 0.112,
+   "prompt": 0
+  },
+  {
+   "rank": 4,
+   "score": 0.1052,
+   "prompt": 0
+  }
+ ],
+ "hammer": [
+  {
+   "rank": 1,
+   "score": 0.2172,
+   "prompt": 0
+  },
+  {
+   "rank": 2,
+   "score": 0.1805,
+   "prompt": 0
+  },
+  {
+   "rank": 3,
+   "score": 0.1784,
+   "prompt": 0
+  },
+  {
+   "rank": 4,
+   "score": 0.1782,
+   "prompt": 0
+  }
+ ],
+ "jar_lid": [
+  {
+   "rank": 1,
+   "score": 0.2288,
+   "prompt": 0
+  },
+  {
+   "rank": 2,
+   "score": 0.1237,
+   "prompt": 0
+  },
+  {
+   "rank": 3,
+   "score": 0.1062,
+   "prompt": 0
+  },
+  {
+   "rank": 4,
+   "score": 0.0939,
+   "prompt": 0
+  }
+ ],
+ "cell_door": [
+  {
+   "rank": 1,
+   "score": 0.0154,
+   "prompt": 0
+  },
+  {
+   "rank": 2,
+   "score": 0.0106,
+   "prompt": 0
+  },
+  {
+   "rank": 3,
+   "score": -0.0034,
+   "prompt": 0
+  },
+  {
+   "rank": 4,
+   "score": -0.014,
+   "prompt": 0
+  }
+ ],
+ "air_drift": [
+  {
+   "rank": 1,
+   "score": -0.013,
+   "prompt": 0
+  },
+  {
+   "rank": 2,
+   "score": -0.0475,
+   "prompt": 0
+  },
+  {
+   "rank": 3,
+   "score": -0.0528,
+   "prompt": 0
+  },
+  {
+   "rank": 4,
+   "score": -0.0713,
+   "prompt": 0
+  }
+ ]
+}

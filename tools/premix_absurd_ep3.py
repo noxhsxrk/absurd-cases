@@ -77,10 +77,51 @@ def beeps(n=3):
 def ring():
     n = int(0.9 * R); t = np.arange(n) / R; return edge((np.sin(2 * np.pi * 425 * t) * (t < 0.6)) * 0.6, 0.01, 0.1)
 
+
+# ---------------------------------------------------------------- round 2 foley: CLAP-ranked AI takes + designed layers
+rng = np.random.default_rng(7)
+def R2(name, rank=1):
+    p = AI / f'{name}_r{rank}.wav'
+    return read(p) if p.exists() else None
+def onset_trim(x, pre=0.02, th=0.12):
+    e = np.convolve(np.abs(x), np.ones(int(0.005 * R)) / int(0.005 * R), 'same'); i = int(np.argmax(e > th * e.max()))
+    return x[max(0, i - int(pre * R)):]
+def excite(x, amt=0.18):
+    """16 kHz AI audio is dull: add a little synthetic air above 5 kHz"""
+    return x + amt * rms(x) / max(rms(hp(np.tanh(3 * x / (np.abs(x).max() + 1e-9)), 5000)), 1e-9) * hp(np.tanh(3 * x / (np.abs(x).max() + 1e-9)), 5000)
+def latch():
+    n = int(0.05 * R); t = np.arange(n) / R; nz = hp(rng.standard_normal(n), 2500) * np.exp(-t * 160)
+    return edge(nz + 0.5 * np.sin(2 * np.pi * 3300 * t) * np.exp(-t * 90) + 0.3 * np.sin(2 * np.pi * 1700 * t) * np.exp(-t * 60), 0.0005, 0.01)
+def air_swell(sec=0.8):
+    n = int(sec * R); t = np.arange(n) / R; x = bp(rng.standard_normal(n), 300, 5000, 2)
+    return x * np.sin(np.pi * np.clip(t / sec, 0, 1)) ** 2
+def floaty(sec=1.6):
+    """a speck drifting: soft breathy air with a slow swirl, plus a faint glassy shimmer"""
+    n = int(sec * R); t = np.arange(n) / R
+    air = bp(rng.standard_normal(n), 1800, 6500, 2) * (0.6 + 0.4 * np.sin(2 * np.pi * 2.6 * t)) * np.sin(np.pi * t / sec)
+    sh = sum(np.sin(2 * np.pi * f * t + rng.uniform(0, 6)) * (0.5 + 0.5 * np.sin(2 * np.pi * (3 + i) * t + i)) for i, f in enumerate((4200, 5300, 6650)))
+    return air / rms(air) + 0.12 * sh * np.sin(np.pi * t / sec) / max(rms(sh), 1e-9)
+def sniff_syn():
+    o = np.zeros(int(0.42 * R))
+    for k0, d in ((0.0, 0.13), (0.2, 0.17)):
+        n = int(d * R); t = np.arange(n) / R; x = bp(rng.standard_normal(n), 700, 3200, 3) * np.sin(np.pi * t / d) ** 0.7 * (0.6 + t / d)
+        o[int(k0 * R):int(k0 * R) + n] += x
+    return edge(o)
+def breath_syn():
+    """a slow nose inhale of fresh air, a beat, a soft exhale"""
+    a, b = 0.95, 0.8; n = int((a + 0.25 + b) * R); o = np.zeros(n)
+    t = np.arange(int(a * R)) / R; o[:len(t)] += bp(rng.standard_normal(len(t)), 600, 2800, 2) * (t / a) ** 1.5 * (1 - np.clip((t - a + 0.08) / 0.08, 0, 1))
+    t2 = np.arange(int(b * R)) / R; k = int((a + 0.25) * R); o[k:k + len(t2)] += 0.6 * bp(rng.standard_normal(len(t2)), 250, 1500, 2) * np.sin(np.pi * t2 / b) ** 1.2
+    return o
+def thump(f=60, sec=0.06):
+    n = int(sec * R); t = np.arange(n) / R; return np.sin(2 * np.pi * f * t) * np.exp(-t * 50)
+
 # ---------------------------------------------------------------- ambience beds (~ -40 dBFS), starting on the cuts
 BED = 0.0038
 T = lambda n: SH[n]['t0']; E = lambda n: SH[n]['t1']
-M.bed(to_st(rms_to(A('morning_birds_v1'), BED * 1.1)), 0, T('helis'), width=0.7, xf=0.6, fade=0.03)
+bd = A('morning_birds_v1'); bn = int(T('helis') * R); bd = np.resize(bd, bn); tt = np.arange(bn) / R
+ok = np.clip((tt - EV['window']) / 0.5, 0, 1); bd = lp(bd, 1800) * (1 - ok) * 0.55 + bd * ok
+M.put2(to_st(rms_to(bd, BED * 1.25)), 0, 1.0, width=0.7)
 M.bed(to_st(rms_to(A('flicker_v1'), BED)), T('jarLid'), T('court'), width=0.3, xf=0.4, fade=0.03)
 M.bed(to_st(rms_to(A('murmur_v1'), BED * 0.8)), T('court'), T('cellBlock'), width=0.8, xf=0.3, fade=0.03)
 M.bed(to_st(rms_to(A('prison_hall_v1'), BED)), T('cellBlock'), T('escape'), width=0.8, xf=0.3, fade=0.03)
@@ -90,11 +131,18 @@ M.bed(to_st(rms_to(A('fan_motor_v1'), BED * 1.2)), T('plateNail'), TOTAL, width=
 
 # ---------------------------------------------------------------- spot SFX (peaks; the voice peaks around 0.3)
 P = lambda x, pk, t, pan=0.0: M.put(peak_to(x, pk * 0.9), t, pan)
-P(fade_tail(A('window_creak_v2'), 1.1, 0.3), 0.12, EV['window'])
+P(latch(), 0.1, EV['window'] - 0.07)
+w2 = R2('window_open'); P(fade_tail(excite(onset_trim(hp(w2, 150))), 1.0, 0.3) if w2 is not None else fade_tail(A('window_creak_v2'), 1.1, 0.3), 0.15, EV['window'])
+M.put(rms_to(air_swell(0.9), 0.006), EV['window'] + 0.05, 0)
+M.put(rms_to(breath_syn(), 0.006), 1.1, 0)
 # the speck drifting: a faint thin whine while it floats in
-P(whine(1.6, 5200) * 0.5, 0.025, EV['dustIn'] - 0.9)
-sn = A('sneeze_v2'); e = np.abs(signal.hilbert(sn)); i = int(np.argmax(np.convolve(e, np.ones(R // 20), 'same')))
-P(fade_tail(sn[max(0, i - int(0.12 * R)):], 0.55, 0.15), 0.2, EV['sneeze'] - 0.12)
+fl = floaty(SH['noseCU']['t0'] + 0.2 - SH['dustAir']['t0']); M.put(rms_to(fl, 0.014), SH['dustAir']['t0'] + 0.05, -0.3)
+M.put(rms_to(floaty(EV['sniff'] - EV['dustIn'] + 0.1), 0.011), EV['dustIn'] - 0.05, 0.25)
+sf = R2('sniff'); P(fade_tail(excite(onset_trim(hp(sf, 200))), 0.5, 0.12) if sf is not None else sniff_syn(), 0.1, EV['sniff'] - 0.08)
+sn = R2('sneeze'); sn = A('sneeze_v2') if sn is None else excite(hp(sn, 90), 0.22)
+e = np.convolve(np.abs(sn), np.ones(R // 40), 'same'); i = int(np.argmax(e)); pre = 0.45
+snz = fade_tail(sn[max(0, i - int(pre * R)):], pre + 0.45, 0.2); snz[int(pre * R):int(pre * R) + int(0.06 * R)] += thump() * np.abs(snz).max() * 0.35
+P(snz, 0.22, EV['sneeze'] - pre)
 P(tung() + rms_to(fade_tail(lp(A('boom_hit_v1'), 700), 1.6, 0.8), rms(tung()) * 0.5)[:len(tung())], 0.55, EV['titleCharge'])
 P(beeps(3), 0.08, EV['dial'])
 P(ring(), 0.06, EV['callUI'] + 0.05)
@@ -106,7 +154,9 @@ M.put2(to_st(env(int(5 * R), [(0, 0), (0.8, 1), (3.5, 1), (5, 0)])[:, 0] * rms_t
 v = A('vacuum_roar_v1'); vn = int((EV['pop'] - EV['vacOn']) * R); vs = np.resize(v, vn) * np.interp(np.arange(vn) / R, [0, 0.25, vn / R - 0.05, vn / R], [0, 1, 1, 0.6])
 M.put(rms_to(vs, 0.05), EV['vacOn'], 0)
 P(pop(), 0.2, EV['pop'])
-P(clunk(140, 0.18, 0.9), 0.12, T('jarLid') + 0.2)          # lid on
+P(clunk(140, 0.18, 0.9), 0.08, T('jarLid') + 0.2)          # lid on
+jl = R2('jar_lid')
+if jl is not None: P(fade_tail(excite(onset_trim(jl)), 0.6, 0.15), 0.12, T('jarLid') + 0.18)
 P(fade_tail(A('cuff_click_v1'), 0.6), 0.13, EV['cuff'] - 0.04)
 P(clunk(120, 0.14, 0.8), 0.1, EV['cuff'])
 for k in (1, 2, 3): P(click(), 0.09, EV['cuff'] + k * 0.055)
@@ -116,18 +166,24 @@ an = whine(1.5, 3400); vo_lvl = rms(M.mix[int(LN['l008']['t0'] * R):int(LN['l008
 P(A('knock_v1')[:int(0.55 * R)] * np.linspace(1, 0.1, int(0.55 * R)), 0.17, EV['gavel'])
 # cells
 P(whoosh(0.3), 0.06, EV['tipIn'] - 0.05)
-P(bolt_lock(), 0.16, EV['barsShut'])
-P(fade_tail(A('gear_creak_v2'), 1.0, 0.3), 0.08, EV['turn0'])
+P(bolt_lock(), 0.1, EV['barsShut'])
+M.put(rms_to(lp(fade_tail(A('boom_hit_v1'), 0.9, 0.5), 900), 0.02), EV['barsShut'], 0)
+cd = R2('cell_door')
+if cd is not None: e = np.convolve(np.abs(cd), np.ones(R // 50), 'same'); i = int(np.argmax(e)); P(fade_tail(excite(cd[max(0, i - int(0.25 * R)):]), 1.1, 0.4), 0.2, EV['barsShut'] - 0.25)
+fg = R2('fan_gear'); P(fade_tail(excite(onset_trim(hp(fg, 150))) if fg is not None else A('gear_creak_v2'), 1.0, 0.3), 0.09, EV['turn0'])
 P(clunk(200, 0.1, 0.9), 0.08, EV['turnLock'])
 wg = to_st(rms_to(lp(A('wind_gust_v1'), 6000), BED * 3)); M.bed(wg, EV['turnLock'], T('escape') + 0.3, width=0.8, xf=0.2, fade=0.1)
 P(whoosh(0.6), 0.16, EV['blow'])
 s = A('prison_siren_v2'); sn_ = int((T('plateNail') - EV['siren'] + 0.3) * R); ss = np.resize(s, sn_) * np.interp(np.arange(sn_) / R, [0, 0.2, sn_ / R - 0.3, sn_ / R], [0, 1, 1, 0])
 M.put2(to_st(rms_to(ss, 0.03)), EV['siren'], 1.0, width=0.6)
-for k in ('nail1', 'nail2'): P(hammer(), 0.17, EV[k])
+hm = R2('hammer'); hm1 = fade_tail(excite(onset_trim(hm)), 0.3, 0.1) if hm is not None else None
+for k in ('nail1', 'nail2'):
+    P(hammer(), 0.12, EV[k])
+    if hm1 is not None: P(hm1, 0.13, EV[k] - 0.015)
 for i in range(3):
     P(fade_tail(A('cuff_click_v1'), 0.45), 0.1, EV['cuffs3'] + i * 0.22 - 0.03)
     for k in (1, 2): P(click(), 0.07, EV['cuffs3'] + i * 0.22 + k * 0.05)
-P(fade_tail(A('gear_creak_v2'), 1.2, 0.5), 0.05, TOTAL - 1.6)
+P(fade_tail(excite(onset_trim(hp(fg, 150))) if fg is not None else A('gear_creak_v2'), 1.2, 0.5), 0.05, TOTAL - 1.6)
 
 # master: duck beds under the voice, light compression, one static gain to -15 LUFS (no dynamic loudnorm: it pumped the beds up to -21 dB)
 import subprocess, re, wave
