@@ -35,12 +35,10 @@ export const Fridge: React.FC<{door: number; light: number}> = ({door, light}) =
       <mesh position={[W / 2, H / 2, 0.03]} material={body} castShadow><boxGeometry args={[W, H, 0.06]} /></mesh>
       <mesh position={[W - 0.07, H * 0.62, 0.075]} material={trim}><boxGeometry args={[0.03, 0.42, 0.03]} /></mesh>
       {[0.4, 0.85, 1.3].map((y) => <mesh key={y} position={[W / 2, y, -0.06]} material={inner}><boxGeometry args={[W - 0.12, 0.08, 0.08]} /></mesh>)}
+      <DoorItems />
       <mesh position={[0.25, 1.35, 0.062]} material={useMemo(() => new THREE.MeshBasicMaterial({map: tex('fridge-note', 128, 128, (g) => { g.fillStyle = '#F2E58A'; g.fillRect(0, 0, 128, 128); g.fillStyle = INK; g.font = F(700, 24); g.textAlign = 'center'; g.fillText('อย่าลืม', 64, 46); g.fillText('ซื้อนม', 64, 80); }), toneMapped: false}), [])}><planeGeometry args={[0.12, 0.12]} /></mesh>
     </group>
-    {/* everyday contents */}
-    <mesh position={[0.24, 0.62, -0.05]} material={PM('#F3F1EA', 'milk')} castShadow><boxGeometry args={[0.09, 0.24, 0.09]} /></mesh>
-    <mesh position={[0.24, 0.77, -0.05]} material={PM('#3E7CB1', 'milk2')}><boxGeometry args={[0.09, 0.05, 0.09]} /></mesh>
-    {[-0.28, -0.2, -0.12].map((x) => <mesh key={x} position={[x, 0.94, 0.05]} material={PM('#EDE2C8', 'egg')} scale={[0.03, 0.04, 0.03]}><sphereGeometry args={[1, 8, 6]} /></mesh>)}
+    <FridgeContents />
     {light > 0 && <pointLight position={[0, 1.45, 0.1]} color="#EAF6FF" intensity={4.5 * light} distance={4.5} decay={1.6} />}
     {light > 0 && <spotLight position={[0, 1.2, 0.25]} target-position={[0, 1.3, 2.5]} angle={0.7} penumbra={0.6} color="#E4F2FF" intensity={9 * light} distance={6} decay={1.4} castShadow />}
   </group>;
@@ -208,4 +206,65 @@ const starMat = new THREE.MeshBasicMaterial({color: '#F2C230', side: THREE.Doubl
 const starGeo = (() => { const s = new THREE.Shape(); for (let i = 0; i < 8; i++) { const a = (i / 8) * Math.PI * 2, r = i % 2 ? 0.35 : 1; const x = Math.sin(a) * r, y = Math.cos(a) * r; if (i) s.lineTo(x, y); else s.moveTo(x, y); } return new THREE.ShapeGeometry(s); })();
 export const Stars: React.FC<{center: V3; t: number; r?: number; size?: number}> = ({center, t, r = 0.18, size = 0.045}) => <group position={center}>
   {[0, 1, 2].map((i) => { const a = t * 4 + (i * Math.PI * 2) / 3; return <mesh key={i} geometry={starGeo} material={starMat} position={[Math.cos(a) * r, 0.05 + Math.sin(a * 2) * 0.02, Math.sin(a) * r]} rotation={[-Math.PI / 2, 0, a]} scale={size} />; })}
+</group>;
+
+// -----------------------------------------------------------------------------------------------------
+// What else is in the fridge (local to the cabinet; shelves at y 0.48 / 0.9 / 1.32, floor 0.04).
+// The durian sits on the middle shelf at the left (x −0.12), so its neighbours keep clear of it.
+// -----------------------------------------------------------------------------------------------------
+const labelTex = (key: string, bg: string, fg: string, text: string, w = 128, h = 64) => tex('lbl-' + key, w, h, (g) => { g.fillStyle = bg; g.fillRect(0, 0, w, h); g.fillStyle = fg; g.font = F(700, Math.round(h * 0.42)); g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText(text, w / 2, h / 2 + 2); });
+const Box: React.FC<{p: V3; s: V3; c: string; r?: number; label?: [string, string, string]}> = ({p, s, c, r = 0, label}) => {
+  const lm = useMemo(() => label ? new THREE.MeshBasicMaterial({map: labelTex(label.join('|'), label[1], label[2], label[0]), toneMapped: false}) : null, [label?.join('|')]);
+  return <group position={p} rotation={[0, r, 0]}>
+    <mesh material={PM(c, 'fx' + c)} castShadow><boxGeometry args={s} /></mesh>
+    {lm && <mesh position={[0, 0, s[2] / 2 + 0.001]} material={lm}><planeGeometry args={[s[0] * 0.9, Math.min(s[1] * 0.5, s[0] * 0.45)]} /></mesh>}
+  </group>;
+};
+const Can: React.FC<{p: V3; r: number; h: number; c: string; top?: string}> = ({p, r, h, c, top = '#B8BCC0'}) => <group position={p}>
+  <mesh material={PM(c, 'can' + c)} position={[0, h / 2, 0]} castShadow><cylinderGeometry args={[r, r, h, 12]} /></mesh>
+  <mesh material={M(top, 0.3, 0.7)} position={[0, h + 0.002, 0]}><cylinderGeometry args={[r * 0.95, r * 0.95, 0.004, 12]} /></mesh>
+</group>;
+const Bottle: React.FC<{p: V3; r: number; h: number; c: string; cap: string; glass?: boolean}> = ({p, r, h, c, cap, glass}) => {
+  const m = useMemo(() => glass ? new THREE.MeshStandardMaterial({color: c, transparent: true, opacity: 0.6, roughness: 0.1}) : PM(c, 'bt' + c), [c, glass]);
+  return <group position={p}>
+    <mesh material={m} position={[0, h * 0.38, 0]} castShadow><cylinderGeometry args={[r, r, h * 0.76, 10]} /></mesh>
+    <mesh material={m} position={[0, h * 0.84, 0]}><cylinderGeometry args={[r * 0.35, r, h * 0.16, 10]} /></mesh>
+    <mesh material={PM(cap, 'cap' + cap)} position={[0, h * 0.96, 0]}><cylinderGeometry args={[r * 0.38, r * 0.38, h * 0.08, 8]} /></mesh>
+  </group>;
+};
+export const FridgeContents: React.FC = () => <group>
+  {/* top shelf (1.32): milk, juice, jam jar, a cake slice on a plate */}
+  <Box p={[0.26, 1.46, -0.08]} s={[0.09, 0.24, 0.09]} c="#F3F1EA" label={['นม', '#3E7CB1', '#fff']} />
+  <Box p={[0.15, 1.44, -0.12]} s={[0.08, 0.2, 0.08]} c="#F2A33A" label={['ส้ม', '#E46A1E', '#fff']} />
+  <Can p={[0.02, 1.33, -0.05]} r={0.04} h={0.09} c="#C0393B" top="#E6E7CF" />
+  <group position={[-0.18, 1.33, 0.02]}>
+    <mesh material={PM('#F2F0EA', 'plate')}><cylinderGeometry args={[0.08, 0.07, 0.012, 16]} /></mesh>
+    <mesh material={PM('#F4E2B8', 'cake')} position={[0, 0.04, 0]} rotation={[0, 0.6, 0]}><cylinderGeometry args={[0.06, 0.06, 0.06, 3, 1, false, 0, 1.1]} /></mesh>
+    <mesh material={PM('#E85A7A', 'cake2')} position={[0.015, 0.075, 0.02]}><sphereGeometry args={[0.012, 8, 6]} /></mesh>
+  </group>
+  {/* middle shelf (0.9): the durian on the left; eggs tray, a leftovers box, a bowl of sticky rice */}
+  <Box p={[0.2, 0.94, 0.06]} s={[0.2, 0.05, 0.12]} c="#E6D7B8" />
+  {[0, 1, 2, 3, 4, 5].map((i) => <mesh key={i} material={PM('#EDE2C8', 'egg')} position={[0.13 + (i % 3) * 0.07, 0.985, 0.03 + Math.floor(i / 3) * 0.06]} scale={[0.024, 0.032, 0.024]}><sphereGeometry args={[1, 8, 6]} /></mesh>)}
+  <Box p={[0.22, 1.02, -0.17]} s={[0.18, 0.08, 0.12]} c="#DDEBF0" label={['เมื่อวาน', '#476F66', '#fff']} />
+  {/* bottom shelf (0.48): water bottles, soda cans, fish sauce, a box of grapes */}
+  {[0.25, 0.17].map((x) => <Bottle key={x} p={[x, 0.49, -0.12]} r={0.035} h={0.3} c="#BFE0EE" cap="#2F7FBF" glass />)}
+  {[0.03, -0.06].map((x, i) => <Can key={x} p={[x, 0.49, 0.06]} r={0.032} h={0.12} c={i ? '#2F8F5B' : '#C0393B'} />)}
+  <Bottle p={[-0.2, 0.49, -0.1]} r={0.03} h={0.26} c="#7A3A1A" cap="#C0393B" glass />
+  <Box p={[-0.04, 0.53, -0.17]} s={[0.14, 0.08, 0.1]} c="#F2F0EA" />
+  {[0, 1, 2, 3, 4, 5, 6].map((i) => <mesh key={i} material={PM('#6B3A7A', 'grape')} position={[-0.08 + (i % 4) * 0.025, 0.59 + Math.floor(i / 4) * 0.02, -0.17 + (i % 2) * 0.02]} scale={0.016}><sphereGeometry args={[1, 6, 5]} /></mesh>)}
+  {/* crisper drawer (floor): vegetables */}
+  <mesh material={useMemo(() => new THREE.MeshStandardMaterial({color: '#DDEFF5', transparent: true, opacity: 0.5, roughness: 0.2}), [])} position={[0, 0.2, 0.02]}><boxGeometry args={[0.66, 0.26, 0.56]} /></mesh>
+  <mesh material={PM('#7DB547', 'lettuce')} position={[-0.15, 0.17, 0]} scale={[0.11, 0.09, 0.1]}><icosahedronGeometry args={[1, 0]} /></mesh>
+  {[0, 1, 2].map((i) => <mesh key={i} material={PM('#E8792B', 'carrot')} position={[0.08 + i * 0.05, 0.12, 0.05 - i * 0.04]} rotation={[0, 0, Math.PI / 2 + i * 0.2]}><coneGeometry args={[0.018, 0.16, 6]} /></mesh>)}
+  <mesh material={PM('#C0393B', 'tomato')} position={[0.18, 0.13, -0.1]} scale={0.035}><sphereGeometry args={[1, 8, 6]} /></mesh>
+</group>;
+const DoorItems: React.FC = () => <group>
+  {/* door shelves (door-local: x across 0..0.78, inside face at z −0.06) */}
+  <Bottle p={[0.18, 0.44, -0.07]} r={0.03} h={0.24} c="#E6E7CF" cap="#C0393B" />
+  <Bottle p={[0.28, 0.44, -0.07]} r={0.03} h={0.24} c="#C0393B" cap="#E6E7CF" />
+  <Bottle p={[0.4, 0.44, -0.07]} r={0.032} h={0.26} c="#4A8A3A" cap="#E6E7CF" glass />
+  <Box p={[0.56, 0.52, -0.07]} s={[0.07, 0.1, 0.05]} c="#F2D04A" label={['เนย', '#F2D04A', '#5A3A1A']} />
+  {[0.2, 0.3, 0.4, 0.5].map((x, i) => <mesh key={x} material={PM(['#F2F0EA', '#F0E2A0', '#E8B2C2', '#F2F0EA'][i], 'dairy' + i)} position={[x, 0.93, -0.07]}><cylinderGeometry args={[0.03, 0.028, 0.08, 10]} /></mesh>)}
+  <Bottle p={[0.25, 1.35, -0.07]} r={0.028} h={0.2} c="#D9A33A" cap="#3A3A3A" />
+  <Bottle p={[0.38, 1.35, -0.07]} r={0.028} h={0.2} c="#B03A2A" cap="#3A3A3A" />
 </group>;

@@ -20,7 +20,7 @@ for a, b in zip(cards, cards[1:]):
 ans = E('l008') + 0.1
 cards.insert(next(i for i, c in enumerate(cards) if c['line'] == 'l009'), {'id': 'l008c9', 'line': 'l008', 'text': 'ฟู่ววว…', 'hl': 'ฟู่ววว', 't0': round(ans, 3), 't1': round(P('l009') - 0.02, 3), 'echo': True})
 # the charge word lands the plate (from Whisper word timings once the take exists; card start until then)
-charge_word = P('l003', 0) + (8.40 - 7.11) - (0.52 - 0.22) - 0.03   # 'ก่อเหตุ' at 8.40 s in the raw take (Whisper)
+charge_word = P('l003', 0) + (7.12 - 6.6) - 0.03   # 'ก่อเหตุ' at 7.12 s in the raw take v2 (Whisper)
 cutoff = E('l004')                               # the line stops mid-word; 0.3 s of digital silence follows
 ev.update(doorOpen=0.18, light=0.3, blast=P('l002', 1) + 0.05, gag=P('l002', 1) + 0.5, plate=charge_word, phoneUp=P('l004') - 0.05, cutoff=cutoff,
           doorBurst=cutoff + 0.3, siren=cutoff + 0.3, masks=P('l005', 1), swarm=P('l005', 2), tape0=P('l006') + 0.1, tapeTop=P('l006', 1),
@@ -28,7 +28,7 @@ ev.update(doorOpen=0.18, light=0.3, blast=P('l002', 1) + 0.05, gag=P('l002', 1) 
           gavel=P('l011') + 0.5, place=P('l011', 1), turn=P('l012') + 0.1, flow=P('l012', 1), peel=P('l012', 2) + 0.2, form=P('l013'))
 ev = {k: round(v, 3) for k, v in ev.items()}
 SHOTS = [('fridgeOpen', 0.0), ('fridgeFace', P('l001', 1) - .05), ('durianIn', P('l002') - .05), ('smellBlast', P('l002', 1) - .05), ('charge', P('l003') - .05), ('deadpan', P('l003', 1) - .05),
-         ('phone', P('l004') - .05), ('phoneEar', P('l004') + 0.75), ('doorBurst', cutoff + 0.3), ('swatMasks', P('l005', 1) - .05), ('swatWide', P('l005', 2) - .05),
+         ('phone', P('l004') - .05), ('phoneEar', P('l004') + 0.75), ('doorBurst', cutoff + 0.3), ('swatMasks', P('l005', 1) + 0.05), ('swatWide', P('l005', 2) - .05),
          ('tape', P('l006') - .05), ('tapeTop', P('l006', 1) - .05), ('cuffLobe', P('l007') - .05), ('cuffAll', P('l007', 1) - .05),
          ('interro', P('l008') - .05), ('officerAsk', P('l008', 1) - .05), ('askClose', P('l008', 2) - .05), ('durianAnswer', E('l008') + 0.02), ('smellRoom', P('l009') + 0.35), ('faint', P('l010') - .05), ('faintTop', P('l010', 1) - .05),
          ('court', P('l011') - .05), ('cell20', P('l011', 1) - .05), ('fan19', P('l012') - .05), ('smellFlow', P('l012', 1) - .05), ('cell18', P('l012', 2) - .05),
