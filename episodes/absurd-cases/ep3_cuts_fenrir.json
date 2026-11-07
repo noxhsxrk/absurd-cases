@@ -1,0 +1,15 @@
+{
+ "_note": "line ranges in the raw take + where each card splits: [gapStart, gapEnd] (gap squeezed to <= 0.22 s) or a single time (no gap). From Whisper word timings + silencedetect.",
+ "ep3-l001": {"range": [0.10, 3.33], "splits": [[1.08, 1.48], [2.48, 2.60]]},
+ "ep3-l002": {"range": [3.68, 6.43], "splits": [[4.85, 4.99]]},
+ "ep3-l003": {"range": [6.88, 9.25], "splits": [[8.34, 8.45]]},
+ "ep3-l004": {"range": [9.69, 11.07], "splits": []},
+ "ep3-l005": {"range": [11.69, 13.81], "splits": [13.0]},
+ "ep3-l006": {"range": [14.0, 16.57], "splits": [[15.35, 15.45]]},
+ "ep3-l007": {"range": [16.81, 18.96], "splits": [17.94]},
+ "ep3-l008": {"range": [19.42, 23.16], "splits": [[20.05, 20.36], [21.82, 22.14]]},
+ "ep3-l009": {"range": [23.76, 25.86], "splits": [[24.55, 24.89]]},
+ "ep3-l010": {"range": [26.24, 28.16], "splits": [[27.48, 27.57]]},
+ "ep3-l011": {"range": [28.68, 32.89], "splits": [[29.87, 30.13], [31.24, 31.62]]},
+ "ep3-l012": {"range": [33.23, 36.2], "splits": [[34.95, 35.29]]}
+}

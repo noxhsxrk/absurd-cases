@@ -6,6 +6,7 @@ Thai deadpan-narrator shorts, low-poly 3D, 1080×1920 @ 30 fps: "ชายคน
 |---|---|---|---|
 | EP1 ยุงทำร้ายร่างกาย | `AbsurdEp1` | 33.7 s | `src/episodes/AbsurdEp1` |
 | EP2 คดีช็อตไม่เลือกหน้า | `AbsurdEp2` | 34.6 s | `src/episodes/AbsurdEp2` (reuses EP1's sets and cast) |
+| EP3 คดีบุกรุกปอด | `AbsurdEp3` | 36.4 s | `src/episodes/AbsurdEp3` (bedroom by day, helicopters + vacuum, court, cells 18/19/20) |
 
 ## Run
 
@@ -15,7 +16,7 @@ pnpm exec remotion studio src/index.ts
 pnpm exec remotion render src/index.ts AbsurdEp2 out/absurd-ep2.mp4 --gl=angle
 ```
 
-On Nox's PC, double-click `render_absurd.bat` (renders EP2).
+On Nox's PC, double-click `render_absurd.bat` (EP2) or `render_absurd_ep3.bat` (EP3).
 
 ## Layout
 
@@ -29,6 +30,10 @@ On Nox's PC, double-click `render_absurd.bat` (renders EP2).
 ## Timing
 
 `python3 episodes/absurd-cases/ep2_plan.py` writes `public/absurd-cases/ep2/ep2_timeline.json`, the only source of cuts, cards and events for EP2.
+
+## EP3 audio pipeline
+
+`episodes/absurd-cases/sfx/run_ep3_prep.bat` (PC) runs Whisper word timings + the AudioLDM2 cues. `tools/tighten_take.py` cuts the single Fenrir take by `ep3_cuts_fenrir.json` into `ep3_narration_tight.wav` + `ep3_line_timing.json`; then `ep3_plan.py` and `tools/premix_absurd_ep3.py`.
 
 ## Not in this repo yet
 

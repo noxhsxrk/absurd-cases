@@ -74,12 +74,20 @@ const moonSky = () => tex('moon-sky', 256, 256, (g) => {
   g.fillStyle = '#F2D27A'; for (let i = 0; i < 14; i++) g.fillRect(hash(i * 3) * 250, 256 - hash(i * 5) * 70, 4, 4);
 });
 
-export type BedroomState = {t: number; lamp: number; made?: boolean; ceiling?: boolean; swarm?: number; door?: number; hideN?: boolean; hideS?: boolean};
+/** EP3: a hazy morning outside the window (smog-grey sky, a pale sun, a low-poly skyline) */
+const daySky = () => tex('day-sky', 256, 256, (g) => {
+  const gr = g.createLinearGradient(0, 0, 0, 256); gr.addColorStop(0, '#B7C2C4'); gr.addColorStop(1, '#D6D2C2'); g.fillStyle = gr; g.fillRect(0, 0, 256, 256);
+  g.fillStyle = 'rgba(255,248,226,0.9)'; g.beginPath(); g.arc(172, 72, 22, 0, Math.PI * 2); g.fill();
+  g.fillStyle = '#9AA3A2'; for (let i = 0; i < 7; i++) { const x = i * 38 - 6, hh = 50 + hash(i + 4) * 70; g.fillRect(x, 256 - hh, 34, hh); }
+  g.fillStyle = 'rgba(150,156,150,0.35)'; for (let i = 0; i < 9; i++) { g.beginPath(); g.ellipse(hash(i) * 256, 120 + hash(i * 3) * 80, 40, 14, 0, 0, Math.PI * 2); g.fill(); }
+});
+export type BedroomState = {t: number; lamp: number; made?: boolean; ceiling?: boolean; swarm?: number; door?: number; hideN?: boolean; hideS?: boolean; day?: number; open?: number};
 export const Bedroom: React.FC<{st: BedroomState}> = ({st}) => {
   const wall = paint('bed-wall', '#B9D1C6', [2, 1], 0.12), floor = planks('bed-floor', '#B07A4E', '#A5714A', [2.5, 2.5]);
   const ceil = paint('bed-ceil', '#E9E7E0', [1, 1], 0.0);
   const sheet = M('#F1E6C8', 0.9), pillow = M('#FBF8F0', 0.9), blanket = M('#5E8FA6', 0.95), wood = M('#7A4D2E', 0.6), woodL = M('#A87A52', 0.6);
-  const glassM = useMemo(() => new THREE.MeshStandardMaterial({map: moonSky(), roughness: 0.2, emissive: '#FFFFFF', emissiveMap: moonSky(), emissiveIntensity: 0.55}), []);
+  const day = st.day ?? 0, open = st.open ?? 0;
+  const glassM = useMemo(() => day ? new THREE.MeshBasicMaterial({map: daySky(), toneMapped: false}) : new THREE.MeshStandardMaterial({map: moonSky(), roughness: 0.2, emissive: '#FFFFFF', emissiveMap: moonSky(), emissiveIntensity: 0.55}), [day > 0]);
   const lampShade = useMemo(() => new THREE.MeshStandardMaterial({color: '#F6E4C2', roughness: 0.8, emissive: '#FFC772', emissiveIntensity: 0.15 + st.lamp * 1.6}), [st.lamp]);
   const skip: ('n' | 's' | 'e' | 'w')[] = [];
   if (st.hideS) skip.push('s'); if (st.hideN) skip.push('n');
@@ -116,14 +124,17 @@ export const Bedroom: React.FC<{st: BedroomState}> = ({st}) => {
         <mesh material={glassM}><planeGeometry args={[0.9, 1.0]} /></mesh>
         <Bx p={[0, 0.52, 0.02]} s={[1.0, 0.05, 0.05]} m={M('#F2EFE8', 0.6)} /><Bx p={[0, -0.52, 0.04]} s={[1.06, 0.05, 0.1]} m={M('#F2EFE8', 0.6)} />
         <Bx p={[-0.47, 0, 0.02]} s={[0.05, 1.08, 0.05]} m={M('#F2EFE8', 0.6)} /><Bx p={[0.47, 0, 0.02]} s={[0.05, 1.08, 0.05]} m={M('#F2EFE8', 0.6)} />
-        <Bx p={[0, 0, 0.02]} s={[0.03, 1.0, 0.03]} m={M('#F2EFE8', 0.6)} />
+        {open <= 0 && <Bx p={[0, 0, 0.02]} s={[0.03, 1.0, 0.03]} m={M('#F2EFE8', 0.6)} />}
+        {open > 0 && [-1, 1].map((s) => <group key={'sash' + s} position={[s * 0.45, 0, 0.04]} rotation={[0, s * -open * 1.25, 0]}>
+          <group position={[-s * 0.225, 0, 0]}>{[[0, 0.48, 0.45, 0.04], [0, -0.48, 0.45, 0.04], [-0.205, 0, 0.04, 1.0], [0.205, 0, 0.04, 1.0]].map(([x, y, w, h], i) => <Bx key={i} p={[x, y, 0]} s={[w, h, 0.035]} m={M('#F2EFE8', 0.6)} />)}
+            <mesh position={[0, 0, 0]} material={new THREE.MeshStandardMaterial({color: '#DDEBEE', transparent: true, opacity: 0.18, roughness: 0.05})}><planeGeometry args={[0.38, 0.92]} /></mesh></group></group>)}
         {[-1, 1].map((s) => <mesh key={s} castShadow position={[s * 0.62, -0.05, 0.08]} material={M('#D9A5A0', 0.95)}><boxGeometry args={[0.3, 1.35, 0.04]} /></mesh>)}
         <Bx p={[0, 0.72, 0.09]} s={[1.6, 0.03, 0.03]} m={M('#8A8F96', 0.4, 0.6)} />
         {/* the swarm pressing on the glass at the end */}
         {(st.swarm ?? 0) > 0 && <mesh position={[0, 0, 0.005]} material={new THREE.MeshBasicMaterial({color: '#05060A', transparent: true, opacity: Math.min(0.95, st.swarm!)})}><planeGeometry args={[0.9, 1.0]} /></mesh>}
       </group>
       {/* moonlight from the window */}
-      <directionalLight position={[-6, 3.6, -0.8]} target-position={[0, 0.5, -0.6]} color="#9DB7FF" intensity={0.9 + (1 - st.lamp) * 0.5} castShadow shadow-mapSize={[2048, 2048]} shadow-camera-left={-4} shadow-camera-right={4} shadow-camera-top={4} shadow-camera-bottom={-4} shadow-bias={-0.0006} />
+      <directionalLight position={[-6, 3.6, -0.8]} target-position={[0, 0.5, -0.6]} color={day ? '#FFF1D6' : '#9DB7FF'} intensity={day ? 2.1 : 0.9 + (1 - st.lamp) * 0.5} castShadow shadow-mapSize={[2048, 2048]} shadow-camera-left={-4} shadow-camera-right={4} shadow-camera-top={4} shadow-camera-bottom={-4} shadow-bias={-0.0006} />
       {/* wardrobe + door + switch */}
       <Bx p={[-1.45, 1.0, 1.95]} s={[1.1, 2.0, 0.55]} m={woodL} />
       <Bx p={[-1.45, 1.0, 1.672]} s={[0.01, 1.9, 0.005]} m={M('#5A3A22', 0.6)} cast={false} />
@@ -148,7 +159,7 @@ export const Bedroom: React.FC<{st: BedroomState}> = ({st}) => {
       <mesh castShadow position={[1.55, 0.2, 0.15]} material={M('#C7A570', 0.95)}><cylinderGeometry args={[0.2, 0.17, 0.4, 14]} /></mesh>
       <Bx p={[1.88, 1.35, -0.6 + 1.2]} s={[0.3, 0.03, 0.7]} m={woodL} />
       {[0, 1, 2, 3].map((i) => <Bx key={i} p={[1.92, 1.47, 0.35 + i * 0.12]} s={[0.18, 0.22, 0.08]} m={M(['#C0504D', '#4F81BD', '#9BBB59', '#E2B33C'][i], 0.7)} />)}
-      <hemisphereLight args={[st.lamp > 0.5 ? '#E8D8C4' : '#6C80B4', '#2A2A33', st.lamp > 0.5 ? 0.85 : 0.75]} />
+      <hemisphereLight args={[day ? '#ECE8DC' : st.lamp > 0.5 ? '#E8D8C4' : '#6C80B4', '#2A2A33', day ? 1.05 : st.lamp > 0.5 ? 0.85 : 0.75]} />
     </group>
   );
 };
