@@ -55,11 +55,11 @@ export const FootBridge: React.FC<FBP> = ({position = [0, 0, 0], yaw = 0, scale 
   const stair = (end: 1 | -1) => { const z = end * (L / 2 - sw / 2);
     return <group key={end}>
       {Array.from({length: steps}, (_, i) => <mesh key={i} position={[W / 2 + (steps - i - 0.5) * run, (i + 0.5) * rise, z]} material={i % 2 ? tread : c} castShadow receiveShadow><boxGeometry args={[run, rise, sw]} /></mesh>)}
-      <mesh position={[W / 2 + (steps * run) / 2, H / 2 - 0.25, z]} rotation={[0, 0, Math.atan2(H, steps * run)]} material={cd} castShadow><boxGeometry args={[Math.hypot(H, steps * run), 0.35, sw * 0.98]} /></mesh>
+      <mesh position={[W / 2 + (steps * run) / 2, H / 2 - 0.25, z]} rotation={[0, 0, -Math.atan2(H, steps * run)]} material={cd} castShadow><boxGeometry args={[Math.hypot(H, steps * run), 0.35, sw * 0.98]} /></mesh>
       {[-1, 1].map((s) => <mesh key={s} position={[W / 2 + (steps * run) / 2, H / 2 + 1.0, z + s * sw / 2]} rotation={[0, 0, -Math.atan2(H, steps * run)]} material={steel}><boxGeometry args={[Math.hypot(H, steps * run), 0.07, 0.07]} /></mesh>)}
       {/* the step counter on the first riser */}
       <mesh position={[W / 2 + steps * run + 0.001, rise / 2, z]} rotation={[0, Math.PI / 2, 0]} material={label('step1', 256, 64, '#F2C230', INK, ['ขั้นที่ 1 / 50'], 34)}><planeGeometry args={[sw * 0.6, rise * 0.85]} /></mesh>
-      {pillars && <mesh position={[W / 2 + steps * run * 0.45, H * 0.22, z]} material={cd} castShadow><boxGeometry args={[0.45, H * 0.44, 0.45]} /></mesh>}
+      {pillars && <mesh position={[W / 2 + steps * run * 0.45, H * 0.27, z]} material={cd} castShadow><boxGeometry args={[0.45, H * 0.54, 0.45]} /></mesh>}
     </group>; };
   return <group position={[position[0], position[1] + lift, position[2]]} rotation={[0, yaw, tilt]} scale={scale}>
     <mesh position={[0, H - T / 2, 0]} material={c} castShadow receiveShadow><boxGeometry args={[W, T, L]} /></mesh>
