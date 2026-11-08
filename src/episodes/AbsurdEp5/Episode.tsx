@@ -22,7 +22,7 @@ const GRADE: Record<string, string> = {bath: BATH, interro: INT, court: CRT, cel
 const FILL: Record<string, [string, number]> = {bath: ['#FFE6E8', 0.55], interro: ['#BFD6D8', 1.2], court: ['#FFF1DE', 0.55], cell: ['#D6DCE6', 1.0], desk: ['#FFF1DE', 0.6]};
 const World: React.FC<{t: number; P: any}> = ({t, P}) => {
   const sh = shotAt(t); const out = SHOT_FN[sh.name](t, t - sh.t0, P); const [fc, fi] = FILL[PLACE(sh.name)];
-  return <><CamRig cam={out.cam} bg={out.bg ?? {color: '#2A2226'}} /><ambientLight color={fc} intensity={fi} />{out.node}</>;
+  return <><CamRig cam={out.cam} bg={out.bg ?? {color: '#2A2226'}} /><ambientLight color={fc} intensity={fi} /><group key={sh.name}>{out.node}</group></>;   // keyed per shot: a person object moving between slots of two shots was re-added then removed (vanished on sequential renders)
 };
 
 export const AbsurdEp5: React.FC<{quality?: Quality}> = ({quality = 'fast'}) => {
