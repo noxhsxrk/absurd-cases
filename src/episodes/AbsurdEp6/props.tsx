@@ -37,9 +37,10 @@ export const stairTop = (end: 1 | -1): V3 => [FB.W / 2, FB.H, end * (FB.L / 2 - 
 export const pathPoint = (u: number): V3 => {
   const sl = FB.steps * FB.run; const d = cl(u) * (2 * sl + FB.L - FB.sw);
   const za = -(FB.L / 2 - FB.sw / 2), zb = -za;
-  if (d < sl) { const k = d / sl; return [FB.W / 2 + sl * (1 - k), FB.H * k, za]; }
+  const hop = (k: number) => { const f = k * FB.steps, i = Math.floor(f), r = f - i; const s2 = r < 0.5 ? 0 : (r - 0.5) * 2; return {y: FB.H * (i + s2 * s2 * (3 - 2 * s2)) / FB.steps + Math.sin(Math.PI * s2) * 0.18, k}; };
+  if (d < sl) { const k = d / sl; const h = hop(k); return [FB.W / 2 + sl * (1 - k), h.y, za]; }
   if (d < sl + FB.L - FB.sw) { const k = (d - sl) / (FB.L - FB.sw); return [FB.W / 4, FB.H, za + (zb - za) * k]; }
-  const k = (d - sl - (FB.L - FB.sw)) / sl; return [FB.W / 2 + sl * k, FB.H * (1 - k), zb];
+  const k = (d - sl - (FB.L - FB.sw)) / sl; const h = hop(1 - k); return [FB.W / 2 + sl * k, h.y, zb];
 };
 type FBP = {position?: V3; yaw?: number; scale?: number; lift?: number; tilt?: number; face?: string; faces?: ('-x' | '+x')[]; stairs?: boolean; pillars?: boolean; sign?: string; children?: React.ReactNode};
 export const FootBridge: React.FC<FBP> = ({position = [0, 0, 0], yaw = 0, scale = 1, lift = 0, tilt = 0, face = 'open', faces = ['-x'], stairs = true, pillars = true, sign, children}) => {
@@ -249,14 +250,14 @@ export const Chain: React.FC<{a: V3; b: V3; n?: number; r?: number; sag?: number
     const yaw = Math.atan2(b[0] - a[0], b[2] - a[2]); return <mesh key={i} position={p} rotation={[0, yaw + (i % 2 ? Math.PI / 2 : 0), i % 2 ? 0 : Math.PI / 2]} material={steel} castShadow><torusGeometry args={[r, r * 0.25, 6, 12]} /></mesh>; })}</group>;
 };
 /** the swarm: a million relatives drawn as ~1500 dark dots, flowing along a path function with per-dot lag/offset */
-export const Swarm: React.FC<{path: (u: number) => V3; t: number; t0: number; dur: number; n?: number; spread?: number; size?: number}> = ({path, t, t0, dur, n = 1500, spread = 0.8, size = 0.05}) => {
+export const Swarm: React.FC<{path: (u: number) => V3; t: number; t0: number; dur: number; n?: number; spread?: number; size?: number; lift?: number}> = ({path, t, t0, dur, n = 1500, spread = 0.8, size = 0.05, lift = 0.6}) => {
   const mesh = useMemo(() => { const m = new THREE.InstancedMesh(new THREE.SphereGeometry(1, 5, 4), new THREE.MeshBasicMaterial({color: '#1A1A1E'}), n); m.frustumCulled = false; return m; }, [n]);
   const o = useMemo(() => new THREE.Object3D(), []);
   for (let i = 0; i < n; i++) {
     const lag = hash(i * 1.7) * 0.45; const u = (t - t0) / dur - lag; const vis = u > -0.02 && u < 1.05;
     const p = path(Math.min(1, Math.max(0, u)));
     const w = Math.sin(t * (9 + hash(i) * 6) + i) * 0.08;
-    o.position.set(p[0] + (hash(i * 3.1) - 0.5) * spread + w, p[1] + 0.6 + (hash(i * 5.3)) * spread * 0.7 + Math.cos(t * 11 + i) * 0.06, p[2] + (hash(i * 7.7) - 0.5) * spread);
+    o.position.set(p[0] + (hash(i * 3.1) - 0.5) * spread + w, p[1] + lift + (hash(i * 5.3)) * spread * 0.7 + Math.cos(t * 11 + i) * 0.06, p[2] + (hash(i * 7.7) - 0.5) * spread);
     o.scale.setScalar(vis ? size * (0.7 + hash(i * 9) * 0.6) : 0.00001); o.updateMatrix(); mesh.setMatrixAt(i, o.matrix);
   }
   mesh.instanceMatrix.needsUpdate = true;

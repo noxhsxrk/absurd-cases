@@ -17,7 +17,7 @@ const MIX = 'absurd-cases/ep6/mix/ep6_mix.wav';
 const VOICE = 'absurd-cases/ep6/ep6_narration_tight.wav';   // until the mix exists
 const T = (n: string) => SHOTS.find((s) => s.name === n)!;
 const ST = 'saturate(0.86) contrast(1.05)', CRT = 'saturate(0.81) contrast(1.05)', CELLG = 'saturate(0.72) contrast(1.06)', PR = 'saturate(0.82) contrast(1.05)', NOT = 'saturate(0.85) contrast(1.05)';
-const PLACE = (n: string) => ['courtExt', 'hole'].includes(n) ? 'courtExt' : ['courtIn', 'judgeCU', 'girder', 'wind', 'gavel'].includes(n) ? 'court' : n === 'cellPush' ? 'cell' : ['prisonFront', 'chains', 'swarm'].includes(n) ? 'prison' : n === 'notice' ? 'notice' : 'street';
+const PLACE = (n: string) => ['courtExt', 'hole'].includes(n) ? 'courtExt' : ['courtIn', 'judgeCU', 'girder', 'wind', 'gavel'].includes(n) ? 'court' : n === 'cellPush' ? 'cell' : ['prisonFront', 'chains', 'swarm', 'swarmUp'].includes(n) ? 'prison' : n === 'notice' ? 'notice' : 'street';
 const GRADE: Record<string, string> = {street: ST, courtExt: ST, court: CRT, cell: CELLG, prison: PR, notice: NOT};
 const FILL: Record<string, [string, number]> = {street: ['#E8EEF2', 0.45], courtExt: ['#E8EEF2', 0.45], court: ['#FFF1DE', 0.55], cell: ['#D6DCE6', 1.0], prison: ['#E8EEF2', 0.45], notice: ['#FFF1DE', 0.5]};
 const World: React.FC<{t: number; P: any}> = ({t, P}) => {

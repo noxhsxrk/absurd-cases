@@ -32,7 +32,7 @@ ev = {k: round(v, 3) for k, v in ev.items()}
 SHOTS = [('foot', 0.0), ('stairsUp', P('l002') - .05), ('knee', P('l002', 1) - .05), ('charge', P('l003') - .05),
          ('phone', P('l004') - .05), ('callUI', P('l004', 1) - .05), ('cranes', P('l005') - .05), ('heli', P('l005', 1) - .05), ('lanes', P('l006') - .05),
          ('saw', P('l007') - .05), ('cuffs', P('l007', 1) - .05), ('courtExt', P('l008') - .05), ('hole', P('l008', 1) - .05), ('courtIn', P('l009') - .05), ('judgeCU', P('l009', 1) - .05),
-         ('girder', P('l010') - .05), ('wind', P('l010', 1) - .05), ('gavel', gavel0), ('cellPush', gavel0 + 0.9), ('prisonFront', P('l012') - .05), ('chains', P('l012', 1) - .05), ('swarm', P('l013') - .05), ('notice', notice0)]
+         ('girder', P('l010') - .05), ('wind', P('l010', 1) - .05), ('gavel', gavel0), ('cellPush', gavel0 + 0.9), ('prisonFront', P('l012') - .05), ('chains', P('l012', 1) - .05), ('swarm', P('l013') - .05), ('swarmUp', P('l013', 1) - .05), ('notice', notice0)]
 TOTAL = round((notice0 + HOLD) * FPS)
 fr = [round(t * FPS) for _, t in SHOTS] + [TOTAL]
 shots = [{'name': n, 'from': fr[i], 'dur': fr[i + 1] - fr[i], 't0': round(fr[i] / FPS, 3), 't1': round(fr[i + 1] / FPS, 3)} for i, (n, _) in enumerate(SHOTS)]

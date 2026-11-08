@@ -82,6 +82,30 @@ const walker = (C: Cast, t: number, o: {face?: string; step?: number; lookW?: V3
   const s = ps('nai', MAN[0] - (o.step ?? 0) * 0.62, MAN[2], -Math.PI / 2, t, {clip: 'idle_neutral_01', face: o.face ?? 'half', lookW: o.lookW});
   return body(I, s, t, BY + (o.step ?? 0) * (FB.H / FB.steps));
 };
+/** the climb: starts on the first step at stairsUp, quick at first, then slower and slower (≈ 12 steps by the phone call) */
+const RISE = FB.H / FB.steps;
+const climbN = (t: number) => { const u = t - shotT0('stairsUp') - 0.12; return u < 0 ? -1 : 12.5 * (1 - Math.exp(-u / 1.55)); };
+const climbV = (t: number) => { const u = t - shotT0('stairsUp') - 0.12; return u < 0 ? 0 : (12.5 / 1.55) * Math.exp(-u / 1.55); };
+const climbPos = (t: number): V3 => { const n = climbN(t); return n < 0 ? MAN : [FOOT_X + 0.25 - n * FB.run, BY + n * RISE, SZ]; };
+/** he climbs, leans into it, slows, then stops with hands on his knees, panting (sweat drops + breath puffs) */
+const climber = (C: Cast, t: number, o: {knee?: boolean} = {}) => {
+  const I = C.nai; hideProps(I); const n = climbN(t), v = climbV(t), p = climbPos(t);
+  const tired = cl((n - 3) / 6), moving = n >= 0 && v > 1.3, rest = n >= 0 && !moving;
+  const pant = Math.sin(t * 11) * 0.03 * tired;
+  const s = ps('nai', p[0], p[2], -Math.PI / 2, t, {moving, clip: moving ? undefined : 'idle_neutral_01', face: o.knee ? 'closed' : tired > 0.5 ? (Math.floor(t * 4) % 3 ? 'closed' : 'half') : 'half', lookW: [FB.W / 2, BY + FB.H + 1, SZ]});
+  if (moving) s.odo = n * FB.run * 2.6;
+  const w = body(I, s, t, p[1] + (moving ? Math.abs(Math.sin(n * Math.PI)) * 0.02 : 0), 0.03);
+  // bend at the waist (not the whole body): a little while climbing, deep with hands on the knees once he stops; the back heaves
+  const k = rest ? cl((tired - 0.3) / 0.4) : 0; const bend = 0.12 * tired + 0.8 * k + pant * 3;
+  rot(I.bones.Bip01_Spine1, 1, 0, 0, bend * 0.6, I.root); rot(I.bones.Bip01_Spine2, 1, 0, 0, bend * 0.4, I.root); rot(I.bones.Bip01_Head, 1, 0, 0, -bend * 0.5, I.root);
+  if (k > 0) { resetTurn(I); ik(I, 'L', V(12, 56 + pant * 60, 22), V(0.5, -1, 0), k); ik(I, 'R', V(-12, 56 + pant * 60, 22), V(-0.5, -1, 0), k); fingers(I, 'L', 'cup', k); fingers(I, 'R', 'cup', k); }
+  w.updateMatrixWorld(true);
+  return {w, tired, head: bw(I, 'Bip01_Head')};
+};
+const SweatBreath: React.FC<{head: V3; t: number; k: number}> = ({head, t, k}) => k <= 0.15 ? null : <group>
+  {[0, 1, 2].map((i) => { const u = (t * 1.6 + i / 3) % 1; return <mesh key={i} position={[head[0] + (i - 1) * 0.06, head[1] + 0.12 - u * 0.5, head[2] + (i % 2 ? 0.12 : -0.12)]} scale={[0.018, 0.026, 0.018]}><sphereGeometry args={[1, 8, 6]} /><meshBasicMaterial color="#8FD3F4" toneMapped={false} /></mesh>; })}
+  {[0, 1].map((i) => { const u = (t * 2.0 + i * 0.5) % 1; return <mesh key={'b' + i} position={[head[0] - 0.16 - u * 0.25, head[1] - 0.04 + u * 0.05, head[2]]} scale={0.03 + u * 0.07}><sphereGeometry args={[1, 7, 5]} /><meshBasicMaterial color="#FFFFFF" transparent opacity={0.65 * (1 - u) * k} depthWrite={false} toneMapped={false} /></mesh>; })}
+</group>;
 
 // =====================================================================================================
 // CELL BLOCK (EP3–5 layout): 18 at x −3.05 (empty now: the soap escaped), 19 the fan, 20 the durian
@@ -132,28 +156,27 @@ export const SHOT_FN: Record<string, (t: number, lt: number, C: Cast) => ShotOut
     return {node: <>{street(t)}<P o={w} /></>, cam: mv({pos: [MAN[0] + 1.6, 1.65, MAN[2] + 1.15], look: lerp3([MAN[0], 1.55, MAN[2]], [FB.W / 2 + 2, BY + 5.5, SZ], k), fov: 48}, lt, {arrive: 0.12, push: 0.06, roll0: -3, roll: 2}), bg: SKY};
   },
   stairsUp: (t, lt, C) => {
-    // from the bottom step: fifty steps up to a scowling deck; crash zoom onto the face at the top
-    const w = walker(C, t, {lookW: [FB.W / 2, BY + 5, SZ]});
-    const crash = sm((lt - 1.0) / 0.25);
-    return {node: <>{street(t)}<P o={w} /></>, cam: mv({pos: [MAN[0] - 0.45, 0.45, SZ - 0.35], look: [FB.W / 2 + 0.6, BY + FB.H - 0.7, SZ - 3.2], fov: lerp(74, 40, crash)}, lt, {push: 0.05, arrive: 0.08, roll0: 6, roll: -4}), bg: SKY};
+    // low behind him: he starts up the flight, fifty steps to a scowling deck; crash zoom onto the face at the end
+    const c = climber(C, t); const crash = sm((lt - 1.2) / 0.25);
+    return {node: <>{street(t)}<P o={c.w} /></>, cam: mv({pos: [FOOT_X + 1.9, 0.55, SZ + 0.55], look: lerp3([FOOT_X - 1.5, 1.6, SZ], [FB.W / 2 + 0.4, BY + FB.H - 0.6, SZ - 2.9], sm((lt - 0.2) / 1.0)), fov: lerp(66, 38, crash)}, lt, {push: 0.05, arrive: 0.08, roll0: 5, roll: -3}), bg: SKY};
   },
   knee: (t, lt, C) => {
-    // side view: the first step — the knee cracks (stars), the face winces
-    const u = t - ev('knee'); const step = sm((t - shotT0('knee') - 0.15) / 0.35);
-    const w = walker(C, t, {step, face: u > 0 ? 'closed' : 'half', lookW: [FB.W / 2, BY + 3, SZ]});
-    const knee = add3(bw(C.nai, 'Bip01_R_Calf'), [0, 0.02, 0]);
-    return {node: <>{street(t)}<P o={w} />{u > 0 && u < 0.9 && <Stars center={knee} t={t * 2} r={0.13} size={0.04} />}</>,
-      cam: mv({pos: [MAN[0] - 0.3, 1.25, MAN[2] + 3.6], look: [MAN[0] - 0.4, 0.95, MAN[2]], fov: 50}, lt, {push: 0.14, arrive: 0.1, shake: u > 0 && u < 0.14 ? 0.02 : 0})};
+    // side view tracking him up the steps: the knee cracks (stars), he slows, stops, hands on knees, panting
+    const u = t - ev('knee'); const c = climber(C, t, {knee: u > 0 && u < 0.5}); const p = climbPos(t);
+    const knee = bw(C.nai, 'Bip01_R_Calf');
+    return {node: <>{street(t)}<P o={c.w} />{u > 0 && u < 0.9 && <Stars center={add3(knee, [0, 0.1, 0.2])} t={t * 2} r={0.16} size={0.05} />}<SweatBreath head={c.head} t={t} k={c.tired} /></>,
+      cam: mv({pos: [p[0] - 0.5, p[1] + 1.2, SZ + 4.3], look: [p[0] - 0.4, p[1] + 0.9, SZ], fov: 50}, lt, {push: 0.1, arrive: 0.1, shake: u > 0 && u < 0.14 ? 0.02 : 0})};
   },
-  charge: (t, lt) => {
-    // scale: the whole bridge over eight lanes, the man a speck at the foot; the plate drops on the charge word
-    const u = t - ev('plate');
-    return {node: street(t), cam: mv({pos: [-42, 5.5, -10], look: [0, 4.5, 3], fov: 46}, lt, {push: 0.08, arrive: 0.1, shake: u > 0 && u < 0.3 ? 0.05 : 0}), bg: SKY};
+  charge: (t, lt, C) => {
+    // scale: the whole bridge over eight lanes; the man a speck bent double a quarter of the way up; the plate drops on the charge word
+    const u = t - ev('plate'); const c = climber(C, t);
+    return {node: <>{street(t)}<P o={c.w} /></>, cam: mv({pos: [-42, 5.5, -10], look: [0, 4.5, 3], fov: 46}, lt, {push: 0.08, arrive: 0.1, shake: u > 0 && u < 0.3 ? 0.05 : 0}), bg: SKY};
   },
-  phone: (t, lt) => {
-    const k = sm((lt * 30) / 5); const th = sm((lt - 0.22) / 0.12);
-    const c = mv({pos: [MAN[0] - 0.1, 1.72, MAN[2] + 0.1], look: [FB.W / 2 + 1.5, BY + 5.2, SZ - 1.5], fov: 52}, lt, {push: 0.08, arrive: 0});
-    return {node: <>{street(t)}<Phone3D cam={c.pos} look={c.look} k={k} pressed={lt > 0.32} thumb={th} /></>, cam: c, bg: SKY};
+  phone: (t, lt, C) => {
+    // his POV from step twelve: thirty-eight more to go; the phone slides up
+    const k = sm((lt * 30) / 5); const th = sm((lt - 0.22) / 0.12); const p = climbPos(t);
+    const c = mv({pos: [p[0] + 0.05, p[1] + 1.55, SZ + 0.05], look: [FB.W / 2 + 0.3, BY + FB.H + 0.8, SZ - 0.2], fov: 54}, lt, {push: 0.08, arrive: 0});
+    void C; return {node: <>{street(t)}<Phone3D cam={c.pos} look={c.look} k={k} pressed={lt > 0.32} thumb={th} /></>, cam: c, bg: SKY};
   },
   callUI: (t, lt) => ({node: street(t), cam: mv({pos: [-20, 3, 10], look: [0, 4, 0], fov: 50}, lt), bg: SKY}),
   cranes: (t, lt) => {
@@ -216,8 +239,14 @@ export const SHOT_FN: Record<string, (t: number, lt: number, C: Cast) => ShotOut
     // a million relatives fly in, climb the stairs step by step, cross the deck and come down to visit
     const dur = ev('notice') - ev('swarm') - 0.1; const head = cl((t - ev('swarm')) / dur * 1.15 - 0.1);
     const hp = route(head);
-    return {node: <>{prison(t)}<Swarm path={route} t={t} t0={ev('swarm')} dur={dur * 0.75} n={1600} spread={0.9} size={0.05} /></>,
+    return {node: <>{prison(t)}<Swarm path={route} t={t} t0={ev('swarm')} dur={dur} n={1600} spread={0.9} size={0.05} /></>,
       cam: mv({pos: [hp[0] * 0.6, 4.2, 22], look: [hp[0] * 0.8, 2.6, 6], fov: 50}, lt, {push: 0.05, arrive: 0.1}), bg: SKY};
+  },
+  swarmUp: (t, lt) => {
+    // close on the stairs: the relatives hop up step by step, obeying the footbridge rule
+    const dur = ev('notice') - ev('swarm') - 0.1; void dur;
+    return {node: <>{prison(t)}<Swarm path={(u) => route(0.15 + u * 0.18)} t={t} t0={shotT0('swarmUp') - 0.3} dur={2.1} n={900} spread={0.4} size={0.022} lift={0.18} /></>,
+      cam: mv({pos: [-4.4, 2.3, 3.1], look: [-8.86, 1.9, 3.7], fov: 56}, lt, {push: 0.1, arrive: 0.1, roll: 2}), bg: SKY};
   },
   notice: (t, lt) => {
     // pause-bait: the visiting rules pinned to a bridge pillar; the red stamp; the last frames freeze
@@ -265,4 +294,4 @@ const court = (t: number, lt: number, C: Cast, mode: string): ShotOut => {
   return {node: <>{nodes}</>, cam: cams[mode]()};
 };
 const GAVEL = (() => { const g = makeGavel(); g.traverse((o: any) => { if (o.isMesh) o.frustumCulled = false; }); return g; })();
-void rot; void handTo; void Cable;
+void handTo; void Cable;
