@@ -1,0 +1,16 @@
+{
+ "_note": "EP5 Fenrir take (11:53, 40.4 s raw): line ranges from silencedetect -35 dB, card splits from -30 dB dips (no Whisper in the sandbox: HF blocked). l003 split + charge word estimated; re-check with Whisper on the PC if a card lands off.",
+ "ep5-l001": {"range": [0.24, 2.67], "splits": [[0.773, 1.199], 2.03]},
+ "ep5-l002": {"range": [3.0, 6.44], "splits": [[4.456, 4.921]]},
+ "ep5-l003": {"range": [7.08, 8.59], "splits": [7.75]},
+ "ep5-l004": {"range": [9.356, 10.39], "splits": [9.87]},
+ "ep5-l005": {"range": [11.0, 13.28], "splits": [[12.139, 12.392]]},
+ "ep5-l006": {"range": [13.91, 16.93], "splits": [[15.659, 15.949]]},
+ "ep5-l007": {"range": [17.58, 20.76], "splits": [[18.705, 18.914]]},
+ "ep5-l008": {"range": [21.49, 23.89], "splits": [[22.761, 22.935]]},
+ "ep5-l009": {"range": [24.63, 26.44], "splits": [25.33]},
+ "ep5-l010": {"range": [27.39, 30.09], "splits": [[28.294, 28.815]]},
+ "ep5-l011": {"range": [30.75, 33.87], "splits": [[32.47, 32.795]]},
+ "ep5-l012": {"range": [34.54, 36.91], "splits": [[35.446, 35.771]]},
+ "ep5-l013": {"range": [37.53, 40.03], "splits": [38.75]}
+}
