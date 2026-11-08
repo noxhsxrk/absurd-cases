@@ -95,6 +95,16 @@ def hum(sec, f=100):
     t = tt(sec); return sum(np.sin(2 * np.pi * f * k * t) / k for k in (1, 2, 3)) + 0.3 * bp(np.random.default_rng(9).standard_normal(len(t)), 200, 1200, 2)
 def to_st(x): return np.stack([x, x], 1)
 
+def take(name, synth, dur=None, trim=True):
+    """AI take (AudioLDM2, best CLAP rank) if present, else the synth; leading silence trimmed, cut to dur, edges faded"""
+    x = ai(name, synth)
+    if trim:
+        e = np.convolve(np.abs(x), np.ones(240) / 240, 'same'); i = int(np.argmax(e > np.max(e) * 0.08)); x = x[max(0, i - 120):]
+    if dur: x = x[:int(dur * R)]
+    return edge(x, 0.004, min(0.08, len(x) / R * 0.2))
+def loopto(x, sec):
+    n = int(sec * R); return np.tile(x, n // len(x) + 1)[:n]
+
 M = Mix(seconds=TOTAL, sfx_dir=str(AI))
 vo = read('public/absurd-cases/ep5/ep5_narration_tight.wav')
 sel = np.abs(vo) > 0.01; vo = vo * 10 ** ((-20.5 - db(vo[sel])) / 20)
@@ -107,48 +117,51 @@ def P(x, pk, t, pan=0.0):
     M.put(x, t, pan)
 BED = 0.0038
 # ---- ambience beds, on the cuts
-M.bed(to_st(rms_to(ai('shower_bed', lambda: bed_noise(12, 800, 9000, 0.15, 1)), BED * 1.6)), 0, EV['kick'] + 0.2, width=0.6, xf=0.5, fade=0.05)
+M.bed(to_st(rms_to(loopto(take('shower_bed', lambda: bed_noise(12, 800, 9000, 0.15, 1), trim=False), 14), BED * 1.6)), 0, EV['kick'] + 0.2, width=0.6, xf=0.5, fade=0.05)
 M.bed(to_st(rms_to(bed_noise(30, 120, 900, 0.1, 2), BED * 0.7)), EV['kick'], T('interro'), width=0.8, xf=0.5, fade=0.05)
 M.bed(to_st(rms_to(hum(8, 100), BED)), T('interro'), T('court'), width=0.3, xf=0.4, fade=0.03)
 M.bed(to_st(rms_to(bed_noise(8, 200, 2500, 0.2, 3), BED * 0.8)), T('court'), T('cell18'), width=0.8, xf=0.3, fade=0.03)
 M.bed(to_st(rms_to(bed_noise(20, 80, 1500, 0.1, 4), BED)), T('cell18'), T('report'), width=0.8, xf=0.3, fade=0.3)
-M.bed(to_st(rms_to(hum(10, 58) + bed_noise(10, 300, 3000, 0.0, 5) * 0.5, BED * 1.4)), T('fan19'), T('report'), width=0.2, xf=0.3, fade=0.3)
+M.bed(to_st(rms_to(loopto(take('fan_hum', lambda: hum(10, 58), trim=False), 12), BED * 1.5)), T('fan19'), T('report'), width=0.2, xf=0.3, fade=0.3)
 # ---- shower
-M.put(rms_to(scrub(EV['slip'] - 0.05), 0.012), 0.0, -0.1)
-P(whoosh(0.32, 900, 6000), 0.1, EV['slip'] - 0.02, -0.1); P(splat(), 0.2, EV['slip'] + 0.34); P(slide_long(0.6), 0.09, EV['slip'] + 0.36, 0.1)
+M.put(rms_to(loopto(take('soap_scrub', lambda: scrub(3), trim=False), EV['slip'] - 0.05), 0.014), 0.0, -0.1)
+P(take('soap_slip', lambda: whoosh(0.32, 900, 6000), 1.0), 0.14, EV['slip'] - 0.02, -0.1); P(splat(), 0.16, EV['slip'] + 0.34); P(slide_long(0.6), 0.07, EV['slip'] + 0.36, 0.1)
 P(tung(), 0.5, EV['plate'])
 P(beep(1300), 0.07, EV['phoneUp'] + 0.1); P(click(), 0.1, EV['press']); P(beep(1650, 0.12), 0.06, EV['press'] + 0.05)
 for k in range(3): P(clunk(90, 0.25, 0.8), 0.22, EV['bang'] + k * 0.32)          # bangs on the door
 # ---- the raid
-P(door_crash(), 0.42, EV['kick']); P(thud(45, 0.6), 0.3, EV['kick'] + 0.3)
+P(take('door_crash', door_crash, 1.8), 0.45, EV['kick']); P(thud(45, 0.6), 0.3, EV['kick'] + 0.3)
 s = siren(T('interro') - EV['siren'], 700, 1050, 0.9); s *= np.interp(np.arange(len(s)) / R, [0, 0.15, len(s) / R - 0.3, len(s) / R], [0, 1, 1, 0])
 M.put2(to_st(rms_to(s, 0.006)), EV['siren'], 1.0, width=0.6)
-M.put(rms_to(boots(1.8, 12), 0.03), EV['kick'] + 0.1, 0.2); M.put(rms_to(boots(1.4, 9, 8), 0.02), T('domino'), -0.2)
+M.put(rms_to(take('swat_boots', lambda: boots(1.8, 12), 2.2), 0.035), EV['kick'] + 0.1, 0.2); M.put(rms_to(boots(1.4, 9, 8), 0.02), T('domino'), -0.2)
 for i in range(5):
     ts = EV['slip0'] + i * 0.16
-    P(slip_squeak(0.25, 1300 + i * 120, 3000 + i * 150), 0.12, ts, -0.4 + i * 0.2); P(thud(50 + i * 4, 0.5), 0.3, ts + 0.42, -0.4 + i * 0.2)
+    P(slip_squeak(0.25, 1300 + i * 120, 3000 + i * 150), 0.09, ts, -0.4 + i * 0.2); P(thud(50 + i * 4, 0.5), 0.24, ts + 0.42, -0.4 + i * 0.2)
+P(take('slip_falls', lambda: thud(50, 1.0), 2.4), 0.3, EV['slip0'] + 0.3, 0)
 P(clunk(500, 0.08, 0.8), 0.08, EV['slip0'] + 0.18)          # the wet-floor sign tips over
-M.put(rms_to(electric(T('tongs') - EV['taser']), 0.03), EV['taser'], 0)
-P(creak(0.9), 0.12, EV['grab'] - 0.05)
+M.put(rms_to(loopto(take('taser', lambda: electric(3), trim=False), T('tongs') - EV['taser']), 0.035), EV['taser'], 0)
+P(take('tongs_creak', lambda: creak(0.9), 1.2), 0.14, EV['grab'] - 0.05)
 P(click(0.04), 0.1, EV['lock']); P(clunk(400, 0.08, 0.9), 0.12, EV['lock'])
 P(np.concatenate([pop_bubble(300, 0.1), whoosh(0.3, 1500, 7000)]), 0.18, EV['squirt']); P(splat(0.18), 0.14, EV['squirt'] + 0.2, 0.5)
-for k in range(3): P(ratchet(6, 0.16), 0.14, EV['cage'] + k * 0.13)
+hc = take('handcuffs', lambda: ratchet(6, 0.16), 0.4)
+for k in range(3): P(hc, 0.16, EV['cage'] + k * 0.13)
 # ---- interrogation: the answer is two bubbles, ~4 dB over the voice around it
 vo_l = rms(M.mix[int(LN['l010']['t0'] * R):int(LN['l010']['t1'] * R)])
 ans = np.zeros(int(0.9 * R)); b1 = blub(0.24); ans[:len(b1)] += b1
 p1 = pop_bubble(560); i = int((EV['pop'] - EV['answer']) * R); ans[i:i + len(p1)] += p1 * 1.2
 p2 = pop_bubble(740, 0.1); j = int((EV['pop'] - EV['answer'] + 0.24) * R); ans[j:j + len(p2)] += p2
 M.put(rms_to(ans, vo_l * 10 ** (4 / 20) * 0.6), EV['answer'], 0)
+P(take('bubble_pop', lambda: pop_bubble(560), 0.8), 0.12, EV['pop'] - 0.05)
 P(thud(70, 0.5) * 0.6 + metal(260, 0.5, 9)[:int(0.5 * R)] * 0.2, 0.28, EV['gavel'])
 P(whoosh(0.3), 0.06, EV['peel']); P(clunk(260, 0.08, 0.6), 0.07, EV['peel'] + 0.45); P(clunk(160, 0.12, 0.9), 0.12, EV['stick'])
-P(metal(150, 1.4, 3), 0.25, EV['clang'])
+P(take('cell_door', lambda: metal(150, 1.4, 3), 1.6), 0.28, EV['clang'])
 P(clunk(200, 0.1, 0.9), 0.08, EV['fanTurn'])
-M.put(rms_to(fizz(T('report') - EV['foam']), 0.012) * np.interp(np.arange(int((T('report') - EV['foam']) * R)) / R, [0, 0.8, 50], [0.2, 1, 1]), EV['foam'], 0.1)
+M.put(rms_to(loopto(take('foam_fizz', lambda: fizz(6), trim=False), T('report') - EV['foam']), 0.014) * np.interp(np.arange(int((T('report') - EV['foam']) * R)) / R, [0, 0.8, 50], [0.2, 1, 1]), EV['foam'], 0.1)
 M.put(rms_to(whoosh(1.6, 300, 5000), 0.012), EV['foam'] - 0.1, -0.4)
 P(slide_long(EV['chase'] - EV['glide'] + 0.2), 0.16, EV['glide'])
 P(slide_long(1.2), 0.12, EV['chase'], 0.3)
-P(slip_squeak(0.25, 1100, 2800), 0.12, EV['guardSlip']); P(thud(48, 0.6), 0.32, EV['guardSlip'] + 0.4, -0.2)
-ps_ = siren(T('report') - EV['prisonSiren'] + 0.4, 520, 820, 1.4); ps_ *= np.interp(np.arange(len(ps_)) / R, [0, 0.1, len(ps_) / R - 0.4, len(ps_) / R], [0, 1, 1, 0])
+P(take('guard_slip', lambda: thud(48, 0.6), 1.5), 0.32, EV['guardSlip'], -0.2)
+ps_ = loopto(take('prison_alarm', lambda: siren(6, 520, 820, 1.4), trim=False), T('report') - EV['prisonSiren'] + 0.4); ps_ *= np.interp(np.arange(len(ps_)) / R, [0, 0.1, len(ps_) / R - 0.4, len(ps_) / R], [0, 1, 1, 0])
 M.put2(to_st(rms_to(ps_, 0.009)), EV['prisonSiren'], 1.0, width=0.7)
 # ---- the report: paper rustle on the cut, the stamp, then silence to the end
 P(bp(nz(0.25), 1500, 8000) * np.hanning(int(0.25 * R)), 0.05, T('report'))

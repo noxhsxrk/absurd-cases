@@ -120,6 +120,16 @@ def swarm_buzz(sec):
     for k in range(9): f = 420 + k * 23 + 15 * np.sin(2 * np.pi * (0.3 + k * 0.07) * t + k); o += np.tanh(2 * np.sin(2 * np.pi * np.cumsum(f) / R + k))
     return bp(o / 9, 250, 5000)
 
+def take(name, synth, dur=None, trim=True):
+    """AI take (AudioLDM2, best CLAP rank) if present, else the synth; leading silence trimmed, cut to dur, edges faded"""
+    x = ai(name, synth)
+    if trim:
+        e = np.convolve(np.abs(x), np.ones(240) / 240, 'same'); i = int(np.argmax(e > np.max(e) * 0.08)); x = x[max(0, i - 120):]
+    if dur: x = x[:int(dur * R)]
+    return edge(x, 0.004, min(0.08, len(x) / R * 0.2))
+def loopto(x, sec):
+    n = int(sec * R); return np.tile(x, n // len(x) + 1)[:n]
+
 M = Mix(seconds=TOTAL, sfx_dir=str(AI))
 vo = read('public/absurd-cases/ep6/ep6_narration_tight.wav')
 sel = np.abs(vo) > 0.01; vo = vo * 10 ** ((-20.5 - db(vo[sel])) / 20)
@@ -132,38 +142,41 @@ def P(x, pk, t, pan=0.0):
     M.put(x, t, pan)
 BED = 0.0038
 # ---- beds
-M.bed(to_st(rms_to(traffic(14), BED * 1.5)), 0, T('cranes'), width=0.8, xf=0.4, fade=0.05)
-M.bed(to_st(rms_to(engine(12) * 0.6 + bed_noise(12, 100, 1500, 0.1, 3) * 0.4, BED * 1.6)), T('cranes'), T('courtExt'), width=0.7, xf=0.4, fade=0.05)
+M.bed(to_st(rms_to(loopto(take('traffic_bed', lambda: traffic(14), trim=False), 16), BED * 1.6)), 0, T('cranes'), width=0.8, xf=0.4, fade=0.05)
+M.bed(to_st(rms_to(loopto(take('army_trucks', lambda: engine(12), trim=False), 14), BED * 1.8)), T('cranes'), T('courtExt'), width=0.7, xf=0.4, fade=0.05)
 M.bed(to_st(rms_to(bed_noise(5, 200, 3000, 0.2, 4), BED * 0.8)), T('courtExt'), T('courtIn'), width=0.8, xf=0.3, fade=0.03)
-M.bed(to_st(rms_to(bed_noise(10, 200, 2500, 0.2, 5), BED * 0.8)), T('courtIn'), T('cellPush'), width=0.8, xf=0.3, fade=0.03)
+M.bed(to_st(rms_to(loopto(take('court_room', lambda: bed_noise(10, 200, 2500, 0.2, 5), trim=False), 12), BED * 0.9)), T('courtIn'), T('cellPush'), width=0.8, xf=0.3, fade=0.03)
 M.bed(to_st(rms_to(hum(4, 58) + bed_noise(4, 300, 3000, 0.0, 6) * 0.5, BED * 1.2)), T('cellPush'), T('prisonFront'), width=0.3, xf=0.3, fade=0.03)
-M.bed(to_st(rms_to(bed_noise(10, 150, 4000, 0.25, 7), BED)), T('prisonFront'), T('notice') + 0.3, width=0.8, xf=0.3, fade=0.3)
+M.bed(to_st(rms_to(loopto(take('outdoor_prison', lambda: bed_noise(10, 150, 4000, 0.25, 7), trim=False), 12), BED)), T('prisonFront'), T('notice') + 0.3, width=0.8, xf=0.3, fade=0.3)
 # ---- street
-P(whoosh(0.9, 200, 3500), 0.12, EV['cars'], -0.4)
-P(knee_crack(), 0.36, EV['knee'])
+P(take('car_pass', lambda: whoosh(0.9, 200, 3500), 2.0), 0.16, EV['cars'] - 0.3, -0.4)
+P(take('knee_crack', knee_crack, 0.6), 0.4, EV['knee']); P(knee_crack(), 0.15, EV['knee'])
+st0 = T('stairsUp') + 0.1; M.put(rms_to(take('tired_steps', lambda: boots(3.5, 2), T('charge') - st0), 0.022), st0, 0.1)
+M.put(rms_to(take('panting', lambda: bp(nz(3), 300, 3000), 2.6), 0.02), EV['knee'] + 0.5, 0.1)
 P(tung(), 0.55, EV['plate']); P(thud(40, 0.9), 0.3, EV['plate'] + 0.05)
 P(beep(1300), 0.07, EV['phoneUp'] + 0.1); P(click(), 0.1, EV['press']); P(beep(1650, 0.12), 0.06, EV['press'] + 0.05)
-s = siren(T('courtExt') - EV['siren'], 700, 1050, 0.9); s *= np.interp(np.arange(len(s)) / R, [0, 0.15, len(s) / R - 0.3, len(s) / R], [0, 1, 1, 0])
+s = loopto(take('police_sirens', lambda: siren(6, 700, 1050, 0.9), trim=False), T('courtExt') - EV['siren']); s = s * np.interp(np.arange(len(s)) / R, [0, 0.15, len(s) / R - 0.3, len(s) / R], [0, 1, 1, 0])
 M.put2(to_st(rms_to(s, 0.006)), EV['siren'], 1.0, width=0.6)
-M.put(rms_to(engine(2.0, 36), 0.03), EV['cranes'], -0.2)
-hr = rotor(T('lanes') + 1 - T('heli')); M.put(rms_to(hr, 0.02), T('heli') - 0.3, 0.3)
-for i in range(16): P(clunk(600 + i * 15, 0.06, 0.6), 0.05, EV['cones'] + i * 0.06, -0.6 + i * 0.08)
-sw = saw_whine(T('cuffs') - EV['saw']); M.put(rms_to(sw, 0.035), EV['saw'], 0); P(clunk(220, 0.2, 1.0), 0.18, EV['sawCut'])
-M.put(rms_to(engine(1.6, 30), 0.025), EV['lift'], 0)
-P(metal(70, 1.6, 2.2), 0.42, EV['cuff']); P(thud(38, 0.8), 0.3, EV['cuff'])
+M.put(rms_to(take('army_trucks', lambda: engine(2.0, 36), 2.5), 0.035), EV['cranes'], -0.2)
+hr = take('heli_hover', lambda: rotor(6), T('lanes') + 1 - T('heli') + 0.3, trim=False); M.put(rms_to(hr, 0.028), T('heli') - 0.3, 0.3)
+P(take('traffic_cones', lambda: clunk(600, 0.3, 0.6), 1.6), 0.12, EV['cones'], -0.3)
+sw = take('saw_concrete', lambda: saw_whine(4), T('cuffs') - EV['saw']); M.put(rms_to(sw, 0.04), EV['saw'], 0); P(clunk(220, 0.2, 1.0), 0.18, EV['sawCut'])
+M.put(rms_to(take('crane_lift', lambda: engine(1.6, 30), 2.2), 0.035), EV['lift'], 0)
+P(take('giant_lock', lambda: metal(70, 1.6, 2.2), 1.8), 0.45, EV['cuff']); P(thud(38, 0.8), 0.25, EV['cuff'])
 # ---- court
-for k in range(6): P(clunk(300 + k * 40, 0.1, 0.8), 0.08, EV['rubble'] + k * 0.2, 0.6 if k % 2 else -0.6)
-P(bp(nz(0.3), 200, 1500) * np.hanning(int(0.3 * R)), 0.06, EV['ahem'])
+P(take('rubble_fall', lambda: clunk(300, 1.2, 0.8), 2.4), 0.2, EV['rubble'], 0.3)
+P(take('throat_clear', lambda: bp(nz(0.3), 200, 1500) * np.hanning(int(0.3 * R)), 1.0), 0.1, EV['ahem'])
 vo_l = rms(M.mix[int(LN['l010']['t0'] * R):int(LN['l010']['t1'] * R)])
-ans = wind_whistle(1.1); M.put(rms_to(ans, vo_l * 10 ** (4 / 20) * 0.5), EV['answer'], 0)
-P(metal(880, 0.6, 6), 0.3, EV['gavel'])
+ans = take('wind_gap', lambda: wind_whistle(1.1), 1.3); M.put(rms_to(ans, vo_l * 10 ** (4 / 20) * 0.5), EV['answer'], 0)
+P(take('gavel_metal', lambda: metal(880, 0.6, 6), 0.9), 0.32, EV['gavel'])
 # ---- cells, prison
-for k in range(3): P(thud(60, 0.4) + 0.5 * metal(160, 0.4, 8)[:int(0.4 * R)], 0.3, EV['thump'] + k * 0.55)
-P(metal(120, 1.4, 3), 0.25, EV['chain'])
-dur = EV['notice'] - EV['swarm']; bz = swarm_buzz(dur + 0.4); bz *= np.interp(np.arange(len(bz)) / R, [0, 0.8, len(bz) / R - 0.4, len(bz) / R], [0, 1, 1, 0])
+cb = take('concrete_bars', lambda: thud(60, 0.4) + 0.5 * metal(160, 0.4, 8)[:int(0.4 * R)], 0.5)
+for k in range(3): P(cb, 0.3, EV['thump'] + k * 0.55)
+P(take('chain_rattle', lambda: metal(120, 1.4, 3), 1.8), 0.28, EV['chain'])
+dur = EV['notice'] - EV['swarm']; bz = loopto(take('mosquito_swarm', lambda: swarm_buzz(6), trim=False), dur + 0.4); bz *= np.interp(np.arange(len(bz)) / R, [0, 0.8, len(bz) / R - 0.4, len(bz) / R], [0, 1, 1, 0])
 M.put(rms_to(bz, 0.02), EV['swarm'], 0.2)
 P(bp(nz(0.25), 1500, 8000) * np.hanning(int(0.25 * R)), 0.05, T('notice'))
-P(thud(90, 0.35) + 0.5 * bp(nz(0.35), 300, 3000) * np.exp(-tt(0.35) * 40), 0.36, EV['stamp'] + 0.1)
+P(take('rubber_stamp', lambda: thud(90, 0.35), 0.5), 0.36, EV['stamp'] + 0.1)
 
 OUT = pathlib.Path('public/absurd-cases/ep6/mix/ep6_mix.wav'); OUT.parent.mkdir(parents=True, exist_ok=True); RAW = OUT.with_name('raw.wav')
 d = lp(np.convolve(M.vo_env, np.ones(int(0.25 * R)) / (0.25 * R), 'same'), 8, 2); M.beds *= (1 - 0.7 * np.clip(d, 0, 1))[:, None]
