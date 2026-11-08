@@ -165,7 +165,7 @@ export const SHOT_FN: Record<string, (t: number, lt: number, C: Cast) => ShotOut
   heli: (t, lt) => ({node: <>{street(t, {cranes: true, closed: true, heli: true})}{strobe(t, [-8, 3, 12])}</>,
     cam: mv({pos: [-24, 26, -14], look: [0, 2, 2], fov: 54}, lt, {push: 0.1, arrive: 0.1, roll0: 0, roll: 6}), bg: SKY}),
   lanes: (t, lt) => ({node: <>{street(t, {cranes: true, closed: true})}{strobe(t, [-15, 3, 0])}</>,
-    cam: mv({pos: [-26, 7, -26], look: [0, 1, 2], fov: 54}, lt, {push: 0.1, arrive: 0.1, side: 0.8}), bg: SKY}),
+    cam: mv({pos: [-30, 8, -15.5], look: [0, 1, 2], fov: 54}, lt, {push: 0.1, arrive: 0.1, side: 0.8}), bg: SKY}),
   saw: (t, lt, C) => {
     // a commando with a giant circular saw cuts the median pillar — sparks, shake
     const I = C.cmd1; hideProps(I); const px = -0.6 - 0.28; const on = t > ev('saw');
