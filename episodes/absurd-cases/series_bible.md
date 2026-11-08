@@ -7,6 +7,8 @@ Account in-scene: `@absurd.cases` (`HANDLE` in each episode's data.ts).
 - Cell block: ห้อง 18 (mosquito, EP1), ห้อง 19 (fan, EP2), ห้อง 20 (PM dust, EP3, now empty after the escape).
 - Evidence jar (EP1 mosquito, EP3 dust).
 - The man's kitchen with the fridge (EP4, night, fridge light).
+- The 8-lane road with the footbridge outside the man's house (EP6, day).
+- The prison front: wall, gate, guard booth (EP3 exterior + EP6 gate).
 - The man's bathroom: pink tiles, shower, sink, a door the SWAT kick in (EP5).
 
 ## Inmates and their status
@@ -19,6 +21,7 @@ Account in-scene: `@absurd.cases` (`HANDLE` in each episode's data.ts).
 | 20 | ทุเรียน (cuffed one lobe at a time) | EP4 คดีกลิ่นเดือดร้อน | ขังห้อง 20 | Moved into the cell the dust left. The fan blows its smell into 18. |
 
 ## Open hooks
+- EP6: นช. สะพานลอย is chained outside the prison gate for life (stands in the sun); the mosquito's million relatives arrived to visit (paid off EP1's hook) and must walk over the bridge, 200 baht fine per mosquito; cell 18 is empty again (couldn't fit the bridge).
 - EP5: two escapees at large (PM dust, soap) — a joint manhunt / wanted page episode; where did the mosquito move to?; five SWAT officers knocked out on the man's bathroom floor; the escape report is stamped "ตามจับไม่ได้ (ลื่นเกิน)".
 - EP4 (paid off in EP5: transfer granted): the mosquito has asked for a cell transfer (ยุงขอย้ายห้อง); three officers knocked out by the smell during interrogation.
 - EP2: ยุง v. พัดลม — the mosquito's complaint against the fan has not been heard yet.
