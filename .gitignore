@@ -32,3 +32,4 @@ go_*.bat
 go_log.txt
 blender/mixamo
 public/absurd-cases/*/plates/
+tools/ai-sfx/hf_login_check.txt
