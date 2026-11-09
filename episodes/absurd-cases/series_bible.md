@@ -27,3 +27,10 @@ Account in-scene: `@absurd.cases` (`HANDLE` in each episode's data.ts).
 - EP2: ยุง v. พัดลม — the mosquito's complaint against the fan has not been heard yet.
 - EP3: PM dust at large ("นักโทษฝุ่นหลบหนีทางช่องลม"), police could set up checkpoints for dust; cell 20 is empty for a new inmate.
 - The fan keeps oscillating in every episode: any new inmate in 18 or 20 is in its path.
+
+## EP9 คดีกระจกเงา (กระจกเงาตั้งโต๊ะ)
+- Charges: แอบอ้างตัวตน → ปลอมแปลงอัตลักษณ์ (two plates). Bagged + cuffed by the frame edge.
+- Interrogation note on file: "ผู้ต้องหาปากดีและท้าทายเจ้าพนักงาน". Angered the judge by reflecting him: ห้องมืด 3 ปี (dark cell = nothing to reflect).
+- Sentence cut for good behaviour: served as the corner mirror (กระจกส่องมุม) in the cell block, watching the guards' blind spots.
+- After release: runs a makeup channel with a ring light, now lives NEXT DOOR to the man; his shower steam fogs it up. Viewers: 0.
+- Hooks: the mirror holds a grudge (เงาแค้น) against the man next door; EP8's shadow + EP9's reflection = two "เงา" in one universe; the mirror saw every blind spot in the prison (could testify about the escapees).
