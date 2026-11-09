@@ -51,7 +51,7 @@ def shot_phone(S):
     """l004 'เขาเลยโทรแจ้งตำรวจ' (+ callUI continues this take) — MCU: phone to the ear, houses behind"""
     S.frames = (1, S.frames[1] + 24)
     street()
-    man = S.actor('nai', (STOP_X, LANE), EAST, [('phone', 100, 260)])
+    man = S.actor('nai', (STOP_X, LANE), EAST, [('phone', 118, 280)])
     from look import painted
     import boxman
     boxman.attach(man.arm, 'mixamorig:RightHand', 'phone', (0.095, 0.19, 0.03), along=('m', 0.02, 0.2), offset=(0, 0, 0.075), mats=[painted('phone_body', (0.05, 0.05, 0.06), var=0.02, rough=0.2)])
@@ -106,7 +106,7 @@ def shot_scrape(S):
 def shot_peel(S):
     """l006b 'ออกจากพื้นถนน' — it peels off the road from the head down to his heels and stands up; he is left with none"""
     street(); man = raid_man(S, moves=[('idle', 30, 60), ('look_back', 'auto', 110)], shadow=False); sh = ground_sheet(0.95)
-    a = S.ev('peel', -0.25); b = S.frames[1] - 8
+    a = S.ev('peel', -0.25); edit_end = S.frames[1] - 20; b = edit_end - 12        # must finish inside the cut, not in the handle
     for f in range(1, S.frames[1] + 1, 2):
         p = min(1, max(0, (f - a) / (b - a))); p = p * p * (3 - 2 * p)
         sy = SH_LEN + (1.0 - SH_LEN) * p; sh.rig.scale = (1, sy, 1); sh.rig.keyframe_insert('scale', frame=f)
@@ -115,8 +115,8 @@ def shot_peel(S):
         if i0 + 1 < 12: ang[i0 + 1] = 90 * fr
         if p >= 0.999: ang = {0: 90}
         sh.curl(f, ang)
-    sh.place((STOP_X - 0.05, LANE, 0.004), yaw=math.pi / 2, frame=1); sh.place((STOP_X - 0.45, LANE, 0.004), yaw=math.pi / 2, frame=b - 4)
-    sh.place((STOP_X - 0.55, LANE - 0.1, 0.004), yaw=0.0, frame=S.frames[1])          # once upright it turns to face us
+    sh.place((STOP_X - 0.05, LANE, 0.004), yaw=math.pi / 2, frame=1); sh.place((STOP_X - 0.45, LANE, 0.004), yaw=math.pi / 2, frame=b - 3)
+    sh.place((STOP_X - 0.55, LANE - 0.1, 0.004), yaw=0.0, frame=edit_end - 1)          # once upright it turns to face us
     sh.blink([b + 3]); man.face([(1, 'half'), (b - 6, 'wide')])
     n = S.frames[1]
     S.operator(path=[(1, (STOP_X - 0.8, LANE - 3.6, 1.3), (STOP_X - 1.1, LANE, 0.5)), (n, (STOP_X - 0.6, LANE - 3.0, 1.35), (STOP_X - 0.5, LANE, 0.95))], lens=24)
