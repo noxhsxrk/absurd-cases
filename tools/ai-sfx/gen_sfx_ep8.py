@@ -54,7 +54,7 @@ def main():
             t0 = time.time()
             wavs = pipe(prompt, negative_prompt=(NEG_TONAL if name in ('trombone_down', 'noon_bell') else NEG), num_inference_steps=200, audio_length_in_s=sec, guidance_scale=4.0, num_waveforms_per_prompt=N, generator=g).audios
             ae = audio_emb(list(wavs))
-            s = (ae @ tgt.T).squeeze(1) - 0.5 * (ae @ (bad[1:] if name in ('trombone_down', 'noon_bell') else bad).T).max(1).values
+            s = (ae @ tgt.T).squeeze(1) - 0.5 * (ae @ bad.T).max(1).values
             for w, sc in zip(wavs, s.tolist()): cands.append((sc, pi, w))
             log(f'{name} p{pi} {N} takes in {time.time() - t0:.1f}s best {max(s.tolist()):.3f}')
         cands.sort(key=lambda c: -c[0])

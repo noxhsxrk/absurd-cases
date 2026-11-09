@@ -38,3 +38,17 @@ On Nox's PC, double-click `render_absurd.bat` (EP2) or `render_absurd_ep3.bat` (
 ## Not in this repo yet
 
 EP1's script, timing plan and premix were written in an earlier session and were not on the PC, so they are missing here. EP1 still renders from its committed timeline and mix.
+
+## Layout on Nox's PC (`C:\Claude\absurd-cases`, everything for the series lives here)
+
+| Path | What |
+|---|---|
+| `src/`, `public/`, `tools/*.py`, `render_absurd_ep*.bat` | Remotion project (EP1–7 3D, EP8+ captions/plates/UI/mix compositing). `public/rb` = Rocketbox mocap (glb, not in git), `public/fonts` |
+| `episodes/absurd-cases/` | scripts, voice prompts, Fenrir cuts, timing plans, study notes (`ref5_visual_notes.md`) |
+| `public/absurd-cases/epN/` | narration takes, timelines, final mixes, `sfx_ai/` takes used by each premix |
+| `tools/ai-sfx/` | AudioLDM2 SFX + Whisper word timing (`gen_sfx_ep*.py`, `transcribe*.py`, `run_*.bat`), its `.venv` (torch cu124) and every generated take (`out*/`, not in git) |
+| `tools/tts/` | old Gemini TTS helper (voices are now made by Nox in AI Studio, voice Fenrir) |
+| `blender/` | Blender 4.2 pipeline: `lib/` (look kit, sets), look-dev scripts, `run_blender.bat <script.py>`, `mixamo/` FBX (not in git) |
+| `out/` | renders |
+
+Set up from the old folders once with `tools/migrate_from_old_folders.bat` (copies from `C:\Claude\pov-story`, `C:\Claude\ai-sfx`, `C:\Claude\blender`, Downloads; deletes nothing). Hugging Face models (AudioLDM2, Whisper) stay in the user cache.

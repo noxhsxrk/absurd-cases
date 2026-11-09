@@ -11,3 +11,18 @@ public/rb/manifest.json
 public/rb/av/
 # AudioLDM2 takes: regenerate with episodes/absurd-cases/sfx/gen_sfx*.py
 public/absurd-cases/*/sfx_ai/
+# local tool environments + generated media (kept on Nox's PC, not in git)
+tools/ai-sfx/.venv/
+tools/ai-sfx/out*/
+tools/ai-sfx/ref/
+tools/ai-sfx/*.wav
+tools/ai-sfx/*_log.txt
+tools/ai-sfx/gen_log.txt
+blender/mixamo/
+blender/renders/
+blender/test/*.png
+blender/test/*.txt
+episodes/absurd-cases/ep7/
+_old_root/
+migrate_once.bat
+migrate_log.txt
