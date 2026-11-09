@@ -59,7 +59,9 @@ def main():
         return torch.nn.functional.normalize(e, dim=-1)
     def aemb(wav48):
         with torch.no_grad():
-            a = proc(audio=[wav48], sampling_rate=48000, return_tensors='pt').to('cuda'); e = vec(clap.get_audio_features(**a), 'audio_embeds')
+            try: a = proc(audio=[wav48], sampling_rate=48000, return_tensors='pt')
+            except TypeError: a = proc(audios=[wav48], sampling_rate=48000, return_tensors='pt')
+            a = a.to('cuda'); e = vec(clap.get_audio_features(**a), 'audio_embeds')
         return torch.nn.functional.normalize(e, dim=-1)
     unwanted = temb(UNWANTED); scores = json.load(open(OUT / 'scores.json')) if (OUT / 'scores.json').exists() else {}
     for cue, sec, target, prompt in CUES:

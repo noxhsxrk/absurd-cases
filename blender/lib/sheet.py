@@ -20,7 +20,10 @@ def _mat(name):
     b.inputs['Base Color'].default_value = (0.010, 0.010, 0.012, 1); b.inputs['Roughness'].default_value = 0.42
     b.inputs['Specular IOR Level'].default_value = 0.35
     t = N.new('ShaderNodeTexImage'); t.image = bpy.data.images.get('sil_stand.png') or bpy.data.images.load(os.path.join(TEX, 'sil_stand.png'))
-    t.interpolation = 'Cubic'; t.extension = 'CLIP'; nt.links.new(t.outputs['Color'], b.inputs['Alpha'])
+    t.interpolation = 'Cubic'; t.extension = 'CLIP'
+    op = N.new('ShaderNodeValue'); op.name = 'opacity'; op.outputs[0].default_value = 1.0      # <1 = reads as a cast shadow on the ground
+    mul = N.new('ShaderNodeMath'); mul.operation = 'MULTIPLY'; nt.links.new(t.outputs['Color'], mul.inputs[0]); nt.links.new(op.outputs[0], mul.inputs[1])
+    nt.links.new(mul.outputs[0], b.inputs['Alpha'])
     try: m.surface_render_method = 'DITHERED'
     except Exception: pass
     return m
@@ -49,6 +52,8 @@ class Sheet:
         for e in self.eyes:
             for f in frames:
                 for df, s in ((-1, 1.0), (1, 0.1), (3, 1.0)): e.scale[1] = EYE_SY * s; e.keyframe_insert('scale', index=1, frame=f + df)
+    def opacity(self, frame, v):
+        o = self.obj.data.materials[0].node_tree.nodes['opacity'].outputs[0]; o.default_value = v; o.keyframe_insert('default_value', frame=frame)
     def eyes_visible(self, on, frame):
         for e in self.eyes: e.hide_render = not on; e.keyframe_insert('hide_render', frame=frame)
 
@@ -103,5 +108,5 @@ def build(name='shade', eyes=True, coll=None):
                 o.visible_shadow = False
                 if coll: [c.objects.unlink(o) for c in o.users_collection]; coll.objects.link(o)
             eye_objs.append(e)
-    obj.visible_shadow = True
+    obj.visible_shadow = False        # a shadow casts no shadow of its own
     return Sheet(rig, obj, eye_objs)

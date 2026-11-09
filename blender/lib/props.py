@@ -24,6 +24,7 @@ def floodlight(name, loc, aim, real=False, energy=900):
     d = Vector(aim) - (Vector(loc) + Vector((0, 0, 1.9))); head.rotation_euler = d.to_track_quat('-Z', 'Y').to_euler()
     hb = box(f'{name}_hbox', (0, 0, 0.0), (0.42, 0.32, 0.16), yel, bevel=0.02); hb.parent = head
     em = _emit(f'{name}_lens', (1.0, 0.97, 0.9), 0.0); ln = box(f'{name}_lensf', (0, 0, -0.085), (0.36, 0.26, 0.01), em, bevel=0); ln.parent = head
+    for o in r.children_recursive: o.visible_shadow = False          # the rig itself casts no clutter on the road
     L = None
     if real:
         L = spot(f'{name}_L', (0, 0, -0.1), (0, 0, 0), 0.0, 48, blend=0.25, color=(1.0, 0.97, 0.9), radius=0.12); L.parent = head; L.data['on'] = energy

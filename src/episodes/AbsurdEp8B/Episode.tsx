@@ -7,7 +7,7 @@ import {HangingPlate, SirenWash} from '../absurdkit';
 /** EP8 from Blender plates: each shot is public/absurd-cases/ep8/plates/<name>/<name>.mp4 (rendered by blender/eps/ep8.py,
  *  shot length + 20 frames of handle). Remotion only adds the plate, captions, phone UI, flashes and the mix. */
 export {TOTAL};
-const MIX = 'absurd-cases/ep8/mix/ep8_mix.wav';
+const MIX = 'absurd-cases/ep8/mix/ep8b_mix.wav';
 const VOICE = 'absurd-cases/ep8/ep8_narration_tight.wav';
 const T = (n: string) => SHOTS.find((s) => s.name === n)!;
 /** shots that continue another shot's take: [plate, offset frames into it] */
