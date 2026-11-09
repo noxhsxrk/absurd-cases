@@ -204,13 +204,21 @@ const courtRoom = (C: Cast, t: number, gavelShot: boolean) => {
 const PB = {pos: [0, 0, 6.5] as V3, s: 0.55, yaw: Math.PI / 2};
 const toPrison = (p: V3): V3 => { const x = p[2], z = -p[0]; return [PB.pos[0] + x * PB.s, PB.pos[1] + p[1] * PB.s, PB.pos[2] + z * PB.s]; };
 const BUS: V3 = [-6.5, 0, 11.5];
-const SHADE_AT: V3 = [BUS[0], 0, BUS[2] + 1.15];
+const SHADE_AT: V3 = [BUS[0], 0, BUS[2] + 2.4];          // out in the open in front of the shelter, so the only shade is the shadow
 const VIL: [string, number, number][] = [['vil1', -0.35, -0.25], ['vil2', 0.35, -0.45]];
 const sunY = (t: number) => { const u = sm((t - ev('sunStart')) / (ev('bell') - ev('sunStart'))); return u; };
 const squashK = (t: number) => sm((t - ev('squash')) / 0.45);
 const noonLie = (t: number) => { const u = (t - ev('squash')) / 0.32; return u <= 0 ? 0 : u >= 1 ? 1 - 0.04 * Math.exp(-(u - 1) * 3) * Math.cos((u - 1) * 14) : u * u; };
 const noonLen = (t: number) => lerp(1, 0.13, sm((t - ev('squash') - 0.25) / 0.7));
-const prisonFront = (t: number, o: {noonLight?: number} = {}) => {
+/** invisible caster between the sun and the two commuters: it puts them (and the ground round the lying shadow) in real shade.
+ *  It goes the instant the shadow flees at noon, so the sun hits them. */
+const BLOCK = new THREE.MeshBasicMaterial({colorWrite: false, depthWrite: false, side: THREE.DoubleSide});
+const ShadeBlocker: React.FC<{sun: V3; at: V3}> = ({sun, at}) => {
+  const d = new THREE.Vector3(...sun).sub(new THREE.Vector3(...at)).normalize(); const c = new THREE.Vector3(...at).addScaledVector(d, 2.6);
+  const q = new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0, 0, 1), d);
+  return <mesh position={c} quaternion={q} castShadow material={BLOCK} scale={[1.25, 1.6, 1]}><circleGeometry args={[1, 28]} /></mesh>;
+};
+const prisonFront = (t: number, o: {noonLight?: number; shade?: boolean} = {}) => {
   const n = o.noonLight ?? 0;
   const sunPos: V3 = lerp3([-6, 7, 40], [BUS[0] + 0.5, 40, BUS[2] + 0.8], n);
   return <>
@@ -222,16 +230,18 @@ const prisonFront = (t: number, o: {noonLight?: number} = {}) => {
     {[1, 3, 5].map((i) => <Smell key={i} from={[-9 + i * 3, 5.2, 0.7]} to={[-9 + i * 3 + 2.5, 9.5, 5]} t={t} k={1.3} n={3} amp={0.35} w={0.09} speed={2.6} seed={i * 3} />)}
     <SmellFog center={[-3, 7.5, 2]} k={0.7} t={t} size={3} />
     <BusStop position={BUS} clock={t >= ev('bell') - 0.1 ? '12:00' : '11:59'} />
-    <directionalLight position={sunPos} target-position={SHADE_AT} color="#FFF1D6" intensity={1.6 + n * 0.8} castShadow shadow-mapSize={[2048, 2048]} shadow-camera-left={-8} shadow-camera-right={8} shadow-camera-top={8} shadow-camera-bottom={-8} shadow-bias={-0.0006} />
+    {o.shade && t < ev('squash') + 0.12 && <ShadeBlocker sun={sunPos} at={[SHADE_AT[0], 0.9, SHADE_AT[2] - 1.1]} />}
+    <directionalLight position={sunPos} target-position={SHADE_AT} color="#FFF1D6" intensity={3.0 + n * 0.6} castShadow shadow-mapSize={[2048, 2048]} shadow-camera-left={-8} shadow-camera-right={8} shadow-camera-top={8} shadow-camera-bottom={-8} shadow-bias={-0.0006} />
   </>;
 };
 const villagers = (C: Cast, t: number) => VIL.map(([id, dx, dz]) => { const I = C[id]; hideProps(I); casts(I, t >= ev('squash') + 0.2);   // in its shade they cast none
+  I.root.traverse((o: any) => { if (o.isMesh) o.receiveShadow = true; });
   const burnt = t >= ev('burn');
-  const s = ps(id, SHADE_AT[0] + dx, SHADE_AT[2] + 1.15 + dz, 0, t, {clip: burnt ? 'idle_nervous_01' : 'idle_neutral_01', face: burnt ? 'wide' : 'half'});
+  const s = ps(id, SHADE_AT[0] + dx, SHADE_AT[2] - 0.85 + dz * 1.4, 0, t, {clip: burnt ? 'idle_nervous_01' : 'idle_neutral_01', face: burnt ? 'wide' : 'half'});
   const w = body(I, s, t); const so = headProp(I, 'soot', makeSoot); so.visible = burnt; return <P key={id} o={w} />; });
 const busShade = (C: Cast, t: number) => {
   const q = squashK(t);
-  return sheet({position: [SHADE_AT[0], 0.006, SHADE_AT[2]], yaw: 0, pose: 'out', lie: 1, len: noonLen(t), sx: lerp(1.0, 0.25, q), eyeScale: 1.2, eyes: q > 0.05 ? 'wide' : eyeMode(t)}).node;
+  return sheet({position: [SHADE_AT[0], 0.006, SHADE_AT[2]], yaw: 0, pose: 'out', lie: 1, s: 1.25, len: noonLen(t), sx: lerp(1.0, 0.25, q), eyeScale: 1.2, eyes: q > 0.05 ? 'wide' : eyeMode(t)}).node;
 };
 /** the vest on the standing sheet (it falls when the shadow squashes at noon) */
 const vestOn = (t: number, base: V3, s = 1, flat = false) => { const q = squashK(t); const fall = flat ? 1 : q > 0 ? Math.min(1, (t - ev('squash')) / 0.35) : 0;
@@ -342,23 +352,23 @@ export const SHOT_FN: Record<string, (t: number, lt: number, C: Cast) => ShotOut
     // wide: the bus stop in front of the prison wall (the chained footbridge, green durian smoke blasting from the windows);
     // the sheet stands arms out across the sun; two people wait in its shade
     const w = busShade(C, t);
-    return {node: <>{prisonFront(t)}{w}{vestOn(t, [SHADE_AT[0], 0, SHADE_AT[2] + 0.9], 1, true)}{villagers(C, t)}</>, cam: mv({pos: [-2.2, 4.4, 22], look: [-4.0, 3.0, 6.0], fov: 50}, lt, {push: 0.08, arrive: 0.12, roll: 2}), bg: DAY};
+    return {node: <>{prisonFront(t, {shade: true})}{w}{vestOn(t, [SHADE_AT[0], 0, SHADE_AT[2] - 1.7], 1, true)}{villagers(C, t)}</>, cam: mv({pos: [SHADE_AT[0] + 2.6, 4.0, SHADE_AT[2] + 5.8], look: [SHADE_AT[0], 0.45, SHADE_AT[2] + 0.9], fov: 50}, lt, {push: 0.08, arrive: 0.12, roll: 2}), bg: DAY};
   },
   busWide: (t, lt, C) => {
     const w = busShade(C, t);
-    return {node: <>{prisonFront(t)}{w}{vestOn(t, [SHADE_AT[0], 0, SHADE_AT[2] + 0.9], 1, true)}{villagers(C, t)}</>, cam: mv({pos: [SHADE_AT[0] + 1.8, 1.4, SHADE_AT[2] + 3.6], look: [SHADE_AT[0] - 0.2, 1.15, SHADE_AT[2] - 0.6], fov: 48}, lt, {push: 0.1, arrive: 0.1, side: -0.4}), bg: DAY};
+    return {node: <>{prisonFront(t, {shade: true})}{w}{vestOn(t, [SHADE_AT[0], 0, SHADE_AT[2] - 1.7], 1, true)}{villagers(C, t)}</>, cam: mv({pos: [SHADE_AT[0] + 4.8, 3.2, SHADE_AT[2] + 12], look: [SHADE_AT[0] - 0.8, 1.6, SHADE_AT[2] - 2.0], fov: 50}, lt, {push: 0.1, arrive: 0.1, side: -0.4}), bg: DAY};
   },
   sun: (t, lt, C) => {
     // low angle from behind the stop: the sun climbs to dead overhead; the stop's clock flips to 12:00
     const u = sunY(t); const sp = lerp3([BUS[0] + 6, 14, BUS[2] + 30], [BUS[0] + 1.5, 34, BUS[2] + 1.5], u);
     const w = busShade(C, t); const cp: V3 = [BUS[0] + 2.6, 0.9, BUS[2] - 2.6];
-    return {node: <>{prisonFront(t, {noonLight: u})}{w}{villagers(C, t)}<SunBall position={sp} r={2.2} /></>,
+    return {node: <>{prisonFront(t, {noonLight: u, shade: true})}{w}{villagers(C, t)}<SunBall position={sp} r={2.2} /></>,
       cam: mv({pos: cp, look: lerp3([BUS[0] + 2.2, 5, BUS[2] + 8], [BUS[0] + 1.8, 9, BUS[2] + 0.6], u), fov: 70}, lt, {push: 0.04, arrive: 0.08, roll0: -6}), bg: DAY};
   },
   squash: (t, lt, C) => {
     // sun straight overhead: the shadow shrinks down into a blob at its own feet, the vest drops; the two behind it fry
     const w = busShade(C, t);
-    return {node: <>{prisonFront(t, {noonLight: 1})}{w}{vestOn(t, [SHADE_AT[0], 0, SHADE_AT[2] + 0.9], 1, true)}{villagers(C, t)}</>,
+    return {node: <>{prisonFront(t, {noonLight: 1, shade: true})}{w}{vestOn(t, [SHADE_AT[0], 0, SHADE_AT[2] - 1.7], 1, true)}{villagers(C, t)}</>,
       cam: mv({pos: [SHADE_AT[0] + 0.9, lerp(1.4, 2.4, squashK(t)), SHADE_AT[2] + lerp(2.9, 2.0, squashK(t))], look: [SHADE_AT[0] - 0.05, lerp(1.0, 0.2, squashK(t)), SHADE_AT[2] - lerp(0.4, 0.5, squashK(t))], fov: 50}, lt, {push: 0.1, arrive: 0.1}), bg: DAY};
   },
   report: (t, lt) => {
