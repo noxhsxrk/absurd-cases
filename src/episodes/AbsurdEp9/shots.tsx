@@ -183,7 +183,7 @@ const interroRoom = (C: Cast, t: number) => {
   const ub = unbagK(t);
   return <><Interro t={t} swing={0.3} /><Mirror {...MIR_INT} roll={roll} /><P o={w} />
     {ub > 0.01 && <group position={add3(MIR_INT.position, [0, (1 - ub) * 0.9, 0])} scale={MIR_INT.scale}><BlackBag k={1} /></group>}
-    <NoteSheet position={[-0.38, TABLE_TOP + 0.004, 0.28]} rotation={[-Math.PI / 2, 0, 0.12]} w={0.26} write={(t - ev('note')) / 0.6} /></>;
+    <NoteSheet position={[0.36, TABLE_TOP + 0.004, 0.3]} rotation={[-Math.PI / 2, 0, -0.1]} w={0.26} write={(t - ev('note')) / 0.6} /></>;
 };
 
 // =====================================================================================================
@@ -292,7 +292,7 @@ export const SHOT_FN: Record<string, (t: number, lt: number, C: Cast) => ShotOut
   cuffs: (t, lt, C) => {
     // ECU: giant cuffs snap round the frame edge sticking out of the bag
     const k = pop((t - ev('cuff')) / 0.25);
-    const at: V3 = [DR[0] - 0.02, DR[1] + 0.3, DR[2] + 0.44];
+    const at: V3 = [DR[0] - 0.02, DR[1] + 0.45, DR[2] + 0.38];
     return {node: <>{bedroom(t, 1)}{bedMirror(t)}{bagged(t, MIR_BED.position, MIR_BED.yaw, MIR_BED.scale)}
       <Handcuffs k={t > ev('cuff') - 0.05 ? Math.max(0.05, k) : 0} position={at} rotation={[0, 0, Math.PI / 2]} size={2.2} /></>,
       cam: mv({pos: add3(at, [-0.75, 0.2, 0.55]), look: at, fov: 40}, lt, {push: 0.2, shake: near(t, [ev('cuff')]) ? 0.012 : 0, roll0: -5}), bg: ROOM};
@@ -315,7 +315,7 @@ export const SHOT_FN: Record<string, (t: number, lt: number, C: Cast) => ShotOut
   slam: (t, lt, C) => ({node: interroRoom(C, t), cam: mv({pos: [-0.6, 1.55, 2.25], look: [0, 1.12, -0.15], fov: 38}, lt, {push: 0.12, arrive: 0.1, shake: near(t, [ev('slam1')]) ? 0.012 : 0}), bg: DARK}),
   slam2: (t, lt, C) => ({node: interroRoom(C, t), cam: mv({pos: [-0.3, 1.38, 1.45], look: [0, 1.18, -0.15], fov: 38}, lt, {push: 0.2, arrive: 0.08, shake: near(t, [ev('slam2')]) ? 0.014 : 0, roll0: -3}), bg: DARK}),
   note: (t, lt, C) => ({node: <>{interroRoom(C, t)}<hemisphereLight args={['#FFF6E8', '#3A3028', 0.8]} /></>,
-    cam: mv({pos: [-0.38, TABLE_TOP + 0.9, 0.3], look: [-0.38, TABLE_TOP, 0.27], fov: 34}, lt, {push: 0.06, arrive: 0.08}), bg: DARK}),
+    cam: mv({pos: [0.36, TABLE_TOP + 0.62, 0.32], look: [0.36, TABLE_TOP, 0.29], fov: 42}, lt, {push: 0.06, arrive: 0.08}), bg: DARK}),
   court: (t, lt, C) => {
     // frontal, symmetric from the gallery: the mirror's back on the dock, the judge raises the gavel and slams
     const {node} = courtRoom(C, t); return {node, cam: mv({pos: [1.5, 2.3, 3.2], look: [-0.1, 1.45, -2.6], fov: 44}, lt, {push: 0.12, arrive: 0.1, shake: near(t, [ev('gavel1')]) ? 0.015 : 0})};

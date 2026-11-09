@@ -73,7 +73,9 @@ export const RingLight: React.FC<{on: number}> = ({on}) => {
 /** black garbage bag thrown over the mirror: a lumpy shell with a cinched neck at the bottom */
 export const BlackBag: React.FC<{k: number; position?: [number, number, number]; yaw?: number}> = ({k, position = [0, 0, 0], yaw = 0}) => {
   const geo = useMemo(() => {
-    const g = new THREE.SphereGeometry(1, 28, 20); const p = g.attributes.position as THREE.BufferAttribute;
+    const g = new THREE.BoxGeometry(2, 2, 2, 10, 12, 6); const p = g.attributes.position as THREE.BufferAttribute;
+    // a bag pulled over a rectangle: a box rounded 35 % toward a sphere, then crumpled
+    for (let i = 0; i < p.count; i++) { const v = new THREE.Vector3(p.getX(i), p.getY(i), p.getZ(i)); v.lerp(v.clone().normalize().multiplyScalar(1.15), 0.35); p.setXYZ(i, v.x, v.y, v.z); }
     for (let i = 0; i < p.count; i++) { const x = p.getX(i), y = p.getY(i), z = p.getZ(i);
       const n = 1 + 0.07 * Math.sin(x * 9 + y * 5) * Math.cos(z * 7 - y * 3) + 0.04 * Math.sin(x * 21 + z * 17);
       const neck = y < -0.55 ? 0.75 + (y + 1) * 0.4 : 1;
@@ -84,8 +86,9 @@ export const BlackBag: React.FC<{k: number; position?: [number, number, number];
   // drops from above and settles (k 0→1)
   const drop = (1 - Math.min(1, k)) * 0.6;
   return <group position={position} rotation={[0, yaw, 0]}>
-    <mesh castShadow receiveShadow geometry={geo} material={mat} position={[0, 0.33 + drop, 0]} scale={[0.3, 0.36, 0.13]} />
-    <mesh castShadow material={mat} position={[0, 0.03 + drop, 0]} scale={[0.22, 0.04, 0.12]}><sphereGeometry args={[1, 16, 8]} /></mesh>
+    <mesh castShadow receiveShadow geometry={geo} material={mat} position={[0, 0.34 + drop, 0]} scale={[0.24, 0.31, 0.08]} />
+    <mesh castShadow material={mat} position={[0, 0.03 + drop, 0]} scale={[0.2, 0.04, 0.1]}><sphereGeometry args={[1, 16, 8]} /></mesh>
+    <mesh castShadow material={mat} position={[0.05, 0.62 + drop, 0.02]} rotation={[0.3, 0, 0.6]} scale={[0.03, 0.06, 0.03]}><coneGeometry args={[1, 1.4, 6]} /></mesh>
   </group>;
 };
 

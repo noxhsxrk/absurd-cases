@@ -32,7 +32,7 @@ const Dark: React.FC<{t: number}> = ({t}) => {
   const a = T('darkCell'), b = T('sign3');
   if (t < a.t0 || t >= b.t1) return null;
   const u = t - a.t0; const x = 30 + 22 * Math.sin(u * 2.2); const y = 60 + 6 * Math.sin(u * 3.1);
-  const open = t >= b.t0 ? 0.2 : 0.6;
+  const open = t >= b.t0 ? 0.2 : 0.42;
   return <AbsoluteFill style={{pointerEvents: 'none', background: `radial-gradient(circle at ${x}% ${y}%, rgba(0,0,0,0) 0, rgba(0,0,0,0) 18%, rgba(2,3,6,${open}) 32%)`}} />;
 };
 /** the makeup livestream UI over the ring-light shots */
