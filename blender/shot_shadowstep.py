@@ -57,7 +57,7 @@ if arg('--still'):
 else:
     if '--mp4' in argv:
         r = sc.render; r.image_settings.file_format = 'FFMPEG'; r.ffmpeg.format = 'MPEG4'; r.ffmpeg.codec = 'H264'; r.ffmpeg.constant_rate_factor = 'HIGH'; r.ffmpeg.ffmpeg_preset = 'GOOD'
-        r.filepath = os.path.join(out, 'shadowstep.mp4')
+        r.filepath = os.path.join(out, os.path.basename(os.path.normpath(out)) + '.mp4')
     else:
         sc.render.filepath = os.path.join(out, 'f_'); sc.render.image_settings.file_format = 'PNG'
     bpy.ops.render.render(animation=True)
