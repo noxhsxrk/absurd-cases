@@ -1,0 +1,151 @@
+{
+ "_note": "EP8 Fenrir take (14:11, 35.2 s): line ranges from -42 dB silences, confirmed against Whisper large-v3-turbo char timings on the PC (C:\\Claude\\ai-sfx\\ep8_words.json); card splits at comma pauses, else at the Whisper char time of the card's first word. l013 keeps ~0.4 s beat before the closer.",
+ "ep8-l001": {
+  "range": [
+   0.26,
+   2.33
+  ],
+  "splits": [
+   [
+    0.99,
+    1.19
+   ],
+   1.8
+  ]
+ },
+ "ep8-l002": {
+  "range": [
+   2.8,
+   5.02
+  ],
+  "splits": [
+   [
+    3.34,
+    3.6
+   ]
+  ]
+ },
+ "ep8-l003": {
+  "range": [
+   5.91,
+   7.94
+  ],
+  "splits": [
+   7.02
+  ]
+ },
+ "ep8-l004": {
+  "range": [
+   8.56,
+   9.56
+  ],
+  "splits": [
+   9.02
+  ]
+ },
+ "ep8-l005": {
+  "range": [
+   10.28,
+   13.51
+  ],
+  "splits": [
+   {
+    "q": [
+     10.78,
+     11.25
+    ]
+   },
+   12.12
+  ]
+ },
+ "ep8-l006": {
+  "range": [
+   14.1,
+   16.13
+  ],
+  "splits": [
+   15.1
+  ]
+ },
+ "ep8-l007": {
+  "range": [
+   16.26,
+   18.41
+  ],
+  "splits": [
+   [
+    17.24,
+    17.52
+   ]
+  ]
+ },
+ "ep8-l008": {
+  "range": [
+   19.21,
+   21.56
+  ],
+  "splits": [
+   [
+    20.12,
+    20.25
+   ]
+  ]
+ },
+ "ep8-l009": {
+  "range": [
+   21.81,
+   24.21
+  ],
+  "splits": [
+   [
+    23.0,
+    23.27
+   ]
+  ]
+ },
+ "ep8-l010": {
+  "range": [
+   25.08,
+   27.19
+  ],
+  "splits": [
+   [
+    26.24,
+    26.43
+   ]
+  ]
+ },
+ "ep8-l011": {
+  "range": [
+   27.44,
+   29.57
+  ],
+  "splits": [
+   [
+    28.61,
+    28.76
+   ]
+  ]
+ },
+ "ep8-l012": {
+  "range": [
+   30.14,
+   31.98
+  ],
+  "splits": [
+   30.9
+  ]
+ },
+ "ep8-l013": {
+  "range": [
+   32.72,
+   34.97
+  ],
+  "splits": [
+   [
+    33.37,
+    33.92
+   ]
+  ]
+ }
+}
