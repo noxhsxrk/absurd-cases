@@ -38,11 +38,11 @@ def sequence(arm, steps, start_frame=1, blend=6, start_pos=(0, 0, 0), heading=0.
     by `blend` frames with a linear blend-in) and bakes the armature's world position from the clips' own forward travel."""
     ad = arm.animation_data or arm.animation_data_create(); ad.action = None
     for t in list(ad.nla_tracks): ad.nla_tracks.remove(t)
-    tracks = [ad.nla_tracks.new(), ad.nla_tracks.new()]
+    tracks = [ad.nla_tracks.new() for _ in range(3)]
     f = start_frame; segs = []
     for i, (act, a0, a1) in enumerate(steps):
         st = f if i == 0 else f - blend
-        s = tracks[i % 2].strips.new(act.name + str(i), int(st), act); s.action_frame_start = a0; s.action_frame_end = a1
+        s = tracks[i % 3].strips.new(act.name + str(i), int(st), act); s.action_frame_start = a0; s.action_frame_end = a1
         s.frame_start = st; s.frame_end = st + (a1 - a0)
         if i: s.blend_in = blend; s.blend_type = 'REPLACE'
         s.extrapolation = 'HOLD_FORWARD' if i == len(steps) - 1 else 'NOTHING'
