@@ -1,0 +1,158 @@
+{
+ "_note": "EP9 Fenrir take (2026-11-09 22:36, 36.5 s): line ranges from -40 dB silences, matched to the Whisper transcript (all 14 lines present, tools/ai-sfx/ep9_words.json); card splits at comma pauses, else at the energy minimum nearest the syllable proportion. l006 holds 0.7 s between cards for the SWAT beating the mirror; l010 holds 0.5 s for the judge's anger.",
+ "ep9-l001": {
+  "range": [
+   0.31,
+   2.26
+  ],
+  "splits": [
+   [
+    1.05,
+    1.4
+   ]
+  ]
+ },
+ "ep9-l002": {
+  "range": [
+   2.77,
+   5.24
+  ],
+  "splits": [
+   [
+    3.7,
+    4.07
+   ]
+  ]
+ },
+ "ep9-l003": {
+  "range": [
+   5.78,
+   8.2
+  ],
+  "splits": [
+   [
+    6.69,
+    6.9
+   ]
+  ]
+ },
+ "ep9-l004": {
+  "range": [
+   8.61,
+   10.41
+  ],
+  "splits": [
+   [
+    8.95,
+    9.44
+   ]
+  ]
+ },
+ "ep9-l005": {
+  "range": [
+   11.28,
+   12.21
+  ],
+  "splits": [
+   11.75
+  ]
+ },
+ "ep9-l006": {
+  "range": [
+   13.05,
+   14.9
+  ],
+  "splits": [
+   [
+    13.68,
+    13.9,
+    0.7
+   ]
+  ]
+ },
+ "ep9-l007": {
+  "range": [
+   15.29,
+   17.15
+  ],
+  "splits": [
+   16.32
+  ]
+ },
+ "ep9-l008": {
+  "range": [
+   17.81,
+   19.41
+  ],
+  "splits": [
+   18.45
+  ]
+ },
+ "ep9-l009": {
+  "range": [
+   20.02,
+   21.88
+  ],
+  "splits": [
+   [
+    20.81,
+    21.0
+   ]
+  ]
+ },
+ "ep9-l010": {
+  "range": [
+   22.66,
+   24.55
+  ],
+  "splits": [
+   [
+    23.6,
+    23.64,
+    0.5
+   ]
+  ]
+ },
+ "ep9-l011": {
+  "range": [
+   25.42,
+   27.29
+  ],
+  "splits": [
+   26.28
+  ]
+ },
+ "ep9-l012": {
+  "range": [
+   28.23,
+   30.15
+  ],
+  "splits": [
+   29.23
+  ]
+ },
+ "ep9-l013": {
+  "range": [
+   30.88,
+   33.39
+  ],
+  "splits": [
+   {
+    "q": [
+     31.19,
+     31.66
+    ]
+   },
+   32.35
+  ]
+ },
+ "ep9-l014": {
+  "range": [
+   34.11,
+   36.24
+  ],
+  "splits": [
+   35.25
+  ]
+ }
+}
