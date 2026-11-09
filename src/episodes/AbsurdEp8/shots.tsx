@@ -13,7 +13,7 @@ import {Smell, SmellFog, TapeRing, makeGasMask, Phone3D, Stars} from '../AbsurdE
 import {FB, FootBridge, PrisonGate, Chain} from '../AbsurdEp6/props';
 import {Puffs, makeSoot} from '../AbsurdEp7/props';
 import {camMove, SirenLights, Cam, MoveOpts} from '../absurdkit';
-import {SHADOW_MAT, makeEyes, setEyes, eyeMode, GroundEyes, SoiSign, Floodlight, LightPool, Spatula, Vest, Anklet, Broom, BusStop, SunBall, Report} from './props';
+import {ShadowSheet, sheetPoint, SheetProps, SIL_HANDS, sheetW, SHEET_H, eyeMode, GroundEyes, SoiSign, Floodlight, LightPool, Spatula, Vest, Anklet, Broom, BusStop, SunBall, Report} from './props';
 
 type Inst = any; type Cast = Record<string, Inst>;
 export type Bg = {color: string; fog?: [string, number, number]} | null;
@@ -80,26 +80,14 @@ const projected = (I: Inst, s: any, t: number) => { hideProps(I); const w = body
 /** where the projected head lands on the pavement (+ the yaw of the shadow's long axis) */
 const headOnGround = (I: Inst): V3 => bw(I, 'Bip01_Head');
 const SH_YAW = Math.atan2(-SUN_D.x, -SUN_D.z);
-type SheetO = {pos: V3; yaw: number; up?: number; s?: number; sy?: number; fold?: number; arms?: 'down' | 'out' | 'broom'; eyes?: string; clip?: string; pitch0?: number};
-/** the shadow as a sheet. up 0 = lying flat on its back on the ground (head away along −yaw), 1 = standing; fold 0..1 = folded in half at the waist */
-const sheet = (C: Cast, t: number, o: SheetO) => {
-  const I = C.shade; hideProps(I); const up = o.up ?? 1;
-  const s = ps('shade', o.pos[0], o.pos[2], o.yaw, t, {clip: o.clip ?? 'idle_neutral_01', face: 'closed'});
-  const pitch = -Math.PI / 2 * (1 - up) + (o.pitch0 ?? 0);
-  const w = body(I, s, t, o.pos[1], pitch); resetTurn(I);
-  if (o.arms === 'out') { ik(I, 'R', V(-78, 138, 6), V(0, -1, -0.4), 1); ik(I, 'L', V(78, 138, 6), V(0, -1, -0.4), 1); fingers(I, 'R', 'flat', 1); fingers(I, 'L', 'flat', 1); }
-  if (o.arms === 'broom') { ik(I, 'R', V(-22, 98, 26), V(-1, -0.5, 0), 1); ik(I, 'L', V(-14, 118, 24), V(1, -0.5, 0), 1); fingers(I, 'R', 'fist', 1); fingers(I, 'L', 'fist', 1); }
-  if (o.fold) rot(I.bones.Bip01_Spine, 1, 0, 0, Math.PI * 0.97 * o.fold, I.root);
-  const k = o.s ?? 1; const thin = lerp(0.06, 1, sm(up * 1.6));
-  w.scale.set(I.scale * k, I.scale * k * (o.sy ?? 1), I.scale * k * thin); w.updateMatrixWorld(true);
-  const e = headProp(I, 'eyes', makeEyes); e.visible = true; setEyes(e, o.eyes ?? eyeMode(t));
-  return w;
-};
+/** the shadow as a loose sheet (2D soft silhouette, see ShadowSheet): returns the props so callers can also ask sheetPoint() */
+const sheet = (o: SheetProps) => ({o, node: <ShadowSheet {...o} />});
+const handAt = (o: SheetProps, side: 'R' | 'L'): V3 => { const pose = o.pose ?? 'stand'; const [px, py] = SIL_HANDS[pose][side]; return sheetPoint(o, px / (sheetW(pose) * 800), 1 - py / 1400); };
 
 // =====================================================================================================
 // STREET (EP1 street by day): he walks along the house-side pavement toward +x; the sun is behind him
 // =====================================================================================================
-const WALK_Z = -4.05, X0 = -3.2, SPEED = 1.15;
+const WALK_Z = -4.05, X0 = 4.4, SPEED = 1.15;
 const manX = (t: number) => X0 + SPEED * Math.min(t, ev('stop'));
 /** the shadow body's own x: walks with him, then keeps creeping on its own (two extra steps) */
 const step = (t: number, t0: number) => cl((t - t0) / 0.5);
@@ -107,9 +95,9 @@ const shadeX = (t: number) => manX(t) + 0.55 * (step(t, ev('lag')) + step(t, ev(
 const shadeMoving = (t: number) => t < ev('stop') || (t > ev('lag') && t < ev('lag') + 0.5) || (t > ev('step2') && t < ev('step2') + 0.5);
 const DAYLIGHT = () => <>
   <hemisphereLight args={['#DCE8F2', '#5A5446', 1.15]} />
-  <directionalLight position={[-SUN_D.x * 30, -SUN_D.y * 30, -SUN_D.z * 30]} color="#FFF1D6" intensity={1.9} castShadow shadow-mapSize={[2048, 2048]} shadow-camera-left={-16} shadow-camera-right={16} shadow-camera-top={12} shadow-camera-bottom={-12} shadow-bias={-0.0006} />
+  <directionalLight position={[-SUN_D.x * 30, -SUN_D.y * 30, -SUN_D.z * 30]} color="#FFF1D6" intensity={1.9} />
 </>;
-const street = (t: number) => <><Street t={t} out={2} /><SoiSign position={[3.6, 0.12, -3.75]} yaw={-0.3} />{DAYLIGHT()}</>;
+const street = (t: number) => <><Street t={t} out={2} /><SoiSign position={[8.6, 0.12, -3.62]} yaw={-0.3} />{DAYLIGHT()}</>;
 const man = (C: Cast, t: number, o: {phone?: boolean; x?: number; face?: string; yaw?: number} = {}) => {
   const I = C.nai; hideProps(I); casts(I, false);
   const walking = t < ev('stop');
@@ -120,7 +108,7 @@ const streetShadow = (C: Cast, t: number) => {
   const I = C.shade; casts(I, false);
   const s = ps('shade', shadeX(t), WALK_Z, Math.PI / 2, t, {moving: shadeMoving(t), odo: shadeX(t) - X0});
   const g = projected(I, s, t); const h = headOnGround(I);
-  return <><P o={g} /><GroundEyes p={h} yaw={SH_YAW + Math.PI / 2} s={1.6} mode={eyeMode(t, t > ev('plate') - 0.3 ? 'angry' : 'angry')} /></>;
+  return <><P o={g} /><GroundEyes p={h} yaw={SH_YAW + Math.PI / 2} s={1.25} mode={eyeMode(t, t > ev('plate') - 0.3 ? 'angry' : 'angry')} /></>;
 };
 
 // =====================================================================================================
@@ -161,15 +149,19 @@ const scraper = (C: Cast, t: number, k: number) => {
 // =====================================================================================================
 const ZT: V3 = [0, TABLE_TOP + 0.01, 0.1];
 const OFFS: [string, number, number, number][] = [['offA', -0.55, -0.9, 0.12], ['offB', 0.0, -1.1, 0], ['offC', 0.55, -0.9, -0.12]];
-const shrinkS = (t: number) => { const a = sm((t - ev('shrink')) / 0.18), b = sm((t - ev('answer')) / 0.12); return 0.4 * (1 - 0.62 * a) * (1 - 0.45 * b); };
+const spring = (u: number) => (u <= 0 ? 0 : 1 - Math.exp(-7 * u) * Math.cos(11 * u));
+const bump = (u: number, d: number) => (u <= 0 || u >= d ? 0 : Math.sin(Math.PI * u / d));
+const shrinkS = (t: number) => 0.4 * (1 - 0.6 * spring((t - ev('shrink')) / 0.5)) * (1 - 0.42 * spring((t - ev('answer')) / 0.35));
+/** squash & stretch while it shrinks: it ducks (short + wide), then snaps back thin */
+const shrinkSq = (t: number) => { const b = 0.35 * bump(t - ev('shrink') + 0.04, 0.22) + 0.3 * bump(t - ev('answer') + 0.03, 0.16); return {sx: 1 + b * 0.8, sy: 1 - b}; };
 const lampOn = (t: number) => (t >= ev('lamp') ? 1 : 0);
 const interroRoom = (C: Cast, t: number) => {
   const nodes = OFFS.map(([id, x, z, yaw]) => { const I = C[id]; hideProps(I);
     const s = ps(id, x, z, yaw, t, {clip: id === 'offA' ? 'idle_angry_01' : 'idle_neutral_01', lookW: add3(ZT, [0, 0.2, 0]), face: t > ev('shrink') + 0.1 ? 'wide' : undefined});
     return <P key={id} o={body(I, s, t)} />; });
   const sc = shrinkS(t);
-  const w = sheet(C, t, {pos: ZT, yaw: 0, s: sc, pitch0: -0.12, eyes: t > ev('lamp') && t < ev('lamp') + 0.5 ? 'shut' : eyeMode(t)});
-  return <><Interro t={t} swing={1} hideS /><P o={w} />{nodes}
+  const q = shrinkSq(t); const w = sheet({position: ZT, yaw: 0, s: sc, ...q, lean: -0.12, eyeScale: 1.3, eyes: t > ev('lamp') && t < ev('lamp') + 0.5 ? 'shut' : t > ev('shrink') - 0.05 && t < ev('shrink') + 0.3 ? 'wide' : eyeMode(t)});
+  return <><Interro t={t} swing={1} hideS />{w.node}{nodes}
     <mesh position={[0, TABLE_TOP + 0.09, -0.02]} material={new THREE.MeshLambertMaterial({color: '#6B5B4A'})}><boxGeometry args={[0.16, 0.18, 0.06]} /></mesh>
     {lampOn(t) > 0 && <><spotLight position={[0, 1.9, 0.15]} target-position={ZT} angle={0.5} penumbra={0.4} intensity={22} distance={4} color="#FFF4D8" />
       <mesh position={[0, 1.35, 0.12]} renderOrder={2}><cylinderGeometry args={[0.08, 0.5, 1.15, 16, 1, true]} /><meshBasicMaterial color="#FFF6D8" transparent opacity={0.1} depthWrite={false} side={THREE.DoubleSide} toneMapped={false} /></mesh></>}
@@ -187,8 +179,8 @@ const courtRoom = (C: Cast, t: number, gavelShot: boolean) => {
   const cough = t - ev('cough'); const jolt = cough > 0 && cough < 0.4 ? Math.sin(cough * 40) * 0.08 * (1 - cough / 0.4) : 0;
   rot(I.bones.Bip01_Spine1, 1, 0, 0, jolt, I.root);
   rot(I.bones.Bip01_R_UpperArm, 1, 0, 0, -0.6 - lift * 0.9, I.root); rot(I.bones.Bip01_R_Forearm, 1, 0, 0, -0.5 - lift * 0.5, I.root); w.updateMatrixWorld(true);
-  const sw = sheet(C, t, {pos: [-0.05, 1.04, 0.6], yaw: 0, s: 0.24, eyes: eyeMode(t)});
-  return <><Court t={t} /><P o={w} /><P o={sw} />
+  const sw = sheet({position: [-0.05, 1.045, 0.6], yaw: 0, s: 0.26, eyeScale: 1.3, eyes: eyeMode(t)});
+  return <><Court t={t} /><P o={w} />{sw.node}
     <SmellFog center={[-1.6, 1.8, -3.9]} k={1} t={t} size={1.6} /><SmellFog center={[1.8, 2.2, -3.9]} k={0.8} t={t + 2} size={1.4} />
     <Smell from={[-2.6, 2.6, -4.2]} to={[0.4, 2.2, -3.6]} t={t} k={1} n={3} amp={0.2} w={0.04} speed={1.2} />
     {gavelShot && u > 0.03 && u < 0.5 && <Stars center={add3(bw(I, 'Bip01_R_Hand'), [0, -0.05, 0.1])} t={t * 3} r={0.08} size={0.03} />}</>;
@@ -204,6 +196,8 @@ const SHADE_AT: V3 = [BUS[0], 0, BUS[2] + 1.15];
 const VIL: [string, number, number][] = [['vil1', -0.35, -0.25], ['vil2', 0.35, -0.45]];
 const sunY = (t: number) => { const u = sm((t - ev('sunStart')) / (ev('bell') - ev('sunStart'))); return u; };
 const squashK = (t: number) => sm((t - ev('squash')) / 0.45);
+const noonLie = (t: number) => { const u = (t - ev('squash')) / 0.32; return u <= 0 ? 0 : u >= 1 ? 1 - 0.04 * Math.exp(-(u - 1) * 3) * Math.cos((u - 1) * 14) : u * u; };
+const noonLen = (t: number) => lerp(1, 0.13, sm((t - ev('squash') - 0.25) / 0.7));
 const prisonFront = (t: number, o: {noonLight?: number} = {}) => {
   const n = o.noonLight ?? 0;
   const sunPos: V3 = lerp3([-6, 7, 40], [BUS[0] + 0.5, 40, BUS[2] + 0.8], n);
@@ -224,13 +218,12 @@ const villagers = (C: Cast, t: number) => VIL.map(([id, dx, dz]) => { const I = 
   const s = ps(id, SHADE_AT[0] + dx, SHADE_AT[2] - 1.0 + dz, 0, t, {clip: burnt ? 'idle_nervous_01' : 'idle_neutral_01', face: burnt ? 'wide' : 'half'});
   const w = body(I, s, t); const so = headProp(I, 'soot', makeSoot); so.visible = burnt; return <P key={id} o={w} />; });
 const busShade = (C: Cast, t: number) => {
-  const q = squashK(t); casts(C.shade, true);
-  const w = sheet(C, t, {pos: SHADE_AT, yaw: 0, arms: 'out', sy: lerp(1, 0.04, q), s: lerp(1, 1.25, q), eyes: q > 0.2 ? 'wide' : eyeMode(t)});
-  return w;
+  const q = squashK(t);
+  return sheet({position: [SHADE_AT[0], 0.006, SHADE_AT[2]], yaw: 0, pose: 'out', lie: noonLie(t), len: noonLen(t), shadow: true, eyeScale: 1.2, eyes: q > 0.05 ? 'wide' : eyeMode(t)}).node;
 };
 /** the vest on the standing sheet (it falls when the shadow squashes at noon) */
 const vestOn = (t: number, base: V3, s = 1) => { const q = squashK(t); const fall = q > 0 ? Math.min(1, (t - ev('squash')) / 0.35) : 0;
-  return <><Vest position={[base[0], lerp(1.22 * s, 0.03, fall * fall), base[2] + 0.06 + fall * 0.15]} pitch={-Math.PI / 2 * fall} w={0.5 * s} h={0.6 * s} />
+  return <><Vest position={[base[0], lerp(1.1 * s, 0.03, fall * fall), base[2] + 0.05 + fall * 0.2]} pitch={-Math.PI / 2 * fall} w={0.48 * s} h={0.6 * s} />
     {q < 0.5 && <Anklet position={[base[0] + 0.1 * s, 0.1 * s, base[2] + 0.02]} t={t} s={s} />}</>; };
 
 // =====================================================================================================
@@ -247,17 +240,17 @@ export const SHOT_FN: Record<string, (t: number, lt: number, C: Cast) => ShotOut
       cam: mv({pos: [x + 1.6, lerp(1.45, 2.6, k), WALK_Z + 2.1], look: [x - lerp(0.2, 1.1, k), lerp(1.1, 0.15, k), WALK_Z - lerp(0, 0.3, k)], fov: 50}, lt, {arrive: 0, push: 0.06}), bg: DAY};
   },
   shadowStep: (t, lt, C) => {
-    // top-down over the pavement behind him: he stands still, the black shape takes one more step… then another. Snap zoom on its eyes.
+    // high 3/4 over the pavement: he has stopped, but the black shape behind him takes one more step… then another; snap in on its eyes
     const w = man(C, t); const node = <>{street(t)}<P o={w} />{streetShadow(C, t)}</>; const h = headOnGround(C.shade); const x = manX(t);
-    const zk = sm((t - ev('step2') - 0.45) / 0.12);
-    const tgt: V3 = lerp3([x - 1.0, 0.12, WALK_Z - 0.3], [h[0], 0.12, h[2]], zk);
-    return {node, cam: mv({pos: [tgt[0] + 0.2, lerp(3.6, 1.1, zk), tgt[2] + 0.9], look: tgt, fov: 50}, lt, {arrive: 0.08, push: 0.05}), bg: DAY};
+    const zk = sm((t - ev('step2') - 0.5) / 0.14);
+    const tgt: V3 = lerp3([x - 0.8, 0.12, WALK_Z - 0.3], [h[0], 0.12, h[2]], zk);
+    return {node, cam: mv({pos: [tgt[0] + lerp(0.9, 0.35, zk), lerp(2.9, 1.05, zk), tgt[2] + lerp(2.6, 0.8, zk)], look: tgt, fov: 48}, lt, {arrive: 0.08, push: 0.06}), bg: DAY};
   },
   charge: (t, lt, C) => {
     // ground level beside the shadow's head, looking along it to his heels; the plate drops on the charge word
     const w = man(C, t); const x = manX(t);
     return {node: <>{street(t)}<P o={w} />{streetShadow(C, t)}</>,
-      cam: mv({pos: [x - 2.6, 0.32, WALK_Z + 0.9], look: [x - 0.2, 0.5, WALK_Z - 0.2], fov: 52}, lt, {push: 0.1, arrive: 0.1, shake: t > ev('plate') && t < ev('plate') + 0.25 ? 0.012 : 0, roll0: 4, roll: -2}), bg: DAY};
+      cam: mv({pos: [x - 2.9, 0.42, WALK_Z + 0.75], look: [x - 0.4, 0.35, WALK_Z - 0.35], fov: 50}, lt, {push: 0.1, arrive: 0.1, shake: t > ev('plate') && t < ev('plate') + 0.25 ? 0.012 : 0, roll0: 4, roll: -2}), bg: DAY};
   },
   phone: (t, lt, C) => {
     // his POV looking down at it; the 3D phone slides up and the thumb presses 191
@@ -269,42 +262,42 @@ export const SHOT_FN: Record<string, (t: number, lt: number, C: Cast) => ShotOut
   swat: (t, lt, C) => {
     // extreme wide from high: the van, six SWAT, twenty floodlights on tripods ringed round one flat shadow; tape goes up in three rings
     const I = C.nai; hideProps(I); casts(I, false); const sm1 = ps('nai', -3.2, -3.4, 0.6, t, {clip: 'cell_phone_talk_01', face: 'half'}); const wm = body(I, sm1, t, PAVE);
-    const sw = sheet(C, t, {pos: SPOT, yaw: SH_LIE, up: 0, eyes: eyeMode(t)});
+    const sw = sheet({position: SPOT, yaw: SH_LIE, peel: 0, eyeScale: 1.4, eyes: eyeMode(t)}).node;
     const I1 = C.cmd1; hideProps(I1); const s1 = ps('cmd1', SPOT[0] + SWAT_POS[0][0], SPOT[2] + SWAT_POS[0][1], SWAT_POS[0][2], t, {clip: 'idle_angry_01'}); const w1 = body(I1, s1, t);
-    return {node: <>{raid(C, t)}<P o={wm} /><P o={sw} /><P o={w1} /></>, cam: mv({pos: [7.5, 11, 13], look: [-0.5, 0, 0.2], fov: 52}, lt, {push: -0.06, arrive: 0.12, roll: -3}), bg: DAY};
+    return {node: <>{raid(C, t)}<P o={wm} />{sw}<P o={w1} /></>, cam: mv({pos: [7.5, 11, 13], look: [-0.5, 0, 0.2], fov: 52}, lt, {push: -0.06, arrive: 0.12, roll: -3}), bg: DAY};
   },
   lights: (t, lt, C) => {
     // low inside the ring: the floodlights bang on one after another; the shadow squints but stays pinned flat
-    const sw = sheet(C, t, {pos: SPOT, yaw: SH_LIE, up: 0, eyes: t > ev('lights') ? (Math.floor(t * 30) % 5 ? 'shut' : 'angry') : eyeMode(t)});
+    const sw = sheet({position: SPOT, yaw: SH_LIE, peel: 0, eyeScale: 1.4, eyes: t > ev('lights') ? (Math.floor(t * 30) % 5 ? 'shut' : 'angry') : eyeMode(t)}).node;
     const u = t - ev('lights');
-    return {node: <>{raid(C, t, {tape: false, close: true})}<P o={sw} /></>, cam: mv({pos: [SPOT[0] + 1.6, 0.55, SPOT[2] + 2.6], look: [SPOT[0] - 1.6, 1.1, SPOT[2] - 1.2], fov: 62}, lt, {push: 0.14, arrive: 0.1, shake: u > 0 && u < 0.7 ? 0.01 : 0, roll0: -6, roll: 3}), bg: DAY};
+    return {node: <>{raid(C, t, {tape: false, close: true})}{sw}</>, cam: mv({pos: [SPOT[0] + 1.6, 0.55, SPOT[2] + 2.6], look: [SPOT[0] - 1.6, 1.1, SPOT[2] - 1.2], fov: 62}, lt, {push: 0.14, arrive: 0.1, shake: u > 0 && u < 0.7 ? 0.01 : 0, roll0: -6, roll: 3}), bg: DAY};
   },
   scrape: (t, lt, C) => {
     // CU: a kneeling commando works the spatula under the shadow's head and starts to lift it off the asphalt like a sticker
-    const k = peelK(t); const sw = sheet(C, t, {pos: SPOT, yaw: SH_LIE, up: k, eyes: 'wide'});
+    const k = peelK(t); const sw = sheet({position: SPOT, yaw: SH_LIE, peel: k, eyeScale: 1.3, eyes: 'wide'}).node;
     const w = scraper(C, t, k); const g = cl((t - ev('scrape')) / 0.6);
     const head: V3 = [SPOT[0] - 1.75 + 0.1 * g, 0.02, SPOT[2]];
-    return {node: <>{raid(C, t, {swat: false, close: true})}<P o={sw} /><P o={w} />
+    return {node: <>{raid(C, t, {swat: false, close: true})}{sw}<P o={w} />
       <Spatula position={add3(head, [-0.9 + 0.35 * g, 0.18 - 0.05 * g, 0])} rotation={[0.18, Math.PI / 2, 0]} s={1.15} /></>,
       cam: mv({pos: [SPOT[0] - 2.6, 1.55, SPOT[2] + 2.1], look: [SPOT[0] - 1.2, 0.05, SPOT[2] - 0.1], fov: 46}, lt, {push: 0.14, arrive: 0.1, side: 0.5}), bg: DAY};
   },
   peel: (t, lt, C) => {
     // the whole sheet comes up off the road, hinged at its heels, and stands — limp, scowling
-    const k = peelK(t); const sw = sheet(C, t, {pos: SPOT, yaw: SH_LIE, up: k, eyes: eyeMode(t, 'angry')});
+    const k = peelK(t); const sw = sheet({position: SPOT, yaw: SH_LIE, peel: k, eyeScale: 1.3, eyes: eyeMode(t, 'angry')}).node;
     const w = scraper(C, t, k);
-    return {node: <>{raid(C, t, {close: true})}<P o={sw} /><P o={w} /></>, cam: mv({pos: [SPOT[0] + 3.2, 1.1, SPOT[2] + 1.6], look: [SPOT[0] - 0.6, 0.7, SPOT[2]], fov: 48}, lt, {push: 0.12, arrive: 0.1, roll0: 3}), bg: DAY};
+    return {node: <>{raid(C, t, {close: true})}{sw}<P o={w} /></>, cam: mv({pos: [SPOT[0] + 3.2, 1.1, SPOT[2] + 1.6], look: [SPOT[0] - 0.6, 0.7, SPOT[2]], fov: 48}, lt, {push: 0.12, arrive: 0.1, roll0: 3}), bg: DAY};
   },
   fold: (t, lt, C) => {
     // folded in half like laundry
-    const f = sm((t - ev('fold')) / 0.45); const sw = sheet(C, t, {pos: SPOT, yaw: SH_LIE + 0.25, fold: f, eyes: f > 0.3 ? 'wide' : 'angry'});
+    const f = sm((t - ev('fold')) / 0.5); const sw = sheet({position: SPOT, yaw: SH_LIE + 0.25, fold: f, eyeScale: 1.3, eyes: f > 0.3 ? 'wide' : 'angry'}).node;
     const w = scraper(C, t, 1);
-    return {node: <>{raid(C, t, {close: true})}<P o={sw} /><P o={w} /></>, cam: mv({pos: [SPOT[0] + 2.3, 1.15, SPOT[2] - 1.7], look: [SPOT[0], 0.75, SPOT[2]], fov: 46}, lt, {push: 0.12, arrive: 0.1, side: -0.4}), bg: DAY};
+    return {node: <>{raid(C, t, {close: true})}{sw}<P o={w} /></>, cam: mv({pos: [SPOT[0] + 2.3, 1.15, SPOT[2] - 1.7], look: [SPOT[0], 0.75, SPOT[2]], fov: 46}, lt, {push: 0.12, arrive: 0.1, side: -0.4}), bg: DAY};
   },
   cuffs: (t, lt, C) => {
     // ECU: a giant pair of cuffs snaps shut round the folded middle
-    const sw = sheet(C, t, {pos: SPOT, yaw: SH_LIE + 0.25, fold: 1, eyes: 'wide'});
-    const mid = bw(C.shade, 'Bip01_Spine'); const k = pop((t - ev('cuff')) / 0.25);
-    return {node: <>{raid(C, t, {swat: false, close: true})}<P o={sw} /><Handcuffs k={t > ev('cuff') - 0.05 ? Math.max(0.05, k) : 0} position={add3(mid, [0.02, 0.05, 0.12])} rotation={[0, SH_LIE + 0.25 + Math.PI / 2, 0.2]} size={7} /></>,
+    const so: SheetProps = {position: SPOT, yaw: SH_LIE + 0.25, fold: 1, eyeScale: 1.3, eyes: 'wide'}; const sw = sheet(so).node;
+    const mid = sheetPoint(so, 0.5, 0.3); const k = pop((t - ev('cuff')) / 0.25);
+    return {node: <>{raid(C, t, {swat: false, close: true})}{sw}<Handcuffs k={t > ev('cuff') - 0.05 ? Math.max(0.05, k) : 0} position={add3(mid, [0.06, 0.0, -0.05])} rotation={[0, SH_LIE + 0.25 + Math.PI / 2, 0]} size={9} /></>,
       cam: mv({pos: add3(mid, [1.5, 0.35, -1.3]), look: add3(mid, [0, -0.05, 0]), fov: 42}, lt, {push: 0.22, shake: t > ev('cuff') && t < ev('cuff') + 0.12 ? 0.012 : 0, roll0: -5}), bg: DAY};
   },
   interro: (t, lt, C) => ({node: interroRoom(C, t), cam: mv({pos: [0, 1.48, 2.0], look: [0, 1.0, -0.4], fov: 50}, lt, {push: 0.08, arrive: 0.1}), bg: {color: '#1A2236'}}),
@@ -319,9 +312,9 @@ export const SHOT_FN: Record<string, (t: number, lt: number, C: Cast) => ShotOut
   answerCU: (t, lt, C) => ({node: interroRoom(C, t), cam: mv({pos: add3(ZT, [0.0, 0.12, 0.36]), look: add3(ZT, [0, 0.06, 0]), fov: 38}, lt, {push: 0.2, arrive: 0.06}), bg: {color: '#1A2236'}}),
   anklet: (t, lt, C) => {
     // ECU on its flat ankle: the EM tag blinks green
-    const base: V3 = [0.6, 0, 9.6]; const sw = sheet(C, t, {pos: base, yaw: 0.15, arms: 'broom', eyes: eyeMode(t)});
-    const hR = bw(C.shade, 'Bip01_R_Hand');
-    return {node: <>{prisonFront(t)}<P o={sw} />{vestOn(t, base)}<Broom position={add3(hR, [0.02, -0.75, 0.04])} rotation={[0.1, 0, 0.08]} /></>,
+    const base: V3 = [0.6, 0, 9.6]; const so: SheetProps = {position: base, yaw: 0.15, pose: 'broom', eyeScale: 1.1, eyes: eyeMode(t)}; const sw = sheet(so).node;
+    const hR = handAt(so, 'R');
+    return {node: <>{prisonFront(t)}{sw}{vestOn(t, base)}<Broom position={add3(hR, [0.02, -0.7, 0.05])} rotation={[0.1, 0, 0.08]} /></>,
       cam: mv({pos: [0.95, 0.28, 10.25], look: [0.7, 0.12, 9.62], fov: 40}, lt, {push: 0.16, arrive: 0.08}), bg: DAY};
   },
   court: (t, lt, C) => ({node: courtRoom(C, t, false), cam: mv({pos: [0, 1.95, 3.3], look: [0, 1.35, -1.5], fov: 44}, lt, {push: 0.12, arrive: 0.1})}),
@@ -331,33 +324,33 @@ export const SHOT_FN: Record<string, (t: number, lt: number, C: Cast) => ShotOut
   },
   vest: (t, lt, C) => {
     // outside the court: the sheet in an orange hi-vis vest, an EM tag on its flat ankle, a flat broom in its hands; dolly back
-    const base: V3 = [0.6, 0, 9.6]; const sw = sheet(C, t, {pos: base, yaw: 0.15, arms: 'broom', eyes: eyeMode(t)});
-    const hR = bw(C.shade, 'Bip01_R_Hand');
-    return {node: <>{prisonFront(t)}<P o={sw} />{vestOn(t, base)}<Broom position={add3(hR, [0.02, -0.75, 0.04])} rotation={[0.1, 0, 0.08]} /></>,
+    const base: V3 = [0.6, 0, 9.6]; const so: SheetProps = {position: base, yaw: 0.15, pose: 'broom', eyeScale: 1.1, eyes: eyeMode(t)}; const sw = sheet(so).node;
+    const hR = handAt(so, 'R');
+    return {node: <>{prisonFront(t)}{sw}{vestOn(t, base)}<Broom position={add3(hR, [0.02, -0.7, 0.05])} rotation={[0.1, 0, 0.08]} /></>,
       cam: mv({pos: [0.8, 1.35, 11.4], look: [0.6, 1.1, 9.6], fov: 46}, lt, {push: -0.12, arrive: 0.1}), bg: DAY};
   },
   busStop: (t, lt, C) => {
     // wide: the bus stop in front of the prison wall (the chained footbridge, green durian smoke blasting from the windows);
     // the sheet stands arms out across the sun; two people wait in its shade
     const w = busShade(C, t);
-    return {node: <>{prisonFront(t)}<P o={w} />{vestOn(t, SHADE_AT)}{villagers(C, t)}</>, cam: mv({pos: [-2.2, 4.4, 22], look: [-4.0, 3.0, 6.0], fov: 50}, lt, {push: 0.08, arrive: 0.12, roll: 2}), bg: DAY};
+    return {node: <>{prisonFront(t)}{w}{vestOn(t, SHADE_AT)}{villagers(C, t)}</>, cam: mv({pos: [-2.2, 4.4, 22], look: [-4.0, 3.0, 6.0], fov: 50}, lt, {push: 0.08, arrive: 0.12, roll: 2}), bg: DAY};
   },
   busWide: (t, lt, C) => {
     const w = busShade(C, t);
-    return {node: <>{prisonFront(t)}<P o={w} />{vestOn(t, SHADE_AT)}{villagers(C, t)}</>, cam: mv({pos: [SHADE_AT[0] + 1.8, 1.4, SHADE_AT[2] + 3.6], look: [SHADE_AT[0] - 0.2, 1.15, SHADE_AT[2] - 0.6], fov: 48}, lt, {push: 0.1, arrive: 0.1, side: -0.4}), bg: DAY};
+    return {node: <>{prisonFront(t)}{w}{vestOn(t, SHADE_AT)}{villagers(C, t)}</>, cam: mv({pos: [SHADE_AT[0] + 1.8, 1.4, SHADE_AT[2] + 3.6], look: [SHADE_AT[0] - 0.2, 1.15, SHADE_AT[2] - 0.6], fov: 48}, lt, {push: 0.1, arrive: 0.1, side: -0.4}), bg: DAY};
   },
   sun: (t, lt, C) => {
     // low angle from behind the stop: the sun climbs to dead overhead; the stop's clock flips to 12:00
     const u = sunY(t); const sp = lerp3([BUS[0] + 6, 14, BUS[2] + 30], [BUS[0] + 1.5, 34, BUS[2] + 1.5], u);
     const w = busShade(C, t); const cp: V3 = [BUS[0] + 2.6, 0.9, BUS[2] - 2.6];
-    return {node: <>{prisonFront(t, {noonLight: u})}<P o={w} />{villagers(C, t)}<SunBall position={sp} r={2.2} /></>,
+    return {node: <>{prisonFront(t, {noonLight: u})}{w}{villagers(C, t)}<SunBall position={sp} r={2.2} /></>,
       cam: mv({pos: cp, look: lerp3([BUS[0] + 2.2, 5, BUS[2] + 8], [BUS[0] + 1.8, 9, BUS[2] + 0.6], u), fov: 70}, lt, {push: 0.04, arrive: 0.08, roll0: -6}), bg: DAY};
   },
   squash: (t, lt, C) => {
     // sun straight overhead: the shadow shrinks down into a blob at its own feet, the vest drops; the two behind it fry
     const w = busShade(C, t);
-    return {node: <>{prisonFront(t, {noonLight: 1})}<P o={w} />{vestOn(t, SHADE_AT)}{villagers(C, t)}</>,
-      cam: mv({pos: [SHADE_AT[0] + 1.2, 1.25, SHADE_AT[2] + 2.9], look: [SHADE_AT[0] - 0.1, lerp(1.0, 0.45, squashK(t)), SHADE_AT[2] - 0.4], fov: 50}, lt, {push: 0.1, arrive: 0.1}), bg: DAY};
+    return {node: <>{prisonFront(t, {noonLight: 1})}{w}{vestOn(t, SHADE_AT)}{villagers(C, t)}</>,
+      cam: mv({pos: [SHADE_AT[0] + 0.9, lerp(1.4, 2.4, squashK(t)), SHADE_AT[2] + lerp(2.9, 2.0, squashK(t))], look: [SHADE_AT[0] - 0.05, lerp(1.0, 0.2, squashK(t)), SHADE_AT[2] - lerp(0.4, 0.5, squashK(t))], fov: 50}, lt, {push: 0.1, arrive: 0.1}), bg: DAY};
   },
   report: (t, lt) => {
     // the probation officer's log on a clipboard — held for the pause; red "อู้งาน" stamp. The last frames freeze.

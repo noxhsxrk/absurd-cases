@@ -179,3 +179,88 @@ export const Report: React.FC<{position: V3; rotation?: V3; w?: number; stamp: n
     {stamp > 0 && <mesh position={[0.12 * w, -0.08 * h, 0.002 + (1 - cl(stamp)) * 0.1]} rotation={[0, 0, -0.16]} scale={s} material={sm}><planeGeometry args={[w * 0.62, w * 0.62 * 256 / 640]} /></mesh>}
   </group>;
 };
+
+// =====================================================================================================
+// THE SHADOW AS A LOOSE SHEET: a soft-edged silhouette of the man (box head, same proportions as the cast),
+// cut into N horizontal strips chained from the heels up, so the sheet can lie flat, peel up like a sticker,
+// fold in half like laundry, fall back onto the ground and shorten like a real noon shadow.
+// Local frame: heels at the origin; standing = up +y facing +z; lying = head toward −z, face up.
+// =====================================================================================================
+export type SheetPose = 'stand' | 'out' | 'broom';
+const PPM = 800;                      // texture px per metre (1.75 m tall → 1400 px)
+const POSE_W: Record<SheetPose, number> = {stand: 600, out: 1360, broom: 640};
+const SIL_H = 1400;
+export const SHEET_H = SIL_H / PPM;
+export const sheetW = (p: SheetPose) => POSE_W[p] / PPM;
+/** where the hands are on the silhouette (texture px) */
+export const SIL_HANDS: Record<SheetPose, {R: [number, number]; L: [number, number]}> = {
+  stand: {R: [96, 830], L: [504, 830]}, out: {R: [70, 330], L: [1290, 330]}, broom: {R: [262, 720], L: [300, 560]},
+};
+const silTex = (pose: SheetPose, blur: number) => tex(`sil8-${pose}-${blur}`, POSE_W[pose], SIL_H, (g) => {
+  const W = POSE_W[pose], cx = W / 2; g.clearRect(0, 0, W, SIL_H);
+  g.filter = `blur(${blur}px)`; g.fillStyle = '#000'; g.strokeStyle = '#000'; g.lineCap = 'round'; g.lineJoin = 'round';
+  const rr = (x: number, y: number, w: number, h: number, r: number) => { g.beginPath(); g.moveTo(x + r, y); g.arcTo(x + w, y, x + w, y + h, r); g.arcTo(x + w, y + h, x, y + h, r); g.arcTo(x, y + h, x, y, r); g.arcTo(x, y, x + w, y, r); g.closePath(); g.fill(); };
+  rr(cx - 108, 14, 216, 236, 34);                       // box head
+  g.fillRect(cx - 40, 240, 80, 50);                    // neck
+  g.beginPath(); g.moveTo(cx - 182, 296); g.quadraticCurveTo(cx - 200, 300, cx - 186, 360); g.lineTo(cx - 150, 720); g.lineTo(cx + 150, 720); g.lineTo(cx + 186, 360); g.quadraticCurveTo(cx + 200, 300, cx + 182, 296); g.closePath(); g.fill();  // torso
+  rr(cx - 160, 690, 320, 110, 30);                     // hips
+  g.lineWidth = 118; [[-1], [1]].forEach(([s]) => { g.beginPath(); g.moveTo(cx + s * 72, 760); g.lineTo(cx + s * 84, 1050); g.lineTo(cx + s * 82, 1330); g.stroke(); });   // legs
+  [[-1], [1]].forEach(([s]) => { g.beginPath(); g.ellipse(cx + s * 100, 1355, 92, 38, 0, 0, Math.PI * 2); g.fill(); });     // feet
+  g.lineWidth = 104;
+  const arm = (pts: [number, number][], hand: [number, number]) => { g.beginPath(); g.moveTo(...pts[0]); pts.slice(1).forEach((p) => g.lineTo(...p)); g.stroke(); g.beginPath(); g.arc(hand[0], hand[1], 50, 0, Math.PI * 2); g.fill(); };
+  const H = SIL_HANDS[pose];
+  if (pose === 'stand') { arm([[cx - 176, 330], [cx - 196, 580], H.R], H.R); arm([[cx + 176, 330], [cx + 196, 580], H.L], H.L); }
+  if (pose === 'out') { arm([[cx - 170, 330], [cx - 420, 336], H.R], H.R); arm([[cx + 170, 330], [cx + 420, 336], H.L], H.L); }
+  if (pose === 'broom') { arm([[cx - 176, 330], [cx - 170, 560], H.R], H.R); arm([[cx + 176, 330], [cx + 120, 520], H.L], H.L); }
+});
+const N_STRIPS = 30;
+const stripGeo = (() => { const out: THREE.PlaneGeometry[] = []; for (let i = 0; i < N_STRIPS; i++) {
+  const gm = new THREE.PlaneGeometry(1, 1); const uv = gm.getAttribute('uv') as THREE.BufferAttribute; const v0 = i / N_STRIPS, v1 = (i + 1) / N_STRIPS;
+  for (let k = 0; k < uv.count; k++) uv.setY(k, uv.getY(k) > 0.5 ? v1 : v0); uv.needsUpdate = true; gm.translate(0, 0.5, 0); out.push(gm); } return out; })();
+const sheetMats = (pose: SheetPose) => {
+  const k = 'sheet8-' + pose; if (!mats.has(k)) {
+    const map = silTex(pose, 5); map.anisotropy = 4;
+    mats.set(k, new THREE.MeshBasicMaterial({map, color: '#16181E', transparent: true, opacity: 0.96, alphaTest: 0.02, depthWrite: true, side: THREE.DoubleSide, toneMapped: false, polygonOffset: true, polygonOffsetFactor: -2, polygonOffsetUnits: -2}));
+    mats.set(k + 'd', new THREE.MeshDepthMaterial({depthPacking: THREE.RGBADepthPacking, map, alphaTest: 0.5, side: THREE.DoubleSide}));
+  }
+  return [mats.get(k) as THREE.MeshBasicMaterial, mats.get(k + 'd') as THREE.MeshDepthMaterial] as const;
+};
+export type SheetProps = {position: V3; yaw?: number; pose?: SheetPose; peel?: number; fold?: number; lie?: number; len?: number; s?: number; sx?: number; sy?: number; lean?: number; eyes?: string; shadow?: boolean; eyeScale?: number};
+/** bend angle of the strip whose bottom edge is at v (0 heels … 1 top of head); 0 = up, −π/2 = lying toward −z */
+export const sheetAngle = (v: number, o: SheetProps) => {
+  const p = o.peel ?? 1; const c = (1 - p) * 1.32 - 0.32;
+  let a = -Math.PI / 2 + (Math.PI / 2) * (v < 0 ? 0 : Math.min(1, Math.max(0, (v - c) / 0.24)) ** 2 * (3 - 2 * Math.min(1, Math.max(0, (v - c) / 0.24))));
+  const f = o.fold ?? 0; if (f > 0) { const u = Math.min(1, Math.max(0, (v - 0.46) / 0.08)); a += Math.PI * 0.985 * f * u * u * (3 - 2 * u); }
+  a += -(Math.PI / 2) * (o.lie ?? 0) + (o.lean ?? 0);
+  return a;
+};
+/** world position of a point on the sheet (u 0..1 across, v 0..1 up) — for props held in its hands, cuffs, etc. */
+export const sheetPoint = (o: SheetProps, u: number, v: number): V3 => {
+  const pose = o.pose ?? 'stand'; const s = o.s ?? 1; const L = SHEET_H * s * (o.len ?? 1) * (o.sy ?? 1); const w = sheetW(pose) * s * (o.sx ?? 1);
+  let y = 0, z = 0; const n = N_STRIPS; const fv = v * n; const i0 = Math.floor(fv);
+  for (let i = 0; i < Math.min(n, i0 + 1); i++) { const a = sheetAngle(i / n, o); const d = i < i0 ? 1 : fv - i0; y += Math.cos(a) * L / n * d; z += Math.sin(a) * L / n * d; }
+  const x = (u - 0.5) * w; const yaw = o.yaw ?? 0;
+  return [o.position[0] + Math.cos(yaw) * x + Math.sin(yaw) * z, o.position[1] + y, o.position[2] - Math.sin(yaw) * x + Math.cos(yaw) * z];
+};
+export const ShadowSheet: React.FC<SheetProps> = (o) => {
+  const pose = o.pose ?? 'stand'; const [m, dm] = sheetMats(pose);
+  const s = o.s ?? 1; const L = SHEET_H * s * (o.len ?? 1) * (o.sy ?? 1); const w = sheetW(pose) * s * (o.sx ?? 1); const seg = L / N_STRIPS;
+  const strips: React.ReactNode[] = []; let y = 0, z = 0;
+  const EYE_V = 0.875, ei = Math.floor(EYE_V * N_STRIPS);
+  const es = (o.eyeScale ?? 1) * s * Math.max(0.55, Math.min(1, (o.len ?? 1) * 1.6)); const em = eyeMat(o.eyes ?? 'angry');
+  for (let i = 0; i < N_STRIPS; i++) {
+    const a = sheetAngle(i / N_STRIPS, o);
+    strips.push(<group key={i} position={[0, y, z]} rotation={[a, 0, 0]}>
+      <mesh geometry={stripGeo[i]} material={m} customDepthMaterial={dm} castShadow={!!o.shadow} scale={[w, seg * 1.04, 1]} renderOrder={3} />
+      {i === ei && <>
+        <mesh position={[0, (EYE_V * N_STRIPS - ei) * seg, 0.004]} material={em} renderOrder={6}><planeGeometry args={[0.2 * es, 0.088 * es]} /></mesh>
+        <mesh position={[0, (EYE_V * N_STRIPS - ei) * seg, -0.004]} rotation={[0, Math.PI, 0]} material={em} renderOrder={6}><planeGeometry args={[0.2 * es, 0.088 * es]} /></mesh>
+      </>}
+    </group>);
+    y += Math.cos(a) * seg; z += Math.sin(a) * seg;
+  }
+  return <group position={o.position} rotation={[0, o.yaw ?? 0, 0]}>{strips}</group>;
+};
+/** the street shadow's material: translucent, drawn once per pixel (stencil) so overlapping limbs don't darken */
+export const SHADOW_PROJ = new THREE.MeshBasicMaterial({color: '#141821', transparent: true, opacity: 0.78, depthWrite: false, toneMapped: false,
+  stencilWrite: true, stencilRef: 1, stencilFunc: THREE.NotEqualStencilFunc, stencilZPass: THREE.ReplaceStencilOp, polygonOffset: true, polygonOffsetFactor: -4, polygonOffsetUnits: -4});

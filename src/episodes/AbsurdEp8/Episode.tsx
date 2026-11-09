@@ -9,7 +9,7 @@ import {useFontsReady} from '../../pov/ui/story';
 import {canvasQuality, Quality} from '../../pov/ui/quality';
 import {FPS, W, H, TOTAL, ev, CARDS, shotAt, SHOTS} from './data';
 import {SHOT_FN, CamRig} from './shots';
-import {SHADOW_MAT} from './props';
+import {SHADOW_PROJ} from './props';
 import {Captions, Grade, Flash, CallScreen} from '../AbsurdEp1/ui';
 import {HangingPlate, SirenWash} from '../absurdkit';
 
@@ -31,13 +31,13 @@ export const AbsurdEp8: React.FC<{quality?: Quality}> = ({quality = 'fast'}) => 
   const f = useCurrentFrame(); const t = f / FPS;
   const ready = useFontsReady();
   const lib = useRb([], 'toon'); const P = useCast(IDS, lib);
-  useMemo(() => { setFaceStyle('ink'); for (const [id, I] of Object.entries(P) as [string, any][]) { applyBoxLook(I, id); I.root.traverse((o: any) => { if (o.isMesh) { o.frustumCulled = false; if (id === 'shade') o.material = SHADOW_MAT; } }); } }, [P]);
+  useMemo(() => { setFaceStyle('ink'); for (const [id, I] of Object.entries(P) as [string, any][]) { applyBoxLook(I, id); I.root.traverse((o: any) => { if (o.isMesh) { o.frustumCulled = false; if (id === 'shade') { o.material = SHADOW_PROJ; o.renderOrder = 2; } } }); } }, [P]);
   const sh = shotAt(t); const q = canvasQuality(quality);
   const files = getStaticFiles(); const audio = files.some((s) => s.name === MIX) ? MIX : files.some((s) => s.name === VOICE) ? VOICE : null;
   return (
     <AbsoluteFill style={{background: '#000'}}>
       <AbsoluteFill style={{transform: 'scale(1.02)', filter: GRADE[PLACE(sh.name)]}}>
-        {lib && ready && <ThreeCanvas key={'c'} width={W} height={H} dpr={q.dpr} shadows={q.shadows} camera={{fov: 45, near: 0.01, far: 600, position: [0, 1.5, 3]}} gl={{antialias: q.antialias, logarithmicDepthBuffer: true}} onCreated={({gl}) => { gl.toneMapping = THREE.NoToneMapping; }}>
+        {lib && ready && <ThreeCanvas key={'c'} width={W} height={H} dpr={q.dpr} shadows={q.shadows} camera={{fov: 45, near: 0.01, far: 600, position: [0, 1.5, 3]}} gl={{antialias: q.antialias, logarithmicDepthBuffer: true, stencil: true}} onCreated={({gl}) => { gl.toneMapping = THREE.NoToneMapping; }}>
           <World t={t} P={P} />
         </ThreeCanvas>}
       </AbsoluteFill>
