@@ -47,13 +47,19 @@ def main():
     log(time.strftime('%H:%M:%S'), 'SAO EP8 start', torch.cuda.get_device_name(0))
     pipe = StableAudioPipeline.from_pretrained('stabilityai/stable-audio-open-1.0', torch_dtype=torch.float16).to('cuda')
     clap = ClapModel.from_pretrained('laion/larger_clap_general').to('cuda').eval(); proc = ClapProcessor.from_pretrained('laion/larger_clap_general')
+    def vec(o, *names):
+        if torch.is_tensor(o): return o
+        for n in names:
+            v = getattr(o, n, None)
+            if v is not None: return v
+        return o.pooler_output
     def temb(texts):
         with torch.no_grad():
-            t = proc(text=texts, return_tensors='pt', padding=True).to('cuda'); e = clap.get_text_features(**t)
+            t = proc(text=texts, return_tensors='pt', padding=True).to('cuda'); e = vec(clap.get_text_features(**t), 'text_embeds')
         return torch.nn.functional.normalize(e, dim=-1)
     def aemb(wav48):
         with torch.no_grad():
-            a = proc(audios=[wav48], sampling_rate=48000, return_tensors='pt').to('cuda'); e = clap.get_audio_features(**a)
+            a = proc(audio=[wav48], sampling_rate=48000, return_tensors='pt').to('cuda'); e = vec(clap.get_audio_features(**a), 'audio_embeds')
         return torch.nn.functional.normalize(e, dim=-1)
     unwanted = temb(UNWANTED); scores = json.load(open(OUT / 'scores.json')) if (OUT / 'scores.json').exists() else {}
     for cue, sec, target, prompt in CUES:
