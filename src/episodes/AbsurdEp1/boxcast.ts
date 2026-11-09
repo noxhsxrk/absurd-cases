@@ -42,7 +42,7 @@ export const PM = (base: string, key = '', amt?: number) => {
 };
 
 // ---------------------------------------------------------------- faces
-export type FaceMode = 'open' | 'blink' | 'talk' | 'wide' | 'closed' | 'half';
+export type FaceMode = 'open' | 'blink' | 'talk' | 'wide' | 'closed' | 'half' | 'angry' | 'shout';   // angry/shout: ink style only (EP9 judge)
 /** 'bean' = EP1–3 glossy bean eyes; 'ink' = ref8 hand-drawn ink face (edge lines, hatched hair, stubble dots, hatched blush). Set per episode before the cast is built. */
 export let FACE_STYLE: 'bean' | 'ink' = 'bean';
 export const setFaceStyle = (s: 'bean' | 'ink') => { FACE_STYLE = s; };
@@ -64,17 +64,20 @@ const inkFace = (g: CanvasRenderingContext2D, id: string, f: FaceSpec, mode: Fac
   ex.forEach((x, i) => {
     if (mode === 'blink' || mode === 'closed') { wob(x - 12, ey + 2, x + 12, ey + 2, 4, 300 + i); return; }
     if (mode === 'wide') { g.lineWidth = 3.5; g.beginPath(); g.arc(x, ey, 13, 0, Math.PI * 2); g.stroke(); g.beginPath(); g.arc(x, ey, 4.5, 0, Math.PI * 2); g.fill(); return; }
+    if (mode === 'angry' || mode === 'shout') { const s2 = i ? -1 : 1; g.beginPath(); g.ellipse(x, ey + 3, 5.5, 5, 0, 0, Math.PI * 2); g.fill(); wob(x - 13 * s2, ey - 7, x + 13 * s2, ey, 4.5, 310 + i); return; }   // glare: lid slants down to the nose
     g.beginPath(); g.ellipse(x, ey + 2, 5.5, 6.5, 0, 0, Math.PI * 2); g.fill();
     wob(x - 13, ey - (mode === 'half' ? 1 : 5), x + 13, ey - (mode === 'half' ? 1 : 5), 4, 310 + i);   // the lid line
   });
   // brows: hatched strokes
-  const by = mode === 'wide' ? 82 : 90, tilt = f.brows ?? 0;
-  ex.forEach((x, i) => { const s2 = i ? -1 : 1; g.save(); g.translate(x, by); g.rotate(tilt * 0.35 * s2); for (let k = 0; k < 4; k++) wob(-14 + k * 3, 2 + k * 0.5, 12 + k * 1.5, -2 + k * 0.5, 2.6, 400 + k + i * 9); g.restore(); });
+  const mad = mode === 'angry' || mode === 'shout'; const by = mode === 'wide' ? 82 : mad ? 92 : 90, tilt = f.brows ?? 0;
+  ex.forEach((x, i) => { const s2 = i ? -1 : 1; g.save(); g.translate(x, by); g.rotate(mad ? 0.5 * s2 : tilt * 0.35 * s2); for (let k = 0; k < 4; k++) wob(-14 + k * 3, 2 + k * 0.5, 12 + k * 1.5, -2 + k * 0.5, 2.6, 400 + k + i * 9); g.restore(); });
   // nose: an ink hook
   if (!f.mask) { g.lineWidth = 3; g.beginPath(); g.moveTo(cx - 2, 124); g.quadraticCurveTo(cx + 9, 142, cx - 5, 146); g.stroke(); }
   // mouth
   if (mode === 'talk') { g.fillStyle = '#3A1A1A'; g.beginPath(); g.ellipse(cx, 178, 12, 8, 0, 0, Math.PI * 2); g.fill(); g.lineWidth = 3; g.stroke(); }
   else if (mode === 'wide') { g.lineWidth = 3; g.beginPath(); g.ellipse(cx, 180, 8, 11, 0, 0, Math.PI * 2); g.stroke(); }
+  else if (mode === 'shout') { g.fillStyle = '#3A1A1A'; g.beginPath(); g.ellipse(cx, 182, 17, 12, 0, 0, Math.PI * 2); g.fill(); g.lineWidth = 3; g.stroke(); g.fillStyle = '#F4F1EA'; g.fillRect(cx - 11, 172, 22, 5); }
+  else if (mode === 'angry') { g.lineWidth = 3.5; g.beginPath(); g.arc(cx, 186, 16, 1.2 * Math.PI, 1.8 * Math.PI); g.stroke(); }
   else wob(cx - 15, 172, cx + 15, 172, 3.5, 500);
   if (f.mustache) { g.fillStyle = f.hair; g.beginPath(); g.roundRect(cx - 26, 156, 52, 10, 5); g.fill(); }
   if (f.glasses) { g.strokeStyle = '#2B2B33'; g.lineWidth = 4; ex.forEach((x) => { g.beginPath(); g.arc(x, ey, 22, 0, Math.PI * 2); g.stroke(); }); g.beginPath(); g.moveTo(cx - 12, ey); g.lineTo(cx + 12, ey); g.stroke(); }

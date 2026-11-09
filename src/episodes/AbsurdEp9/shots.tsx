@@ -173,7 +173,7 @@ const lieutenant = (C: Cast, t: number, face?: string) => {
   const up = Math.max(strike(t, ev('slam1'), 0.35), strike(t, ev('slam2'), 0.35));
   fingers(I, 'R', 'flat', 1); ik(I, 'R', loc(I, s, [0.22, TABLE_TOP + 0.05 + up * 0.4, 0.32 - up * 0.06]), V(0.6, -1, -0.3), 1);
   const shouting = (t > ev('slam1') - 0.4 && t < ev('slam1') + 0.5) || (t > ev('slam2') - 0.4 && t < ev('slam2') + 0.5);
-  setFace(I, (face as any) ?? (shouting ? (Math.floor(t * 30 / 3) % 3 ? 'talk' : 'wide') : 'half'));
+  setFace(I, (face as any) ?? (shouting ? 'talk' : 'half'));   // one held shout per slam — no per-frame eye swapping
   w.updateMatrixWorld(true);
   return w;
 };
@@ -191,9 +191,17 @@ const interroRoom = (C: Cast, t: number) => {
 // =====================================================================================================
 const MIR_CT = {position: [0, 1.04, 0.6] as V3, yaw: Math.PI, scale: 2.0, tilt: 0.06};
 const GAVELS = () => [ev('gavel1'), ev('gavel2'), ev('gavel3'), ev('gavel4'), ev('gavel5')];
+/** judge's face: calm 'half' until the mirror slams back, then a held angry glare (V brows) (no per-frame flicker);
+ *  the mouth opens only for a short shout right after each of his rage slams, and he blinks once (2 frames) mid-glare */
+const judgeFace = (t: number, mad: boolean) => {
+  if (!mad) return 'half';
+  if ([ev('gavel3'), ev('gavel4'), ev('gavel5')].some((g) => t > g - 0.03 && t < g + 0.2)) return 'shout';
+  const b = ev('gavel2') + 1.1; if (t > b && t < b + 2 / 30) return 'blink';
+  return 'angry';
+};
 const courtRoom = (C: Cast, t: number) => {
   const I = C.judge; hideProps(I); const mad = t > ev('gavel2') + 0.2;
-  const s = ps('judge', 0, -3.25, 0, t, {poseId: 'sitIdle', clip: 'sit_table_idle_neutral_01', lookW: [0, 1.4, 0.6], face: mad ? (Math.floor(t * 10) % 2 ? 'wide' : 'talk') : 'half'});
+  const s = ps('judge', 0, -3.25, 0, t, {poseId: 'sitIdle', clip: 'sit_table_idle_neutral_01', lookW: [0, 1.4, 0.6], face: judgeFace(t, mad)});
   const w = body(I, s, t, 0.5);
   prop(I, 'gavel', 'Bip01_R_Hand', makeGavel, [8, 0, 0], [0, Math.PI / 2, 0]);
   const lift = Math.max(...GAVELS().map((g, i) => strike(t, g, i === 0 ? 0.35 : 0.13)));
