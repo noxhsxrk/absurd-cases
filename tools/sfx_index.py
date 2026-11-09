@@ -5,6 +5,8 @@ reuses sounds before generating new ones.
   python tools/sfx_index.py search cuffs     # best matches (name, tags, prompt), best take first
   python tools/sfx_index.py search "door slam" --engine sao --min-score 0.2
   python tools/sfx_index.py search จับ           # Thai works too: matches the usage notes
+  python tools/sfx_index.py cues             # every sound name, one line per category (~500 tokens: the cheap way for an AI to see the whole library)
+  python tools/sfx_index.py note gavel inst "ค้อนผู้พิพากษา…"   # add/replace a usage line without opening usage.json
   python tools/sfx_index.py render           # rewrite index.md from index.json + usage.json (no disk scan)
 
 Cloud store (the sounds live in a separate GitHub repo; only the ones an episode needs come back to disk):
@@ -313,23 +315,44 @@ def prune():
         def ro(f, path, _): os.chmod(path, 0o666); f(path)       # git object files are read-only on Windows
         shutil.rmtree(STORE, onerror=ro); print('store cache removed')
 
-def search(words, engine=None, min_score=None, n=12):
+def search(words, engine=None, min_score=None, n=8, takes=False):
+    """compact on purpose (an AI reads this output): one line per sound — best take, engine/score/sec, when to use. --takes lists every take"""
     rows = load_rows(); q = [w.lower() for w in words]; U = usage()
     def hit(r):
         u = U['cues'].get(base(r['cue']), ['', ''])
         hay = ' '.join([r['cue'].replace('_', ' '), r['prompt'], r['target'], ' '.join(r['tags']), u[1], U['categories'].get(u[0], {}).get('title', '')]).lower()
         return sum(3 if w in r['cue'] else 1 for w in q if w in hay)
     res = [(hit(r), r) for r in rows if (not engine or r['engine'] == engine) and (min_score is None or (r['score'] or 0) >= min_score)]
-    res = [x for x in res if x[0] > 0]; seen = set()
-    res = [x for x in res if not ((k := x[1].get('sha') or (x[1]['cue'], x[1]['engine'], x[1]['rank'], x[1]['score'])) in seen or seen.add(k))]   # same take copied into public/
-    res.sort(key=lambda x: (-x[0], x[1]['engine'] != 'sao', x[1]['rank'], -(x[1]['score'] or 0)))
-    for s, r in res[:n]:
-        where = r['path'] if r.get('local', True) else '☁ ' + r.get('store', '')
-        print(f"{r['cue']:18s} {r['engine']:9s} r{r['rank']} {str(r.get('sec', '')):>5}s score {r['score'] if r['score'] is not None else '-':<7} {where}")
-        u = U['cues'].get(base(r['cue']))
-        if u and r['rank'] == 1: print(' ' * 20 + '↳ ' + u[1])
-    if res: print('use: python tools/sfx_index.py pull <cue> --ep N')
-    if not res: print('no match — generate it (tools/ai-sfx/gen_sao_epN.py), then run build')
+    res = [x for x in res if x[0] > 0]
+    res.sort(key=lambda x: (-x[0], x[1]['engine'] != 'sao', -(x[1]['score'] if x[1]['score'] is not None else -1), x[1]['rank']))
+    seen = set(); out = []
+    for s_, r in res:
+        k = r.get('sha') or r['path'] if takes else base(r['cue'])
+        if k in seen: continue
+        seen.add(k); out.append(r)
+    for r in out[:n]:
+        u = U['cues'].get(base(r['cue']), ['', ''])[1]
+        sc = '-' if r['score'] is None else f"{r['score']:.2f}"
+        name = f"{r['cue']}_r{r['rank']}" if takes else base(r['cue'])
+        print(f"{name} | {r['engine']} {sc} {r.get('sec', '')}s{'' if r.get('local', True) else ' ☁'} | {u}" + (f" | {r['path']}" if takes else ''))
+    if not out: print('no match → generate it, `note` its usage, `publish`')
+    elif len(out) > n: print(f'(+{len(out) - n} more)')
+
+def cues(cat=None):
+    U = usage(); names = sorted({base(r['cue']) for r in load_rows()}); by = {}
+    for k in names: by.setdefault(U['cues'].get(k, ['other'])[0], []).append(k)
+    for c, ks in by.items():
+        if cat and c != cat: continue
+        print(f"{c} ({U['categories'].get(c, {}).get('title', 'no usage line')}): {' '.join(ks)}")
+
+def note(cue, cat, text):
+    f = LIB / 'usage.json'; U = usage()
+    if cat not in U['categories']: sys.exit('category must be one of: ' + ' '.join(U['categories']))
+    U['cues'][cue] = [cat, text]; U['cues'] = dict(sorted(U['cues'].items()))
+    d = lambda o: json.dumps(o, ensure_ascii=False)          # keep the one-line-per-entry layout (small diffs)
+    body = ['{', ' "categories": {', ',\n'.join(f'  {d(k)}: {d(v)}' for k, v in U['categories'].items()), ' },', ' "cues": {',
+            ',\n'.join(f'  {d(k)}: {d(v)}' for k, v in U['cues'].items()), ' },', ' "synth": [', ',\n'.join(f'  {d(x)}' for x in U.get('synth', [])), ' ]', '}', '']
+    f.write_text('\n'.join(body), encoding='utf-8'); print('usage:', cue, cat, text)
 
 if __name__ == '__main__':
     a = sys.argv[1:]
@@ -346,5 +369,9 @@ if __name__ == '__main__':
     elif a[0] == 'search':
         eng = a[a.index('--engine') + 1] if '--engine' in a else None
         ms = float(a[a.index('--min-score') + 1]) if '--min-score' in a else None
-        words = [w for i, w in enumerate(a[1:], 1) if not w.startswith('--') and (a[i - 1] not in ('--engine', '--min-score'))]
-        search(words, eng, ms)
+        words = [w for i, w in enumerate(a[1:], 1) if not w.startswith('-') and (a[i - 1] not in ('--engine', '--min-score', '-n'))]
+        search(words, eng, ms, n=int(a[a.index('-n') + 1]) if '-n' in a else 8, takes='--takes' in a)
+    elif a[0] == 'cues': cues(a[1] if len(a) > 1 else None)
+    elif a[0] == 'note':
+        if len(a) < 4: sys.exit('note <cue> <category> "<when to use>"')
+        note(a[1], a[2], ' '.join(a[3:]))
