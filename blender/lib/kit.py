@@ -20,7 +20,7 @@ CLIPS = {                                                                     # 
     'surprised': 'ep8_react_surprised.fbx', 'careful': 'ep8_walk_careful.fbx', 'sneak': 'ep8_walk_sneak.fbx', 'phone': 'ep8_phone_talk.fbx',
 }
 RIG = 'ep8_walk_standard.fbx'                                                 # the one fbx that carries the skin/bind pose
-LOOKS = {'nai': boxman.NAI}
+LOOKS = {'nai': boxman.NAI, 'cop': boxman.COP, 'swat': boxman.SWAT, 'judge': boxman.JUDGE, 'p1': boxman.P1, 'p2': boxman.P2}
 
 _clips = {}
 def clip(name):
@@ -42,7 +42,7 @@ class Actor:
         return self.start + Vector((math.sin(self.heading), -math.cos(self.heading), 0)) * p
     def face(self, keys):
         """keys: [(frame, mode)] with mode in open/half/blink/wide/talk/O"""
-        modes = ('open', 'half', 'blink', 'wide', 'talk', 'O'); m = bpy.data.materials.get(self.arm.name.split('.')[0] + '_face') or bpy.data.materials['nai_face']
+        modes = ('open', 'half', 'blink', 'wide', 'talk', 'O'); m = [p for p in self.parts if p.name.endswith('_head')][0].material_slots[1].material
         v = m.node_tree.nodes['mode'].outputs[0]
         for f, md in keys: v.default_value = modes.index(md); v.keyframe_insert('default_value', frame=f)
         for fc in m.node_tree.animation_data.action.fcurves:
@@ -53,11 +53,14 @@ class Actor:
 class Shot:
     def __init__(self, name, frames, args):
         self.name, self.frames, self.args = name, frames, args
-        self.cam = self.tgt = None
+        self.cam = self.tgt = None; self.t0 = 0.0; self.EV = {}
+    def ev(self, k, dt=0.0):
+        """an episode event (seconds on the edit timeline) as a frame number inside this shot (frame 1 = shot start)"""
+        return int(round((self.EV[k] + dt - self.t0) * 30)) + 1
     # --- cast -----------------------------------------------------------------------------------------------------
     def actor(self, who, start, heading, moves, look=None, shadow_only=False, cast_shadow=True, start_frame=1, blend=6):
         coll = bpy.data.collections['ghosts'] if shadow_only else None
-        arm, parts = boxman.build(os.path.join(MIX, RIG), who, look=look or LOOKS.get(who, boxman.NAI), coll=coll, face=not shadow_only)
+        arm, parts = boxman.build(os.path.join(MIX, RIG), who, look=look or LOOKS.get(who.split('.')[0].rstrip('0123456789'), boxman.NAI), coll=coll, face=not shadow_only)
         for p in parts:
             if shadow_only:
                 p.visible_camera = p.visible_diffuse = p.visible_glossy = p.visible_transmission = p.visible_volume_scatter = False
@@ -103,10 +106,12 @@ def run(shots, argv, timeline=None):
     name = arg('--shot'); fn = shots[name]
     bpy.ops.wm.read_factory_settings(use_empty=True)
     sc = scene_setup(samples=int(arg('--samples', 64)), scale=int(arg('--pct', 100)))
-    dur = None
+    dur = None; TL = None
     if timeline and os.path.exists(timeline):
-        dur = next((s['dur'] for s in json.load(open(timeline))['shots'] if s['name'] == name), None)
+        TL = json.load(open(timeline)); dur = next((s['dur'] for s in TL['shots'] if s['name'] == name), None)
     S = Shot(name, (1, int(arg('--len', 0)) or (dur + 20 if dur else 120)), argv)    # +20 frames of handle for the edit
+    if TL:
+        sh = next(s for s in TL['shots'] if s['name'] == name); S.t0 = sh['t0']; S.EV = TL['events']
     fn(S)
     sc.frame_start, sc.frame_end = S.frames
     out = arg('--out', os.path.join('renders', name))
