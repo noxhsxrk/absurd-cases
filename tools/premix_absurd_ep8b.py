@@ -202,7 +202,8 @@ M.bed(to_st(rms_to(bed_noise(4, 200, 1800, 0.0, 51), BED * 0.6)), T('report'), T
 st = take('steps_road', lambda: boots(1.0, 2, 5) * 0.5)
 M.put(rms_to(st[:int(EV['stop'] * R)], 0.02 * FX), 0.0, -0.1)
 P(take('steps_stop', lambda: boots(0.6, 2, 7), 0.8), 0.18, EV['stop'] - 0.45, -0.1)
-M.put(rms_to(st[:int((T('charge') - T('shadowStep')) * R)], 0.018 * FX), T('shadowStep') + 0.05, 0.1)
+r0, r1 = EV['lag'] - 0.35, EV['phoneUp'] - 0.5          # he strolls on (three.js staging), then stops to call
+M.put(rms_to(loopto(st, r1 - r0)[:int((r1 - r0) * R)], 0.018 * FX), r0, 0.1)
 P(tung(), 0.55, EV['plate']); P(thud(40, 0.9), 0.3, EV['plate'] + 0.05)
 P(take('phone_taps', lambda: click(), 1.6), 0.18, EV['press'] - 0.35)
 # ---- raid

@@ -14,7 +14,7 @@ import {Captions, Grade, Flash, CallScreen} from '../AbsurdEp1/ui';
 import {HangingPlate, SirenWash} from '../absurdkit';
 
 export {TOTAL};
-const MIX = 'absurd-cases/ep8/mix/ep8_mix.wav';
+const MIX = 'absurd-cases/ep8/mix/ep8b_mix.wav';
 const VOICE = 'absurd-cases/ep8/ep8_narration_tight.wav';   // until the mix exists
 const T = (n: string) => SHOTS.find((s) => s.name === n)!;
 const PLACE = (n: string) => ['walk', 'look', 'shadowStep', 'charge', 'phone', 'callUI'].includes(n) ? 'street' : ['swat', 'lights', 'scrape', 'peel', 'fold', 'cuffs'].includes(n) ? 'raid'
