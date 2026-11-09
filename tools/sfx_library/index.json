@@ -11,11 +11,14 @@
   "tags": [
    "mechanical"
   ],
+  "sha": "67ffc11c5cee28633f76f9284db6d063900f7a14",
+  "local": true,
   "sec": 2.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -16.2,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/beep/beep_r1_sao_ep8.wav"
  },
  {
   "cue": "cough",
@@ -30,11 +33,14 @@
    "ambience",
    "voice"
   ],
+  "sha": "e2cb8dd85b0cf7d5a13287ed3a55bc10d30ce15a",
+  "local": true,
   "sec": 2.5,
   "sr": 44100,
   "ch": 2,
   "rms_db": -26.3,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/cough/cough_r1_sao_ep8.wav"
  },
  {
   "cue": "court_amb",
@@ -49,11 +55,14 @@
    "ambience",
    "material"
   ],
+  "sha": "30fd35ede528dd2afcf34bbaafe1d1851afddfc6",
+  "local": true,
   "sec": 6.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -30.7,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/court_amb/court_amb_r1_sao_ep8.wav"
  },
  {
   "cue": "cuffs",
@@ -68,11 +77,14 @@
    "mechanical",
    "police"
   ],
+  "sha": "ed747afad0665a578fa0bcd21be15074d89282c2",
+  "local": true,
   "sec": 2.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -30.5,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/cuffs/cuffs_r1_sao_ep8.wav"
  },
  {
   "cue": "flood_hum",
@@ -87,11 +99,14 @@
    "ambience",
    "mechanical"
   ],
+  "sha": "80095aaf281df5b54d5024661314aec2f6a48cb0",
+  "local": true,
   "sec": 6.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -12.8,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/flood_hum/flood_hum_r1_sao_ep8.wav"
  },
  {
   "cue": "flood_on",
@@ -107,11 +122,14 @@
    "impact",
    "mechanical"
   ],
+  "sha": "287c0cba3bd7ee143e792b2ca88f9b94f6e1ba78",
+  "local": true,
   "sec": 2.5,
   "sr": 44100,
   "ch": 2,
   "rms_db": -28.0,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/flood_on/flood_on_r1_sao_ep8.wav"
  },
  {
   "cue": "fold",
@@ -125,11 +143,14 @@
   "tags": [
    "material"
   ],
+  "sha": "445e4e78053583f7a1687dc44d0c16326a2bdc86",
+  "local": true,
   "sec": 2.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -32.9,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/fold/fold_r1_sao_ep8.wav"
  },
  {
   "cue": "gavel",
@@ -144,11 +165,14 @@
    "ambience",
    "impact"
   ],
+  "sha": "ba9fa33a95855f259c65e81382e5e7a44995c52c",
+  "local": true,
   "sec": 2.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -31.9,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/gavel/gavel_r1_sao_ep8.wav"
  },
  {
   "cue": "lamp_click",
@@ -162,11 +186,14 @@
   "tags": [
    "mechanical"
   ],
+  "sha": "6891955458b0690b5731d03034cc96d96a3fc548",
+  "local": true,
   "sec": 1.5,
   "sr": 44100,
   "ch": 2,
   "rms_db": -38.3,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/lamp_click/lamp_click_r1_sao_ep8.wav"
  },
  {
   "cue": "noon_amb",
@@ -180,11 +207,14 @@
   "tags": [
    "ambience"
   ],
+  "sha": "3212323172d98d487af793d60b74c573070e6bfd",
+  "local": true,
   "sec": 10.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -16.3,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/noon_amb/noon_amb_r1_sao_ep8.wav"
  },
  {
   "cue": "noon_bell",
@@ -198,11 +228,14 @@
   "tags": [
    "tonal"
   ],
+  "sha": "87bec8225a31ad2fd1107b6dd9223004edb7f09f",
+  "local": true,
   "sec": 5.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -15.2,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/noon_bell/noon_bell_r1_sao_ep8.wav"
  },
  {
   "cue": "peel",
@@ -216,11 +249,14 @@
   "tags": [
    "material"
   ],
+  "sha": "e1daf0839d0fd12602b188ffb7d8c70eb7cba483",
+  "local": true,
   "sec": 3.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -35.5,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/peel/peel_r1_sao_ep8.wav"
  },
  {
   "cue": "phone_taps",
@@ -235,11 +271,14 @@
    "ambience",
    "tonal"
   ],
+  "sha": "19dfbe55354fc9f9d36ee2e092403fee2e1a6961",
+  "local": true,
   "sec": 2.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -33.3,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/phone_taps/phone_taps_r1_sao_ep8.wav"
  },
  {
   "cue": "room_tone",
@@ -254,11 +293,14 @@
    "ambience",
    "tonal"
   ],
+  "sha": "dc64c2f51d66fb37e39119220dd82c276147b3d1",
+  "local": true,
   "sec": 6.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -17.6,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/room_tone/room_tone_r1_sao_ep8.wav"
  },
  {
   "cue": "shrink",
@@ -273,11 +315,14 @@
    "cartoon",
    "material"
   ],
+  "sha": "6dca7faf007cef8187d32d62d2a10fc1b8d95b41",
+  "local": true,
   "sec": 1.5,
   "sr": 44100,
   "ch": 2,
   "rms_db": -28.0,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/shrink/shrink_r1_sao_ep8.wav"
  },
  {
   "cue": "siren",
@@ -292,11 +337,14 @@
    "ambience",
    "police"
   ],
+  "sha": "b326ab50635ac4d061076c78c2c4a9449ebf6a4f",
+  "local": true,
   "sec": 7.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -14.5,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/siren/siren_r1_sao_ep8.wav"
  },
  {
   "cue": "squash",
@@ -310,11 +358,14 @@
   "tags": [
    "material"
   ],
+  "sha": "dd7e45a0b818055f366e6f4c9f8a46a03e7647c2",
+  "local": true,
   "sec": 2.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -33.6,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/squash/squash_r1_sao_ep8.wav"
  },
  {
   "cue": "stamp",
@@ -329,11 +380,14 @@
    "impact",
    "material"
   ],
+  "sha": "3dfa8cda5f64580ed214b73f1c69f6c8453a3a0b",
+  "local": true,
   "sec": 1.5,
   "sr": 44100,
   "ch": 2,
   "rms_db": -27.6,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/stamp/stamp_r1_sao_ep8.wav"
  },
  {
   "cue": "steps_road",
@@ -347,11 +401,14 @@
   "tags": [
    "footsteps"
   ],
+  "sha": "3f2f40a92b9e7e0b111b40fcc9a48ab95bea6df0",
+  "local": true,
   "sec": 5.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -37.3,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/steps_road/steps_road_r1_sao_ep8.wav"
  },
  {
   "cue": "steps_stop",
@@ -365,11 +422,14 @@
   "tags": [
    "footsteps"
   ],
+  "sha": "c4996a1d4b41b182f0e71664b861e63065acac1d",
+  "local": true,
   "sec": 2.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -30.8,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/steps_stop/steps_stop_r1_sao_ep8.wav"
  },
  {
   "cue": "swat_run",
@@ -384,11 +444,14 @@
    "footsteps",
    "police"
   ],
+  "sha": "2cb08b0042c77246440788fbed806046dd238ac5",
+  "local": true,
   "sec": 4.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -22.7,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/swat_run/swat_run_r1_sao_ep8.wav"
  },
  {
   "cue": "trowel_scrape",
@@ -402,11 +465,14 @@
   "tags": [
    "material"
   ],
+  "sha": "7acb27dcbedcd640880e79776c850bcb45790870",
+  "local": true,
   "sec": 3.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -29.2,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/trowel_scrape/trowel_scrape_r1_sao_ep8.wav"
  },
  {
   "cue": "vest",
@@ -420,11 +486,14 @@
   "tags": [
    "material"
   ],
+  "sha": "b7961ef9ad045f9c2dbe736737c73c2a7b27c3d0",
+  "local": true,
   "sec": 2.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -31.4,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/vest/vest_r1_sao_ep8.wav"
  },
  {
   "cue": "village_amb",
@@ -440,11 +509,14 @@
    "mechanical",
    "nature"
   ],
+  "sha": "6dd61edc57861a6500d7c486b9d717a8de0116c6",
+  "local": true,
   "sec": 10.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -23.5,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/village_amb/village_amb_r1_sao_ep8.wav"
  },
  {
   "cue": "boom_hit_v1",
@@ -458,7 +530,10 @@
   "tags": [
    "impact"
   ],
-  "error": "unknown format: 3"
+  "sha": "4b80835c5b54ef9b1d9ae8b227a168793898ff24",
+  "local": false,
+  "error": "unknown format: 3",
+  "store": "sounds/boom_hit/boom_hit_v1_r1_audioldm2.wav"
  },
  {
   "cue": "boom_hit_v2",
@@ -472,7 +547,10 @@
   "tags": [
    "impact"
   ],
-  "error": "unknown format: 3"
+  "sha": "18576b6083016f11d094d56b511a99e90a3051fb",
+  "local": false,
+  "error": "unknown format: 3",
+  "store": "sounds/boom_hit/boom_hit_v2_r1_audioldm2.wav"
  },
  {
   "cue": "breaker_clunk_v1",
@@ -486,7 +564,10 @@
   "tags": [
    "impact"
   ],
-  "error": "unknown format: 3"
+  "sha": "1b58f5bdfd6094f40d4fb7748e2e38f7be7ca2c2",
+  "local": false,
+  "error": "unknown format: 3",
+  "store": "sounds/breaker_clunk/breaker_clunk_v1_r1_audioldm2.wav"
  },
  {
   "cue": "breaker_clunk_v2",
@@ -500,7 +581,10 @@
   "tags": [
    "impact"
   ],
-  "error": "unknown format: 3"
+  "sha": "f3022859c36bac5ff938cfbab3782eb7ddf6cfdd",
+  "local": false,
+  "error": "unknown format: 3",
+  "store": "sounds/breaker_clunk/breaker_clunk_v2_r1_audioldm2.wav"
  },
  {
   "cue": "car_door_v1",
@@ -514,7 +598,10 @@
   "tags": [
    "mechanical"
   ],
-  "error": "unknown format: 3"
+  "sha": "35d27b89e8214c0932f6d17aa29fffc2bbe45d0e",
+  "local": false,
+  "error": "unknown format: 3",
+  "store": "sounds/car_door/car_door_v1_r1_audioldm2.wav"
  },
  {
   "cue": "car_door_v2",
@@ -528,7 +615,10 @@
   "tags": [
    "mechanical"
   ],
-  "error": "unknown format: 3"
+  "sha": "ed2d7db6a9e651cc6d14ddc6d9450de972fdf3ca",
+  "local": false,
+  "error": "unknown format: 3",
+  "store": "sounds/car_door/car_door_v2_r1_audioldm2.wav"
  },
  {
   "cue": "crickets_v1",
@@ -540,7 +630,10 @@
   "prompt": "",
   "target": "",
   "tags": [],
-  "error": "unknown format: 3"
+  "sha": "e625b40ad105b8ebe5660ef3f84a4f09a98f71a4",
+  "local": false,
+  "error": "unknown format: 3",
+  "store": "sounds/crickets/crickets_v1_r1_audioldm2.wav"
  },
  {
   "cue": "crickets_v2",
@@ -552,7 +645,10 @@
   "prompt": "",
   "target": "",
   "tags": [],
-  "error": "unknown format: 3"
+  "sha": "9c5b94fac6fe75f0ea9c53a2eb802c53a48a82fb",
+  "local": false,
+  "error": "unknown format: 3",
+  "store": "sounds/crickets/crickets_v2_r1_audioldm2.wav"
  },
  {
   "cue": "cuff_click_v1",
@@ -566,7 +662,10 @@
   "tags": [
    "mechanical"
   ],
-  "error": "unknown format: 3"
+  "sha": "129e6402a7c56e5b23a63ad4a1cf58d385a5c0fc",
+  "local": false,
+  "error": "unknown format: 3",
+  "store": "sounds/cuff_click/cuff_click_v1_r1_audioldm2.wav"
  },
  {
   "cue": "cuff_click_v2",
@@ -580,7 +679,10 @@
   "tags": [
    "mechanical"
   ],
-  "error": "unknown format: 3"
+  "sha": "390a8ed7a07390769a25156ad3e8ce591bb5bebc",
+  "local": false,
+  "error": "unknown format: 3",
+  "store": "sounds/cuff_click/cuff_click_v2_r1_audioldm2.wav"
  },
  {
   "cue": "door_open_v1",
@@ -594,7 +696,10 @@
   "tags": [
    "mechanical"
   ],
-  "error": "unknown format: 3"
+  "sha": "b0eb320ebf5f44a1d34f2399ec152934293147f9",
+  "local": false,
+  "error": "unknown format: 3",
+  "store": "sounds/door_open/door_open_v1_r1_audioldm2.wav"
  },
  {
   "cue": "door_open_v2",
@@ -608,7 +713,10 @@
   "tags": [
    "mechanical"
   ],
-  "error": "unknown format: 3"
+  "sha": "11b7618b79369ee966c3a2613bf1af40354aea4f",
+  "local": false,
+  "error": "unknown format: 3",
+  "store": "sounds/door_open/door_open_v2_r1_audioldm2.wav"
  },
  {
   "cue": "electric_buzz_v1",
@@ -620,7 +728,10 @@
   "prompt": "",
   "target": "",
   "tags": [],
-  "error": "unknown format: 3"
+  "sha": "10a117661fc204c678863302e4f23401ea2f7cc6",
+  "local": false,
+  "error": "unknown format: 3",
+  "store": "sounds/electric_buzz/electric_buzz_v1_r1_audioldm2.wav"
  },
  {
   "cue": "electric_buzz_v2",
@@ -632,7 +743,10 @@
   "prompt": "",
   "target": "",
   "tags": [],
-  "error": "unknown format: 3"
+  "sha": "a1b6f546d080e72a8b8059865e09bab24153d412",
+  "local": false,
+  "error": "unknown format: 3",
+  "store": "sounds/electric_buzz/electric_buzz_v2_r1_audioldm2.wav"
  },
  {
   "cue": "fan_motor_v1",
@@ -646,7 +760,10 @@
   "tags": [
    "mechanical"
   ],
-  "error": "unknown format: 3"
+  "sha": "b9014374913126b4f446fba2b92657d8eda9a88d",
+  "local": false,
+  "error": "unknown format: 3",
+  "store": "sounds/fan_motor/fan_motor_v1_r1_audioldm2.wav"
  },
  {
   "cue": "fan_motor_v2",
@@ -660,7 +777,10 @@
   "tags": [
    "mechanical"
   ],
-  "error": "unknown format: 3"
+  "sha": "537db9828529bdf6c148830bd08c8224e5698192",
+  "local": false,
+  "error": "unknown format: 3",
+  "store": "sounds/fan_motor/fan_motor_v2_r1_audioldm2.wav"
  },
  {
   "cue": "fan_winddown_v1",
@@ -674,7 +794,10 @@
   "tags": [
    "ambience"
   ],
-  "error": "unknown format: 3"
+  "sha": "3a2a8eb4eb57aa635fde0c0cff3d2b3c543d6ecc",
+  "local": false,
+  "error": "unknown format: 3",
+  "store": "sounds/fan_winddown/fan_winddown_v1_r1_audioldm2.wav"
  },
  {
   "cue": "fan_winddown_v2",
@@ -688,7 +811,10 @@
   "tags": [
    "ambience"
   ],
-  "error": "unknown format: 3"
+  "sha": "363296ebb9771d9ee36b9c1b12d3d00a75ae794e",
+  "local": false,
+  "error": "unknown format: 3",
+  "store": "sounds/fan_winddown/fan_winddown_v2_r1_audioldm2.wav"
  },
  {
   "cue": "flicker_v1",
@@ -700,7 +826,10 @@
   "prompt": "",
   "target": "",
   "tags": [],
-  "error": "unknown format: 3"
+  "sha": "e88656571f50e6989266bea1cb78bb45fd03ceb9",
+  "local": false,
+  "error": "unknown format: 3",
+  "store": "sounds/flicker/flicker_v1_r1_audioldm2.wav"
  },
  {
   "cue": "flicker_v2",
@@ -712,7 +841,10 @@
   "prompt": "",
   "target": "",
   "tags": [],
-  "error": "unknown format: 3"
+  "sha": "0359a0e3b0ce5cb0ca15739b9ae1016915b82476",
+  "local": false,
+  "error": "unknown format: 3",
+  "store": "sounds/flicker/flicker_v2_r1_audioldm2.wav"
  },
  {
   "cue": "gear_creak_v1",
@@ -724,7 +856,10 @@
   "prompt": "",
   "target": "",
   "tags": [],
-  "error": "unknown format: 3"
+  "sha": "660413beb2b359d60721a7c36fca81142722b0ac",
+  "local": false,
+  "error": "unknown format: 3",
+  "store": "sounds/gear_creak/gear_creak_v1_r1_audioldm2.wav"
  },
  {
   "cue": "gear_creak_v2",
@@ -736,7 +871,10 @@
   "prompt": "",
   "target": "",
   "tags": [],
-  "error": "unknown format: 3"
+  "sha": "ef3dab0afbb45fb16e5aa2a10b9cd5086e02efce",
+  "local": false,
+  "error": "unknown format: 3",
+  "store": "sounds/gear_creak/gear_creak_v2_r1_audioldm2.wav"
  },
  {
   "cue": "glass_hit_v1",
@@ -750,7 +888,10 @@
   "tags": [
    "impact"
   ],
-  "error": "unknown format: 3"
+  "sha": "50241c37570365c3864b0f9e4b1d43d24da6643f",
+  "local": false,
+  "error": "unknown format: 3",
+  "store": "sounds/glass_hit/glass_hit_v1_r1_audioldm2.wav"
  },
  {
   "cue": "glass_hit_v2",
@@ -764,7 +905,10 @@
   "tags": [
    "impact"
   ],
-  "error": "unknown format: 3"
+  "sha": "3c119f721d6960450015a3ad1f3c734ff2d3b8a7",
+  "local": false,
+  "error": "unknown format: 3",
+  "store": "sounds/glass_hit/glass_hit_v2_r1_audioldm2.wav"
  },
  {
   "cue": "hammer_nail_v1",
@@ -776,7 +920,10 @@
   "prompt": "",
   "target": "",
   "tags": [],
-  "error": "unknown format: 3"
+  "sha": "5260bf8def866c09b9cc32b7b625588208fd7cd1",
+  "local": false,
+  "error": "unknown format: 3",
+  "store": "sounds/hammer_nail/hammer_nail_v1_r1_audioldm2.wav"
  },
  {
   "cue": "hammer_nail_v2",
@@ -788,7 +935,10 @@
   "prompt": "",
   "target": "",
   "tags": [],
-  "error": "unknown format: 3"
+  "sha": "bb6ba9a9278e186584db6ab5a89bed829fe20889",
+  "local": false,
+  "error": "unknown format: 3",
+  "store": "sounds/hammer_nail/hammer_nail_v2_r1_audioldm2.wav"
  },
  {
   "cue": "heavy_boots_v1",
@@ -802,7 +952,10 @@
   "tags": [
    "footsteps"
   ],
-  "error": "unknown format: 3"
+  "sha": "80d890b54dd02a65d03ac79f0f371357ded6498c",
+  "local": false,
+  "error": "unknown format: 3",
+  "store": "sounds/heavy_boots/heavy_boots_v1_r1_audioldm2.wav"
  },
  {
   "cue": "heavy_boots_v2",
@@ -816,7 +969,10 @@
   "tags": [
    "footsteps"
   ],
-  "error": "unknown format: 3"
+  "sha": "0aee6b82900baad3acce7e59b63359191aa755dd",
+  "local": false,
+  "error": "unknown format: 3",
+  "store": "sounds/heavy_boots/heavy_boots_v2_r1_audioldm2.wav"
  },
  {
   "cue": "helicopter_v1",
@@ -828,7 +984,10 @@
   "prompt": "",
   "target": "",
   "tags": [],
-  "error": "unknown format: 3"
+  "sha": "c8aeb87cc20af35c78a2180227194ad602626421",
+  "local": false,
+  "error": "unknown format: 3",
+  "store": "sounds/helicopter/helicopter_v1_r1_audioldm2.wav"
  },
  {
   "cue": "helicopter_v2",
@@ -840,7 +999,10 @@
   "prompt": "",
   "target": "",
   "tags": [],
-  "error": "unknown format: 3"
+  "sha": "8a2e92d5d65561f7c6b445854f8bc8bd1d0a5eac",
+  "local": false,
+  "error": "unknown format: 3",
+  "store": "sounds/helicopter/helicopter_v2_r1_audioldm2.wav"
  },
  {
   "cue": "hit_v1",
@@ -854,7 +1016,10 @@
   "tags": [
    "impact"
   ],
-  "error": "unknown format: 3"
+  "sha": "d893f7b7274d1a134b6d2f7082adba89588ad485",
+  "local": false,
+  "error": "unknown format: 3",
+  "store": "sounds/hit/hit_v1_r1_audioldm2.wav"
  },
  {
   "cue": "hit_v2",
@@ -868,7 +1033,10 @@
   "tags": [
    "impact"
   ],
-  "error": "unknown format: 3"
+  "sha": "271dd73bba48f58d0929eff36a3ae6f8da5abd2a",
+  "local": false,
+  "error": "unknown format: 3",
+  "store": "sounds/hit/hit_v2_r1_audioldm2.wav"
  },
  {
   "cue": "keys_v1",
@@ -880,7 +1048,10 @@
   "prompt": "",
   "target": "",
   "tags": [],
-  "error": "unknown format: 3"
+  "sha": "0e2f47273bae0fe99099f7cdf2234bd02fc8bee4",
+  "local": false,
+  "error": "unknown format: 3",
+  "store": "sounds/keys/keys_v1_r1_audioldm2.wav"
  },
  {
   "cue": "keys_v2",
@@ -892,7 +1063,10 @@
   "prompt": "",
   "target": "",
   "tags": [],
-  "error": "unknown format: 3"
+  "sha": "bc20e2858950c444f5fe54b3a2618f1989c4c9cc",
+  "local": false,
+  "error": "unknown format: 3",
+  "store": "sounds/keys/keys_v2_r1_audioldm2.wav"
  },
  {
   "cue": "knock_v1",
@@ -906,7 +1080,10 @@
   "tags": [
    "impact"
   ],
-  "error": "unknown format: 3"
+  "sha": "97547148296ade59859d71551bfa67837df73c5b",
+  "local": false,
+  "error": "unknown format: 3",
+  "store": "sounds/knock/knock_v1_r1_audioldm2.wav"
  },
  {
   "cue": "knock_v2",
@@ -920,7 +1097,10 @@
   "tags": [
    "impact"
   ],
-  "error": "unknown format: 3"
+  "sha": "5116ac59675026333fa01ac7b3409753d5b52d47",
+  "local": false,
+  "error": "unknown format: 3",
+  "store": "sounds/knock/knock_v2_r1_audioldm2.wav"
  },
  {
   "cue": "light_switch_v1",
@@ -934,7 +1114,10 @@
   "tags": [
    "mechanical"
   ],
-  "error": "unknown format: 3"
+  "sha": "4a9751ab2b2e13b57334220dc7786779e1bec8ac",
+  "local": false,
+  "error": "unknown format: 3",
+  "store": "sounds/light_switch/light_switch_v1_r1_audioldm2.wav"
  },
  {
   "cue": "light_switch_v2",
@@ -948,7 +1131,10 @@
   "tags": [
    "mechanical"
   ],
-  "error": "unknown format: 3"
+  "sha": "7c3522d9722632cfa657fc8e822a6b7b679247b5",
+  "local": false,
+  "error": "unknown format: 3",
+  "store": "sounds/light_switch/light_switch_v2_r1_audioldm2.wav"
  },
  {
   "cue": "morning_birds_v1",
@@ -963,7 +1149,10 @@
    "ambience",
    "nature"
   ],
-  "error": "unknown format: 3"
+  "sha": "3e5a6ff9eb1b174f04c61af03f6461486f1c9ad2",
+  "local": false,
+  "error": "unknown format: 3",
+  "store": "sounds/morning_birds/morning_birds_v1_r1_audioldm2.wav"
  },
  {
   "cue": "morning_birds_v2",
@@ -978,7 +1167,10 @@
    "ambience",
    "nature"
   ],
-  "error": "unknown format: 3"
+  "sha": "d3257ad5aa2a8ed0105d63271b7bd964c24d9c39",
+  "local": false,
+  "error": "unknown format: 3",
+  "store": "sounds/morning_birds/morning_birds_v2_r1_audioldm2.wav"
  },
  {
   "cue": "mosquito_v1",
@@ -992,7 +1184,10 @@
   "tags": [
    "nature"
   ],
-  "error": "unknown format: 3"
+  "sha": "d5af0875b9ba485fcd308c99254ea09f75f29f10",
+  "local": false,
+  "error": "unknown format: 3",
+  "store": "sounds/mosquito/mosquito_v1_r1_audioldm2.wav"
  },
  {
   "cue": "mosquito_v2",
@@ -1006,7 +1201,10 @@
   "tags": [
    "nature"
   ],
-  "error": "unknown format: 3"
+  "sha": "e692eef4f6fb2b7f84a4d9bafdfdf87677c10b0f",
+  "local": false,
+  "error": "unknown format: 3",
+  "store": "sounds/mosquito/mosquito_v2_r1_audioldm2.wav"
  },
  {
   "cue": "murmur_v1",
@@ -1018,7 +1216,10 @@
   "prompt": "",
   "target": "",
   "tags": [],
-  "error": "unknown format: 3"
+  "sha": "045d1da681881c381323c0d6287b582756a3dc8a",
+  "local": false,
+  "error": "unknown format: 3",
+  "store": "sounds/murmur/murmur_v1_r1_audioldm2.wav"
  },
  {
   "cue": "murmur_v2",
@@ -1030,7 +1231,10 @@
   "prompt": "",
   "target": "",
   "tags": [],
-  "error": "unknown format: 3"
+  "sha": "1b77cb08f24215c45cc11bef349aa1d1128d7d55",
+  "local": false,
+  "error": "unknown format: 3",
+  "store": "sounds/murmur/murmur_v2_r1_audioldm2.wav"
  },
  {
   "cue": "night_quiet_v1",
@@ -1042,7 +1246,10 @@
   "prompt": "",
   "target": "",
   "tags": [],
-  "error": "unknown format: 3"
+  "sha": "1a7e206b86c72ba3bd877f33ce6342fa3856a7ea",
+  "local": false,
+  "error": "unknown format: 3",
+  "store": "sounds/night_quiet/night_quiet_v1_r1_audioldm2.wav"
  },
  {
   "cue": "night_quiet_v2",
@@ -1054,7 +1261,10 @@
   "prompt": "",
   "target": "",
   "tags": [],
-  "error": "unknown format: 3"
+  "sha": "368222cadf991d9a2ed6e0dd8f9bf2fdcd41e14a",
+  "local": false,
+  "error": "unknown format: 3",
+  "store": "sounds/night_quiet/night_quiet_v2_r1_audioldm2.wav"
  },
  {
   "cue": "pen_writing_v1",
@@ -1066,7 +1276,10 @@
   "prompt": "",
   "target": "",
   "tags": [],
-  "error": "unknown format: 3"
+  "sha": "77eb8d884baeceab1b89cca9ba739651aa717efa",
+  "local": false,
+  "error": "unknown format: 3",
+  "store": "sounds/pen_writing/pen_writing_v1_r1_audioldm2.wav"
  },
  {
   "cue": "pen_writing_v2",
@@ -1078,7 +1291,10 @@
   "prompt": "",
   "target": "",
   "tags": [],
-  "error": "unknown format: 3"
+  "sha": "1e9ae19c187c858c1a5cea9424f47d57b7e873c3",
+  "local": false,
+  "error": "unknown format: 3",
+  "store": "sounds/pen_writing/pen_writing_v2_r1_audioldm2.wav"
  },
  {
   "cue": "police_arrive_v1",
@@ -1092,7 +1308,10 @@
   "tags": [
    "police"
   ],
-  "error": "unknown format: 3"
+  "sha": "c8d4d68254b8d8d1fefb28e1a74b736141a90224",
+  "local": false,
+  "error": "unknown format: 3",
+  "store": "sounds/police_arrive/police_arrive_v1_r1_audioldm2.wav"
  },
  {
   "cue": "police_arrive_v2",
@@ -1106,7 +1325,10 @@
   "tags": [
    "police"
   ],
-  "error": "unknown format: 3"
+  "sha": "39935341f543c5bacdce68afc4dc00979075c537",
+  "local": false,
+  "error": "unknown format: 3",
+  "store": "sounds/police_arrive/police_arrive_v2_r1_audioldm2.wav"
  },
  {
   "cue": "power_spark_v1",
@@ -1118,7 +1340,10 @@
   "prompt": "",
   "target": "",
   "tags": [],
-  "error": "unknown format: 3"
+  "sha": "0778783b8dacff4c5142427591442eda4341da72",
+  "local": false,
+  "error": "unknown format: 3",
+  "store": "sounds/power_spark/power_spark_v1_r1_audioldm2.wav"
  },
  {
   "cue": "power_spark_v2",
@@ -1130,7 +1355,10 @@
   "prompt": "",
   "target": "",
   "tags": [],
-  "error": "unknown format: 3"
+  "sha": "b22ed92682af16c8438ca92fd906b7776698e05f",
+  "local": false,
+  "error": "unknown format: 3",
+  "store": "sounds/power_spark/power_spark_v2_r1_audioldm2.wav"
  },
  {
   "cue": "prison_hall_v1",
@@ -1142,7 +1370,10 @@
   "prompt": "",
   "target": "",
   "tags": [],
-  "error": "unknown format: 3"
+  "sha": "1106d0fe270f8013af971a349f91e16e884bf9e1",
+  "local": false,
+  "error": "unknown format: 3",
+  "store": "sounds/prison_hall/prison_hall_v1_r1_audioldm2.wav"
  },
  {
   "cue": "prison_hall_v2",
@@ -1154,7 +1385,10 @@
   "prompt": "",
   "target": "",
   "tags": [],
-  "error": "unknown format: 3"
+  "sha": "92b27da4183147de77da11cd4f9574f4339c27ec",
+  "local": false,
+  "error": "unknown format: 3",
+  "store": "sounds/prison_hall/prison_hall_v2_r1_audioldm2.wav"
  },
  {
   "cue": "prison_siren_v1",
@@ -1168,7 +1402,10 @@
   "tags": [
    "police"
   ],
-  "error": "unknown format: 3"
+  "sha": "d8275a1303d99b9fb4dd723b74c0957b2efa82b1",
+  "local": false,
+  "error": "unknown format: 3",
+  "store": "sounds/prison_siren/prison_siren_v1_r1_audioldm2.wav"
  },
  {
   "cue": "prison_siren_v2",
@@ -1182,7 +1419,10 @@
   "tags": [
    "police"
   ],
-  "error": "unknown format: 3"
+  "sha": "5efd975e1813b9674391d2657f8e6e74972339d8",
+  "local": false,
+  "error": "unknown format: 3",
+  "store": "sounds/prison_siren/prison_siren_v2_r1_audioldm2.wav"
  },
  {
   "cue": "radio_squelch_v1",
@@ -1196,7 +1436,10 @@
   "tags": [
    "police"
   ],
-  "error": "unknown format: 3"
+  "sha": "78d25fee43670172087ed07c78e9249a63ad7362",
+  "local": false,
+  "error": "unknown format: 3",
+  "store": "sounds/radio_squelch/radio_squelch_v1_r1_audioldm2.wav"
  },
  {
   "cue": "radio_squelch_v2",
@@ -1210,7 +1453,10 @@
   "tags": [
    "police"
   ],
-  "error": "unknown format: 3"
+  "sha": "1845b03db701f97c69e2987def9a89fa4d2ef067",
+  "local": false,
+  "error": "unknown format: 3",
+  "store": "sounds/radio_squelch/radio_squelch_v2_r1_audioldm2.wav"
  },
  {
   "cue": "riser_v1",
@@ -1222,7 +1468,10 @@
   "prompt": "",
   "target": "",
   "tags": [],
-  "error": "unknown format: 3"
+  "sha": "8f2b2bdf0153fa7953cb263aa9bb94dc739f5f8d",
+  "local": false,
+  "error": "unknown format: 3",
+  "store": "sounds/riser/riser_v1_r1_audioldm2.wav"
  },
  {
   "cue": "riser_v2",
@@ -1234,7 +1483,10 @@
   "prompt": "",
   "target": "",
   "tags": [],
-  "error": "unknown format: 3"
+  "sha": "aedd3fede313edef7164ddcd0d9244e9dfccb300",
+  "local": false,
+  "error": "unknown format: 3",
+  "store": "sounds/riser/riser_v2_r1_audioldm2.wav"
  },
  {
   "cue": "sneeze_v1",
@@ -1246,7 +1498,10 @@
   "prompt": "",
   "target": "",
   "tags": [],
-  "error": "unknown format: 3"
+  "sha": "e4aa873e29ce953601f188caf6b40e25009a093c",
+  "local": false,
+  "error": "unknown format: 3",
+  "store": "sounds/sneeze/sneeze_v1_r1_audioldm2.wav"
  },
  {
   "cue": "sneeze_v2",
@@ -1258,7 +1513,10 @@
   "prompt": "",
   "target": "",
   "tags": [],
-  "error": "unknown format: 3"
+  "sha": "9ed08f5b13f43f4980cdd948250074cc48fc04d2",
+  "local": false,
+  "error": "unknown format: 3",
+  "store": "sounds/sneeze/sneeze_v2_r1_audioldm2.wav"
  },
  {
   "cue": "stampede_v1",
@@ -1272,7 +1530,10 @@
   "tags": [
    "impact"
   ],
-  "error": "unknown format: 3"
+  "sha": "15101ea6f0d125e64264fd5731a17c65f0385a6c",
+  "local": false,
+  "error": "unknown format: 3",
+  "store": "sounds/stampede/stampede_v1_r1_audioldm2.wav"
  },
  {
   "cue": "stampede_v2",
@@ -1286,7 +1547,10 @@
   "tags": [
    "impact"
   ],
-  "error": "unknown format: 3"
+  "sha": "337501759f83053e429c288bc903a032d265bc09",
+  "local": false,
+  "error": "unknown format: 3",
+  "store": "sounds/stampede/stampede_v2_r1_audioldm2.wav"
  },
  {
   "cue": "suit_breath_v1",
@@ -1300,7 +1564,10 @@
   "tags": [
    "voice"
   ],
-  "error": "unknown format: 3"
+  "sha": "f87317b758a90ad1d20fecc443d4c58b54f744d4",
+  "local": false,
+  "error": "unknown format: 3",
+  "store": "sounds/suit_breath/suit_breath_v1_r1_audioldm2.wav"
  },
  {
   "cue": "suit_breath_v2",
@@ -1314,7 +1581,10 @@
   "tags": [
    "voice"
   ],
-  "error": "unknown format: 3"
+  "sha": "9e88ddab1ad701019414770894aea551569bdac7",
+  "local": false,
+  "error": "unknown format: 3",
+  "store": "sounds/suit_breath/suit_breath_v2_r1_audioldm2.wav"
  },
  {
   "cue": "swarm_v1",
@@ -1326,7 +1596,10 @@
   "prompt": "",
   "target": "",
   "tags": [],
-  "error": "unknown format: 3"
+  "sha": "1e42c7a48f0c8beed3ec44657a0761e60b3755e3",
+  "local": false,
+  "error": "unknown format: 3",
+  "store": "sounds/swarm/swarm_v1_r1_audioldm2.wav"
  },
  {
   "cue": "swarm_v2",
@@ -1338,7 +1611,10 @@
   "prompt": "",
   "target": "",
   "tags": [],
-  "error": "unknown format: 3"
+  "sha": "4b159776244cc681f4c47e85de86ddd7e20c4d81",
+  "local": false,
+  "error": "unknown format: 3",
+  "store": "sounds/swarm/swarm_v2_r1_audioldm2.wav"
  },
  {
   "cue": "thud1_v1",
@@ -1352,7 +1628,10 @@
   "tags": [
    "impact"
   ],
-  "error": "unknown format: 3"
+  "sha": "f7a047c1101492cf8faf6813e198dbd894c8281a",
+  "local": false,
+  "error": "unknown format: 3",
+  "store": "sounds/thud1/thud1_v1_r1_audioldm2.wav"
  },
  {
   "cue": "thud1_v2",
@@ -1366,7 +1645,10 @@
   "tags": [
    "impact"
   ],
-  "error": "unknown format: 3"
+  "sha": "172952bf8802ac733d3c2789b2b6175e15e1f079",
+  "local": false,
+  "error": "unknown format: 3",
+  "store": "sounds/thud1/thud1_v2_r1_audioldm2.wav"
  },
  {
   "cue": "thud2_v1",
@@ -1380,7 +1662,10 @@
   "tags": [
    "impact"
   ],
-  "error": "unknown format: 3"
+  "sha": "91598aaed9de99f2ac214ba8bbdf8b500a235a3d",
+  "local": false,
+  "error": "unknown format: 3",
+  "store": "sounds/thud2/thud2_v1_r1_audioldm2.wav"
  },
  {
   "cue": "thud2_v2",
@@ -1394,7 +1679,10 @@
   "tags": [
    "impact"
   ],
-  "error": "unknown format: 3"
+  "sha": "6587579314e1dad7f5c8ff82691e4d4084b86ef8",
+  "local": false,
+  "error": "unknown format: 3",
+  "store": "sounds/thud2/thud2_v2_r1_audioldm2.wav"
  },
  {
   "cue": "vacuum_roar_v1",
@@ -1406,7 +1694,10 @@
   "prompt": "",
   "target": "",
   "tags": [],
-  "error": "unknown format: 3"
+  "sha": "b297fc4ad43e238cea1fb7f59ac0d47ec20c6319",
+  "local": false,
+  "error": "unknown format: 3",
+  "store": "sounds/vacuum_roar/vacuum_roar_v1_r1_audioldm2.wav"
  },
  {
   "cue": "vacuum_roar_v2",
@@ -1418,7 +1709,10 @@
   "prompt": "",
   "target": "",
   "tags": [],
-  "error": "unknown format: 3"
+  "sha": "6d7c4a0af45cf57e8236b736b022998754d2e488",
+  "local": false,
+  "error": "unknown format: 3",
+  "store": "sounds/vacuum_roar/vacuum_roar_v2_r1_audioldm2.wav"
  },
  {
   "cue": "wind_gust_v1",
@@ -1432,7 +1726,10 @@
   "tags": [
    "ambience"
   ],
-  "error": "unknown format: 3"
+  "sha": "419528c1613cb5b5e3a68c34d0e995d609f8b1d7",
+  "local": false,
+  "error": "unknown format: 3",
+  "store": "sounds/wind_gust/wind_gust_v1_r1_audioldm2.wav"
  },
  {
   "cue": "wind_gust_v2",
@@ -1446,7 +1743,10 @@
   "tags": [
    "ambience"
   ],
-  "error": "unknown format: 3"
+  "sha": "27d91c334ab1bb72ee66b9635e967b5ee297f8e7",
+  "local": false,
+  "error": "unknown format: 3",
+  "store": "sounds/wind_gust/wind_gust_v2_r1_audioldm2.wav"
  },
  {
   "cue": "window_creak_v1",
@@ -1460,7 +1760,10 @@
   "tags": [
    "ambience"
   ],
-  "error": "unknown format: 3"
+  "sha": "73624ab3eee21abaaccbb0ef730080423b53311c",
+  "local": false,
+  "error": "unknown format: 3",
+  "store": "sounds/window_creak/window_creak_v1_r1_audioldm2.wav"
  },
  {
   "cue": "window_creak_v2",
@@ -1474,7 +1777,10 @@
   "tags": [
    "ambience"
   ],
-  "error": "unknown format: 3"
+  "sha": "e0ee8a0039803d691b63ee1742b0632658b30cf2",
+  "local": false,
+  "error": "unknown format: 3",
+  "store": "sounds/window_creak/window_creak_v2_r1_audioldm2.wav"
  },
  {
   "cue": "zap_arc_v1",
@@ -1486,7 +1792,10 @@
   "prompt": "",
   "target": "",
   "tags": [],
-  "error": "unknown format: 3"
+  "sha": "7ad84eb320f96012165e30b1787970451bf5db3a",
+  "local": false,
+  "error": "unknown format: 3",
+  "store": "sounds/zap_arc/zap_arc_v1_r1_audioldm2.wav"
  },
  {
   "cue": "zap_arc_v2",
@@ -1498,7 +1807,10 @@
   "prompt": "",
   "target": "",
   "tags": [],
-  "error": "unknown format: 3"
+  "sha": "a08012ad604ab9e5252c442632494f1087d97c4c",
+  "local": false,
+  "error": "unknown format: 3",
+  "store": "sounds/zap_arc/zap_arc_v2_r1_audioldm2.wav"
  },
  {
   "cue": "zap_shock_v1",
@@ -1510,7 +1822,10 @@
   "prompt": "",
   "target": "",
   "tags": [],
-  "error": "unknown format: 3"
+  "sha": "8c13d716225a5de0e25bf286542916bef4a7a252",
+  "local": false,
+  "error": "unknown format: 3",
+  "store": "sounds/zap_shock/zap_shock_v1_r1_audioldm2.wav"
  },
  {
   "cue": "zap_shock_v2",
@@ -1522,7 +1837,10 @@
   "prompt": "",
   "target": "",
   "tags": [],
-  "error": "unknown format: 3"
+  "sha": "7a19977f541bdbb42114e6f494a0c4cc83ff4ae7",
+  "local": false,
+  "error": "unknown format: 3",
+  "store": "sounds/zap_shock/zap_shock_v2_r1_audioldm2.wav"
  },
  {
   "cue": "zap_taser_v1",
@@ -1534,7 +1852,10 @@
   "prompt": "",
   "target": "",
   "tags": [],
-  "error": "unknown format: 3"
+  "sha": "64ae35fcdbae49fd5144607815992a66f51e4fa3",
+  "local": false,
+  "error": "unknown format: 3",
+  "store": "sounds/zap_taser/zap_taser_v1_r1_audioldm2.wav"
  },
  {
   "cue": "zap_taser_v2",
@@ -1546,7 +1867,10 @@
   "prompt": "",
   "target": "",
   "tags": [],
-  "error": "unknown format: 3"
+  "sha": "8c2806b60d6f057e7699b631bf0a0ab552a074e5",
+  "local": false,
+  "error": "unknown format: 3",
+  "store": "sounds/zap_taser/zap_taser_v2_r1_audioldm2.wav"
  },
  {
   "cue": "air_drift",
@@ -1561,11 +1885,14 @@
    "ambience",
    "cartoon"
   ],
+  "sha": "f1431aa44551b5be7c5e104751e80007736c71a3",
+  "local": false,
   "sec": 3.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -22.0,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/air_drift/air_drift_r1_audioldm2_ep3.wav"
  },
  {
   "cue": "air_drift",
@@ -1580,11 +1907,14 @@
    "ambience",
    "cartoon"
   ],
+  "sha": "bcb1dcb98bedf17d0e9f404b8009c4b8ea4955de",
+  "local": false,
   "sec": 3.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -17.8,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/air_drift/air_drift_r2_audioldm2_ep3.wav"
  },
  {
   "cue": "air_drift",
@@ -1599,11 +1929,14 @@
    "ambience",
    "cartoon"
   ],
+  "sha": "8b74687087df5ca72ca1369360e96e1813b27272",
+  "local": false,
   "sec": 3.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -16.5,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/air_drift/air_drift_r3_audioldm2_ep3.wav"
  },
  {
   "cue": "air_drift",
@@ -1618,11 +1951,14 @@
    "ambience",
    "cartoon"
   ],
+  "sha": "a40b865d8b42ed9599fc315b2bb3c083bea7d7ac",
+  "local": false,
   "sec": 3.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -13.0,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/air_drift/air_drift_r4_audioldm2_ep3.wav"
  },
  {
   "cue": "body_fall",
@@ -1636,11 +1972,14 @@
   "tags": [
    "impact"
   ],
+  "sha": "b93bb9b30081384d01fc64dae2851bd907905c28",
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -22.7,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/body_fall/body_fall_r1_audioldm2_ep3.wav"
  },
  {
   "cue": "body_fall",
@@ -1654,11 +1993,14 @@
   "tags": [
    "impact"
   ],
+  "sha": "4bf9112be29f8e147bc03178c8754c9bcc7df50d",
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -25.1,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/body_fall/body_fall_r2_audioldm2_ep3.wav"
  },
  {
   "cue": "body_fall",
@@ -1672,11 +2014,14 @@
   "tags": [
    "impact"
   ],
+  "sha": "18571cf88a76fa4d3b3fa15111b5ccfd2e3568da",
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -31.6,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/body_fall/body_fall_r3_audioldm2_ep3.wav"
  },
  {
   "cue": "body_fall",
@@ -1690,11 +2035,14 @@
   "tags": [
    "impact"
   ],
+  "sha": "f9a77317b807afffab4ba78621da3c515a1062c4",
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -29.6,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/body_fall/body_fall_r4_audioldm2_ep3.wav"
  },
  {
   "cue": "breath_in",
@@ -1708,11 +2056,14 @@
   "tags": [
    "voice"
   ],
+  "sha": "5663cc28365365ab9cf52e9bbc687e202b9dbe86",
+  "local": false,
   "sec": 3.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -20.2,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/breath_in/breath_in_r1_audioldm2_ep3.wav"
  },
  {
   "cue": "breath_in",
@@ -1726,11 +2077,14 @@
   "tags": [
    "voice"
   ],
+  "sha": "aa2f4e18c0a04b2bb58b84149ebdd8fd51b2dbb7",
+  "local": false,
   "sec": 3.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -23.5,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/breath_in/breath_in_r2_audioldm2_ep3.wav"
  },
  {
   "cue": "breath_in",
@@ -1744,11 +2098,14 @@
   "tags": [
    "voice"
   ],
+  "sha": "87f769fcd88ce881705e2d58344ae4ccae6af0c5",
+  "local": false,
   "sec": 3.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -23.2,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/breath_in/breath_in_r3_audioldm2_ep3.wav"
  },
  {
   "cue": "breath_in",
@@ -1762,11 +2119,14 @@
   "tags": [
    "voice"
   ],
+  "sha": "1e39ecb683ffc8a662fa088dce23f1819f5aa693",
+  "local": false,
   "sec": 3.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -22.7,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/breath_in/breath_in_r4_audioldm2_ep3.wav"
  },
  {
   "cue": "cell_door",
@@ -1781,11 +2141,14 @@
    "impact",
    "mechanical"
   ],
+  "sha": "179c2ba79d41232895e234974386c4f2f85506f0",
+  "local": false,
   "sec": 2.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -16.8,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/cell_door/cell_door_r1_audioldm2_ep3.wav"
  },
  {
   "cue": "cell_door",
@@ -1800,11 +2163,14 @@
    "impact",
    "mechanical"
   ],
+  "sha": "5c79dda26848313a5893286924bd016b1291dc0f",
+  "local": false,
   "sec": 2.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -15.8,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/cell_door/cell_door_r2_audioldm2_ep3.wav"
  },
  {
   "cue": "cell_door",
@@ -1819,11 +2185,14 @@
    "impact",
    "mechanical"
   ],
+  "sha": "16cadaea3b32d605e1b0813212944fa358120daa",
+  "local": false,
   "sec": 2.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -15.3,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/cell_door/cell_door_r3_audioldm2_ep3.wav"
  },
  {
   "cue": "cell_door",
@@ -1838,11 +2207,14 @@
    "impact",
    "mechanical"
   ],
+  "sha": "c604153c8b4bba4159d6331219c21cac9295fee7",
+  "local": false,
   "sec": 2.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -11.3,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/cell_door/cell_door_r4_audioldm2_ep3.wav"
  },
  {
   "cue": "door_crash",
@@ -1858,11 +2230,14 @@
    "mechanical",
    "police"
   ],
+  "sha": "08bb99f29490f7c93595ac072f28fdebd068607f",
+  "local": false,
   "sec": 2.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -21.5,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/door_crash/door_crash_r1_audioldm2_ep3.wav"
  },
  {
   "cue": "door_crash",
@@ -1878,11 +2253,14 @@
    "mechanical",
    "police"
   ],
+  "sha": "628a43e0a3043b47d95163967c9f86cc5c70f607",
+  "local": false,
   "sec": 2.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -25.3,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/door_crash/door_crash_r2_audioldm2_ep3.wav"
  },
  {
   "cue": "door_crash",
@@ -1898,11 +2276,14 @@
    "mechanical",
    "police"
   ],
+  "sha": "662360f7e5e830ab968a322e6dae2955f3fc38b9",
+  "local": false,
   "sec": 2.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -28.3,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/door_crash/door_crash_r3_audioldm2_ep3.wav"
  },
  {
   "cue": "door_crash",
@@ -1918,11 +2299,14 @@
    "mechanical",
    "police"
   ],
+  "sha": "5d653c45e25c0dbaa382ed85837e745a6ee22e37",
+  "local": false,
   "sec": 2.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -20.9,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/door_crash/door_crash_r4_audioldm2_ep3.wav"
  },
  {
   "cue": "fan_gear",
@@ -1937,11 +2321,14 @@
    "ambience",
    "mechanical"
   ],
+  "sha": "13e914498c4c7b1c95a7a7cf5d49129593eed3e2",
+  "local": false,
   "sec": 2.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -13.2,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/fan_gear/fan_gear_r1_audioldm2_ep3.wav"
  },
  {
   "cue": "fan_gear",
@@ -1956,11 +2343,14 @@
    "ambience",
    "mechanical"
   ],
+  "sha": "0ece4ccff12fea2b92c233384d6ec90e66646658",
+  "local": false,
   "sec": 2.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -6.2,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/fan_gear/fan_gear_r2_audioldm2_ep3.wav"
  },
  {
   "cue": "fan_gear",
@@ -1975,11 +2365,14 @@
    "ambience",
    "mechanical"
   ],
+  "sha": "37c3e54f92007cc943fdab44e6fe9a0fe342e4f4",
+  "local": false,
   "sec": 2.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -13.4,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/fan_gear/fan_gear_r3_audioldm2_ep3.wav"
  },
  {
   "cue": "fan_gear",
@@ -1994,11 +2387,14 @@
    "ambience",
    "mechanical"
   ],
+  "sha": "5c3c449eb6f030dbfb84dade00a86ddf65079a99",
+  "local": false,
   "sec": 2.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -13.7,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/fan_gear/fan_gear_r4_audioldm2_ep3.wav"
  },
  {
   "cue": "fridge_hum",
@@ -2013,11 +2409,14 @@
    "ambience",
    "mechanical"
   ],
+  "sha": "a2527ddb146bdf068eba16331eab0dcdb9a0d206",
+  "local": false,
   "sec": 6.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -11.8,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/fridge_hum/fridge_hum_r1_audioldm2_ep3.wav"
  },
  {
   "cue": "fridge_hum",
@@ -2032,11 +2431,14 @@
    "ambience",
    "mechanical"
   ],
+  "sha": "cec00cc9dcbdcfdda41fe489ddd2bdb4ade3306d",
+  "local": false,
   "sec": 6.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -10.6,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/fridge_hum/fridge_hum_r2_audioldm2_ep3.wav"
  },
  {
   "cue": "fridge_hum",
@@ -2051,11 +2453,14 @@
    "ambience",
    "mechanical"
   ],
+  "sha": "a78e76bde32429584cd3258a452a814f0f17b4b1",
+  "local": false,
   "sec": 6.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -14.7,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/fridge_hum/fridge_hum_r3_audioldm2_ep3.wav"
  },
  {
   "cue": "fridge_hum",
@@ -2070,11 +2475,14 @@
    "ambience",
    "mechanical"
   ],
+  "sha": "72f118780a7fea616dc246fbdcf303d057a8d52e",
+  "local": false,
   "sec": 6.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -11.1,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/fridge_hum/fridge_hum_r4_audioldm2_ep3.wav"
  },
  {
   "cue": "fridge_open",
@@ -2091,11 +2499,14 @@
    "material",
    "mechanical"
   ],
+  "sha": "2cf12138cb0eb9860942969b43c773912f169133",
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -26.7,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/fridge_open/fridge_open_r1_audioldm2_ep3.wav"
  },
  {
   "cue": "fridge_open",
@@ -2112,11 +2523,14 @@
    "material",
    "mechanical"
   ],
+  "sha": "8f383fa59dd9b520f207713122886408ffed2d88",
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -30.6,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/fridge_open/fridge_open_r2_audioldm2_ep3.wav"
  },
  {
   "cue": "fridge_open",
@@ -2133,11 +2547,14 @@
    "material",
    "mechanical"
   ],
+  "sha": "207a16cf6716c43b7a49df48835d1b33cebc6ffb",
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -27.4,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/fridge_open/fridge_open_r3_audioldm2_ep3.wav"
  },
  {
   "cue": "fridge_open",
@@ -2154,11 +2571,14 @@
    "material",
    "mechanical"
   ],
+  "sha": "d884fac63133ab20bd1621b75e3bec147cda108c",
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -21.4,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/fridge_open/fridge_open_r4_audioldm2_ep3.wav"
  },
  {
   "cue": "hammer",
@@ -2172,11 +2592,14 @@
   "tags": [
    "impact"
   ],
+  "sha": "58fda8cc3f2a5663b537c08f561ea1bc2e885734",
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -30.0,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/hammer/hammer_r1_audioldm2_ep3.wav"
  },
  {
   "cue": "hammer",
@@ -2190,11 +2613,14 @@
   "tags": [
    "impact"
   ],
+  "sha": "4ed2c6609f011f39bbb2ca254649b7590eb7d6f9",
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -21.6,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/hammer/hammer_r2_audioldm2_ep3.wav"
  },
  {
   "cue": "hammer",
@@ -2208,11 +2634,14 @@
   "tags": [
    "impact"
   ],
+  "sha": "602c1de9daef55c033efff769625762d4cfe45ab",
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -26.7,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/hammer/hammer_r3_audioldm2_ep3.wav"
  },
  {
   "cue": "hammer",
@@ -2226,11 +2655,14 @@
   "tags": [
    "impact"
   ],
+  "sha": "74ffd07773b791debe9de3ecc607066d7e3ea15e",
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -29.7,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/hammer/hammer_r4_audioldm2_ep3.wav"
  },
  {
   "cue": "jar_lid",
@@ -2242,11 +2674,14 @@
   "prompt": "a metal lid is placed on a glass jar and twisted shut, close up foley",
   "target": "a lid closing on a glass jar",
   "tags": [],
+  "sha": "1ac051d9bc1fc9e58a40be47b277e9f8612176d1",
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -26.7,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/jar_lid/jar_lid_r1_audioldm2_ep3.wav"
  },
  {
   "cue": "jar_lid",
@@ -2258,11 +2693,14 @@
   "prompt": "a metal lid is placed on a glass jar and twisted shut, close up foley",
   "target": "a lid closing on a glass jar",
   "tags": [],
+  "sha": "3dabaa5c650bcd072ba884e5103e25bdea8b381d",
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -28.2,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/jar_lid/jar_lid_r2_audioldm2_ep3.wav"
  },
  {
   "cue": "jar_lid",
@@ -2274,11 +2712,14 @@
   "prompt": "a metal lid is placed on a glass jar and twisted shut, close up foley",
   "target": "a lid closing on a glass jar",
   "tags": [],
+  "sha": "f439c0450e37c6587b561468d4719f432267ab29",
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -24.4,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/jar_lid/jar_lid_r3_audioldm2_ep3.wav"
  },
  {
   "cue": "jar_lid",
@@ -2290,11 +2731,14 @@
   "prompt": "a metal lid is placed on a glass jar and twisted shut, close up foley",
   "target": "a lid closing on a glass jar",
   "tags": [],
+  "sha": "4779f92f86788eb9ede5b782057ea903e088c604",
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -32.4,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/jar_lid/jar_lid_r4_audioldm2_ep3.wav"
  },
  {
   "cue": "mask_breath",
@@ -2308,11 +2752,14 @@
   "tags": [
    "voice"
   ],
+  "sha": "91feb797b45934ada8f999fd9d8e529f5eb6a457",
+  "local": false,
   "sec": 3.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -17.7,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/mask_breath/mask_breath_r1_audioldm2_ep3.wav"
  },
  {
   "cue": "mask_breath",
@@ -2326,11 +2773,14 @@
   "tags": [
    "voice"
   ],
+  "sha": "22287ae3264fafb156eef8666c5e8d2f96a30de7",
+  "local": false,
   "sec": 3.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -15.1,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/mask_breath/mask_breath_r2_audioldm2_ep3.wav"
  },
  {
   "cue": "mask_breath",
@@ -2344,11 +2794,14 @@
   "tags": [
    "voice"
   ],
+  "sha": "fe39c62154d5231ca990f0742b40639710bdc897",
+  "local": false,
   "sec": 3.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -14.7,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/mask_breath/mask_breath_r3_audioldm2_ep3.wav"
  },
  {
   "cue": "mask_breath",
@@ -2362,11 +2815,14 @@
   "tags": [
    "voice"
   ],
+  "sha": "26870c763c2391e844a0dc6fdccb1b3453e1e24c",
+  "local": false,
   "sec": 3.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -13.7,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/mask_breath/mask_breath_r4_audioldm2_ep3.wav"
  },
  {
   "cue": "night_kitchen",
@@ -2381,11 +2837,14 @@
    "ambience",
    "tonal"
   ],
+  "sha": "e09df1b33a02af5767b6617dcff2247cf751d6d5",
+  "local": false,
   "sec": 8.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -33.0,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/night_kitchen/night_kitchen_r1_audioldm2_ep3.wav"
  },
  {
   "cue": "night_kitchen",
@@ -2400,11 +2859,14 @@
    "ambience",
    "tonal"
   ],
+  "sha": "881d945c2be2e2298194aec55133de8f9ed3e28e",
+  "local": false,
   "sec": 8.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -19.4,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/night_kitchen/night_kitchen_r2_audioldm2_ep3.wav"
  },
  {
   "cue": "night_kitchen",
@@ -2419,11 +2881,14 @@
    "ambience",
    "tonal"
   ],
+  "sha": "8967d2b0a6fa6c17b9b34a8f35e027cacd9f00e5",
+  "local": false,
   "sec": 8.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -17.1,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/night_kitchen/night_kitchen_r3_audioldm2_ep3.wav"
  },
  {
   "cue": "night_kitchen",
@@ -2438,11 +2903,14 @@
    "ambience",
    "tonal"
   ],
+  "sha": "fe8c5b6af83221e947bfb5eda438b0eca51120ed",
+  "local": false,
   "sec": 8.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -14.4,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/night_kitchen/night_kitchen_r4_audioldm2_ep3.wav"
  },
  {
   "cue": "smell_puff",
@@ -2456,11 +2924,14 @@
   "tags": [
    "cartoon"
   ],
+  "sha": "43cb6bd55074da3af6a111331db10469cfa001b0",
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -18.0,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/smell_puff/smell_puff_r1_audioldm2_ep3.wav"
  },
  {
   "cue": "smell_puff",
@@ -2474,11 +2945,14 @@
   "tags": [
    "cartoon"
   ],
+  "sha": "73c4dd3ec991986824727b6fa9f76fa71d4a794c",
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -23.2,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/smell_puff/smell_puff_r2_audioldm2_ep3.wav"
  },
  {
   "cue": "smell_puff",
@@ -2492,11 +2966,14 @@
   "tags": [
    "cartoon"
   ],
+  "sha": "473afeeff9eb43cdc54f88ec2011860ace8a233e",
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -14.4,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/smell_puff/smell_puff_r3_audioldm2_ep3.wav"
  },
  {
   "cue": "smell_puff",
@@ -2510,11 +2987,14 @@
   "tags": [
    "cartoon"
   ],
+  "sha": "fcb11e16d4776b7882cc0a901dc8157c578ff973",
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -19.2,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/smell_puff/smell_puff_r4_audioldm2_ep3.wav"
  },
  {
   "cue": "sneeze",
@@ -2528,11 +3008,14 @@
   "tags": [
    "ambience"
   ],
+  "sha": "4c64747754a6246d013e3bee3aaa423f9b766d85",
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -26.7,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/sneeze/sneeze_r1_audioldm2_ep3.wav"
  },
  {
   "cue": "sneeze",
@@ -2546,11 +3029,14 @@
   "tags": [
    "ambience"
   ],
+  "sha": "85c9106445f5255656be5543dda483fd27917ed6",
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -21.4,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/sneeze/sneeze_r2_audioldm2_ep3.wav"
  },
  {
   "cue": "sneeze",
@@ -2564,11 +3050,14 @@
   "tags": [
    "ambience"
   ],
+  "sha": "601a6b04f0218186537df3a79194811203fc506e",
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -23.9,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/sneeze/sneeze_r3_audioldm2_ep3.wav"
  },
  {
   "cue": "sneeze",
@@ -2582,11 +3071,14 @@
   "tags": [
    "ambience"
   ],
+  "sha": "2e10c4f6a116f35efded98c232918d32902e4031",
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -25.6,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/sneeze/sneeze_r4_audioldm2_ep3.wav"
  },
  {
   "cue": "sniff",
@@ -2598,11 +3090,14 @@
   "prompt": "a man sniffs the air through his nose twice, close up",
   "target": "a person sniffing through the nose",
   "tags": [],
+  "sha": "5478fb197f415e99fc3419b39690bb019212576e",
+  "local": false,
   "sec": 1.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -20.7,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/sniff/sniff_r1_audioldm2_ep3.wav"
  },
  {
   "cue": "sniff",
@@ -2614,11 +3109,14 @@
   "prompt": "a man sniffs the air through his nose twice, close up",
   "target": "a person sniffing through the nose",
   "tags": [],
+  "sha": "278af54248baab9a797c835aede5af8599ba1ff5",
+  "local": false,
   "sec": 1.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -20.7,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/sniff/sniff_r2_audioldm2_ep3.wav"
  },
  {
   "cue": "sniff",
@@ -2630,11 +3128,14 @@
   "prompt": "a man sniffs the air through his nose twice, close up",
   "target": "a person sniffing through the nose",
   "tags": [],
+  "sha": "2c1185d479c9fff2582a0f1ca4cd2653df0f8526",
+  "local": false,
   "sec": 1.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -15.0,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/sniff/sniff_r3_audioldm2_ep3.wav"
  },
  {
   "cue": "sniff",
@@ -2646,11 +3147,14 @@
   "prompt": "a man sniffs the air through his nose twice, close up",
   "target": "a person sniffing through the nose",
   "tags": [],
+  "sha": "bfd8c8d0c1995064204bae59013ec3a80b6bff95",
+  "local": false,
   "sec": 1.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -22.3,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/sniff/sniff_r4_audioldm2_ep3.wav"
  },
  {
   "cue": "swat_boots",
@@ -2666,11 +3170,14 @@
    "footsteps",
    "police"
   ],
+  "sha": "cb0dc29f619f4917d66e4b5df7f3d3edb9510631",
+  "local": false,
   "sec": 3.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -27.6,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/swat_boots/swat_boots_r1_audioldm2_ep3.wav"
  },
  {
   "cue": "swat_boots",
@@ -2686,11 +3193,14 @@
    "footsteps",
    "police"
   ],
+  "sha": "d9fe8e48ab680c66f12a133c17c2f853bd862692",
+  "local": false,
   "sec": 3.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -24.3,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/swat_boots/swat_boots_r2_audioldm2_ep3.wav"
  },
  {
   "cue": "swat_boots",
@@ -2706,11 +3216,14 @@
    "footsteps",
    "police"
   ],
+  "sha": "6a797093a264cd8af14c69e6317e6c74b162b964",
+  "local": false,
   "sec": 3.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -24.3,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/swat_boots/swat_boots_r3_audioldm2_ep3.wav"
  },
  {
   "cue": "swat_boots",
@@ -2726,11 +3239,14 @@
    "footsteps",
    "police"
   ],
+  "sha": "8e17176ccc5d2fa569f5eae2d09df93cd99449ba",
+  "local": false,
   "sec": 3.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -19.6,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/swat_boots/swat_boots_r4_audioldm2_ep3.wav"
  },
  {
   "cue": "tape_unroll",
@@ -2744,11 +3260,14 @@
   "tags": [
    "material"
   ],
+  "sha": "59cbe2ed89e87c360ea8e10a4714e6fceaa6ef19",
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -28.9,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/tape_unroll/tape_unroll_r1_audioldm2_ep3.wav"
  },
  {
   "cue": "tape_unroll",
@@ -2762,11 +3281,14 @@
   "tags": [
    "material"
   ],
+  "sha": "1d99dff674c6d779777b930ecdadc80c7ed5e936",
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -23.9,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/tape_unroll/tape_unroll_r2_audioldm2_ep3.wav"
  },
  {
   "cue": "tape_unroll",
@@ -2780,11 +3302,14 @@
   "tags": [
    "material"
   ],
+  "sha": "868293c237e4bd3c54972a1e7f38ed15701ebbcc",
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -16.6,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/tape_unroll/tape_unroll_r3_audioldm2_ep3.wav"
  },
  {
   "cue": "tape_unroll",
@@ -2798,11 +3323,14 @@
   "tags": [
    "material"
   ],
+  "sha": "2bac3e9122ae2928896d804a22608ca009b61d8e",
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -24.3,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/tape_unroll/tape_unroll_r4_audioldm2_ep3.wav"
  },
  {
   "cue": "window_open",
@@ -2818,11 +3346,14 @@
    "cartoon",
    "mechanical"
   ],
+  "sha": "851499cd31de0fb926d0da4e9cf2f53e63c77af0",
+  "local": false,
   "sec": 2.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -29.9,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/window_open/window_open_r1_audioldm2_ep3.wav"
  },
  {
   "cue": "window_open",
@@ -2838,11 +3369,14 @@
    "cartoon",
    "mechanical"
   ],
+  "sha": "f25f4978963e7eb085564b59b803f6fad62c8ac5",
+  "local": false,
   "sec": 2.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -26.8,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/window_open/window_open_r2_audioldm2_ep3.wav"
  },
  {
   "cue": "window_open",
@@ -2858,11 +3392,14 @@
    "cartoon",
    "mechanical"
   ],
+  "sha": "0a37633ab284a3f7286b44942fbbbd325a944bd1",
+  "local": false,
   "sec": 2.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -23.1,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/window_open/window_open_r3_audioldm2_ep3.wav"
  },
  {
   "cue": "window_open",
@@ -2878,11 +3415,14 @@
    "cartoon",
    "mechanical"
   ],
+  "sha": "525da4881f23bd117f4a0f5e8730c02e6cde5853",
+  "local": false,
   "sec": 2.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -27.6,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/window_open/window_open_r4_audioldm2_ep3.wav"
  },
  {
   "cue": "bubble_pop",
@@ -2896,11 +3436,14 @@
   "tags": [
    "cartoon"
   ],
+  "sha": "ffb429e2d670e932ea5df02afd6d3efbeee39276",
+  "local": false,
   "sec": 1.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -20.8,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/bubble_pop/bubble_pop_r1_audioldm2_ep5.wav"
  },
  {
   "cue": "bubble_pop",
@@ -2914,11 +3457,14 @@
   "tags": [
    "cartoon"
   ],
+  "sha": "2a8d8e26067254d534b7399d289cf2298b366397",
+  "local": false,
   "sec": 1.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -11.8,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/bubble_pop/bubble_pop_r2_audioldm2_ep5.wav"
  },
  {
   "cue": "bubble_pop",
@@ -2932,11 +3478,14 @@
   "tags": [
    "cartoon"
   ],
+  "sha": "e633611ecf987295f56fcc4983465e3bec36010d",
+  "local": false,
   "sec": 1.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -21.6,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/bubble_pop/bubble_pop_r3_audioldm2_ep5.wav"
  },
  {
   "cue": "bubble_pop",
@@ -2950,11 +3499,14 @@
   "tags": [
    "cartoon"
   ],
+  "sha": "2a0756c18a09623bffa45aed39af3c2ab938e90c",
+  "local": false,
   "sec": 1.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -28.1,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/bubble_pop/bubble_pop_r4_audioldm2_ep5.wav"
  },
  {
   "cue": "cell_door",
@@ -2969,11 +3521,14 @@
    "impact",
    "mechanical"
   ],
+  "sha": "e513e1244ec4238413e64eb9c0612c9259f5b56c",
+  "local": false,
   "sec": 2.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -18.3,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/cell_door/cell_door_r1_audioldm2_ep5.wav"
  },
  {
   "cue": "cell_door",
@@ -2988,11 +3543,14 @@
    "impact",
    "mechanical"
   ],
+  "sha": "02a63a7d85fb4e9c2bf8e1534d1ae90f7572572c",
+  "local": false,
   "sec": 2.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -21.4,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/cell_door/cell_door_r2_audioldm2_ep5.wav"
  },
  {
   "cue": "cell_door",
@@ -3007,11 +3565,14 @@
    "impact",
    "mechanical"
   ],
+  "sha": "5d95132c678a30b9ced600ac1503babaac61420b",
+  "local": false,
   "sec": 2.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -15.7,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/cell_door/cell_door_r3_audioldm2_ep5.wav"
  },
  {
   "cue": "cell_door",
@@ -3026,11 +3587,14 @@
    "impact",
    "mechanical"
   ],
+  "sha": "7b9a4529e9d8c8d6ccaae9f657849fa7edd46519",
+  "local": false,
   "sec": 2.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -11.2,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/cell_door/cell_door_r4_audioldm2_ep5.wav"
  },
  {
   "cue": "door_crash",
@@ -3046,11 +3610,14 @@
    "mechanical",
    "police"
   ],
+  "sha": "ca90629aee4c69866cbc4f507f7a1248e3f0ec2e",
+  "local": false,
   "sec": 2.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -20.9,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/door_crash/door_crash_r1_audioldm2_ep5.wav"
  },
  {
   "cue": "door_crash",
@@ -3066,11 +3633,14 @@
    "mechanical",
    "police"
   ],
+  "sha": "fdbeae9f25bffb3151450e45b3834df965bd4b06",
+  "local": false,
   "sec": 2.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -28.6,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/door_crash/door_crash_r2_audioldm2_ep5.wav"
  },
  {
   "cue": "door_crash",
@@ -3086,11 +3656,14 @@
    "mechanical",
    "police"
   ],
+  "sha": "a82bd4eaaf6d7623d74bc4277e7a99f2765104d6",
+  "local": false,
   "sec": 2.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -25.2,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/door_crash/door_crash_r3_audioldm2_ep5.wav"
  },
  {
   "cue": "door_crash",
@@ -3106,11 +3679,14 @@
    "mechanical",
    "police"
   ],
+  "sha": "ed938ae0c025427bfe4c55c7d0a80dc8f5b3845b",
+  "local": false,
   "sec": 2.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -11.2,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/door_crash/door_crash_r4_audioldm2_ep5.wav"
  },
  {
   "cue": "fan_hum",
@@ -3126,11 +3702,14 @@
    "footsteps",
    "mechanical"
   ],
+  "sha": "2edcc1a46952a8f003d5a1ff165c71e8a0b39743",
+  "local": false,
   "sec": 6.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -9.9,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/fan_hum/fan_hum_r1_audioldm2_ep5.wav"
  },
  {
   "cue": "fan_hum",
@@ -3146,11 +3725,14 @@
    "footsteps",
    "mechanical"
   ],
+  "sha": "42901d93a945c65f5d3f34589d6995e25563ab7c",
+  "local": false,
   "sec": 6.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -10.1,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/fan_hum/fan_hum_r2_audioldm2_ep5.wav"
  },
  {
   "cue": "fan_hum",
@@ -3166,11 +3748,14 @@
    "footsteps",
    "mechanical"
   ],
+  "sha": "ce2ce563b8d809eb1c84749ff1125e37509b5a4e",
+  "local": false,
   "sec": 6.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -13.6,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/fan_hum/fan_hum_r3_audioldm2_ep5.wav"
  },
  {
   "cue": "fan_hum",
@@ -3186,11 +3771,14 @@
    "footsteps",
    "mechanical"
   ],
+  "sha": "97f7a1449d8d48e115ca3a538504c60c680430d6",
+  "local": false,
   "sec": 6.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -13.5,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/fan_hum/fan_hum_r4_audioldm2_ep5.wav"
  },
  {
   "cue": "foam_fizz",
@@ -3202,11 +3790,14 @@
   "prompt": "lots of soap foam fizzing and bubbling, crackling foam",
   "target": "foam fizzing and bubbling",
   "tags": [],
+  "sha": "b51a1a9d25f257413f36bd6d66caa90a2a1c7d42",
+  "local": false,
   "sec": 6.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -19.0,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/foam_fizz/foam_fizz_r1_audioldm2_ep5.wav"
  },
  {
   "cue": "foam_fizz",
@@ -3218,11 +3809,14 @@
   "prompt": "lots of soap foam fizzing and bubbling, crackling foam",
   "target": "foam fizzing and bubbling",
   "tags": [],
+  "sha": "9a49be89cb461a4e65faa9eae91e1c96898f4d9e",
+  "local": false,
   "sec": 6.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -16.1,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/foam_fizz/foam_fizz_r2_audioldm2_ep5.wav"
  },
  {
   "cue": "foam_fizz",
@@ -3234,11 +3828,14 @@
   "prompt": "lots of soap foam fizzing and bubbling, crackling foam",
   "target": "foam fizzing and bubbling",
   "tags": [],
+  "sha": "993f09395ed86b44b6d39532a5452667624e1d59",
+  "local": false,
   "sec": 6.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -17.8,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/foam_fizz/foam_fizz_r3_audioldm2_ep5.wav"
  },
  {
   "cue": "foam_fizz",
@@ -3250,11 +3847,14 @@
   "prompt": "lots of soap foam fizzing and bubbling, crackling foam",
   "target": "foam fizzing and bubbling",
   "tags": [],
+  "sha": "3c2c5b7c4d09d66067c353efbe14585ba6dd8344",
+  "local": false,
   "sec": 6.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -25.7,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/foam_fizz/foam_fizz_r4_audioldm2_ep5.wav"
  },
  {
   "cue": "guard_slip",
@@ -3268,11 +3868,14 @@
   "tags": [
    "impact"
   ],
+  "sha": "6c510eb81c7ceb1219af0e30d3595c926af4848e",
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -24.8,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/guard_slip/guard_slip_r1_audioldm2_ep5.wav"
  },
  {
   "cue": "guard_slip",
@@ -3286,11 +3889,14 @@
   "tags": [
    "impact"
   ],
+  "sha": "d36486ae332ccfe07adec629ccdc3bdc432c63be",
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -32.3,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/guard_slip/guard_slip_r2_audioldm2_ep5.wav"
  },
  {
   "cue": "guard_slip",
@@ -3304,11 +3910,14 @@
   "tags": [
    "impact"
   ],
+  "sha": "fa1e003e3c064407e4b9bbe0488b4dc179375e6e",
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -30.5,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/guard_slip/guard_slip_r3_audioldm2_ep5.wav"
  },
  {
   "cue": "guard_slip",
@@ -3322,11 +3931,14 @@
   "tags": [
    "impact"
   ],
+  "sha": "82d8ef47520c1e8d7d81030dee50d890f1106391",
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -24.5,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/guard_slip/guard_slip_r4_audioldm2_ep5.wav"
  },
  {
   "cue": "handcuffs",
@@ -3341,11 +3953,14 @@
    "mechanical",
    "police"
   ],
+  "sha": "6378b09e530efece6797393eb89bca5c5ea6d63a",
+  "local": false,
   "sec": 1.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -10.4,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/handcuffs/handcuffs_r1_audioldm2_ep5.wav"
  },
  {
   "cue": "handcuffs",
@@ -3360,11 +3975,14 @@
    "mechanical",
    "police"
   ],
+  "sha": "da5a6a5f5b24ade6a6c57a8cb9112d794f4bf258",
+  "local": false,
   "sec": 1.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -26.4,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/handcuffs/handcuffs_r2_audioldm2_ep5.wav"
  },
  {
   "cue": "handcuffs",
@@ -3379,11 +3997,14 @@
    "mechanical",
    "police"
   ],
+  "sha": "d6b3ea6e2f5ef426cf23c8ca41bfa65b8d48d7be",
+  "local": false,
   "sec": 1.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -25.0,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/handcuffs/handcuffs_r3_audioldm2_ep5.wav"
  },
  {
   "cue": "handcuffs",
@@ -3398,11 +4019,14 @@
    "mechanical",
    "police"
   ],
+  "sha": "2af20c3e9e2d60c16f5555ed05a7e4afe059862b",
+  "local": false,
   "sec": 1.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -19.5,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/handcuffs/handcuffs_r4_audioldm2_ep5.wav"
  },
  {
   "cue": "prison_alarm",
@@ -3416,11 +4040,14 @@
   "tags": [
    "police"
   ],
+  "sha": "805c99daf3a8c31cde32a8e75b01c43841e8819d",
+  "local": false,
   "sec": 6.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -8.0,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/prison_alarm/prison_alarm_r1_audioldm2_ep5.wav"
  },
  {
   "cue": "prison_alarm",
@@ -3434,11 +4061,14 @@
   "tags": [
    "police"
   ],
+  "sha": "fd8ad9e7668c730a72ae3e8fd6a11875fa91080e",
+  "local": false,
   "sec": 6.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -11.9,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/prison_alarm/prison_alarm_r2_audioldm2_ep5.wav"
  },
  {
   "cue": "prison_alarm",
@@ -3452,11 +4082,14 @@
   "tags": [
    "police"
   ],
+  "sha": "5ea78e93853845f7e62b4f00bb27c08e62a72a58",
+  "local": false,
   "sec": 6.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -11.4,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/prison_alarm/prison_alarm_r3_audioldm2_ep5.wav"
  },
  {
   "cue": "prison_alarm",
@@ -3470,11 +4103,14 @@
   "tags": [
    "police"
   ],
+  "sha": "513c4670160a53025fb22aabcb899d430d69080e",
+  "local": false,
   "sec": 6.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -12.9,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/prison_alarm/prison_alarm_r4_audioldm2_ep5.wav"
  },
  {
   "cue": "shower_bed",
@@ -3490,11 +4126,14 @@
    "footsteps",
    "nature"
   ],
+  "sha": "8b8999effb65716c7bf63d4aff6fd1a60f839d7f",
+  "local": false,
   "sec": 8.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -16.7,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/shower_bed/shower_bed_r1_audioldm2_ep5.wav"
  },
  {
   "cue": "shower_bed",
@@ -3510,11 +4149,14 @@
    "footsteps",
    "nature"
   ],
+  "sha": "d41f5dd758cf5567783fb06b452a306079a793a1",
+  "local": false,
   "sec": 8.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -20.0,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/shower_bed/shower_bed_r2_audioldm2_ep5.wav"
  },
  {
   "cue": "shower_bed",
@@ -3530,11 +4172,14 @@
    "footsteps",
    "nature"
   ],
+  "sha": "fe45cedd8e865ecde6e01823639f91efa8fa5f00",
+  "local": false,
   "sec": 8.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -22.8,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/shower_bed/shower_bed_r3_audioldm2_ep5.wav"
  },
  {
   "cue": "shower_bed",
@@ -3550,11 +4195,14 @@
    "footsteps",
    "nature"
   ],
+  "sha": "53fab32d263852288be5ef0678fa696f68bd6a08",
+  "local": false,
   "sec": 8.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -19.0,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/shower_bed/shower_bed_r4_audioldm2_ep5.wav"
  },
  {
   "cue": "slip_falls",
@@ -3568,11 +4216,14 @@
   "tags": [
    "impact"
   ],
+  "sha": "f96466c796b9278ea8c51c99bac508bb457b4a1b",
+  "local": false,
   "sec": 3.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -28.8,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/slip_falls/slip_falls_r1_audioldm2_ep5.wav"
  },
  {
   "cue": "slip_falls",
@@ -3586,11 +4237,14 @@
   "tags": [
    "impact"
   ],
+  "sha": "fd3ed939cbc55810248573b3cea619dc6696a508",
+  "local": false,
   "sec": 3.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -30.7,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/slip_falls/slip_falls_r2_audioldm2_ep5.wav"
  },
  {
   "cue": "slip_falls",
@@ -3604,11 +4258,14 @@
   "tags": [
    "impact"
   ],
+  "sha": "7e6abef94a4b5a039afde2da2f389b9ff31bdef1",
+  "local": false,
   "sec": 3.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -30.5,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/slip_falls/slip_falls_r3_audioldm2_ep5.wav"
  },
  {
   "cue": "slip_falls",
@@ -3622,11 +4279,14 @@
   "tags": [
    "impact"
   ],
+  "sha": "eacd8c733fd89781f06b3375c66feea9e70bcf90",
+  "local": false,
   "sec": 3.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -15.0,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/slip_falls/slip_falls_r4_audioldm2_ep5.wav"
  },
  {
   "cue": "soap_scrub",
@@ -3640,11 +4300,14 @@
   "tags": [
    "cartoon"
   ],
+  "sha": "830722fe54118aff82fa3a7c7c0cd9b41efb9a08",
+  "local": false,
   "sec": 3.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -20.3,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/soap_scrub/soap_scrub_r1_audioldm2_ep5.wav"
  },
  {
   "cue": "soap_scrub",
@@ -3658,11 +4321,14 @@
   "tags": [
    "cartoon"
   ],
+  "sha": "67627861045eca7e77376baa1dfa9838301284e4",
+  "local": false,
   "sec": 3.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -18.7,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/soap_scrub/soap_scrub_r2_audioldm2_ep5.wav"
  },
  {
   "cue": "soap_scrub",
@@ -3676,11 +4342,14 @@
   "tags": [
    "cartoon"
   ],
+  "sha": "f5b9642ec4e587817a3177a94ae5bcf4b6128a9e",
+  "local": false,
   "sec": 3.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -29.3,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/soap_scrub/soap_scrub_r3_audioldm2_ep5.wav"
  },
  {
   "cue": "soap_scrub",
@@ -3694,11 +4363,14 @@
   "tags": [
    "cartoon"
   ],
+  "sha": "b08dbeacb829baf817a8a1b314cfb114623243ca",
+  "local": false,
   "sec": 3.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -27.9,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/soap_scrub/soap_scrub_r4_audioldm2_ep5.wav"
  },
  {
   "cue": "soap_slip",
@@ -3712,11 +4384,14 @@
   "tags": [
    "cartoon"
   ],
+  "sha": "5d0efd96644c03ed0dd5f9c3b173d28ede50f80d",
+  "local": false,
   "sec": 1.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -14.4,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/soap_slip/soap_slip_r1_audioldm2_ep5.wav"
  },
  {
   "cue": "soap_slip",
@@ -3730,11 +4405,14 @@
   "tags": [
    "cartoon"
   ],
+  "sha": "24187a790eb58ed6474e39d62f1861f734352004",
+  "local": false,
   "sec": 1.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -20.2,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/soap_slip/soap_slip_r2_audioldm2_ep5.wav"
  },
  {
   "cue": "soap_slip",
@@ -3748,11 +4426,14 @@
   "tags": [
    "cartoon"
   ],
+  "sha": "b3af5535fa7c68e8f47201220ec3416a04f183c6",
+  "local": false,
   "sec": 1.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -17.8,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/soap_slip/soap_slip_r3_audioldm2_ep5.wav"
  },
  {
   "cue": "soap_slip",
@@ -3766,11 +4447,14 @@
   "tags": [
    "cartoon"
   ],
+  "sha": "d6cccb812e82241f3524d80efd0b96f2e30f174e",
+  "local": false,
   "sec": 1.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -15.1,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/soap_slip/soap_slip_r4_audioldm2_ep5.wav"
  },
  {
   "cue": "swat_boots",
@@ -3786,11 +4470,14 @@
    "footsteps",
    "police"
   ],
+  "sha": "c5c86a99a0eb00340a7408d70b3bc37dd77bf4cc",
+  "local": false,
   "sec": 3.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -27.0,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/swat_boots/swat_boots_r1_audioldm2_ep5.wav"
  },
  {
   "cue": "swat_boots",
@@ -3806,11 +4493,14 @@
    "footsteps",
    "police"
   ],
+  "sha": "15bd6c84ff417dae7b7429df7add246aefd1ce03",
+  "local": false,
   "sec": 3.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -26.1,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/swat_boots/swat_boots_r2_audioldm2_ep5.wav"
  },
  {
   "cue": "swat_boots",
@@ -3826,11 +4516,14 @@
    "footsteps",
    "police"
   ],
+  "sha": "930932f05754c7308dea50db512aad97f8a641b0",
+  "local": false,
   "sec": 3.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -25.9,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/swat_boots/swat_boots_r3_audioldm2_ep5.wav"
  },
  {
   "cue": "swat_boots",
@@ -3846,11 +4539,14 @@
    "footsteps",
    "police"
   ],
+  "sha": "5f32366c24d7f4b4be1ae24efd75500e12f97e4a",
+  "local": false,
   "sec": 3.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -16.4,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/swat_boots/swat_boots_r4_audioldm2_ep5.wav"
  },
  {
   "cue": "taser",
@@ -3862,11 +4558,14 @@
   "prompt": "an electric taser crackling and buzzing, sharp electric zaps",
   "target": "an electric taser crackling",
   "tags": [],
+  "sha": "5ce375388e2354530ad86933ebb4fa0066a315cf",
+  "local": false,
   "sec": 3.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -25.2,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/taser/taser_r1_audioldm2_ep5.wav"
  },
  {
   "cue": "taser",
@@ -3878,11 +4577,14 @@
   "prompt": "an electric taser crackling and buzzing, sharp electric zaps",
   "target": "an electric taser crackling",
   "tags": [],
+  "sha": "a8e5abb1657e824a29a7799019de1df276e08fd6",
+  "local": false,
   "sec": 3.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -11.4,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/taser/taser_r2_audioldm2_ep5.wav"
  },
  {
   "cue": "taser",
@@ -3894,11 +4596,14 @@
   "prompt": "an electric taser crackling and buzzing, sharp electric zaps",
   "target": "an electric taser crackling",
   "tags": [],
+  "sha": "cb4b986507b55740df52040adb68a9c3c5d81118",
+  "local": false,
   "sec": 3.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -12.4,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/taser/taser_r3_audioldm2_ep5.wav"
  },
  {
   "cue": "taser",
@@ -3910,11 +4615,14 @@
   "prompt": "an electric taser crackling and buzzing, sharp electric zaps",
   "target": "an electric taser crackling",
   "tags": [],
+  "sha": "f21583c74481ecdcc666c891b15d213c68ffa5d0",
+  "local": false,
   "sec": 3.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -13.5,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/taser/taser_r4_audioldm2_ep5.wav"
  },
  {
   "cue": "tongs_creak",
@@ -3928,11 +4636,14 @@
   "tags": [
    "cartoon"
   ],
+  "sha": "44f8fda781b29edee659d988f2da210eecb3a355",
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -24.4,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/tongs_creak/tongs_creak_r1_audioldm2_ep5.wav"
  },
  {
   "cue": "tongs_creak",
@@ -3946,11 +4657,14 @@
   "tags": [
    "cartoon"
   ],
+  "sha": "86105aa41380cc49ef8393aa658d4b62de23c862",
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -26.5,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/tongs_creak/tongs_creak_r2_audioldm2_ep5.wav"
  },
  {
   "cue": "tongs_creak",
@@ -3964,11 +4678,14 @@
   "tags": [
    "cartoon"
   ],
+  "sha": "aee6122f356d1445e2dd7b106bb94e99d76036a7",
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -22.0,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/tongs_creak/tongs_creak_r3_audioldm2_ep5.wav"
  },
  {
   "cue": "tongs_creak",
@@ -3982,11 +4699,14 @@
   "tags": [
    "cartoon"
   ],
+  "sha": "0a4a12528ff0cf147d8f1c515b781452360418e8",
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -25.5,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/tongs_creak/tongs_creak_r4_audioldm2_ep5.wav"
  },
  {
   "cue": "army_trucks",
@@ -4000,11 +4720,14 @@
   "tags": [
    "mechanical"
   ],
+  "sha": "79ab7d816bdffa0d56388239ebdb0f4cb3eeec7d",
+  "local": false,
   "sec": 6.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -14.4,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/army_trucks/army_trucks_r1_audioldm2_ep6.wav"
  },
  {
   "cue": "army_trucks",
@@ -4018,11 +4741,14 @@
   "tags": [
    "mechanical"
   ],
+  "sha": "bda3ea01d9d3e1c24f0de99a735fa344885916cb",
+  "local": false,
   "sec": 6.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -14.0,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/army_trucks/army_trucks_r2_audioldm2_ep6.wav"
  },
  {
   "cue": "army_trucks",
@@ -4036,11 +4762,14 @@
   "tags": [
    "mechanical"
   ],
+  "sha": "8784e13c03f1446c1426d618c6e9ca398174378f",
+  "local": false,
   "sec": 6.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -14.7,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/army_trucks/army_trucks_r3_audioldm2_ep6.wav"
  },
  {
   "cue": "army_trucks",
@@ -4054,11 +4783,14 @@
   "tags": [
    "mechanical"
   ],
+  "sha": "db74200c90aeb10f4e1cab71f2cf1ab5de0b1c10",
+  "local": false,
   "sec": 6.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -14.5,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/army_trucks/army_trucks_r4_audioldm2_ep6.wav"
  },
  {
   "cue": "car_pass",
@@ -4072,11 +4804,14 @@
   "tags": [
    "cartoon"
   ],
+  "sha": "18fb7b4ba19526d20cf0bae5ff63f3df4b18ec99",
+  "local": false,
   "sec": 2.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -16.9,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/car_pass/car_pass_r1_audioldm2_ep6.wav"
  },
  {
   "cue": "car_pass",
@@ -4090,11 +4825,14 @@
   "tags": [
    "cartoon"
   ],
+  "sha": "68510cb61619623073fc6a6fce50a989daca9b22",
+  "local": false,
   "sec": 2.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -12.4,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/car_pass/car_pass_r2_audioldm2_ep6.wav"
  },
  {
   "cue": "car_pass",
@@ -4108,11 +4846,14 @@
   "tags": [
    "cartoon"
   ],
+  "sha": "b292e95d702aec51774fb723f0c9fd615d6094ca",
+  "local": false,
   "sec": 2.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -12.7,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/car_pass/car_pass_r3_audioldm2_ep6.wav"
  },
  {
   "cue": "car_pass",
@@ -4126,11 +4867,14 @@
   "tags": [
    "cartoon"
   ],
+  "sha": "1f60590b46df1bb3134e8f19840ab6d60b42070d",
+  "local": false,
   "sec": 2.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -5.7,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/car_pass/car_pass_r4_audioldm2_ep6.wav"
  },
  {
   "cue": "chain_rattle",
@@ -4142,11 +4886,14 @@
   "prompt": "heavy iron chains rattling and being pulled taut, metal links clanking",
   "target": "heavy chains rattling",
   "tags": [],
+  "sha": "86f5df63148e2612c3450f0d4f0ed2a68e7fa88c",
+  "local": false,
   "sec": 2.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -15.2,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/chain_rattle/chain_rattle_r1_audioldm2_ep6.wav"
  },
  {
   "cue": "chain_rattle",
@@ -4158,11 +4905,14 @@
   "prompt": "heavy iron chains rattling and being pulled taut, metal links clanking",
   "target": "heavy chains rattling",
   "tags": [],
+  "sha": "7bcf0a5fee7fcf54e38ebd67cfaebf066fcb8f4c",
+  "local": false,
   "sec": 2.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -17.0,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/chain_rattle/chain_rattle_r2_audioldm2_ep6.wav"
  },
  {
   "cue": "chain_rattle",
@@ -4174,11 +4924,14 @@
   "prompt": "heavy iron chains rattling and being pulled taut, metal links clanking",
   "target": "heavy chains rattling",
   "tags": [],
+  "sha": "eb59d6f3b0a905c562b95d4b2384ae3ba2c7f1b9",
+  "local": false,
   "sec": 2.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -12.5,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/chain_rattle/chain_rattle_r3_audioldm2_ep6.wav"
  },
  {
   "cue": "chain_rattle",
@@ -4190,11 +4943,14 @@
   "prompt": "heavy iron chains rattling and being pulled taut, metal links clanking",
   "target": "heavy chains rattling",
   "tags": [],
+  "sha": "f622ea421a1abe55beb630455cb04f35704325cd",
+  "local": false,
   "sec": 2.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -5.9,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/chain_rattle/chain_rattle_r4_audioldm2_ep6.wav"
  },
  {
   "cue": "concrete_bars",
@@ -4208,11 +4964,14 @@
   "tags": [
    "impact"
   ],
+  "sha": "a6f776bf7c0bea323934a45c3f489ddcff4b2d6a",
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -24.9,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/concrete_bars/concrete_bars_r1_audioldm2_ep6.wav"
  },
  {
   "cue": "concrete_bars",
@@ -4226,11 +4985,14 @@
   "tags": [
    "impact"
   ],
+  "sha": "d40cfc4fef789defa78cfe7532eb22475b79384b",
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -30.3,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/concrete_bars/concrete_bars_r2_audioldm2_ep6.wav"
  },
  {
   "cue": "concrete_bars",
@@ -4244,11 +5006,14 @@
   "tags": [
    "impact"
   ],
+  "sha": "e846f17f79abc07b23992cef13534757a87ca9e7",
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -19.0,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/concrete_bars/concrete_bars_r3_audioldm2_ep6.wav"
  },
  {
   "cue": "concrete_bars",
@@ -4262,11 +5027,14 @@
   "tags": [
    "impact"
   ],
+  "sha": "ec3dc34e6802b4b9b424fe4590d0e415ae2a88b0",
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -29.6,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/concrete_bars/concrete_bars_r4_audioldm2_ep6.wav"
  },
  {
   "cue": "court_room",
@@ -4282,11 +5050,14 @@
    "material",
    "tonal"
   ],
+  "sha": "4eeb4542be8d901c424bb57c3e52e91efad52b5c",
+  "local": false,
   "sec": 6.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -25.2,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/court_room/court_room_r1_audioldm2_ep6.wav"
  },
  {
   "cue": "court_room",
@@ -4302,11 +5073,14 @@
    "material",
    "tonal"
   ],
+  "sha": "c92b326a5996fcbcd5e64b70fc8c1c0267615097",
+  "local": false,
   "sec": 6.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -16.9,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/court_room/court_room_r2_audioldm2_ep6.wav"
  },
  {
   "cue": "court_room",
@@ -4322,11 +5096,14 @@
    "material",
    "tonal"
   ],
+  "sha": "dfba5d28b547d90b18e63ba0a4f6b7095bc81161",
+  "local": false,
   "sec": 6.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -17.3,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/court_room/court_room_r3_audioldm2_ep6.wav"
  },
  {
   "cue": "court_room",
@@ -4342,11 +5119,14 @@
    "material",
    "tonal"
   ],
+  "sha": "76b153c5f9e27002000aa8fd57be0ed20bb3c1e9",
+  "local": false,
   "sec": 6.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -22.8,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/court_room/court_room_r4_audioldm2_ep6.wav"
  },
  {
   "cue": "crane_lift",
@@ -4360,11 +5140,14 @@
   "tags": [
    "mechanical"
   ],
+  "sha": "3adfd21ea1ef15c67ee0cf20b9eb96d81fd5b3e1",
+  "local": false,
   "sec": 4.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -13.5,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/crane_lift/crane_lift_r1_audioldm2_ep6.wav"
  },
  {
   "cue": "crane_lift",
@@ -4378,11 +5161,14 @@
   "tags": [
    "mechanical"
   ],
+  "sha": "dc50616cecccd40da8e34ef5573b35f0abc2f070",
+  "local": false,
   "sec": 4.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -15.3,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/crane_lift/crane_lift_r2_audioldm2_ep6.wav"
  },
  {
   "cue": "crane_lift",
@@ -4396,11 +5182,14 @@
   "tags": [
    "mechanical"
   ],
+  "sha": "4644462d2e02d4110bf41c2eef6479b9aafc85a6",
+  "local": false,
   "sec": 4.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -12.4,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/crane_lift/crane_lift_r3_audioldm2_ep6.wav"
  },
  {
   "cue": "crane_lift",
@@ -4414,11 +5203,14 @@
   "tags": [
    "mechanical"
   ],
+  "sha": "a5158891a8491694a10037a902f63f2e447b2e88",
+  "local": false,
   "sec": 4.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -17.7,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/crane_lift/crane_lift_r4_audioldm2_ep6.wav"
  },
  {
   "cue": "gavel_metal",
@@ -4432,11 +5224,14 @@
   "tags": [
    "impact"
   ],
+  "sha": "5b273710d998f02ff3846f851a0d5576f32ca4df",
+  "local": false,
   "sec": 1.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -27.1,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/gavel_metal/gavel_metal_r1_audioldm2_ep6.wav"
  },
  {
   "cue": "gavel_metal",
@@ -4450,11 +5245,14 @@
   "tags": [
    "impact"
   ],
+  "sha": "47af5f2f5faa3b7e06902365a80f591f6e9defc1",
+  "local": false,
   "sec": 1.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -24.0,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/gavel_metal/gavel_metal_r2_audioldm2_ep6.wav"
  },
  {
   "cue": "gavel_metal",
@@ -4468,11 +5266,14 @@
   "tags": [
    "impact"
   ],
+  "sha": "ce54a60b8a5e8aefde04c959661e044fcecc2388",
+  "local": false,
   "sec": 1.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -23.7,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/gavel_metal/gavel_metal_r3_audioldm2_ep6.wav"
  },
  {
   "cue": "gavel_metal",
@@ -4486,11 +5287,14 @@
   "tags": [
    "impact"
   ],
+  "sha": "2d6942d7142e3156fd286b456b90839478d2319d",
+  "local": false,
   "sec": 1.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -21.4,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/gavel_metal/gavel_metal_r4_audioldm2_ep6.wav"
  },
  {
   "cue": "giant_lock",
@@ -4505,11 +5309,14 @@
    "impact",
    "mechanical"
   ],
+  "sha": "7e818cd559cebabaad4f2053b011391f1ba07ce7",
+  "local": false,
   "sec": 2.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -18.5,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/giant_lock/giant_lock_r1_audioldm2_ep6.wav"
  },
  {
   "cue": "giant_lock",
@@ -4524,11 +5331,14 @@
    "impact",
    "mechanical"
   ],
+  "sha": "f12680d75314411253267f5d93a7b1389692ee6f",
+  "local": false,
   "sec": 2.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -17.5,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/giant_lock/giant_lock_r2_audioldm2_ep6.wav"
  },
  {
   "cue": "giant_lock",
@@ -4543,11 +5353,14 @@
    "impact",
    "mechanical"
   ],
+  "sha": "5ea2e914c336cbd0038be849aa67e64c8139c5f0",
+  "local": false,
   "sec": 2.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -15.6,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/giant_lock/giant_lock_r3_audioldm2_ep6.wav"
  },
  {
   "cue": "giant_lock",
@@ -4562,11 +5375,14 @@
    "impact",
    "mechanical"
   ],
+  "sha": "4cc884a610b36dbb7352f5f0c948ee3a3235a1ef",
+  "local": false,
   "sec": 2.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -11.4,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/giant_lock/giant_lock_r4_audioldm2_ep6.wav"
  },
  {
   "cue": "heli_hover",
@@ -4578,11 +5394,14 @@
   "prompt": "a helicopter hovering overhead, rotor blades thumping loudly",
   "target": "a helicopter hovering",
   "tags": [],
+  "sha": "006d2c27766f47fe94e5880238d56925fddec27b",
+  "local": false,
   "sec": 6.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -17.9,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/heli_hover/heli_hover_r1_audioldm2_ep6.wav"
  },
  {
   "cue": "heli_hover",
@@ -4594,11 +5413,14 @@
   "prompt": "a helicopter hovering overhead, rotor blades thumping loudly",
   "target": "a helicopter hovering",
   "tags": [],
+  "sha": "40ec09856a653d82f657e8db32e1e858a64c28c5",
+  "local": false,
   "sec": 6.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -14.1,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/heli_hover/heli_hover_r2_audioldm2_ep6.wav"
  },
  {
   "cue": "heli_hover",
@@ -4610,11 +5432,14 @@
   "prompt": "a helicopter hovering overhead, rotor blades thumping loudly",
   "target": "a helicopter hovering",
   "tags": [],
+  "sha": "3891cf15f8855f6bc175b05fc464a6ed4fc63c98",
+  "local": false,
   "sec": 6.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -16.5,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/heli_hover/heli_hover_r3_audioldm2_ep6.wav"
  },
  {
   "cue": "heli_hover",
@@ -4626,11 +5451,14 @@
   "prompt": "a helicopter hovering overhead, rotor blades thumping loudly",
   "target": "a helicopter hovering",
   "tags": [],
+  "sha": "1e4bfef78cb4874d4528037a43833cfdf4ba21da",
+  "local": false,
   "sec": 6.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -16.4,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/heli_hover/heli_hover_r4_audioldm2_ep6.wav"
  },
  {
   "cue": "knee_crack",
@@ -4644,11 +5472,14 @@
   "tags": [
    "cartoon"
   ],
+  "sha": "bfabe9e16755da0a8c8a1287895eafa4643288d3",
+  "local": false,
   "sec": 1.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -15.9,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/knee_crack/knee_crack_r1_audioldm2_ep6.wav"
  },
  {
   "cue": "knee_crack",
@@ -4662,11 +5493,14 @@
   "tags": [
    "cartoon"
   ],
+  "sha": "ac07912c594fef78bc9c66fed25dbe90ea9b6288",
+  "local": false,
   "sec": 1.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -24.1,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/knee_crack/knee_crack_r2_audioldm2_ep6.wav"
  },
  {
   "cue": "knee_crack",
@@ -4680,11 +5514,14 @@
   "tags": [
    "cartoon"
   ],
+  "sha": "2889dfa0191ae360aaf42da19d69bfa365cb1e27",
+  "local": false,
   "sec": 1.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -6.1,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/knee_crack/knee_crack_r3_audioldm2_ep6.wav"
  },
  {
   "cue": "knee_crack",
@@ -4698,11 +5535,14 @@
   "tags": [
    "cartoon"
   ],
+  "sha": "dfd11b8c479fe52883e2434403b44a0a9e1be4ca",
+  "local": false,
   "sec": 1.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -28.5,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/knee_crack/knee_crack_r4_audioldm2_ep6.wav"
  },
  {
   "cue": "mosquito_swarm",
@@ -4716,11 +5556,14 @@
   "tags": [
    "nature"
   ],
+  "sha": "8b5686728c56ac1534a5bd5439576cf44355b6a5",
+  "local": false,
   "sec": 6.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -14.4,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/mosquito_swarm/mosquito_swarm_r1_audioldm2_ep6.wav"
  },
  {
   "cue": "mosquito_swarm",
@@ -4734,11 +5577,14 @@
   "tags": [
    "nature"
   ],
+  "sha": "e64b9ecf35a3d96857fc7ce80bda9be05c102c1d",
+  "local": false,
   "sec": 6.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -14.1,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/mosquito_swarm/mosquito_swarm_r2_audioldm2_ep6.wav"
  },
  {
   "cue": "mosquito_swarm",
@@ -4752,11 +5598,14 @@
   "tags": [
    "nature"
   ],
+  "sha": "2552dc2f7e2d99540778aae6c7d232bf184c638b",
+  "local": false,
   "sec": 6.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -13.8,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/mosquito_swarm/mosquito_swarm_r3_audioldm2_ep6.wav"
  },
  {
   "cue": "mosquito_swarm",
@@ -4770,11 +5619,14 @@
   "tags": [
    "nature"
   ],
+  "sha": "b7aa99799e33ec4d04f007c854fe2a4918f6414f",
+  "local": false,
   "sec": 6.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -16.6,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/mosquito_swarm/mosquito_swarm_r4_audioldm2_ep6.wav"
  },
  {
   "cue": "outdoor_prison",
@@ -4789,11 +5641,14 @@
    "ambience",
    "nature"
   ],
+  "sha": "84c783167783b9a74a6f2b3ffb08056cc0f08534",
+  "local": false,
   "sec": 6.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -13.3,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/outdoor_prison/outdoor_prison_r1_audioldm2_ep6.wav"
  },
  {
   "cue": "outdoor_prison",
@@ -4808,11 +5663,14 @@
    "ambience",
    "nature"
   ],
+  "sha": "a89cf096cf585fb48c85cbe6c52313ec36f92293",
+  "local": false,
   "sec": 6.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -15.0,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/outdoor_prison/outdoor_prison_r2_audioldm2_ep6.wav"
  },
  {
   "cue": "outdoor_prison",
@@ -4827,11 +5685,14 @@
    "ambience",
    "nature"
   ],
+  "sha": "58e7cbf940cca1bcb290f85e389302354a46f673",
+  "local": false,
   "sec": 6.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -15.6,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/outdoor_prison/outdoor_prison_r3_audioldm2_ep6.wav"
  },
  {
   "cue": "outdoor_prison",
@@ -4846,11 +5707,14 @@
    "ambience",
    "nature"
   ],
+  "sha": "e2a8a08e126f5daa8950b121438e87a221fefcc7",
+  "local": false,
   "sec": 6.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -24.2,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/outdoor_prison/outdoor_prison_r4_audioldm2_ep6.wav"
  },
  {
   "cue": "panting",
@@ -4865,11 +5729,14 @@
    "footsteps",
    "voice"
   ],
+  "sha": "249c4c0faea2a701155041efb192deecbaf759bd",
+  "local": false,
   "sec": 3.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -29.7,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/panting/panting_r1_audioldm2_ep6.wav"
  },
  {
   "cue": "panting",
@@ -4884,11 +5751,14 @@
    "footsteps",
    "voice"
   ],
+  "sha": "484a45ba84ca024fd3ce442c3891c24c41a74f28",
+  "local": false,
   "sec": 3.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -18.5,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/panting/panting_r2_audioldm2_ep6.wav"
  },
  {
   "cue": "panting",
@@ -4903,11 +5773,14 @@
    "footsteps",
    "voice"
   ],
+  "sha": "2d10c357b9cb2873cb746116ce27e54dac5ab66a",
+  "local": false,
   "sec": 3.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -16.7,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/panting/panting_r3_audioldm2_ep6.wav"
  },
  {
   "cue": "panting",
@@ -4922,11 +5795,14 @@
    "footsteps",
    "voice"
   ],
+  "sha": "6a6e9d3c14289adb0f51fafaa80f41c27d5e42d8",
+  "local": false,
   "sec": 3.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -14.9,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/panting/panting_r4_audioldm2_ep6.wav"
  },
  {
   "cue": "police_sirens",
@@ -4941,11 +5817,14 @@
    "ambience",
    "police"
   ],
+  "sha": "5251e07d8b566a5d5f9206785c7789ed4a52e075",
+  "local": false,
   "sec": 6.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -14.1,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/police_sirens/police_sirens_r1_audioldm2_ep6.wav"
  },
  {
   "cue": "police_sirens",
@@ -4960,11 +5839,14 @@
    "ambience",
    "police"
   ],
+  "sha": "342116de5ccd8993f3b1f97732e0cbbd5087503c",
+  "local": false,
   "sec": 6.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -13.9,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/police_sirens/police_sirens_r2_audioldm2_ep6.wav"
  },
  {
   "cue": "police_sirens",
@@ -4979,11 +5861,14 @@
    "ambience",
    "police"
   ],
+  "sha": "22f28a3d6cce7c85bc9cce5d72e9f3e85cf6a87f",
+  "local": false,
   "sec": 6.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -12.2,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/police_sirens/police_sirens_r3_audioldm2_ep6.wav"
  },
  {
   "cue": "police_sirens",
@@ -4998,11 +5883,14 @@
    "ambience",
    "police"
   ],
+  "sha": "fa894495e86e0397e2d1940b9c20dbac1e978a77",
+  "local": false,
   "sec": 6.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -13.9,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/police_sirens/police_sirens_r4_audioldm2_ep6.wav"
  },
  {
   "cue": "rubber_stamp",
@@ -5017,11 +5905,14 @@
    "impact",
    "material"
   ],
+  "sha": "bb878777519ec10ae70daa4d96e401095833c697",
+  "local": false,
   "sec": 1.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -5.9,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/rubber_stamp/rubber_stamp_r1_audioldm2_ep6.wav"
  },
  {
   "cue": "rubber_stamp",
@@ -5036,11 +5927,14 @@
    "impact",
    "material"
   ],
+  "sha": "38b648c0fc6c84ca190654829c3d0c47bc050291",
+  "local": false,
   "sec": 1.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -5.7,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/rubber_stamp/rubber_stamp_r2_audioldm2_ep6.wav"
  },
  {
   "cue": "rubber_stamp",
@@ -5055,11 +5949,14 @@
    "impact",
    "material"
   ],
+  "sha": "cf374e22997eccfcd64ecfed1f3f42b9067d352c",
+  "local": false,
   "sec": 1.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -23.2,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/rubber_stamp/rubber_stamp_r3_audioldm2_ep6.wav"
  },
  {
   "cue": "rubber_stamp",
@@ -5074,11 +5971,14 @@
    "impact",
    "material"
   ],
+  "sha": "3fbd07406eb0385e5efe0b52e5783b638087f9a2",
+  "local": false,
   "sec": 1.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -24.2,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/rubber_stamp/rubber_stamp_r4_audioldm2_ep6.wav"
  },
  {
   "cue": "rubble_fall",
@@ -5090,11 +5990,14 @@
   "prompt": "bricks and concrete rubble crumbling and falling to the ground",
   "target": "bricks and rubble falling",
   "tags": [],
+  "sha": "00be017024c90d7479f5580e36c14a73dc2f2cd1",
+  "local": false,
   "sec": 3.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -22.6,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/rubble_fall/rubble_fall_r1_audioldm2_ep6.wav"
  },
  {
   "cue": "rubble_fall",
@@ -5106,11 +6009,14 @@
   "prompt": "bricks and concrete rubble crumbling and falling to the ground",
   "target": "bricks and rubble falling",
   "tags": [],
+  "sha": "6009b79f30097e77ef29afe908a919b3b560bf23",
+  "local": false,
   "sec": 3.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -32.5,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/rubble_fall/rubble_fall_r2_audioldm2_ep6.wav"
  },
  {
   "cue": "rubble_fall",
@@ -5122,11 +6028,14 @@
   "prompt": "bricks and concrete rubble crumbling and falling to the ground",
   "target": "bricks and rubble falling",
   "tags": [],
+  "sha": "c0c50ec3717c46d3721186d6c78b52f20132f2f3",
+  "local": false,
   "sec": 3.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -27.1,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/rubble_fall/rubble_fall_r3_audioldm2_ep6.wav"
  },
  {
   "cue": "rubble_fall",
@@ -5138,11 +6047,14 @@
   "prompt": "bricks and concrete rubble crumbling and falling to the ground",
   "target": "bricks and rubble falling",
   "tags": [],
+  "sha": "d6f5987c10d0c3ad548934ba4db84dcce55a1e3b",
+  "local": false,
   "sec": 3.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -27.4,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/rubble_fall/rubble_fall_r4_audioldm2_ep6.wav"
  },
  {
   "cue": "saw_concrete",
@@ -5154,11 +6066,14 @@
   "prompt": "a powerful circular saw cutting through a concrete pillar, high pitched grinding screech with sparks",
   "target": "a circular saw cutting concrete",
   "tags": [],
+  "sha": "eae2e82b854d8f91f76f5f30ae7582e81783d2d7",
+  "local": false,
   "sec": 4.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -13.8,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/saw_concrete/saw_concrete_r1_audioldm2_ep6.wav"
  },
  {
   "cue": "saw_concrete",
@@ -5170,11 +6085,14 @@
   "prompt": "a powerful circular saw cutting through a concrete pillar, high pitched grinding screech with sparks",
   "target": "a circular saw cutting concrete",
   "tags": [],
+  "sha": "db0647f5fce6249396838275bbc2a4870736d67f",
+  "local": false,
   "sec": 4.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -13.8,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/saw_concrete/saw_concrete_r2_audioldm2_ep6.wav"
  },
  {
   "cue": "saw_concrete",
@@ -5186,11 +6104,14 @@
   "prompt": "a powerful circular saw cutting through a concrete pillar, high pitched grinding screech with sparks",
   "target": "a circular saw cutting concrete",
   "tags": [],
+  "sha": "8186964c5160d3d61bd3891fb1d0dfcee0fc84e4",
+  "local": false,
   "sec": 4.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -13.6,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/saw_concrete/saw_concrete_r3_audioldm2_ep6.wav"
  },
  {
   "cue": "saw_concrete",
@@ -5202,11 +6123,14 @@
   "prompt": "a powerful circular saw cutting through a concrete pillar, high pitched grinding screech with sparks",
   "target": "a circular saw cutting concrete",
   "tags": [],
+  "sha": "0bcbe121e4cc9b22428f1433ab6a76a45762a89e",
+  "local": false,
   "sec": 4.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -15.6,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/saw_concrete/saw_concrete_r4_audioldm2_ep6.wav"
  },
  {
   "cue": "throat_clear",
@@ -5218,11 +6142,14 @@
   "prompt": "an old man clearing his throat, ahem, close up",
   "target": "a man clearing his throat",
   "tags": [],
+  "sha": "26f7356432baccc91ac01f6ecc7894958c35e1e0",
+  "local": false,
   "sec": 1.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -21.5,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/throat_clear/throat_clear_r1_audioldm2_ep6.wav"
  },
  {
   "cue": "throat_clear",
@@ -5234,11 +6161,14 @@
   "prompt": "an old man clearing his throat, ahem, close up",
   "target": "a man clearing his throat",
   "tags": [],
+  "sha": "bfd5981d8c855a6573ceac8fd36802b15aef5968",
+  "local": false,
   "sec": 1.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -11.0,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/throat_clear/throat_clear_r2_audioldm2_ep6.wav"
  },
  {
   "cue": "throat_clear",
@@ -5250,11 +6180,14 @@
   "prompt": "an old man clearing his throat, ahem, close up",
   "target": "a man clearing his throat",
   "tags": [],
+  "sha": "1b034ae6c8c8f03a884d68fe2eba42c67b6d7eca",
+  "local": false,
   "sec": 1.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -16.6,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/throat_clear/throat_clear_r3_audioldm2_ep6.wav"
  },
  {
   "cue": "throat_clear",
@@ -5266,11 +6199,14 @@
   "prompt": "an old man clearing his throat, ahem, close up",
   "target": "a man clearing his throat",
   "tags": [],
+  "sha": "4ad0daf2994d8c1da6536cfc9d46dc4598a752bb",
+  "local": false,
   "sec": 1.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -22.7,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/throat_clear/throat_clear_r4_audioldm2_ep6.wav"
  },
  {
   "cue": "tired_steps",
@@ -5285,11 +6221,14 @@
    "footsteps",
    "voice"
   ],
+  "sha": "146ded179ed305f2857aeccb2e77ac09760bc68a",
+  "local": false,
   "sec": 4.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -29.7,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/tired_steps/tired_steps_r1_audioldm2_ep6.wav"
  },
  {
   "cue": "tired_steps",
@@ -5304,11 +6243,14 @@
    "footsteps",
    "voice"
   ],
+  "sha": "5d3f44c0410923440b5506614650060b4886fc71",
+  "local": false,
   "sec": 4.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -23.8,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/tired_steps/tired_steps_r2_audioldm2_ep6.wav"
  },
  {
   "cue": "tired_steps",
@@ -5323,11 +6265,14 @@
    "footsteps",
    "voice"
   ],
+  "sha": "6a04295bf92997fe24d9cf331377c6f4d6ddbe23",
+  "local": false,
   "sec": 4.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -21.6,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/tired_steps/tired_steps_r3_audioldm2_ep6.wav"
  },
  {
   "cue": "tired_steps",
@@ -5342,11 +6287,14 @@
    "footsteps",
    "voice"
   ],
+  "sha": "82d22ab34a59f914d6d08d40d1dd0137526ca6d7",
+  "local": false,
   "sec": 4.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -27.8,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/tired_steps/tired_steps_r4_audioldm2_ep6.wav"
  },
  {
   "cue": "traffic_bed",
@@ -5360,11 +6308,14 @@
   "tags": [
    "ambience"
   ],
+  "sha": "4b6c96a7d51257c9ecb1a4908a960a5b5e545d45",
+  "local": false,
   "sec": 8.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -15.6,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/traffic_bed/traffic_bed_r1_audioldm2_ep6.wav"
  },
  {
   "cue": "traffic_bed",
@@ -5378,11 +6329,14 @@
   "tags": [
    "ambience"
   ],
+  "sha": "8637dd0fd08528ef9db023866a132ecd55ef8b39",
+  "local": false,
   "sec": 8.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -17.7,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/traffic_bed/traffic_bed_r2_audioldm2_ep6.wav"
  },
  {
   "cue": "traffic_bed",
@@ -5396,11 +6350,14 @@
   "tags": [
    "ambience"
   ],
+  "sha": "4ca2c6c606a180d71fee82e85457895d49e2f5c3",
+  "local": false,
   "sec": 8.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -18.3,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/traffic_bed/traffic_bed_r3_audioldm2_ep6.wav"
  },
  {
   "cue": "traffic_bed",
@@ -5414,11 +6371,14 @@
   "tags": [
    "ambience"
   ],
+  "sha": "13e39a603091f68867b62fbe4fbd73d60b3780a1",
+  "local": false,
   "sec": 8.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -16.3,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/traffic_bed/traffic_bed_r4_audioldm2_ep6.wav"
  },
  {
   "cue": "traffic_cones",
@@ -5433,11 +6393,14 @@
    "ambience",
    "impact"
   ],
+  "sha": "39d5a95b4055fca83376495f5056251986ed4cce",
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -32.3,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/traffic_cones/traffic_cones_r1_audioldm2_ep6.wav"
  },
  {
   "cue": "traffic_cones",
@@ -5452,11 +6415,14 @@
    "ambience",
    "impact"
   ],
+  "sha": "69b7462e338f09a3e447e97e9ccfd1322bec786a",
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -25.0,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/traffic_cones/traffic_cones_r2_audioldm2_ep6.wav"
  },
  {
   "cue": "traffic_cones",
@@ -5471,11 +6437,14 @@
    "ambience",
    "impact"
   ],
+  "sha": "2e9ef1662e73b926fb72d3020ebcaf1bc40c70ff",
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -29.4,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/traffic_cones/traffic_cones_r3_audioldm2_ep6.wav"
  },
  {
   "cue": "traffic_cones",
@@ -5490,11 +6459,14 @@
    "ambience",
    "impact"
   ],
+  "sha": "bdcbbde53d00389f295d71316eab578741c2bb01",
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -22.2,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/traffic_cones/traffic_cones_r4_audioldm2_ep6.wav"
  },
  {
   "cue": "wind_gap",
@@ -5508,11 +6480,14 @@
   "tags": [
    "ambience"
   ],
+  "sha": "c598441bc022b7431efb348244bc2c67e8fdb384",
+  "local": false,
   "sec": 3.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -25.4,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/wind_gap/wind_gap_r1_audioldm2_ep6.wav"
  },
  {
   "cue": "wind_gap",
@@ -5526,11 +6501,14 @@
   "tags": [
    "ambience"
   ],
+  "sha": "0838ca50ae8a906b97f043a2dad91eca4cdc450b",
+  "local": false,
   "sec": 3.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -12.5,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/wind_gap/wind_gap_r2_audioldm2_ep6.wav"
  },
  {
   "cue": "wind_gap",
@@ -5544,11 +6522,14 @@
   "tags": [
    "ambience"
   ],
+  "sha": "33cfe027416073ad76f61227719cfd1ab3287ebd",
+  "local": false,
   "sec": 3.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -14.9,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/wind_gap/wind_gap_r3_audioldm2_ep6.wav"
  },
  {
   "cue": "wind_gap",
@@ -5562,11 +6543,14 @@
   "tags": [
    "ambience"
   ],
+  "sha": "0418ea0476aff7602aa201d121c1663ba8c77a75",
+  "local": false,
   "sec": 3.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -16.3,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/wind_gap/wind_gap_r4_audioldm2_ep6.wav"
  },
  {
   "cue": "car_door_open",
@@ -5582,11 +6566,14 @@
    "impact",
    "mechanical"
   ],
+  "sha": "f209d602aff9db7decfc0f59989fe7949239ae4c",
+  "local": false,
   "sec": 1.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -13.9,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/car_door_open/car_door_open_r1_audioldm2_ep7.wav"
  },
  {
   "cue": "car_door_open",
@@ -5602,11 +6589,14 @@
    "impact",
    "mechanical"
   ],
+  "sha": "6d1cd319a9b2472d84d8437aa015bbf0a6b4c3da",
+  "local": false,
   "sec": 1.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -19.9,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/car_door_open/car_door_open_r2_audioldm2_ep7.wav"
  },
  {
   "cue": "car_door_open",
@@ -5622,11 +6612,14 @@
    "impact",
    "mechanical"
   ],
+  "sha": "fedfd59d097e86a7cb9da2b71707e9c282587071",
+  "local": false,
   "sec": 1.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -19.3,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/car_door_open/car_door_open_r3_audioldm2_ep7.wav"
  },
  {
   "cue": "car_door_open",
@@ -5642,11 +6635,14 @@
    "impact",
    "mechanical"
   ],
+  "sha": "621a72d3e78381039051618127afc63ca543a334",
+  "local": false,
   "sec": 1.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -13.5,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/car_door_open/car_door_open_r4_audioldm2_ep7.wav"
  },
  {
   "cue": "cell_door",
@@ -5661,11 +6657,14 @@
    "impact",
    "mechanical"
   ],
+  "sha": "e513e1244ec4238413e64eb9c0612c9259f5b56c",
+  "local": false,
   "sec": 2.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -18.3,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/cell_door/cell_door_r1_audioldm2_ep5.wav"
  },
  {
   "cue": "cell_door",
@@ -5680,11 +6679,14 @@
    "impact",
    "mechanical"
   ],
+  "sha": "02a63a7d85fb4e9c2bf8e1534d1ae90f7572572c",
+  "local": false,
   "sec": 2.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -21.4,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/cell_door/cell_door_r2_audioldm2_ep5.wav"
  },
  {
   "cue": "cell_door",
@@ -5699,11 +6701,14 @@
    "impact",
    "mechanical"
   ],
+  "sha": "5d95132c678a30b9ced600ac1503babaac61420b",
+  "local": false,
   "sec": 2.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -15.7,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/cell_door/cell_door_r3_audioldm2_ep5.wav"
  },
  {
   "cue": "cell_door",
@@ -5718,11 +6723,14 @@
    "impact",
    "mechanical"
   ],
+  "sha": "7b9a4529e9d8c8d6ccaae9f657849fa7edd46519",
+  "local": false,
   "sec": 2.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -11.2,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/cell_door/cell_door_r4_audioldm2_ep5.wav"
  },
  {
   "cue": "cell_hum",
@@ -5736,11 +6744,14 @@
   "tags": [
    "ambience"
   ],
+  "sha": "7b55d6136ce2dd168555f585126e9813c80854ea",
+  "local": false,
   "sec": 6.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -16.8,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/cell_hum/cell_hum_r1_audioldm2_ep7.wav"
  },
  {
   "cue": "cell_hum",
@@ -5754,11 +6765,14 @@
   "tags": [
    "ambience"
   ],
+  "sha": "925adf2c381ac48888818350208d3cac4cd98b92",
+  "local": false,
   "sec": 6.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -15.0,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/cell_hum/cell_hum_r2_audioldm2_ep7.wav"
  },
  {
   "cue": "cell_hum",
@@ -5772,11 +6786,14 @@
   "tags": [
    "ambience"
   ],
+  "sha": "5e4108b728025c38073113756d506a3c625c969c",
+  "local": false,
   "sec": 6.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -15.5,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/cell_hum/cell_hum_r3_audioldm2_ep7.wav"
  },
  {
   "cue": "cell_hum",
@@ -5790,11 +6807,14 @@
   "tags": [
    "ambience"
   ],
+  "sha": "46e65c84a824a770bbea98dbb7c173fd7cd6a84e",
+  "local": false,
   "sec": 6.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -12.5,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/cell_hum/cell_hum_r4_audioldm2_ep7.wav"
  },
  {
   "cue": "court_room",
@@ -5810,11 +6830,14 @@
    "material",
    "tonal"
   ],
+  "sha": "4eeb4542be8d901c424bb57c3e52e91efad52b5c",
+  "local": false,
   "sec": 6.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -25.2,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/court_room/court_room_r1_audioldm2_ep6.wav"
  },
  {
   "cue": "court_room",
@@ -5830,11 +6853,14 @@
    "material",
    "tonal"
   ],
+  "sha": "c92b326a5996fcbcd5e64b70fc8c1c0267615097",
+  "local": false,
   "sec": 6.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -16.9,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/court_room/court_room_r2_audioldm2_ep6.wav"
  },
  {
   "cue": "court_room",
@@ -5850,11 +6876,14 @@
    "material",
    "tonal"
   ],
+  "sha": "dfba5d28b547d90b18e63ba0a4f6b7095bc81161",
+  "local": false,
   "sec": 6.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -17.3,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/court_room/court_room_r3_audioldm2_ep6.wav"
  },
  {
   "cue": "court_room",
@@ -5870,11 +6899,14 @@
    "material",
    "tonal"
   ],
+  "sha": "76b153c5f9e27002000aa8fd57be0ed20bb3c1e9",
+  "local": false,
   "sec": 6.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -22.8,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/court_room/court_room_r4_audioldm2_ep6.wav"
  },
  {
   "cue": "dial_beeps",
@@ -5888,11 +6920,14 @@
   "tags": [
    "mechanical"
   ],
+  "sha": "e09c7c20947cdbee1551b5bb048cbaeb17867dd7",
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -26.3,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/dial_beeps/dial_beeps_r1_audioldm2_ep7.wav"
  },
  {
   "cue": "dial_beeps",
@@ -5906,11 +6941,14 @@
   "tags": [
    "mechanical"
   ],
+  "sha": "5bacdde333638d7aca4bb618433dc681b91d58d2",
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -18.1,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/dial_beeps/dial_beeps_r2_audioldm2_ep7.wav"
  },
  {
   "cue": "dial_beeps",
@@ -5924,11 +6962,14 @@
   "tags": [
    "mechanical"
   ],
+  "sha": "9caeb8c65e091bae8da22db43cb8fd32c11cd2e3",
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -15.3,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/dial_beeps/dial_beeps_r3_audioldm2_ep7.wav"
  },
  {
   "cue": "dial_beeps",
@@ -5942,11 +6983,14 @@
   "tags": [
    "mechanical"
   ],
+  "sha": "45edc5bed42746b59b9b423254ed154eb223d2c8",
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -7.5,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/dial_beeps/dial_beeps_r4_audioldm2_ep7.wav"
  },
  {
   "cue": "electric_crackle",
@@ -5958,11 +7002,14 @@
   "prompt": "high voltage electricity crackling and buzzing, sparking arcs, tesla coil",
   "target": "electricity crackling and buzzing",
   "tags": [],
+  "sha": "6df5a04b0ede47baf88b8fe333544098434098b4",
+  "local": false,
   "sec": 4.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -13.0,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/electric_crackle/electric_crackle_r1_audioldm2_ep7.wav"
  },
  {
   "cue": "electric_crackle",
@@ -5974,11 +7021,14 @@
   "prompt": "high voltage electricity crackling and buzzing, sparking arcs, tesla coil",
   "target": "electricity crackling and buzzing",
   "tags": [],
+  "sha": "658b9eac394331623de9b89ebf66d50df03ce020",
+  "local": false,
   "sec": 4.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -17.0,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/electric_crackle/electric_crackle_r2_audioldm2_ep7.wav"
  },
  {
   "cue": "electric_crackle",
@@ -5990,11 +7040,14 @@
   "prompt": "high voltage electricity crackling and buzzing, sparking arcs, tesla coil",
   "target": "electricity crackling and buzzing",
   "tags": [],
+  "sha": "1edf8767fcfa14893fbee416750fb7caa23eec10",
+  "local": false,
   "sec": 4.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -18.6,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/electric_crackle/electric_crackle_r3_audioldm2_ep7.wav"
  },
  {
   "cue": "electric_crackle",
@@ -6006,11 +7059,14 @@
   "prompt": "high voltage electricity crackling and buzzing, sparking arcs, tesla coil",
   "target": "electricity crackling and buzzing",
   "tags": [],
+  "sha": "a446e13750d9c0125a7842b80e559d6000a25065",
+  "local": false,
   "sec": 4.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -13.3,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/electric_crackle/electric_crackle_r4_audioldm2_ep7.wav"
  },
  {
   "cue": "electric_pop",
@@ -6024,11 +7080,14 @@
   "tags": [
    "cartoon"
   ],
+  "sha": "659ebcde2bd6b399554af8bc3cc45648ff9f2646",
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -12.4,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/electric_pop/electric_pop_r1_audioldm2_ep7.wav"
  },
  {
   "cue": "electric_pop",
@@ -6042,11 +7101,14 @@
   "tags": [
    "cartoon"
   ],
+  "sha": "e1b22c8779de4f4eccbb1392846736c1bede4271",
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -29.6,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/electric_pop/electric_pop_r2_audioldm2_ep7.wav"
  },
  {
   "cue": "electric_pop",
@@ -6060,11 +7122,14 @@
   "tags": [
    "cartoon"
   ],
+  "sha": "6e52cf698c0a8d9ab017724aafde37e1cd7f2d2c",
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -25.3,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/electric_pop/electric_pop_r3_audioldm2_ep7.wav"
  },
  {
   "cue": "electric_pop",
@@ -6078,11 +7143,14 @@
   "tags": [
    "cartoon"
   ],
+  "sha": "6c33fe30955d4c6f44a06ef8e3234d44d75947e5",
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -26.5,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/electric_pop/electric_pop_r4_audioldm2_ep7.wav"
  },
  {
   "cue": "electric_zip",
@@ -6096,11 +7164,14 @@
   "tags": [
    "mechanical"
   ],
+  "sha": "ea14438aa9a978e784e08169cca0ea82a21b26fc",
+  "local": false,
   "sec": 1.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -19.4,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/electric_zip/electric_zip_r1_audioldm2_ep7.wav"
  },
  {
   "cue": "electric_zip",
@@ -6114,11 +7185,14 @@
   "tags": [
    "mechanical"
   ],
+  "sha": "ee73a54318eb41ed9f3a22ba3193d33377e2c8cb",
+  "local": false,
   "sec": 1.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -7.2,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/electric_zip/electric_zip_r2_audioldm2_ep7.wav"
  },
  {
   "cue": "electric_zip",
@@ -6132,11 +7206,14 @@
   "tags": [
    "mechanical"
   ],
+  "sha": "d1bc63eb750183635179a04eba5d4a12f6779ace",
+  "local": false,
   "sec": 1.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -6.5,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/electric_zip/electric_zip_r3_audioldm2_ep7.wav"
  },
  {
   "cue": "electric_zip",
@@ -6150,11 +7227,14 @@
   "tags": [
    "mechanical"
   ],
+  "sha": "bb019a8295438258798f4a4bcdfc99ffd1bc4b0d",
+  "local": false,
   "sec": 1.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -16.9,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/electric_zip/electric_zip_r4_audioldm2_ep7.wav"
  },
  {
   "cue": "engine_rev",
@@ -6169,11 +7249,14 @@
    "mechanical",
    "police"
   ],
+  "sha": "2d4016c34383ac2792e8fbcd63822a3371883f31",
+  "local": false,
   "sec": 3.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -15.7,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/engine_rev/engine_rev_r1_audioldm2_ep7.wav"
  },
  {
   "cue": "engine_rev",
@@ -6188,11 +7271,14 @@
    "mechanical",
    "police"
   ],
+  "sha": "88f283c525b16d82d0d27f7ba745c86ed70dedcd",
+  "local": false,
   "sec": 3.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -14.6,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/engine_rev/engine_rev_r2_audioldm2_ep7.wav"
  },
  {
   "cue": "engine_rev",
@@ -6207,11 +7293,14 @@
    "mechanical",
    "police"
   ],
+  "sha": "6c7abbe19a487d1f87d5828b4496afa81f9892bd",
+  "local": false,
   "sec": 3.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -8.3,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/engine_rev/engine_rev_r3_audioldm2_ep7.wav"
  },
  {
   "cue": "engine_rev",
@@ -6226,11 +7315,14 @@
    "mechanical",
    "police"
   ],
+  "sha": "798eb98f4abace8c6bfe82aa8458901e75ac0bc7",
+  "local": false,
   "sec": 3.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -12.8,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/engine_rev/engine_rev_r4_audioldm2_ep7.wav"
  },
  {
   "cue": "fan_spinup",
@@ -6245,11 +7337,14 @@
    "mechanical",
    "voice"
   ],
+  "sha": "27ce9b50f6777dc89bb249c13a55a380e0e25b42",
+  "local": false,
   "sec": 4.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -14.9,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/fan_spinup/fan_spinup_r1_audioldm2_ep7.wav"
  },
  {
   "cue": "fan_spinup",
@@ -6264,11 +7359,14 @@
    "mechanical",
    "voice"
   ],
+  "sha": "5bff85cbd6473ebfce798261090f21961420ce99",
+  "local": false,
   "sec": 4.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -12.4,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/fan_spinup/fan_spinup_r2_audioldm2_ep7.wav"
  },
  {
   "cue": "fan_spinup",
@@ -6283,11 +7381,14 @@
    "mechanical",
    "voice"
   ],
+  "sha": "b0a61f9db23ac27a71ba41102dbe7ce838c0a17a",
+  "local": false,
   "sec": 4.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -14.1,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/fan_spinup/fan_spinup_r3_audioldm2_ep7.wav"
  },
  {
   "cue": "fan_spinup",
@@ -6302,11 +7403,14 @@
    "mechanical",
    "voice"
   ],
+  "sha": "b005fb9317ea7e5823065c3cb01c6c179d6e6df8",
+  "local": false,
   "sec": 4.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -14.5,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/fan_spinup/fan_spinup_r4_audioldm2_ep7.wav"
  },
  {
   "cue": "gavel_rubber",
@@ -6321,11 +7425,14 @@
    "impact",
    "material"
   ],
+  "sha": "da641789ff7963ab2d7fa50a056e7bbd210feaeb",
+  "local": false,
   "sec": 1.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -23.4,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/gavel_rubber/gavel_rubber_r1_audioldm2_ep7.wav"
  },
  {
   "cue": "gavel_rubber",
@@ -6340,11 +7447,14 @@
    "impact",
    "material"
   ],
+  "sha": "c5f3625361d8b8aaa9dd7a6cbda259bcaaf46723",
+  "local": false,
   "sec": 1.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -28.6,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/gavel_rubber/gavel_rubber_r2_audioldm2_ep7.wav"
  },
  {
   "cue": "gavel_rubber",
@@ -6359,11 +7469,14 @@
    "impact",
    "material"
   ],
+  "sha": "1891dd62a05b5fea78f57049439a069916ef3a1b",
+  "local": false,
   "sec": 1.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -24.5,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/gavel_rubber/gavel_rubber_r3_audioldm2_ep7.wav"
  },
  {
   "cue": "gavel_rubber",
@@ -6378,11 +7491,14 @@
    "impact",
    "material"
   ],
+  "sha": "8c004c9a997b4185518476a8573933669ba3b96e",
+  "local": false,
   "sec": 1.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -17.4,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/gavel_rubber/gavel_rubber_r4_audioldm2_ep7.wav"
  },
  {
   "cue": "glass_burst",
@@ -6396,11 +7512,14 @@
   "tags": [
    "ambience"
   ],
+  "sha": "23d90b32e6d3d58545cdc7a8e05106e1eb9aaf34",
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -26.0,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/glass_burst/glass_burst_r1_audioldm2_ep7.wav"
  },
  {
   "cue": "glass_burst",
@@ -6414,11 +7533,14 @@
   "tags": [
    "ambience"
   ],
+  "sha": "d1e820ac972c0b5342888186863cb2bb2888a41f",
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -11.4,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/glass_burst/glass_burst_r2_audioldm2_ep7.wav"
  },
  {
   "cue": "glass_burst",
@@ -6432,11 +7554,14 @@
   "tags": [
    "ambience"
   ],
+  "sha": "2fa7af743c510d8d8ab67b595a71df2899c81b20",
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -13.5,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/glass_burst/glass_burst_r3_audioldm2_ep7.wav"
  },
  {
   "cue": "glass_burst",
@@ -6450,11 +7575,14 @@
   "tags": [
    "ambience"
   ],
+  "sha": "68b482feb5349e91b9946826aa84891a2ea59d71",
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -18.9,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/glass_burst/glass_burst_r4_audioldm2_ep7.wav"
  },
  {
   "cue": "handcuffs",
@@ -6469,11 +7597,14 @@
    "mechanical",
    "police"
   ],
+  "sha": "763644c1aa3748a502790bf3db75f28368f6b838",
+  "local": false,
   "sec": 1.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -11.9,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/handcuffs/handcuffs_r1_audioldm2_ep7.wav"
  },
  {
   "cue": "handcuffs",
@@ -6488,11 +7619,14 @@
    "mechanical",
    "police"
   ],
+  "sha": "4442d4ccd77e90491a16111b3d776534d7f12959",
+  "local": false,
   "sec": 1.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -21.6,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/handcuffs/handcuffs_r2_audioldm2_ep7.wav"
  },
  {
   "cue": "handcuffs",
@@ -6507,11 +7641,14 @@
    "mechanical",
    "police"
   ],
+  "sha": "1627af2a005bf5b4e7986627d1901cc7c0d3cca2",
+  "local": false,
   "sec": 1.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -24.0,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/handcuffs/handcuffs_r3_audioldm2_ep7.wav"
  },
  {
   "cue": "handcuffs",
@@ -6526,11 +7663,14 @@
    "mechanical",
    "police"
   ],
+  "sha": "3be3565644d5b5ef942bef1cb5b9032f64701e81",
+  "local": false,
   "sec": 1.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -15.3,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/handcuffs/handcuffs_r4_audioldm2_ep7.wav"
  },
  {
   "cue": "high_wind_rain",
@@ -6544,11 +7684,14 @@
   "tags": [
    "ambience"
   ],
+  "sha": "61b15e586f98cd3c5cfa38d968064c3f66e7cb39",
+  "local": false,
   "sec": 8.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -15.8,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/high_wind_rain/high_wind_rain_r1_audioldm2_ep7.wav"
  },
  {
   "cue": "high_wind_rain",
@@ -6562,11 +7705,14 @@
   "tags": [
    "ambience"
   ],
+  "sha": "358699eef08881efdd4e7a708bc96d2f41e223cd",
+  "local": false,
   "sec": 8.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -19.0,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/high_wind_rain/high_wind_rain_r2_audioldm2_ep7.wav"
  },
  {
   "cue": "high_wind_rain",
@@ -6580,11 +7726,14 @@
   "tags": [
    "ambience"
   ],
+  "sha": "399e2aaf83752111127bb1fe3829b20f8c9f6a39",
+  "local": false,
   "sec": 8.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -19.3,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/high_wind_rain/high_wind_rain_r3_audioldm2_ep7.wav"
  },
  {
   "cue": "high_wind_rain",
@@ -6598,11 +7747,14 @@
   "tags": [
    "ambience"
   ],
+  "sha": "c99dbe1be294df1564a7f45d337da444c5b41ae6",
+  "local": false,
   "sec": 8.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -16.3,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/high_wind_rain/high_wind_rain_r4_audioldm2_ep7.wav"
  },
  {
   "cue": "jet_takeoff",
@@ -6617,11 +7769,14 @@
    "cartoon",
    "mechanical"
   ],
+  "sha": "c26dbdd39a63d6781da7fd5a09dc4d471b38be69",
+  "local": false,
   "sec": 4.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -14.3,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/jet_takeoff/jet_takeoff_r1_audioldm2_ep7.wav"
  },
  {
   "cue": "jet_takeoff",
@@ -6636,11 +7791,14 @@
    "cartoon",
    "mechanical"
   ],
+  "sha": "07282392a08b83d6ca6da8c2abec9cdbabab7eb7",
+  "local": false,
   "sec": 4.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -15.7,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/jet_takeoff/jet_takeoff_r2_audioldm2_ep7.wav"
  },
  {
   "cue": "jet_takeoff",
@@ -6655,11 +7813,14 @@
    "cartoon",
    "mechanical"
   ],
+  "sha": "e7df2cb0ec7d8545528641ce0338a5746b5929ce",
+  "local": false,
   "sec": 4.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -15.3,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/jet_takeoff/jet_takeoff_r3_audioldm2_ep7.wav"
  },
  {
   "cue": "jet_takeoff",
@@ -6674,11 +7835,14 @@
    "cartoon",
    "mechanical"
   ],
+  "sha": "227afb147b1687603521d4ce0ea6f7a1ac9acdbd",
+  "local": false,
   "sec": 4.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -13.4,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/jet_takeoff/jet_takeoff_r4_audioldm2_ep7.wav"
  },
  {
   "cue": "mic_blast",
@@ -6693,11 +7857,14 @@
    "impact",
    "nature"
   ],
+  "sha": "54fd818931b0d5013ab63b8f53eadd28c05fdc08",
+  "local": false,
   "sec": 2.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -11.1,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/mic_blast/mic_blast_r1_audioldm2_ep7.wav"
  },
  {
   "cue": "mic_blast",
@@ -6712,11 +7879,14 @@
    "impact",
    "nature"
   ],
+  "sha": "08c235a57d17d301a1d2f35cb9e0015331774dbb",
+  "local": false,
   "sec": 2.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -3.6,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/mic_blast/mic_blast_r2_audioldm2_ep7.wav"
  },
  {
   "cue": "mic_blast",
@@ -6731,11 +7901,14 @@
    "impact",
    "nature"
   ],
+  "sha": "6206d9ba9820356755d034c55b89bc4a0ca9e493",
+  "local": false,
   "sec": 2.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -7.8,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/mic_blast/mic_blast_r3_audioldm2_ep7.wav"
  },
  {
   "cue": "mic_blast",
@@ -6750,11 +7923,14 @@
    "impact",
    "nature"
   ],
+  "sha": "09644e5f34c4cd2dadc1305e8975fb482774047a",
+  "local": false,
   "sec": 2.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -17.2,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/mic_blast/mic_blast_r4_audioldm2_ep7.wav"
  },
  {
   "cue": "mic_feedback",
@@ -6766,11 +7942,14 @@
   "prompt": "microphone feedback squeal, short high pitched whine",
   "target": "microphone feedback squeal",
   "tags": [],
+  "sha": "8a3d03f499bcb339dfd4fba7fc96c7e20d540d64",
+  "local": false,
   "sec": 1.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -22.6,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/mic_feedback/mic_feedback_r1_audioldm2_ep7.wav"
  },
  {
   "cue": "mic_feedback",
@@ -6782,11 +7961,14 @@
   "prompt": "microphone feedback squeal, short high pitched whine",
   "target": "microphone feedback squeal",
   "tags": [],
+  "sha": "88af358bc2be66f404e668a53e353b6ca74c4e58",
+  "local": false,
   "sec": 1.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -14.2,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/mic_feedback/mic_feedback_r2_audioldm2_ep7.wav"
  },
  {
   "cue": "mic_feedback",
@@ -6798,11 +7980,14 @@
   "prompt": "microphone feedback squeal, short high pitched whine",
   "target": "microphone feedback squeal",
   "tags": [],
+  "sha": "4a9e2366966c186e73903916fd2eda0d9e8aed0b",
+  "local": false,
   "sec": 1.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -20.7,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/mic_feedback/mic_feedback_r3_audioldm2_ep7.wav"
  },
  {
   "cue": "mic_feedback",
@@ -6814,11 +7999,14 @@
   "prompt": "microphone feedback squeal, short high pitched whine",
   "target": "microphone feedback squeal",
   "tags": [],
+  "sha": "93502029a829cdeb2a9ee253f37664453e3540ef",
+  "local": false,
   "sec": 1.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -17.1,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/mic_feedback/mic_feedback_r4_audioldm2_ep7.wav"
  },
  {
   "cue": "mouse_clicks",
@@ -6832,11 +8020,14 @@
   "tags": [
    "mechanical"
   ],
+  "sha": "eb4e14d678429d507dadc05c85e1bef3cee8f864",
+  "local": false,
   "sec": 3.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -29.3,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/mouse_clicks/mouse_clicks_r1_audioldm2_ep7.wav"
  },
  {
   "cue": "mouse_clicks",
@@ -6850,11 +8041,14 @@
   "tags": [
    "mechanical"
   ],
+  "sha": "0311741def64b3a7d93dff6319c1b6a9f45bfdd6",
+  "local": false,
   "sec": 3.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -25.5,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/mouse_clicks/mouse_clicks_r2_audioldm2_ep7.wav"
  },
  {
   "cue": "mouse_clicks",
@@ -6868,11 +8062,14 @@
   "tags": [
    "mechanical"
   ],
+  "sha": "99e7dad3ffb72ab102e63da91b11e12b55a0dbad",
+  "local": false,
   "sec": 3.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -28.6,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/mouse_clicks/mouse_clicks_r3_audioldm2_ep7.wav"
  },
  {
   "cue": "mouse_clicks",
@@ -6886,11 +8083,14 @@
   "tags": [
    "mechanical"
   ],
+  "sha": "80c03e64bba8ae0d93f42d087a6dd15011b7555e",
+  "local": false,
   "sec": 3.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -28.2,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/mouse_clicks/mouse_clicks_r4_audioldm2_ep7.wav"
  },
  {
   "cue": "national_alarm",
@@ -6904,11 +8104,14 @@
   "tags": [
    "police"
   ],
+  "sha": "5aca8cd978229f7a9f158571c91755fe50a9908f",
+  "local": false,
   "sec": 8.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -13.8,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/national_alarm/national_alarm_r1_audioldm2_ep7.wav"
  },
  {
   "cue": "national_alarm",
@@ -6922,11 +8125,14 @@
   "tags": [
    "police"
   ],
+  "sha": "83092a723957576fc7e642aa5100ef2cb23acf05",
+  "local": false,
   "sec": 8.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -10.2,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/national_alarm/national_alarm_r2_audioldm2_ep7.wav"
  },
  {
   "cue": "national_alarm",
@@ -6940,11 +8146,14 @@
   "tags": [
    "police"
   ],
+  "sha": "817c7b6c27c3dd9cab5546596ba61915fbe26b75",
+  "local": false,
   "sec": 8.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -12.8,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/national_alarm/national_alarm_r3_audioldm2_ep7.wav"
  },
  {
   "cue": "national_alarm",
@@ -6958,11 +8167,14 @@
   "tags": [
    "police"
   ],
+  "sha": "42edc549b77ff1eb7cf5d899865581672783419e",
+  "local": false,
   "sec": 8.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -12.8,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/national_alarm/national_alarm_r4_audioldm2_ep7.wav"
  },
  {
   "cue": "night_street_rain",
@@ -6976,11 +8188,14 @@
   "tags": [
    "ambience"
   ],
+  "sha": "b0335e27d4b17e64515548a9f471c7168b2c2202",
+  "local": false,
   "sec": 8.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -28.0,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/night_street_rain/night_street_rain_r1_audioldm2_ep7.wav"
  },
  {
   "cue": "night_street_rain",
@@ -6994,11 +8209,14 @@
   "tags": [
    "ambience"
   ],
+  "sha": "fe6a01998ca2e34f93651e8309b42e8a1c06ad72",
+  "local": false,
   "sec": 8.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -19.2,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/night_street_rain/night_street_rain_r2_audioldm2_ep7.wav"
  },
  {
   "cue": "night_street_rain",
@@ -7012,11 +8230,14 @@
   "tags": [
    "ambience"
   ],
+  "sha": "106b2c93c0e7d850b6409dd12cd71ca4cbed7048",
+  "local": false,
   "sec": 8.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -20.7,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/night_street_rain/night_street_rain_r3_audioldm2_ep7.wav"
  },
  {
   "cue": "night_street_rain",
@@ -7030,11 +8251,14 @@
   "tags": [
    "ambience"
   ],
+  "sha": "18f57d5239e67620b73403ba56c566f4ff6ccdd4",
+  "local": false,
   "sec": 8.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -19.4,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/night_street_rain/night_street_rain_r4_audioldm2_ep7.wav"
  },
  {
   "cue": "phone_alert",
@@ -7050,11 +8274,14 @@
    "mechanical",
    "tonal"
   ],
+  "sha": "a392d6a96f5bb5b998617171324ac2cbeb8663bb",
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -10.1,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/phone_alert/phone_alert_r1_audioldm2_ep7.wav"
  },
  {
   "cue": "phone_alert",
@@ -7070,11 +8297,14 @@
    "mechanical",
    "tonal"
   ],
+  "sha": "ddad122e3c93b36645478abc70509d0a09a2cda4",
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -27.9,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/phone_alert/phone_alert_r2_audioldm2_ep7.wav"
  },
  {
   "cue": "phone_alert",
@@ -7090,11 +8320,14 @@
    "mechanical",
    "tonal"
   ],
+  "sha": "8d96ab18636ecff9df387c9849e1bc7b937c13a3",
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -18.4,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/phone_alert/phone_alert_r3_audioldm2_ep7.wav"
  },
  {
   "cue": "phone_alert",
@@ -7110,11 +8343,14 @@
    "mechanical",
    "tonal"
   ],
+  "sha": "6e9344e409dbf41e6f5693467c0e9dcca489230d",
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -7.0,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/phone_alert/phone_alert_r4_audioldm2_ep7.wav"
  },
  {
   "cue": "police_sirens",
@@ -7129,11 +8365,14 @@
    "ambience",
    "police"
   ],
+  "sha": "52c04fdb7018292b1016fa8ec9257981fa182b7f",
+  "local": false,
   "sec": 6.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -13.9,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/police_sirens/police_sirens_r1_audioldm2_ep7.wav"
  },
  {
   "cue": "police_sirens",
@@ -7148,11 +8387,14 @@
    "ambience",
    "police"
   ],
+  "sha": "5a2568991475de2a9480081072aaa37ec182a167",
+  "local": false,
   "sec": 6.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -13.6,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/police_sirens/police_sirens_r2_audioldm2_ep7.wav"
  },
  {
   "cue": "police_sirens",
@@ -7167,11 +8409,14 @@
    "ambience",
    "police"
   ],
+  "sha": "597ff10d8647c12f5390d7cbff29cd727d7775ed",
+  "local": false,
   "sec": 6.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -13.6,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/police_sirens/police_sirens_r3_audioldm2_ep7.wav"
  },
  {
   "cue": "police_sirens",
@@ -7186,11 +8431,14 @@
    "ambience",
    "police"
   ],
+  "sha": "2a862462a4b225a1a951033ede55167f81e2ff86",
+  "local": false,
   "sec": 6.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -15.1,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/police_sirens/police_sirens_r4_audioldm2_ep7.wav"
  },
  {
   "cue": "rain_window",
@@ -7205,11 +8453,14 @@
    "ambience",
    "nature"
   ],
+  "sha": "4a492a8738988cd317550cf50a54a9e092b6cff9",
+  "local": false,
   "sec": 8.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -18.2,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/rain_window/rain_window_r1_audioldm2_ep7.wav"
  },
  {
   "cue": "rain_window",
@@ -7224,11 +8475,14 @@
    "ambience",
    "nature"
   ],
+  "sha": "12475a9fbd6eaf9782c0ba6acab1ea83734cd3a9",
+  "local": false,
   "sec": 8.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -20.5,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/rain_window/rain_window_r2_audioldm2_ep7.wav"
  },
  {
   "cue": "rain_window",
@@ -7243,11 +8497,14 @@
    "ambience",
    "nature"
   ],
+  "sha": "b17c6eb52bee5b5d64050d7a4ec0fd83a01bc389",
+  "local": false,
   "sec": 8.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -20.3,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/rain_window/rain_window_r3_audioldm2_ep7.wav"
  },
  {
   "cue": "rain_window",
@@ -7262,11 +8519,14 @@
    "ambience",
    "nature"
   ],
+  "sha": "e372811242f4d593fcfe9fe1d411d126f5a6545b",
+  "local": false,
   "sec": 8.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -26.1,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/rain_window/rain_window_r4_audioldm2_ep7.wav"
  },
  {
   "cue": "room_hum",
@@ -7281,11 +8541,14 @@
    "ambience",
    "tonal"
   ],
+  "sha": "26c7db9f88d1a56106ca2b38a8bb32ea27acfee0",
+  "local": false,
   "sec": 6.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -12.3,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/room_hum/room_hum_r1_audioldm2_ep7.wav"
  },
  {
   "cue": "room_hum",
@@ -7300,11 +8563,14 @@
    "ambience",
    "tonal"
   ],
+  "sha": "1b10dafa35e573661a86e9c1a3a5c25f05f8ea9f",
+  "local": false,
   "sec": 6.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -14.0,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/room_hum/room_hum_r2_audioldm2_ep7.wav"
  },
  {
   "cue": "room_hum",
@@ -7319,11 +8585,14 @@
    "ambience",
    "tonal"
   ],
+  "sha": "189b387f95584c8d0015cdb0fb05ac5061aceee6",
+  "local": false,
   "sec": 6.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -12.2,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/room_hum/room_hum_r3_audioldm2_ep7.wav"
  },
  {
   "cue": "room_hum",
@@ -7338,11 +8607,14 @@
    "ambience",
    "tonal"
   ],
+  "sha": "dfc61da6798226877a90d4c213731390dd30ea55",
+  "local": false,
   "sec": 6.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -16.2,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/room_hum/room_hum_r4_audioldm2_ep7.wav"
  },
  {
   "cue": "thunder_close",
@@ -7356,11 +8628,14 @@
   "tags": [
    "nature"
   ],
+  "sha": "652f3432434abd4e4c67b8ad958ae82cbe0f6bea",
+  "local": false,
   "sec": 4.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -17.4,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/thunder_close/thunder_close_r1_audioldm2_ep7.wav"
  },
  {
   "cue": "thunder_close",
@@ -7374,11 +8649,14 @@
   "tags": [
    "nature"
   ],
+  "sha": "38479f4e0687c55cd8081f8e1c05a63a4cf70dd3",
+  "local": false,
   "sec": 4.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -19.0,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/thunder_close/thunder_close_r2_audioldm2_ep7.wav"
  },
  {
   "cue": "thunder_close",
@@ -7392,11 +8670,14 @@
   "tags": [
    "nature"
   ],
+  "sha": "70c5724e84720b59097b7db5890f7dd560810d97",
+  "local": false,
   "sec": 4.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -21.7,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/thunder_close/thunder_close_r3_audioldm2_ep7.wav"
  },
  {
   "cue": "thunder_close",
@@ -7410,11 +8691,14 @@
   "tags": [
    "nature"
   ],
+  "sha": "02ed917c2466169d938a9f7d1d2675510a4395f0",
+  "local": false,
   "sec": 4.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -22.8,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/thunder_close/thunder_close_r4_audioldm2_ep7.wav"
  },
  {
   "cue": "tyre_squeal",
@@ -7426,11 +8710,14 @@
   "prompt": "car tyres spinning and screeching on wet asphalt, burnout",
   "target": "tyres screeching",
   "tags": [],
+  "sha": "3ae7d1249af51fe7fb0cdc615ef7c06e0a9c524d",
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -24.3,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/tyre_squeal/tyre_squeal_r1_audioldm2_ep7.wav"
  },
  {
   "cue": "tyre_squeal",
@@ -7442,11 +8729,14 @@
   "prompt": "car tyres spinning and screeching on wet asphalt, burnout",
   "target": "tyres screeching",
   "tags": [],
+  "sha": "da25582a5b24292a0fbb918a013af21eed5a21a4",
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -25.2,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/tyre_squeal/tyre_squeal_r2_audioldm2_ep7.wav"
  },
  {
   "cue": "tyre_squeal",
@@ -7458,11 +8748,14 @@
   "prompt": "car tyres spinning and screeching on wet asphalt, burnout",
   "target": "tyres screeching",
   "tags": [],
+  "sha": "14622945a4270af344435bfb27bfedcbb0b0366d",
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -17.6,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/tyre_squeal/tyre_squeal_r3_audioldm2_ep7.wav"
  },
  {
   "cue": "tyre_squeal",
@@ -7474,11 +8767,14 @@
   "prompt": "car tyres spinning and screeching on wet asphalt, burnout",
   "target": "tyres screeching",
   "tags": [],
+  "sha": "d078896bdc96ba7043db889287cde388e8fd367e",
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -19.4,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/tyre_squeal/tyre_squeal_r4_audioldm2_ep7.wav"
  },
  {
   "cue": "whoosh_cloud",
@@ -7492,11 +8788,14 @@
   "tags": [
    "cartoon"
   ],
+  "sha": "c615207b52c257c19bba6b54ccaf047d4ff31988",
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -19.8,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/whoosh_cloud/whoosh_cloud_r1_audioldm2_ep7.wav"
  },
  {
   "cue": "whoosh_cloud",
@@ -7510,11 +8809,14 @@
   "tags": [
    "cartoon"
   ],
+  "sha": "b441b476108a820769a902eac92eb722da0e6e73",
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -16.5,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/whoosh_cloud/whoosh_cloud_r2_audioldm2_ep7.wav"
  },
  {
   "cue": "whoosh_cloud",
@@ -7528,11 +8830,14 @@
   "tags": [
    "cartoon"
   ],
+  "sha": "e1f93d1b87fd7728f8f815312c2ac74910ba36a9",
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -23.0,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/whoosh_cloud/whoosh_cloud_r3_audioldm2_ep7.wav"
  },
  {
   "cue": "whoosh_cloud",
@@ -7546,11 +8851,14 @@
   "tags": [
    "cartoon"
   ],
+  "sha": "8ee5fbb1b418390730f51d517d2cc2ead2046474",
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -21.7,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/whoosh_cloud/whoosh_cloud_r4_audioldm2_ep7.wav"
  },
  {
   "cue": "wind_blast",
@@ -7564,11 +8872,14 @@
   "tags": [
    "ambience"
   ],
+  "sha": "692b07bfea67b90b8f98be99eaad12ade3aa5190",
+  "local": false,
   "sec": 3.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -14.4,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/wind_blast/wind_blast_r1_audioldm2_ep7.wav"
  },
  {
   "cue": "wind_blast",
@@ -7582,11 +8893,14 @@
   "tags": [
    "ambience"
   ],
+  "sha": "8446e79d0911347c6bea4e7054d02727787cca19",
+  "local": false,
   "sec": 3.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -17.5,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/wind_blast/wind_blast_r2_audioldm2_ep7.wav"
  },
  {
   "cue": "wind_blast",
@@ -7600,11 +8914,14 @@
   "tags": [
    "ambience"
   ],
+  "sha": "cce62a4a7d50069757c60307ee9de94f09c26fcd",
+  "local": false,
   "sec": 3.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -14.3,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/wind_blast/wind_blast_r3_audioldm2_ep7.wav"
  },
  {
   "cue": "wind_blast",
@@ -7618,11 +8935,14 @@
   "tags": [
    "ambience"
   ],
+  "sha": "3c360a97006059dcc049ebcc2b69eba465dccb63",
+  "local": false,
   "sec": 3.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -12.7,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/wind_blast/wind_blast_r4_audioldm2_ep7.wav"
  },
  {
   "cue": "wind_high",
@@ -7636,11 +8956,14 @@
   "tags": [
    "ambience"
   ],
+  "sha": "ed423baa1459dc57c5bd80643505065e280e858d",
+  "local": false,
   "sec": 8.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -15.7,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/wind_high/wind_high_r1_audioldm2_ep7.wav"
  },
  {
   "cue": "wind_high",
@@ -7654,11 +8977,14 @@
   "tags": [
    "ambience"
   ],
+  "sha": "613ad6ecde74142c06e170baec6f0f994d264f21",
+  "local": false,
   "sec": 8.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -14.3,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/wind_high/wind_high_r2_audioldm2_ep7.wav"
  },
  {
   "cue": "wind_high",
@@ -7672,11 +8998,14 @@
   "tags": [
    "ambience"
   ],
+  "sha": "c1f4410bc88babc949262090307382399cb77be4",
+  "local": false,
   "sec": 8.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -15.1,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/wind_high/wind_high_r3_audioldm2_ep7.wav"
  },
  {
   "cue": "wind_high",
@@ -7690,11 +9019,14 @@
   "tags": [
    "ambience"
   ],
+  "sha": "20008813c47fd6bb526ef16d412a6755f3dad6c1",
+  "local": false,
   "sec": 8.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -15.9,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/wind_high/wind_high_r4_audioldm2_ep7.wav"
  },
  {
   "cue": "broom_sweep",
@@ -7706,11 +9038,14 @@
   "prompt": "a straw broom sweeping a concrete pavement, slow strokes foley",
   "target": "a broom sweeping a pavement",
   "tags": [],
+  "sha": "55344fe35f13e800ee95c8ec7d4f691c50b07fb1",
+  "local": false,
   "sec": 3.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -25.7,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/broom_sweep/broom_sweep_r1_audioldm2_ep8.wav"
  },
  {
   "cue": "broom_sweep",
@@ -7722,11 +9057,14 @@
   "prompt": "a straw broom sweeping a concrete pavement, slow strokes foley",
   "target": "a broom sweeping a pavement",
   "tags": [],
+  "sha": "48abe61027a2df2a95c1fe6dca3e4b93830553b1",
+  "local": false,
   "sec": 3.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -20.0,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/broom_sweep/broom_sweep_r2_audioldm2_ep8.wav"
  },
  {
   "cue": "broom_sweep",
@@ -7738,11 +9076,14 @@
   "prompt": "a straw broom sweeping a concrete pavement, slow strokes foley",
   "target": "a broom sweeping a pavement",
   "tags": [],
+  "sha": "70c77962f7835b1d075995a57f8ae6f299c79d8d",
+  "local": false,
   "sec": 3.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -20.3,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/broom_sweep/broom_sweep_r3_audioldm2_ep8.wav"
  },
  {
   "cue": "broom_sweep",
@@ -7754,11 +9095,14 @@
   "prompt": "a straw broom sweeping a concrete pavement, slow strokes foley",
   "target": "a broom sweeping a pavement",
   "tags": [],
+  "sha": "477f6b3f971c001561012a59c5c7a472c08f38ff",
+  "local": false,
   "sec": 3.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -13.5,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/broom_sweep/broom_sweep_r4_audioldm2_ep8.wav"
  },
  {
   "cue": "floodlight_hum",
@@ -7773,11 +9117,14 @@
    "ambience",
    "mechanical"
   ],
+  "sha": "a64d1fb4ef46207f684f493e413a8903298d3351",
+  "local": false,
   "sec": 6.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -10.3,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/floodlight_hum/floodlight_hum_r1_audioldm2_ep8.wav"
  },
  {
   "cue": "floodlight_hum",
@@ -7792,11 +9139,14 @@
    "ambience",
    "mechanical"
   ],
+  "sha": "981941e18482640f7e14f7b81b3118a7c25d8831",
+  "local": false,
   "sec": 6.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -12.0,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/floodlight_hum/floodlight_hum_r2_audioldm2_ep8.wav"
  },
  {
   "cue": "floodlight_hum",
@@ -7811,11 +9161,14 @@
    "ambience",
    "mechanical"
   ],
+  "sha": "775c71a78b631f94a5f6a5572442571d138fb7ab",
+  "local": false,
   "sec": 6.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -11.8,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/floodlight_hum/floodlight_hum_r3_audioldm2_ep8.wav"
  },
  {
   "cue": "floodlight_hum",
@@ -7830,11 +9183,14 @@
    "ambience",
    "mechanical"
   ],
+  "sha": "d6621e1569ff4e4d9dca92eda33471593c402bb7",
+  "local": false,
   "sec": 6.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -12.4,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/floodlight_hum/floodlight_hum_r4_audioldm2_ep8.wav"
  },
  {
   "cue": "mask_cough",
@@ -7848,11 +9204,14 @@
   "tags": [
    "voice"
   ],
+  "sha": "fff21b02f8e1207b325e306902c47b683d21696f",
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -15.3,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/mask_cough/mask_cough_r1_audioldm2_ep8.wav"
  },
  {
   "cue": "mask_cough",
@@ -7866,11 +9225,14 @@
   "tags": [
    "voice"
   ],
+  "sha": "cc8c3e8b15d239b748fce8ee337216ed86e5c049",
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -21.7,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/mask_cough/mask_cough_r2_audioldm2_ep8.wav"
  },
  {
   "cue": "mask_cough",
@@ -7884,11 +9246,14 @@
   "tags": [
    "voice"
   ],
+  "sha": "e0e8a479ab23a83bf5c46dc037b02ec74a7b83d2",
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -9.1,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/mask_cough/mask_cough_r3_audioldm2_ep8.wav"
  },
  {
   "cue": "mask_cough",
@@ -7902,11 +9267,14 @@
   "tags": [
    "voice"
   ],
+  "sha": "17dd9cd932d8db7151883ed88fe42b42c3daee1d",
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -22.2,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/mask_cough/mask_cough_r4_audioldm2_ep8.wav"
  },
  {
   "cue": "noon_bell",
@@ -7920,11 +9288,14 @@
   "tags": [
    "tonal"
   ],
+  "sha": "3305931d8ccfa8e924720c0963572301d6265b36",
+  "local": false,
   "sec": 4.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -17.4,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/noon_bell/noon_bell_r1_audioldm2_ep8.wav"
  },
  {
   "cue": "noon_bell",
@@ -7938,11 +9309,14 @@
   "tags": [
    "tonal"
   ],
+  "sha": "da23d733bd264f2fa305bb1b2bb7dec46151bfc5",
+  "local": false,
   "sec": 4.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -17.9,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/noon_bell/noon_bell_r2_audioldm2_ep8.wav"
  },
  {
   "cue": "noon_bell",
@@ -7956,11 +9330,14 @@
   "tags": [
    "tonal"
   ],
+  "sha": "66154a5c35de16cd85b2f51aad34899db9b32339",
+  "local": false,
   "sec": 4.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -18.6,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/noon_bell/noon_bell_r3_audioldm2_ep8.wav"
  },
  {
   "cue": "noon_bell",
@@ -7974,11 +9351,14 @@
   "tags": [
    "tonal"
   ],
+  "sha": "246c66cddabdde62c7f334d6913b10d1801a4a85",
+  "local": false,
   "sec": 4.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -16.0,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/noon_bell/noon_bell_r4_audioldm2_ep8.wav"
  },
  {
   "cue": "noon_cicadas",
@@ -7992,11 +9372,14 @@
   "tags": [
    "ambience"
   ],
+  "sha": "a42020977b8d9ed79d71fa495c1f20859ae0def4",
+  "local": false,
   "sec": 8.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -13.5,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/noon_cicadas/noon_cicadas_r1_audioldm2_ep8.wav"
  },
  {
   "cue": "noon_cicadas",
@@ -8010,11 +9393,14 @@
   "tags": [
    "ambience"
   ],
+  "sha": "2a2efd50bc7994f7a5b499620df49da629187548",
+  "local": false,
   "sec": 8.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -14.5,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/noon_cicadas/noon_cicadas_r2_audioldm2_ep8.wav"
  },
  {
   "cue": "noon_cicadas",
@@ -8028,11 +9414,14 @@
   "tags": [
    "ambience"
   ],
+  "sha": "288e899bbd8d00b753b3866d9afba94b98103318",
+  "local": false,
   "sec": 8.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -12.9,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/noon_cicadas/noon_cicadas_r3_audioldm2_ep8.wav"
  },
  {
   "cue": "noon_cicadas",
@@ -8046,11 +9435,14 @@
   "tags": [
    "ambience"
   ],
+  "sha": "1c2fbeec7e54332ed78664247b6d594b7319cd73",
+  "local": false,
   "sec": 8.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -14.5,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/noon_cicadas/noon_cicadas_r4_audioldm2_ep8.wav"
  },
  {
   "cue": "rubber_flap",
@@ -8064,11 +9456,14 @@
   "tags": [
    "material"
   ],
+  "sha": "a40860027a2d22d88e9779821ad6d5d5e1802119",
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -28.5,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/rubber_flap/rubber_flap_r1_audioldm2_ep8.wav"
  },
  {
   "cue": "rubber_flap",
@@ -8082,11 +9477,14 @@
   "tags": [
    "material"
   ],
+  "sha": "143dcc94fe5159b9189dced92ac6f63def8e7200",
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -29.2,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/rubber_flap/rubber_flap_r2_audioldm2_ep8.wav"
  },
  {
   "cue": "rubber_flap",
@@ -8100,11 +9498,14 @@
   "tags": [
    "material"
   ],
+  "sha": "32379a038fab215345516409706192b831b4c28c",
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -25.7,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/rubber_flap/rubber_flap_r3_audioldm2_ep8.wav"
  },
  {
   "cue": "rubber_flap",
@@ -8118,11 +9519,14 @@
   "tags": [
    "material"
   ],
+  "sha": "294e87bf121f368363bd94b906f8c6d9291a7af7",
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -22.1,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/rubber_flap/rubber_flap_r4_audioldm2_ep8.wav"
  },
  {
   "cue": "rubber_shrink",
@@ -8137,11 +9541,14 @@
    "cartoon",
    "material"
   ],
+  "sha": "e8a823b26e5b6dc9d2c6e42916c86a2cbf10fb88",
+  "local": false,
   "sec": 1.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -4.8,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/rubber_shrink/rubber_shrink_r1_audioldm2_ep8.wav"
  },
  {
   "cue": "rubber_shrink",
@@ -8156,11 +9563,14 @@
    "cartoon",
    "material"
   ],
+  "sha": "43b552ce74ff5a5974528880f8a8fb790692e7a7",
+  "local": false,
   "sec": 1.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -14.7,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/rubber_shrink/rubber_shrink_r2_audioldm2_ep8.wav"
  },
  {
   "cue": "rubber_shrink",
@@ -8175,11 +9585,14 @@
    "cartoon",
    "material"
   ],
+  "sha": "e6eb122d347b87f77ed18f14c7ad0071165d3af6",
+  "local": false,
   "sec": 1.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -13.8,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/rubber_shrink/rubber_shrink_r3_audioldm2_ep8.wav"
  },
  {
   "cue": "rubber_shrink",
@@ -8194,11 +9607,14 @@
    "cartoon",
    "material"
   ],
+  "sha": "b3434cd7ae428f5a260f81166c4fa3ede20a514f",
+  "local": false,
   "sec": 1.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -7.3,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/rubber_shrink/rubber_shrink_r4_audioldm2_ep8.wav"
  },
  {
   "cue": "sheet_fold",
@@ -8212,11 +9628,14 @@
   "tags": [
    "material"
   ],
+  "sha": "65cd666ac3c760342bf9c20b7b4aeebf1a1bba11",
+  "local": false,
   "sec": 1.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -22.4,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/sheet_fold/sheet_fold_r1_audioldm2_ep8.wav"
  },
  {
   "cue": "sheet_fold",
@@ -8230,11 +9649,14 @@
   "tags": [
    "material"
   ],
+  "sha": "eb31e55c87affa7184abd39a41bc2bf42c5b00a9",
+  "local": false,
   "sec": 1.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -13.5,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/sheet_fold/sheet_fold_r2_audioldm2_ep8.wav"
  },
  {
   "cue": "sheet_fold",
@@ -8248,11 +9670,14 @@
   "tags": [
    "material"
   ],
+  "sha": "9144847dee136f36eb1d6c178909d5f36b8e6a34",
+  "local": false,
   "sec": 1.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -13.4,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/sheet_fold/sheet_fold_r3_audioldm2_ep8.wav"
  },
  {
   "cue": "sheet_fold",
@@ -8266,11 +9691,14 @@
   "tags": [
    "material"
   ],
+  "sha": "3258e22378103bc86d39eedb38d46be597346755",
+  "local": false,
   "sec": 1.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -13.6,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/sheet_fold/sheet_fold_r4_audioldm2_ep8.wav"
  },
  {
   "cue": "sizzle",
@@ -8285,11 +9713,14 @@
    "cartoon",
    "impact"
   ],
+  "sha": "0531983649d9ce9fcaa4456cf1d8e3dec020675f",
+  "local": false,
   "sec": 1.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -15.3,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/sizzle/sizzle_r1_audioldm2_ep8.wav"
  },
  {
   "cue": "sizzle",
@@ -8304,11 +9735,14 @@
    "cartoon",
    "impact"
   ],
+  "sha": "ca5851f8d16d5691e3aac9ea723610b04001c1fe",
+  "local": false,
   "sec": 1.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -20.0,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/sizzle/sizzle_r2_audioldm2_ep8.wav"
  },
  {
   "cue": "sizzle",
@@ -8323,11 +9757,14 @@
    "cartoon",
    "impact"
   ],
+  "sha": "9dee607aae576e812017d85a0ce0a3c41156cc41",
+  "local": false,
   "sec": 1.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -19.2,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/sizzle/sizzle_r3_audioldm2_ep8.wav"
  },
  {
   "cue": "sizzle",
@@ -8342,11 +9779,14 @@
    "cartoon",
    "impact"
   ],
+  "sha": "464bb2104f01c90bfa73ca4d6011d80d1b537d38",
+  "local": false,
   "sec": 1.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -26.2,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/sizzle/sizzle_r4_audioldm2_ep8.wav"
  },
  {
   "cue": "spotlight_on",
@@ -8362,11 +9802,14 @@
    "impact",
    "mechanical"
   ],
+  "sha": "44af988f2d88b63b4d828cc47eda09fe578e92dd",
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -17.3,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/spotlight_on/spotlight_on_r1_audioldm2_ep8.wav"
  },
  {
   "cue": "spotlight_on",
@@ -8382,11 +9825,14 @@
    "impact",
    "mechanical"
   ],
+  "sha": "606708cb9a7435ff8ba1bc89229a1ecd9531e3cd",
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -27.9,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/spotlight_on/spotlight_on_r2_audioldm2_ep8.wav"
  },
  {
   "cue": "spotlight_on",
@@ -8402,11 +9848,14 @@
    "impact",
    "mechanical"
   ],
+  "sha": "222e0490fa7dcefefa58c57345642c3e1dbf77db",
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -22.5,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/spotlight_on/spotlight_on_r3_audioldm2_ep8.wav"
  },
  {
   "cue": "spotlight_on",
@@ -8422,11 +9871,14 @@
    "impact",
    "mechanical"
   ],
+  "sha": "42e00c5962c58ccdf989f50f2a8fc27203b63f20",
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -27.0,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/spotlight_on/spotlight_on_r4_audioldm2_ep8.wav"
  },
  {
   "cue": "street_steps",
@@ -8441,11 +9893,14 @@
    "ambience",
    "footsteps"
   ],
+  "sha": "36bdfe040bb11918a499e00075bd09edbf9ae75d",
+  "local": false,
   "sec": 3.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -25.5,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/street_steps/street_steps_r1_audioldm2_ep8.wav"
  },
  {
   "cue": "street_steps",
@@ -8460,11 +9915,14 @@
    "ambience",
    "footsteps"
   ],
+  "sha": "34c5eecf8b4f55718231cd20dc6524893536d070",
+  "local": false,
   "sec": 3.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -27.0,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/street_steps/street_steps_r2_audioldm2_ep8.wav"
  },
  {
   "cue": "street_steps",
@@ -8479,11 +9937,14 @@
    "ambience",
    "footsteps"
   ],
+  "sha": "f9deb71968d5cac36938bc85237bbe6c96a7ef72",
+  "local": false,
   "sec": 3.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -27.9,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/street_steps/street_steps_r3_audioldm2_ep8.wav"
  },
  {
   "cue": "street_steps",
@@ -8498,11 +9959,14 @@
    "ambience",
    "footsteps"
   ],
+  "sha": "f14f358ec260a236c866fab3140ed40d86a55414",
+  "local": false,
   "sec": 3.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -25.0,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/street_steps/street_steps_r4_audioldm2_ep8.wav"
  },
  {
   "cue": "tape_peel",
@@ -8516,11 +9980,14 @@
   "tags": [
    "material"
   ],
+  "sha": "a231d2990df07e6523b3d28fd1cc1feac56ae340",
+  "local": false,
   "sec": 2.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -24.6,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/tape_peel/tape_peel_r1_audioldm2_ep8.wav"
  },
  {
   "cue": "tape_peel",
@@ -8534,11 +10001,14 @@
   "tags": [
    "material"
   ],
+  "sha": "662fd1fa0b0a9b974c17884a8bafe05ea33525ea",
+  "local": false,
   "sec": 2.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -26.9,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/tape_peel/tape_peel_r2_audioldm2_ep8.wav"
  },
  {
   "cue": "tape_peel",
@@ -8552,11 +10022,14 @@
   "tags": [
    "material"
   ],
+  "sha": "3c93df3fede41d820af257a5cda0632880b489b7",
+  "local": false,
   "sec": 2.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -12.8,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/tape_peel/tape_peel_r3_audioldm2_ep8.wav"
  },
  {
   "cue": "tape_peel",
@@ -8570,11 +10043,14 @@
   "tags": [
    "material"
   ],
+  "sha": "3610def4a1a6d70227ea8b1bb3a664c9301f2104",
+  "local": false,
   "sec": 2.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -19.9,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/tape_peel/tape_peel_r4_audioldm2_ep8.wav"
  },
  {
   "cue": "trombone_down",
@@ -8588,11 +10064,14 @@
   "tags": [
    "cartoon"
   ],
+  "sha": "24a4a9760eff9e48b38cb3d0f01f6d54e936b817",
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -16.4,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/trombone_down/trombone_down_r1_audioldm2_ep8.wav"
  },
  {
   "cue": "trombone_down",
@@ -8606,11 +10085,14 @@
   "tags": [
    "cartoon"
   ],
+  "sha": "cae247d58bc2d51594fea819ce7569ec9a151e84",
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -20.3,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/trombone_down/trombone_down_r2_audioldm2_ep8.wav"
  },
  {
   "cue": "trombone_down",
@@ -8624,11 +10106,14 @@
   "tags": [
    "cartoon"
   ],
+  "sha": "a1d59906c4e4290da4f6eb993a5eff701ab9370b",
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -18.6,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/trombone_down/trombone_down_r3_audioldm2_ep8.wav"
  },
  {
   "cue": "trombone_down",
@@ -8642,11 +10127,14 @@
   "tags": [
    "cartoon"
   ],
+  "sha": "a0954d3550817230537085301f0f8bf728061d7e",
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -13.4,
-  "peak_db": -0.9
+  "peak_db": -0.9,
+  "store": "sounds/trombone_down/trombone_down_r4_audioldm2_ep8.wav"
  },
  {
   "cue": "beep",
@@ -8660,11 +10148,14 @@
   "tags": [
    "mechanical"
   ],
+  "sha": "67ffc11c5cee28633f76f9284db6d063900f7a14",
+  "local": false,
   "sec": 2.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -16.2,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/beep/beep_r1_sao_ep8.wav"
  },
  {
   "cue": "beep",
@@ -8678,11 +10169,14 @@
   "tags": [
    "mechanical"
   ],
+  "sha": "fa0d391a159052175ae094a315e60d2fe55c90ba",
+  "local": false,
   "sec": 2.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -20.7,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/beep/beep_r2_sao.wav"
  },
  {
   "cue": "beep",
@@ -8696,11 +10190,14 @@
   "tags": [
    "mechanical"
   ],
+  "sha": "e69f9910aad54317f7b3f13acee362116b22691b",
+  "local": false,
   "sec": 2.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -11.2,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/beep/beep_r3_sao.wav"
  },
  {
   "cue": "beep",
@@ -8714,11 +10211,14 @@
   "tags": [
    "mechanical"
   ],
+  "sha": "a69f5f6632c735baa7112233c54958d099dd9463",
+  "local": false,
   "sec": 2.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -18.8,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/beep/beep_r4_sao.wav"
  },
  {
   "cue": "cough",
@@ -8733,11 +10233,14 @@
    "ambience",
    "voice"
   ],
+  "sha": "e2cb8dd85b0cf7d5a13287ed3a55bc10d30ce15a",
+  "local": false,
   "sec": 2.5,
   "sr": 44100,
   "ch": 2,
   "rms_db": -26.3,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/cough/cough_r1_sao_ep8.wav"
  },
  {
   "cue": "cough",
@@ -8752,11 +10255,14 @@
    "ambience",
    "voice"
   ],
+  "sha": "9ab9db5b017688543024816c9c36f91459ddd3c7",
+  "local": false,
   "sec": 2.5,
   "sr": 44100,
   "ch": 2,
   "rms_db": -27.5,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/cough/cough_r2_sao.wav"
  },
  {
   "cue": "cough",
@@ -8771,11 +10277,14 @@
    "ambience",
    "voice"
   ],
+  "sha": "0ee8e0b6f50b8c3eceb267445cdd70b407fb173b",
+  "local": false,
   "sec": 2.5,
   "sr": 44100,
   "ch": 2,
   "rms_db": -23.4,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/cough/cough_r3_sao.wav"
  },
  {
   "cue": "cough",
@@ -8790,11 +10299,14 @@
    "ambience",
    "voice"
   ],
+  "sha": "3b96965d025e1a0499a5deea3cd40cb69849cedb",
+  "local": false,
   "sec": 2.5,
   "sr": 44100,
   "ch": 2,
   "rms_db": -26.4,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/cough/cough_r4_sao.wav"
  },
  {
   "cue": "court_amb",
@@ -8809,11 +10321,14 @@
    "ambience",
    "material"
   ],
+  "sha": "30fd35ede528dd2afcf34bbaafe1d1851afddfc6",
+  "local": false,
   "sec": 6.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -30.7,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/court_amb/court_amb_r1_sao_ep8.wav"
  },
  {
   "cue": "court_amb",
@@ -8828,11 +10343,14 @@
    "ambience",
    "material"
   ],
+  "sha": "c909e723559625abc2b5f9c9de8fba96d4175295",
+  "local": false,
   "sec": 6.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -29.0,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/court_amb/court_amb_r2_sao.wav"
  },
  {
   "cue": "court_amb",
@@ -8847,11 +10365,14 @@
    "ambience",
    "material"
   ],
+  "sha": "d73971749e63c3dcc72d269852eb31e52e97117f",
+  "local": false,
   "sec": 6.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -35.4,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/court_amb/court_amb_r3_sao.wav"
  },
  {
   "cue": "court_amb",
@@ -8866,11 +10387,14 @@
    "ambience",
    "material"
   ],
+  "sha": "600bce048f14c9074c36ada5996a45ef8235be2b",
+  "local": false,
   "sec": 6.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -33.4,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/court_amb/court_amb_r4_sao.wav"
  },
  {
   "cue": "cuffs",
@@ -8885,11 +10409,14 @@
    "mechanical",
    "police"
   ],
+  "sha": "ed747afad0665a578fa0bcd21be15074d89282c2",
+  "local": false,
   "sec": 2.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -30.5,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/cuffs/cuffs_r1_sao_ep8.wav"
  },
  {
   "cue": "cuffs",
@@ -8904,11 +10431,14 @@
    "mechanical",
    "police"
   ],
+  "sha": "cdfcddcd39edcc5fbaeb29185b99745205dc6ed1",
+  "local": false,
   "sec": 2.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -33.9,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/cuffs/cuffs_r2_sao.wav"
  },
  {
   "cue": "cuffs",
@@ -8923,11 +10453,14 @@
    "mechanical",
    "police"
   ],
+  "sha": "a89061e66e295d5868086a4f640f0bf774a79b6f",
+  "local": false,
   "sec": 2.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -36.7,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/cuffs/cuffs_r3_sao.wav"
  },
  {
   "cue": "cuffs",
@@ -8942,11 +10475,14 @@
    "mechanical",
    "police"
   ],
+  "sha": "f777e786f20c649b3646f4e8cba0b3a5d894e1a6",
+  "local": false,
   "sec": 2.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -33.8,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/cuffs/cuffs_r4_sao.wav"
  },
  {
   "cue": "flood_hum",
@@ -8961,11 +10497,14 @@
    "ambience",
    "mechanical"
   ],
+  "sha": "80095aaf281df5b54d5024661314aec2f6a48cb0",
+  "local": false,
   "sec": 6.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -12.8,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/flood_hum/flood_hum_r1_sao_ep8.wav"
  },
  {
   "cue": "flood_hum",
@@ -8980,11 +10519,14 @@
    "ambience",
    "mechanical"
   ],
+  "sha": "a43c22e678ce8a5bd00136d0a1e2aa0d0445eeb1",
+  "local": false,
   "sec": 6.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -20.4,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/flood_hum/flood_hum_r2_sao.wav"
  },
  {
   "cue": "flood_hum",
@@ -8999,11 +10541,14 @@
    "ambience",
    "mechanical"
   ],
+  "sha": "6ffe5e9c53529ff43b9663be6d88d699aa09fd60",
+  "local": false,
   "sec": 6.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -16.3,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/flood_hum/flood_hum_r3_sao.wav"
  },
  {
   "cue": "flood_hum",
@@ -9018,11 +10563,14 @@
    "ambience",
    "mechanical"
   ],
+  "sha": "840aa5e824f0214ffa679ebb789ea8c236bbcf82",
+  "local": false,
   "sec": 6.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -17.3,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/flood_hum/flood_hum_r4_sao.wav"
  },
  {
   "cue": "flood_on",
@@ -9038,11 +10586,14 @@
    "impact",
    "mechanical"
   ],
+  "sha": "287c0cba3bd7ee143e792b2ca88f9b94f6e1ba78",
+  "local": false,
   "sec": 2.5,
   "sr": 44100,
   "ch": 2,
   "rms_db": -28.0,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/flood_on/flood_on_r1_sao_ep8.wav"
  },
  {
   "cue": "flood_on",
@@ -9058,11 +10609,14 @@
    "impact",
    "mechanical"
   ],
+  "sha": "b59cfdfe80261e32bbf750a5a11e856669fb211c",
+  "local": false,
   "sec": 2.5,
   "sr": 44100,
   "ch": 2,
   "rms_db": -25.8,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/flood_on/flood_on_r2_sao.wav"
  },
  {
   "cue": "flood_on",
@@ -9078,11 +10632,14 @@
    "impact",
    "mechanical"
   ],
+  "sha": "b9f665a19df9c21ed38a3296859ca962cf71778b",
+  "local": false,
   "sec": 2.5,
   "sr": 44100,
   "ch": 2,
   "rms_db": -31.7,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/flood_on/flood_on_r3_sao.wav"
  },
  {
   "cue": "flood_on",
@@ -9098,11 +10655,14 @@
    "impact",
    "mechanical"
   ],
+  "sha": "a3cf94ba43f1e03e621c17edffd977eeab502b71",
+  "local": false,
   "sec": 2.5,
   "sr": 44100,
   "ch": 2,
   "rms_db": -21.7,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/flood_on/flood_on_r4_sao.wav"
  },
  {
   "cue": "fold",
@@ -9116,11 +10676,14 @@
   "tags": [
    "material"
   ],
+  "sha": "445e4e78053583f7a1687dc44d0c16326a2bdc86",
+  "local": false,
   "sec": 2.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -32.9,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/fold/fold_r1_sao_ep8.wav"
  },
  {
   "cue": "fold",
@@ -9134,11 +10697,14 @@
   "tags": [
    "material"
   ],
+  "sha": "7234b7f7806beb3a2ae09b7b0c8cde7fbafda5aa",
+  "local": false,
   "sec": 2.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -32.4,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/fold/fold_r2_sao.wav"
  },
  {
   "cue": "fold",
@@ -9152,11 +10718,14 @@
   "tags": [
    "material"
   ],
+  "sha": "817418c8c86c061a01068c9236010cdd2fa747a5",
+  "local": false,
   "sec": 2.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -33.0,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/fold/fold_r3_sao.wav"
  },
  {
   "cue": "fold",
@@ -9170,11 +10739,14 @@
   "tags": [
    "material"
   ],
+  "sha": "f64438f455e51f5fed839f52bfdfcd1b41aa5879",
+  "local": false,
   "sec": 2.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -27.1,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/fold/fold_r4_sao.wav"
  },
  {
   "cue": "gavel",
@@ -9189,11 +10761,14 @@
    "ambience",
    "impact"
   ],
+  "sha": "ba9fa33a95855f259c65e81382e5e7a44995c52c",
+  "local": false,
   "sec": 2.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -31.9,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/gavel/gavel_r1_sao_ep8.wav"
  },
  {
   "cue": "gavel",
@@ -9208,11 +10783,14 @@
    "ambience",
    "impact"
   ],
+  "sha": "a619b0f660be15345875e4f9305f59a4f065aadf",
+  "local": false,
   "sec": 2.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -30.4,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/gavel/gavel_r2_sao.wav"
  },
  {
   "cue": "gavel",
@@ -9227,11 +10805,14 @@
    "ambience",
    "impact"
   ],
+  "sha": "a5d0da39bf567419d4dc77a2bba7b67317f1a9d2",
+  "local": false,
   "sec": 2.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -35.2,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/gavel/gavel_r3_sao.wav"
  },
  {
   "cue": "gavel",
@@ -9246,11 +10827,14 @@
    "ambience",
    "impact"
   ],
+  "sha": "33b2d906ab9d0b877a0c691f2a7eddb6a864c3aa",
+  "local": false,
   "sec": 2.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -27.4,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/gavel/gavel_r4_sao.wav"
  },
  {
   "cue": "lamp_click",
@@ -9264,11 +10848,14 @@
   "tags": [
    "mechanical"
   ],
+  "sha": "6891955458b0690b5731d03034cc96d96a3fc548",
+  "local": false,
   "sec": 1.5,
   "sr": 44100,
   "ch": 2,
   "rms_db": -38.3,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/lamp_click/lamp_click_r1_sao_ep8.wav"
  },
  {
   "cue": "lamp_click",
@@ -9282,11 +10869,14 @@
   "tags": [
    "mechanical"
   ],
+  "sha": "4e5dc4a4cf7d3f3c7d9f7a672b4800c900e37338",
+  "local": false,
   "sec": 1.5,
   "sr": 44100,
   "ch": 2,
   "rms_db": -35.5,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/lamp_click/lamp_click_r2_sao.wav"
  },
  {
   "cue": "lamp_click",
@@ -9300,11 +10890,14 @@
   "tags": [
    "mechanical"
   ],
+  "sha": "3a4b6b5ac849f4a35b2290ddfb4ce3c15973c1d1",
+  "local": false,
   "sec": 1.5,
   "sr": 44100,
   "ch": 2,
   "rms_db": -38.0,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/lamp_click/lamp_click_r3_sao.wav"
  },
  {
   "cue": "lamp_click",
@@ -9318,11 +10911,14 @@
   "tags": [
    "mechanical"
   ],
+  "sha": "fd4496cde79a0ccece664c851985d2f527479be0",
+  "local": false,
   "sec": 1.5,
   "sr": 44100,
   "ch": 2,
   "rms_db": -36.7,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/lamp_click/lamp_click_r4_sao.wav"
  },
  {
   "cue": "noon_amb",
@@ -9336,11 +10932,14 @@
   "tags": [
    "ambience"
   ],
+  "sha": "3212323172d98d487af793d60b74c573070e6bfd",
+  "local": false,
   "sec": 10.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -16.3,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/noon_amb/noon_amb_r1_sao_ep8.wav"
  },
  {
   "cue": "noon_amb",
@@ -9354,11 +10953,14 @@
   "tags": [
    "ambience"
   ],
+  "sha": "5366bcc71acfb481ede6306f4f9d184481447b7f",
+  "local": false,
   "sec": 10.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -14.8,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/noon_amb/noon_amb_r2_sao.wav"
  },
  {
   "cue": "noon_amb",
@@ -9372,11 +10974,14 @@
   "tags": [
    "ambience"
   ],
+  "sha": "3821cbeffcb621a51dc0751fffb66f22b8beac96",
+  "local": false,
   "sec": 10.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -16.7,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/noon_amb/noon_amb_r3_sao.wav"
  },
  {
   "cue": "noon_amb",
@@ -9390,11 +10995,14 @@
   "tags": [
    "ambience"
   ],
+  "sha": "6ccebeecbb72dcd0df4ae58d4a84f57be55a6433",
+  "local": false,
   "sec": 10.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -14.8,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/noon_amb/noon_amb_r4_sao.wav"
  },
  {
   "cue": "noon_bell",
@@ -9408,11 +11016,14 @@
   "tags": [
    "tonal"
   ],
+  "sha": "87bec8225a31ad2fd1107b6dd9223004edb7f09f",
+  "local": false,
   "sec": 5.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -15.2,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/noon_bell/noon_bell_r1_sao_ep8.wav"
  },
  {
   "cue": "noon_bell",
@@ -9426,11 +11037,14 @@
   "tags": [
    "tonal"
   ],
+  "sha": "1435975c857dfd4f082b513c7f41b82c62beccb4",
+  "local": false,
   "sec": 5.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -16.5,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/noon_bell/noon_bell_r2_sao.wav"
  },
  {
   "cue": "noon_bell",
@@ -9444,11 +11058,14 @@
   "tags": [
    "tonal"
   ],
+  "sha": "ba41df620faca5a31e5b036e92c1da67942a3e49",
+  "local": false,
   "sec": 5.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -15.2,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/noon_bell/noon_bell_r3_sao.wav"
  },
  {
   "cue": "noon_bell",
@@ -9462,11 +11079,14 @@
   "tags": [
    "tonal"
   ],
+  "sha": "e4f2c807c147632644b52947e3714db2167473c9",
+  "local": false,
   "sec": 5.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -14.9,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/noon_bell/noon_bell_r4_sao.wav"
  },
  {
   "cue": "peel",
@@ -9480,11 +11100,14 @@
   "tags": [
    "material"
   ],
+  "sha": "e1daf0839d0fd12602b188ffb7d8c70eb7cba483",
+  "local": false,
   "sec": 3.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -35.5,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/peel/peel_r1_sao_ep8.wav"
  },
  {
   "cue": "peel",
@@ -9498,11 +11121,14 @@
   "tags": [
    "material"
   ],
+  "sha": "1b60baee150d40384ed99cb61f23bf9da31ca0aa",
+  "local": false,
   "sec": 3.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -34.0,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/peel/peel_r2_sao.wav"
  },
  {
   "cue": "peel",
@@ -9516,11 +11142,14 @@
   "tags": [
    "material"
   ],
+  "sha": "de5378898e4dac9263f1b9ce6977b1b8cc6b436c",
+  "local": false,
   "sec": 3.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -29.3,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/peel/peel_r3_sao.wav"
  },
  {
   "cue": "peel",
@@ -9534,11 +11163,14 @@
   "tags": [
    "material"
   ],
+  "sha": "cbda0807f8d24ff70633e2b01901692ac2a5cfdf",
+  "local": false,
   "sec": 3.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -31.9,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/peel/peel_r4_sao.wav"
  },
  {
   "cue": "phone_taps",
@@ -9553,11 +11185,14 @@
    "ambience",
    "tonal"
   ],
+  "sha": "19dfbe55354fc9f9d36ee2e092403fee2e1a6961",
+  "local": false,
   "sec": 2.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -33.3,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/phone_taps/phone_taps_r1_sao_ep8.wav"
  },
  {
   "cue": "phone_taps",
@@ -9572,11 +11207,14 @@
    "ambience",
    "tonal"
   ],
+  "sha": "59a886cf49863e0162276bdeeb761bbfb7248981",
+  "local": false,
   "sec": 2.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -33.2,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/phone_taps/phone_taps_r2_sao.wav"
  },
  {
   "cue": "phone_taps",
@@ -9591,11 +11229,14 @@
    "ambience",
    "tonal"
   ],
+  "sha": "749c49439065f79d4fa1b68d7efc89cc7eb73b53",
+  "local": false,
   "sec": 2.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -26.9,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/phone_taps/phone_taps_r3_sao.wav"
  },
  {
   "cue": "phone_taps",
@@ -9610,11 +11251,14 @@
    "ambience",
    "tonal"
   ],
+  "sha": "b94dfdd22dd8787e9d1e56f4c6390d7ad0b603f6",
+  "local": false,
   "sec": 2.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -38.0,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/phone_taps/phone_taps_r4_sao.wav"
  },
  {
   "cue": "room_tone",
@@ -9629,11 +11273,14 @@
    "ambience",
    "tonal"
   ],
+  "sha": "dc64c2f51d66fb37e39119220dd82c276147b3d1",
+  "local": false,
   "sec": 6.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -17.6,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/room_tone/room_tone_r1_sao_ep8.wav"
  },
  {
   "cue": "room_tone",
@@ -9648,11 +11295,14 @@
    "ambience",
    "tonal"
   ],
+  "sha": "9e5c7f0822a4b1c1cd29fc4b2aca9cb04aeeb11a",
+  "local": false,
   "sec": 6.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -12.5,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/room_tone/room_tone_r2_sao.wav"
  },
  {
   "cue": "room_tone",
@@ -9667,11 +11317,14 @@
    "ambience",
    "tonal"
   ],
+  "sha": "79dcf201ca5f0b3f0ea195960cf654cc137e51e1",
+  "local": false,
   "sec": 6.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -11.4,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/room_tone/room_tone_r3_sao.wav"
  },
  {
   "cue": "room_tone",
@@ -9686,11 +11339,14 @@
    "ambience",
    "tonal"
   ],
+  "sha": "fa2834c2c75ad337c46be00b13d6526f283ef6d4",
+  "local": false,
   "sec": 6.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -19.3,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/room_tone/room_tone_r4_sao.wav"
  },
  {
   "cue": "shrink",
@@ -9705,11 +11361,14 @@
    "cartoon",
    "material"
   ],
+  "sha": "6dca7faf007cef8187d32d62d2a10fc1b8d95b41",
+  "local": false,
   "sec": 1.5,
   "sr": 44100,
   "ch": 2,
   "rms_db": -28.0,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/shrink/shrink_r1_sao_ep8.wav"
  },
  {
   "cue": "shrink",
@@ -9724,11 +11383,14 @@
    "cartoon",
    "material"
   ],
+  "sha": "d1723d95580b43a3c0bffef8a12abc8efabb7834",
+  "local": false,
   "sec": 1.5,
   "sr": 44100,
   "ch": 2,
   "rms_db": -26.5,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/shrink/shrink_r2_sao.wav"
  },
  {
   "cue": "shrink",
@@ -9743,11 +11405,14 @@
    "cartoon",
    "material"
   ],
+  "sha": "67e5de1b336b2f603b8f48e1f20bc1952e959794",
+  "local": false,
   "sec": 1.5,
   "sr": 44100,
   "ch": 2,
   "rms_db": -27.2,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/shrink/shrink_r3_sao.wav"
  },
  {
   "cue": "shrink",
@@ -9762,11 +11427,14 @@
    "cartoon",
    "material"
   ],
+  "sha": "cabafa1ba8373a1ba5434822aa0aabf9eccfc0b1",
+  "local": false,
   "sec": 1.5,
   "sr": 44100,
   "ch": 2,
   "rms_db": -27.8,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/shrink/shrink_r4_sao.wav"
  },
  {
   "cue": "siren",
@@ -9781,11 +11449,14 @@
    "ambience",
    "police"
   ],
+  "sha": "b326ab50635ac4d061076c78c2c4a9449ebf6a4f",
+  "local": false,
   "sec": 7.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -14.5,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/siren/siren_r1_sao_ep8.wav"
  },
  {
   "cue": "siren",
@@ -9800,11 +11471,14 @@
    "ambience",
    "police"
   ],
+  "sha": "f583f4d280fb935da89ab9f97f77ced38d34873b",
+  "local": false,
   "sec": 7.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -18.2,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/siren/siren_r2_sao.wav"
  },
  {
   "cue": "siren",
@@ -9819,11 +11493,14 @@
    "ambience",
    "police"
   ],
+  "sha": "f2b1660215d0c2abd1f2ecd86f9892c14530ed42",
+  "local": false,
   "sec": 7.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -17.5,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/siren/siren_r3_sao.wav"
  },
  {
   "cue": "siren",
@@ -9838,11 +11515,14 @@
    "ambience",
    "police"
   ],
+  "sha": "50a73a1ae3c49c5adbc67ba8015cf896bd390e98",
+  "local": false,
   "sec": 7.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -14.9,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/siren/siren_r4_sao.wav"
  },
  {
   "cue": "squash",
@@ -9856,11 +11536,14 @@
   "tags": [
    "material"
   ],
+  "sha": "dd7e45a0b818055f366e6f4c9f8a46a03e7647c2",
+  "local": false,
   "sec": 2.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -33.6,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/squash/squash_r1_sao_ep8.wav"
  },
  {
   "cue": "squash",
@@ -9874,11 +11557,14 @@
   "tags": [
    "material"
   ],
+  "sha": "12baeff97cd49f75fb816010eb42fa59c4234056",
+  "local": false,
   "sec": 2.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -32.0,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/squash/squash_r2_sao.wav"
  },
  {
   "cue": "squash",
@@ -9892,11 +11578,14 @@
   "tags": [
    "material"
   ],
+  "sha": "fcb9b8891a410146e25a6220b11fd98fb793fdc4",
+  "local": false,
   "sec": 2.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -34.8,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/squash/squash_r3_sao.wav"
  },
  {
   "cue": "squash",
@@ -9910,11 +11599,14 @@
   "tags": [
    "material"
   ],
+  "sha": "506c42e0cbf932e78af224751fe5ca79da6cbbbd",
+  "local": false,
   "sec": 2.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -26.1,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/squash/squash_r4_sao.wav"
  },
  {
   "cue": "stamp",
@@ -9929,11 +11621,14 @@
    "impact",
    "material"
   ],
+  "sha": "3dfa8cda5f64580ed214b73f1c69f6c8453a3a0b",
+  "local": false,
   "sec": 1.5,
   "sr": 44100,
   "ch": 2,
   "rms_db": -27.6,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/stamp/stamp_r1_sao_ep8.wav"
  },
  {
   "cue": "stamp",
@@ -9948,11 +11643,14 @@
    "impact",
    "material"
   ],
+  "sha": "c4ffb3f3a03040625c09eeb991d053c16c0c166f",
+  "local": false,
   "sec": 1.5,
   "sr": 44100,
   "ch": 2,
   "rms_db": -32.4,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/stamp/stamp_r2_sao.wav"
  },
  {
   "cue": "stamp",
@@ -9967,11 +11665,14 @@
    "impact",
    "material"
   ],
+  "sha": "e2a302b6dc176cae9bce6112e79fed1b6083d837",
+  "local": false,
   "sec": 1.5,
   "sr": 44100,
   "ch": 2,
   "rms_db": -27.0,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/stamp/stamp_r3_sao.wav"
  },
  {
   "cue": "stamp",
@@ -9986,11 +11687,14 @@
    "impact",
    "material"
   ],
+  "sha": "37691e6d797c6f93978afa0d6c2013dafe0c8193",
+  "local": false,
   "sec": 1.5,
   "sr": 44100,
   "ch": 2,
   "rms_db": -31.7,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/stamp/stamp_r4_sao.wav"
  },
  {
   "cue": "steps_road",
@@ -10004,11 +11708,14 @@
   "tags": [
    "footsteps"
   ],
+  "sha": "3f2f40a92b9e7e0b111b40fcc9a48ab95bea6df0",
+  "local": false,
   "sec": 5.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -37.3,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/steps_road/steps_road_r1_sao_ep8.wav"
  },
  {
   "cue": "steps_road",
@@ -10022,11 +11729,14 @@
   "tags": [
    "footsteps"
   ],
+  "sha": "c4467ff4ebe6266488f2f06747a5f732136bf654",
+  "local": false,
   "sec": 5.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -26.1,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/steps_road/steps_road_r2_sao.wav"
  },
  {
   "cue": "steps_road",
@@ -10040,11 +11750,14 @@
   "tags": [
    "footsteps"
   ],
+  "sha": "60037846c232f01f02040ff3fb73f57c011b5ab7",
+  "local": false,
   "sec": 5.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -38.0,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/steps_road/steps_road_r3_sao.wav"
  },
  {
   "cue": "steps_road",
@@ -10058,11 +11771,14 @@
   "tags": [
    "footsteps"
   ],
+  "sha": "b7206ff7e179c3140af40ccebb37f1cea838bcba",
+  "local": false,
   "sec": 5.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -25.9,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/steps_road/steps_road_r4_sao.wav"
  },
  {
   "cue": "steps_stop",
@@ -10076,11 +11792,14 @@
   "tags": [
    "footsteps"
   ],
+  "sha": "c4996a1d4b41b182f0e71664b861e63065acac1d",
+  "local": false,
   "sec": 2.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -30.8,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/steps_stop/steps_stop_r1_sao_ep8.wav"
  },
  {
   "cue": "steps_stop",
@@ -10094,11 +11813,14 @@
   "tags": [
    "footsteps"
   ],
+  "sha": "91ad1da6319b5907ea781c94f91c52c2a6ad363e",
+  "local": false,
   "sec": 2.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -30.0,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/steps_stop/steps_stop_r2_sao.wav"
  },
  {
   "cue": "steps_stop",
@@ -10112,11 +11834,14 @@
   "tags": [
    "footsteps"
   ],
+  "sha": "2bf4cc8a5e838318a83c2ced42c99cdbc20ec209",
+  "local": false,
   "sec": 2.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -25.7,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/steps_stop/steps_stop_r3_sao.wav"
  },
  {
   "cue": "steps_stop",
@@ -10130,11 +11855,14 @@
   "tags": [
    "footsteps"
   ],
+  "sha": "be2f92c0d9898a53b8cd229b58d53052019dde08",
+  "local": false,
   "sec": 2.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -32.0,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/steps_stop/steps_stop_r4_sao.wav"
  },
  {
   "cue": "swat_run",
@@ -10149,11 +11877,14 @@
    "footsteps",
    "police"
   ],
+  "sha": "2cb08b0042c77246440788fbed806046dd238ac5",
+  "local": false,
   "sec": 4.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -22.7,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/swat_run/swat_run_r1_sao_ep8.wav"
  },
  {
   "cue": "swat_run",
@@ -10168,11 +11899,14 @@
    "footsteps",
    "police"
   ],
+  "sha": "b049cee6f1c42f13b3eb4fda4893cf25bb30f38b",
+  "local": false,
   "sec": 4.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -22.0,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/swat_run/swat_run_r2_sao.wav"
  },
  {
   "cue": "swat_run",
@@ -10187,11 +11921,14 @@
    "footsteps",
    "police"
   ],
+  "sha": "82abce04ca628b84d18fa34cebb6a675388d2196",
+  "local": false,
   "sec": 4.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -25.6,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/swat_run/swat_run_r3_sao.wav"
  },
  {
   "cue": "swat_run",
@@ -10206,11 +11943,14 @@
    "footsteps",
    "police"
   ],
+  "sha": "ebf0f55cd234b73c79aa0389c242df342dc47aef",
+  "local": false,
   "sec": 4.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -18.8,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/swat_run/swat_run_r4_sao.wav"
  },
  {
   "cue": "trowel_scrape",
@@ -10224,11 +11964,14 @@
   "tags": [
    "material"
   ],
+  "sha": "7acb27dcbedcd640880e79776c850bcb45790870",
+  "local": false,
   "sec": 3.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -29.2,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/trowel_scrape/trowel_scrape_r1_sao_ep8.wav"
  },
  {
   "cue": "trowel_scrape",
@@ -10242,11 +11985,14 @@
   "tags": [
    "material"
   ],
+  "sha": "efe47dd7c482fd825649fd67f6b8de055937cffa",
+  "local": false,
   "sec": 3.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -29.0,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/trowel_scrape/trowel_scrape_r2_sao.wav"
  },
  {
   "cue": "trowel_scrape",
@@ -10260,11 +12006,14 @@
   "tags": [
    "material"
   ],
+  "sha": "072bcfb07017605710ce2e717a5810ad23990e08",
+  "local": false,
   "sec": 3.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -29.6,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/trowel_scrape/trowel_scrape_r3_sao.wav"
  },
  {
   "cue": "trowel_scrape",
@@ -10278,11 +12027,14 @@
   "tags": [
    "material"
   ],
+  "sha": "df1374180b507e42729e6bd99aebab09e5e52e51",
+  "local": false,
   "sec": 3.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -28.4,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/trowel_scrape/trowel_scrape_r4_sao.wav"
  },
  {
   "cue": "vest",
@@ -10296,11 +12048,14 @@
   "tags": [
    "material"
   ],
+  "sha": "b7961ef9ad045f9c2dbe736737c73c2a7b27c3d0",
+  "local": false,
   "sec": 2.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -31.4,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/vest/vest_r1_sao_ep8.wav"
  },
  {
   "cue": "vest",
@@ -10314,11 +12069,14 @@
   "tags": [
    "material"
   ],
+  "sha": "b9eb3b3dcafdf5b087a34f45a324086f7f5fdcf4",
+  "local": false,
   "sec": 2.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -26.1,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/vest/vest_r2_sao.wav"
  },
  {
   "cue": "vest",
@@ -10332,11 +12090,14 @@
   "tags": [
    "material"
   ],
+  "sha": "208cefa1b302e4774e4835bf474470b6da078c02",
+  "local": false,
   "sec": 2.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -29.7,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/vest/vest_r3_sao.wav"
  },
  {
   "cue": "vest",
@@ -10350,11 +12111,14 @@
   "tags": [
    "material"
   ],
+  "sha": "d1cce2312ca09eb385a5733628d9a694e25e4a61",
+  "local": false,
   "sec": 2.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -34.9,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/vest/vest_r4_sao.wav"
  },
  {
   "cue": "village_amb",
@@ -10370,11 +12134,14 @@
    "mechanical",
    "nature"
   ],
+  "sha": "6dd61edc57861a6500d7c486b9d717a8de0116c6",
+  "local": false,
   "sec": 10.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -23.5,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/village_amb/village_amb_r1_sao_ep8.wav"
  },
  {
   "cue": "village_amb",
@@ -10390,11 +12157,14 @@
    "mechanical",
    "nature"
   ],
+  "sha": "32572ca17c649bcfad2ac06f512bf2825528a8c2",
+  "local": false,
   "sec": 10.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -16.9,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/village_amb/village_amb_r2_sao.wav"
  },
  {
   "cue": "village_amb",
@@ -10410,11 +12180,14 @@
    "mechanical",
    "nature"
   ],
+  "sha": "1ebbc2b0836816094a1edec6839071dae53b170f",
+  "local": false,
   "sec": 10.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -16.7,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/village_amb/village_amb_r3_sao.wav"
  },
  {
   "cue": "village_amb",
@@ -10430,10 +12203,13 @@
    "mechanical",
    "nature"
   ],
+  "sha": "b30c310de787759cbfc17887e7565fce3596e8db",
+  "local": false,
   "sec": 10.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -21.3,
-  "peak_db": -1.0
+  "peak_db": -1.0,
+  "store": "sounds/village_amb/village_amb_r4_sao.wav"
  }
 ]
