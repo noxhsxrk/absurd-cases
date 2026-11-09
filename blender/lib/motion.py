@@ -45,7 +45,7 @@ def sequence(arm, steps, start_frame=1, blend=6, start_pos=(0, 0, 0), heading=0.
         s = tracks[i % 3].strips.new(act.name + str(i), int(st), act); s.action_frame_start = a0; s.action_frame_end = a1
         s.frame_start = st; s.frame_end = st + (a1 - a0)
         if i: s.blend_in = blend; s.blend_type = 'REPLACE'
-        s.extrapolation = 'HOLD_FORWARD' if i == len(steps) - 1 else 'NOTHING'
+        s.extrapolation = 'HOLD' if i == 0 else ('HOLD_FORWARD' if i == len(steps) - 1 else 'NOTHING')   # first strip also holds backwards (no T-pose before start)
         segs.append((st, st + (a1 - a0), act, a0)); f = st + (a1 - a0)
     end = int(f)
     # root path: per-frame forward speed = weighted mix of the active strips' own hip travel

@@ -11,6 +11,7 @@ from mathutils import Matrix, Vector
 TEX = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'tex')
 H, W = 2.03, 0.636          # metres, from the silhouette render (2.2 m ortho over 1400 px; crop 405 x 1290 px)
 NB = 12                     # bones along the length
+EYE_SY = 0.024              # eye ellipse height (blink scales this)
 
 def _mat(name):
     m = bpy.data.materials.get(name)
@@ -47,7 +48,7 @@ class Sheet:
     def blink(self, frames):
         for e in self.eyes:
             for f in frames:
-                for df, s in ((-1, 1.0), (1, 0.1), (3, 1.0)): e.scale[1] = s; e.keyframe_insert('scale', index=1, frame=f + df)
+                for df, s in ((-1, 1.0), (1, 0.1), (3, 1.0)): e.scale[1] = EYE_SY * s; e.keyframe_insert('scale', index=1, frame=f + df)
     def eyes_visible(self, on, frame):
         for e in self.eyes: e.hide_render = not on; e.keyframe_insert('hide_render', frame=frame)
 
@@ -90,7 +91,7 @@ def build(name='shade', eyes=True, coll=None):
         top = 'b%d' % (NB - 1); hb = rig.data.bones[top]
         for side, sx in ((s_, x_) for s_ in (1, -1) for x_ in (-1, 1)):      # eyes on both faces: it looks at you either way up
             bpy.ops.mesh.primitive_circle_add(vertices=24, radius=1, fill_type='NGON'); e = bpy.context.active_object
-            e.name = f'{name}_eye{sx}{side}'; e.data.materials.append(wm); e.scale = (0.034, 0.024, 1)
+            e.name = f'{name}_eye{sx}{side}'; e.data.materials.append(wm); e.scale = (0.034, EYE_SY, 1)
             bpy.ops.mesh.primitive_circle_add(vertices=16, radius=1, fill_type='NGON'); p = bpy.context.active_object
             p.name = f'{name}_pupil{sx}{side}'; p.data.materials.append(km); p.scale = (0.3, 0.42, 1); p.parent = e; p.location = (0.15 * sx * -1, -0.05, 0.002)
             # angry: inner corners down

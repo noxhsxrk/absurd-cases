@@ -72,7 +72,7 @@ def interrogation():
     bulbm = bpy.data.materials.new('lamp_bulb'); bulbm.use_nodes = True; bn = bulbm.node_tree.nodes['Principled BSDF']
     bn.inputs['Base Color'].default_value = (1, 0.95, 0.8, 1); bn.inputs['Emission Color'].default_value = (1, 0.93, 0.78, 1); bn.inputs['Emission Strength'].default_value = 0.0
     bulb = box('lamp_bulb', (0, 0.205, -0.03), (0.14, 0.01, 0.09), bulbm, bevel=0); bulb.parent = head
-    lamp = spot('lamp_light', (0, 0.22, -0.03), (math.radians(-90), 0, 0), 0.0, 55, blend=0.4, color=(1, 0.92, 0.75), radius=0.04); lamp.parent = head
+    lamp = spot('lamp_light', (0, 0.22, -0.03), (math.radians(90), 0, 0), 0.0, 55, blend=0.4, color=(1, 0.92, 0.75), radius=0.04); lamp.parent = head
     # room light: one dim fluorescent tube, cold
     box('tube', (0, 0.3, 2.95), (1.2, 0.12, 0.05), painted('iw_tube', (0.9, 0.95, 1.0), var=0.0), bevel=0.01)
     area('tube_light', (0, 0.3, 2.9), (0, 0, 0), 120, 1.2, color=(0.82, 0.92, 1.0), size_y=0.2)
@@ -117,14 +117,14 @@ def courtroom():
     g2 = box('gavel_head', (-0.26, 0, 0.0), (0.06, 0.07, 0.15), woodd, bevel=0.01); g2.parent = gav; g2.rotation_euler = (math.pi / 2, 0, 0)
     dur = durian((-0.9, 2.1, 1.75), 0.14)
     # dock for the accused (front left) + rail; gallery benches
-    box('dock', (-2.6, -0.4, 0.5), (1.2, 1.0, 1.0), wood, bevel=0.015); box('dockrail', (-2.6, -0.4, 1.05), (1.25, 1.05, 0.06), woodd, bevel=0.01)
-    box('dockfloor', (-2.6, -0.4, 1.02), (1.1, 0.9, 0.02), woodd, bevel=0)
+    box('dock', (-1.1, 0.0, 0.5), (1.0, 0.9, 1.0), wood, bevel=0.015); box('dockrail', (-1.1, 0.0, 1.05), (1.05, 0.95, 0.06), woodd, bevel=0.01)
+    box('dockfloor', (-1.1, 0.0, 1.02), (0.9, 0.8, 0.02), woodd, bevel=0)
     for r in range(3):
         y = -2.2 - r * 1.0
         box('pew%d' % r, (1.0, y, 0.45), (5.0, 0.45, 0.06), wood, bevel=0.01); box('pewb%d' % r, (1.0, y - 0.22, 0.75), (5.0, 0.05, 0.6), wood, bevel=0.01)
     # light: warm sun through windows + soft fill
     area('winlight', (6.5, 0, 3.0), (0, math.radians(-70), 0), 900, 5.0, color=(1.0, 0.86, 0.66))
-    area('fill', (0, -6, 3.0), (math.radians(65), 0, 0), 220, 6.0, color=(0.92, 0.9, 0.86))
+    area('fill', (0, -6, 3.0), (math.radians(65), 0, 0), 420, 6.0, color=(0.92, 0.9, 0.86))
     area('benchkey', (0.5, 0.0, 4.4), (math.radians(20), 0, 0), 160, 2.0, color=(1.0, 0.92, 0.8))
     return dict(gavel=gav, durian=dur)
 
@@ -139,7 +139,7 @@ def durian(loc, r):
     bm.to_mesh(o.data); bm.free(); return o
 
 # ---------------------------------------------------------------------------------------------------------------------
-def prison_front(clock='sign_clock10.png'):
+def prison_front(clock='sign_clock10.png', roof=False):
     """street in front of a prison: high wall along +Y (y=4) with razor wire and a watchtower, pavement y in [0, 4],
     road y < 0; bus-stop shelter at x in [-1.5, 1.5] (bench at y~2.9, roof 2.6 m); sun from the road side (set by the shot)."""
     world_sky(strength=0.06)
@@ -147,7 +147,7 @@ def prison_front(clock='sign_clock10.png'):
     asphalt = painted('asphalt', (0.11, 0.11, 0.12), var=0.04, stroke_scale=1.5, rough=0.95); pave = painted('pr_pave', (0.64, 0.6, 0.54), var=0.07, stroke_scale=3)
     kerb_r = painted('kerb_r', (0.62, 0.12, 0.10), var=0.06); kerb_w = painted('kerb_w', (0.86, 0.85, 0.80), var=0.05)
     metal = painted('pr_metal', (0.30, 0.32, 0.34), var=0.05, rough=0.4); blue = painted('pr_blue', (0.10, 0.26, 0.52), var=0.06, rough=0.5)
-    roof = painted('pr_roof', (0.85, 0.86, 0.84), var=0.04, rough=0.4)
+    roofm = painted('pr_roof', (0.85, 0.86, 0.84), var=0.04, rough=0.4)
     box('road', (0, -3.5, -0.05), (60, 7, 0.1), asphalt, bevel=0); box('pave', (0, 2.0, 0.06), (60, 4.0, 0.12), pave, bevel=0.004)
     joint = painted('pr_joint', (0.32, 0.3, 0.27), var=0.02)
     for i in range(-75, 76): box('pj%d' % i, (i * 0.4, 2.0, 0.121), (0.012, 4.0, 0.002), joint, bevel=0)
@@ -171,12 +171,16 @@ def prison_front(clock='sign_clock10.png'):
     for sx in (-1, 1):
         box('bs_post%d' % sx, (sx * 1.4, 3.3, 1.3), (0.08, 0.08, 2.6), metal, bevel=0.005)
         box('bs_postf%d' % sx, (sx * 1.4, 2.3, 1.3), (0.08, 0.08, 2.6), metal, bevel=0.005)
-    box('bs_roof', (0, 2.8, 2.65), (3.2, 1.4, 0.06), roof, bevel=0.01, rot=(math.radians(-4), 0, 0))
+    if roof: box('bs_roof', (0, 2.8, 2.65), (3.2, 1.4, 0.06), roofm, bevel=0.01, rot=(math.radians(-4), 0, 0))
+    else:    # the roof is gone (only bent brackets left) — which is why the court sends a shadow to stand here
+        for sx in (-1, 1): box('bs_bracket%d' % sx, (sx * 1.4, 2.8, 2.62), (0.06, 1.1, 0.05), metal, bevel=0.005, rot=(math.radians(-12 * sx), 0, 0))
     box('bs_back', (0, 3.32, 1.4), (2.8, 0.03, 1.6), painted('pr_glass2', (0.70, 0.78, 0.82), var=0.02, rough=0.08), bevel=0)
     box('bs_bench', (0, 3.0, 0.55), (2.4, 0.4, 0.05), blue, bevel=0.01)
     for sx in (-1, 0, 1): box('bs_benchleg%d' % sx, (sx * 1.0, 3.0, 0.33), (0.05, 0.3, 0.42), metal, bevel=0)
     box('bs_signpost', (1.9, 1.0, 1.5), (0.08, 0.08, 3.0), metal, bevel=0.005)
     plane_img('sign_busstop', 'sign_busstop.png', (1.9, 0.95, 2.75), (0.9, 0.3))
-    plane_img('bs_clock', clock, (-1.0, 2.15, 2.4), (0.36, 0.18), emit=1.5)
-    box('bs_clockbox', (-1.0, 2.18, 2.4), (0.42, 0.04, 0.24), metal, bevel=0.005)
-    return {}
+    box('bs_clockpost', (-1.9, 1.0, 1.3), (0.08, 0.08, 2.6), metal, bevel=0.005)
+    box('bs_clockbox', (-1.9, 0.98, 2.55), (0.46, 0.06, 0.26), metal, bevel=0.005)
+    c10 = plane_img('bs_clock10', 'sign_clock10.png', (-1.9, 0.945, 2.55), (0.38, 0.19), emit=1.5)
+    c12 = plane_img('bs_clock12', 'sign_clock12.png', (-1.9, 0.944, 2.55), (0.38, 0.19), emit=1.5); c12.hide_render = True
+    return dict(c10=c10, c12=c12)
