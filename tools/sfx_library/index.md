@@ -1,12 +1,12 @@
 # คลังเสียง absurd-cases (SFX library)
 
-592 ไฟล์ · 154 เสียง · สร้างใหม่: `python tools/sfx_index.py build` · ค้น: `python tools/sfx_index.py search <คำ>` (ไทยก็ได้)
+592 ไฟล์ (0 อยู่บนคลัง GitHub, 592 อยู่ในเครื่อง) · 154 เสียง · สร้างใหม่: `python tools/sfx_index.py build` · ค้น: `python tools/sfx_index.py search <คำ>` (ไทยก็ได้)
 
 ## วิธีใช้
 
 1. อ่านสคริปต์ตอนใหม่ แล้วไล่ทีละจังหวะ: ฉากอยู่ที่ไหน (bed) → คนทำอะไร (spot) → ช่วงพีก (จับ/ตัดสิน/มุก). หาเสียงจากหมวดด้านล่างหรือ `search`
-2. มีเสียงที่ตรง → ก๊อป take ไป `public/absurd-cases/epN/sfx_sao/<cue>_r1.wav` แล้วเรียกใน premix ด้วย `take('<cue>', synth_สำรอง, ความยาว)`
-3. ไม่มี / ไม่ตรง → เจนเฉพาะ cue ที่ขาดด้วย `tools/ai-sfx/gen_sao_epN.py` (ตั้งชื่อ cue อังกฤษค้นง่าย) แล้วเพิ่มบรรทัดใน `tools/sfx_library/usage.json` ว่าใช้ตอนไหน แล้ว `build`
+2. มีเสียงที่ตรง → `python tools/sfx_index.py pull <cue> --ep N` (ดึงเฉพาะไฟล์นั้นจากคลังบน GitHub มาไว้ `public/absurd-cases/epN/sfx_sao/<cue>_r1.wav`) แล้วเรียกใน premix ด้วย `take('<cue>', synth_สำรอง, ความยาว)`
+3. ไม่มี / ไม่ตรง → เจนเฉพาะ cue ที่ขาดด้วย `tools/ai-sfx/gen_sao_epN.py` (ตั้งชื่อ cue อังกฤษค้นง่าย) แล้วเพิ่มบรรทัดใน `tools/sfx_library/usage.json` ว่าใช้ตอนไหน แล้ว `build` + `upload` แล้ว `clean-local` ลบของในเครื่อง (ลบเฉพาะไฟล์ที่ยืนยันแล้วว่าอยู่บนคลัง)
 4. ลำดับความไว้ใจ: engine `sao` (Stable Audio Open 44.1 kHz) > `audioldm2` (16 kHz) > รุ่นเก่า `_v1/_v2` (EP1–2). คะแนน CLAP < 0.05 = take พลาด ใช้ synth แทน
 5. ไม่มีเพลงเด็ดขาด. ระดับ: bed rms ≈ 0.0038 (−40 dBFS) · spot peak 0.15–0.62 · ค้อนตัดสิน/ป้ายข้อหาดังสุด · ทุกอย่างหลบใต้พากย์ ~3 dB · มิกซ์จบ −15 LUFS
 
