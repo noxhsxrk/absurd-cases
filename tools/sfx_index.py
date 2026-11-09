@@ -12,6 +12,7 @@ Cloud store (the sounds live in a separate GitHub repo; only the ones an episode
   python tools/sfx_index.py clean-local      # delete local generator takes (tools/ai-sfx/out*/*.wav) that the remote store verifiably holds
   python tools/sfx_index.py pull gavel cuffs --ep 9          # best take of each -> public/absurd-cases/ep9/sfx_sao/<cue>_r1.wav
   python tools/sfx_index.py pull out_sao8/gavel_r2 --ep 9 --as gavel   # a specific take, renamed for the premix
+  python tools/sfx_index.py publish          # after generating: build + upload + clean-local + commit/push the index (one shot)
   python tools/sfx_index.py prune            # drop the store's local cache (pulled copies already sit in the episode folder)
 Store repo URL: env SFX_STORE_URL, default https://github.com/noxhsxrk/absurd-sfx.git (private). Local cache: tools/sfx_library/store/ (gitignored,
 partial + sparse clone, so only the files you pull are ever downloaded).
@@ -256,6 +257,19 @@ def clean_local():
     print(f'deleted {freed / 1e6:.1f} MB of local takes that the store holds')
     if kept: print(f'kept {len(kept)} not yet in the store (run upload first):', *kept[:10], sep='\n  ')
 
+def publish():
+    """new sounds generated: index them, push them to the store, free the disk, commit + push the updated index"""
+    build(); upload(); clean_local()
+    lib = ['tools/sfx_library/index.json', 'tools/sfx_library/index.md', 'tools/sfx_library/usage.json']
+    run = lambda *a: subprocess.run(['git', *a], cwd=ROOT, capture_output=True, text=True)
+    run('add', *lib)
+    if run('diff', '--cached', '--quiet', '--', *lib).returncode:
+        n = sum(1 for r in load_rows() if r.get('store'))
+        run(*AUTHOR, 'commit', '-q', '-m', f'SFX library: {n} takes in the store', '--', *lib)
+        r = run('push', '-q'); print('index committed + pushed' if not r.returncode else 'index committed; push failed:\n' + r.stderr)
+    missing = sorted({base(r['cue']) for r in load_rows()} - set(usage()['cues']))
+    if missing: print('add a usage line to tools/sfx_library/usage.json for:', ', '.join(missing), '— then run publish again')
+
 def pick(arg, rows):
     """'gavel' -> best take of that sound; 'out_sao8/gavel_r2' or a full path -> that take"""
     if '/' in arg:
@@ -314,6 +328,7 @@ if __name__ == '__main__':
     elif a[0] == 'upload': upload()
     elif a[0] == 'clean-local': clean_local()
     elif a[0] == 'prune': prune()
+    elif a[0] == 'publish': publish()
     elif a[0] == 'pull':
         if '--ep' not in a: sys.exit('pull <cue ...> --ep N [--as name]')
         ep = a[a.index('--ep') + 1]; nm = a[a.index('--as') + 1] if '--as' in a else None

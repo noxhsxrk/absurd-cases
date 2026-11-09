@@ -80,7 +80,7 @@ def main():
         scores[cue] = [round(s, 4) for s, _ in takes]; json.dump(scores, open(OUT / 'scores.json', 'w'), indent=1)
         log(cue, 'done', round(time.time() - t0, 1), 's', scores[cue])
     log(time.strftime('%H:%M:%S'), 'SAO EP8 DONE')
-    import subprocess; subprocess.run([sys.executable, str(HERE.parent / 'sfx_index.py'), 'build'])   # keep the library index current
+    import subprocess; subprocess.run([sys.executable, str(HERE.parent / 'sfx_index.py'), 'publish'])   # index + upload to the store + free disk + push index
 
 if __name__ == '__main__':
     main()
