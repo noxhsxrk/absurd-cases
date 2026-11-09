@@ -50,6 +50,7 @@ sc.frame_start, sc.frame_end = 1, T_END
 fr = arg('--frames'); 
 if fr: a, b = fr.split('-'); sc.frame_start, sc.frame_end = int(a), int(b)
 out = arg('--out', os.path.join(HERE, 'renders', 'shadowstep'))
+if not os.path.isabs(out): out = os.path.join(HERE, out)   # relative --out is relative to the blender folder
 print('man stops at', man_stop, 'shadow stops at', sh_stop, 'shot', T_END)
 if arg('--still'):
     for s in arg('--still').split(','):
