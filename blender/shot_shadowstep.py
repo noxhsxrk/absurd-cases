@@ -8,11 +8,11 @@ argv = sys.argv[sys.argv.index('--') + 1:] if '--' in sys.argv else []
 arg = lambda k, d=None: argv[argv.index(k) + 1] if k in argv else d
 bpy.ops.wm.read_factory_settings(use_empty=True)
 sc = scene_setup(samples=int(arg('--samples', 64)), scale=int(arg('--pct', 100)))
-world_sky(strength=0.06); sun(elev_deg=17, azim_deg=318, energy=4.6, angle_deg=1.0)
+world_sky(strength=0.06); sun(elev_deg=22, azim_deg=352, energy=4.6, angle_deg=0.4)  # light almost square to the wall: the wall shadow is his side profile, stride readable
 soi.build(seed=5, clear=(-6.0, 6.0))
 # soft fill from the camera side so faces aren't silhouettes against the low sun
 fd = bpy.data.lights.new('fill', 'AREA'); fd.energy = 180; fd.size = 6; fd.color = (0.75, 0.85, 1.0)
-fl = bpy.data.objects.new('fill', fd); bpy.context.collection.objects.link(fl); fl.location = (0.5, -6.0, 2.5); fl.rotation_euler = (math.radians(70), 0, 0)
+fl = bpy.data.objects.new('fill', fd); bpy.context.collection.objects.link(fl); fl.location = (3.0, -6.0, 2.5); fl.rotation_euler = (math.radians(70), 0, 0)
 M = os.path.join(HERE, 'mixamo') + os.sep
 ghost = bpy.data.collections['ghosts']
 man, mparts = boxman.build(M + 'ep8_walk_standard.fbx', 'nai')
@@ -30,18 +30,24 @@ fm = bpy.data.materials['nai_face'].node_tree.nodes['mode'].outputs[0]
 for f, v in ((1, 1), (70, 1), (71, 2), (73, 1), (150, 1), (151, 2), (153, 0)): fm.default_value = v; fm.keyframe_insert('default_value', frame=f)
 for fc in bpy.data.materials['nai_face'].node_tree.animation_data.action.fcurves:
     for k in fc.keyframe_points: k.interpolation = 'CONSTANT'
-# camera: across the road, tracks him with a lag and settles when he stops, then pushes in slowly toward the wall
-cd = bpy.data.cameras.new('cam'); cd.lens = 26; cd.dof.use_dof = True; cd.dof.aperture_fstop = 4.0
+# camera: three-quarter front from down the pavement, so his face reads and the wall shadow sits behind him in profile.
+# Tracks him with a lag; when he stops it settles, then drifts to keep both him and the departing shadow in frame.
+cd = bpy.data.cameras.new('cam'); cd.lens = 30; cd.dof.use_dof = True; cd.dof.aperture_fstop = 5.6
 cam = bpy.data.objects.new('cam', cd); bpy.context.collection.objects.link(cam); sc.camera = cam
 tgt = bpy.data.objects.new('tgt', None); bpy.context.collection.objects.link(tgt)
 c = cam.constraints.new('TRACK_TO'); c.target = tgt; c.track_axis = 'TRACK_NEGATIVE_Z'; c.up_axis = 'UP_Y'; cd.dof.focus_object = tgt
 man_stop = man['seg_ends'][-2]; sh_stop = shade['seg_ends'][-2]
 def mx(f): return START[0] + mp.get(f, mp[max(mp)]) * 0.01
-T_END = sh_stop + 50
-for f in range(1, T_END + 1, 2):
-    lag = mx(max(1, f - 8)); push = max(0, f - man_stop) / 60.0
-    cam.location = (lag + 1.1, -2.9 + min(push, 1.2) * 0.6, 1.25); cam.keyframe_insert('location', frame=f)
-    tgt.location = (lag + 1.0, 1.7, 1.15); tgt.keyframe_insert('location', frame=f)
+def sx(f): return START[0] + sp.get(f, sp[max(sp)]) * 0.01
+def ease(t): t = min(1, max(0, t)); return t * t * (3 - 2 * t)
+T_END = sh_stop + 60
+for f in range(1, T_END + 1):
+    lag = sum(mx(max(1, f - k)) for k in range(6, 16)) / 10   # smoothed, lagging follow
+    mid = (mx(man_stop) + sx(T_END)) / 2
+    k = ease((f - man_stop - 10) / 70)                         # after he stops, reframe toward the gap between him and it
+    fx = lag * (1 - k) + mid * k
+    cam.location = (fx + 2.3 + 0.4 * k, -2.0 - 0.5 * k, 1.25); cam.keyframe_insert('location', frame=f)
+    tgt.location = (fx + 0.35, 1.6, 1.05); tgt.keyframe_insert('location', frame=f)
 sc.frame_start, sc.frame_end = 1, T_END
 fr = arg('--frames'); 
 if fr: a, b = fr.split('-'); sc.frame_start, sc.frame_end = int(a), int(b)

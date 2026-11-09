@@ -7,7 +7,7 @@ from look import painted, box
 def build(seed=3, length=40.0, clear=(-1e9, -1e9)):
     """clear = (x0, x1): no pots/props on the pavement in this x range (the action lane)"""
     rnd = random.Random(seed)
-    asphalt = painted('asphalt', (0.11, 0.11, 0.12), var=0.12, stroke_scale=1.5, rough=0.95)
+    asphalt = painted('asphalt', (0.11, 0.11, 0.12), var=0.04, stroke_scale=1.5, rough=0.95)
     pave = painted('pave', (0.62, 0.58, 0.52), var=0.07, stroke_scale=3)
     kerb_r = painted('kerb_r', (0.62, 0.12, 0.10), var=0.06); kerb_w = painted('kerb_w', (0.86, 0.85, 0.80), var=0.05)
     line = painted('roadline', (0.9, 0.86, 0.6), var=0.1)

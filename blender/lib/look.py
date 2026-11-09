@@ -13,7 +13,7 @@ def scene_setup(res=(1080, 1920), samples=64, fps=30, outline=True, scale=100):
     sc.view_settings.view_transform = 'AgX'; sc.view_settings.look = 'AgX - Base Contrast'; sc.view_settings.exposure = -0.6
     sc.render.film_transparent = False
     if outline:
-        sc.render.use_freestyle = True; sc.render.line_thickness_mode = 'ABSOLUTE'; sc.render.line_thickness = 1.6 * res[0] / 1080
+        sc.render.use_freestyle = True; sc.render.line_thickness_mode = 'ABSOLUTE'; sc.render.line_thickness = 2.4 * res[0] / 1080
         vl = sc.view_layers[0]; fs = vl.freestyle_settings; fs.crease_angle = math.radians(140)
         ls = fs.linesets[0] if fs.linesets else fs.linesets.new('ink')
         ls.select_by_collection = True; ls.collection_negation = 'EXCLUSIVE'
