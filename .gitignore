@@ -26,3 +26,4 @@ episodes/absurd-cases/ep7/
 _old_root/
 migrate_once.bat
 migrate_log.txt
+blender/test/*_log.txt
