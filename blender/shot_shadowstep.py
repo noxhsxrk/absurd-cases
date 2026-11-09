@@ -43,8 +43,8 @@ T_END = sh_stop + 45
 # operator follows him with a soft lag, then holds the frame still once he stops, so the shadow is the only thing moving
 for f in range(1, T_END + 1):
     fx = sum(mx(max(1, f - k)) for k in range(6, 18)) / 12
-    cam.location = (fx + 1.5, -2.5, 1.3); cam.keyframe_insert('location', frame=f)
-    tgt.location = (fx + 1.0, 1.8, 1.1); tgt.keyframe_insert('location', frame=f)
+    cam.location = (fx + 1.7, -2.5, 1.3); cam.keyframe_insert('location', frame=f)
+    tgt.location = (fx + 1.3, 1.8, 1.1); tgt.keyframe_insert('location', frame=f)
 print('man x at stop %.2f  shadow x at stop %.2f' % (mx(man_stop), sx(sh_stop)))
 sc.frame_start, sc.frame_end = 1, T_END
 fr = arg('--frames'); 
