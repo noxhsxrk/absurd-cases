@@ -4,7 +4,8 @@ action lane. Pavement runs along +x at y in [0, 2.4] (house fronts at y = 2.4), 
 import bpy, math, random
 from look import painted, box
 
-def build(seed=3, length=40.0):
+def build(seed=3, length=40.0, clear=(-1e9, -1e9)):
+    """clear = (x0, x1): no pots/props on the pavement in this x range (the action lane)"""
     rnd = random.Random(seed)
     asphalt = painted('asphalt', (0.11, 0.11, 0.12), var=0.12, stroke_scale=1.5, rough=0.95)
     pave = painted('pave', (0.62, 0.58, 0.52), var=0.07, stroke_scale=3)
@@ -51,7 +52,8 @@ def build(seed=3, length=40.0):
             sc = [(0.75, 0.2, 0.15), (0.15, 0.35, 0.6), (0.9, 0.7, 0.2)][rnd.randrange(3)]
             box('sign%d' % i, (x0, 2.28, 3.6), (W * 0.7, 0.06, 0.45), painted('sign%d' % i, sc, var=0.08), bevel=0.01)
         # potted plant
-        if rnd.random() < 0.5:
+        px_try = x0
+        if rnd.random() < 0.5 and not (clear[0] - 2.5 < x0 < clear[1] + 2.5):
             pot = painted('pot', (0.55, 0.3, 0.2), var=0.08); leaf = painted('leaf', (0.2, 0.42, 0.22), var=0.15, stroke_scale=12)
             px = x0 + rnd.uniform(-1.5, 1.5)
             box('pot%d' % i, (px, 2.15, 0.32), (0.34, 0.34, 0.4), pot, bevel=0.03)

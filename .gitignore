@@ -27,3 +27,4 @@ _old_root/
 migrate_once.bat
 migrate_log.txt
 blender/test/*_log.txt
+pull_log.txt
