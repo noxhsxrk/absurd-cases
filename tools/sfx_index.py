@@ -119,11 +119,15 @@ def best_per_cue(rows):
         if k not in best or key > best[k][0]: best[k] = (key, r)
     return {k: v[1] for k, v in best.items()}
 
-def render(rows=None):
+def render(rows=None, for_store=False):
+    """index.md for the absurd-cases repo, or (for_store) README.md for the absurd-sfx repo with links straight to each file"""
     rows = rows if rows is not None else json.loads((LIB / 'index.json').read_text(encoding='utf-8'))
+    if for_store: rows = [r for r in rows if r.get('store')]
     U = usage(); cats, cues = U['categories'], U['cues']; ui = used_in(); best = best_per_cue(rows)
     n_take = {}
     for r in rows: n_take[base(r['cue'])] = n_take.get(base(r['cue']), 0) + 1
+    SH = ['# absurd-sfx — คลังเสียงของ absurd-cases', '', 'ไฟล์นี้สร้างอัตโนมัติจาก `absurd-cases/tools/sfx_index.py upload` (แหล่งจริงของคำอธิบาย: `absurd-cases/tools/sfx_library/usage.json`) — อย่าแก้ในนี้ตรงๆ', '',
+         f'{len(rows)} ไฟล์ · {len(best)} เสียง · ดึงไปใช้: `python tools/sfx_index.py pull <เสียง> --ep N` ใน repo absurd-cases (โหลดเฉพาะไฟล์นั้น)', '']
     L = ['# คลังเสียง absurd-cases (SFX library)', '',
          f'{len(rows)} ไฟล์ ({sum(1 for r in rows if r.get("store"))} อยู่บนคลัง GitHub, {sum(1 for r in rows if r.get("local", True))} อยู่ในเครื่อง) · {len(best)} เสียง · สร้างใหม่: `python tools/sfx_index.py build` · ค้น: `python tools/sfx_index.py search <คำ>` (ไทยก็ได้)', '',
          '## วิธีใช้', '',
@@ -133,6 +137,9 @@ def render(rows=None):
          '4. ลำดับความไว้ใจ: engine `sao` (Stable Audio Open 44.1 kHz) > `audioldm2` (16 kHz) > รุ่นเก่า `_v1/_v2` (EP1–2). คะแนน CLAP < 0.05 = take พลาด ใช้ synth แทน',
          '5. ไม่มีเพลงเด็ดขาด. ระดับ: bed rms ≈ 0.0038 (−40 dBFS) · spot peak 0.15–0.62 · ค้อนตัดสิน/ป้ายข้อหาดังสุด · ทุกอย่างหลบใต้พากย์ ~3 dB · มิกซ์จบ −15 LUFS', '',
          '## สารบัญหมวด', '']
+    if for_store: L = SH + L[L.index('## วิธีใช้'):]
+    cell = (lambda r: f"[{r['store'].rsplit('/', 1)[1]}]({r['store']})") if for_store else \
+           (lambda r: '`' + r['path'] + '`' if r.get('local', True) else '☁ `' + r.get('store', '') + '`')
     order = list(cats) + ['other']
     for k in order:
         if k in cats: L.append(f"- **{cats[k]['title']}** — {cats[k]['how']}")
@@ -146,11 +153,12 @@ def render(rows=None):
         L += ['| เสียง | ใช้ตอนไหน | เคยใช้ | take ที่ดีที่สุด | engine · วิ · score | takes |', '|---|---|---|---|---|---|']
         for k, r in sorted(groups[c], key=lambda x: (x[1]['engine'] != 'sao', x[0])):
             sc = '' if r['score'] is None else round(r['score'], 2)
-            L.append(f"| **{k}** | {cues.get(k, ['', ''])[1]} | {', '.join(ui.get(r['cue'], []) + [u for u in ui.get(k, []) if k != r['cue']])} | {'`' + r['path'] + '`' if r.get('local', True) else '☁ `' + r.get('store', '') + '`'} | {r['engine']} · {r.get('sec', '')} · {sc} | {n_take[k]} |")
+            L.append(f"| **{k}** | {cues.get(k, ['', ''])[1]} | {', '.join(ui.get(r['cue'], []) + [u for u in ui.get(k, []) if k != r['cue']])} | {cell(r)} | {r['engine']} · {r.get('sec', '')} · {sc} | {n_take[k]} |")
         L.append('')
     if U.get('synth'):
         L += ['## เสียงสังเคราะห์ (ไม่ต้องเจน — ฟังก์ชันใน `tools/premix_absurd_ep8b.py`)', '', 'ใช้เป็นตัวสำรองตัวที่ 2 ของ `take()` หรือเมื่อ AI take ไม่เข้า', '', '| ฟังก์ชัน | เสียง |', '|---|---|']
         L += [f'| `{a}` | {b} |' for a, b in U['synth']] + ['']
+    if for_store: return '\n'.join(L)
     (LIB / 'index.md').write_text('\n'.join(L), encoding='utf-8')
     missing = sorted(k for k in best if k not in cues)
     if missing: print('no usage line yet for:', ', '.join(missing))
@@ -209,7 +217,7 @@ def ensure_store():
         if r.returncode:
             sys.exit('cannot clone the sound store ' + STORE_URL + '\n' + r.stderr +
                      '\ncreate the private repo first (github.com/new, name absurd-sfx, empty) or set SFX_STORE_URL')
-        g('sparse-checkout', 'init', '--no-cone'); g('sparse-checkout', 'set', '--no-cone', '/README.md')
+        g('sparse-checkout', 'init', '--no-cone'); g('sparse-checkout', 'set', '--no-cone', '/README.md', '/index.json')
         g('checkout', ok=True)
     g('fetch', '-q', 'origin', ok=True)
     br = g('symbolic-ref', '--short', 'HEAD', ok=True).strip() or 'main'
@@ -225,9 +233,6 @@ def remote_tree(br):
 def upload():
     rows = load_rows(); br = ensure_store(); have = remote_tree(br)
     used = set(have.values()); n_new = 0
-    if not (STORE / 'README.md').exists():
-        (STORE / 'README.md').write_text('# absurd-sfx\nSound takes for the absurd-cases shorts. Index + usage: absurd-cases/tools/sfx_library/index.md.\n'
-                                         'Fetch single files with `python tools/sfx_index.py pull <cue> --ep N` from the absurd-cases repo.\n', encoding='utf-8')
     for r in rows:
         src = ROOT / r['path']
         if not src.exists(): continue
@@ -238,9 +243,14 @@ def upload():
         if dest in used: dest = dest[:-4] + '_' + sha[:6] + '.wav'
         (STORE / dest).parent.mkdir(parents=True, exist_ok=True); (STORE / dest).write_bytes(data)
         have[sha] = dest; used.add(dest); r['store'] = dest; n_new += 1
-    if n_new:
-        g('add', '--sparse', '-A', '.')
-        g(*AUTHOR, 'commit', '-q', '-m', f'add {n_new} takes')
+    (STORE / 'README.md').write_text(render(rows, for_store=True), encoding='utf-8')          # the index travels with the sounds
+    keep = ('cue', 'rank', 'store', 'engine', 'score', 'episode', 'prompt', 'target', 'tags', 'sec', 'sr', 'ch', 'rms_db', 'peak_db', 'sha')
+    U = usage()
+    (STORE / 'index.json').write_text(json.dumps([dict({k: r.get(k) for k in keep}, usage=U['cues'].get(base(r['cue']))) for r in rows if r.get('store')],
+                                                 ensure_ascii=False, indent=1), encoding='utf-8')
+    g('add', '--sparse', '-A', '.')
+    if g('status', '--porcelain'):
+        g(*AUTHOR, 'commit', '-q', '-m', f'add {n_new} takes' if n_new else 'update index')
         g('push', '-q', '-u', 'origin', 'HEAD:' + br)
     save_rows(rows); prune()                                # pushed blobs leave the machine; pull re-fetches single files
     print(f'uploaded {n_new} new takes; {sum(1 for r in rows if r.get("store"))} of {len(rows)} takes are in the store')
