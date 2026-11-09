@@ -4,6 +4,11 @@ reuses sounds before generating new ones.
   python tools/sfx_index.py build            # scan the folders below -> tools/sfx_library/index.json + index.md
   python tools/sfx_index.py search cuffs     # best matches (name, tags, prompt), best take first
   python tools/sfx_index.py search "door slam" --engine sao --min-score 0.2
+  python tools/sfx_index.py search จับ           # Thai works too: matches the usage notes
+  python tools/sfx_index.py render           # rewrite index.md from index.json + usage.json (no disk scan)
+
+When to use each sound lives in tools/sfx_library/usage.json (category + a Thai line per cue, base name without _vN).
+Where each sound was already used is read from the premix scripts (tools/premix_absurd_ep*.py).
 
 What gets indexed (paths relative to the repo root):
   tools/ai-sfx/out*/<cue>_r<k>.wav      generator takes (AudioLDM2 = out, out3..out8; Stable Audio Open = out_sao*)
@@ -73,6 +78,71 @@ def tags_for(name, text):
     s = ' ' + re.sub(r'[^a-z0-9]+', ' ', (name + ' ' + text).lower()) + ' '
     return sorted({t for t, kws in TAGS.items() if any(re.search(r'\b' + re.escape(k), s) for k in kws)})
 
+base = lambda cue: re.sub(r'_v\d+$', '', cue)
+
+def usage():
+    f = LIB / 'usage.json'
+    return json.loads(f.read_text(encoding='utf-8')) if f.exists() else {'categories': {}, 'cues': {}, 'synth': []}
+
+def used_in():
+    """cue -> ['EP8 cuff', 'EP8 bed interro→court', ...] from take('cue' / amb('cue' calls in the premix scripts"""
+    out = {}
+    for f in sorted((ROOT / 'tools').glob('premix_absurd_ep*.py')):
+        ep = 'EP' + re.search(r'ep(\d+\w*)', f.stem).group(1)
+        for line in f.read_text(encoding='utf-8', errors='ignore').splitlines():
+            for m in re.finditer(r"(?:take|amb|ai)\('([a-z0-9_]+)'", line):
+                at = re.findall(r"EV\['(\w+)'\]|T\('(\w+)'\)", line)
+                at = [a or b for a, b in at]
+                where = ('bed ' + ('→'.join(at[:2]) if len(at) > 1 else '…→' + ''.join(at[:1]))) if ('M.bed' in line or 'amb(' in line) else (at[0] if at else '')
+                lab = (ep + ' ' + where).strip()
+                if lab not in out.setdefault(m.group(1), []): out[m.group(1)].append(lab)
+    return out
+
+def best_per_cue(rows):
+    """one row per base cue: sao first, then CLAP score, then rank"""
+    best = {}
+    for r in rows:
+        k = base(r['cue']); key = (r['engine'] == 'sao', r['score'] if r['score'] is not None else -1, -r['rank'])
+        if k not in best or key > best[k][0]: best[k] = (key, r)
+    return {k: v[1] for k, v in best.items()}
+
+def render(rows=None):
+    rows = rows if rows is not None else json.loads((LIB / 'index.json').read_text(encoding='utf-8'))
+    U = usage(); cats, cues = U['categories'], U['cues']; ui = used_in(); best = best_per_cue(rows)
+    n_take = {}
+    for r in rows: n_take[base(r['cue'])] = n_take.get(base(r['cue']), 0) + 1
+    L = ['# คลังเสียง absurd-cases (SFX library)', '',
+         f'{len(rows)} ไฟล์ · {len(best)} เสียง · สร้างใหม่: `python tools/sfx_index.py build` · ค้น: `python tools/sfx_index.py search <คำ>` (ไทยก็ได้)', '',
+         '## วิธีใช้', '',
+         '1. อ่านสคริปต์ตอนใหม่ แล้วไล่ทีละจังหวะ: ฉากอยู่ที่ไหน (bed) → คนทำอะไร (spot) → ช่วงพีก (จับ/ตัดสิน/มุก). หาเสียงจากหมวดด้านล่างหรือ `search`',
+         '2. มีเสียงที่ตรง → ก๊อป take ไป `public/absurd-cases/epN/sfx_sao/<cue>_r1.wav` แล้วเรียกใน premix ด้วย `take(\'<cue>\', synth_สำรอง, ความยาว)`',
+         '3. ไม่มี / ไม่ตรง → เจนเฉพาะ cue ที่ขาดด้วย `tools/ai-sfx/gen_sao_epN.py` (ตั้งชื่อ cue อังกฤษค้นง่าย) แล้วเพิ่มบรรทัดใน `tools/sfx_library/usage.json` ว่าใช้ตอนไหน แล้ว `build`',
+         '4. ลำดับความไว้ใจ: engine `sao` (Stable Audio Open 44.1 kHz) > `audioldm2` (16 kHz) > รุ่นเก่า `_v1/_v2` (EP1–2). คะแนน CLAP < 0.05 = take พลาด ใช้ synth แทน',
+         '5. ไม่มีเพลงเด็ดขาด. ระดับ: bed rms ≈ 0.0038 (−40 dBFS) · spot peak 0.15–0.62 · ค้อนตัดสิน/ป้ายข้อหาดังสุด · ทุกอย่างหลบใต้พากย์ ~3 dB · มิกซ์จบ −15 LUFS', '',
+         '## สารบัญหมวด', '']
+    order = list(cats) + ['other']
+    for k in order:
+        if k in cats: L.append(f"- **{cats[k]['title']}** — {cats[k]['how']}")
+    L.append('')
+    groups = {}
+    for k, r in best.items(): groups.setdefault(cues.get(k, ['other'])[0], []).append((k, r))
+    for c in order:
+        if c not in groups: continue
+        L += [f"## {cats[c]['title'] if c in cats else 'ยังไม่มีคำอธิบาย (เพิ่มใน usage.json)'}", '']
+        if c in cats: L += [cats[c]['how'], '']
+        L += ['| เสียง | ใช้ตอนไหน | เคยใช้ | take ที่ดีที่สุด | engine · วิ · score | takes |', '|---|---|---|---|---|---|']
+        for k, r in sorted(groups[c], key=lambda x: (x[1]['engine'] != 'sao', x[0])):
+            sc = '' if r['score'] is None else round(r['score'], 2)
+            L.append(f"| **{k}** | {cues.get(k, ['', ''])[1]} | {', '.join(ui.get(r['cue'], []) + [u for u in ui.get(k, []) if k != r['cue']])} | `{r['path']}` | {r['engine']} · {r.get('sec', '')} · {sc} | {n_take[k]} |")
+        L.append('')
+    if U.get('synth'):
+        L += ['## เสียงสังเคราะห์ (ไม่ต้องเจน — ฟังก์ชันใน `tools/premix_absurd_ep8b.py`)', '', 'ใช้เป็นตัวสำรองตัวที่ 2 ของ `take()` หรือเมื่อ AI take ไม่เข้า', '', '| ฟังก์ชัน | เสียง |', '|---|---|']
+        L += [f'| `{a}` | {b} |' for a, b in U['synth']] + ['']
+    (LIB / 'index.md').write_text('\n'.join(L), encoding='utf-8')
+    missing = sorted(k for k in best if k not in cues)
+    if missing: print('no usage line yet for:', ', '.join(missing))
+    print('wrote', (LIB / 'index.md').relative_to(ROOT), '-', len(best), 'sounds')
+
 def build():
     meta = cue_meta(); rows = []
     scores = {}
@@ -94,39 +164,29 @@ def build():
                      **wav_info(p)})
     LIB.mkdir(parents=True, exist_ok=True)
     (LIB / 'index.json').write_text(json.dumps(rows, ensure_ascii=False, indent=1), encoding='utf-8')
-    # human-readable: one line per cue (best take per engine), grouped by tag
-    best = {}
-    for r in rows:
-        k = (r['cue'], r['engine'])
-        if k not in best or (r['score'] or 0) > (best[k]['score'] or 0) or r['rank'] < best[k]['rank']: best[k] = r
-    lines = ['# absurd-cases SFX library', '', f'{len(rows)} takes, {len(best)} cue/engine pairs. Regenerate: `python tools/sfx_index.py build`. '
-             'Search: `python tools/sfx_index.py search <words>`. Engine `sao` (Stable Audio Open, 44.1 kHz) is preferred over `audioldm2` (16 kHz, older).', '']
-    by_tag = {}
-    for r in best.values():
-        for t in (r['tags'] or ['other']): by_tag.setdefault(t, []).append(r)
-    for t in sorted(by_tag):
-        lines += [f'## {t}', '', '| cue | engine | sec | score | best take | prompt |', '|---|---|---|---|---|---|']
-        for r in sorted(by_tag[t], key=lambda r: (r['cue'], r['engine'] != 'sao')):
-            lines.append(f"| {r['cue']} | {r['engine']} | {r.get('sec', '')} | {'' if r['score'] is None else round(r['score'], 3)} | `{r['path']}` | {r['prompt'][:90]} |")
-        lines.append('')
-    (LIB / 'index.md').write_text('\n'.join(lines), encoding='utf-8')
+    render(rows)
     print('indexed', len(rows), 'takes ->', (LIB / 'index.json').relative_to(ROOT))
 
 def search(words, engine=None, min_score=None, n=12):
-    rows = json.loads((LIB / 'index.json').read_text(encoding='utf-8')); q = [w.lower() for w in words]
+    rows = json.loads((LIB / 'index.json').read_text(encoding='utf-8')); q = [w.lower() for w in words]; U = usage()
     def hit(r):
-        hay = ' '.join([r['cue'].replace('_', ' '), r['prompt'], r['target'], ' '.join(r['tags'])]).lower()
+        u = U['cues'].get(base(r['cue']), ['', ''])
+        hay = ' '.join([r['cue'].replace('_', ' '), r['prompt'], r['target'], ' '.join(r['tags']), u[1], U['categories'].get(u[0], {}).get('title', '')]).lower()
         return sum(3 if w in r['cue'] else 1 for w in q if w in hay)
     res = [(hit(r), r) for r in rows if (not engine or r['engine'] == engine) and (min_score is None or (r['score'] or 0) >= min_score)]
-    res = [x for x in res if x[0] > 0]
+    res = [x for x in res if x[0] > 0]; seen = set()
+    res = [x for x in res if not ((k := (x[1]['cue'], x[1]['engine'], x[1]['rank'], x[1]['score'])) in seen or seen.add(k))]   # same take copied into public/
     res.sort(key=lambda x: (-x[0], x[1]['engine'] != 'sao', x[1]['rank'], -(x[1]['score'] or 0)))
     for s, r in res[:n]:
         print(f"{r['cue']:18s} {r['engine']:9s} r{r['rank']} {str(r.get('sec', '')):>5}s score {r['score'] if r['score'] is not None else '-':<7} {r['path']}")
+        u = U['cues'].get(base(r['cue']))
+        if u and r['rank'] == 1: print(' ' * 20 + '↳ ' + u[1])
     if not res: print('no match — generate it (tools/ai-sfx/gen_sao_epN.py), then run build')
 
 if __name__ == '__main__':
     a = sys.argv[1:]
     if not a or a[0] == 'build': build()
+    elif a[0] == 'render': render()
     elif a[0] == 'search':
         eng = a[a.index('--engine') + 1] if '--engine' in a else None
         ms = float(a[a.index('--min-score') + 1]) if '--min-score' in a else None

@@ -1,318 +1,273 @@
-# absurd-cases SFX library
+# คลังเสียง absurd-cases (SFX library)
 
-592 takes, 198 cue/engine pairs. Regenerate: `python tools/sfx_index.py build`. Search: `python tools/sfx_index.py search <words>`. Engine `sao` (Stable Audio Open, 44.1 kHz) is preferred over `audioldm2` (16 kHz, older).
+592 ไฟล์ · 154 เสียง · สร้างใหม่: `python tools/sfx_index.py build` · ค้น: `python tools/sfx_index.py search <คำ>` (ไทยก็ได้)
 
-## ambience
+## วิธีใช้
 
-| cue | engine | sec | score | best take | prompt |
+1. อ่านสคริปต์ตอนใหม่ แล้วไล่ทีละจังหวะ: ฉากอยู่ที่ไหน (bed) → คนทำอะไร (spot) → ช่วงพีก (จับ/ตัดสิน/มุก). หาเสียงจากหมวดด้านล่างหรือ `search`
+2. มีเสียงที่ตรง → ก๊อป take ไป `public/absurd-cases/epN/sfx_sao/<cue>_r1.wav` แล้วเรียกใน premix ด้วย `take('<cue>', synth_สำรอง, ความยาว)`
+3. ไม่มี / ไม่ตรง → เจนเฉพาะ cue ที่ขาดด้วย `tools/ai-sfx/gen_sao_epN.py` (ตั้งชื่อ cue อังกฤษค้นง่าย) แล้วเพิ่มบรรทัดใน `tools/sfx_library/usage.json` ว่าใช้ตอนไหน แล้ว `build`
+4. ลำดับความไว้ใจ: engine `sao` (Stable Audio Open 44.1 kHz) > `audioldm2` (16 kHz) > รุ่นเก่า `_v1/_v2` (EP1–2). คะแนน CLAP < 0.05 = take พลาด ใช้ synth แทน
+5. ไม่มีเพลงเด็ดขาด. ระดับ: bed rms ≈ 0.0038 (−40 dBFS) · spot peak 0.15–0.62 · ค้อนตัดสิน/ป้ายข้อหาดังสุด · ทุกอย่างหลบใต้พากย์ ~3 dB · มิกซ์จบ −15 LUFS
+
+## สารบัญหมวด
+
+- **บรรยากาศพื้นหลัง (bed)** — วางยาวตลอดฉาก loop ได้ ด้วย M.bed(...) ระดับ rms ≈ BED (0.0038, ≈ −40 dBFS) ใต้เสียงพากย์ เปลี่ยน bed ตรงคัตเปลี่ยนสถานที่ ครอสเฟด 0.2–0.3 วิ
+- **ท่าทางคน (เดิน หายใจ ไอ จาม)** — spot ตรงเฟรมที่ตัวละครทำ ใส่ก่อนเหตุการณ์ 0.02–0.1 วิ peak 0.15–0.35 ฝีเท้าใช้ rms ต่ำ (~0.02) เพราะยาว
+- **ของใช้ในบ้าน / เรื่องธรรมดาตอนเปิดเรื่อง** — ใช้ในช่วง 'ชายคนนี้ กำลัง…' ให้ฉากธรรมดาฟังดูจริง ก่อนเรื่องจะเพี้ยน peak 0.2–0.4
+- **โทรศัพท์ / แจ้งเหตุ / อุปกรณ์** — ช็อต MCU มือถือ: เสียงแตะจอตรงนิ้วแตะ, เสียงเตือนตอน UI เด้ง peak 0.15–0.3
+- **ตำรวจ / หน่วยพิเศษบุก / จับกุม** — ไซเรนเข้าก่อนภาพตำรวจ 0.3–0.6 วิแล้ว loop ใต้ช็อตบุก (rms ต่ำ ~0.006), ฝีเท้า SWAT ตรงคัตเข้า, กุญแจมือตรงเฟรมใส่ (peak 0.4+) = จุดพีกของช่วงจับ
+- **สถาบัน: ห้องสอบสวน ศาล เอกสาร** — bed ห้อง + spot เด่นหนึ่งเสียงต่อช็อต (คลิกโคมไฟตอนเปิดไฟสอบสวน, ค้อนตอนตัดสิน peak ~0.6 = ดังสุดของคลิป, ตราปั๊มตรงเฟรมปั๊ม)
+- **คุก / บทลงโทษ** — ประตูเหล็ก/ล็อกปิดตรงคัตเข้าคุก (peak 0.5–0.6), bed ทางเดินคุกเบาๆ, สัญญาณเตือนเมื่อมีหนี
+- **มุกการ์ตูน / ยาง / ของย้วย** — เสียงของคำตอบหรือสิ่งที่ผิดธรรมชาติ (เงา ยาง สบู่) ใส่ตรงเฟรมขยับ peak 0.18–0.38; ซ้ำ 2–3 ครั้งห่าง 0.3 วิได้; อย่าใช้เพลง
+- **เหตุใหญ่ / ภัย / ไฟฟ้า / ยานพาหนะ** — ใช้ตอนเรื่องบานปลาย (ฮ.บิน, รถทหาร, ฟ้าผ่า, ไฟช็อต) วางเป็น bed สั้นหรือ spot ใหญ่ peak 0.4–0.6 ลดลงใต้คำพากย์
+- **กระแทก / ทรานซิชัน / ล้ม** — ปิดท้ายแอ็กชันหรือคัตแรง (ล้ม, ประตูพัง, riser ก่อนคัตใหญ่) peak 0.3–0.55 ใส่ thud ต่ำซ้อนได้
+
+## บรรยากาศพื้นหลัง (bed)
+
+วางยาวตลอดฉาก loop ได้ ด้วย M.bed(...) ระดับ rms ≈ BED (0.0038, ≈ −40 dBFS) ใต้เสียงพากย์ เปลี่ยน bed ตรงคัตเปลี่ยนสถานที่ ครอสเฟด 0.2–0.3 วิ
+
+| เสียง | ใช้ตอนไหน | เคยใช้ | take ที่ดีที่สุด | engine · วิ · score | takes |
 |---|---|---|---|---|---|
-| air_drift | audioldm2 | 3.0 |  | `tools/ai-sfx/out3/air_drift_r1.wav` | a soft gentle breeze of air, light airy whoosh, very quiet, no wind gusts |
-| car_door_open | audioldm2 | 1.5 | 0.048 | `tools/ai-sfx/out7/car_door_open_r1.wav` | a car door flung open hard, metal clunk, wind rushing in |
-| cell_hum | audioldm2 | 6.0 | 0.062 | `tools/ai-sfx/out7/cell_hum_r1.wav` | quiet concrete prison corridor, faint ventilation hum, distant drip |
-| cough | sao | 2.5 | 0.357 | `public/absurd-cases/ep8/sfx_sao/cough_r1.wav` | An old man coughing twice and clearing his throat in a quiet room. |
-| court_amb | sao | 6.0 | 0.015 | `public/absurd-cases/ep8/sfx_sao/court_amb_r1.wav` | Quiet courtroom ambience, faint murmurs, paper shuffling, a chair creaking, large wooden r |
-| court_room | audioldm2 | 6.0 | -0.028 | `tools/ai-sfx/out6/court_room_r1.wav` | quiet courtroom room tone, soft murmuring of a few people, paper rustle |
-| fan_gear | audioldm2 | 2.5 |  | `tools/ai-sfx/out3/fan_gear_r1.wav` | an old oscillating desk fan, plastic gear clicking and grinding as the fan head turns, clo |
-| fan_hum | audioldm2 | 6.0 | 0.107 | `tools/ai-sfx/out5/fan_hum_r1.wav` | an electric fan running on high, motor hum and whirring blades |
-| fan_winddown_v1 | audioldm2 |  |  | `tools/ai-sfx/out/fan_winddown_v1.wav` |  |
-| fan_winddown_v2 | audioldm2 |  |  | `tools/ai-sfx/out/fan_winddown_v2.wav` |  |
-| flood_hum | sao | 6.0 | 0.203 | `public/absurd-cases/ep8/sfx_sao/flood_hum_r1.wav` | Steady electrical buzz and hum of powerful outdoor floodlights, no music. |
-| flood_on | sao | 2.5 | 0.322 | `public/absurd-cases/ep8/sfx_sao/flood_on_r1.wav` | Heavy industrial floodlights switched on one after another, loud electrical clunks, then a |
-| floodlight_hum | audioldm2 | 6.0 | 0.217 | `tools/ai-sfx/out8/floodlight_hum_r1.wav` | the steady electrical buzz and hum of big outdoor floodlights at night, no music |
-| fridge_hum | audioldm2 | 6.0 | 0.183 | `tools/ai-sfx/out3/fridge_hum_r1.wav` | a refrigerator motor humming quietly in a dark kitchen at night |
-| fridge_open | audioldm2 | 2.0 | 0.158 | `tools/ai-sfx/out3/fridge_open_r1.wav` | opening a refrigerator door, rubber seal unsticking with a soft suction pop, then the frid |
-| gavel | sao | 2.0 | 0.252 | `public/absurd-cases/ep8/sfx_sao/gavel_r1.wav` | A judge wooden gavel striking a sound block twice, sharp wooden knock, courtroom. |
-| glass_burst | audioldm2 | 2.0 | 0.049 | `tools/ai-sfx/out7/glass_burst_r1.wav` | a window bursts open in a storm, glass rattling and wind gust |
-| high_wind_rain | audioldm2 | 8.0 | 0.241 | `tools/ai-sfx/out7/high_wind_rain_r1.wav` | strong wind and heavy rain inside a storm cloud, howling gusts, no music |
-| morning_birds_v1 | audioldm2 |  |  | `tools/ai-sfx/out/morning_birds_v1.wav` |  |
-| morning_birds_v2 | audioldm2 |  |  | `tools/ai-sfx/out/morning_birds_v2.wav` |  |
-| night_kitchen | audioldm2 | 8.0 | 0.02 | `tools/ai-sfx/out3/night_kitchen_r1.wav` | a quiet kitchen at night, faint distant crickets outside, very quiet room tone |
-| night_street_rain | audioldm2 | 8.0 | 0.247 | `tools/ai-sfx/out7/night_street_rain_r1.wav` | rain falling on a city street at night, wet tyres in the distance, no music |
-| noon_amb | sao | 10.0 | 0.179 | `public/absurd-cases/ep8/sfx_sao/noon_amb_r1.wav` | Hot tropical noon at a bus stop, loud cicadas, distant traffic and a bus passing, field re |
-| noon_cicadas | audioldm2 | 8.0 | 0.333 | `tools/ai-sfx/out8/noon_cicadas_r1.wav` | loud cicadas buzzing on a hot tropical noon, distant traffic at a bus stop, no music |
-| outdoor_prison | audioldm2 | 6.0 | 0.217 | `tools/ai-sfx/out6/outdoor_prison_r1.wav` | open outdoor area in front of a building, light wind and distant birds, quiet |
-| phone_alert | audioldm2 | 2.0 | 0.278 | `tools/ai-sfx/out7/phone_alert_r1.wav` | a smartphone emergency alert tone, loud repeating two tone beeps |
-| phone_taps | sao | 2.0 | 0.207 | `public/absurd-cases/ep8/sfx_sao/phone_taps_r1.wav` | Fingers tapping on a smartphone touchscreen three times, then a call ringing tone starts. |
-| police_sirens | audioldm2 | 6.0 | 0.426 | `tools/ai-sfx/out7/police_sirens_r1.wav` | several police car sirens wailing on a city street |
-| rain_window | audioldm2 | 8.0 | 0.322 | `tools/ai-sfx/out7/rain_window_r1.wav` | heavy rain against a bedroom window at night, distant thunder rumbles, quiet room, no musi |
-| room_hum | audioldm2 | 6.0 | 0.07 | `tools/ai-sfx/out7/room_hum_r1.wav` | quiet interrogation room, fluorescent light hum, room tone |
-| room_tone | sao | 6.0 | 0.151 | `public/absurd-cases/ep8/sfx_sao/room_tone_r1.wav` | Interrogation room tone, fluorescent tube light buzzing, quiet, slight air conditioner hum |
-| shower_bed | audioldm2 | 8.0 | 0.345 | `tools/ai-sfx/out5/shower_bed_r1.wav` | a shower running in a small tiled bathroom, water splashing on the floor |
-| siren | sao | 7.0 | 0.338 | `public/absurd-cases/ep8/sfx_sao/siren_r1.wav` | A police car siren wailing close by on a quiet street, realistic recording. |
-| sneeze | audioldm2 | 2.0 |  | `tools/ai-sfx/out3/sneeze_r1.wav` | a man sneezing loudly once, achoo, close up recording |
-| spotlight_on | audioldm2 | 2.0 | 0.167 | `tools/ai-sfx/out8/spotlight_on_r1.wav` | huge stadium floodlights switching on with a heavy electrical clunk and a rising hum |
-| street_steps | audioldm2 | 3.0 | 0.198 | `tools/ai-sfx/out8/street_steps_r1.wav` | a man walking calmly on a concrete sidewalk in a quiet suburb, footsteps, then he stops |
-| swat_boots | audioldm2 | 3.0 | 0.093 | `tools/ai-sfx/out3/swat_boots_r1.wav` | a squad of police officers in heavy boots rushing into a room, gear rattling |
-| traffic_bed | audioldm2 | 8.0 | 0.139 | `tools/ai-sfx/out6/traffic_bed_r1.wav` | busy city traffic on a wide eight lane road in daytime, cars passing by, distant horns, no |
-| traffic_cones | audioldm2 | 2.0 | 0.083 | `tools/ai-sfx/out6/traffic_cones_r1.wav` | plastic traffic cones being placed down quickly on asphalt, hollow plastic knocks |
-| village_amb | sao | 10.0 | 0.22 | `public/absurd-cases/ep8/sfx_sao/village_amb_r1.wav` | Quiet residential neighbourhood street in Thailand on a sunny afternoon, birds chirping, a |
-| wind_blast | audioldm2 | 3.0 | 0.185 | `tools/ai-sfx/out7/wind_blast_r1.wav` | a huge blast of wind like a tornado, roaring gust |
-| wind_gap | audioldm2 | 3.0 | -0.018 | `tools/ai-sfx/out6/wind_gap_r1.wav` | wind whistling through a narrow gap in a concrete structure, hollow eerie howl |
-| wind_gust_v1 | audioldm2 |  |  | `tools/ai-sfx/out/wind_gust_v1.wav` |  |
-| wind_gust_v2 | audioldm2 |  |  | `tools/ai-sfx/out/wind_gust_v2.wav` |  |
-| wind_high | audioldm2 | 8.0 | 0.157 | `tools/ai-sfx/out7/wind_high_r1.wav` | wind blowing high above a city, airy and open, no music |
-| window_creak_v1 | audioldm2 |  |  | `tools/ai-sfx/out/window_creak_v1.wav` |  |
-| window_creak_v2 | audioldm2 |  |  | `tools/ai-sfx/out/window_creak_v2.wav` |  |
-| window_open | audioldm2 | 2.5 |  | `tools/ai-sfx/out3/window_open_r1.wav` | an old wooden sash window is unlatched and slid open, wood scraping and a small creak, qui |
+| **court_amb** | ห้องพิจารณาคดี เสียงพึมพำ กระดาษ เก้าอี้ลั่น (ตัวหลักของศาล) | EP8b bed court→vest | `public/absurd-cases/ep8/sfx_sao/court_amb_r1.wav` | sao · 6.0 · 0.02 | 5 |
+| **flood_hum** | สปอตไลต์ใหญ่กลางแจ้งหึ่ง วางหลังเปิดไฟส่องผู้ต้องหา | EP8b bed lights→interro | `public/absurd-cases/ep8/sfx_sao/flood_hum_r1.wav` | sao · 6.0 · 0.2 | 5 |
+| **noon_amb** | เที่ยงร้อนป้ายรถเมล์ จักจั่นดัง รถผ่าน (ตัวหลักของกลางวันร้อน) | EP8b bed vest→report | `public/absurd-cases/ep8/sfx_sao/noon_amb_r1.wav` | sao · 10.0 · 0.18 | 5 |
+| **room_tone** | ห้องสอบสวน ไฟนีออน+แอร์เบาๆ (ตัวหลักของห้องสอบสวน) | EP8b bed interro→court | `public/absurd-cases/ep8/sfx_sao/room_tone_r1.wav` | sao · 6.0 · 0.15 | 5 |
+| **village_amb** | ถนนในหมู่บ้านไทยบ่ายแดดดี นกร้อง (ตัวหลักของฉากหมู่บ้าน) | EP8b bed …→interro | `public/absurd-cases/ep8/sfx_sao/village_amb_r1.wav` | sao · 10.0 · 0.22 | 5 |
+| **air_drift** | ลมอ่อนข้างหน้าต่าง ฉากสูดอากาศ เช้าสงบ |  | `tools/ai-sfx/out3/air_drift_r1.wav` | audioldm2 · 3.0 ·  | 4 |
+| **car_pass** | รถวิ่งผ่านเร็วหนึ่งคัน ฉากริมถนน/ข้ามถนน (วางทับ bed) | EP6 cars | `tools/ai-sfx/out6/car_pass_r1.wav` | audioldm2 · 2.5 · -0.0 | 4 |
+| **cell_hum** | ทางเดินคุกคอนกรีต พัดลมระบายอากาศ น้ำหยด | EP7 bed cell18→prisonTop | `tools/ai-sfx/out7/cell_hum_r1.wav` | audioldm2 · 6.0 · 0.06 | 4 |
+| **court_room** | ศาลรุ่นเก่า AudioLDM2 ใช้เมื่อ court_amb ไม่เข้า | EP6 bed courtIn→cellPush, EP7 bed court→cell18, EP8 bed court→vest | `tools/ai-sfx/out6/court_room_r1.wav` | audioldm2 · 6.0 · -0.03 | 8 |
+| **crickets** | จิ้งหรีดกลางคืน นอกบ้าน/หน้าบ้านดึก |  | `tools/ai-sfx/out/crickets_v1.wav` | audioldm2 ·  ·  | 2 |
+| **fan_hum** | พัดลมเปิดแรงสุด เสียงมอเตอร์+ใบพัด เป็น bed ในห้อง | EP5 bed fan19→report | `tools/ai-sfx/out5/fan_hum_r1.wav` | audioldm2 · 6.0 · 0.11 | 4 |
+| **floodlight_hum** | สปอตไลต์หึ่ง รุ่น AudioLDM2 (ใช้ flood_hum ก่อน) | EP8 bed lights→interro | `tools/ai-sfx/out8/floodlight_hum_r1.wav` | audioldm2 · 6.0 · 0.22 | 4 |
+| **fridge_hum** | ตู้เย็นหึ่งในครัวมืด ฉากดึก |  | `tools/ai-sfx/out3/fridge_hum_r1.wav` | audioldm2 · 6.0 · 0.18 | 4 |
+| **high_wind_rain** | ลมแรงฝนหนักในพายุ ฉากบนฟ้า/ในพายุ | EP7 bed chase→interro | `tools/ai-sfx/out7/high_wind_rain_r1.wav` | audioldm2 · 8.0 · 0.24 | 4 |
+| **morning_birds** | นกร้องตอนเช้า หน้าบ้าน/หมู่บ้าน |  | `tools/ai-sfx/out/morning_birds_v1.wav` | audioldm2 ·  ·  | 2 |
+| **murmur** | เสียงพึมพำฝูงคน รุ่นเก่า (ศาล/ฝูงชน) |  | `tools/ai-sfx/out/murmur_v1.wav` | audioldm2 ·  ·  | 2 |
+| **night_kitchen** | ครัวเงียบตอนดึก จิ้งหรีดไกลๆ |  | `tools/ai-sfx/out3/night_kitchen_r1.wav` | audioldm2 · 8.0 · 0.02 | 4 |
+| **night_quiet** | กลางคืนเงียบ รุ่นเก่า |  | `tools/ai-sfx/out/night_quiet_v1.wav` | audioldm2 ·  ·  | 2 |
+| **night_street_rain** | ฝนตกบนถนนกลางคืน ล้อรถเปียกไกลๆ | EP7 bed throttle→chase | `tools/ai-sfx/out7/night_street_rain_r1.wav` | audioldm2 · 8.0 · 0.25 | 4 |
+| **noon_cicadas** | จักจั่นเที่ยงร้อน รุ่น AudioLDM2 | EP8 bed sun→report | `tools/ai-sfx/out8/noon_cicadas_r1.wav` | audioldm2 · 8.0 · 0.33 | 4 |
+| **outdoor_prison** | ลานโล่งหน้าอาคาร ลมเบา นกไกลๆ (หน้าคุก/หน้าสถานที่ราชการ) | EP6 bed prisonFront→notice, EP8 bed vest→sun | `tools/ai-sfx/out6/outdoor_prison_r1.wav` | audioldm2 · 6.0 · 0.22 | 4 |
+| **prison_hall** | ทางเดินคุก รุ่นเก่า |  | `tools/ai-sfx/out/prison_hall_v1.wav` | audioldm2 ·  ·  | 2 |
+| **rain_window** | ฝนหนักกระทบหน้าต่างห้องนอน ฟ้าร้องไกล | EP7 bed …→throttle | `tools/ai-sfx/out7/rain_window_r1.wav` | audioldm2 · 8.0 · 0.32 | 4 |
+| **room_hum** | ห้องสอบสวน ไฟนีออนหึ่ง รุ่น AudioLDM2 | EP7 bed interro→court, EP8 bed interro→court | `tools/ai-sfx/out7/room_hum_r1.wav` | audioldm2 · 6.0 · 0.07 | 4 |
+| **shower_bed** | ฝักบัวเปิดในห้องน้ำเล็ก น้ำกระเซ็น | EP5 bed …→kick | `tools/ai-sfx/out5/shower_bed_r1.wav` | audioldm2 · 8.0 · 0.34 | 4 |
+| **traffic_bed** | ถนนใหญ่ 8 เลนกลางวัน รถผ่าน แตรไกล | EP6 bed …→cranes, EP8 bed …→interro | `tools/ai-sfx/out6/traffic_bed_r1.wav` | audioldm2 · 8.0 · 0.14 | 4 |
+| **wind_gap** | ลมหวีดผ่านช่องแคบในตึกปูน หลอนๆ | EP6 answer | `tools/ai-sfx/out6/wind_gap_r1.wav` | audioldm2 · 3.0 · -0.02 | 4 |
+| **wind_gust** | ลมกระโชก รุ่นเก่า |  | `tools/ai-sfx/out/wind_gust_v1.wav` | audioldm2 ·  ·  | 2 |
+| **wind_high** | ลมบนที่สูงเหนือเมือง โล่งๆ (ช็อตมุมสูง/บนฟ้า) | EP7 bed prisonTop→alert | `tools/ai-sfx/out7/wind_high_r1.wav` | audioldm2 · 8.0 · 0.16 | 4 |
 
-## cartoon
+## ท่าทางคน (เดิน หายใจ ไอ จาม)
 
-| cue | engine | sec | score | best take | prompt |
+spot ตรงเฟรมที่ตัวละครทำ ใส่ก่อนเหตุการณ์ 0.02–0.1 วิ peak 0.15–0.35 ฝีเท้าใช้ rms ต่ำ (~0.02) เพราะยาว
+
+| เสียง | ใช้ตอนไหน | เคยใช้ | take ที่ดีที่สุด | engine · วิ · score | takes |
 |---|---|---|---|---|---|
-| air_drift | audioldm2 | 3.0 |  | `tools/ai-sfx/out3/air_drift_r1.wav` | a soft gentle breeze of air, light airy whoosh, very quiet, no wind gusts |
-| bubble_pop | audioldm2 | 1.5 | 0.153 | `tools/ai-sfx/out5/bubble_pop_r1.wav` | two soap bubbles popping, tiny wet pops, close up |
-| car_pass | audioldm2 | 2.5 | -0.004 | `tools/ai-sfx/out6/car_pass_r1.wav` | a single car driving past fast on a city road, whoosh pass by |
-| electric_pop | audioldm2 | 2.0 | 0.105 | `tools/ai-sfx/out7/electric_pop_r1.wav` | a small electronic device short circuits with a loud electric pop, sparks crackling and fi |
-| fridge_open | audioldm2 | 2.0 | 0.158 | `tools/ai-sfx/out3/fridge_open_r1.wav` | opening a refrigerator door, rubber seal unsticking with a soft suction pop, then the frid |
-| jet_takeoff | audioldm2 | 4.0 | 0.126 | `tools/ai-sfx/out7/jet_takeoff_r1.wav` | a jet engine roaring as it takes off, rising powerful whoosh |
-| knee_crack | audioldm2 | 1.0 | 0.188 | `tools/ai-sfx/out6/knee_crack_r1.wav` | a loud knee joint crack, bone popping, close up foley |
-| rubber_shrink | audioldm2 | 1.0 | 0.16 | `tools/ai-sfx/out8/rubber_shrink_r1.wav` | a quick rubbery squeak as a balloon shrinks fast, cartoon fwip |
-| shrink | sao | 1.5 | 0.274 | `public/absurd-cases/ep8/sfx_sao/shrink_r1.wav` | A quick rubbery squeak and squeeze, like a rubber toy being squashed fast, short. |
-| sizzle | audioldm2 | 1.5 | 0.068 | `tools/ai-sfx/out8/sizzle_r1.wav` | a short sizzle of something hitting a hot pan, tss |
-| smell_puff | audioldm2 | 2.0 | 0.052 | `tools/ai-sfx/out3/smell_puff_r1.wav` | a thick gassy puff of air released, soft whoosh with a low rumble |
-| soap_scrub | audioldm2 | 3.0 | 0.129 | `tools/ai-sfx/out5/soap_scrub_r1.wav` | rubbing a wet soap bar on skin, squeaky wet scrubbing, close up foley |
-| soap_slip | audioldm2 | 1.5 | 0.036 | `tools/ai-sfx/out5/soap_slip_r1.wav` | a wet soap bar squirting out of a hand and sliding across wet tiles, squeaky slide |
-| tongs_creak | audioldm2 | 2.0 | 0.214 | `tools/ai-sfx/out5/tongs_creak_r1.wav` | long metal tongs squeaking and creaking as they grip something, close up |
-| trombone_down | audioldm2 | 2.0 | 0.16 | `tools/ai-sfx/out8/trombone_down_r1.wav` | a comedic trombone slide going down, sad cartoon wah wah |
-| whoosh_cloud | audioldm2 | 2.0 | 0.178 | `tools/ai-sfx/out7/whoosh_cloud_r1.wav` | a fast airy whoosh passing through a cloud, swish |
-| window_open | audioldm2 | 2.5 |  | `tools/ai-sfx/out3/window_open_r1.wav` | an old wooden sash window is unlatched and slid open, wood scraping and a small creak, qui |
+| **cough** | คนแก่ไอสองทีกระแอม ช่วงเงียบในศาล/ห้องสอบสวนก่อนพูด | EP8b cough | `public/absurd-cases/ep8/sfx_sao/cough_r1.wav` | sao · 2.5 · 0.36 | 5 |
+| **steps_road** | เดินช้าบนถนนยาง รองเท้าผ้าใบ ฉากเดินเล่นเปิดเรื่อง (loop ได้) | EP8b | `public/absurd-cases/ep8/sfx_sao/steps_road_r1.wav` | sao · 5.0 · 0.24 | 5 |
+| **steps_stop** | เดิน 3 ก้าวแล้วหยุด ตรงจังหวะชะงัก/สังเกตเห็นความผิดปกติ | EP8b stop | `public/absurd-cases/ep8/sfx_sao/steps_stop_r1.wav` | sao · 2.0 · 0.13 | 5 |
+| **breath_in** | สูดหายใจลึกทางจมูกแล้วผ่อน ฉากสูดอากาศ/ดมกลิ่น |  | `tools/ai-sfx/out3/breath_in_r1.wav` | audioldm2 · 3.0 ·  | 4 |
+| **knee_crack** | ข้อเข่าลั่นกึก ตอนนั่งยองๆ/ลุก (มุกคนแก่) | EP6 knee | `tools/ai-sfx/out6/knee_crack_r1.wav` | audioldm2 · 1.0 · 0.19 | 4 |
+| **mosquito** | ยุงบินหึ่งใกล้หู ตัวเดียว |  | `tools/ai-sfx/out/mosquito_v1.wav` | audioldm2 ·  ·  | 2 |
+| **panting** | หอบเหนื่อยหลังวิ่ง ตอนหนีหรือไล่จับ | EP6 knee | `tools/ai-sfx/out6/panting_r1.wav` | audioldm2 · 3.0 · 0.08 | 4 |
+| **sneeze** | จามดังหนึ่งที ฮัดชิ่ว |  | `tools/ai-sfx/out/sneeze_v1.wav` | audioldm2 ·  ·  | 6 |
+| **sniff** | สูดดมทางจมูก 2 ที ตอนได้กลิ่น |  | `tools/ai-sfx/out3/sniff_r1.wav` | audioldm2 · 1.5 ·  | 4 |
+| **street_steps** | เดินบนฟุตบาทแล้วหยุด รุ่น AudioLDM2 | EP8 | `tools/ai-sfx/out8/street_steps_r1.wav` | audioldm2 · 3.0 · 0.2 | 4 |
+| **throat_clear** | คนแก่กระแอม ก่อนผู้พิพากษา/เจ้าหน้าที่พูด | EP6 ahem | `tools/ai-sfx/out6/throat_clear_r1.wav` | audioldm2 · 1.5 · 0.11 | 4 |
+| **tired_steps** | ขึ้นบันไดปูนช้าๆ หอบ ตอนเดินขึ้นตึก/ไปรับโทษ | EP6 stairsUp | `tools/ai-sfx/out6/tired_steps_r1.wav` | audioldm2 · 4.0 · 0.21 | 4 |
 
-## footsteps
+## ของใช้ในบ้าน / เรื่องธรรมดาตอนเปิดเรื่อง
 
-| cue | engine | sec | score | best take | prompt |
+ใช้ในช่วง 'ชายคนนี้ กำลัง…' ให้ฉากธรรมดาฟังดูจริง ก่อนเรื่องจะเพี้ยน peak 0.2–0.4
+
+| เสียง | ใช้ตอนไหน | เคยใช้ | take ที่ดีที่สุด | engine · วิ · score | takes |
 |---|---|---|---|---|---|
-| fan_hum | audioldm2 | 6.0 | 0.107 | `tools/ai-sfx/out5/fan_hum_r1.wav` | an electric fan running on high, motor hum and whirring blades |
-| heavy_boots_v1 | audioldm2 |  |  | `tools/ai-sfx/out/heavy_boots_v1.wav` |  |
-| heavy_boots_v2 | audioldm2 |  |  | `tools/ai-sfx/out/heavy_boots_v2.wav` |  |
-| panting | audioldm2 | 3.0 | 0.081 | `tools/ai-sfx/out6/panting_r1.wav` | an exhausted man panting heavily, out of breath after running, close up |
-| shower_bed | audioldm2 | 8.0 | 0.345 | `tools/ai-sfx/out5/shower_bed_r1.wav` | a shower running in a small tiled bathroom, water splashing on the floor |
-| steps_road | sao | 5.0 | 0.241 | `public/absurd-cases/ep8/sfx_sao/steps_road_r1.wav` | Close foley of a man in sneakers walking slowly on an asphalt road, clear footsteps, outdo |
-| steps_stop | sao | 2.0 | 0.129 | `public/absurd-cases/ep8/sfx_sao/steps_stop_r1.wav` | A man walking on asphalt takes three steps and stops, sneakers, close foley. |
-| street_steps | audioldm2 | 3.0 | 0.198 | `tools/ai-sfx/out8/street_steps_r1.wav` | a man walking calmly on a concrete sidewalk in a quiet suburb, footsteps, then he stops |
-| swat_boots | audioldm2 | 3.0 | 0.093 | `tools/ai-sfx/out3/swat_boots_r1.wav` | a squad of police officers in heavy boots rushing into a room, gear rattling |
-| swat_run | sao | 4.0 | 0.192 | `public/absurd-cases/ep8/sfx_sao/swat_run_r1.wav` | A squad of police officers in heavy boots running fast on asphalt, gear and equipment ratt |
-| tired_steps | audioldm2 | 4.0 | 0.214 | `tools/ai-sfx/out6/tired_steps_r1.wav` | a tired man slowly climbing concrete stairs, heavy footsteps and loud panting breath |
+| **breaker_clunk** | สับคัตเอาต์ ไฟดับ/ติดทั้งบ้าน |  | `tools/ai-sfx/out/breaker_clunk_v1.wav` | audioldm2 ·  ·  | 2 |
+| **door_open** | เปิดประตูบ้านธรรมดา |  | `tools/ai-sfx/out/door_open_v1.wav` | audioldm2 ·  ·  | 2 |
+| **fan_gear** | เฟืองพัดลมตั้งโต๊ะส่ายดังกึกๆ ฉากพัดลม |  | `tools/ai-sfx/out3/fan_gear_r1.wav` | audioldm2 · 2.5 ·  | 4 |
+| **fan_motor** | มอเตอร์พัดลม รุ่นเก่า |  | `tools/ai-sfx/out/fan_motor_v1.wav` | audioldm2 ·  ·  | 2 |
+| **fan_winddown** | พัดลมค่อยๆ หยุดหมุน หลังถูกปิด/ยึด |  | `tools/ai-sfx/out/fan_winddown_v1.wav` | audioldm2 ·  ·  | 2 |
+| **flicker** | หลอดไฟกะพริบ ช่วงเพี้ยน/ไฟจะดับ |  | `tools/ai-sfx/out/flicker_v1.wav` | audioldm2 ·  ·  | 2 |
+| **fridge_open** | เปิดตู้เย็น ขอบยางดูดป๊อก ไฟตู้เย็นติด |  | `tools/ai-sfx/out3/fridge_open_r1.wav` | audioldm2 · 2.0 · 0.16 | 4 |
+| **gear_creak** | เฟืองลั่นเอี๊ยด ของเก่าขยับ |  | `tools/ai-sfx/out/gear_creak_v1.wav` | audioldm2 ·  ·  | 2 |
+| **jar_lid** | ปิดฝาโหลแก้วหมุนแน่น ตอนเก็บ 'หลักฐาน' ใส่โหล |  | `tools/ai-sfx/out3/jar_lid_r1.wav` | audioldm2 · 2.0 ·  | 4 |
+| **knock** | เคาะประตู ตำรวจมาเคาะ/มีคนมา |  | `tools/ai-sfx/out/knock_v1.wav` | audioldm2 ·  ·  | 2 |
+| **light_switch** | กดสวิตช์ไฟบ้าน | EP8 lamp | `tools/ai-sfx/out/light_switch_v1.wav` | audioldm2 ·  ·  | 2 |
+| **mouse_clicks** | คลิกเมาส์+พิมพ์คีย์บอร์ดรัว ฉากเล่นคอม | EP7 | `tools/ai-sfx/out7/mouse_clicks_r1.wav` | audioldm2 · 3.0 · 0.37 | 4 |
+| **vacuum_roar** | เครื่องดูดฝุ่นคำราม |  | `tools/ai-sfx/out/vacuum_roar_v1.wav` | audioldm2 ·  ·  | 2 |
+| **window_creak** | หน้าต่างลั่นเอี๊ยด รุ่นเก่า |  | `tools/ai-sfx/out/window_creak_v1.wav` | audioldm2 ·  ·  | 2 |
+| **window_open** | ปลดกลอนหน้าต่างไม้เลื่อนเปิด |  | `tools/ai-sfx/out3/window_open_r1.wav` | audioldm2 · 2.5 ·  | 4 |
 
-## impact
+## โทรศัพท์ / แจ้งเหตุ / อุปกรณ์
 
-| cue | engine | sec | score | best take | prompt |
+ช็อต MCU มือถือ: เสียงแตะจอตรงนิ้วแตะ, เสียงเตือนตอน UI เด้ง peak 0.15–0.3
+
+| เสียง | ใช้ตอนไหน | เคยใช้ | take ที่ดีที่สุด | engine · วิ · score | takes |
 |---|---|---|---|---|---|
-| body_fall | audioldm2 | 2.0 | 0.164 | `tools/ai-sfx/out3/body_fall_r1.wav` | a man collapses and falls flat on his back onto a hard floor, heavy thud |
-| boom_hit_v1 | audioldm2 |  |  | `tools/ai-sfx/out/boom_hit_v1.wav` |  |
-| boom_hit_v2 | audioldm2 |  |  | `tools/ai-sfx/out/boom_hit_v2.wav` |  |
-| breaker_clunk_v1 | audioldm2 |  |  | `tools/ai-sfx/out/breaker_clunk_v1.wav` |  |
-| breaker_clunk_v2 | audioldm2 |  |  | `tools/ai-sfx/out/breaker_clunk_v2.wav` |  |
-| car_door_open | audioldm2 | 1.5 | 0.048 | `tools/ai-sfx/out7/car_door_open_r1.wav` | a car door flung open hard, metal clunk, wind rushing in |
-| cell_door | audioldm2 | 2.5 | 0.169 | `tools/ai-sfx/out5/cell_door_r1.wav` | a heavy steel jail cell door slides shut and slams with a loud metallic clang |
-| concrete_bars | audioldm2 | 2.0 | 0.244 | `tools/ai-sfx/out6/concrete_bars_r1.wav` | a heavy concrete block slamming against iron prison bars, loud metal clang and thud |
-| door_crash | audioldm2 | 2.5 | 0.082 | `tools/ai-sfx/out5/door_crash_r1.wav` | a wooden door is kicked in, splinters, and slams flat onto the floor with a heavy crash |
-| flood_on | sao | 2.5 | 0.322 | `public/absurd-cases/ep8/sfx_sao/flood_on_r1.wav` | Heavy industrial floodlights switched on one after another, loud electrical clunks, then a |
-| gavel | sao | 2.0 | 0.252 | `public/absurd-cases/ep8/sfx_sao/gavel_r1.wav` | A judge wooden gavel striking a sound block twice, sharp wooden knock, courtroom. |
-| gavel_metal | audioldm2 | 1.5 | 0.118 | `tools/ai-sfx/out6/gavel_metal_r1.wav` | a wooden gavel striking a steel railing, metallic ping with ring |
-| gavel_rubber | audioldm2 | 1.0 | 0.084 | `tools/ai-sfx/out7/gavel_rubber_r1.wav` | a rubber mallet hitting a wooden desk, dull soft thud |
-| giant_lock | audioldm2 | 2.5 | 0.075 | `tools/ai-sfx/out6/giant_lock_r1.wav` | a gigantic steel lock slams shut, huge heavy metal clank with ringing echo |
-| glass_hit_v1 | audioldm2 |  |  | `tools/ai-sfx/out/glass_hit_v1.wav` |  |
-| glass_hit_v2 | audioldm2 |  |  | `tools/ai-sfx/out/glass_hit_v2.wav` |  |
-| guard_slip | audioldm2 | 2.0 | 0.066 | `tools/ai-sfx/out5/guard_slip_r1.wav` | a man slips on a wet floor and falls hard on his back, thud |
-| hammer | audioldm2 | 2.0 |  | `tools/ai-sfx/out3/hammer_r1.wav` | a hammer strikes a nail into wood twice, two sharp knocks, close up foley |
-| hit_v1 | audioldm2 |  |  | `tools/ai-sfx/out/hit_v1.wav` |  |
-| hit_v2 | audioldm2 |  |  | `tools/ai-sfx/out/hit_v2.wav` |  |
-| knock_v1 | audioldm2 |  |  | `tools/ai-sfx/out/knock_v1.wav` |  |
-| knock_v2 | audioldm2 |  |  | `tools/ai-sfx/out/knock_v2.wav` |  |
-| mic_blast | audioldm2 | 2.5 | 0.05 | `tools/ai-sfx/out7/mic_blast_r1.wav` | a microphone hit by electricity explodes, loud electric zap and bang, then crackling fire |
-| rubber_stamp | audioldm2 | 1.0 | -0.022 | `tools/ai-sfx/out6/rubber_stamp_r1.wav` | a rubber stamp slammed onto paper on a desk, single thud |
-| sizzle | audioldm2 | 1.5 | 0.068 | `tools/ai-sfx/out8/sizzle_r1.wav` | a short sizzle of something hitting a hot pan, tss |
-| slip_falls | audioldm2 | 3.0 | 0.085 | `tools/ai-sfx/out5/slip_falls_r1.wav` | several men slipping on a wet floor one after another and falling with heavy thuds |
-| spotlight_on | audioldm2 | 2.0 | 0.167 | `tools/ai-sfx/out8/spotlight_on_r1.wav` | huge stadium floodlights switching on with a heavy electrical clunk and a rising hum |
-| stamp | sao | 1.5 | 0.147 | `public/absurd-cases/ep8/sfx_sao/stamp_r1.wav` | A rubber stamp thumped hard onto paper on a wooden desk, single thud. |
-| stampede_v1 | audioldm2 |  |  | `tools/ai-sfx/out/stampede_v1.wav` |  |
-| stampede_v2 | audioldm2 |  |  | `tools/ai-sfx/out/stampede_v2.wav` |  |
-| thud1_v1 | audioldm2 |  |  | `tools/ai-sfx/out/thud1_v1.wav` |  |
-| thud1_v2 | audioldm2 |  |  | `tools/ai-sfx/out/thud1_v2.wav` |  |
-| thud2_v1 | audioldm2 |  |  | `tools/ai-sfx/out/thud2_v1.wav` |  |
-| thud2_v2 | audioldm2 |  |  | `tools/ai-sfx/out/thud2_v2.wav` |  |
-| traffic_cones | audioldm2 | 2.0 | 0.083 | `tools/ai-sfx/out6/traffic_cones_r1.wav` | plastic traffic cones being placed down quickly on asphalt, hollow plastic knocks |
+| **phone_taps** | นิ้วแตะจอ 3 ทีแล้วเสียงรอสาย ตรงช็อตกดโทรแจ้งตำรวจ | EP8b press | `public/absurd-cases/ep8/sfx_sao/phone_taps_r1.wav` | sao · 2.0 · 0.21 | 5 |
+| **dial_beeps** | ตัวเลขดิจิทัลวิ่ง/นับเร็วขึ้นเรื่อยๆ ตอนมิเตอร์พุ่ง | EP7 dial | `tools/ai-sfx/out7/dial_beeps_r1.wav` | audioldm2 · 2.0 · 0.23 | 4 |
+| **phone_alert** | เสียงเตือนฉุกเฉินมือถือ ติ๊ดๆ ตอนแจ้งเตือนทั้งประเทศ/แอปแจ้ง | EP7 alert | `tools/ai-sfx/out7/phone_alert_r1.wav` | audioldm2 · 2.0 · 0.28 | 4 |
 
-## material
+## ตำรวจ / หน่วยพิเศษบุก / จับกุม
 
-| cue | engine | sec | score | best take | prompt |
+ไซเรนเข้าก่อนภาพตำรวจ 0.3–0.6 วิแล้ว loop ใต้ช็อตบุก (rms ต่ำ ~0.006), ฝีเท้า SWAT ตรงคัตเข้า, กุญแจมือตรงเฟรมใส่ (peak 0.4+) = จุดพีกของช่วงจับ
+
+| เสียง | ใช้ตอนไหน | เคยใช้ | take ที่ดีที่สุด | engine · วิ · score | takes |
 |---|---|---|---|---|---|
-| court_amb | sao | 6.0 | 0.015 | `public/absurd-cases/ep8/sfx_sao/court_amb_r1.wav` | Quiet courtroom ambience, faint murmurs, paper shuffling, a chair creaking, large wooden r |
-| court_room | audioldm2 | 6.0 | -0.028 | `tools/ai-sfx/out6/court_room_r1.wav` | quiet courtroom room tone, soft murmuring of a few people, paper rustle |
-| fold | sao | 2.0 | 0.235 | `public/absurd-cases/ep8/sfx_sao/fold_r1.wav` | Folding a heavy flexible rubber mat in half, soft flap and rubbery rustle, close foley. |
-| fridge_open | audioldm2 | 2.0 | 0.158 | `tools/ai-sfx/out3/fridge_open_r1.wav` | opening a refrigerator door, rubber seal unsticking with a soft suction pop, then the frid |
-| gavel_rubber | audioldm2 | 1.0 | 0.084 | `tools/ai-sfx/out7/gavel_rubber_r1.wav` | a rubber mallet hitting a wooden desk, dull soft thud |
-| peel | sao | 3.0 | 0.259 | `public/absurd-cases/ep8/sfx_sao/peel_r1.wav` | A thick sticky rubber mat slowly peeled off a road surface, loud sticky ripping and crackl |
-| rubber_flap | audioldm2 | 2.0 | 0.066 | `tools/ai-sfx/out8/rubber_flap_r1.wav` | a wet flat rubber sheet slapping softly on concrete twice, flap flap foley |
-| rubber_shrink | audioldm2 | 1.0 | 0.16 | `tools/ai-sfx/out8/rubber_shrink_r1.wav` | a quick rubbery squeak as a balloon shrinks fast, cartoon fwip |
-| rubber_stamp | audioldm2 | 1.0 | -0.022 | `tools/ai-sfx/out6/rubber_stamp_r1.wav` | a rubber stamp slammed onto paper on a desk, single thud |
-| sheet_fold | audioldm2 | 1.5 | 0.039 | `tools/ai-sfx/out8/sheet_fold_r1.wav` | folding a heavy flexible rubber mat in half, soft flap and rustle foley |
-| shrink | sao | 1.5 | 0.274 | `public/absurd-cases/ep8/sfx_sao/shrink_r1.wav` | A quick rubbery squeak and squeeze, like a rubber toy being squashed fast, short. |
-| squash | sao | 2.0 | 0.239 | `public/absurd-cases/ep8/sfx_sao/squash_r1.wav` | A wet rubbery squish and slide on pavement, short. |
-| stamp | sao | 1.5 | 0.147 | `public/absurd-cases/ep8/sfx_sao/stamp_r1.wav` | A rubber stamp thumped hard onto paper on a wooden desk, single thud. |
-| tape_peel | audioldm2 | 2.5 | 0.097 | `tools/ai-sfx/out8/tape_peel_r1.wav` | a long strip of strong sticky tape slowly peeled off a concrete floor, loud ripping foley |
-| tape_unroll | audioldm2 | 2.0 | 0.088 | `tools/ai-sfx/out3/tape_unroll_r1.wav` | plastic barrier tape being pulled and unrolled quickly, crinkling plastic, close up |
-| trowel_scrape | sao | 3.0 | 0.383 | `public/absurd-cases/ep8/sfx_sao/trowel_scrape_r1.wav` | A steel plaster trowel scraping hard on rough asphalt, close foley, gritty. |
-| vest | sao | 2.0 | 0.129 | `public/absurd-cases/ep8/sfx_sao/vest_r1.wav` | Putting on a reflective safety vest, fabric rustle and velcro rip, close foley. |
+| **cuffs** | กุญแจมือรูดล็อกกริ๊กๆ ตรงเฟรมใส่กุญแจมือ (พีกช่วงจับกุม) | EP8b cuff | `public/absurd-cases/ep8/sfx_sao/cuffs_r1.wav` | sao · 2.0 · 0.43 | 5 |
+| **flood_on** | สปอตไลต์เปิดทีละดวงดังปึก ตรงจังหวะไฟส่องผู้ต้องหา (ใส่ 2 ชั้นห่าง 0.2 วิ) | EP8b | `public/absurd-cases/ep8/sfx_sao/flood_on_r1.wav` | sao · 2.5 · 0.32 | 5 |
+| **siren** | ไซเรนตำรวจคันเดียวใกล้ๆ ถนนเงียบ เข้าก่อนภาพตำรวจ แล้ว loop ใต้ช็อตบุก | EP8b scrape | `public/absurd-cases/ep8/sfx_sao/siren_r1.wav` | sao · 7.0 · 0.34 | 5 |
+| **swat_run** | หน่วยบุกวิ่งบนถนนยาง (กลางแจ้ง) ตรงคัตเข้าช็อต SWAT | EP8b swat | `public/absurd-cases/ep8/sfx_sao/swat_run_r1.wav` | sao · 4.0 · 0.19 | 5 |
+| **car_door** | ประตูรถตำรวจเปิด-ปิดตอนมาถึง |  | `tools/ai-sfx/out/car_door_v1.wav` | audioldm2 ·  ·  | 2 |
+| **car_door_open** | เปิดประตูรถแรงๆ ลมพัดเข้า ตอนตำรวจลงรถกลางพายุ | EP7 jump | `tools/ai-sfx/out7/car_door_open_r1.wav` | audioldm2 · 1.5 · 0.05 | 4 |
+| **cuff_click** | กุญแจมือล็อก รุ่นเก่า (ใช้ cuffs ก่อน) |  | `tools/ai-sfx/out/cuff_click_v1.wav` | audioldm2 ·  ·  | 2 |
+| **door_crash** | พังประตูไม้ล้มลงพื้น ตอนหน่วยบุกเข้าห้อง | EP5 kick | `tools/ai-sfx/out5/door_crash_r1.wav` | audioldm2 · 2.5 · 0.08 | 8 |
+| **engine_rev** | รถตำรวจหลายคันเร่งเครื่องพร้อมกัน ก่อนออกไล่ล่า | EP7 tyres | `tools/ai-sfx/out7/engine_rev_r1.wav` | audioldm2 · 3.0 · -0.03 | 4 |
+| **handcuffs** | กุญแจมือล็อก รุ่น AudioLDM2 (ใช้ cuffs ก่อน) | EP5, EP7 cuff, EP8 cuff | `tools/ai-sfx/out7/handcuffs_r1.wav` | audioldm2 · 1.5 · 0.01 | 8 |
+| **heavy_boots** | รองเท้าบู๊ตหนักวิ่ง รุ่นเก่า |  | `tools/ai-sfx/out/heavy_boots_v1.wav` | audioldm2 ·  ·  | 2 |
+| **mask_breath** | หายใจผ่านหน้ากากกันแก๊ส ฟู่ๆ หน่วยพิเศษชุดป้องกัน |  | `tools/ai-sfx/out3/mask_breath_r1.wav` | audioldm2 · 3.0 · 0.1 | 4 |
+| **mask_cough** | ไอผ่านหน้ากากกันแก๊ส อู้อี้ (มุกกลิ่นแรง) | EP8 cough | `tools/ai-sfx/out8/mask_cough_r1.wav` | audioldm2 · 2.0 · 0.13 | 4 |
+| **police_arrive** | รถตำรวจมาจอด รุ่นเก่า |  | `tools/ai-sfx/out/police_arrive_v1.wav` | audioldm2 ·  ·  | 2 |
+| **police_sirens** | ไซเรนตำรวจหลายคันบนถนนเมือง (กำลังมาก) | EP6 courtExt, EP7 interro, EP8 scrape | `tools/ai-sfx/out7/police_sirens_r1.wav` | audioldm2 · 6.0 · 0.43 | 8 |
+| **radio_squelch** | วิทยุสื่อสารตำรวจซ่า-แกร๊ก ก่อน/หลังสั่งการ |  | `tools/ai-sfx/out/radio_squelch_v1.wav` | audioldm2 ·  ·  | 2 |
+| **spotlight_on** | สปอตไลต์สนามเปิดปึก+หึ่งไต่ รุ่น AudioLDM2 (ใช้ flood_on ก่อน) | EP8 | `tools/ai-sfx/out8/spotlight_on_r1.wav` | audioldm2 · 2.0 · 0.17 | 4 |
+| **suit_breath** | หายใจในชุดป้องกัน รุ่นเก่า |  | `tools/ai-sfx/out/suit_breath_v1.wav` | audioldm2 ·  ·  | 2 |
+| **swat_boots** | หน่วยบุกวิ่งเข้าห้อง บู๊ตหนัก อุปกรณ์กระทบ (ในอาคาร) | EP5 kick, EP8 swat | `tools/ai-sfx/out3/swat_boots_r1.wav` | audioldm2 · 3.0 · 0.09 | 8 |
+| **tape_unroll** | ดึงเทปกั้นพื้นที่ (เทปเหลือง) ตอนกั้นที่เกิดเหตุ |  | `tools/ai-sfx/out3/tape_unroll_r1.wav` | audioldm2 · 2.0 · 0.09 | 4 |
+| **taser** | ปืนช็อตไฟฟ้าแปร๊บๆ ตอนจับกุมด้วยไฟฟ้า | EP5 tongs | `tools/ai-sfx/out5/taser_r1.wav` | audioldm2 · 3.0 · 0.29 | 4 |
+| **traffic_cones** | วางกรวยจราจรพลาสติกเร็วๆ ตอนปิดถนน | EP6 cones | `tools/ai-sfx/out6/traffic_cones_r1.wav` | audioldm2 · 2.0 · 0.08 | 4 |
+| **tyre_squeal** | ล้อหมุนฟรีเอี๊ยดบนถนนเปียก รถตำรวจออกตัว | EP7 tyres | `tools/ai-sfx/out7/tyre_squeal_r1.wav` | audioldm2 · 2.0 · -0.04 | 4 |
+| **zap_taser** | ปืนช็อต รุ่นเก่า |  | `tools/ai-sfx/out/zap_taser_v1.wav` | audioldm2 ·  ·  | 2 |
 
-## mechanical
+## สถาบัน: ห้องสอบสวน ศาล เอกสาร
 
-| cue | engine | sec | score | best take | prompt |
+bed ห้อง + spot เด่นหนึ่งเสียงต่อช็อต (คลิกโคมไฟตอนเปิดไฟสอบสวน, ค้อนตอนตัดสิน peak ~0.6 = ดังสุดของคลิป, ตราปั๊มตรงเฟรมปั๊ม)
+
+| เสียง | ใช้ตอนไหน | เคยใช้ | take ที่ดีที่สุด | engine · วิ · score | takes |
 |---|---|---|---|---|---|
-| army_trucks | audioldm2 | 6.0 | 0.238 | `tools/ai-sfx/out6/army_trucks_r1.wav` | several heavy military trucks with diesel engines idling and rumbling, deep engine roar |
-| beep | sao | 2.0 | 0.334 | `public/absurd-cases/ep8/sfx_sao/beep_r1.wav` | Small electronic ankle monitor beeping twice, short high beeps. |
-| car_door_open | audioldm2 | 1.5 | 0.048 | `tools/ai-sfx/out7/car_door_open_r1.wav` | a car door flung open hard, metal clunk, wind rushing in |
-| car_door_v1 | audioldm2 |  |  | `tools/ai-sfx/out/car_door_v1.wav` |  |
-| car_door_v2 | audioldm2 |  |  | `tools/ai-sfx/out/car_door_v2.wav` |  |
-| cell_door | audioldm2 | 2.5 | 0.169 | `tools/ai-sfx/out5/cell_door_r1.wav` | a heavy steel jail cell door slides shut and slams with a loud metallic clang |
-| crane_lift | audioldm2 | 4.0 | 0.12 | `tools/ai-sfx/out6/crane_lift_r1.wav` | a large hydraulic crane lifting a very heavy concrete load, engine strain, steel cables cr |
-| cuff_click_v1 | audioldm2 |  |  | `tools/ai-sfx/out/cuff_click_v1.wav` |  |
-| cuff_click_v2 | audioldm2 |  |  | `tools/ai-sfx/out/cuff_click_v2.wav` |  |
-| cuffs | sao | 2.0 | 0.43 | `public/absurd-cases/ep8/sfx_sao/cuffs_r1.wav` | Metal handcuffs ratcheting and clicking shut, close foley, crisp. |
-| dial_beeps | audioldm2 | 2.0 | 0.23 | `tools/ai-sfx/out7/dial_beeps_r1.wav` | a digital counter beeping rapidly, rising electronic beeps |
-| door_crash | audioldm2 | 2.5 | 0.082 | `tools/ai-sfx/out5/door_crash_r1.wav` | a wooden door is kicked in, splinters, and slams flat onto the floor with a heavy crash |
-| door_open_v1 | audioldm2 |  |  | `tools/ai-sfx/out/door_open_v1.wav` |  |
-| door_open_v2 | audioldm2 |  |  | `tools/ai-sfx/out/door_open_v2.wav` |  |
-| electric_zip | audioldm2 | 1.5 | 0.195 | `tools/ai-sfx/out7/electric_zip_r1.wav` | an electric zap racing along metal bars, fast zipping crackle |
-| engine_rev | audioldm2 | 3.0 | -0.034 | `tools/ai-sfx/out7/engine_rev_r1.wav` | several police cars revving their engines hard at the same time, loud engine roar |
-| fan_gear | audioldm2 | 2.5 |  | `tools/ai-sfx/out3/fan_gear_r1.wav` | an old oscillating desk fan, plastic gear clicking and grinding as the fan head turns, clo |
-| fan_hum | audioldm2 | 6.0 | 0.107 | `tools/ai-sfx/out5/fan_hum_r1.wav` | an electric fan running on high, motor hum and whirring blades |
-| fan_motor_v1 | audioldm2 |  |  | `tools/ai-sfx/out/fan_motor_v1.wav` |  |
-| fan_motor_v2 | audioldm2 |  |  | `tools/ai-sfx/out/fan_motor_v2.wav` |  |
-| fan_spinup | audioldm2 | 4.0 | 0.147 | `tools/ai-sfx/out7/fan_spinup_r1.wav` | an electric fan motor spinning up faster and faster until it screams like a jet engine |
-| flood_hum | sao | 6.0 | 0.203 | `public/absurd-cases/ep8/sfx_sao/flood_hum_r1.wav` | Steady electrical buzz and hum of powerful outdoor floodlights, no music. |
-| flood_on | sao | 2.5 | 0.322 | `public/absurd-cases/ep8/sfx_sao/flood_on_r1.wav` | Heavy industrial floodlights switched on one after another, loud electrical clunks, then a |
-| floodlight_hum | audioldm2 | 6.0 | 0.217 | `tools/ai-sfx/out8/floodlight_hum_r1.wav` | the steady electrical buzz and hum of big outdoor floodlights at night, no music |
-| fridge_hum | audioldm2 | 6.0 | 0.183 | `tools/ai-sfx/out3/fridge_hum_r1.wav` | a refrigerator motor humming quietly in a dark kitchen at night |
-| fridge_open | audioldm2 | 2.0 | 0.158 | `tools/ai-sfx/out3/fridge_open_r1.wav` | opening a refrigerator door, rubber seal unsticking with a soft suction pop, then the frid |
-| giant_lock | audioldm2 | 2.5 | 0.075 | `tools/ai-sfx/out6/giant_lock_r1.wav` | a gigantic steel lock slams shut, huge heavy metal clank with ringing echo |
-| handcuffs | audioldm2 | 1.5 | 0.008 | `tools/ai-sfx/out7/handcuffs_r1.wav` | handcuffs clicking shut, metal ratchet clicks, close up |
-| jet_takeoff | audioldm2 | 4.0 | 0.126 | `tools/ai-sfx/out7/jet_takeoff_r1.wav` | a jet engine roaring as it takes off, rising powerful whoosh |
-| lamp_click | sao | 1.5 | 0.466 | `public/absurd-cases/ep8/sfx_sao/lamp_click_r1.wav` | A metal desk lamp switch clicked on, single sharp click, close foley. |
-| light_switch_v1 | audioldm2 |  |  | `tools/ai-sfx/out/light_switch_v1.wav` |  |
-| light_switch_v2 | audioldm2 |  |  | `tools/ai-sfx/out/light_switch_v2.wav` |  |
-| mouse_clicks | audioldm2 | 3.0 | 0.371 | `tools/ai-sfx/out7/mouse_clicks_r1.wav` | fast computer mouse clicking and keyboard tapping, gaming at a desk, close up |
-| phone_alert | audioldm2 | 2.0 | 0.278 | `tools/ai-sfx/out7/phone_alert_r1.wav` | a smartphone emergency alert tone, loud repeating two tone beeps |
-| spotlight_on | audioldm2 | 2.0 | 0.167 | `tools/ai-sfx/out8/spotlight_on_r1.wav` | huge stadium floodlights switching on with a heavy electrical clunk and a rising hum |
-| village_amb | sao | 10.0 | 0.22 | `public/absurd-cases/ep8/sfx_sao/village_amb_r1.wav` | Quiet residential neighbourhood street in Thailand on a sunny afternoon, birds chirping, a |
-| window_open | audioldm2 | 2.5 |  | `tools/ai-sfx/out3/window_open_r1.wav` | an old wooden sash window is unlatched and slid open, wood scraping and a small creak, qui |
+| **gavel** | ค้อนผู้พิพากษาเคาะแท่น 2 ที ตรงคำตัดสิน (เสียงดังสุดของคลิป peak ~0.62) | EP8b gavel | `public/absurd-cases/ep8/sfx_sao/gavel_r1.wav` | sao · 2.0 · 0.25 | 5 |
+| **lamp_click** | สวิตช์โคมไฟโต๊ะคลิกเดียว ตอนเปิดไฟส่องหน้าในห้องสอบสวน | EP8b lamp | `public/absurd-cases/ep8/sfx_sao/lamp_click_r1.wav` | sao · 1.5 · 0.47 | 5 |
+| **noon_bell** | ระฆังตีเที่ยงหนึ่งครั้ง หางยาว บอกเวลา/เปลี่ยนช่วง | EP8 bell, EP8b bell | `public/absurd-cases/ep8/sfx_sao/noon_bell_r1.wav` | sao · 5.0 · 0.26 | 9 |
+| **stamp** | ตรายางปั๊มกระดาษบนโต๊ะไม้ตุ้บ ตรงเฟรมปั๊ม (อนุมัติ/ตัดสิน/ปิดคดี) | EP8b stamp | `public/absurd-cases/ep8/sfx_sao/stamp_r1.wav` | sao · 1.5 · 0.15 | 5 |
+| **gavel_metal** | ค้อนเคาะราวเหล็ก ดังกริ๊ง ศาลกลางแจ้ง/ศาลแปลกที่ | EP6 gavel, EP8 gavel | `tools/ai-sfx/out6/gavel_metal_r1.wav` | audioldm2 · 1.5 · 0.12 | 4 |
+| **hammer** | ตอกตะปู 2 ที ติดประกาศ/ปิดตาย |  | `tools/ai-sfx/out3/hammer_r1.wav` | audioldm2 · 2.0 ·  | 4 |
+| **hammer_nail** | ตอกตะปู รุ่นเก่า |  | `tools/ai-sfx/out/hammer_nail_v1.wav` | audioldm2 ·  ·  | 2 |
+| **mic_feedback** | ไมค์หอนสั้นๆ ก่อนแถลงข่าว/ประกาศ | EP7 blast | `tools/ai-sfx/out7/mic_feedback_r1.wav` | audioldm2 · 1.5 · 0.27 | 4 |
+| **pen_writing** | ปากกาเขียนบนกระดาษ จดบันทึกปากคำ |  | `tools/ai-sfx/out/pen_writing_v1.wav` | audioldm2 ·  ·  | 2 |
+| **rubber_stamp** | ตรายางปั๊มกระดาษตุ้บเดียว รุ่น AudioLDM2 (ใช้ stamp ก่อน) | EP6 stamp, EP8 stamp | `tools/ai-sfx/out6/rubber_stamp_r1.wav` | audioldm2 · 1.0 · -0.02 | 4 |
+| **tongs_creak** | คีมเหล็กยาวบีบดังเอี๊ยด ตอนคีบ 'หลักฐาน' | EP5 grab | `tools/ai-sfx/out5/tongs_creak_r1.wav` | audioldm2 · 2.0 · 0.21 | 4 |
 
-## nature
+## คุก / บทลงโทษ
 
-| cue | engine | sec | score | best take | prompt |
+ประตูเหล็ก/ล็อกปิดตรงคัตเข้าคุก (peak 0.5–0.6), bed ทางเดินคุกเบาๆ, สัญญาณเตือนเมื่อมีหนี
+
+| เสียง | ใช้ตอนไหน | เคยใช้ | take ที่ดีที่สุด | engine · วิ · score | takes |
 |---|---|---|---|---|---|
-| mic_blast | audioldm2 | 2.5 | 0.05 | `tools/ai-sfx/out7/mic_blast_r1.wav` | a microphone hit by electricity explodes, loud electric zap and bang, then crackling fire |
-| morning_birds_v1 | audioldm2 |  |  | `tools/ai-sfx/out/morning_birds_v1.wav` |  |
-| morning_birds_v2 | audioldm2 |  |  | `tools/ai-sfx/out/morning_birds_v2.wav` |  |
-| mosquito_swarm | audioldm2 | 6.0 | 0.388 | `tools/ai-sfx/out6/mosquito_swarm_r1.wav` | a huge swarm of mosquitoes buzzing loudly, high pitched whine of many insects |
-| mosquito_v1 | audioldm2 |  |  | `tools/ai-sfx/out/mosquito_v1.wav` |  |
-| mosquito_v2 | audioldm2 |  |  | `tools/ai-sfx/out/mosquito_v2.wav` |  |
-| outdoor_prison | audioldm2 | 6.0 | 0.217 | `tools/ai-sfx/out6/outdoor_prison_r1.wav` | open outdoor area in front of a building, light wind and distant birds, quiet |
-| rain_window | audioldm2 | 8.0 | 0.322 | `tools/ai-sfx/out7/rain_window_r1.wav` | heavy rain against a bedroom window at night, distant thunder rumbles, quiet room, no musi |
-| shower_bed | audioldm2 | 8.0 | 0.345 | `tools/ai-sfx/out5/shower_bed_r1.wav` | a shower running in a small tiled bathroom, water splashing on the floor |
-| thunder_close | audioldm2 | 4.0 | 0.298 | `tools/ai-sfx/out7/thunder_close_r1.wav` | a lightning bolt strikes very close, sharp deafening thunder crack then deep rumble |
-| village_amb | sao | 10.0 | 0.22 | `public/absurd-cases/ep8/sfx_sao/village_amb_r1.wav` | Quiet residential neighbourhood street in Thailand on a sunny afternoon, birds chirping, a |
+| **beep** | กำไล EM ที่ข้อเท้าร้องสองที ตอนรับโทษคุมประพฤติ | EP8b em | `public/absurd-cases/ep8/sfx_sao/beep_r1.wav` | sao · 2.0 · 0.33 | 5 |
+| **vest** | สวมเสื้อกั๊กสะท้อนแสง ผ้า+ตีนตุ๊กแก ตอนเริ่มบริการสังคม | EP8b vest | `public/absurd-cases/ep8/sfx_sao/vest_r1.wav` | sao · 2.0 · 0.13 | 5 |
+| **broom_sweep** | กวาดพื้นถนน ฉากทำงานบริการสังคม | EP8 vest | `tools/ai-sfx/out8/broom_sweep_r1.wav` | audioldm2 · 3.0 · 0.21 | 4 |
+| **cell_door** | ประตูห้องขังเลื่อนปิดดังกึง ตรงคัตเข้าคุก | EP5 clang, EP7 cellDoor | `tools/ai-sfx/out5/cell_door_r1.wav` | audioldm2 · 2.5 · 0.17 | 12 |
+| **chain_rattle** | โซ่เหล็กลากตึง ตอนพันธนาการเกินเหตุ | EP6 chain | `tools/ai-sfx/out6/chain_rattle_r1.wav` | audioldm2 · 2.5 · 0.22 | 4 |
+| **concrete_bars** | ก้อนปูนกระแทกลูกกรง ตอนขังของแปลกๆ (เสา/ก้อนปูน) | EP6 | `tools/ai-sfx/out6/concrete_bars_r1.wav` | audioldm2 · 2.0 · 0.24 | 4 |
+| **giant_lock** | แม่กุญแจยักษ์ล็อกดังกึงก้อง ปิดท้ายการขัง | EP6 cuff | `tools/ai-sfx/out6/giant_lock_r1.wav` | audioldm2 · 2.5 · 0.08 | 4 |
+| **keys** | พวงกุญแจกรุ๊งกริ๊ง ผู้คุมเปิดห้องขัง |  | `tools/ai-sfx/out/keys_v1.wav` | audioldm2 ·  ·  | 2 |
+| **prison_alarm** | สัญญาณเตือนนักโทษหนีในทางเดินคุก | EP5 report | `tools/ai-sfx/out5/prison_alarm_r1.wav` | audioldm2 · 6.0 · 0.16 | 4 |
+| **prison_siren** | ไซเรนคุก รุ่นเก่า |  | `tools/ai-sfx/out/prison_siren_v1.wav` | audioldm2 ·  ·  | 2 |
 
-## other
+## มุกการ์ตูน / ยาง / ของย้วย
 
-| cue | engine | sec | score | best take | prompt |
+เสียงของคำตอบหรือสิ่งที่ผิดธรรมชาติ (เงา ยาง สบู่) ใส่ตรงเฟรมขยับ peak 0.18–0.38; ซ้ำ 2–3 ครั้งห่าง 0.3 วิได้; อย่าใช้เพลง
+
+| เสียง | ใช้ตอนไหน | เคยใช้ | take ที่ดีที่สุด | engine · วิ · score | takes |
 |---|---|---|---|---|---|
-| broom_sweep | audioldm2 | 3.0 | 0.209 | `tools/ai-sfx/out8/broom_sweep_r1.wav` | a straw broom sweeping a concrete pavement, slow strokes foley |
-| chain_rattle | audioldm2 | 2.5 | 0.217 | `tools/ai-sfx/out6/chain_rattle_r1.wav` | heavy iron chains rattling and being pulled taut, metal links clanking |
-| crickets_v1 | audioldm2 |  |  | `tools/ai-sfx/out/crickets_v1.wav` |  |
-| crickets_v2 | audioldm2 |  |  | `tools/ai-sfx/out/crickets_v2.wav` |  |
-| electric_buzz_v1 | audioldm2 |  |  | `tools/ai-sfx/out/electric_buzz_v1.wav` |  |
-| electric_buzz_v2 | audioldm2 |  |  | `tools/ai-sfx/out/electric_buzz_v2.wav` |  |
-| electric_crackle | audioldm2 | 4.0 | 0.244 | `tools/ai-sfx/out7/electric_crackle_r1.wav` | high voltage electricity crackling and buzzing, sparking arcs, tesla coil |
-| flicker_v1 | audioldm2 |  |  | `tools/ai-sfx/out/flicker_v1.wav` |  |
-| flicker_v2 | audioldm2 |  |  | `tools/ai-sfx/out/flicker_v2.wav` |  |
-| foam_fizz | audioldm2 | 6.0 | 0.202 | `tools/ai-sfx/out5/foam_fizz_r1.wav` | lots of soap foam fizzing and bubbling, crackling foam |
-| gear_creak_v1 | audioldm2 |  |  | `tools/ai-sfx/out/gear_creak_v1.wav` |  |
-| gear_creak_v2 | audioldm2 |  |  | `tools/ai-sfx/out/gear_creak_v2.wav` |  |
-| hammer_nail_v1 | audioldm2 |  |  | `tools/ai-sfx/out/hammer_nail_v1.wav` |  |
-| hammer_nail_v2 | audioldm2 |  |  | `tools/ai-sfx/out/hammer_nail_v2.wav` |  |
-| heli_hover | audioldm2 | 6.0 | 0.277 | `tools/ai-sfx/out6/heli_hover_r1.wav` | a helicopter hovering overhead, rotor blades thumping loudly |
-| helicopter_v1 | audioldm2 |  |  | `tools/ai-sfx/out/helicopter_v1.wav` |  |
-| helicopter_v2 | audioldm2 |  |  | `tools/ai-sfx/out/helicopter_v2.wav` |  |
-| jar_lid | audioldm2 | 2.0 |  | `tools/ai-sfx/out3/jar_lid_r1.wav` | a metal lid is placed on a glass jar and twisted shut, close up foley |
-| keys_v1 | audioldm2 |  |  | `tools/ai-sfx/out/keys_v1.wav` |  |
-| keys_v2 | audioldm2 |  |  | `tools/ai-sfx/out/keys_v2.wav` |  |
-| mic_feedback | audioldm2 | 1.5 | 0.27 | `tools/ai-sfx/out7/mic_feedback_r1.wav` | microphone feedback squeal, short high pitched whine |
-| murmur_v1 | audioldm2 |  |  | `tools/ai-sfx/out/murmur_v1.wav` |  |
-| murmur_v2 | audioldm2 |  |  | `tools/ai-sfx/out/murmur_v2.wav` |  |
-| night_quiet_v1 | audioldm2 |  |  | `tools/ai-sfx/out/night_quiet_v1.wav` |  |
-| night_quiet_v2 | audioldm2 |  |  | `tools/ai-sfx/out/night_quiet_v2.wav` |  |
-| pen_writing_v1 | audioldm2 |  |  | `tools/ai-sfx/out/pen_writing_v1.wav` |  |
-| pen_writing_v2 | audioldm2 |  |  | `tools/ai-sfx/out/pen_writing_v2.wav` |  |
-| power_spark_v1 | audioldm2 |  |  | `tools/ai-sfx/out/power_spark_v1.wav` |  |
-| power_spark_v2 | audioldm2 |  |  | `tools/ai-sfx/out/power_spark_v2.wav` |  |
-| prison_hall_v1 | audioldm2 |  |  | `tools/ai-sfx/out/prison_hall_v1.wav` |  |
-| prison_hall_v2 | audioldm2 |  |  | `tools/ai-sfx/out/prison_hall_v2.wav` |  |
-| riser_v1 | audioldm2 |  |  | `tools/ai-sfx/out/riser_v1.wav` |  |
-| riser_v2 | audioldm2 |  |  | `tools/ai-sfx/out/riser_v2.wav` |  |
-| rubble_fall | audioldm2 | 3.0 | 0.209 | `tools/ai-sfx/out6/rubble_fall_r1.wav` | bricks and concrete rubble crumbling and falling to the ground |
-| saw_concrete | audioldm2 | 4.0 | 0.223 | `tools/ai-sfx/out6/saw_concrete_r1.wav` | a powerful circular saw cutting through a concrete pillar, high pitched grinding screech w |
-| sneeze_v1 | audioldm2 |  |  | `tools/ai-sfx/out/sneeze_v1.wav` |  |
-| sneeze_v2 | audioldm2 |  |  | `tools/ai-sfx/out/sneeze_v2.wav` |  |
-| sniff | audioldm2 | 1.5 |  | `tools/ai-sfx/out3/sniff_r1.wav` | a man sniffs the air through his nose twice, close up |
-| swarm_v1 | audioldm2 |  |  | `tools/ai-sfx/out/swarm_v1.wav` |  |
-| swarm_v2 | audioldm2 |  |  | `tools/ai-sfx/out/swarm_v2.wav` |  |
-| taser | audioldm2 | 3.0 | 0.295 | `tools/ai-sfx/out5/taser_r1.wav` | an electric taser crackling and buzzing, sharp electric zaps |
-| throat_clear | audioldm2 | 1.5 | 0.115 | `tools/ai-sfx/out6/throat_clear_r1.wav` | an old man clearing his throat, ahem, close up |
-| tyre_squeal | audioldm2 | 2.0 | -0.043 | `tools/ai-sfx/out7/tyre_squeal_r1.wav` | car tyres spinning and screeching on wet asphalt, burnout |
-| vacuum_roar_v1 | audioldm2 |  |  | `tools/ai-sfx/out/vacuum_roar_v1.wav` |  |
-| vacuum_roar_v2 | audioldm2 |  |  | `tools/ai-sfx/out/vacuum_roar_v2.wav` |  |
-| zap_arc_v1 | audioldm2 |  |  | `tools/ai-sfx/out/zap_arc_v1.wav` |  |
-| zap_arc_v2 | audioldm2 |  |  | `tools/ai-sfx/out/zap_arc_v2.wav` |  |
-| zap_shock_v1 | audioldm2 |  |  | `tools/ai-sfx/out/zap_shock_v1.wav` |  |
-| zap_shock_v2 | audioldm2 |  |  | `tools/ai-sfx/out/zap_shock_v2.wav` |  |
-| zap_taser_v1 | audioldm2 |  |  | `tools/ai-sfx/out/zap_taser_v1.wav` |  |
-| zap_taser_v2 | audioldm2 |  |  | `tools/ai-sfx/out/zap_taser_v2.wav` |  |
+| **fold** | พับแผ่นยางหนาครึ่ง ตบแปะ ตอนพับผู้ต้องหาที่แบน (เงา ผ้า) | EP8b fold | `public/absurd-cases/ep8/sfx_sao/fold_r1.wav` | sao · 2.0 · 0.23 | 5 |
+| **peel** | ลอกแผ่นยางเหนียวขึ้นจากถนน ดังแคว๊ก ตอนลอกเงา/สติกเกอร์/ของติดพื้น | EP8b peel | `public/absurd-cases/ep8/sfx_sao/peel_r1.wav` | sao · 3.0 · 0.26 | 5 |
+| **shrink** | เสียงยางบีบเอี๊ยดสั้นๆ ใช้เป็น 'คำตอบ' ของผู้ต้องหาที่พูดไม่ได้ (ดังกว่าพากย์ +4 dB) | EP8b | `public/absurd-cases/ep8/sfx_sao/shrink_r1.wav` | sao · 1.5 · 0.27 | 5 |
+| **squash** | ยางเปียกบี้ไถลบนพื้น ตอนของแบนถูกเหยียบ/หนี | EP8b squash | `public/absurd-cases/ep8/sfx_sao/squash_r1.wav` | sao · 2.0 · 0.24 | 5 |
+| **trowel_scrape** | เกรียงเหล็กขูดถนนแรงๆ ตอนขูดเงา/ของติดพื้น | EP8b scrape | `public/absurd-cases/ep8/sfx_sao/trowel_scrape_r1.wav` | sao · 3.0 · 0.38 | 5 |
+| **bubble_pop** | ฟองสบู่แตกเบาๆ ฉากห้องน้ำ/สบู่ | EP5 pop | `tools/ai-sfx/out5/bubble_pop_r1.wav` | audioldm2 · 1.5 · 0.15 | 4 |
+| **foam_fizz** | ฟองโฟมฟู่ซ่า ตอนฟองสบู่เยอะผิดปกติ | EP5 report | `tools/ai-sfx/out5/foam_fizz_r1.wav` | audioldm2 · 6.0 · 0.2 | 4 |
+| **gavel_rubber** | ค้อนยางทุบโต๊ะดังตุ้บ ตอนค้อนกลายเป็นของนิ่ม (มุก) | EP7 gavel | `tools/ai-sfx/out7/gavel_rubber_r1.wav` | audioldm2 · 1.0 · 0.08 | 4 |
+| **guard_slip** | ผู้คุมลื่นล้มหงาย (มุกพื้นเปียก/สบู่) | EP5 guardSlip | `tools/ai-sfx/out5/guard_slip_r1.wav` | audioldm2 · 2.0 · 0.07 | 4 |
+| **rubber_flap** | แผ่นยางเปียกตบพื้นแปะๆ ตอนของแบนขยับ | EP8 | `tools/ai-sfx/out8/rubber_flap_r1.wav` | audioldm2 · 2.0 · 0.07 | 4 |
+| **rubber_shrink** | ลูกโป่งหดเร็วฟึ่บ ตอนของหด/คำตอบเป็นเสียงยาง | EP8 answer | `tools/ai-sfx/out8/rubber_shrink_r1.wav` | audioldm2 · 1.0 · 0.16 | 4 |
+| **sheet_fold** | พับแผ่นยาง รุ่นแรก (ใช้ fold ก่อน) | EP8 fold | `tools/ai-sfx/out8/sheet_fold_r1.wav` | audioldm2 · 1.5 · 0.04 | 4 |
+| **sizzle** | ฉ่าสั้นๆ ของโดนกระทะร้อน (มุกหน้าไหม้/แดดเผา) | EP8 burn | `tools/ai-sfx/out8/sizzle_r1.wav` | audioldm2 · 1.5 · 0.07 | 4 |
+| **slip_falls** | หลายคนลื่นล้มต่อกันเป็นทอดๆ | EP5 slip0 | `tools/ai-sfx/out5/slip_falls_r1.wav` | audioldm2 · 3.0 · 0.08 | 4 |
+| **smell_puff** | ปล่อยแก๊สฟู่ทุ้มๆ ตอนกลิ่นปล่อยออกมา | EP8 court | `tools/ai-sfx/out3/smell_puff_r1.wav` | audioldm2 · 2.0 · 0.05 | 4 |
+| **soap_scrub** | ถูสบู่บนผิวเอี๊ยดๆ ฉากอาบน้ำ | EP5 slip | `tools/ai-sfx/out5/soap_scrub_r1.wav` | audioldm2 · 3.0 · 0.13 | 4 |
+| **soap_slip** | สบู่ลื่นหลุดมือไถลบนกระเบื้อง | EP5 slip | `tools/ai-sfx/out5/soap_slip_r1.wav` | audioldm2 · 1.5 · 0.04 | 4 |
+| **tape_peel** | ลอกเทปเหนียวยาวขึ้นจากพื้นปูน แคว๊กยาว | EP8 swat, EP8 scrape, EP8 peel | `tools/ai-sfx/out8/tape_peel_r1.wav` | audioldm2 · 2.5 · 0.1 | 4 |
+| **trombone_down** | ทรอมโบนไหลลงวาวาว ปิดมุกแป้ก (ใช้น้อย — ไม่ใช่เพลง แต่ระวังให้ดูถูก) | EP8 squash | `tools/ai-sfx/out8/trombone_down_r1.wav` | audioldm2 · 2.0 · 0.16 | 4 |
 
-## police
+## เหตุใหญ่ / ภัย / ไฟฟ้า / ยานพาหนะ
 
-| cue | engine | sec | score | best take | prompt |
+ใช้ตอนเรื่องบานปลาย (ฮ.บิน, รถทหาร, ฟ้าผ่า, ไฟช็อต) วางเป็น bed สั้นหรือ spot ใหญ่ peak 0.4–0.6 ลดลงใต้คำพากย์
+
+| เสียง | ใช้ตอนไหน | เคยใช้ | take ที่ดีที่สุด | engine · วิ · score | takes |
 |---|---|---|---|---|---|
-| cuffs | sao | 2.0 | 0.43 | `public/absurd-cases/ep8/sfx_sao/cuffs_r1.wav` | Metal handcuffs ratcheting and clicking shut, close foley, crisp. |
-| door_crash | audioldm2 | 2.5 | 0.082 | `tools/ai-sfx/out5/door_crash_r1.wav` | a wooden door is kicked in, splinters, and slams flat onto the floor with a heavy crash |
-| engine_rev | audioldm2 | 3.0 | -0.034 | `tools/ai-sfx/out7/engine_rev_r1.wav` | several police cars revving their engines hard at the same time, loud engine roar |
-| handcuffs | audioldm2 | 1.5 | 0.008 | `tools/ai-sfx/out7/handcuffs_r1.wav` | handcuffs clicking shut, metal ratchet clicks, close up |
-| national_alarm | audioldm2 | 8.0 | 0.381 | `tools/ai-sfx/out7/national_alarm_r1.wav` | a city wide emergency air raid siren wailing slowly in the distance |
-| police_arrive_v1 | audioldm2 |  |  | `tools/ai-sfx/out/police_arrive_v1.wav` |  |
-| police_arrive_v2 | audioldm2 |  |  | `tools/ai-sfx/out/police_arrive_v2.wav` |  |
-| police_sirens | audioldm2 | 6.0 | 0.426 | `tools/ai-sfx/out7/police_sirens_r1.wav` | several police car sirens wailing on a city street |
-| prison_alarm | audioldm2 | 6.0 | 0.16 | `tools/ai-sfx/out5/prison_alarm_r1.wav` | a prison escape alarm siren wailing in a concrete corridor |
-| prison_siren_v1 | audioldm2 |  |  | `tools/ai-sfx/out/prison_siren_v1.wav` |  |
-| prison_siren_v2 | audioldm2 |  |  | `tools/ai-sfx/out/prison_siren_v2.wav` |  |
-| radio_squelch_v1 | audioldm2 |  |  | `tools/ai-sfx/out/radio_squelch_v1.wav` |  |
-| radio_squelch_v2 | audioldm2 |  |  | `tools/ai-sfx/out/radio_squelch_v2.wav` |  |
-| siren | sao | 7.0 | 0.338 | `public/absurd-cases/ep8/sfx_sao/siren_r1.wav` | A police car siren wailing close by on a quiet street, realistic recording. |
-| swat_boots | audioldm2 | 3.0 | 0.093 | `tools/ai-sfx/out3/swat_boots_r1.wav` | a squad of police officers in heavy boots rushing into a room, gear rattling |
-| swat_run | sao | 4.0 | 0.192 | `public/absurd-cases/ep8/sfx_sao/swat_run_r1.wav` | A squad of police officers in heavy boots running fast on asphalt, gear and equipment ratt |
+| **army_trucks** | รถทหารหลายคันติดเครื่องรอ ตอนรัฐส่งกำลังใหญ่เกินเหตุ | EP6 bed cranes→courtExt, EP6 cranes | `tools/ai-sfx/out6/army_trucks_r1.wav` | audioldm2 · 6.0 · 0.24 | 4 |
+| **crane_lift** | เครนยกของหนัก ตอนต้องยกผู้ต้องหาที่เป็นวัตถุใหญ่ | EP6 lift | `tools/ai-sfx/out6/crane_lift_r1.wav` | audioldm2 · 4.0 · 0.12 | 4 |
+| **electric_buzz** | ไฟฟ้าซ่าต่อเนื่อง ของเสียบปลั๊กเพี้ยน |  | `tools/ai-sfx/out/electric_buzz_v1.wav` | audioldm2 ·  ·  | 2 |
+| **electric_crackle** | ไฟแรงสูงแลบเป็นสาย ตอนของเริ่มมีพลังผิดปกติ | EP7 phone | `tools/ai-sfx/out7/electric_crackle_r1.wav` | audioldm2 · 4.0 · 0.24 | 4 |
+| **electric_pop** | เครื่องใช้ไฟฟ้าลัดวงจรดังป๊อก ควันขึ้น | EP7 routerBoom | `tools/ai-sfx/out7/electric_pop_r1.wav` | audioldm2 · 2.0 · 0.1 | 4 |
+| **electric_zip** | ไฟวิ่งปรี๊ดไปตามราวเหล็ก/ลูกกรง | EP7 barJump | `tools/ai-sfx/out7/electric_zip_r1.wav` | audioldm2 · 1.5 · 0.2 | 4 |
+| **fan_spinup** | พัดลมหมุนเร็วขึ้นจนกรีดเหมือนเครื่องเจ็ต ตอนของธรรมดาบานปลาย | EP7 blow | `tools/ai-sfx/out7/fan_spinup_r1.wav` | audioldm2 · 4.0 · 0.15 | 4 |
+| **glass_burst** | หน้าต่างปะทะพายุ กระจกสั่น ลมพุ่งเข้า | EP7 strike | `tools/ai-sfx/out7/glass_burst_r1.wav` | audioldm2 · 2.0 · 0.05 | 4 |
+| **heli_hover** | เฮลิคอปเตอร์ลอยเหนือหัว ใบพัดตึกๆ ตอนกำลังใหญ่เกินเหตุ | EP6 lanes | `tools/ai-sfx/out6/heli_hover_r1.wav` | audioldm2 · 6.0 · 0.28 | 4 |
+| **helicopter** | เฮลิคอปเตอร์ รุ่นเก่า |  | `tools/ai-sfx/out/helicopter_v1.wav` | audioldm2 ·  ·  | 2 |
+| **jet_takeoff** | เครื่องเจ็ตขึ้นบิน เสียงพุ่ง ตอนของพุ่งขึ้นฟ้า | EP7 liftoff | `tools/ai-sfx/out7/jet_takeoff_r1.wav` | audioldm2 · 4.0 · 0.13 | 4 |
+| **mic_blast** | ไมค์โดนไฟระเบิดดังปัง แล้วซ่า | EP7 zap | `tools/ai-sfx/out7/mic_blast_r1.wav` | audioldm2 · 2.5 · 0.05 | 4 |
+| **mosquito_swarm** | ฝูงยุงมหาศาลหวีดหึ่ง ตอนยุงยกพวกมา | EP6 notice | `tools/ai-sfx/out6/mosquito_swarm_r1.wav` | audioldm2 · 6.0 · 0.39 | 4 |
+| **national_alarm** | ไซเรนเตือนภัยทั้งเมืองหวอยาวไกลๆ ตอนเรื่องเล็กกลายเป็นวิกฤตชาติ | EP7 prisonTop | `tools/ai-sfx/out7/national_alarm_r1.wav` | audioldm2 · 8.0 · 0.38 | 4 |
+| **power_spark** | ไฟช็อตสปาร์ก รุ่นเก่า |  | `tools/ai-sfx/out/power_spark_v1.wav` | audioldm2 ·  ·  | 2 |
+| **saw_concrete** | เลื่อยวงเดือนตัดเสาปูนกรีดหวีด ตอนตัดผู้ต้องหาที่ติดอยู่กับที่ | EP6 cuffs | `tools/ai-sfx/out6/saw_concrete_r1.wav` | audioldm2 · 4.0 · 0.22 | 4 |
+| **stampede** | ฝูงคน/สัตว์วิ่งกรู รุ่นเก่า |  | `tools/ai-sfx/out/stampede_v1.wav` | audioldm2 ·  ·  | 2 |
+| **swarm** | ฝูงแมลงหึ่ง รุ่นเก่า |  | `tools/ai-sfx/out/swarm_v1.wav` | audioldm2 ·  ·  | 2 |
+| **thunder_close** | ฟ้าผ่าใกล้มาก เปรี้ยงแล้วครืน | EP7 strike, EP7 carHit | `tools/ai-sfx/out7/thunder_close_r1.wav` | audioldm2 · 4.0 · 0.3 | 4 |
+| **wind_blast** | ลมพายุพัดแรงแบบทอร์นาโด | EP7 blow, EP8 busStop | `tools/ai-sfx/out7/wind_blast_r1.wav` | audioldm2 · 3.0 · 0.18 | 4 |
+| **zap_arc** | ไฟอาร์กแลบ รุ่นเก่า |  | `tools/ai-sfx/out/zap_arc_v1.wav` | audioldm2 ·  ·  | 2 |
+| **zap_shock** | ไฟช็อตคน รุ่นเก่า |  | `tools/ai-sfx/out/zap_shock_v1.wav` | audioldm2 ·  ·  | 2 |
 
-## tonal
+## กระแทก / ทรานซิชัน / ล้ม
 
-| cue | engine | sec | score | best take | prompt |
+ปิดท้ายแอ็กชันหรือคัตแรง (ล้ม, ประตูพัง, riser ก่อนคัตใหญ่) peak 0.3–0.55 ใส่ thud ต่ำซ้อนได้
+
+| เสียง | ใช้ตอนไหน | เคยใช้ | take ที่ดีที่สุด | engine · วิ · score | takes |
 |---|---|---|---|---|---|
-| court_room | audioldm2 | 6.0 | -0.028 | `tools/ai-sfx/out6/court_room_r1.wav` | quiet courtroom room tone, soft murmuring of a few people, paper rustle |
-| night_kitchen | audioldm2 | 8.0 | 0.02 | `tools/ai-sfx/out3/night_kitchen_r1.wav` | a quiet kitchen at night, faint distant crickets outside, very quiet room tone |
-| noon_bell | sao | 5.0 | 0.263 | `public/absurd-cases/ep8/sfx_sao/noon_bell_r1.wav` | A single strike of a large bell at noon with a long ringing tail. |
-| noon_bell | audioldm2 | 4.0 | 0.279 | `tools/ai-sfx/out8/noon_bell_r1.wav` | A single strike of a large bell at noon with a long ringing tail. |
-| phone_alert | audioldm2 | 2.0 | 0.278 | `tools/ai-sfx/out7/phone_alert_r1.wav` | a smartphone emergency alert tone, loud repeating two tone beeps |
-| phone_taps | sao | 2.0 | 0.207 | `public/absurd-cases/ep8/sfx_sao/phone_taps_r1.wav` | Fingers tapping on a smartphone touchscreen three times, then a call ringing tone starts. |
-| room_hum | audioldm2 | 6.0 | 0.07 | `tools/ai-sfx/out7/room_hum_r1.wav` | quiet interrogation room, fluorescent light hum, room tone |
-| room_tone | sao | 6.0 | 0.151 | `public/absurd-cases/ep8/sfx_sao/room_tone_r1.wav` | Interrogation room tone, fluorescent tube light buzzing, quiet, slight air conditioner hum |
+| **body_fall** | คนล้มหงายลงพื้นแข็ง (ผู้ต้องหาหมดสติ ช็อก) |  | `tools/ai-sfx/out3/body_fall_r1.wav` | audioldm2 · 2.0 · 0.16 | 4 |
+| **boom_hit** | ตูมหนักๆ ตรงคัตใหญ่ / เปิดเผยข้อหา (EP1 รุ่นเก่า) |  | `tools/ai-sfx/out/boom_hit_v1.wav` | audioldm2 ·  ·  | 2 |
+| **glass_hit** | กระทบกระจก รุ่นเก่า |  | `tools/ai-sfx/out/glass_hit_v1.wav` | audioldm2 ·  ·  | 2 |
+| **hit** | ตีกระแทกทั่วไป รุ่นเก่า |  | `tools/ai-sfx/out/hit_v1.wav` | audioldm2 ·  ·  | 2 |
+| **riser** | เสียงไต่ขึ้นก่อนคัตใหญ่/เปิดเผยข้อหา (ใช้น้อยๆ) |  | `tools/ai-sfx/out/riser_v1.wav` | audioldm2 ·  ·  | 2 |
+| **rubble_fall** | อิฐปูนถล่มลงพื้น หลังทุบ/รื้อ | EP6 rubble | `tools/ai-sfx/out6/rubble_fall_r1.wav` | audioldm2 · 3.0 · 0.21 | 4 |
+| **thud1** | ตุ้บทุ้ม รุ่นเก่า |  | `tools/ai-sfx/out/thud1_v1.wav` | audioldm2 ·  ·  | 2 |
+| **thud2** | ตุ้บทุ้ม รุ่นเก่า |  | `tools/ai-sfx/out/thud2_v1.wav` | audioldm2 ·  ·  | 2 |
+| **whoosh_cloud** | วูบผ่านเมฆ ทรานซิชัน/กล้องพุ่ง | EP7 cloud | `tools/ai-sfx/out7/whoosh_cloud_r1.wav` | audioldm2 · 2.0 · 0.18 | 4 |
 
-## voice
+## เสียงสังเคราะห์ (ไม่ต้องเจน — ฟังก์ชันใน `tools/premix_absurd_ep8b.py`)
 
-| cue | engine | sec | score | best take | prompt |
-|---|---|---|---|---|---|
-| breath_in | audioldm2 | 3.0 |  | `tools/ai-sfx/out3/breath_in_r1.wav` | a man takes a slow deep breath of fresh air through the nose then exhales softly, close up |
-| cough | sao | 2.5 | 0.357 | `public/absurd-cases/ep8/sfx_sao/cough_r1.wav` | An old man coughing twice and clearing his throat in a quiet room. |
-| fan_spinup | audioldm2 | 4.0 | 0.147 | `tools/ai-sfx/out7/fan_spinup_r1.wav` | an electric fan motor spinning up faster and faster until it screams like a jet engine |
-| mask_breath | audioldm2 | 3.0 | 0.099 | `tools/ai-sfx/out3/mask_breath_r1.wav` | heavy breathing through a gas mask respirator, darth vader like hiss, close up |
-| mask_cough | audioldm2 | 2.0 | 0.13 | `tools/ai-sfx/out8/mask_cough_r1.wav` | a man coughing twice through a gas mask, muffled, close up |
-| panting | audioldm2 | 3.0 | 0.081 | `tools/ai-sfx/out6/panting_r1.wav` | an exhausted man panting heavily, out of breath after running, close up |
-| suit_breath_v1 | audioldm2 |  |  | `tools/ai-sfx/out/suit_breath_v1.wav` |  |
-| suit_breath_v2 | audioldm2 |  |  | `tools/ai-sfx/out/suit_breath_v2.wav` |  |
-| tired_steps | audioldm2 | 4.0 | 0.214 | `tools/ai-sfx/out6/tired_steps_r1.wav` | a tired man slowly climbing concrete stairs, heavy footsteps and loud panting breath |
+ใช้เป็นตัวสำรองตัวที่ 2 ของ `take()` หรือเมื่อ AI take ไม่เข้า
+
+| ฟังก์ชัน | เสียง |
+|---|---|
+| `clunk` | ปึก/กึก โลหะทุ้ม (สวิตช์ใหญ่ ไฟเปิด ประตูเหล็กเล็ก) |
+| `click` | คลิกสั้น (สวิตช์ ปุ่ม แตะจอ) |
+| `whoosh` | วูบ (กล้องพุ่ง ทรานซิชัน ของปลิว) |
+| `thud` | ตุ้บทุ้ม (ล้ม ปั๊ม วางของหนัก) |
+| `tung` | ตึ๊ง! สปริงทุ้ม ป้ายข้อหาหล่นห้อย |
+| `ratchet` | กุญแจมือรูดกริ๊กๆ |
+| `metal` | กึ๊ง เหล็ก/ลูกกรงก้อง |
+| `door_crash` | ประตูพังล้ม |
+| `siren / alarm` | ไซเรนตำรวจ / เตือนภัยช้าๆ |
+| `boots` | ฝีเท้าบู๊ตหลายคน |
+| `beep / ankle_beep / alert_tone` | ติ๊ด / กำไล EM / เตือนมือถือ |
+| `bell` | ระฆังหางยาว |
+| `flap / fwip / peel / squash` | แปะ / ฟึ่บ / แคว๊ก / บี้ — ชุดเสียงยางย้วย |
+| `slip_squeak / slide_long / scrub / fizz / pop_bubble / blub` | ชุดสบู่ลื่น ฟอง น้ำ |
+| `electric / zip_ / spinup` | ไฟช็อตซ่า / ไฟวิ่ง / มอเตอร์ไต่รอบ |
+| `traffic / engine / rotor / saw_whine` | ถนน / เครื่องยนต์ / ใบพัด ฮ. / เลื่อยหวีด |
+| `rain / wind / wind_whistle / thunder` | ฝน / ลม / ลมหวีด / ฟ้าร้อง |
+| `creak / knee_crack / swarm_buzz / trombone` | เอี๊ยด / เข่าลั่น / ฝูงแมลง / ทรอมโบนไหลลง |
