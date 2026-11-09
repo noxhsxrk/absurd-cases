@@ -3,7 +3,7 @@ import * as THREE from 'three';
 import {useThree} from '@react-three/fiber';
 import {drive} from '../../pov/cast/RbPerson';
 import {POSES} from '../../pov/cast/poses';
-import {resetTurn, toLocal, rot, ik, fingers} from '../../pov/acting/ik';
+import {resetTurn, toLocal, rot, ik, fingers, handTo} from '../../pov/acting/ik';
 import {ev, V3, sm, cl, lerp, lerp3, pop, SHOTS, TOTAL, FPS} from './data';
 import {autoFace, setFace} from '../AbsurdEp1/boxcast';
 import {Bedroom, Interro, Court, Cell, TABLE_TOP} from '../AbsurdEp1/sets';
@@ -80,39 +80,65 @@ const Dresser = () => <>
 const MIR_BED = {position: [DR[0] - 0.02, DR[1], DR[2]] as V3, yaw: -Math.PI / 2, scale: 1.5, tilt: -0.1};
 const bedMirror = (t: number, o: {roll?: number} = {}) => <Mirror {...MIR_BED} roll={o.roll ?? 0} />;
 /** him at the mirror: brushing (IK hand at the mouth, fast side-to-side), plus the mimic beats and the point */
-const man = (C: Cast, t: number, o: {mode?: 'brush' | 'point' | 'idle' | 'phone'; x?: number; z?: number; yaw?: number; face?: string} = {}) => {
+/** Brush head ON the mouth: the bristles sit just inside the lips (mouth = head bone + 0.10 forward, 0.07 down) and the
+ *  handle runs out to his right. The wrist target is solved iteratively so the brush head (not the wrist) lands on the mouth. */
+const MOUTH_Y = 0.08, MOUTH_F = 0.12;   // mouth on the box face relative to the head bone (pivot sits at the neck)
+const _q = new THREE.Quaternion();
+const toRootDir = (I: Inst, d: V3) => { I.root.getWorldQuaternion(_q); return new THREE.Vector3(...d).normalize().applyQuaternion(_q.invert()); };
+
+const brushInMouth = (I: Inst, s: any, br: THREE.Object3D, head: V3, fwd: V3, side: V3, scrub: number, bob: number) => {
+  const right: V3 = [-side[0], 0, -side[2]];
+  const mouth = new THREE.Vector3(head[0] + fwd[0] * MOUTH_F + side[0] * scrub, head[1] + MOUTH_Y + bob, head[2] + fwd[2] * MOUTH_F + side[2] * scrub);
+  const wrist = mouth.clone().add(new THREE.Vector3(right[0] * 0.16 + fwd[0] * 0.02, -0.04, right[2] * 0.16 + fwd[2] * 0.02));
+  const fingersD = toRootDir(I, [fwd[0], -0.35, fwd[2]]), thumbD = toRootDir(I, [-right[0], 0.15, -right[2]]);
+  for (let k = 0; k < 4; k++) {
+    ik(I, 'R', loc(I, s, [wrist.x, wrist.y, wrist.z]), V(-0.3, -1, 0.6), 1); handTo(I, 'R', fingersD, thumbD, 1);
+    I.root.parent?.updateMatrixWorld(true);
+    const tip = br.localToWorld(new THREE.Vector3(10.5, 1.3, 0));
+    wrist.add(mouth.clone().sub(tip));
+    if ((globalThis as any).__dbgBrush) console.log('brush iter', k, tip.distanceTo(mouth).toFixed(3), JSON.stringify(head), JSON.stringify(tip.toArray().map((v) => +v.toFixed(3))));
+  }
+};
+type Beats = {tilt: number; raise: number; point: number};
+const B1 = (): Beats => ({tilt: ev('tilt'), raise: ev('raise'), point: ev('point')});
+const B2 = (): Beats => ({tilt: ev('tilt2'), raise: 1e9, point: 1e9});
+const man = (C: Cast, t: number, o: {mode?: 'brush' | 'point' | 'idle' | 'phone'; x?: number; z?: number; yaw?: number; face?: string; b?: Beats} = {}) => {
+  const bt = o.b ?? B1();
   const I = C.nai; hideProps(I); const mode = o.mode ?? 'brush';
   const s = ps('nai', o.x ?? MAN[0], o.z ?? MAN[2], o.yaw ?? Math.PI / 2, t, {clip: mode === 'phone' ? 'cell_phone_talk_01' : 'idle_neutral_01', face: o.face ?? 'half'});
   const w = body(I, s, t); resetTurn(I);
-  const br = prop(I, 'brush', 'Bip01_R_Hand', makeToothbrush, [8, 0, 0], [0, Math.PI / 2, 0]); br.visible = mode !== 'phone';
+  const br = prop(I, 'brush', 'Bip01_R_Hand', makeToothbrush, [8, 0, 0], [0, -Math.PI / 2, 0]);   // head toward the thumb side br.visible = mode !== 'phone';
   const head = bw(I, 'Bip01_Head'); const fwd: V3 = [Math.sin(s.yaw), 0, Math.cos(s.yaw)]; const side: V3 = [Math.cos(s.yaw), 0, -Math.sin(s.yaw)];
   if (mode === 'brush' || mode === 'point') {
     // brushing pauses on the mimic beat (he stops, tilts his head, lifts his left hand: the mirror does the same)
-    const stopK = mode === 'point' ? 1 : sm((t - ev('tilt') + 0.15) / 0.15);
+    const stopK = mode === 'point' ? 1 : sm((t - bt.tilt + 0.15) / 0.15);
     const scrub = Math.sin(t * 29) * 0.03 * (1 - stopK);
-    const mouth = add3(head, [fwd[0] * 0.12 + side[0] * scrub, -0.03 - 0.06 * (mode === 'point' ? 1 : 0), fwd[2] * 0.12 + side[2] * scrub]);
-    fingers(I, 'R', 'fist', 1); ik(I, 'R', loc(I, s, mode === 'point' ? add3(head, [fwd[0] * 0.18, -0.25, fwd[2] * 0.18]) : mouth), V(-0.3, -1, 0.6), 1);
-    const tilt = sm((t - ev('tilt')) / 0.2) * (1 - sm((t - ev('point') + 0.4) / 0.2));
+    fingers(I, 'R', 'fist', 1);
+    if (mode === 'point') ik(I, 'R', loc(I, s, add3(head, [fwd[0] * 0.18, -0.25, fwd[2] * 0.18])), V(-0.3, -1, 0.6), 1);
+    else brushInMouth(I, s, br, head, fwd, side, scrub, Math.sin(t * 23) * 0.006 * (1 - stopK));
+    const tilt = sm((t - bt.tilt) / 0.2) * (1 - sm((t - bt.point + 0.4) / 0.2));
     rot(I.bones.Bip01_Head, 0, 0, 1, 0.28 * tilt, I.root);
     // the left hand: raised palm (mimic), then a hard point at the glass (charge)
-    const raise = sm((t - ev('raise')) / 0.17) * (1 - sm((t - ev('point') + 0.3) / 0.15));
-    const pointK = mode === 'point' ? sm((t - ev('point')) / 0.15) : 0;
+    const raise = sm((t - bt.raise) / 0.17) * (1 - sm((t - bt.point + 0.3) / 0.15));
+    const pointK = mode === 'point' ? sm((t - bt.point) / 0.15) : 0;
     if (raise > 0.01) { fingers(I, 'L', 'open', 1); ik(I, 'L', loc(I, s, add3(head, [fwd[0] * 0.28 - side[0] * 0.22, 0.05, fwd[2] * 0.28 - side[2] * 0.22])), V(0.4, -1, 0.3), raise); }
-    if (pointK > 0.01) { fingers(I, 'L', 'point', 1); const jab = Math.sin(Math.max(0, t - ev('point')) * 16) * 0.025 * Math.exp(-Math.max(0, t - ev('point')) * 1.5);
+    if (pointK > 0.01) { fingers(I, 'L', 'point', 1); const jab = Math.sin(Math.max(0, t - bt.point) * 16) * 0.025 * Math.exp(-Math.max(0, t - bt.point) * 1.5);
       ik(I, 'L', loc(I, s, add3(head, [fwd[0] * (0.5 + jab) - side[0] * 0.08, -0.12, fwd[2] * (0.5 + jab) - side[2] * 0.08])), V(0.4, -1, 0), pointK); }
   }
   w.updateMatrixWorld(true);
   return w;
 };
 /** foam at his mouth while brushing / shouting */
-const Foam: React.FC<{I: Inst; s?: number}> = ({I, s = 1}) => { const h = bw(I, 'Bip01_Head'); return <group position={add3(h, [0.115, -0.07, 0])}>
+const Foam: React.FC<{I: Inst; s?: number}> = ({I, s = 1}) => { const h = bw(I, 'Bip01_Head'); return <group position={add3(h, [MOUTH_F + 0.005, MOUTH_Y - 0.02, 0])}>
   {[[0, 0, 0, 0.022], [0.004, -0.02, 0.02, 0.015], [0.004, -0.015, -0.025, 0.017], [0.006, -0.04, 0.005, 0.012]].map(([x, y, z, r], i) => <mesh key={i} position={[x, y, z]} scale={r * s}><sphereGeometry args={[1, 8, 6]} /><meshStandardMaterial color="#FFFFFF" roughness={0.6} /></mesh>)}</group>; };
 const bedroom = (t: number, door = 0) => <><Bedroom st={{t, lamp: 0, day: 1, door}} /><Dresser /></>;
 
 // SWAT in the bedroom: four commandos burst through the door (east wall, z ≈ 0.8–1.6) and close on the mirror
-const SW: [string, V3, number][] = [['cmd1', [1.25, 0, -1.05], 0.9], ['cmd2', [1.25, 0, -0.15], 2.3], ['cmd3', [0.75, 0, -0.95], 1.3], ['cmd4', [0.75, 0, -0.2], 1.9]];
+const SW: [string, V3, number][] = [['cmd1', [1.35, 0, -1.2], 0.64], ['cmd2', [1.35, 0, 0.0], 2.5], ['cmd3', [0.5, 0, -1.6], 0.9], ['cmd4', [0.5, 0, 0.4], 2.23]];   // spread wide so the glass stays clear between them
 const DOOR_IN: V3 = [2.4, 0, 1.2];
-const swatIn = (C: Cast, t: number, opts: {hits?: boolean; carry?: number} = {}) => SW.map(([id, at, yaw], i) => {
+const swatIn = (C: Cast, t: number, opts: {hits?: boolean; carry?: number; center?: boolean} = {}) => SW.map(([id, at0, yaw0], i) => {
+  // center: cmd1 squarely in front of the glass (so his own reflection swings back at him); cmd2 steps aside
+  const at: V3 = !opts.center ? at0 : ([[1.15, 0, -0.6], [1.0, 0, 0.35], [0.1, 0, 1.2], [-0.4, 0, 0.9]] as V3[])[i]; const yaw = opts.center && i === 0 ? Math.PI / 2 : yaw0;
   const I = C[id]; hideProps(I);
   const k = sm((t - ev('door') - 0.05 - i * 0.07) / 0.45);
   const p = lerp3(add3(DOOR_IN, [0, 0, i * 0.25]), at, k);
@@ -120,18 +146,18 @@ const swatIn = (C: Cast, t: number, opts: {hits?: boolean; carry?: number} = {})
   const yy = running ? Math.atan2(at[0] - DOOR_IN[0], at[2] - DOOR_IN[2]) : yaw;
   const s = ps(id, p[0], p[2], yy, t, {moving: running, odo: k * 3, clip: running ? 'run_neutral_01' : 'idle_angry_01', lookW: [DR[0], 1.2, DR[2]], face: 'wide'});
   const w = body(I, s, t); resetTurn(I);
-  if (opts.hits && i < 2 && k >= 1) {
+  if (opts.hits && (opts.center ? i === 0 : i < 2) && k >= 1) {
     // baton blows: cmd1 on hit1 / hit3, cmd2 on hit2 / hit4; contact point = the frame edge
     prop(I, 'baton', 'Bip01_R_Hand', makeBaton, [8, 0, 0], [0, Math.PI / 2, 0]);
-    const myHits = i === 0 ? [ev('hit1'), ev('hit3')] : [ev('hit2'), ev('hit4')];
+    const myHits = opts.center ? [ev('hit5'), ev('hit6')] : i === 0 ? [ev('hit1'), ev('hit3')] : [ev('hit2'), ev('hit4')];
     const up = Math.max(...myHits.map((h) => strike(t, h)));
-    const edge: V3 = [DR[0] - 0.15, DR[1] + 0.5 + up * 0.55, DR[2] + (i === 0 ? -0.2 : 0.2)];
+    const edge: V3 = opts.center ? [DR[0] - 0.2, DR[1] + 0.8 + up * 0.45, DR[2] + 0.05] : [DR[0] - 0.15, DR[1] + 0.5 + up * 0.55, DR[2] + (i === 0 ? -0.2 : 0.2)];
     fingers(I, 'R', 'fist', 1); ik(I, 'R', loc(I, s, edge), V(0.6, -1, -0.2), 1);
   }
   w.updateMatrixWorld(true);
   return <P key={id} o={w} />;
 });
-const HITS = () => [ev('hit1'), ev('hit2'), ev('hit3'), ev('hit4')];
+const HITS = () => [ev('hit1'), ev('hit2'), ev('hit3'), ev('hit4'), ev('hit5'), ev('hit6')];
 const bagK = (t: number) => sm((t - ev('bag') + 0.2) / 0.25);
 const bagged = (t: number, pos: V3, yaw: number, scale: number, k = 1) => <group position={pos} rotation={[0, yaw, 0]} scale={scale}><BlackBag k={k} /></group>;
 
@@ -164,14 +190,14 @@ const interroRoom = (C: Cast, t: number) => {
 // COURT (EP1): the mirror on the dock facing the bench; the judge slams, the judge in the mirror slams back
 // =====================================================================================================
 const MIR_CT = {position: [0, 1.04, 0.6] as V3, yaw: Math.PI, scale: 2.0, tilt: 0.06};
-const GAVELS = () => [ev('gavel1'), ev('gavel2'), ev('gavel3'), ev('gavel4')];
+const GAVELS = () => [ev('gavel1'), ev('gavel2'), ev('gavel3'), ev('gavel4'), ev('gavel5')];
 const courtRoom = (C: Cast, t: number) => {
-  const I = C.judge; hideProps(I); const mad = t > ev('gavel1') + 0.25;
+  const I = C.judge; hideProps(I); const mad = t > ev('gavel2') + 0.2;
   const s = ps('judge', 0, -3.25, 0, t, {poseId: 'sitIdle', clip: 'sit_table_idle_neutral_01', lookW: [0, 1.4, 0.6], face: mad ? (Math.floor(t * 10) % 2 ? 'wide' : 'talk') : 'half'});
   const w = body(I, s, t, 0.5);
   prop(I, 'gavel', 'Bip01_R_Hand', makeGavel, [8, 0, 0], [0, Math.PI / 2, 0]);
   const lift = Math.max(...GAVELS().map((g, i) => strike(t, g, i === 0 ? 0.35 : 0.13)));
-  const lean = mad ? 0.18 * sm((t - ev('gavel1') - 0.25) / 0.2) : 0;
+  const lean = mad ? 0.18 * sm((t - ev('gavel2') - 0.2) / 0.2) : 0;
   rot(I.bones.Bip01_Spine1, 1, 0, 0, lean, I.root);
   rot(I.bones.Bip01_R_UpperArm, 1, 0, 0, -0.25 - lift * 1.0, I.root); rot(I.bones.Bip01_R_Forearm, 1, 0, 0, -0.7 - lift * 0.6, I.root); w.updateMatrixWorld(true);
   return {I, node: <><Court t={t} /><P o={w} /><Mirror {...MIR_CT} roll={wobble(t, GAVELS(), 0.012)} /></>};
@@ -184,8 +210,15 @@ const MIR_CELL = {position: [-0.6, 0.46, -1.2] as V3, scale: 1.3, tilt: -0.05};
 const cell = (t: number, cut: number) => <><Cell t={t} days={0.0} marks={0} /><Mirror {...MIR_CELL} dark={cut <= 0} /><pointLight position={[-0.4, 1.6, 0.2]} color="#9DB0E0" intensity={0.8} distance={3} />
   <SentenceSign position={[0.55, 2.35, 1.56]} cut={cut} w={0.8} /></>;
 const ROOM2_DR = DR;   // the rented room is the same plan (same building, next door), lit at night by the ring light
-const room2 = (t: number, o: {ring: number; fog: number; word?: number}) => <><Bedroom st={{t, lamp: 0.15, made: false}} /><Dresser />
-  <Mirror {...MIR_BED} ring={o.ring} fog={o.fog} word={o.word ?? 0} /></>;
+const room2 = (t: number, o: {ring: number; fog: number; word?: number; makeup?: number}) => <><Bedroom st={{t, lamp: 0.15, made: false}} /><Dresser />
+  <Mirror {...MIR_BED} ring={o.ring} fog={o.fog} word={o.word ?? 0} makeup={o.makeup ?? 0} /></>;
+/** makeup kit laid out on the dresser in front of the mirror: lipstick, compact, two brushes */
+const Vanity = () => <group position={[DR[0] - 0.12, DR[1], DR[2]]}>
+  <mesh castShadow position={[0, 0.04, 0.2]} material={new THREE.MeshStandardMaterial({color: '#C9A15A', metalness: 0.5, roughness: 0.3})}><cylinderGeometry args={[0.016, 0.016, 0.08, 10]} /></mesh>
+  <mesh castShadow position={[0, 0.095, 0.2]} material={new THREE.MeshStandardMaterial({color: '#D7262B', roughness: 0.4})}><cylinderGeometry args={[0.012, 0.014, 0.03, 10]} /></mesh>
+  <mesh castShadow position={[0.02, 0.01, -0.18]} material={new THREE.MeshStandardMaterial({color: '#E8B9C0', roughness: 0.4})}><cylinderGeometry args={[0.05, 0.05, 0.02, 20]} /></mesh>
+  {[-0.05, 0.05].map((z, i) => <mesh key={i} castShadow position={[0.03, 0.008, 0.33 + z]} rotation={[0, 0.3, Math.PI / 2]} material={new THREE.MeshStandardMaterial({color: i ? '#2A2A30' : '#F2D0A0', roughness: 0.5})}><cylinderGeometry args={[0.006, 0.01, 0.16, 8]} /></mesh>)}
+</group>;
 const fogK = (t: number) => sm((t - ev('steam')) / 1.6) * 0.92;
 
 // =====================================================================================================
@@ -234,14 +267,14 @@ export const SHOT_FN: Record<string, (t: number, lt: number, C: Cast) => ShotOut
     const roll = wobble(t, HITS());
     return {node: <>{bedroom(t, 1)}{bedMirror(t, {roll})}{swatIn(C, t, {hits: true})}
       {HITS().map((h, i) => t > h && t < h + 0.35 ? <Stars key={i} center={[DR[0] - 0.12, DR[1] + 0.55, DR[2] + (i % 2 ? 0.2 : -0.2)]} t={t * 3} r={0.1} size={0.035} /> : null)}</>,
-      cam: mv({pos: [0.0, 1.75, -0.6], look: [DR[0], 1.45, DR[2]], fov: 32}, lt, {arrive: 0.1, push: 0.15, shake: near(t, HITS()) ? 0.018 : 0, roll0: 4}), bg: ROOM};
+      cam: mv({pos: [-0.75, 1.75, -0.6], look: [DR[0], 1.3, DR[2]], fov: 52}, lt, {arrive: 0.1, push: 0.15, shake: near(t, HITS()) ? 0.018 : 0, roll0: 4}), bg: ROOM};
   },
   beat2: (t, lt, C) => {
     // low from the dresser side: two more blows, the mirror rocks, stars — not a crack
     const roll = wobble(t, HITS());
-    return {node: <>{bedroom(t, 1)}{bedMirror(t, {roll})}{swatIn(C, t, {hits: true})}
-      {HITS().map((h, i) => t > h && t < h + 0.35 ? <Stars key={i} center={[DR[0] - 0.12, DR[1] + 0.55, DR[2] + (i % 2 ? 0.2 : -0.2)]} t={t * 3} r={0.12} size={0.04} /> : null)}</>,
-      cam: mv({pos: [0.95, 1.0, 0.95], look: [1.6, 1.45, -0.6], fov: 48}, lt, {arrive: 0.1, push: 0.14, shake: near(t, HITS()) ? 0.02 : 0, roll0: -5}), bg: ROOM};
+    return {node: <>{bedroom(t, 1)}{bedMirror(t, {roll})}{swatIn(C, t, {hits: true, center: true})}
+      {[ev('hit5'), ev('hit6')].map((h, i) => t > h && t < h + 0.35 ? <Stars key={i} center={[DR[0] - 0.2, DR[1] + 0.82, DR[2] + 0.05]} t={t * 3} r={0.12} size={0.04} /> : null)}</>,
+      cam: mv({pos: [-0.55, 1.75, -1.3], look: [DR[0], 1.45, DR[2] + 0.05], fov: 44}, lt, {arrive: 0.1, push: 0.14, shake: near(t, HITS()) ? 0.02 : 0, roll0: -5}), bg: ROOM};
   },
   bag: (t, lt, C) => {
     // high: the black bag drops over it
@@ -300,7 +333,7 @@ export const SHOT_FN: Record<string, (t: number, lt: number, C: Cast) => ShotOut
       <hemisphereLight args={['#DCE8F2', '#5A5446', 1.0]} /><directionalLight position={[-6, 9, 14]} color="#FFF1D6" intensity={2.4} castShadow shadow-mapSize={[2048, 2048]} shadow-camera-left={-8} shadow-camera-right={8} shadow-camera-top={8} shadow-camera-bottom={-8} /></>,
       cam: mv({pos: [1.6, 1.0, 6.6], look: [0.1, 1.3, 1.5], fov: 50}, lt, {push: 0.08, arrive: 0.1, roll0: -2}), bg: {color: '#BFD6E4'}};
   },
-  ringLive: (t, lt) => ({node: room2(t, {ring: sm((t - ev('ring')) / 0.08), fog: 0}), cam: mv({pos: [0.65, 1.48, -0.6], look: [DR[0], 1.45, DR[2]], fov: 42}, lt, {push: 0.12, arrive: 0.1}), bg: {color: '#10141C'}}),
+  ringLive: (t, lt) => ({node: <>{room2(t, {ring: sm((t - ev('ring')) / 0.08), fog: 0, makeup: 1})}<Vanity /></>, cam: mv({pos: [0.55, 1.5, -0.95], look: [DR[0], 1.4, DR[2]], fov: 40}, lt, {push: 0.12, arrive: 0.1}), bg: {color: '#10141C'}}),
   steam: (t, lt) => ({node: <>{room2(t, {ring: 1, fog: fogK(t)})}<Steam from={[0.5, 1.6, -2.15]} to={[1.6, 1.5, -0.6]} t={t} t0={ev('steam') - 0.4} /></>,
     cam: mv({pos: [-0.2, 1.6, 0.6], look: [1.3, 1.4, -0.9], fov: 48}, lt, {push: 0.1, arrive: 0.1, roll0: 2}), bg: {color: '#10141C'}}),
   live0: (t, lt) => ({node: <>{room2(t, {ring: 1, fog: fogK(t)})}<Steam from={[0.9, 1.6, -1.6]} to={[1.6, 1.5, -0.6]} t={t} t0={ev('steam')} n={10} /></>,
@@ -310,6 +343,40 @@ export const SHOT_FN: Record<string, (t: number, lt: number, C: Cast) => ShotOut
     const tEnd = TOTAL / FPS - 0.5; const tt = Math.min(t, tEnd); const L = Math.min(lt, tEnd - sh('fogEnd').t0);
     const word = sm((tt - ev('fogEnd') + 0.1) / 0.3) * (1 - 0.6 * sm((tt - ev('fogEnd') - 1.6) / 2.0));
     return {node: room2(tt, {ring: 1, fog: 0.95, word}), cam: mv({pos: [-0.15, 1.46, -0.6], look: [DR[0], 1.46, DR[2]], fov: 40}, L, {push: 0.05, arrive: 0.06}), bg: {color: '#10141C'}};
+  },
+  beatBack: (t, lt, C) => {
+    // "ทุกกระบอง": wide from the bed — the two batons bounce back off the glass and both SWAT reel, stars round their heads
+    const roll = wobble(t, HITS()); const reel = sm((t - ev('reel')) / 0.25);
+    const nodes = swatIn(C, t, {hits: t < ev('reel'), center: true});
+    const heads = ['cmd1'].map((id) => bw(C[id], 'Bip01_Head'));
+    return {node: <>{bedroom(t, 1)}{bedMirror(t, {roll})}{nodes}{reel > 0.05 && heads.map((h, i) => <Stars key={i} center={add3(h, [0, 0.22, 0])} t={t * 3 + i} r={0.13} size={0.04} />)}</>,
+      cam: mv({pos: [-0.9, 1.75, 0.5], look: [1.45, 1.3, -0.6], fov: 40}, lt, {arrive: 0.1, push: 0.1, roll0: 3, shake: near(t, [ev('reel')], 0.2) ? 0.015 : 0}), bg: ROOM};
+  },
+  judgeRage: (t, lt, C) => {
+    // "นั่นคือ ดูหมิ่นศาล!": CU of the judge, red-faced, hammering; the plate drops
+    const {I, node} = courtRoom(C, t);
+    return {node: <>{node}{GAVELS().slice(2).map((g, i) => t > g && t < g + 0.25 ? <Stars key={i} center={add3(bw(I, 'Bip01_R_Hand'), [0, -0.05, 0.1])} t={t * 3} r={0.08} size={0.03} /> : null)}</>,
+      cam: mv({pos: [0.15, 2.0, -1.55], look: [0.05, 1.75, -3.25], fov: 40}, lt, {push: 0.15, arrive: 0.1, shake: near(t, GAVELS().slice(2), 0.08) ? 0.018 : 0})};
+  },
+  sign3: (t, lt) => ({node: cell(t, 0), cam: mv({pos: [0.5, 2.1, 2.55], look: [0.55, 2.3, 1.56], fov: 40}, lt, {push: 0.15, arrive: 0.08}), bg: {color: '#05070A'}}),
+  newMirror: (t, lt, C) => {
+    // morning again: a brand-new white-framed mirror (price tag still on) on the dresser, its box on the floor
+    const w = man(C, t, {mode: 'idle', face: 'half', b: B2()}); const br = attached.get(C.nai)?.brush; if (br) br.visible = false;
+    return {node: <>{bedroom(t)}<Mirror {...MIR_BED} fresh /><P o={w} />
+      <mesh castShadow position={[1.45, 0.2, 0.25]} rotation={[0, 0.3, 0]} material={new THREE.MeshStandardMaterial({color: '#C8A26E', roughness: 0.9})}><boxGeometry args={[0.6, 0.4, 0.12]} /></mesh></>,
+      cam: mv({pos: [-0.6, 1.6, 0.6], look: [1.6, 1.25, -0.55], fov: 42}, lt, {arrive: 0.1, push: 0.1}), bg: ROOM};
+  },
+  brush2: (t, lt, C) => {
+    // he brushes; the one in the new mirror brushes too — he stops and stares, so does it
+    const w = man(C, t, {b: B2(), face: t > ev('tilt2') ? 'wide' : 'half'});
+    return {node: <>{bedroom(t)}<Mirror {...MIR_BED} fresh /><P o={w} /><Foam I={C.nai} /></>,
+      cam: mv({pos: [0.7, 1.6, -1.2], look: [DR[0], 1.5, DR[2] - 0.2], fov: 30}, lt, {arrive: 0.08, push: 0.14}), bg: ROOM};
+  },
+  phone2: (t, lt, C) => {
+    // the same POV phone as before: slides up, thumb on 191 — cut off mid-word
+    const lt2 = t - ev('phone2'); const k = sm((lt2 * 30) / 5); const th = sm((t - ev('phone2') - 0.5) / 0.12);
+    const c = mv({pos: [MAN[0], 1.6, MAN[2]], look: [2.1, 0.6, -0.2], fov: 54}, lt, {push: 0.08, arrive: 0});
+    return {node: <>{bedroom(t)}<Mirror {...MIR_BED} fresh /><Phone3D cam={c.pos} look={c.look} k={k} pressed={t > ev('phone2') + 0.62} thumb={th} /></>, cam: c, bg: ROOM};
   },
 };
 void cl; void lerp; void MIR_H; void ROOM2_DR;

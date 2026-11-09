@@ -5,6 +5,7 @@ import {Reflector} from 'three/examples/jsm/objects/Reflector.js';
 /** EP9 offender: a tabletop mirror. The glass is a real planar reflection (three Reflector), so whatever anyone
  *  does in front of it, "the man in the mirror" does back — the whole joke is plain optics. */
 const wood = new THREE.MeshStandardMaterial({color: '#8A5A36', roughness: 0.55});
+const woodNew = new THREE.MeshStandardMaterial({color: '#F2F0EA', roughness: 0.4});
 const woodD = new THREE.MeshStandardMaterial({color: '#5E3A22', roughness: 0.6});
 const hash = (n: number) => { const x = Math.sin(n * 127.1) * 43758.5453; return x - Math.floor(x); };
 const fogTex = (() => { let t: THREE.CanvasTexture | null = null; return () => {
@@ -15,10 +16,21 @@ const fogTex = (() => { let t: THREE.CanvasTexture | null = null; return () => {
 
 let _wm: THREE.MeshBasicMaterial | null = null;
 const wordM = (o: number) => { if (!_wm) _wm = new THREE.MeshBasicMaterial({map: fogWord(), transparent: true, depthWrite: false}); _wm.opacity = o; return _wm; };
+let _mm: THREE.MeshBasicMaterial | null = null;
+/** makeup drawn straight onto the glass: lashes, blush, red lips (the mirror's own "face") */
+const makeupM = (o: number) => { if (!_mm) _mm = new THREE.MeshBasicMaterial({transparent: true, depthWrite: false, toneMapped: false, map: tex('ep9-makeup', 360, 480, (g) => {
+  g.clearRect(0, 0, 360, 480); g.strokeStyle = '#1A1416'; g.lineWidth = 7; g.lineCap = 'round';
+  [[110, 170], [250, 170]].forEach(([x, y]) => { g.beginPath(); g.arc(x, y + 20, 36, Math.PI * 1.1, Math.PI * 1.9); g.stroke(); for (let i = 0; i < 5; i++) { const a = Math.PI * (1.15 + i * 0.17); g.beginPath(); g.moveTo(x + Math.cos(a) * 36, y + 20 + Math.sin(a) * 36); g.lineTo(x + Math.cos(a) * 52, y + 20 + Math.sin(a) * 52); g.stroke(); } });
+  g.fillStyle = 'rgba(240,120,140,0.45)'; [[85, 270], [275, 270]].forEach(([x, y]) => { g.beginPath(); g.ellipse(x, y, 42, 26, 0, 0, Math.PI * 2); g.fill(); });
+  g.fillStyle = '#D7262B'; g.beginPath(); g.moveTo(120, 340); g.quadraticCurveTo(150, 310, 180, 328); g.quadraticCurveTo(210, 310, 240, 340); g.quadraticCurveTo(180, 395, 120, 340); g.fill();
+  g.fillStyle = 'rgba(255,255,255,0.5)'; g.fillRect(160, 345, 30, 6);
+})}); _mm.opacity = Math.min(1, o); return _mm; };
+let _tm: THREE.MeshBasicMaterial | null = null;
+const tagM = () => _tm ?? (_tm = new THREE.MeshBasicMaterial({map: tex('ep9-tag', 128, 72, (g) => { g.clearRect(0, 0, 128, 72); g.fillStyle = '#B0402E'; g.font = F(700, 34); g.textAlign = 'center'; g.fillText('฿199', 64, 48); }), transparent: true, toneMapped: false}));
 export const MIR_W = 0.36, MIR_H = 0.48;
 /** origin = bottom-centre of the stand on the table; glass faces +z */
-export const Mirror: React.FC<{position?: [number, number, number]; yaw?: number; tilt?: number; scale?: number; fog?: number; ring?: number; dark?: boolean; res?: number; roll?: number; word?: number}> =
-  ({position = [0, 0, 0], yaw = 0, tilt = -0.08, scale = 1, fog = 0, ring = 0, dark, res = 1024, roll = 0, word = 0}) => {
+export const Mirror: React.FC<{position?: [number, number, number]; yaw?: number; tilt?: number; scale?: number; fog?: number; ring?: number; dark?: boolean; res?: number; roll?: number; word?: number; fresh?: boolean; makeup?: number}> =
+  ({position = [0, 0, 0], yaw = 0, tilt = -0.08, scale = 1, fog = 0, ring = 0, dark, res = 1024, roll = 0, word = 0, fresh, makeup = 0}) => {
   const refl = useMemo(() => {
     const r = new Reflector(new THREE.PlaneGeometry(MIR_W, MIR_H), {textureWidth: res, textureHeight: Math.round(res * MIR_H / MIR_W), color: new THREE.Color('#C8CDCF'), clipBias: 0.003});
     return r;
@@ -34,11 +46,13 @@ export const Mirror: React.FC<{position?: [number, number, number]; yaw?: number
       <mesh castShadow receiveShadow position={[0, 0.012, -0.02]} material={woodD}><boxGeometry args={[MIR_W * 0.8, 0.024, 0.16]} /></mesh>
       {[-1, 1].map((s) => <mesh key={s} castShadow position={[s * (MIR_W / 2 + 0.055), cy * 0.6, -0.02]} material={woodD}><boxGeometry args={[0.03, cy * 1.2, 0.03]} /></mesh>)}
       <group position={[0, cy, 0]} rotation={[tilt, 0, 0]}>
-        {bars.map(([x, y, w, h], i) => <mesh key={i} castShadow receiveShadow position={[x, y, 0]} material={wood}><boxGeometry args={[w, h, 0.035]} /></mesh>)}
+        {bars.map(([x, y, w, h], i) => <mesh key={i} castShadow receiveShadow position={[x, y, 0]} material={fresh ? woodNew : wood}><boxGeometry args={[w, h, 0.035]} /></mesh>)}
         <mesh castShadow position={[0, 0, -0.019]} material={woodD}><boxGeometry args={[MIR_W + 0.02, MIR_H + 0.02, 0.006]} /></mesh>
         <primitive object={refl} position={[0, 0, 0.003]} />
         {dark && <mesh position={[0, 0, 0.004]} material={new THREE.MeshStandardMaterial({color: '#0B0D10', roughness: 0.15, metalness: 0.3})}><planeGeometry args={[MIR_W, MIR_H]} /></mesh>}
         {fog > 0.005 && <mesh position={[0, 0, 0.008]} material={fogM}><planeGeometry args={[MIR_W, MIR_H]} /></mesh>}
+        {fresh && <group position={[MIR_W / 2 + 0.02, MIR_H / 2 - 0.02, 0.03]} rotation={[0, 0, -0.5]}><mesh position={[0.035, -0.06, 0]} material={MB('#F6D365')}><planeGeometry args={[0.07, 0.04]} /></mesh><mesh position={[0.035, -0.06, 0.001]} material={tagM()}><planeGeometry args={[0.07, 0.04]} /></mesh></group>}
+        {makeup > 0.005 && <mesh position={[0, 0, 0.009]} material={makeupM(makeup)}><planeGeometry args={[MIR_W, MIR_H]} /></mesh>}
         {ring > 0.005 && <RingLight on={ring} />}
         {word > 0.005 && <mesh position={[0, 0, 0.01]} material={wordM(word)}><planeGeometry args={[MIR_W, MIR_H]} /></mesh>}
       </group>
