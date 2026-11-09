@@ -1,0 +1,1 @@
+cmd_job.py -- tools\ai-sfx\.venv\Scripts\python.exe tools\sfx_index.py build
