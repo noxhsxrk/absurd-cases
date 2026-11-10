@@ -202,7 +202,14 @@ M.bed(to_st(rms_to(amb('outdoor_prison', 7, lambda: bed_noise(8, 200, 3000, 0.4,
 M.bed(to_st(rms_to(amb('village_amb', 10, lambda: bed_noise(8, 300, 4000, 0.3, 7)), BED * 1.0)), T('jobHunt'), T('lastLight'), width=0.9, xf=0.2, fade=0.03)
 M.bed(to_st(rms_to(amb('crickets', 8, lambda: bed_noise(8, 3500, 7000, 0.5, 8)), BED * 0.9)), T('lastLight'), END, width=0.9, xf=0.3, fade=0.6)
 # ---- bed: the router's weak-wifi beeps, then it talks back with a red light
-rb = take('router_beep', lambda: np.concatenate([beep(2100, 0.07), np.zeros(int(0.08 * R))] * 3), 1.2)
+# UI tones are synthesized: the SAO takes for router_beep / error_buzz / power_down came out as hiss / a single chirp / rumble
+rb = np.concatenate([beep(2100, 0.07), np.zeros(int(0.07 * R))] * 3)
+def err_buzz():
+    t = tt(0.13); b = np.sign(np.sin(2 * np.pi * 170 * t)) * 0.6 + np.sin(2 * np.pi * 340 * t) * 0.3; b = edge(lp(b, 3000), 0.004, 0.02)
+    return np.concatenate([b, np.zeros(int(0.07 * R)), b])
+def pwr_down(sec=0.9):
+    t = tt(sec); f = 1100 * (180 / 1100) ** (t / sec); ph = 2 * np.pi * np.cumsum(f) / R
+    return np.concatenate([edge(np.sin(ph) * (1 - t / sec) ** 0.6, 0.002, 0.1), click(0.04)])
 P(rb, 0.32, EV['red'] - 0.03)
 P(take('phone_taps', lambda: click(), 1.0), 0.14, EV['oneBar'] - 0.1)
 P(tung(), 0.5, EV['plate1']); P(thud(40, 0.9), 0.28, EV['plate1'] + 0.05)
@@ -219,10 +226,10 @@ P(take('cable_cinch', lambda: fwip(0.4), 1.4), 0.5, EV['tie'] - 0.08)
 # ---- interrogation: the slam, the red blink beeps, the empty scan
 P(ts, 0.62, EV['slam'] - 0.01)
 P(rb, 0.22, EV['blink'] - 0.02)
-P(take('error_buzz', lambda: ankle_beep(), 1.0), 0.3, EV['noSignal'] - 0.02)
+P(err_buzz(), 0.3, EV['noSignal'] - 0.02)
 # ---- court: phone taps, the error, six gavels, plate
 P(take('phone_taps', lambda: click(), 1.6), 0.16, EV['judgeType'])
-P(take('error_buzz', lambda: ankle_beep(), 1.0), 0.36, EV['wifiFail'] - 0.02)
+P(err_buzz(), 0.36, EV['wifiFail'] - 0.02)
 gv = take('gavel', lambda: thud(110, 0.3), 0.45)
 for i, k in enumerate(['gavel1', 'gavel2', 'gavel3', 'gavel4', 'gavel5', 'gavel6']): P(gv, 0.5 + 0.03 * (i % 3), EV[k] - 0.02, (-0.15, 0.15)[i % 2])
 P(tung(), 0.5, EV['plate2']); P(thud(40, 0.9), 0.28, EV['plate2'] + 0.05)
@@ -233,8 +240,8 @@ P(beep(1800, 0.12), 0.16, EV['guardsNet'])
 # ---- street: hops, the 5G hum, rejection, the closer
 for k in range(int((T('tower') - T('jobHunt')) * 9 / np.pi)): P(take('knock', lambda: clunk(260, 0.08, 0.9), 0.12), 0.1, T('jobHunt') + k * np.pi / 9, -0.1)
 M.put(rms_to(take('electric_buzz', lambda: electric(2.0), 2.0), 0.006 * FX), T('tower') + 0.05, 0.0)
-P(take('error_buzz', lambda: ankle_beep(), 1.0), 0.18, EV['reject'])
-pd = take('power_down', lambda: np.concatenate([beep(900, 0.1), beep(600, 0.12)]), 1.6)
+P(err_buzz(), 0.18, EV['reject'])
+pd = pwr_down()
 for i, k in enumerate(['led1', 'led2', 'led3']): P(beep(1400 - i * 250, 0.08), 0.12, EV[k])
 P(pd, 0.32, EV['led4'] - 0.05)
 

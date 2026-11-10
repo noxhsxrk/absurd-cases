@@ -3,7 +3,7 @@ import * as THREE from 'three';
 import {useThree} from '@react-three/fiber';
 import {drive} from '../../pov/cast/RbPerson';
 import {POSES} from '../../pov/cast/poses';
-import {resetTurn, toLocal, rot, ik, fingers} from '../../pov/acting/ik';
+import {resetTurn, rot, ik, fingers} from '../../pov/acting/ik';
 import {tex, F, M, MB} from '../../pov/lib/tex';
 import {ev, V3, sm, lerp3, pop, SHOTS, TOTAL, FPS} from './data';
 import {autoFace, setFace} from '../AbsurdEp1/boxcast';
@@ -34,7 +34,7 @@ const wraps = new Map<Inst, THREE.Group>();
 const body = (I: Inst, s: any, t: number, y = 0, rx = 0): THREE.Group => {
   let w = wraps.get(I); if (!w) { w = new THREE.Group(); w.add(I.root); wraps.set(I, w); }
   w.position.set(s.x, y, s.z); w.rotation.set(rx, s.yaw, 0, 'YXZ'); w.scale.setScalar(I.scale); w.updateMatrixWorld(true);
-  if (s.lookW) s.pose.lookL = new THREE.Vector3(...toLocal(I, s, s.lookW) as any);
+  if (s.lookW) s.pose.lookL = rootLocal(I, s.lookW);
   drive(I, s, t); w.updateMatrixWorld(true);
   if (s.face) setFace(I, s.face); else autoFace(I, t, {talk: 0, fear: 0, seed: s.id.length * 3.1});
   return w;
@@ -48,7 +48,9 @@ const prop = (I: Inst, key: string, bone: string, make: () => THREE.Object3D, p:
   a[key].visible = true; return a[key];
 };
 const hideProps = (I: Inst) => { const a = attached.get(I); if (a) Object.values(a).forEach((o) => { o.visible = false; }); };
-const loc = (I: Inst, s: any, w: V3) => new THREE.Vector3(...(toLocal(I, s, w) as any));
+/** world → character-root space through the real world matrix (toLocal() ignores the wrap's lift and lying-down tilt) */
+const rootLocal = (I: Inst, w: V3) => { I.root.updateMatrixWorld(true); return new THREE.Vector3(...w).applyMatrix4(I.root.matrixWorld.clone().invert()); };
+const loc = (I: Inst, _s: any, w: V3) => rootLocal(I, w);
 const V = (x: number, y: number, z: number) => new THREE.Vector3(x, y, z);
 /** a phone held in the fist (bone space is cm), screen toward the holder's face */
 const makePhone = () => { const g = new THREE.Group();
