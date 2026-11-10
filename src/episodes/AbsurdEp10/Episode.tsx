@@ -31,8 +31,12 @@ const World: React.FC<{t: number; P: any}> = ({t, P}) => {
 const OneBarZoom: React.FC<{t: number}> = ({t}) => {
   const a = T('spinner'), b = T('oneBar');
   if (t < a.t0 || t >= b.t1) return null;
-  const z = t < b.t0 ? 1 : 1 + 1.3 * Math.min(1, (t - b.t0) / 0.25) + 0.15 * (t - b.t0);
-  return <AbsoluteFill style={{transform: `scale(${z})`, transformOrigin: '84% 6%'}}><ClipScreen t={t} t0={a.t0} t1={b.t1} drop={ev('oneBar')} /></AbsoluteFill>;
+  // the status-bar Wi-Fi icon (ClipScreen: right padding 60, "12%" ~90 px, gap 22, icon 70 px; bar centre y 115), moved by ClipScreen's own slow push about the frame centre
+  const si = 1 + 0.06 * (t - a.t0); const px = 540 + (873 - 540) * si, py = 960 + (115 - 960) * si;
+  const k = t < b.t0 ? 0 : Math.min(1, (t - b.t0) / 0.3); const e = k * k * (3 - 2 * k);
+  const z = 1 + 2.4 * e + 0.12 * Math.max(0, t - b.t0);
+  const tx = (px + (540 - px) * e) - px * z, ty = (py + (620 - py) * e) - py * z;   // the icon glides to upper-centre while it grows
+  return <AbsoluteFill style={{transformOrigin: '0 0', transform: `translate(${tx}px, ${ty}px) scale(${z})`}}><ClipScreen t={t} t0={a.t0} t1={b.t1} drop={ev('oneBar')} /></AbsoluteFill>;
 };
 
 export const AbsurdEp10: React.FC<{quality?: Quality}> = ({quality = 'fast'}) => {
