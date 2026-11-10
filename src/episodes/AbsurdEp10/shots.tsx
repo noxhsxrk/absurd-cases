@@ -201,7 +201,7 @@ export const SHOT_FN: Record<string, (t: number, lt: number, C: Cast) => ShotOut
     // frame 0: night, he lies in bed lit by his phone; the router glows green on the nightstand, waves rising
     const w = lying(C, t, {look: PHONE});
     return {node: <>{bedroom(t)}<P o={w} /><PhoneGlow />{bedRouter(t)}</>,
-      cam: mv({pos: [1.85, 1.5, 0.15], look: [0.72, 0.72, -1.6], fov: 54}, lt, {arrive: 0.1, push: 0.09, side: 0.4, roll0: -2, roll: 1}), bg: NIGHT};
+      cam: mv({pos: [1.05, 1.45, -0.85], look: [0.15, 1.0, -1.58], fov: 52}, lt, {arrive: 0.1, push: 0.06, side: 0.4, roll0: -2, roll: 1}), bg: NIGHT};
   },
   spinner: (t, lt, C) => SHOT_FN.bed(t, lt, C),      // covered by the full-frame ClipScreen
   oneBar: (t, lt, C) => SHOT_FN.bed(t, lt, C),
