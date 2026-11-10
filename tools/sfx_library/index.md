@@ -1,6 +1,6 @@
 # คลังเสียง absurd-cases (SFX library)
 
-681 ไฟล์ (681 อยู่บนคลัง GitHub, 61 อยู่ในเครื่อง) · 167 เสียง · สร้างใหม่: `python tools/sfx_index.py build` · ค้น: `python tools/sfx_index.py search <คำ>` (ไทยก็ได้)
+669 ไฟล์ (669 อยู่บนคลัง GitHub, 61 อยู่ในเครื่อง) · 164 เสียง · สร้างใหม่: `python tools/sfx_index.py build` · ค้น: `python tools/sfx_index.py search <คำ>` (ไทยก็ได้)
 
 ## วิธีใช้
 
@@ -86,9 +86,7 @@ spot ตรงเฟรมที่ตัวละครทำ ใส่ก่�
 | เสียง | ใช้ตอนไหน | เคยใช้ | take ที่ดีที่สุด | engine · วิ · score | takes |
 |---|---|---|---|---|---|
 | **knock** | เคาะประตู ตำรวจมาเคาะ/มีคนมา | EP10 tower | `public/absurd-cases/ep10/sfx_sao/knock_r1.wav` | sao ·  ·  | 3 |
-| **power_down** | อุปกรณ์ไฟฟ้าดับ เสียงโทนลงต่ำ+คลิก ตอนไฟ LED เราเตอร์ดับทีละดวง/ปิดเครื่อง | EP10 | ☁ `sounds/power_down/power_down_r1_sao.wav` | sao · 3.0 · 0.28 | 4 |
 | **ring_click** | สวิตช์พลาสติกเปิดริงไลท์ คลิกแล้วฮัมเบาๆ | EP9 ring | ☁ `sounds/ring_click/ring_click_r1_sao.wav` | sao · 1.5 · 0.35 | 5 |
-| **router_beep** | อุปกรณ์เล็กบี๊บเตือนสามที ตอนไฟแดงขึ้น/ผู้ต้องหาอิเล็กทรอนิกส์ตอบโต้ | EP10 | ☁ `sounds/router_beep/router_beep_r1_sao.wav` | sao · 1.5 · 0.29 | 4 |
 | **breaker_clunk** | สับคัตเอาต์ ไฟดับ/ติดทั้งบ้าน |  | ☁ `sounds/breaker_clunk/breaker_clunk_v1_r1_audioldm2.wav` | audioldm2 ·  ·  | 2 |
 | **door_open** | เปิดประตูบ้านธรรมดา |  | ☁ `sounds/door_open/door_open_v1_r1_audioldm2.wav` | audioldm2 ·  ·  | 2 |
 | **fan_gear** | เฟืองพัดลมตั้งโต๊ะส่ายดังกึกๆ ฉากพัดลม |  | ☁ `sounds/fan_gear/fan_gear_r1_audioldm2_ep3.wav` | audioldm2 · 2.5 ·  | 4 |
@@ -110,7 +108,6 @@ spot ตรงเฟรมที่ตัวละครทำ ใส่ก่�
 
 | เสียง | ใช้ตอนไหน | เคยใช้ | take ที่ดีที่สุด | engine · วิ · score | takes |
 |---|---|---|---|---|---|
-| **error_buzz** | มือถือเด้ง error ต่อไม่ได้ บี๊บต่ำสองที ตอนต่อไวไฟไม่ติด | EP10 noSignal, EP10 wifiFail, EP10 reject | ☁ `sounds/error_buzz/error_buzz_r1_sao.wav` | sao · 1.5 · 0.12 | 4 |
 | **phone_taps** | นิ้วแตะจอ 3 ทีแล้วเสียงรอสาย ตรงช็อตกดโทรแจ้งตำรวจ | EP10 oneBar, EP10 press, EP10 judgeType, EP8b press, EP9 press, EP9 phone2 | `public/absurd-cases/ep10/sfx_sao/phone_taps_r1.wav` | sao · 2.0 · 0.21 | 7 |
 | **dial_beeps** | ตัวเลขดิจิทัลวิ่ง/นับเร็วขึ้นเรื่อยๆ ตอนมิเตอร์พุ่ง | EP7 dial | ☁ `sounds/dial_beeps/dial_beeps_r1_audioldm2_ep7.wav` | audioldm2 · 2.0 · 0.23 | 4 |
 | **phone_alert** | เสียงเตือนฉุกเฉินมือถือ ติ๊ดๆ ตอนแจ้งเตือนทั้งประเทศ/แอปแจ้ง | EP7 alert | ☁ `sounds/phone_alert/phone_alert_r1_audioldm2_ep7.wav` | audioldm2 · 2.0 · 0.28 | 4 |

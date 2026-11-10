@@ -7,6 +7,7 @@ reuses sounds before generating new ones.
   python tools/sfx_index.py search จับ           # Thai works too: matches the usage notes
   python tools/sfx_index.py cues             # every sound name, one line per category (~500 tokens: the cheap way for an AI to see the whole library)
   python tools/sfx_index.py note gavel inst "ค้อนผู้พิพากษา…"   # add/replace a usage line without opening usage.json
+  python tools/sfx_index.py remove <cue …>    # delete a bad sound everywhere (store, index, usage, local copies)
   python tools/sfx_index.py render           # rewrite index.md from index.json + usage.json (no disk scan)
 
 Cloud store (the sounds live in a separate GitHub repo; only the ones an episode needs come back to disk):
@@ -309,6 +310,25 @@ def pull(args, ep, name=None):
         u = usage()['cues'].get(base(r['cue']))
         if u: print(' ' * 18 + '↳ ' + u[1])
 
+def remove(names):
+    """delete every take of these sounds: from the store repo, index.json, usage.json and local copies (generator takes + episode sfx_* copies)"""
+    rows = load_rows(); drop = [r for r in rows if base(r['cue']) in names]
+    if not drop: print('nothing to remove for', ', '.join(names)); return
+    br = ensure_store()
+    for r in drop:
+        if r.get('store'): g('rm', '-q', '--cached', '--sparse', '--ignore-unmatch', r['store'])
+    for d in [ROOT / 'tools' / 'ai-sfx', ROOT / 'public' / 'absurd-cases']:
+        for f in list(d.glob('out*/*.wav')) + list(d.glob('ep*/sfx_*/*.wav')):
+            if base(re.sub(r'_r\d+$', '', f.stem)) in names: f.unlink()
+        for sj in list(d.glob('out*/scores.json')) + list(d.glob('ep*/sfx_*/scores.json')):
+            try: j = json.loads(sj.read_text())
+            except Exception: continue
+            if any(k in j for k in names): sj.write_text(json.dumps({k: v for k, v in j.items() if k not in names}, indent=1))
+    rows = [r for r in rows if base(r['cue']) not in names]; save_rows(rows)
+    U = usage(); [U['cues'].pop(n, None) for n in names]; (LIB / 'usage.json').write_text(json.dumps(U, ensure_ascii=False, indent=1), encoding='utf-8')
+    if g('status', '--porcelain'): g(*AUTHOR, 'commit', '-q', '-m', 'remove ' + ', '.join(names)); g('push', '-q', '-u', 'origin', 'HEAD:' + br)
+    print(f'removed {len(drop)} takes of', ', '.join(names), 'from the store'); upload()   # rewrites the store README/index.json without them
+
 def prune():
     """delete the local store clone (cache only — everything is on GitHub; the next pull re-clones without file contents)"""
     if STORE.exists():
@@ -361,6 +381,7 @@ if __name__ == '__main__':
     elif a[0] == 'upload': upload()
     elif a[0] == 'clean-local': clean_local()
     elif a[0] == 'prune': prune()
+    elif a[0] == 'remove': remove(a[1:])
     elif a[0] == 'publish': publish()
     elif a[0] == 'pull':
         if '--ep' not in a: sys.exit('pull <cue ...> --ep N [--as name]')

@@ -9,11 +9,8 @@ LOG = open(HERE / 'sao_log.txt', 'a', encoding='utf-8')
 def log(*a):
     s = ' '.join(str(x) for x in a); print(s, flush=True); LOG.write(s + '\n'); LOG.flush()
 
-CUES = [  # cue, seconds, CLAP target, prompt
-    ('power_down', 3, 'an electronic device powering down', 'A small electronic device powering down, a descending electronic tone and a soft relay click, then silence, close, clean, no music.'),
+CUES = [  # cue, seconds, CLAP target, prompt  (router_beep / error_buzz / power_down were tried and removed: SAO gave hiss / a chirp / rumble — synth them in the premix)
     ('cable_cinch', 2, 'a cable being pulled tight and wrapped', 'A rubber network cable whipped and wrapped tightly around plastic rods, quick rubbery swish and squeak, then a tight cinch, close foley.'),
-    ('error_buzz', 1.5, 'a smartphone error sound', 'A smartphone error notification, two short low buzzes with a dull negative tone, close, clean, no music.'),
-    ('router_beep', 1.5, 'a small electronic alarm beep', 'A small electronic gadget emitting three short sharp warning beeps, high pitched, close, dry, no music.'),
     ('steel_lid_slam', 2, 'a heavy steel lid slamming shut', 'A heavy steel box lid slammed shut, loud metallic clang with a short ringing tail, then a padlock snapping, close foley.'),
 ]
 

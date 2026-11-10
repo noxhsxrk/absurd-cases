@@ -54,10 +54,10 @@
   "tags": [
    "ambience"
   ],
-  "sha": "e625b40ad105b8ebe5660ef3f84a4f09a98f71a4",
+  "sha": "5589ae1e1f4bbd705a2e1dc1e39541bc904cf916",
   "local": true,
   "error": "unknown format: 3",
-  "store": "sounds/crickets/crickets_v1_r1_audioldm2.wav"
+  "store": "sounds/crickets/crickets_r1_sao_ep10.wav"
  },
  {
   "cue": "door_kick",
@@ -92,10 +92,10 @@
   "prompt": "",
   "target": "loud electric shock buzzing, crackling high voltage arc, zapping sparks",
   "tags": [],
-  "sha": "10a117661fc204c678863302e4f23401ea2f7cc6",
+  "sha": "345dee5e79d622d9fde85a82e7ef8314e917b3d3",
   "local": true,
   "error": "unknown format: 3",
-  "store": "sounds/electric_buzz/electric_buzz_v1_r1_audioldm2.wav"
+  "store": "sounds/electric_buzz/electric_buzz_r1_sao_ep10.wav"
  },
  {
   "cue": "gavel",
@@ -132,10 +132,10 @@
    "ambience",
    "impact"
   ],
-  "sha": "97547148296ade59859d71551bfa67837df73c5b",
+  "sha": "2885feaa82f66b5923eacf4ded9b4d7c25652206",
   "local": true,
   "error": "unknown format: 3",
-  "store": "sounds/knock/knock_v1_r1_audioldm2.wav"
+  "store": "sounds/knock/knock_r1_sao_ep10.wav"
  },
  {
   "cue": "night_quiet",
@@ -149,10 +149,10 @@
   "tags": [
    "nature"
   ],
-  "sha": "1a7e206b86c72ba3bd877f33ce6342fa3856a7ea",
+  "sha": "0ffe5d0644dc67d7176725e0c622bc33b81e4145",
   "local": true,
   "error": "unknown format: 3",
-  "store": "sounds/night_quiet/night_quiet_v1_r1_audioldm2.wav"
+  "store": "sounds/night_quiet/night_quiet_r1_sao_ep10.wav"
  },
  {
   "cue": "outdoor_prison",
@@ -211,10 +211,10 @@
    "ambience",
    "tonal"
   ],
-  "sha": "1106d0fe270f8013af971a349f91e16e884bf9e1",
+  "sha": "63973374660a1f635ed020fc6ade56e77617fd05",
   "local": true,
   "error": "unknown format: 3",
-  "store": "sounds/prison_hall/prison_hall_v1_r1_audioldm2.wav"
+  "store": "sounds/prison_hall/prison_hall_r1_sao_ep10.wav"
  },
  {
   "cue": "room_hum",
@@ -11005,270 +11005,6 @@
   "rms_db": -26.9,
   "peak_db": -1.0,
   "store": "sounds/cable_cinch/cable_cinch_r4_sao.wav"
- },
- {
-  "cue": "error_buzz",
-  "rank": 1,
-  "path": "tools/ai-sfx/out_sao10/error_buzz_r1.wav",
-  "engine": "sao",
-  "score": 0.115,
-  "episode": null,
-  "prompt": "A smartphone error notification, two short low buzzes with a dull negative tone, close, clean, no music.",
-  "target": "a smartphone error sound",
-  "tags": [
-   "ambience",
-   "tonal"
-  ],
-  "sha": "2792f28c665376d408c105f8aaa96bb8bec3a59f",
-  "local": false,
-  "sec": 1.5,
-  "sr": 44100,
-  "ch": 2,
-  "rms_db": -16.5,
-  "peak_db": -1.0,
-  "store": "sounds/error_buzz/error_buzz_r1_sao.wav"
- },
- {
-  "cue": "error_buzz",
-  "rank": 2,
-  "path": "tools/ai-sfx/out_sao10/error_buzz_r2.wav",
-  "engine": "sao",
-  "score": 0.0947,
-  "episode": null,
-  "prompt": "A smartphone error notification, two short low buzzes with a dull negative tone, close, clean, no music.",
-  "target": "a smartphone error sound",
-  "tags": [
-   "ambience",
-   "tonal"
-  ],
-  "sha": "b40a7468acda18a09bc0daff087e951e60d69129",
-  "local": false,
-  "sec": 1.5,
-  "sr": 44100,
-  "ch": 2,
-  "rms_db": -18.7,
-  "peak_db": -1.0,
-  "store": "sounds/error_buzz/error_buzz_r2_sao.wav"
- },
- {
-  "cue": "error_buzz",
-  "rank": 3,
-  "path": "tools/ai-sfx/out_sao10/error_buzz_r3.wav",
-  "engine": "sao",
-  "score": 0.0563,
-  "episode": null,
-  "prompt": "A smartphone error notification, two short low buzzes with a dull negative tone, close, clean, no music.",
-  "target": "a smartphone error sound",
-  "tags": [
-   "ambience",
-   "tonal"
-  ],
-  "sha": "4296d30ec1a85df14c24d21ac071dd6cad09c2d5",
-  "local": false,
-  "sec": 1.5,
-  "sr": 44100,
-  "ch": 2,
-  "rms_db": -19.3,
-  "peak_db": -1.0,
-  "store": "sounds/error_buzz/error_buzz_r3_sao.wav"
- },
- {
-  "cue": "error_buzz",
-  "rank": 4,
-  "path": "tools/ai-sfx/out_sao10/error_buzz_r4.wav",
-  "engine": "sao",
-  "score": 0.0436,
-  "episode": null,
-  "prompt": "A smartphone error notification, two short low buzzes with a dull negative tone, close, clean, no music.",
-  "target": "a smartphone error sound",
-  "tags": [
-   "ambience",
-   "tonal"
-  ],
-  "sha": "9955594d0afce9cfad50321ecc424418c9cb7825",
-  "local": false,
-  "sec": 1.5,
-  "sr": 44100,
-  "ch": 2,
-  "rms_db": -22.3,
-  "peak_db": -1.0,
-  "store": "sounds/error_buzz/error_buzz_r4_sao.wav"
- },
- {
-  "cue": "power_down",
-  "rank": 1,
-  "path": "tools/ai-sfx/out_sao10/power_down_r1.wav",
-  "engine": "sao",
-  "score": 0.2791,
-  "episode": null,
-  "prompt": "A small electronic device powering down, a descending electronic tone and a soft relay click, then silence, close, clean, no music.",
-  "target": "an electronic device powering down",
-  "tags": [
-   "ambience",
-   "mechanical",
-   "tonal"
-  ],
-  "sha": "db7e87c759b2ee3a838f91c24517114b489b81d2",
-  "local": false,
-  "sec": 3.0,
-  "sr": 44100,
-  "ch": 2,
-  "rms_db": -18.0,
-  "peak_db": -1.0,
-  "store": "sounds/power_down/power_down_r1_sao.wav"
- },
- {
-  "cue": "power_down",
-  "rank": 2,
-  "path": "tools/ai-sfx/out_sao10/power_down_r2.wav",
-  "engine": "sao",
-  "score": 0.2319,
-  "episode": null,
-  "prompt": "A small electronic device powering down, a descending electronic tone and a soft relay click, then silence, close, clean, no music.",
-  "target": "an electronic device powering down",
-  "tags": [
-   "ambience",
-   "mechanical",
-   "tonal"
-  ],
-  "sha": "263116daef071146baaf9c84c0f9dea907dc56cf",
-  "local": false,
-  "sec": 3.0,
-  "sr": 44100,
-  "ch": 2,
-  "rms_db": -8.8,
-  "peak_db": -1.0,
-  "store": "sounds/power_down/power_down_r2_sao.wav"
- },
- {
-  "cue": "power_down",
-  "rank": 3,
-  "path": "tools/ai-sfx/out_sao10/power_down_r3.wav",
-  "engine": "sao",
-  "score": 0.2315,
-  "episode": null,
-  "prompt": "A small electronic device powering down, a descending electronic tone and a soft relay click, then silence, close, clean, no music.",
-  "target": "an electronic device powering down",
-  "tags": [
-   "ambience",
-   "mechanical",
-   "tonal"
-  ],
-  "sha": "531abdcf247bd70f3009894a8c6798c6c73eaea1",
-  "local": false,
-  "sec": 3.0,
-  "sr": 44100,
-  "ch": 2,
-  "rms_db": -12.0,
-  "peak_db": -1.0,
-  "store": "sounds/power_down/power_down_r3_sao.wav"
- },
- {
-  "cue": "power_down",
-  "rank": 4,
-  "path": "tools/ai-sfx/out_sao10/power_down_r4.wav",
-  "engine": "sao",
-  "score": 0.113,
-  "episode": null,
-  "prompt": "A small electronic device powering down, a descending electronic tone and a soft relay click, then silence, close, clean, no music.",
-  "target": "an electronic device powering down",
-  "tags": [
-   "ambience",
-   "mechanical",
-   "tonal"
-  ],
-  "sha": "80090fab87eae2c5399c00393635bf7819da109e",
-  "local": false,
-  "sec": 3.0,
-  "sr": 44100,
-  "ch": 2,
-  "rms_db": -21.1,
-  "peak_db": -1.0,
-  "store": "sounds/power_down/power_down_r4_sao.wav"
- },
- {
-  "cue": "router_beep",
-  "rank": 1,
-  "path": "tools/ai-sfx/out_sao10/router_beep_r1.wav",
-  "engine": "sao",
-  "score": 0.2903,
-  "episode": null,
-  "prompt": "A small electronic gadget emitting three short sharp warning beeps, high pitched, close, dry, no music.",
-  "target": "a small electronic alarm beep",
-  "tags": [
-   "mechanical"
-  ],
-  "sha": "76dc7fae3a1e14a0659dfa652acb3a87635118d2",
-  "local": false,
-  "sec": 1.5,
-  "sr": 44100,
-  "ch": 2,
-  "rms_db": -20.5,
-  "peak_db": -1.0,
-  "store": "sounds/router_beep/router_beep_r1_sao.wav"
- },
- {
-  "cue": "router_beep",
-  "rank": 2,
-  "path": "tools/ai-sfx/out_sao10/router_beep_r2.wav",
-  "engine": "sao",
-  "score": 0.2772,
-  "episode": null,
-  "prompt": "A small electronic gadget emitting three short sharp warning beeps, high pitched, close, dry, no music.",
-  "target": "a small electronic alarm beep",
-  "tags": [
-   "mechanical"
-  ],
-  "sha": "28506df89f8724bc1463b185d1b4e925f9b26918",
-  "local": false,
-  "sec": 1.5,
-  "sr": 44100,
-  "ch": 2,
-  "rms_db": -13.2,
-  "peak_db": -1.0,
-  "store": "sounds/router_beep/router_beep_r2_sao.wav"
- },
- {
-  "cue": "router_beep",
-  "rank": 3,
-  "path": "tools/ai-sfx/out_sao10/router_beep_r3.wav",
-  "engine": "sao",
-  "score": 0.2546,
-  "episode": null,
-  "prompt": "A small electronic gadget emitting three short sharp warning beeps, high pitched, close, dry, no music.",
-  "target": "a small electronic alarm beep",
-  "tags": [
-   "mechanical"
-  ],
-  "sha": "4600e9331606a0b89251e2fd29762a3b56cfb483",
-  "local": false,
-  "sec": 1.5,
-  "sr": 44100,
-  "ch": 2,
-  "rms_db": -16.5,
-  "peak_db": -1.0,
-  "store": "sounds/router_beep/router_beep_r3_sao.wav"
- },
- {
-  "cue": "router_beep",
-  "rank": 4,
-  "path": "tools/ai-sfx/out_sao10/router_beep_r4.wav",
-  "engine": "sao",
-  "score": 0.0384,
-  "episode": null,
-  "prompt": "A small electronic gadget emitting three short sharp warning beeps, high pitched, close, dry, no music.",
-  "target": "a small electronic alarm beep",
-  "tags": [
-   "mechanical"
-  ],
-  "sha": "bd7fcae5de298f5df41a3e2e6a400be6b8029f52",
-  "local": false,
-  "sec": 1.5,
-  "sr": 44100,
-  "ch": 2,
-  "rms_db": -25.9,
-  "peak_db": -1.0,
-  "store": "sounds/router_beep/router_beep_r4_sao.wav"
  },
  {
   "cue": "steel_lid_slam",
