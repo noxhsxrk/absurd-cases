@@ -55,7 +55,6 @@ export const Router: React.FC<RouterProps> = ({position = [0, 0, 0], yaw = 0, sc
         <mesh material={lm[i]}><circleGeometry args={[0.0045, 12]} /></mesh>
         <sprite material={gm[i]} position={[0, 0, 0.004]} scale={i === 1 && anyRed ? 0.07 : 0.035} />
       </group>; })}
-      {anyRed && cols[1] && <pointLight position={[0, RH * 0.3, RD / 2 + 0.05]} color={RED} intensity={0.12} distance={0.35} decay={2} />}
       {/* antennas */}
       {AX.map((x, i) => {
         const splay = (i - 1) * 0.22;
@@ -97,7 +96,7 @@ const tagTex = () => tex('ep10-tag', 512, 340, (g) => {
   g.fillStyle = '#9A9AA0'; g.font = F(500, 20); g.textAlign = 'right'; g.fillText('@absurd.cases', 490, 322);
 });
 const EvidenceTag = () => { const m = useMemo(() => new THREE.MeshBasicMaterial({map: tagTex(), toneMapped: false, side: THREE.DoubleSide}), []);
-  return <group position={[0.11, 0.06, RD / 2 + 0.02]} rotation={[-0.1, -0.25, 0.08]}>
+  return <group position={[0.04, RH + 0.03, 0.03]} rotation={[-1.1, 0, 0.12]}>
     <mesh position={[0, 0.02, -0.04]} rotation={[0.8, 0, 0]} material={MB('#B33A2E')}><boxGeometry args={[0.002, 0.002, 0.1]} /></mesh>
     <mesh position={[0, -0.03, 0]} material={m}><planeGeometry args={[0.15, 0.1]} /></mesh></group>; };
 

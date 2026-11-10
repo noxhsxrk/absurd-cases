@@ -55,3 +55,13 @@ export const WifiFail: React.FC<{t: number; t0: number; t1: number; fail: number
     </div>}
   </AbsoluteFill>;
 };
+/** the lieutenant's phone in the interrogation room: scanning for the suspect's network — nothing */
+export const NoNet: React.FC<{t: number; t0: number; t1: number; none: number}> = ({t, t0, t1, none}) => {
+  if (t < t0 || t >= t1) return null;
+  const found = t >= none; const k = cl((t - none) / 0.15);
+  return <AbsoluteFill style={{background: '#11161E', fontFamily: FONT, color: '#fff', alignItems: 'center'}}>
+    <div style={{marginTop: 380, opacity: found ? 0.35 : 1, transform: `scale(${1 + 0.04 * Math.sin(t * 6)})`}}><WifiIcon bars={found ? 0 : Math.floor(t * 4) % 4} size={360} dim="rgba(255,255,255,.12)" /></div>
+    <div style={{marginTop: 60, fontSize: 64, fontWeight: 700}}>{found ? 'ไม่พบสัญญาณ' : 'กำลังค้นหา Wi-Fi...'}</div>
+    {found && <div style={{marginTop: 40, fontSize: 46, color: '#FF6B5E', fontWeight: 700, opacity: k, transform: `scale(${0.9 + 0.1 * k})`}}>ผู้ต้องหา: ไม่ส่งคลื่น (0 ขีด)</div>}
+  </AbsoluteFill>;
+};
