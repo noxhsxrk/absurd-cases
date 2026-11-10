@@ -1,6 +1,6 @@
 # คลังเสียง absurd-cases (SFX library)
 
-637 ไฟล์ (637 อยู่บนคลัง GitHub, 37 อยู่ในเครื่อง) · 162 เสียง · สร้างใหม่: `python tools/sfx_index.py build` · ค้น: `python tools/sfx_index.py search <คำ>` (ไทยก็ได้)
+681 ไฟล์ (681 อยู่บนคลัง GitHub, 61 อยู่ในเครื่อง) · 167 เสียง · สร้างใหม่: `python tools/sfx_index.py build` · ค้น: `python tools/sfx_index.py search <คำ>` (ไทยก็ได้)
 
 ## วิธีใช้
 
@@ -29,29 +29,29 @@
 
 | เสียง | ใช้ตอนไหน | เคยใช้ | take ที่ดีที่สุด | engine · วิ · score | takes |
 |---|---|---|---|---|---|
-| **cell_hum** | ทางเดินคุกคอนกรีต พัดลมระบายอากาศ น้ำหยด | EP7 bed cell18→prisonTop, EP9 bed darkCell→release | `public/absurd-cases/ep9/sfx_sao/cell_hum_r1.wav` | sao · 6.0 ·  | 5 |
-| **court_amb** | ห้องพิจารณาคดี เสียงพึมพำ กระดาษ เก้าอี้ลั่น (ตัวหลักของศาล) | EP8b bed court→vest, EP9 bed court→darkCell | `public/absurd-cases/ep8/sfx_sao/court_amb_r1.wav` | sao · 6.0 · 0.02 | 6 |
+| **cell_hum** | ทางเดินคุกคอนกรีต พัดลมระบายอากาศ น้ำหยด | EP10 bed box→guardsNet, EP7 bed cell18→prisonTop, EP9 bed darkCell→release | `public/absurd-cases/ep10/sfx_sao/cell_hum_r1.wav` | sao · 6.0 ·  | 6 |
+| **court_amb** | ห้องพิจารณาคดี เสียงพึมพำ กระดาษ เก้าอี้ลั่น (ตัวหลักของศาล) | EP10 bed court→box, EP8b bed court→vest, EP9 bed court→darkCell | `public/absurd-cases/ep10/sfx_sao/court_amb_r1.wav` | sao · 6.0 · 0.02 | 7 |
+| **crickets** | จิ้งหรีดกลางคืน นอกบ้าน/หน้าบ้านดึก | EP10 bed …→lastLight | `public/absurd-cases/ep10/sfx_sao/crickets_r1.wav` | sao ·  ·  | 3 |
 | **flood_hum** | สปอตไลต์ใหญ่กลางแจ้งหึ่ง วางหลังเปิดไฟส่องผู้ต้องหา | EP8b bed lights→interro | `public/absurd-cases/ep8/sfx_sao/flood_hum_r1.wav` | sao · 6.0 · 0.2 | 5 |
-| **morning_birds** | นกร้องตอนเช้า หน้าบ้าน/หมู่บ้าน | EP9 bed …→interro, EP9 bed …→newMirror | `public/absurd-cases/ep9/sfx_sao/morning_birds_r1.wav` | sao ·  ·  | 3 |
+| **morning_birds** | นกร้องตอนเช้า หน้าบ้าน/หมู่บ้าน | EP9 bed …→interro, EP9 bed …→newMirror | `public/absurd-cases/ep9/sfx_sao/morning_birds_r1.wav` | sao · 8.0 ·  | 3 |
+| **night_quiet** | กลางคืนเงียบ รุ่นเก่า | EP10 bed …→interro | `public/absurd-cases/ep10/sfx_sao/night_quiet_r1.wav` | sao ·  ·  | 3 |
 | **noon_amb** | เที่ยงร้อนป้ายรถเมล์ จักจั่นดัง รถผ่าน (ตัวหลักของกลางวันร้อน) | EP8b bed vest→report | `public/absurd-cases/ep8/sfx_sao/noon_amb_r1.wav` | sao · 10.0 · 0.18 | 5 |
-| **outdoor_prison** | ลานโล่งหน้าอาคาร ลมเบา นกไกลๆ (หน้าคุก/หน้าสถานที่ราชการ) | EP6 bed prisonFront→notice, EP8 bed vest→sun, EP9 bed release→ringLive | `public/absurd-cases/ep9/sfx_sao/outdoor_prison_r1.wav` | sao · 6.0 ·  | 5 |
-| **room_hum** | ห้องสอบสวน ไฟนีออนหึ่ง รุ่น AudioLDM2 | EP7 bed interro→court, EP8 bed interro→court, EP9 bed interro→court | `public/absurd-cases/ep9/sfx_sao/room_hum_r1.wav` | sao · 6.0 ·  | 5 |
+| **outdoor_prison** | ลานโล่งหน้าอาคาร ลมเบา นกไกลๆ (หน้าคุก/หน้าสถานที่ราชการ) | EP10 bed release→jobHunt, EP6 bed prisonFront→notice, EP8 bed vest→sun, EP9 bed release→ringLive | `public/absurd-cases/ep10/sfx_sao/outdoor_prison_r1.wav` | sao · 6.0 ·  | 6 |
+| **prison_hall** | ทางเดินคุก รุ่นเก่า | EP10 bed guardsNet→release | `public/absurd-cases/ep10/sfx_sao/prison_hall_r1.wav` | sao ·  ·  | 3 |
+| **room_hum** | ห้องสอบสวน ไฟนีออนหึ่ง รุ่น AudioLDM2 | EP10 bed interro→court, EP7 bed interro→court, EP8 bed interro→court, EP9 bed interro→court | `public/absurd-cases/ep10/sfx_sao/room_hum_r1.wav` | sao · 6.0 ·  | 6 |
 | **room_tone** | ห้องสอบสวน ไฟนีออน+แอร์เบาๆ (ตัวหลักของห้องสอบสวน) | EP8b bed interro→court, EP9 bed ringLive→newMirror | `public/absurd-cases/ep8/sfx_sao/room_tone_r1.wav` | sao · 6.0 · 0.15 | 6 |
-| **village_amb** | ถนนในหมู่บ้านไทยบ่ายแดดดี นกร้อง (ตัวหลักของฉากหมู่บ้าน) | EP8b bed …→interro | `public/absurd-cases/ep8/sfx_sao/village_amb_r1.wav` | sao · 10.0 · 0.22 | 5 |
+| **village_amb** | ถนนในหมู่บ้านไทยบ่ายแดดดี นกร้อง (ตัวหลักของฉากหมู่บ้าน) | EP10 bed jobHunt→lastLight, EP8b bed …→interro | `public/absurd-cases/ep10/sfx_sao/village_amb_r1.wav` | sao · 10.0 · 0.22 | 6 |
 | **air_drift** | ลมอ่อนข้างหน้าต่าง ฉากสูดอากาศ เช้าสงบ |  | ☁ `sounds/air_drift/air_drift_r1_audioldm2_ep3.wav` | audioldm2 · 3.0 ·  | 4 |
 | **car_pass** | รถวิ่งผ่านเร็วหนึ่งคัน ฉากริมถนน/ข้ามถนน (วางทับ bed) | EP6 cars | ☁ `sounds/car_pass/car_pass_r1_audioldm2_ep6.wav` | audioldm2 · 2.5 · -0.0 | 4 |
 | **court_room** | ศาลรุ่นเก่า AudioLDM2 ใช้เมื่อ court_amb ไม่เข้า | EP6 bed courtIn→cellPush, EP7 bed court→cell18, EP8 bed court→vest | ☁ `sounds/court_room/court_room_r1_audioldm2_ep6.wav` | audioldm2 · 6.0 · -0.03 | 8 |
-| **crickets** | จิ้งหรีดกลางคืน นอกบ้าน/หน้าบ้านดึก |  | ☁ `sounds/crickets/crickets_v1_r1_audioldm2.wav` | audioldm2 ·  ·  | 2 |
 | **fan_hum** | พัดลมเปิดแรงสุด เสียงมอเตอร์+ใบพัด เป็น bed ในห้อง | EP5 bed fan19→report | ☁ `sounds/fan_hum/fan_hum_r1_audioldm2_ep5.wav` | audioldm2 · 6.0 · 0.11 | 4 |
 | **floodlight_hum** | สปอตไลต์หึ่ง รุ่น AudioLDM2 (ใช้ flood_hum ก่อน) | EP8 bed lights→interro | ☁ `sounds/floodlight_hum/floodlight_hum_r1_audioldm2_ep8.wav` | audioldm2 · 6.0 · 0.22 | 4 |
 | **fridge_hum** | ตู้เย็นหึ่งในครัวมืด ฉากดึก |  | ☁ `sounds/fridge_hum/fridge_hum_r1_audioldm2_ep3.wav` | audioldm2 · 6.0 · 0.18 | 4 |
 | **high_wind_rain** | ลมแรงฝนหนักในพายุ ฉากบนฟ้า/ในพายุ | EP7 bed chase→interro | ☁ `sounds/high_wind_rain/high_wind_rain_r1_audioldm2_ep7.wav` | audioldm2 · 8.0 · 0.24 | 4 |
 | **murmur** | เสียงพึมพำฝูงคน รุ่นเก่า (ศาล/ฝูงชน) |  | ☁ `sounds/murmur/murmur_v1_r1_audioldm2.wav` | audioldm2 ·  ·  | 2 |
 | **night_kitchen** | ครัวเงียบตอนดึก จิ้งหรีดไกลๆ |  | ☁ `sounds/night_kitchen/night_kitchen_r1_audioldm2_ep3.wav` | audioldm2 · 8.0 · 0.02 | 4 |
-| **night_quiet** | กลางคืนเงียบ รุ่นเก่า |  | ☁ `sounds/night_quiet/night_quiet_v1_r1_audioldm2.wav` | audioldm2 ·  ·  | 2 |
 | **night_street_rain** | ฝนตกบนถนนกลางคืน ล้อรถเปียกไกลๆ | EP7 bed throttle→chase | ☁ `sounds/night_street_rain/night_street_rain_r1_audioldm2_ep7.wav` | audioldm2 · 8.0 · 0.25 | 4 |
 | **noon_cicadas** | จักจั่นเที่ยงร้อน รุ่น AudioLDM2 | EP8 bed sun→report | ☁ `sounds/noon_cicadas/noon_cicadas_r1_audioldm2_ep8.wav` | audioldm2 · 8.0 · 0.33 | 4 |
-| **prison_hall** | ทางเดินคุก รุ่นเก่า |  | ☁ `sounds/prison_hall/prison_hall_v1_r1_audioldm2.wav` | audioldm2 ·  ·  | 2 |
 | **rain_window** | ฝนหนักกระทบหน้าต่างห้องนอน ฟ้าร้องไกล | EP7 bed …→throttle | ☁ `sounds/rain_window/rain_window_r1_audioldm2_ep7.wav` | audioldm2 · 8.0 · 0.32 | 4 |
 | **shower_bed** | ฝักบัวเปิดในห้องน้ำเล็ก น้ำกระเซ็น | EP5 bed …→kick | ☁ `sounds/shower_bed/shower_bed_r1_audioldm2_ep5.wav` | audioldm2 · 8.0 · 0.34 | 4 |
 | **traffic_bed** | ถนนใหญ่ 8 เลนกลางวัน รถผ่าน แตรไกล | EP6 bed …→cranes, EP8 bed …→interro | ☁ `sounds/traffic_bed/traffic_bed_r1_audioldm2_ep6.wav` | audioldm2 · 8.0 · 0.14 | 4 |
@@ -68,7 +68,7 @@ spot ตรงเฟรมที่ตัวละครทำ ใส่ก่�
 | **cough** | คนแก่ไอสองทีกระแอม ช่วงเงียบในศาล/ห้องสอบสวนก่อนพูด | EP8b cough | `public/absurd-cases/ep8/sfx_sao/cough_r1.wav` | sao · 2.5 · 0.36 | 5 |
 | **steps_road** | เดินช้าบนถนนยาง รองเท้าผ้าใบ ฉากเดินเล่นเปิดเรื่อง (loop ได้) | EP8b | `public/absurd-cases/ep8/sfx_sao/steps_road_r1.wav` | sao · 5.0 · 0.24 | 5 |
 | **steps_stop** | เดิน 3 ก้าวแล้วหยุด ตรงจังหวะชะงัก/สังเกตเห็นความผิดปกติ | EP8b stop | `public/absurd-cases/ep8/sfx_sao/steps_stop_r1.wav` | sao · 2.0 · 0.13 | 5 |
-| **toothbrush** | แปรงฟันถูๆ เปียก ฟอง วนใต้ฉากแปรงฟันหน้ากระจก (EP9) | EP9 | ☁ `sounds/toothbrush/toothbrush_r1_sao.wav` | sao · 4.0 · 0.33 | 4 |
+| **toothbrush** | แปรงฟันถูๆ เปียก ฟอง วนใต้ฉากแปรงฟันหน้ากระจก (EP9) | EP9 | ☁ `sounds/toothbrush/toothbrush_r1_sao.wav` | sao · 4.0 · 0.33 | 5 |
 | **breath_in** | สูดหายใจลึกทางจมูกแล้วผ่อน ฉากสูดอากาศ/ดมกลิ่น |  | ☁ `sounds/breath_in/breath_in_r1_audioldm2_ep3.wav` | audioldm2 · 3.0 ·  | 4 |
 | **knee_crack** | ข้อเข่าลั่นกึก ตอนนั่งยองๆ/ลุก (มุกคนแก่) | EP6 knee | ☁ `sounds/knee_crack/knee_crack_r1_audioldm2_ep6.wav` | audioldm2 · 1.0 · 0.19 | 4 |
 | **mosquito** | ยุงบินหึ่งใกล้หู ตัวเดียว |  | ☁ `sounds/mosquito/mosquito_v1_r1_audioldm2.wav` | audioldm2 ·  ·  | 2 |
@@ -85,7 +85,10 @@ spot ตรงเฟรมที่ตัวละครทำ ใส่ก่�
 
 | เสียง | ใช้ตอนไหน | เคยใช้ | take ที่ดีที่สุด | engine · วิ · score | takes |
 |---|---|---|---|---|---|
-| **ring_click** | สวิตช์พลาสติกเปิดริงไลท์ คลิกแล้วฮัมเบาๆ | EP9 ring | ☁ `sounds/ring_click/ring_click_r1_sao.wav` | sao · 1.5 · 0.35 | 4 |
+| **knock** | เคาะประตู ตำรวจมาเคาะ/มีคนมา | EP10 tower | `public/absurd-cases/ep10/sfx_sao/knock_r1.wav` | sao ·  ·  | 3 |
+| **power_down** | อุปกรณ์ไฟฟ้าดับ เสียงโทนลงต่ำ+คลิก ตอนไฟ LED เราเตอร์ดับทีละดวง/ปิดเครื่อง | EP10 | ☁ `sounds/power_down/power_down_r1_sao.wav` | sao · 3.0 · 0.28 | 4 |
+| **ring_click** | สวิตช์พลาสติกเปิดริงไลท์ คลิกแล้วฮัมเบาๆ | EP9 ring | ☁ `sounds/ring_click/ring_click_r1_sao.wav` | sao · 1.5 · 0.35 | 5 |
+| **router_beep** | อุปกรณ์เล็กบี๊บเตือนสามที ตอนไฟแดงขึ้น/ผู้ต้องหาอิเล็กทรอนิกส์ตอบโต้ | EP10 | ☁ `sounds/router_beep/router_beep_r1_sao.wav` | sao · 1.5 · 0.29 | 4 |
 | **breaker_clunk** | สับคัตเอาต์ ไฟดับ/ติดทั้งบ้าน |  | ☁ `sounds/breaker_clunk/breaker_clunk_v1_r1_audioldm2.wav` | audioldm2 ·  ·  | 2 |
 | **door_open** | เปิดประตูบ้านธรรมดา |  | ☁ `sounds/door_open/door_open_v1_r1_audioldm2.wav` | audioldm2 ·  ·  | 2 |
 | **fan_gear** | เฟืองพัดลมตั้งโต๊ะส่ายดังกึกๆ ฉากพัดลม |  | ☁ `sounds/fan_gear/fan_gear_r1_audioldm2_ep3.wav` | audioldm2 · 2.5 ·  | 4 |
@@ -95,7 +98,6 @@ spot ตรงเฟรมที่ตัวละครทำ ใส่ก่�
 | **fridge_open** | เปิดตู้เย็น ขอบยางดูดป๊อก ไฟตู้เย็นติด |  | ☁ `sounds/fridge_open/fridge_open_r1_audioldm2_ep3.wav` | audioldm2 · 2.0 · 0.16 | 4 |
 | **gear_creak** | เฟืองลั่นเอี๊ยด ของเก่าขยับ |  | ☁ `sounds/gear_creak/gear_creak_v1_r1_audioldm2.wav` | audioldm2 ·  ·  | 2 |
 | **jar_lid** | ปิดฝาโหลแก้วหมุนแน่น ตอนเก็บ 'หลักฐาน' ใส่โหล |  | ☁ `sounds/jar_lid/jar_lid_r1_audioldm2_ep3.wav` | audioldm2 · 2.0 ·  | 4 |
-| **knock** | เคาะประตู ตำรวจมาเคาะ/มีคนมา |  | ☁ `sounds/knock/knock_v1_r1_audioldm2.wav` | audioldm2 ·  ·  | 2 |
 | **light_switch** | กดสวิตช์ไฟบ้าน | EP8 lamp | ☁ `sounds/light_switch/light_switch_v1_r1_audioldm2.wav` | audioldm2 ·  ·  | 2 |
 | **mouse_clicks** | คลิกเมาส์+พิมพ์คีย์บอร์ดรัว ฉากเล่นคอม | EP7 | ☁ `sounds/mouse_clicks/mouse_clicks_r1_audioldm2_ep7.wav` | audioldm2 · 3.0 · 0.37 | 4 |
 | **vacuum_roar** | เครื่องดูดฝุ่นคำราม |  | ☁ `sounds/vacuum_roar/vacuum_roar_v1_r1_audioldm2.wav` | audioldm2 ·  ·  | 2 |
@@ -108,7 +110,8 @@ spot ตรงเฟรมที่ตัวละครทำ ใส่ก่�
 
 | เสียง | ใช้ตอนไหน | เคยใช้ | take ที่ดีที่สุด | engine · วิ · score | takes |
 |---|---|---|---|---|---|
-| **phone_taps** | นิ้วแตะจอ 3 ทีแล้วเสียงรอสาย ตรงช็อตกดโทรแจ้งตำรวจ | EP8b press, EP9 press, EP9 phone2 | `public/absurd-cases/ep8/sfx_sao/phone_taps_r1.wav` | sao · 2.0 · 0.21 | 6 |
+| **error_buzz** | มือถือเด้ง error ต่อไม่ได้ บี๊บต่ำสองที ตอนต่อไวไฟไม่ติด | EP10 noSignal, EP10 wifiFail, EP10 reject | ☁ `sounds/error_buzz/error_buzz_r1_sao.wav` | sao · 1.5 · 0.12 | 4 |
+| **phone_taps** | นิ้วแตะจอ 3 ทีแล้วเสียงรอสาย ตรงช็อตกดโทรแจ้งตำรวจ | EP10 oneBar, EP10 press, EP10 judgeType, EP8b press, EP9 press, EP9 phone2 | `public/absurd-cases/ep10/sfx_sao/phone_taps_r1.wav` | sao · 2.0 · 0.21 | 7 |
 | **dial_beeps** | ตัวเลขดิจิทัลวิ่ง/นับเร็วขึ้นเรื่อยๆ ตอนมิเตอร์พุ่ง | EP7 dial | ☁ `sounds/dial_beeps/dial_beeps_r1_audioldm2_ep7.wav` | audioldm2 · 2.0 · 0.23 | 4 |
 | **phone_alert** | เสียงเตือนฉุกเฉินมือถือ ติ๊ดๆ ตอนแจ้งเตือนทั้งประเทศ/แอปแจ้ง | EP7 alert | ☁ `sounds/phone_alert/phone_alert_r1_audioldm2_ep7.wav` | audioldm2 · 2.0 · 0.28 | 4 |
 
@@ -118,12 +121,13 @@ spot ตรงเฟรมที่ตัวละครทำ ใส่ก่�
 
 | เสียง | ใช้ตอนไหน | เคยใช้ | take ที่ดีที่สุด | engine · วิ · score | takes |
 |---|---|---|---|---|---|
+| **cable_cinch** | สายแลน/สายยางพันรัดแน่น ตอนมัดเสาอากาศไขว้หลัง | EP10 lan, EP10 tie | ☁ `sounds/cable_cinch/cable_cinch_r1_sao.wav` | sao · 2.0 · 0.24 | 4 |
 | **cuffs** | กุญแจมือรูดล็อกกริ๊กๆ ตรงเฟรมใส่กุญแจมือ (พีกช่วงจับกุม) | EP8b cuff, EP9 cuff | `public/absurd-cases/ep8/sfx_sao/cuffs_r1.wav` | sao · 2.0 · 0.43 | 6 |
-| **door_kick** | เตะประตูห้องนอนเปิดกระแทกผนัง ตอนหน่วยบุกเข้าห้อง (ในบ้าน) | EP9 door | ☁ `sounds/door_kick/door_kick_r1_sao.wav` | sao · 2.5 · 0.29 | 4 |
+| **door_kick** | เตะประตูห้องนอนเปิดกระแทกผนัง ตอนหน่วยบุกเข้าห้อง (ในบ้าน) | EP10 door, EP9 door | ☁ `sounds/door_kick/door_kick_r1_sao.wav` | sao · 2.5 · 0.29 | 6 |
 | **flood_on** | สปอตไลต์เปิดทีละดวงดังปึก ตรงจังหวะไฟส่องผู้ต้องหา (ใส่ 2 ชั้นห่าง 0.2 วิ) | EP8b | `public/absurd-cases/ep8/sfx_sao/flood_on_r1.wav` | sao · 2.5 · 0.32 | 5 |
-| **plastic_bag** | ถุงดำพลาสติกสะบัดคลุมของ ดังกรอบแกรบ ตรงจังหวะคลุมถุง | EP9 bag | ☁ `sounds/plastic_bag/plastic_bag_r1_sao.wav` | sao · 2.5 · 0.31 | 4 |
-| **siren** | ไซเรนตำรวจคันเดียวใกล้ๆ ถนนเงียบ เข้าก่อนภาพตำรวจ แล้ว loop ใต้ช็อตบุก | EP8b scrape, EP9 bag | `public/absurd-cases/ep8/sfx_sao/siren_r1.wav` | sao · 7.0 · 0.34 | 6 |
-| **swat_indoor** | หน่วยบุกวิ่งเข้าห้องเล็ก บู๊ตบนพื้นไม้ อุปกรณ์กระทบ (ในอาคาร) | EP9 door | ☁ `sounds/swat_indoor/swat_indoor_r1_sao.wav` | sao · 3.0 · 0.06 | 4 |
+| **plastic_bag** | ถุงดำพลาสติกสะบัดคลุมของ ดังกรอบแกรบ ตรงจังหวะคลุมถุง | EP9 bag | ☁ `sounds/plastic_bag/plastic_bag_r1_sao.wav` | sao · 2.5 · 0.31 | 5 |
+| **siren** | ไซเรนตำรวจคันเดียวใกล้ๆ ถนนเงียบ เข้าก่อนภาพตำรวจ แล้ว loop ใต้ช็อตบุก | EP10 interro, EP8b scrape, EP9 bag | `public/absurd-cases/ep10/sfx_sao/siren_r1.wav` | sao · 7.0 · 0.34 | 7 |
+| **swat_indoor** | หน่วยบุกวิ่งเข้าห้องเล็ก บู๊ตบนพื้นไม้ อุปกรณ์กระทบ (ในอาคาร) | EP10 door, EP9 door | ☁ `sounds/swat_indoor/swat_indoor_r1_sao.wav` | sao · 3.0 · 0.06 | 6 |
 | **swat_run** | หน่วยบุกวิ่งบนถนนยาง (กลางแจ้ง) ตรงคัตเข้าช็อต SWAT | EP8b swat | `public/absurd-cases/ep8/sfx_sao/swat_run_r1.wav` | sao · 4.0 · 0.19 | 5 |
 | **car_door** | ประตูรถตำรวจเปิด-ปิดตอนมาถึง |  | ☁ `sounds/car_door/car_door_v1_r1_audioldm2.wav` | audioldm2 ·  ·  | 2 |
 | **car_door_open** | เปิดประตูรถแรงๆ ลมพัดเข้า ตอนตำรวจลงรถกลางพายุ | EP7 jump | ☁ `sounds/car_door_open/car_door_open_r1_audioldm2_ep7.wav` | audioldm2 · 1.5 · 0.05 | 4 |
@@ -152,12 +156,12 @@ bed ห้อง + spot เด่นหนึ่งเสียงต่อช�
 
 | เสียง | ใช้ตอนไหน | เคยใช้ | take ที่ดีที่สุด | engine · วิ · score | takes |
 |---|---|---|---|---|---|
-| **gavel** | ค้อนผู้พิพากษาเคาะแท่น 2 ที ตรงคำตัดสิน (เสียงดังสุดของคลิป peak ~0.62) | EP8b gavel, EP9 | `public/absurd-cases/ep8/sfx_sao/gavel_r1.wav` | sao · 2.0 · 0.25 | 6 |
+| **gavel** | ค้อนผู้พิพากษาเคาะแท่น 2 ที ตรงคำตัดสิน (เสียงดังสุดของคลิป peak ~0.62) | EP10, EP8b gavel, EP9 | `public/absurd-cases/ep10/sfx_sao/gavel_r1.wav` | sao · 2.0 · 0.25 | 7 |
 | **lamp_click** | สวิตช์โคมไฟโต๊ะคลิกเดียว ตอนเปิดไฟส่องหน้าในห้องสอบสวน | EP8b lamp | `public/absurd-cases/ep8/sfx_sao/lamp_click_r1.wav` | sao · 1.5 · 0.47 | 5 |
 | **noon_bell** | ระฆังตีเที่ยงหนึ่งครั้ง หางยาว บอกเวลา/เปลี่ยนช่วง | EP8 bell, EP8b bell | `public/absurd-cases/ep8/sfx_sao/noon_bell_r1.wav` | sao · 5.0 · 0.26 | 9 |
-| **pen_scribble** | ปากกาลูกลื่นเขียนเร็วบนกระดาษแล้วขีดเส้นใต้ ตอนเจ้าหน้าที่จดบันทึก | EP9 note | ☁ `sounds/pen_scribble/pen_scribble_r1_sao.wav` | sao · 3.0 · 0.36 | 4 |
+| **pen_scribble** | ปากกาลูกลื่นเขียนเร็วบนกระดาษแล้วขีดเส้นใต้ ตอนเจ้าหน้าที่จดบันทึก | EP9 note | ☁ `sounds/pen_scribble/pen_scribble_r1_sao.wav` | sao · 3.0 · 0.36 | 5 |
 | **stamp** | ตรายางปั๊มกระดาษบนโต๊ะไม้ตุ้บ ตรงเฟรมปั๊ม (อนุมัติ/ตัดสิน/ปิดคดี) | EP8b stamp | `public/absurd-cases/ep8/sfx_sao/stamp_r1.wav` | sao · 1.5 · 0.15 | 5 |
-| **table_slam** | ฝ่ามือตบโต๊ะเหล็กห้องสอบสวน ปังเดียว | EP9 | ☁ `sounds/table_slam/table_slam_r1_sao.wav` | sao · 1.5 · 0.31 | 4 |
+| **table_slam** | ฝ่ามือตบโต๊ะเหล็กห้องสอบสวน ปังเดียว | EP10, EP9 | ☁ `sounds/table_slam/table_slam_r1_sao.wav` | sao · 1.5 · 0.31 | 6 |
 | **gavel_metal** | ค้อนเคาะราวเหล็ก ดังกริ๊ง ศาลกลางแจ้ง/ศาลแปลกที่ | EP6 gavel, EP8 gavel | ☁ `sounds/gavel_metal/gavel_metal_r1_audioldm2_ep6.wav` | audioldm2 · 1.5 · 0.12 | 4 |
 | **hammer** | ตอกตะปู 2 ที ติดประกาศ/ปิดตาย |  | ☁ `sounds/hammer/hammer_r1_audioldm2_ep3.wav` | audioldm2 · 2.0 ·  | 4 |
 | **hammer_nail** | ตอกตะปู รุ่นเก่า |  | ☁ `sounds/hammer_nail/hammer_nail_v1_r1_audioldm2.wav` | audioldm2 ·  ·  | 2 |
@@ -173,7 +177,8 @@ bed ห้อง + spot เด่นหนึ่งเสียงต่อช�
 | เสียง | ใช้ตอนไหน | เคยใช้ | take ที่ดีที่สุด | engine · วิ · score | takes |
 |---|---|---|---|---|---|
 | **beep** | กำไล EM ที่ข้อเท้าร้องสองที ตอนรับโทษคุมประพฤติ | EP8b em | `public/absurd-cases/ep8/sfx_sao/beep_r1.wav` | sao · 2.0 · 0.33 | 5 |
-| **cell_door** | ประตูห้องขังเลื่อนปิดดังกึง ตรงคัตเข้าคุก | EP5 clang, EP7 cellDoor, EP9 darkCell, EP9 release | `public/absurd-cases/ep9/sfx_sao/cell_door_r1.wav` | sao · 2.5 ·  | 13 |
+| **cell_door** | ประตูห้องขังเลื่อนปิดดังกึง ตรงคัตเข้าคุก | EP10 lidOpen, EP5 clang, EP7 cellDoor, EP9 darkCell, EP9 release | `public/absurd-cases/ep9/sfx_sao/cell_door_r1.wav` | sao · 2.5 ·  | 13 |
+| **steel_lid_slam** | ฝากล่องเหล็กกระแทกปิด+แม่กุญแจล็อก ตอนขังของในกล่อง | EP10 boxShut | ☁ `sounds/steel_lid_slam/steel_lid_slam_r1_sao.wav` | sao · 2.0 · 0.37 | 4 |
 | **vest** | สวมเสื้อกั๊กสะท้อนแสง ผ้า+ตีนตุ๊กแก ตอนเริ่มบริการสังคม | EP8b vest | `public/absurd-cases/ep8/sfx_sao/vest_r1.wav` | sao · 2.0 · 0.13 | 5 |
 | **broom_sweep** | กวาดพื้นถนน ฉากทำงานบริการสังคม | EP8 vest | ☁ `sounds/broom_sweep/broom_sweep_r1_audioldm2_ep8.wav` | audioldm2 · 3.0 · 0.21 | 4 |
 | **chain_rattle** | โซ่เหล็กลากตึง ตอนพันธนาการเกินเหตุ | EP6 chain | ☁ `sounds/chain_rattle/chain_rattle_r1_audioldm2_ep6.wav` | audioldm2 · 2.5 · 0.22 | 4 |
@@ -215,9 +220,9 @@ bed ห้อง + spot เด่นหนึ่งเสียงต่อช�
 
 | เสียง | ใช้ตอนไหน | เคยใช้ | take ที่ดีที่สุด | engine · วิ · score | takes |
 |---|---|---|---|---|---|
+| **electric_buzz** | ไฟฟ้าซ่าต่อเนื่อง ของเสียบปลั๊กเพี้ยน | EP10 tower | `public/absurd-cases/ep10/sfx_sao/electric_buzz_r1.wav` | sao ·  ·  | 3 |
 | **army_trucks** | รถทหารหลายคันติดเครื่องรอ ตอนรัฐส่งกำลังใหญ่เกินเหตุ | EP6 bed cranes→courtExt, EP6 cranes | ☁ `sounds/army_trucks/army_trucks_r1_audioldm2_ep6.wav` | audioldm2 · 6.0 · 0.24 | 4 |
 | **crane_lift** | เครนยกของหนัก ตอนต้องยกผู้ต้องหาที่เป็นวัตถุใหญ่ | EP6 lift | ☁ `sounds/crane_lift/crane_lift_r1_audioldm2_ep6.wav` | audioldm2 · 4.0 · 0.12 | 4 |
-| **electric_buzz** | ไฟฟ้าซ่าต่อเนื่อง ของเสียบปลั๊กเพี้ยน |  | ☁ `sounds/electric_buzz/electric_buzz_v1_r1_audioldm2.wav` | audioldm2 ·  ·  | 2 |
 | **electric_crackle** | ไฟแรงสูงแลบเป็นสาย ตอนของเริ่มมีพลังผิดปกติ | EP7 phone | ☁ `sounds/electric_crackle/electric_crackle_r1_audioldm2_ep7.wav` | audioldm2 · 4.0 · 0.24 | 4 |
 | **electric_pop** | เครื่องใช้ไฟฟ้าลัดวงจรดังป๊อก ควันขึ้น | EP7 routerBoom | ☁ `sounds/electric_pop/electric_pop_r1_audioldm2_ep7.wav` | audioldm2 · 2.0 · 0.1 | 4 |
 | **electric_zip** | ไฟวิ่งปรี๊ดไปตามราวเหล็ก/ลูกกรง | EP7 barJump | ☁ `sounds/electric_zip/electric_zip_r1_audioldm2_ep7.wav` | audioldm2 · 1.5 · 0.2 | 4 |
@@ -244,9 +249,9 @@ bed ห้อง + spot เด่นหนึ่งเสียงต่อช�
 
 | เสียง | ใช้ตอนไหน | เคยใช้ | take ที่ดีที่สุด | engine · วิ · score | takes |
 |---|---|---|---|---|---|
-| **baton_wood** | กระบองฟาดกรอบไม้ ป๊อกๆ ไม่มีแก้วแตก ตอนรุมตีของ (EP9 ตีกระจก) | EP9 | ☁ `sounds/baton_wood/baton_wood_r1_sao.wav` | sao · 2.0 · 0.33 | 4 |
+| **baton_wood** | กระบองฟาดกรอบไม้ ป๊อกๆ ไม่มีแก้วแตก ตอนรุมตีของ (EP9 ตีกระจก) | EP9 | ☁ `sounds/baton_wood/baton_wood_r1_sao.wav` | sao · 2.0 · 0.33 | 5 |
 | **body_fall** | คนล้มหงายลงพื้นแข็ง (ผู้ต้องหาหมดสติ ช็อก) | EP9 reel | `public/absurd-cases/ep9/sfx_sao/body_fall_r1.wav` | sao · 2.0 ·  | 5 |
-| **thud1** | ตุ้บทุ้ม รุ่นเก่า |  | `public/absurd-cases/ep9/sfx_sao/thud1_r1.wav` | sao ·  ·  | 3 |
+| **thud1** | ตุ้บทุ้ม รุ่นเก่า |  | `public/absurd-cases/ep9/sfx_sao/thud1_r1.wav` | sao · 2.0 ·  | 3 |
 | **boom_hit** | ตูมหนักๆ ตรงคัตใหญ่ / เปิดเผยข้อหา (EP1 รุ่นเก่า) |  | ☁ `sounds/boom_hit/boom_hit_v1_r1_audioldm2.wav` | audioldm2 ·  ·  | 2 |
 | **glass_hit** | กระทบกระจก รุ่นเก่า |  | ☁ `sounds/glass_hit/glass_hit_v1_r1_audioldm2.wav` | audioldm2 ·  ·  | 2 |
 | **hit** | ตีกระแทกทั่วไป รุ่นเก่า |  | ☁ `sounds/hit/hit_v1_r1_audioldm2.wav` | audioldm2 ·  ·  | 2 |

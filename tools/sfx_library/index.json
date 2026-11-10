@@ -1,5 +1,333 @@
 [
  {
+  "cue": "cell_hum",
+  "rank": 1,
+  "path": "public/absurd-cases/ep10/sfx_sao/cell_hum_r1.wav",
+  "engine": "sao",
+  "score": null,
+  "episode": "10",
+  "prompt": "quiet concrete prison corridor, faint ventilation hum, distant drip",
+  "target": "a quiet concrete corridor",
+  "tags": [
+   "ambience"
+  ],
+  "sha": "22e6378a0ffc10195aeb30edb995e361bbaf8301",
+  "local": true,
+  "sec": 6.0,
+  "sr": 16000,
+  "ch": 1,
+  "rms_db": -16.8,
+  "peak_db": -0.9,
+  "store": "sounds/cell_hum/cell_hum_r1_sao_ep10.wav"
+ },
+ {
+  "cue": "court_amb",
+  "rank": 1,
+  "path": "public/absurd-cases/ep10/sfx_sao/court_amb_r1.wav",
+  "engine": "sao",
+  "score": 0.0153,
+  "episode": "10",
+  "prompt": "Quiet courtroom ambience, faint murmurs, paper shuffling, a chair creaking, large wooden room.",
+  "target": "a quiet courtroom with murmurs",
+  "tags": [
+   "ambience",
+   "material"
+  ],
+  "sha": "30fd35ede528dd2afcf34bbaafe1d1851afddfc6",
+  "local": true,
+  "sec": 6.0,
+  "sr": 44100,
+  "ch": 2,
+  "rms_db": -30.7,
+  "peak_db": -1.0,
+  "store": "sounds/court_amb/court_amb_r1_sao_ep8.wav"
+ },
+ {
+  "cue": "crickets",
+  "rank": 1,
+  "path": "public/absurd-cases/ep10/sfx_sao/crickets_r1.wav",
+  "engine": "sao",
+  "score": null,
+  "episode": "10",
+  "prompt": "",
+  "target": "crickets chirping softly at night outside a window, calm",
+  "tags": [
+   "ambience"
+  ],
+  "sha": "e625b40ad105b8ebe5660ef3f84a4f09a98f71a4",
+  "local": true,
+  "error": "unknown format: 3",
+  "store": "sounds/crickets/crickets_v1_r1_audioldm2.wav"
+ },
+ {
+  "cue": "door_kick",
+  "rank": 1,
+  "path": "public/absurd-cases/ep10/sfx_sao/door_kick_r1.wav",
+  "engine": "sao",
+  "score": null,
+  "episode": "10",
+  "prompt": "A bedroom wooden door kicked open violently, it bangs against the wall, close, indoor.",
+  "target": "a wooden door being kicked open",
+  "tags": [
+   "ambience",
+   "impact",
+   "mechanical"
+  ],
+  "sha": "47ec2503d6b1d3f1a2f7da44b74dcd8537c4b4b4",
+  "local": true,
+  "sec": 2.5,
+  "sr": 44100,
+  "ch": 2,
+  "rms_db": -22.3,
+  "peak_db": -1.0,
+  "store": "sounds/door_kick/door_kick_r1_sao.wav"
+ },
+ {
+  "cue": "electric_buzz",
+  "rank": 1,
+  "path": "public/absurd-cases/ep10/sfx_sao/electric_buzz_r1.wav",
+  "engine": "sao",
+  "score": null,
+  "episode": "10",
+  "prompt": "",
+  "target": "loud electric shock buzzing, crackling high voltage arc, zapping sparks",
+  "tags": [],
+  "sha": "10a117661fc204c678863302e4f23401ea2f7cc6",
+  "local": true,
+  "error": "unknown format: 3",
+  "store": "sounds/electric_buzz/electric_buzz_v1_r1_audioldm2.wav"
+ },
+ {
+  "cue": "gavel",
+  "rank": 1,
+  "path": "public/absurd-cases/ep10/sfx_sao/gavel_r1.wav",
+  "engine": "sao",
+  "score": 0.2515,
+  "episode": "10",
+  "prompt": "A judge wooden gavel striking a sound block twice, sharp wooden knock, courtroom.",
+  "target": "a wooden gavel striking",
+  "tags": [
+   "ambience",
+   "impact"
+  ],
+  "sha": "ba9fa33a95855f259c65e81382e5e7a44995c52c",
+  "local": true,
+  "sec": 2.0,
+  "sr": 44100,
+  "ch": 2,
+  "rms_db": -31.9,
+  "peak_db": -1.0,
+  "store": "sounds/gavel/gavel_r1_sao_ep8.wav"
+ },
+ {
+  "cue": "knock",
+  "rank": 1,
+  "path": "public/absurd-cases/ep10/sfx_sao/knock_r1.wav",
+  "engine": "sao",
+  "score": null,
+  "episode": "10",
+  "prompt": "",
+  "target": "a single wooden gavel strike on a sound block in a courtroom",
+  "tags": [
+   "ambience",
+   "impact"
+  ],
+  "sha": "97547148296ade59859d71551bfa67837df73c5b",
+  "local": true,
+  "error": "unknown format: 3",
+  "store": "sounds/knock/knock_v1_r1_audioldm2.wav"
+ },
+ {
+  "cue": "night_quiet",
+  "rank": 1,
+  "path": "public/absurd-cases/ep10/sfx_sao/night_quiet_r1.wav",
+  "engine": "sao",
+  "score": null,
+  "episode": "10",
+  "prompt": "",
+  "target": "quiet night in a neighbourhood during a power outage, faint distant dogs and insects",
+  "tags": [
+   "nature"
+  ],
+  "sha": "1a7e206b86c72ba3bd877f33ce6342fa3856a7ea",
+  "local": true,
+  "error": "unknown format: 3",
+  "store": "sounds/night_quiet/night_quiet_v1_r1_audioldm2.wav"
+ },
+ {
+  "cue": "outdoor_prison",
+  "rank": 1,
+  "path": "public/absurd-cases/ep10/sfx_sao/outdoor_prison_r1.wav",
+  "engine": "sao",
+  "score": null,
+  "episode": "10",
+  "prompt": "open outdoor area in front of a building, light wind and distant birds, quiet",
+  "target": "an open outdoor area with wind and birds",
+  "tags": [
+   "ambience",
+   "nature"
+  ],
+  "sha": "a94463393eec182f52824703ef32b1f4878541fd",
+  "local": true,
+  "sec": 6.0,
+  "sr": 16000,
+  "ch": 1,
+  "rms_db": -13.3,
+  "peak_db": -0.9,
+  "store": "sounds/outdoor_prison/outdoor_prison_r1_sao_ep10.wav"
+ },
+ {
+  "cue": "phone_taps",
+  "rank": 1,
+  "path": "public/absurd-cases/ep10/sfx_sao/phone_taps_r1.wav",
+  "engine": "sao",
+  "score": 0.2075,
+  "episode": "10",
+  "prompt": "Fingers tapping on a smartphone touchscreen three times, then a call ringing tone starts.",
+  "target": "tapping on a phone screen",
+  "tags": [
+   "ambience",
+   "tonal"
+  ],
+  "sha": "19dfbe55354fc9f9d36ee2e092403fee2e1a6961",
+  "local": true,
+  "sec": 2.0,
+  "sr": 44100,
+  "ch": 2,
+  "rms_db": -33.3,
+  "peak_db": -1.0,
+  "store": "sounds/phone_taps/phone_taps_r1_sao_ep8.wav"
+ },
+ {
+  "cue": "prison_hall",
+  "rank": 1,
+  "path": "public/absurd-cases/ep10/sfx_sao/prison_hall_r1.wav",
+  "engine": "sao",
+  "score": null,
+  "episode": "10",
+  "prompt": "",
+  "target": "empty prison cell block room tone, large concrete hall, faint distant echoes",
+  "tags": [
+   "ambience",
+   "tonal"
+  ],
+  "sha": "1106d0fe270f8013af971a349f91e16e884bf9e1",
+  "local": true,
+  "error": "unknown format: 3",
+  "store": "sounds/prison_hall/prison_hall_v1_r1_audioldm2.wav"
+ },
+ {
+  "cue": "room_hum",
+  "rank": 1,
+  "path": "public/absurd-cases/ep10/sfx_sao/room_hum_r1.wav",
+  "engine": "sao",
+  "score": null,
+  "episode": "10",
+  "prompt": "quiet interrogation room, fluorescent light hum, room tone",
+  "target": "a quiet room with an electrical hum",
+  "tags": [
+   "ambience",
+   "tonal"
+  ],
+  "sha": "2331357da1386bf194aadac63ae15809d3feb9af",
+  "local": true,
+  "sec": 6.0,
+  "sr": 16000,
+  "ch": 1,
+  "rms_db": -12.3,
+  "peak_db": -0.9,
+  "store": "sounds/room_hum/room_hum_r1_sao_ep10.wav"
+ },
+ {
+  "cue": "siren",
+  "rank": 1,
+  "path": "public/absurd-cases/ep10/sfx_sao/siren_r1.wav",
+  "engine": "sao",
+  "score": 0.3383,
+  "episode": "10",
+  "prompt": "A police car siren wailing close by on a quiet street, realistic recording.",
+  "target": "a police siren close by",
+  "tags": [
+   "ambience",
+   "police"
+  ],
+  "sha": "b326ab50635ac4d061076c78c2c4a9449ebf6a4f",
+  "local": true,
+  "sec": 7.0,
+  "sr": 44100,
+  "ch": 2,
+  "rms_db": -14.5,
+  "peak_db": -1.0,
+  "store": "sounds/siren/siren_r1_sao_ep8.wav"
+ },
+ {
+  "cue": "swat_indoor",
+  "rank": 1,
+  "path": "public/absurd-cases/ep10/sfx_sao/swat_indoor_r1.wav",
+  "engine": "sao",
+  "score": null,
+  "episode": "10",
+  "prompt": "A police tactical team in heavy boots rushes into a small bedroom, fast stomping footsteps on a wooden floor, gear rattling, indoor.",
+  "target": "a group of people in boots rushing into a room",
+  "tags": [
+   "ambience",
+   "footsteps",
+   "police"
+  ],
+  "sha": "5e3273479b77c5779d0b70fd39dce61a4256f6a9",
+  "local": true,
+  "sec": 3.0,
+  "sr": 44100,
+  "ch": 2,
+  "rms_db": -26.1,
+  "peak_db": -1.0,
+  "store": "sounds/swat_indoor/swat_indoor_r1_sao.wav"
+ },
+ {
+  "cue": "table_slam",
+  "rank": 1,
+  "path": "public/absurd-cases/ep10/sfx_sao/table_slam_r1.wav",
+  "engine": "sao",
+  "score": null,
+  "episode": "10",
+  "prompt": "A man slams his open palm hard on a metal interrogation table once, loud flat bang, small rattle of objects, close.",
+  "target": "a hand slamming on a metal table",
+  "tags": [
+   "impact"
+  ],
+  "sha": "fc044351b23eed993daa5cca72465f1e6d7ea886",
+  "local": true,
+  "sec": 1.5,
+  "sr": 44100,
+  "ch": 2,
+  "rms_db": -25.6,
+  "peak_db": -1.0,
+  "store": "sounds/table_slam/table_slam_r1_sao.wav"
+ },
+ {
+  "cue": "village_amb",
+  "rank": 1,
+  "path": "public/absurd-cases/ep10/sfx_sao/village_amb_r1.wav",
+  "engine": "sao",
+  "score": 0.2198,
+  "episode": "10",
+  "prompt": "Quiet residential neighbourhood street in Thailand on a sunny afternoon, birds chirping, a distant motorbike passing, light breeze, field recording, no music.",
+  "target": "a quiet residential street in the afternoon with birds",
+  "tags": [
+   "ambience",
+   "mechanical",
+   "nature"
+  ],
+  "sha": "6dd61edc57861a6500d7c486b9d717a8de0116c6",
+  "local": true,
+  "sec": 10.0,
+  "sr": 44100,
+  "ch": 2,
+  "rms_db": -23.5,
+  "peak_db": -1.0,
+  "store": "sounds/village_amb/village_amb_r1_sao_ep8.wav"
+ },
+ {
   "cue": "beep",
   "rank": 1,
   "path": "public/absurd-cases/ep8/sfx_sao/beep_r1.wav",
@@ -519,6 +847,28 @@
   "store": "sounds/village_amb/village_amb_r1_sao_ep8.wav"
  },
  {
+  "cue": "baton_wood",
+  "rank": 1,
+  "path": "public/absurd-cases/ep9/sfx_sao/baton_wood_r1.wav",
+  "engine": "sao",
+  "score": null,
+  "episode": "9",
+  "prompt": "A police baton striking a solid wooden picture frame twice, hard wooden knocks, close foley, no glass breaking.",
+  "target": "a stick hitting a wooden frame",
+  "tags": [
+   "impact",
+   "police"
+  ],
+  "sha": "a17fd3ca149df824eacb68f7772beac3ef5bb1a0",
+  "local": true,
+  "sec": 2.0,
+  "sr": 44100,
+  "ch": 2,
+  "rms_db": -34.6,
+  "peak_db": -1.0,
+  "store": "sounds/baton_wood/baton_wood_r1_sao_ep9.wav"
+ },
+ {
   "cue": "body_fall",
   "rank": 1,
   "path": "public/absurd-cases/ep9/sfx_sao/body_fall_r1.wav",
@@ -530,14 +880,14 @@
   "tags": [
    "impact"
   ],
-  "sha": "b93bb9b30081384d01fc64dae2851bd907905c28",
+  "sha": "e513cc3c37062e500bbf47632da6e3a9fd35240a",
   "local": true,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -22.7,
   "peak_db": -0.9,
-  "store": "sounds/body_fall/body_fall_r1_audioldm2_ep3.wav"
+  "store": "sounds/body_fall/body_fall_r1_sao_ep9.wav"
  },
  {
   "cue": "cell_door",
@@ -552,14 +902,14 @@
    "impact",
    "mechanical"
   ],
-  "sha": "e513e1244ec4238413e64eb9c0612c9259f5b56c",
+  "sha": "fcd3d377e847add476829436826d843bef724455",
   "local": true,
   "sec": 2.5,
   "sr": 16000,
   "ch": 1,
   "rms_db": -18.3,
   "peak_db": -0.9,
-  "store": "sounds/cell_door/cell_door_r1_audioldm2_ep5.wav"
+  "store": "sounds/cell_door/cell_door_r1_sao_ep9.wav"
  },
  {
   "cue": "cell_hum",
@@ -573,14 +923,14 @@
   "tags": [
    "ambience"
   ],
-  "sha": "7b55d6136ce2dd168555f585126e9813c80854ea",
+  "sha": "22e6378a0ffc10195aeb30edb995e361bbaf8301",
   "local": true,
   "sec": 6.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -16.8,
   "peak_db": -0.9,
-  "store": "sounds/cell_hum/cell_hum_r1_audioldm2_ep7.wav"
+  "store": "sounds/cell_hum/cell_hum_r1_sao_ep10.wav"
  },
  {
   "cue": "court_amb",
@@ -595,14 +945,14 @@
    "ambience",
    "material"
   ],
-  "sha": "30fd35ede528dd2afcf34bbaafe1d1851afddfc6",
+  "sha": "574cfc9a9afddcb6fde8cb65ebb060d689ef5ef0",
   "local": true,
   "sec": 6.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -30.7,
   "peak_db": -1.0,
-  "store": "sounds/court_amb/court_amb_r1_sao_ep8.wav"
+  "store": "sounds/court_amb/court_amb_r1_sao_ep9.wav"
  },
  {
   "cue": "cuffs",
@@ -617,14 +967,37 @@
    "mechanical",
    "police"
   ],
-  "sha": "ed747afad0665a578fa0bcd21be15074d89282c2",
+  "sha": "75f77faa2a1eb37accca4f51947e962aaf87826b",
   "local": true,
   "sec": 2.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -30.5,
   "peak_db": -1.0,
-  "store": "sounds/cuffs/cuffs_r1_sao_ep8.wav"
+  "store": "sounds/cuffs/cuffs_r1_sao_ep9.wav"
+ },
+ {
+  "cue": "door_kick",
+  "rank": 1,
+  "path": "public/absurd-cases/ep9/sfx_sao/door_kick_r1.wav",
+  "engine": "sao",
+  "score": null,
+  "episode": "9",
+  "prompt": "A bedroom wooden door kicked open violently, it bangs against the wall, close, indoor.",
+  "target": "a wooden door being kicked open",
+  "tags": [
+   "ambience",
+   "impact",
+   "mechanical"
+  ],
+  "sha": "e2bc5ea94624cd81abb93fbc62680d1763609b79",
+  "local": true,
+  "sec": 2.5,
+  "sr": 44100,
+  "ch": 2,
+  "rms_db": -22.3,
+  "peak_db": -1.0,
+  "store": "sounds/door_kick/door_kick_r1_sao_ep9.wav"
  },
  {
   "cue": "gavel",
@@ -639,14 +1012,14 @@
    "ambience",
    "impact"
   ],
-  "sha": "ba9fa33a95855f259c65e81382e5e7a44995c52c",
+  "sha": "d74418ac323553efaa23fba0e6f041abd7a36adc",
   "local": true,
   "sec": 2.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -31.9,
   "peak_db": -1.0,
-  "store": "sounds/gavel/gavel_r1_sao_ep8.wav"
+  "store": "sounds/gavel/gavel_r1_sao_ep9.wav"
  },
  {
   "cue": "morning_birds",
@@ -661,10 +1034,14 @@
    "ambience",
    "nature"
   ],
-  "sha": "3e5a6ff9eb1b174f04c61af03f6461486f1c9ad2",
+  "sha": "b932cff4377023d999ebc622cc95faa6db16b16d",
   "local": true,
-  "error": "unknown format: 3",
-  "store": "sounds/morning_birds/morning_birds_v1_r1_audioldm2.wav"
+  "sec": 8.0,
+  "sr": 16000,
+  "ch": 1,
+  "rms_db": -26.1,
+  "peak_db": -8.8,
+  "store": "sounds/morning_birds/morning_birds_r1_sao_ep9.wav"
  },
  {
   "cue": "outdoor_prison",
@@ -679,14 +1056,35 @@
    "ambience",
    "nature"
   ],
-  "sha": "84c783167783b9a74a6f2b3ffb08056cc0f08534",
+  "sha": "a94463393eec182f52824703ef32b1f4878541fd",
   "local": true,
   "sec": 6.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -13.3,
   "peak_db": -0.9,
-  "store": "sounds/outdoor_prison/outdoor_prison_r1_audioldm2_ep6.wav"
+  "store": "sounds/outdoor_prison/outdoor_prison_r1_sao_ep10.wav"
+ },
+ {
+  "cue": "pen_scribble",
+  "rank": 1,
+  "path": "public/absurd-cases/ep9/sfx_sao/pen_scribble_r1.wav",
+  "engine": "sao",
+  "score": null,
+  "episode": "9",
+  "prompt": "Close foley of a ballpoint pen writing quickly and firmly on paper on a table, then underlining once.",
+  "target": "a pen writing quickly on paper",
+  "tags": [
+   "material"
+  ],
+  "sha": "0ffc0bfa949bfc4fc72f8b94cfae20b50058eec8",
+  "local": true,
+  "sec": 3.0,
+  "sr": 44100,
+  "ch": 2,
+  "rms_db": -19.8,
+  "peak_db": -1.0,
+  "store": "sounds/pen_scribble/pen_scribble_r1_sao_ep9.wav"
  },
  {
   "cue": "phone_taps",
@@ -701,14 +1099,55 @@
    "ambience",
    "tonal"
   ],
-  "sha": "19dfbe55354fc9f9d36ee2e092403fee2e1a6961",
+  "sha": "db9c68cde836d0f93ce30b4bc723135da69ea7c3",
   "local": true,
   "sec": 2.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -33.3,
   "peak_db": -1.0,
-  "store": "sounds/phone_taps/phone_taps_r1_sao_ep8.wav"
+  "store": "sounds/phone_taps/phone_taps_r1_sao_ep9.wav"
+ },
+ {
+  "cue": "plastic_bag",
+  "rank": 1,
+  "path": "public/absurd-cases/ep9/sfx_sao/plastic_bag_r1.wav",
+  "engine": "sao",
+  "score": null,
+  "episode": "9",
+  "prompt": "A large black plastic garbage bag snapped open and pulled down quickly over an object, loud crinkling plastic, close foley.",
+  "target": "a plastic garbage bag being shaken and pulled over something",
+  "tags": [],
+  "sha": "f358a8d4fe6d70e78f949eda3e191708ff69f9e2",
+  "local": true,
+  "sec": 2.5,
+  "sr": 44100,
+  "ch": 2,
+  "rms_db": -35.3,
+  "peak_db": -1.0,
+  "store": "sounds/plastic_bag/plastic_bag_r1_sao_ep9.wav"
+ },
+ {
+  "cue": "ring_click",
+  "rank": 1,
+  "path": "public/absurd-cases/ep9/sfx_sao/ring_click_r1.wav",
+  "engine": "sao",
+  "score": null,
+  "episode": "9",
+  "prompt": "A small plastic switch clicked on for a ring light, crisp click with a faint electrical hum after, close.",
+  "target": "a lamp switch clicking on",
+  "tags": [
+   "ambience",
+   "mechanical"
+  ],
+  "sha": "6fb77b42162b20847637638e0bf4dd74ffae8f9d",
+  "local": true,
+  "sec": 1.5,
+  "sr": 44100,
+  "ch": 2,
+  "rms_db": -35.4,
+  "peak_db": -1.0,
+  "store": "sounds/ring_click/ring_click_r1_sao_ep9.wav"
  },
  {
   "cue": "room_hum",
@@ -723,14 +1162,14 @@
    "ambience",
    "tonal"
   ],
-  "sha": "26c7db9f88d1a56106ca2b38a8bb32ea27acfee0",
+  "sha": "2331357da1386bf194aadac63ae15809d3feb9af",
   "local": true,
   "sec": 6.0,
   "sr": 16000,
   "ch": 1,
   "rms_db": -12.3,
   "peak_db": -0.9,
-  "store": "sounds/room_hum/room_hum_r1_audioldm2_ep7.wav"
+  "store": "sounds/room_hum/room_hum_r1_sao_ep10.wav"
  },
  {
   "cue": "room_tone",
@@ -745,14 +1184,14 @@
    "ambience",
    "tonal"
   ],
-  "sha": "dc64c2f51d66fb37e39119220dd82c276147b3d1",
+  "sha": "058bc7121b80f4ed9bacf4dc625eceab2b36ca24",
   "local": true,
   "sec": 6.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -17.6,
   "peak_db": -1.0,
-  "store": "sounds/room_tone/room_tone_r1_sao_ep8.wav"
+  "store": "sounds/room_tone/room_tone_r1_sao_ep9.wav"
  },
  {
   "cue": "siren",
@@ -767,14 +1206,58 @@
    "ambience",
    "police"
   ],
-  "sha": "b326ab50635ac4d061076c78c2c4a9449ebf6a4f",
+  "sha": "2f17f86de6dafb3dd4916306bc70bd9e17850fa2",
   "local": true,
   "sec": 7.0,
   "sr": 44100,
   "ch": 2,
   "rms_db": -14.5,
   "peak_db": -1.0,
-  "store": "sounds/siren/siren_r1_sao_ep8.wav"
+  "store": "sounds/siren/siren_r1_sao_ep9.wav"
+ },
+ {
+  "cue": "swat_indoor",
+  "rank": 1,
+  "path": "public/absurd-cases/ep9/sfx_sao/swat_indoor_r1.wav",
+  "engine": "sao",
+  "score": null,
+  "episode": "9",
+  "prompt": "A police tactical team in heavy boots rushes into a small bedroom, fast stomping footsteps on a wooden floor, gear rattling, indoor.",
+  "target": "a group of people in boots rushing into a room",
+  "tags": [
+   "ambience",
+   "footsteps",
+   "police"
+  ],
+  "sha": "05bb810c9c2953470a33a0b6f7e4ae92268a7b1c",
+  "local": true,
+  "sec": 3.0,
+  "sr": 44100,
+  "ch": 2,
+  "rms_db": -26.1,
+  "peak_db": -1.0,
+  "store": "sounds/swat_indoor/swat_indoor_r1_sao_ep9.wav"
+ },
+ {
+  "cue": "table_slam",
+  "rank": 1,
+  "path": "public/absurd-cases/ep9/sfx_sao/table_slam_r1.wav",
+  "engine": "sao",
+  "score": null,
+  "episode": "9",
+  "prompt": "A man slams his open palm hard on a metal interrogation table once, loud flat bang, small rattle of objects, close.",
+  "target": "a hand slamming on a metal table",
+  "tags": [
+   "impact"
+  ],
+  "sha": "c33f486cfe146fe93273e711359d89e5d2e7c1be",
+  "local": true,
+  "sec": 1.5,
+  "sr": 44100,
+  "ch": 2,
+  "rms_db": -25.6,
+  "peak_db": -1.0,
+  "store": "sounds/table_slam/table_slam_r1_sao_ep9.wav"
  },
  {
   "cue": "thud1",
@@ -789,10 +1272,33 @@
    "ambience",
    "impact"
   ],
-  "sha": "f7a047c1101492cf8faf6813e198dbd894c8281a",
+  "sha": "dd7f2d51bbf28f8fbf106452420ffef3c100bf57",
   "local": true,
-  "error": "unknown format: 3",
-  "store": "sounds/thud1/thud1_v1_r1_audioldm2.wav"
+  "sec": 2.0,
+  "sr": 16000,
+  "ch": 1,
+  "rms_db": -10.9,
+  "peak_db": -0.1,
+  "store": "sounds/thud1/thud1_r1_sao_ep9.wav"
+ },
+ {
+  "cue": "toothbrush",
+  "rank": 1,
+  "path": "public/absurd-cases/ep9/sfx_sao/toothbrush_r1.wav",
+  "engine": "sao",
+  "score": null,
+  "episode": "9",
+  "prompt": "Close foley of a man brushing his teeth vigorously with a manual toothbrush, wet bristle scrubbing, foamy, bathroom, no music.",
+  "target": "someone brushing their teeth",
+  "tags": [],
+  "sha": "096ce421c08f3e334e45474ee770fd448163d638",
+  "local": true,
+  "sec": 4.0,
+  "sr": 44100,
+  "ch": 2,
+  "rms_db": -29.6,
+  "peak_db": -1.0,
+  "store": "sounds/toothbrush/toothbrush_r1_sao_ep9.wav"
  },
  {
   "cue": "boom_hit_v1",
@@ -10411,6 +10917,442 @@
   "rms_db": -13.4,
   "peak_db": -0.9,
   "store": "sounds/trombone_down/trombone_down_r4_audioldm2_ep8.wav"
+ },
+ {
+  "cue": "cable_cinch",
+  "rank": 1,
+  "path": "tools/ai-sfx/out_sao10/cable_cinch_r1.wav",
+  "engine": "sao",
+  "score": 0.244,
+  "episode": null,
+  "prompt": "A rubber network cable whipped and wrapped tightly around plastic rods, quick rubbery swish and squeak, then a tight cinch, close foley.",
+  "target": "a cable being pulled tight and wrapped",
+  "tags": [
+   "cartoon",
+   "material"
+  ],
+  "sha": "9c466bbcae88d46fa9fd8ce007d2b50a6fa23f7b",
+  "local": false,
+  "sec": 2.0,
+  "sr": 44100,
+  "ch": 2,
+  "rms_db": -27.4,
+  "peak_db": -1.0,
+  "store": "sounds/cable_cinch/cable_cinch_r1_sao.wav"
+ },
+ {
+  "cue": "cable_cinch",
+  "rank": 2,
+  "path": "tools/ai-sfx/out_sao10/cable_cinch_r2.wav",
+  "engine": "sao",
+  "score": 0.2395,
+  "episode": null,
+  "prompt": "A rubber network cable whipped and wrapped tightly around plastic rods, quick rubbery swish and squeak, then a tight cinch, close foley.",
+  "target": "a cable being pulled tight and wrapped",
+  "tags": [
+   "cartoon",
+   "material"
+  ],
+  "sha": "0135097a2c0079ce2a34ddb6470a4a325dd641fb",
+  "local": false,
+  "sec": 2.0,
+  "sr": 44100,
+  "ch": 2,
+  "rms_db": -25.4,
+  "peak_db": -1.0,
+  "store": "sounds/cable_cinch/cable_cinch_r2_sao.wav"
+ },
+ {
+  "cue": "cable_cinch",
+  "rank": 3,
+  "path": "tools/ai-sfx/out_sao10/cable_cinch_r3.wav",
+  "engine": "sao",
+  "score": 0.2284,
+  "episode": null,
+  "prompt": "A rubber network cable whipped and wrapped tightly around plastic rods, quick rubbery swish and squeak, then a tight cinch, close foley.",
+  "target": "a cable being pulled tight and wrapped",
+  "tags": [
+   "cartoon",
+   "material"
+  ],
+  "sha": "74e80785ed6238e1b348f15ddf076cba020bf13d",
+  "local": false,
+  "sec": 2.0,
+  "sr": 44100,
+  "ch": 2,
+  "rms_db": -29.0,
+  "peak_db": -1.0,
+  "store": "sounds/cable_cinch/cable_cinch_r3_sao.wav"
+ },
+ {
+  "cue": "cable_cinch",
+  "rank": 4,
+  "path": "tools/ai-sfx/out_sao10/cable_cinch_r4.wav",
+  "engine": "sao",
+  "score": 0.2158,
+  "episode": null,
+  "prompt": "A rubber network cable whipped and wrapped tightly around plastic rods, quick rubbery swish and squeak, then a tight cinch, close foley.",
+  "target": "a cable being pulled tight and wrapped",
+  "tags": [
+   "cartoon",
+   "material"
+  ],
+  "sha": "800f2a5213cb22669fea385ee8aabeab29e5fb2d",
+  "local": false,
+  "sec": 2.0,
+  "sr": 44100,
+  "ch": 2,
+  "rms_db": -26.9,
+  "peak_db": -1.0,
+  "store": "sounds/cable_cinch/cable_cinch_r4_sao.wav"
+ },
+ {
+  "cue": "error_buzz",
+  "rank": 1,
+  "path": "tools/ai-sfx/out_sao10/error_buzz_r1.wav",
+  "engine": "sao",
+  "score": 0.115,
+  "episode": null,
+  "prompt": "A smartphone error notification, two short low buzzes with a dull negative tone, close, clean, no music.",
+  "target": "a smartphone error sound",
+  "tags": [
+   "ambience",
+   "tonal"
+  ],
+  "sha": "2792f28c665376d408c105f8aaa96bb8bec3a59f",
+  "local": false,
+  "sec": 1.5,
+  "sr": 44100,
+  "ch": 2,
+  "rms_db": -16.5,
+  "peak_db": -1.0,
+  "store": "sounds/error_buzz/error_buzz_r1_sao.wav"
+ },
+ {
+  "cue": "error_buzz",
+  "rank": 2,
+  "path": "tools/ai-sfx/out_sao10/error_buzz_r2.wav",
+  "engine": "sao",
+  "score": 0.0947,
+  "episode": null,
+  "prompt": "A smartphone error notification, two short low buzzes with a dull negative tone, close, clean, no music.",
+  "target": "a smartphone error sound",
+  "tags": [
+   "ambience",
+   "tonal"
+  ],
+  "sha": "b40a7468acda18a09bc0daff087e951e60d69129",
+  "local": false,
+  "sec": 1.5,
+  "sr": 44100,
+  "ch": 2,
+  "rms_db": -18.7,
+  "peak_db": -1.0,
+  "store": "sounds/error_buzz/error_buzz_r2_sao.wav"
+ },
+ {
+  "cue": "error_buzz",
+  "rank": 3,
+  "path": "tools/ai-sfx/out_sao10/error_buzz_r3.wav",
+  "engine": "sao",
+  "score": 0.0563,
+  "episode": null,
+  "prompt": "A smartphone error notification, two short low buzzes with a dull negative tone, close, clean, no music.",
+  "target": "a smartphone error sound",
+  "tags": [
+   "ambience",
+   "tonal"
+  ],
+  "sha": "4296d30ec1a85df14c24d21ac071dd6cad09c2d5",
+  "local": false,
+  "sec": 1.5,
+  "sr": 44100,
+  "ch": 2,
+  "rms_db": -19.3,
+  "peak_db": -1.0,
+  "store": "sounds/error_buzz/error_buzz_r3_sao.wav"
+ },
+ {
+  "cue": "error_buzz",
+  "rank": 4,
+  "path": "tools/ai-sfx/out_sao10/error_buzz_r4.wav",
+  "engine": "sao",
+  "score": 0.0436,
+  "episode": null,
+  "prompt": "A smartphone error notification, two short low buzzes with a dull negative tone, close, clean, no music.",
+  "target": "a smartphone error sound",
+  "tags": [
+   "ambience",
+   "tonal"
+  ],
+  "sha": "9955594d0afce9cfad50321ecc424418c9cb7825",
+  "local": false,
+  "sec": 1.5,
+  "sr": 44100,
+  "ch": 2,
+  "rms_db": -22.3,
+  "peak_db": -1.0,
+  "store": "sounds/error_buzz/error_buzz_r4_sao.wav"
+ },
+ {
+  "cue": "power_down",
+  "rank": 1,
+  "path": "tools/ai-sfx/out_sao10/power_down_r1.wav",
+  "engine": "sao",
+  "score": 0.2791,
+  "episode": null,
+  "prompt": "A small electronic device powering down, a descending electronic tone and a soft relay click, then silence, close, clean, no music.",
+  "target": "an electronic device powering down",
+  "tags": [
+   "ambience",
+   "mechanical",
+   "tonal"
+  ],
+  "sha": "db7e87c759b2ee3a838f91c24517114b489b81d2",
+  "local": false,
+  "sec": 3.0,
+  "sr": 44100,
+  "ch": 2,
+  "rms_db": -18.0,
+  "peak_db": -1.0,
+  "store": "sounds/power_down/power_down_r1_sao.wav"
+ },
+ {
+  "cue": "power_down",
+  "rank": 2,
+  "path": "tools/ai-sfx/out_sao10/power_down_r2.wav",
+  "engine": "sao",
+  "score": 0.2319,
+  "episode": null,
+  "prompt": "A small electronic device powering down, a descending electronic tone and a soft relay click, then silence, close, clean, no music.",
+  "target": "an electronic device powering down",
+  "tags": [
+   "ambience",
+   "mechanical",
+   "tonal"
+  ],
+  "sha": "263116daef071146baaf9c84c0f9dea907dc56cf",
+  "local": false,
+  "sec": 3.0,
+  "sr": 44100,
+  "ch": 2,
+  "rms_db": -8.8,
+  "peak_db": -1.0,
+  "store": "sounds/power_down/power_down_r2_sao.wav"
+ },
+ {
+  "cue": "power_down",
+  "rank": 3,
+  "path": "tools/ai-sfx/out_sao10/power_down_r3.wav",
+  "engine": "sao",
+  "score": 0.2315,
+  "episode": null,
+  "prompt": "A small electronic device powering down, a descending electronic tone and a soft relay click, then silence, close, clean, no music.",
+  "target": "an electronic device powering down",
+  "tags": [
+   "ambience",
+   "mechanical",
+   "tonal"
+  ],
+  "sha": "531abdcf247bd70f3009894a8c6798c6c73eaea1",
+  "local": false,
+  "sec": 3.0,
+  "sr": 44100,
+  "ch": 2,
+  "rms_db": -12.0,
+  "peak_db": -1.0,
+  "store": "sounds/power_down/power_down_r3_sao.wav"
+ },
+ {
+  "cue": "power_down",
+  "rank": 4,
+  "path": "tools/ai-sfx/out_sao10/power_down_r4.wav",
+  "engine": "sao",
+  "score": 0.113,
+  "episode": null,
+  "prompt": "A small electronic device powering down, a descending electronic tone and a soft relay click, then silence, close, clean, no music.",
+  "target": "an electronic device powering down",
+  "tags": [
+   "ambience",
+   "mechanical",
+   "tonal"
+  ],
+  "sha": "80090fab87eae2c5399c00393635bf7819da109e",
+  "local": false,
+  "sec": 3.0,
+  "sr": 44100,
+  "ch": 2,
+  "rms_db": -21.1,
+  "peak_db": -1.0,
+  "store": "sounds/power_down/power_down_r4_sao.wav"
+ },
+ {
+  "cue": "router_beep",
+  "rank": 1,
+  "path": "tools/ai-sfx/out_sao10/router_beep_r1.wav",
+  "engine": "sao",
+  "score": 0.2903,
+  "episode": null,
+  "prompt": "A small electronic gadget emitting three short sharp warning beeps, high pitched, close, dry, no music.",
+  "target": "a small electronic alarm beep",
+  "tags": [
+   "mechanical"
+  ],
+  "sha": "76dc7fae3a1e14a0659dfa652acb3a87635118d2",
+  "local": false,
+  "sec": 1.5,
+  "sr": 44100,
+  "ch": 2,
+  "rms_db": -20.5,
+  "peak_db": -1.0,
+  "store": "sounds/router_beep/router_beep_r1_sao.wav"
+ },
+ {
+  "cue": "router_beep",
+  "rank": 2,
+  "path": "tools/ai-sfx/out_sao10/router_beep_r2.wav",
+  "engine": "sao",
+  "score": 0.2772,
+  "episode": null,
+  "prompt": "A small electronic gadget emitting three short sharp warning beeps, high pitched, close, dry, no music.",
+  "target": "a small electronic alarm beep",
+  "tags": [
+   "mechanical"
+  ],
+  "sha": "28506df89f8724bc1463b185d1b4e925f9b26918",
+  "local": false,
+  "sec": 1.5,
+  "sr": 44100,
+  "ch": 2,
+  "rms_db": -13.2,
+  "peak_db": -1.0,
+  "store": "sounds/router_beep/router_beep_r2_sao.wav"
+ },
+ {
+  "cue": "router_beep",
+  "rank": 3,
+  "path": "tools/ai-sfx/out_sao10/router_beep_r3.wav",
+  "engine": "sao",
+  "score": 0.2546,
+  "episode": null,
+  "prompt": "A small electronic gadget emitting three short sharp warning beeps, high pitched, close, dry, no music.",
+  "target": "a small electronic alarm beep",
+  "tags": [
+   "mechanical"
+  ],
+  "sha": "4600e9331606a0b89251e2fd29762a3b56cfb483",
+  "local": false,
+  "sec": 1.5,
+  "sr": 44100,
+  "ch": 2,
+  "rms_db": -16.5,
+  "peak_db": -1.0,
+  "store": "sounds/router_beep/router_beep_r3_sao.wav"
+ },
+ {
+  "cue": "router_beep",
+  "rank": 4,
+  "path": "tools/ai-sfx/out_sao10/router_beep_r4.wav",
+  "engine": "sao",
+  "score": 0.0384,
+  "episode": null,
+  "prompt": "A small electronic gadget emitting three short sharp warning beeps, high pitched, close, dry, no music.",
+  "target": "a small electronic alarm beep",
+  "tags": [
+   "mechanical"
+  ],
+  "sha": "bd7fcae5de298f5df41a3e2e6a400be6b8029f52",
+  "local": false,
+  "sec": 1.5,
+  "sr": 44100,
+  "ch": 2,
+  "rms_db": -25.9,
+  "peak_db": -1.0,
+  "store": "sounds/router_beep/router_beep_r4_sao.wav"
+ },
+ {
+  "cue": "steel_lid_slam",
+  "rank": 1,
+  "path": "tools/ai-sfx/out_sao10/steel_lid_slam_r1.wav",
+  "engine": "sao",
+  "score": 0.3655,
+  "episode": null,
+  "prompt": "A heavy steel box lid slammed shut, loud metallic clang with a short ringing tail, then a padlock snapping, close foley.",
+  "target": "a heavy steel lid slamming shut",
+  "tags": [
+   "impact"
+  ],
+  "sha": "da43179301fcbabddb593a0f61fe96cceb139f8f",
+  "local": false,
+  "sec": 2.0,
+  "sr": 44100,
+  "ch": 2,
+  "rms_db": -28.3,
+  "peak_db": -1.0,
+  "store": "sounds/steel_lid_slam/steel_lid_slam_r1_sao.wav"
+ },
+ {
+  "cue": "steel_lid_slam",
+  "rank": 2,
+  "path": "tools/ai-sfx/out_sao10/steel_lid_slam_r2.wav",
+  "engine": "sao",
+  "score": 0.2933,
+  "episode": null,
+  "prompt": "A heavy steel box lid slammed shut, loud metallic clang with a short ringing tail, then a padlock snapping, close foley.",
+  "target": "a heavy steel lid slamming shut",
+  "tags": [
+   "impact"
+  ],
+  "sha": "78ad7014458353000314a20984a1a9b1288b17aa",
+  "local": false,
+  "sec": 2.0,
+  "sr": 44100,
+  "ch": 2,
+  "rms_db": -25.8,
+  "peak_db": -1.0,
+  "store": "sounds/steel_lid_slam/steel_lid_slam_r2_sao.wav"
+ },
+ {
+  "cue": "steel_lid_slam",
+  "rank": 3,
+  "path": "tools/ai-sfx/out_sao10/steel_lid_slam_r3.wav",
+  "engine": "sao",
+  "score": 0.272,
+  "episode": null,
+  "prompt": "A heavy steel box lid slammed shut, loud metallic clang with a short ringing tail, then a padlock snapping, close foley.",
+  "target": "a heavy steel lid slamming shut",
+  "tags": [
+   "impact"
+  ],
+  "sha": "2c8864fa4342586444322013f0253106128ada2e",
+  "local": false,
+  "sec": 2.0,
+  "sr": 44100,
+  "ch": 2,
+  "rms_db": -23.3,
+  "peak_db": -1.0,
+  "store": "sounds/steel_lid_slam/steel_lid_slam_r3_sao.wav"
+ },
+ {
+  "cue": "steel_lid_slam",
+  "rank": 4,
+  "path": "tools/ai-sfx/out_sao10/steel_lid_slam_r4.wav",
+  "engine": "sao",
+  "score": 0.2102,
+  "episode": null,
+  "prompt": "A heavy steel box lid slammed shut, loud metallic clang with a short ringing tail, then a padlock snapping, close foley.",
+  "target": "a heavy steel lid slamming shut",
+  "tags": [
+   "impact"
+  ],
+  "sha": "246064435fecbf864b66eec1c18681307d306a3e",
+  "local": false,
+  "sec": 2.0,
+  "sr": 44100,
+  "ch": 2,
+  "rms_db": -27.7,
+  "peak_db": -1.0,
+  "store": "sounds/steel_lid_slam/steel_lid_slam_r4_sao.wav"
  },
  {
   "cue": "beep",
