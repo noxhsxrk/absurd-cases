@@ -38,7 +38,7 @@ Account in-scene: `@absurd.cases` (`HANDLE` in each episode's data.ts).
 ## EP10 คดีเราเตอร์ Wi-Fi (เราเตอร์ Wi-Fi)
 - Picks up from EP9's interrogation room (a router on that set is the new suspect's link to the mirror case).
 - Charges: ละทิ้งหน้าที่ → ขัดขวางกระบวนการยุติธรรม (two plates; the second because the judge couldn't connect to the court Wi-Fi and lost his temper).
-- Arrested at the man's bedside table by Cyber Police; antennas tied behind its back with LAN cable. Interrogated over its blinking red light; stayed silent (ไม่ยอมส่งคลื่น).
+- The man grumbled at it; it answered with a red light (attitude). Arrested at the man's bedside table by Cyber Police; antennas tied behind its back with LAN cable. Interrogated over its blinking red light; stayed silent (ไม่ยอมส่งคลื่น).
 - Sentence: a signal-proof steel box (กล่องเหล็กทึบคลื่น). Cut for good behaviour: shared its net with the guards.
 - After release: jobless, its work taken by a 5G tower; all lights died.
 - Hooks: a 5G tower now works in the man's neighbourhood (future suspect); the judge holds a grudge against all Wi-Fi; the guards are hooked on free net and lost it when the router left.
