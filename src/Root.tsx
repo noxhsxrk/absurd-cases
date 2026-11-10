@@ -20,6 +20,7 @@ import {AbsurdEp8, TOTAL as ABSURD8_TOTAL} from './episodes/AbsurdEp8/Episode';
 import {AbsurdEp8B} from './episodes/AbsurdEp8B/Episode';
 import {AbsurdEp9, TOTAL as ABSURD9_TOTAL} from './episodes/AbsurdEp9/Episode';
 import {AbsurdEp9Look, LOOK_TOTAL as ABSURD9_LOOK} from './episodes/AbsurdEp9/Look';
+import {AbsurdEp10Look, LOOK_TOTAL as ABSURD10_LOOK} from './episodes/AbsurdEp10/Look';
 import {qualitySchema} from './pov/ui/quality';
 
 export const Root: React.FC = () => (
@@ -38,6 +39,7 @@ export const Root: React.FC = () => (
     <Composition id="AbsurdEp8B" component={AbsurdEp8B} durationInFrames={ABSURD8_TOTAL} fps={30} width={1080} height={1920} />
     <Composition id="AbsurdEp9" component={AbsurdEp9} durationInFrames={ABSURD9_TOTAL} fps={30} width={1080} height={1920} schema={qualitySchema} defaultProps={{quality: 'fast' as const}} />
     <Composition id="AbsurdEp9Look" component={AbsurdEp9Look} durationInFrames={ABSURD9_LOOK} fps={30} width={1080} height={1920} schema={qualitySchema} defaultProps={{quality: 'fast' as const}} />
+    <Composition id="AbsurdEp10Look" component={AbsurdEp10Look} durationInFrames={ABSURD10_LOOK} fps={30} width={1080} height={1920} schema={qualitySchema} defaultProps={{quality: 'fast' as const}} />
     <Composition id="AbsurdEp8" component={AbsurdEp8} durationInFrames={ABSURD8_TOTAL} fps={30} width={1080} height={1920} schema={qualitySchema} defaultProps={{quality: 'fast' as const}} />
     {/* demo shot: eye-level POV in the living office, toon cast on mocap, viewer's hand with a mug */}
     <Composition id="OfficePOV" component={PovScene} durationInFrames={240} fps={30} width={1080} height={1920} />
