@@ -18,6 +18,9 @@ export const toLocal = (I: any, s: any, w: V3) => {
   const G = new THREE.Matrix4().compose(new THREE.Vector3(s.x, s.y ?? 0, s.z), new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0, 1, 0), s.yaw), new THREE.Vector3(I.scale, I.scale, I.scale));
   return new THREE.Vector3(...w).applyMatrix4(G.multiply(I.root.matrix).invert());
 };
+/** world → root space through the root's real world matrix. Unlike toLocal() this honours a wrap group's lift (y) and tilt
+ *  (a character lying in bed / sitting on a raised bench); call after the wrap is placed and updateMatrixWorld'd. Use for new episodes. */
+export const rootLocal = (I: any, w: V3) => { I.root.updateMatrixWorld(true); return new THREE.Vector3(...w).applyMatrix4(I.root.matrixWorld.clone().invert()); };
 // ---------------- two-bone arm IK (root space: +x the character's left, +y up, +z forward; cm) ----------------
 const qr = new THREE.Quaternion();
 const boneQ = (I: any, b: THREE.Object3D) => I.root.getWorldQuaternion(qr).clone().invert().multiply(b.getWorldQuaternion(new THREE.Quaternion()));

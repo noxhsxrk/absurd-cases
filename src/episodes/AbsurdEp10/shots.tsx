@@ -3,7 +3,7 @@ import * as THREE from 'three';
 import {useThree} from '@react-three/fiber';
 import {drive} from '../../pov/cast/RbPerson';
 import {POSES} from '../../pov/cast/poses';
-import {resetTurn, rot, ik, fingers} from '../../pov/acting/ik';
+import {resetTurn, rot, ik, fingers, rootLocal} from '../../pov/acting/ik';
 import {tex, F, M, MB} from '../../pov/lib/tex';
 import {ev, V3, sm, lerp3, pop, SHOTS, TOTAL, FPS} from './data';
 import {autoFace, setFace} from '../AbsurdEp1/boxcast';
@@ -48,8 +48,6 @@ const prop = (I: Inst, key: string, bone: string, make: () => THREE.Object3D, p:
   a[key].visible = true; return a[key];
 };
 const hideProps = (I: Inst) => { const a = attached.get(I); if (a) Object.values(a).forEach((o) => { o.visible = false; }); };
-/** world → character-root space through the real world matrix (toLocal() ignores the wrap's lift and lying-down tilt) */
-const rootLocal = (I: Inst, w: V3) => { I.root.updateMatrixWorld(true); return new THREE.Vector3(...w).applyMatrix4(I.root.matrixWorld.clone().invert()); };
 const loc = (I: Inst, _s: any, w: V3) => rootLocal(I, w);
 const V = (x: number, y: number, z: number) => new THREE.Vector3(x, y, z);
 /** a phone held in the fist (bone space is cm), screen toward the holder's face */

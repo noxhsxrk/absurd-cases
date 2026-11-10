@@ -30,6 +30,7 @@ Prompts / CLAP targets come from the generator scripts' CUES lists (tools/ai-sfx
 Run `build` after every generation batch (the SAO generator does it for you at the end)."""
 import ast, json, re, sys, os, wave, pathlib, contextlib, hashlib, shutil, subprocess
 
+sys.stdout.reconfigure(encoding='utf-8'); sys.stderr.reconfigure(encoding='utf-8')   # Thai output on a cp874 console
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 LIB = ROOT / 'tools' / 'sfx_library'
 STORE = LIB / 'store'
@@ -306,6 +307,9 @@ def pull(args, ep, name=None):
             g('sparse-checkout', 'add', '/' + r['store'])        # fetches just this blob
             src = STORE / r['store']
         shutil.copyfile(src, out)
+        try: wave.open(str(out)).close()
+        except wave.Error:                                   # 32-bit float takes: mixlib's wave reader needs PCM, convert the episode copy
+            tmp = out.with_suffix('.tmp.wav'); subprocess.run(['ffmpeg', '-v', 'error', '-y', '-i', str(out), '-c:a', 'pcm_s16le', str(tmp)], check=True); tmp.replace(out)
         print(f"{a:16s} <- {r['engine']} r{r['rank']} score {r['score']}  ->  {out.relative_to(ROOT).as_posix()}")
         u = usage()['cues'].get(base(r['cue']))
         if u: print(' ' * 18 + '↳ ' + u[1])
