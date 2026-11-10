@@ -341,7 +341,7 @@ export const SHOT_FN: Record<string, (t: number, lt: number, C: Cast) => ShotOut
     const tEnd = TOTAL / FPS - 0.6; const tt = Math.min(t, tEnd); const L = Math.min(lt, tEnd - sh('lastLight').t0);
     const alive = tt < ev('led1') ? 4 : tt < ev('led2') ? 3 : tt < ev('led3') ? 2 : tt < ev('led4') ? 1 : 0;
     return {node: <><Village clear={[-6, 6]} />{DUSK()}<group position={[0.4, 0.12, -4.25]} rotation={[0, 0.25, 0]}><Router t={tt} scale={1.6} led="weak" alive={alive} /></group></>,
-      cam: mv({pos: [0.15, 0.55, -2.8], look: [0.45, 0.25, -4.3], fov: 40}, L, {push: 0.07, arrive: 0.08}), bg: {color: '#D9A98A'}};
+      cam: mv({pos: [0.15, 0.55, -2.8], look: [0.45, 0.25, -4.3], fov: 40}, L, {push: 0.13, arrive: 0.08, roll: 2}), bg: {color: '#D9A98A'}};
   },
 };
 void pop;
