@@ -81,7 +81,7 @@ const daySky = () => tex('day-sky', 256, 256, (g) => {
   g.fillStyle = '#9AA3A2'; for (let i = 0; i < 7; i++) { const x = i * 38 - 6, hh = 50 + hash(i + 4) * 70; g.fillRect(x, 256 - hh, 34, hh); }
   g.fillStyle = 'rgba(150,156,150,0.35)'; for (let i = 0; i < 9; i++) { g.beginPath(); g.ellipse(hash(i) * 256, 120 + hash(i * 3) * 80, 40, 14, 0, 0, Math.PI * 2); g.fill(); }
 });
-export type BedroomState = {t: number; lamp: number; made?: boolean; ceiling?: boolean; swarm?: number; door?: number; hideN?: boolean; hideS?: boolean; day?: number; open?: number};
+export type BedroomState = {t: number; lamp: number; hideClock?: boolean; made?: boolean; ceiling?: boolean; swarm?: number; door?: number; hideN?: boolean; hideS?: boolean; day?: number; open?: number};
 export const Bedroom: React.FC<{st: BedroomState}> = ({st}) => {
   const wall = paint('bed-wall', '#B9D1C6', [2, 1], 0.12), floor = planks('bed-floor', '#B07A4E', '#A5714A', [2.5, 2.5]);
   const ceil = paint('bed-ceil', '#E9E7E0', [1, 1], 0.0);
@@ -112,8 +112,8 @@ export const Bedroom: React.FC<{st: BedroomState}> = ({st}) => {
       <mesh position={[1.1, 0.78, -1.95]} material={lampShade}><cylinderGeometry args={[0.1, 0.15, 0.2, 18, 1, true]} /></mesh>
       {st.lamp > 0.02 && <><pointLight position={[1.1, 0.8, -1.95]} color="#FFC27A" intensity={st.lamp * 3.2} distance={5} decay={1.7} castShadow shadow-mapSize={[1024, 1024]} shadow-bias={-0.002} />
         <Glow p={[1.1, 0.8, -1.95]} c="#FFC27A" s={0.9} o={0.5 * st.lamp} /></>}
-      <Bx p={[1.3, 0.585, -1.82]} s={[0.12, 0.07, 0.05]} m={M('#24262B', 0.4)} />
-      <mesh position={[1.3, 0.585, -1.794]} material={MB('#FF6A4A')}><planeGeometry args={[0.08, 0.03]} /></mesh>
+      {!st.hideClock && <><Bx p={[1.3, 0.585, -1.82]} s={[0.12, 0.07, 0.05]} m={M('#24262B', 0.4)} />
+      <mesh position={[1.3, 0.585, -1.794]} material={MB('#FF6A4A')}><planeGeometry args={[0.08, 0.03]} /></mesh></>}
       <mesh position={[1.02, 0.6, -1.78]} material={new THREE.MeshStandardMaterial({color: '#DDEFF7', transparent: true, opacity: 0.45, roughness: 0.05})}><cylinderGeometry args={[0.03, 0.026, 0.11, 12]} /></mesh>
       {/* air conditioner above the bed */}
       <Bx p={[0, 2.25, -2.1]} s={[0.95, 0.3, 0.22]} m={M('#F4F4F2', 0.5)} />

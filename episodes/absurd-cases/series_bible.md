@@ -42,3 +42,11 @@ Account in-scene: `@absurd.cases` (`HANDLE` in each episode's data.ts).
 - Sentence: a signal-proof steel box (กล่องเหล็กทึบคลื่น). Cut for good behaviour: shared its net with the guards.
 - After release: jobless, its work taken by a 5G tower; all lights died.
 - Hooks: a 5G tower now works in the man's neighbourhood (future suspect); the judge holds a grudge against all Wi-Fi; the guards are hooked on free net and lost it when the router left.
+
+## EP11 คดีนาฬิกาปลุก (นาฬิกาปลุกกระดิ่งคู่)
+- Way B closer: a dry consequence, no pun. Charge: ปลอมแปลงเวลาราชการ (it rang at its own 06:00 while standard time was 05:30).
+- The alarm keeps ringing through the call and the raid until the bomb squad (EP2's suits) pulls its battery with giant pliers.
+- National-security interrogation file: "เดินเร็วกว่าชาติ 30 นาที", statement "ติ๊ก… ต็อก…". With no battery its second hand still twitched at the lieutenant.
+- Court ordered the hands removed (same pliers); cell 21, ขังลืม 5 ปี. Sentence cut: walked its laps exactly on time.
+- After release: handless, ordained, runs สำนักสอนสมาธิ "อาจารย์ไร้เข็ม · ที่นี่ไม่มีเวลา". The whole country follows it, including the man, the judge, the officers and the bomb squad.
+- Hooks: the man now meditates under the thing he reported (he has nothing to wake him: late for everything?); the judge and police are disciples of an ex-convict; the pulled battery and the three hands are still in evidence; cell 21 exists.
