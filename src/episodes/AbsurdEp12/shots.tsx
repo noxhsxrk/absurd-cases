@@ -165,8 +165,8 @@ const longRoad = (t: number) => <><mesh receiveShadow rotation={[-Math.PI / 2, 0
 export const SHOT_FN: Record<string, (t: number, lt: number, C: Cast) => ShotOut> = {
   exit: (t, lt, C) => {
     // frame 0: MCU, he steps out of his front door into the morning, barefoot, stretching
-    const {w} = manHome(C, t, {from: [-3.49, 9.42], to: [-3.49, 9.15], t0: -0.1, clip: 'walk_slow_01'});
-    return {node: <>{street(t, C, {gate: 0, door: sm((t + 0.35) / 0.4)})}<P o={w} /><>{(['L', 'R'] as const).map((sd) => <FlipFlop key={sd} side={sd === 'L' ? 'R' : 'L'} position={add3(STEP, [sd === 'L' ? -0.1 : 0.1, 0, 0.05])} rotation={[0, Math.PI, 0]} />)}</></>,
+    const {w} = manHome(C, t, {from: [-3.49, 9.9], to: [-3.49, 9.15], t0: 0.25, clip: 'walk_slow_01'});
+    return {node: <>{street(t, C, {gate: 0, door: sm((t - 0.03) / 0.55)})}<P o={w} /><>{(['L', 'R'] as const).map((sd) => <FlipFlop key={sd} side={sd === 'L' ? 'R' : 'L'} position={add3(STEP, [sd === 'L' ? -0.1 : 0.1, 0, 0.05])} rotation={[0, Math.PI, 0]} />)}</></>,
       cam: mv({pos: [-2.6, 1.55, 7.2], look: [-3.45, 1.45, 8.9], fov: 40}, lt, {arrive: 0.1, push: 0.08, roll0: -2}), bg: SKY};
   },
   gate: (t, lt, C) => {

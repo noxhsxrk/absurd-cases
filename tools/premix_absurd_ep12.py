@@ -205,7 +205,8 @@ for name, a, b, lvl, width, fb in [('village_amb', 0, T('court'), 1.1, 0.9, lamb
     M.bed(to_st(rms_to(amb(name, 10, fb), BED * lvl)), a, b, width=width, xf=0.3, fade=0.6 if b == END else 0.04)
 M.bed(to_st(rms_to(amb('morning_birds', 10, lambda: bed_noise(8, 3500, 7000, 0.5, 8)), BED * 0.7)), 0, T('court'), width=0.9, xf=0.3, fade=0.04)
 # ---- home: a door, bare feet, the slap of the flip-flops getting faster and messier
-P(take('door_open', lambda: clunk(180, 0.3, 0.6), 1.0), 0.25, 0.05, -0.2)
+door = lambda: env(take('door_creak', lambda: creak(0.9, 900, 1100), 1.6), [(0, 1), (1.1, 1), (1.6, 0)])   # SAO: knob click at 0.03 s, hinge creak ~1.1 kHz
+P(door(), 0.32, 0.0, -0.2)
 P(flap(), 0.22, EV['step']); P(flap(), 0.2, EV['step'] + 0.35)
 ff = take('flipflop_steps', lambda: np.concatenate([np.pad(flap(), (0, int(0.38 * R))) for _ in range(10)]), 3.0)
 M.put(env(rms_to(ff, 0.03 * FX), [(0, 1), (2.6, 1), (3.0, 0)]), T('tangle') - 0.4, 0.0)
@@ -228,7 +229,7 @@ P(take('giant_lock', lambda: metal(220, 0.6, 6), 0.9), 0.4, EV['gate'] - 0.05)
 k = 0
 while EV['gate'] + 0.1 + k * 0.52 < T('early'): P(flap(), 0.16, EV['gate'] + 0.1 + k * 0.52, 0.1); k += 1    # it hops out, one slap per hop
 P(take('truck_away', lambda: engine(3.0), 3.0), 0.22, EV['vanGo'] - 0.4, -0.2)
-P(take('door_open', lambda: clunk(180, 0.3, 0.6), 1.0), 0.22, EV['door'] - 0.05, -0.2)
+P(door(), 0.3, EV['door'] - 0.5, -0.2)
 P(take('steps_road', lambda: boots(1.2), 1.5), 0.2, EV['door'] + 0.3, -0.1)
 
 OUT = pathlib.Path('public/absurd-cases/ep12/mix/ep12_mix.wav'); OUT.parent.mkdir(parents=True, exist_ok=True); RAW = OUT.with_name('raw.wav')

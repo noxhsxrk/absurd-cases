@@ -9,12 +9,9 @@ LOG = open(HERE / 'sao_log.txt', 'a', encoding='utf-8')
 def log(*a):
     s = ' '.join(str(x) for x in a); print(s, flush=True); LOG.write(s + '\n'); LOG.flush()
 
-CUES = [  # cue, seconds, CLAP target, prompt
-    ('police_whistle', 3, 'a traffic police whistle blowing', 'A traffic police officer blowing a metal pea whistle, two short sharp blasts then one long shrill blast, outdoors on a street, close.'),
-    ('flipflop_steps', 4, 'flip flops slapping while walking', 'Rubber flip-flops slapping against bare heels while a person walks on a concrete footpath, steady slap slap steps, close foley.'),
-    ('wheel_clamp', 2, 'a heavy metal wheel clamp locking', 'A heavy steel wheel clamp swung shut and locked, loud metallic clank and ratchet click, close foley, outdoors.'),
-    ('tow_winch', 4, 'a tow truck winch lifting', 'A tow truck hydraulic winch whirring and a steel cable tightening, mechanical whine with chain clinks, outdoors, close.'),
-    ('truck_away', 4, 'a small truck driving away', 'A small diesel pickup truck pulling away and accelerating down a quiet street, engine revving then fading into the distance.'),
+CUES = [  # cue, seconds, CLAP target, prompt  (police_whistle, flipflop_steps, wheel_clamp, tow_winch, truck_away: generated 2026-11-11, in the store)
+    ('house_door', 3, 'a wooden front door being unlatched and opened', 'A wooden house front door: the metal door handle is pressed down with a clear latch click, then the door swings open slowly on its hinges with a short soft creak, close foley, quiet house, dry.'),
+    ('door_creak', 3, 'a wooden door creaking open', 'A door knob clicks, then an old wooden door slowly creaks open, a long squeaky hinge creak rising in pitch, indoor, close microphone, dry, no music.'),
 ]
 
 NEG = 'low quality, distorted, music, speech, singing'
