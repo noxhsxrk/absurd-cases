@@ -39,7 +39,7 @@ const STARE: V3 = [-5, 0.4, 4.6];
 const FOLK: Extra[] = [...VILLAGE_FOLK.filter((e) => !['tw1', 'tw4', 'tw5', 'tw7'].includes(e.id)),
   {id: 'tw5', kind: 'stand', at: [-14, 4.6], yaw: Math.PI / 2, y: FP, look: STARE, clip: 'idle_touch_face_01'},
   {id: 'tw7', kind: 'stand', at: [-1.2, 4.3], yaw: -Math.PI / 2, y: FP, look: STARE, clip: 'idle_scratch_head_01'},
-  {id: 'tw1', kind: 'stand', at: [-6.0, 1.2], yaw: 0.2, look: STARE, clip: 'take_picture'}];
+  {id: 'tw1', kind: 'stand', at: [-9.8, 4.45], yaw: Math.PI / 2, y: FP, look: STARE, clip: 'take_picture'}];   // all on the footpath: the tow truck reverses along the road at z 0.7…2.5
 const street = (t: number, C: Cast, o: {gate?: number; door?: number; folk?: boolean; traffic?: boolean; dog?: boolean} = {}) => <><Village gates={{[LOT]: o.gate ?? 1}} doors={{[LOT]: o.door ?? 0}} />{DAY()}
   <VillageLife t={t} C={o.folk === false ? undefined : C} plan={FOLK} traffic={o.traffic !== false} dog={o.dog === true} /></>;
 
