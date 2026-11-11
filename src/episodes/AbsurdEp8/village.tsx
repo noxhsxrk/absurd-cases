@@ -35,14 +35,55 @@ const Tree: React.FC<{p: V3; seed: number}> = ({p, seed}) => {
       <icosahedronGeometry args={[0.8 + hash(seed + k * 5) * 0.5, 0]} /></mesh>)}
   </group>;
 };
+/** the front room of a house, built hollow so it shows through the open door: living room with a shoe rack by the door,
+ *  sofa, low table, wall clock, a picture, a plant and a warm ceiling lamp. Room = the left 3.4 m of the house, 3.2 m deep, 2.9 m high. */
+const FrontRoom: React.FC<{x: number; s: number; W: number; D: number; front: number; wall: THREE.Material; night: number}> = ({x, s, W, D, front, wall, night}) => {
+  const RD = 3.2, H = 2.9, L = x - W / 2, xd = x - W * 0.28, R = xd + 1.6, zin = (k: number) => front + s * k;
+  const paintM = M('#EFE6D2', 0.9), floorM = M('#C9A27A', 0.8), wood = M('#8A5A36', 0.7), sofa = M('#7C8FA6', 0.95), dark = M('#2A2D30', 0.6);
+  const clock = React.useMemo(() => new THREE.MeshBasicMaterial({toneMapped: false, map: tex('vroom-clock', 128, 128, (g) => { g.fillStyle = '#F4EEDB'; g.beginPath(); g.arc(64, 64, 60, 0, 7); g.fill(); g.strokeStyle = '#2A2D30'; g.lineWidth = 6; g.stroke();
+    g.lineWidth = 5; g.beginPath(); g.moveTo(64, 64); g.lineTo(64, 26); g.moveTo(64, 64); g.lineTo(92, 70); g.stroke(); })}), []);
+  const pic = React.useMemo(() => new THREE.MeshBasicMaterial({toneMapped: false, map: tex('vroom-pic', 160, 120, (g) => { g.fillStyle = '#8FB3C9'; g.fillRect(0, 0, 160, 120); g.fillStyle = '#5E8F62'; g.beginPath(); g.moveTo(0, 120); g.lineTo(60, 50); g.lineTo(110, 95); g.lineTo(160, 60); g.lineTo(160, 120); g.fill(); g.fillStyle = '#F2C230'; g.beginPath(); g.arc(120, 30, 14, 0, 7); g.fill(); })}), []);
+  const yaw = s > 0 ? Math.PI : 0;   // things on the back wall face the road
+  return <group>
+    {/* shell: the rest of the house solid, the room's walls and ceiling as slabs */}
+    <Bx p={[x, 3.0, front + s * (RD + (D - RD) / 2)]} s={[W, 6.0, D - RD]} m={wall} />
+    <Bx p={[(R + x + W / 2) / 2, 3.0, zin(RD / 2)]} s={[x + W / 2 - R, 6.0, RD]} m={wall} />
+    <Bx p={[(L + R) / 2, H + (6 - H) / 2, zin(RD / 2)]} s={[R - L, 6 - H, RD]} m={wall} />
+    <Bx p={[L + 0.075, H / 2, zin(RD / 2)]} s={[0.15, H, RD]} m={wall} />
+    <Bx p={[(L + xd - 0.5) / 2, H / 2, zin(0.075)]} s={[xd - 0.5 - L, H, 0.15]} m={wall} />
+    <Bx p={[(xd + 0.5 + R) / 2, H / 2, zin(0.075)]} s={[R - xd - 0.5, H, 0.15]} m={wall} />
+    <Bx p={[xd, 2.2 + (H - 2.2) / 2, zin(0.075)]} s={[1.0, H - 2.2, 0.15]} m={wall} />
+    {/* inside: painted walls, wooden floor, ceiling */}
+    <mesh receiveShadow rotation={[-Math.PI / 2, 0, 0]} position={[(L + R) / 2, 0.075, zin(RD / 2)]} material={floorM}><planeGeometry args={[R - L - 0.3, RD - 0.3]} /></mesh>
+    <mesh position={[(L + R) / 2, H / 2, zin(RD - 0.005)]} rotation={[0, yaw, 0]} material={paintM}><planeGeometry args={[R - L - 0.3, H]} /></mesh>
+    <mesh position={[L + 0.155, H / 2, zin(RD / 2)]} rotation={[0, Math.PI / 2, 0]} material={paintM}><planeGeometry args={[RD - 0.3, H]} /></mesh>
+    <mesh position={[R - 0.005, H / 2, zin(RD / 2)]} rotation={[0, -Math.PI / 2, 0]} material={paintM}><planeGeometry args={[RD - 0.3, H]} /></mesh>
+    <mesh position={[(L + R) / 2, H - 0.005, zin(RD / 2)]} rotation={[Math.PI / 2, 0, 0]} material={paintM}><planeGeometry args={[R - L, RD]} /></mesh>
+    {/* shoe rack beside the door, inside */}
+    <group position={[xd + 0.95, 0.075, zin(0.45)]}><Bx p={[0, 0.3, 0]} s={[0.7, 0.6, 0.3]} m={wood} />
+      {[0, 1].map((r) => [0, 1, 2].map((c) => <Bx key={r + ':' + c} p={[-0.22 + c * 0.22, 0.17 + r * 0.26, 0]} s={[0.16, 0.06, 0.24]} m={M(['#3A3E42', '#B24A3E', '#E8E6E0'][(r + c) % 3], 0.7)} />))}</group>
+    {/* sofa against the back wall, a low table, a plant */}
+    <group position={[L + 1.45, 0.075, zin(RD - 0.5)]}><Bx p={[0, 0.25, 0]} s={[1.7, 0.4, 0.75]} m={sofa} /><Bx p={[0, 0.65, s * 0.3]} s={[1.7, 0.5, 0.18]} m={sofa} />
+      {[-1, 1].map((k) => <Bx key={k} p={[k * 0.8, 0.4, 0]} s={[0.16, 0.5, 0.75]} m={sofa} />)}</group>
+    <Bx p={[L + 1.45, 0.3, zin(RD - 1.35)]} s={[0.9, 0.06, 0.5]} m={wood} /><Bx p={[L + 1.45, 0.17, zin(RD - 1.35)]} s={[0.8, 0.22, 0.4]} m={dark} />
+    <mesh castShadow position={[L + 0.45, 0.32, zin(RD - 0.4)]} material={M('#B07A4E', 0.8)}><cylinderGeometry args={[0.16, 0.12, 0.5, 10]} /></mesh>
+    <mesh castShadow position={[L + 0.45, 0.85, zin(RD - 0.4)]} material={M('#4E7A3A', 0.9)}><icosahedronGeometry args={[0.36, 0]} /></mesh>
+    {/* wall clock and a picture on the back wall */}
+    <mesh position={[L + 2.6, 2.05, zin(RD - 0.02)]} rotation={[0, yaw, 0]} material={clock}><circleGeometry args={[0.22, 24]} /></mesh>
+    <mesh position={[L + 1.45, 1.55, zin(RD - 0.02)]} rotation={[0, yaw, 0]} material={pic}><planeGeometry args={[0.9, 0.62]} /></mesh>
+    {/* ceiling lamp: warm, it is daytime too (the room is deeper than the sun reaches) */}
+    <mesh position={[(L + R) / 2, H - 0.05, zin(RD / 2)]} material={MB('#FFF1D0')}><cylinderGeometry args={[0.22, 0.22, 0.05, 16]} /></mesh>
+    <pointLight position={[(L + R) / 2, H - 0.35, zin(RD / 2)]} color="#FFE2B8" intensity={night > 0.5 ? 6 : 4} distance={6.5} decay={1.5} />
+  </group>;
+};
 /** one house; side = -1 (z < 0) or +1 (z > 0); its front faces the road */
-const House: React.FC<{x: number; side: number; i: number; night?: number; t?: number; open?: number; door?: number}> = ({x, side, i, night = 0, t = 0, open = 0, door = 0}) => {
+const House: React.FC<{x: number; side: number; i: number; night?: number; t?: number; open?: number; /** undefined = solid house; a number = the front room is built hollow (seen through the door) and the door is open this much */ door?: number}> = ({x, side, i, night = 0, t = 0, open = 0, door}) => {
   const W = 7 + hash(i) * 1.5, D = 7.5; const s = side;
   const front = s * (ROAD_W / 2 + 1.6 + 1.0 + 3.6); const zc = front + s * D / 2;
   const wall = plaster('h' + (i % 6), PASTEL[i % 6]); const fz = front - s * 0.03;
   const yard = s * (ROAD_W / 2 + 2.6 + 1.8); const fenceZ = s * (ROAD_W / 2 + 2.6);
   return <group>
-    <Bx p={[x, 3.0, zc]} s={[W, 6.0, D]} m={wall} />
+    {door === undefined ? <Bx p={[x, 3.0, zc]} s={[W, 6.0, D]} m={wall} /> : <FrontRoom x={x} s={s} W={W} D={D} front={front} wall={wall} night={night} />}
     <Bx p={[x, 3.05, zc]} s={[W + 0.3, 0.18, D + 0.3]} m={TRIM} />
     <Roof p={[x, 6.0, zc]} w={W + 1.0} d={D + 1.2} h={2.2} c={ROOF[i % 4]} />
     {[-1, 1].map((k) => [0, 1].map((fl) => (fl === 0 && k === -1) ? null :
@@ -50,9 +91,8 @@ const House: React.FC<{x: number; side: number; i: number; night?: number; t?: n
         <Bx p={[0, 0, -s * 0.01]} s={[1.75, 1.45, 0.05]} m={FRAME} cast={false} /><Bx p={[0, 0, -s * 0.03]} s={[1.6, 1.3, 0.04]} m={night > 0.5 && hash(i * 9 + k * 2 + fl * 5) < 0.6 ? (hash(i * 4 + k + fl) < 0.25 ? (LIT[2].color.setHSL(0.58, 0.6, 0.62 + 0.14 * Math.sin(t * 9 + i) * Math.sin(t * 23 + i * 3)), LIT[2]) : LIT[(i + fl) % 2]) : GLASS} cast={false} />
         <Bx p={[0, -0.74, -s * 0.09]} s={[1.9, 0.06, 0.16]} m={TRIM} />
       </group>))}
-    {door > 0.001 ? <>{/* open front door: a dark doorway, the leaf swung out on its hinge (right edge, as seen from the road) */}
-      <Bx p={[x - W * 0.28, 1.1, fz + s * 0.02]} s={[1.0, 2.2, 0.02]} m={M('#17120E', 0.95)} cast={false} />
-      <group position={[x - W * 0.28 + 0.5, 1.1, fz - s * 0.01]} rotation={[0, -s * door * 1.75, 0]}><Bx p={[-0.5, 0, 0]} s={[1.0, 2.2, 0.06]} m={FRAME} /></group></>
+    {(door ?? 0) > 0.001 ? <>{/* open front door: the leaf swung out on its hinge (right edge, as seen from the road); the front room shows through */}
+      <group position={[x - W * 0.28 + 0.5, 1.1, fz - s * 0.01]} rotation={[0, -s * (door ?? 0) * 1.75, 0]}><Bx p={[-0.5, 0, 0]} s={[1.0, 2.2, 0.06]} m={FRAME} /></group></>
       : <Bx p={[x - W * 0.28, 1.1, fz - s * 0.01]} s={[1.0, 2.2, 0.06]} m={FRAME} cast={false} />}
     <Bx p={[x - W * 0.28, 2.5, front - s * 0.8]} s={[2.2, 0.12, 1.8]} m={M(ROOF[i % 4], 0.75)} />
     {[-1, 1].map((k) => <Bx key={k} p={[x - W * 0.28 + k * 1.0, 1.25, front - s * 1.6]} s={[0.14, 2.5, 0.14]} m={TRIM} />)}
@@ -84,10 +124,10 @@ export const Village: React.FC<{x0?: number; x1?: number; clear?: [number, numbe
     {Array.from({length: Math.floor(L / 3)}, (_, k) => <mesh key={k} rotation={[-Math.PI / 2, 0, 0]} position={[x0 - 20 + k * 3, 0.003, 0]} material={M('#E8E3CF', 0.8)}><planeGeometry args={[1.4, 0.1]} /></mesh>)}
     {[-1, 1].map((s) => <group key={s}>
       <Bx p={[cx, 0.07, s * (ROAD_W / 2 + 0.08)]} s={[L, 0.14, 0.16]} m={M('#BDBAB2', 0.85)} cast={false} />
-      <mesh receiveShadow rotation={[-Math.PI / 2, 0, 0]} position={[cx, 0.12, s * (ROAD_W / 2 + 1.6)]} material={path}><planeGeometry args={[L, 1.1]} /></mesh>
+      <mesh receiveShadow rotation={[-Math.PI / 2, 0, 0]} position={[cx, 0.123, s * (ROAD_W / 2 + 1.6)]} material={path}><planeGeometry args={[L, 1.1]} /></mesh>
       <Bx p={[cx, 0.06, s * (ROAD_W / 2 + 1.6)]} s={[L, 0.12, 1.1]} m={M('#8F8B84', 0.9)} cast={false} />
     </group>)}
-    {xs.map(([x, s], i) => <House key={i} x={x} side={s} i={i} night={night} t={t} open={gates[i] ?? 0} door={doors[i] ?? 0} />)}
+    {xs.map(([x, s], i) => <House key={i} x={x} side={s} i={i} night={night} t={t} open={gates[i] ?? 0} door={doors[i]} />)}
     {Array.from({length: 5}, (_, k) => x0 + 6 + k * 16).filter((x) => !clear || x < clear[0] || x > clear[1]).map((x) => <group key={x} position={[x, 0, -(ROAD_W / 2 + 0.5)]}>
       <mesh castShadow position={[0, 3.2, 0]} material={M('#6C7076', 0.5, 0.5)}><cylinderGeometry args={[0.06, 0.09, 6.4, 8]} /></mesh>
       <Bx p={[0, 6.35, 0.7]} s={[0.1, 0.1, 1.4]} m={M('#6C7076', 0.5, 0.5)} />

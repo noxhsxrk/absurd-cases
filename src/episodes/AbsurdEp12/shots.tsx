@@ -12,6 +12,7 @@ import {PrisonGate} from '../AbsurdEp6/props';
 import {Puffs} from '../AbsurdEp7/props';
 import {Village} from '../AbsurdEp8/village';
 import {SirenLights} from '../absurdkit';
+import {tex, F} from '../../pov/lib/tex';
 import {ps, walker, body, bw, hideProps, prop, P, CamRig, mv, strike, wobble, near, sm, add3, V3, Cast, ShotOut, Bg} from '../lifekit/stage';
 import {VillageLife, VILLAGE_FOLK, CourtLife, OpenAirLife} from '../lifekit/presets';
 import {Townsfolk, Extra} from '../lifekit/people';
@@ -23,7 +24,7 @@ export {CamRig};
 const sh = (name: string) => SHOTS.find((x: any) => x.name === name)!;
 const SKY: Bg = {color: '#BFD6E4'}, CELL_BG: Bg = {color: '#2A2E33'};
 const FP = 0.12;                       // footpath top
-const DAY = () => <><hemisphereLight args={['#DCE8F2', '#5A5446', 1.1]} /><directionalLight position={[-8, 16, 10]} color="#FFF1D6" intensity={2.1} castShadow shadow-mapSize={[2048, 2048]} shadow-camera-left={-14} shadow-camera-right={14} shadow-camera-top={14} shadow-camera-bottom={-14} shadow-camera-far={60} /></>;
+const DAY = () => <><hemisphereLight args={['#DCE8F2', '#5A5446', 1.1]} /><directionalLight position={[-8, 16, 10]} color="#FFF1D6" intensity={2.1} castShadow shadow-mapSize={[2048, 2048]} shadow-camera-left={-14} shadow-camera-right={14} shadow-camera-top={14} shadow-camera-bottom={-14} shadow-camera-far={60} shadow-bias={-0.0004} shadow-normalBias={0.03} /></>;
 
 // =====================================================================================================
 // HOME: village lot 10 (x −1.22, side +1, W 8.12): door at x −3.49 on the house front z 9.17; gate centred x −1.52 in the fence z 5.6
@@ -48,6 +49,24 @@ const onFoot = (I: any, foot: 'L' | 'R', wear: 'L' | 'R', y0: number) => {
   const lift = Math.max(0, (rootLocal(I, F).y - I.footY0) * I.scale);
   return <FlipFlop key={foot} side={wear} position={[F[0] + (dx / d) * 0.05, y0 + lift, F[2] + (dz / d) * 0.05]} rotation={[0, Math.atan2(dx, dz), 0]} />;
 };
+/** red annotation ON the ground around each foot (dashed box) + a label over it that faces the camera: this foot, wrong flip-flop */
+const markM = new THREE.MeshBasicMaterial({color: '#E0262B', toneMapped: false});
+const labelM = (txt: string) => new THREE.MeshBasicMaterial({toneMapped: false, transparent: true, depthTest: false, map: tex('ep12-lbl-' + txt, 256, 128, (g) => {
+  g.clearRect(0, 0, 256, 128); g.fillStyle = 'rgba(255,255,255,0.92)'; g.beginPath(); (g as any).roundRect(6, 6, 244, 116, 18); g.fill();
+  g.fillStyle = '#E0262B'; g.textAlign = 'center'; g.font = F(700, 44); g.fillText(txt.split('|')[0], 128, 56); g.font = F(700, 34); g.fillText(txt.split('|')[1], 128, 104); })});
+const LBL: Record<string, THREE.MeshBasicMaterial> = {};
+const SwapMarks: React.FC<{I: any; cam: V3; k: number}> = ({I, cam, k}) => <>{(['L', 'R'] as const).map((sd) => {
+  const F = bw(I, `Bip01_${sd}_Foot`), T = bw(I, `Bip01_${sd}_Toe0`); const yaw = Math.atan2(T[0] - F[0], T[2] - F[2]); const c: V3 = [F[0] + (T[0] - F[0]) * 0.5, 0.075, F[2] + (T[2] - F[2]) * 0.5];
+  const txt = sd === 'L' ? 'เท้าซ้าย|✕ ใส่ข้างขวา' : 'เท้าขวา|✕ ใส่ข้างซ้าย'; const m = LBL[txt] ?? (LBL[txt] = labelM(txt));
+  const dash = (len: number) => Array.from({length: Math.floor(len / 0.045)}, (_, i) => -len / 2 + 0.0225 + i * 0.045);
+  const lp: V3 = [c[0], 0.36, c[2] - 0.08]; const q = new THREE.Quaternion().setFromRotationMatrix(new THREE.Matrix4().lookAt(new THREE.Vector3(...cam), new THREE.Vector3(...lp), new THREE.Vector3(0, 1, 0)));
+  return <group key={sd}>
+    <group position={c} rotation={[0, yaw, 0]} scale={[k, 1, k]}>
+      {dash(0.32).map((z, i) => [-1, 1].map((x) => <mesh key={i + ':' + x} position={[x * 0.075, 0, z]} material={markM}><boxGeometry args={[0.012, 0.004, 0.028]} /></mesh>))}
+      {dash(0.15).map((x, i) => [-1, 1].map((z) => <mesh key={'h' + i + ':' + z} position={[x, 0, z * 0.16]} material={markM}><boxGeometry args={[0.028, 0.004, 0.012]} /></mesh>))}
+    </group>
+    {k > 0.5 && <mesh position={lp} quaternion={q} material={m} renderOrder={10}><planeGeometry args={[0.17, 0.085]} /></mesh>}
+  </group>; })}</>;
 const wornSwapped = (I: any, y0: number) => <>{onFoot(I, 'L', 'R', y0)}{onFoot(I, 'R', 'L', y0)}</>;
 
 /** the man on his way out: door → porch → (shot cut) → yard toward the gate. Barefoot until `slip`. */
@@ -174,10 +193,10 @@ export const SHOT_FN: Record<string, (t: number, lt: number, C: Cast) => ShotOut
       cam: mv({pos: [STEP[0] - 0.95, 0.5, STEP[2] - 0.5], look: [STEP[0], 0.16, STEP[2] + 0.1], fov: 40}, lt, {arrive: 0.08, push: 0.1, roll0: 3}), bg: SKY};
   },
   swapped: (t, lt, C) => {
-    // top-down ECU on his feet: the letters ข on the left foot, ซ on the right — the toes bulge the wrong way (2D annotation on top)
+    // front 3/4, a little above: both feet in frame; red dashed boxes on the ground round each foot and a label over each: wrong side
     const I = C.naiB; hideProps(I); const w = body(I, ps('naiB', STEP[0], STEP[2] + 0.12, Math.PI, t, {clip: 'idle_neutral_01', lookW: [STEP[0], 0, STEP[2] - 0.4]}), t, 0.06);
-    return {node: <>{street(t, C, {gate: 0, door: 1, traffic: false})}<P o={w} />{wornSwapped(I, 0.06)}</>,
-      cam: mv({pos: [STEP[0] + 0.1, 0.85, STEP[2] - 0.62], look: [STEP[0], 0.08, STEP[2] + 0.14], fov: 34}, lt, {arrive: 0.06, push: 0.1, roll0: 4, roll: -2}), bg: SKY};
+    const cam = mv({pos: [STEP[0] + 0.12, 1.05, STEP[2] - 1.0], look: [STEP[0], 0.22, STEP[2] + 0.12], fov: 40}, lt, {arrive: 0.06, push: 0.08, roll0: 2});
+    return {node: <>{street(t, C, {gate: 0, door: 1, traffic: false})}<P o={w} />{wornSwapped(I, 0.06)}<SwapMarks I={I} cam={cam.pos} k={sm((lt - 0.3) / 0.15)} /></>, cam, bg: SKY};
   },
   tangle: (t, lt, C) => {
     // low, in front: out through the gate, his feet crossing over each other more with every step

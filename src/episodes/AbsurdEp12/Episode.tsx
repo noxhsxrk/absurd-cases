@@ -48,7 +48,6 @@ export const AbsurdEp12: React.FC<{quality?: Quality}> = ({quality = 'fast'}) =>
       <SirenWash t={t} t0={ev('siren')} t1={T('towCall').t0} amt={0.06} />
       <HangingPlate t={t} text="ดัดแปลงสภาพทางสัญจร" drops={[ev('plate1')]} t1={T('phone').t0} />
       <AbsoluteFill style={{transform: `scale(${1 + 0.1 * Math.max(0, t - ev('press') - 0.2)})`}}><CallScreen t={t} t0={ev('press') + 0.2} t1={T('cop').t0 - 0.001} /></AbsoluteFill>
-      <SwapNote t={t} />
       {['fall', 'clamp', 'hook', 'gavel', 'cellShut'].map((k) => <Flash key={k} t={t} t0={ev(k)} d={0.07} max={0.22} />)}
       <Captions cards={CARDS} t={t} y={1395} />
       {audio && <Audio src={staticFile(audio)} />}
