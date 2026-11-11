@@ -36,7 +36,7 @@ const Tree: React.FC<{p: V3; seed: number}> = ({p, seed}) => {
   </group>;
 };
 /** one house; side = -1 (z < 0) or +1 (z > 0); its front faces the road */
-const House: React.FC<{x: number; side: number; i: number; night?: number; t?: number; open?: number}> = ({x, side, i, night = 0, t = 0, open = 0}) => {
+const House: React.FC<{x: number; side: number; i: number; night?: number; t?: number; open?: number; door?: number}> = ({x, side, i, night = 0, t = 0, open = 0, door = 0}) => {
   const W = 7 + hash(i) * 1.5, D = 7.5; const s = side;
   const front = s * (ROAD_W / 2 + 1.6 + 1.0 + 3.6); const zc = front + s * D / 2;
   const wall = plaster('h' + (i % 6), PASTEL[i % 6]); const fz = front - s * 0.03;
@@ -50,7 +50,10 @@ const House: React.FC<{x: number; side: number; i: number; night?: number; t?: n
         <Bx p={[0, 0, -s * 0.01]} s={[1.75, 1.45, 0.05]} m={FRAME} cast={false} /><Bx p={[0, 0, -s * 0.03]} s={[1.6, 1.3, 0.04]} m={night > 0.5 && hash(i * 9 + k * 2 + fl * 5) < 0.6 ? (hash(i * 4 + k + fl) < 0.25 ? (LIT[2].color.setHSL(0.58, 0.6, 0.62 + 0.14 * Math.sin(t * 9 + i) * Math.sin(t * 23 + i * 3)), LIT[2]) : LIT[(i + fl) % 2]) : GLASS} cast={false} />
         <Bx p={[0, -0.74, -s * 0.09]} s={[1.9, 0.06, 0.16]} m={TRIM} />
       </group>))}
-    <Bx p={[x - W * 0.28, 1.1, fz - s * 0.01]} s={[1.0, 2.2, 0.06]} m={FRAME} cast={false} />
+    {door > 0.001 ? <>{/* open front door: a dark doorway, the leaf swung out on its hinge (right edge, as seen from the road) */}
+      <Bx p={[x - W * 0.28, 1.1, fz + s * 0.02]} s={[1.0, 2.2, 0.02]} m={M('#17120E', 0.95)} cast={false} />
+      <group position={[x - W * 0.28 + 0.5, 1.1, fz - s * 0.01]} rotation={[0, -s * door * 1.75, 0]}><Bx p={[-0.5, 0, 0]} s={[1.0, 2.2, 0.06]} m={FRAME} /></group></>
+      : <Bx p={[x - W * 0.28, 1.1, fz - s * 0.01]} s={[1.0, 2.2, 0.06]} m={FRAME} cast={false} />}
     <Bx p={[x - W * 0.28, 2.5, front - s * 0.8]} s={[2.2, 0.12, 1.8]} m={M(ROOF[i % 4], 0.75)} />
     {[-1, 1].map((k) => <Bx key={k} p={[x - W * 0.28 + k * 1.0, 1.25, front - s * 1.6]} s={[0.14, 2.5, 0.14]} m={TRIM} />)}
     <Bx p={[x + W * 0.28, 3.2, fz - s * 0.25]} s={[0.8, 0.55, 0.3]} m={TRIM} />
@@ -69,7 +72,7 @@ const House: React.FC<{x: number; side: number; i: number; night?: number; t?: n
 export const lots = (x0 = -34, x1 = 34) => { const out: {x: number; side: number; W: number; i: number}[] = [];
   for (const s of [-1, 1]) { let x = x0 + hash(s + 7) * 4; while (x < x1) { out.push({x, side: s, W: 7 + hash(out.length) * 1.5, i: out.length}); x += 9.6 + hash(x) * 1.4; } }
   return out; };
-export const Village: React.FC<{x0?: number; x1?: number; clear?: [number, number]; /** 1 = night: seeded windows lit, some TV-blue (pass t for the flicker) */ night?: number; t?: number; /** lot index → how far its sliding gate is open (0…1) */ gates?: Record<number, number>}> = ({x0 = -34, x1 = 34, clear, night = 0, t = 0, gates = {}}) => {
+export const Village: React.FC<{x0?: number; x1?: number; clear?: [number, number]; /** 1 = night: seeded windows lit, some TV-blue (pass t for the flicker) */ night?: number; t?: number; /** lot index → how far its sliding gate is open (0…1) */ gates?: Record<number, number>; /** lot index → front door open (0…1) */ doors?: Record<number, number>}> = ({x0 = -34, x1 = 34, clear, night = 0, t = 0, gates = {}, doors = {}}) => {
   const road = tm('vroad', '#3E4044', (g) => { speckle(g, 512, 512, 7000, ['#000', '#888'], 0.05, 0.18, 1, 3, 21); grime(g, 512, 512, 0.25, 6, 4); }, [24, 2], 0.92);
   const path = tm('vpath', '#A8A39A', (g) => { speckle(g, 512, 512, 2200, ['#000', '#fff'], 0.03, 0.07, 1, 3, 5); g.fillStyle = '#8A867E'; for (let k = 0; k <= 4; k++) g.fillRect(k * 128 - 1, 0, 2, 512); }, [60, 1], 0.8);
   const grass = tm('vgrass', '#5B7838', (g) => { speckle(g, 512, 512, 9000, ['#2E4A1E', '#8BA65A'], 0.08, 0.25, 1, 2, 31); }, [40, 8], 0.95);
@@ -84,7 +87,7 @@ export const Village: React.FC<{x0?: number; x1?: number; clear?: [number, numbe
       <mesh receiveShadow rotation={[-Math.PI / 2, 0, 0]} position={[cx, 0.12, s * (ROAD_W / 2 + 1.6)]} material={path}><planeGeometry args={[L, 1.1]} /></mesh>
       <Bx p={[cx, 0.06, s * (ROAD_W / 2 + 1.6)]} s={[L, 0.12, 1.1]} m={M('#8F8B84', 0.9)} cast={false} />
     </group>)}
-    {xs.map(([x, s], i) => <House key={i} x={x} side={s} i={i} night={night} t={t} open={gates[i] ?? 0} />)}
+    {xs.map(([x, s], i) => <House key={i} x={x} side={s} i={i} night={night} t={t} open={gates[i] ?? 0} door={doors[i] ?? 0} />)}
     {Array.from({length: 5}, (_, k) => x0 + 6 + k * 16).filter((x) => !clear || x < clear[0] || x > clear[1]).map((x) => <group key={x} position={[x, 0, -(ROAD_W / 2 + 0.5)]}>
       <mesh castShadow position={[0, 3.2, 0]} material={M('#6C7076', 0.5, 0.5)}><cylinderGeometry args={[0.06, 0.09, 6.4, 8]} /></mesh>
       <Bx p={[0, 6.35, 0.7]} s={[0.1, 0.1, 1.4]} m={M('#6C7076', 0.5, 0.5)} />

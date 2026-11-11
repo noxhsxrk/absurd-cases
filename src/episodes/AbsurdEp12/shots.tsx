@@ -39,7 +39,7 @@ const FOLK: Extra[] = [...VILLAGE_FOLK.filter((e) => !['tw1', 'tw4', 'tw5', 'tw7
   {id: 'tw5', kind: 'stand', at: [-14, 4.6], yaw: Math.PI / 2, y: FP, look: STARE, clip: 'idle_touch_face_01'},
   {id: 'tw7', kind: 'stand', at: [-1.2, 4.3], yaw: -Math.PI / 2, y: FP, look: STARE, clip: 'idle_scratch_head_01'},
   {id: 'tw1', kind: 'stand', at: [-6.0, 1.2], yaw: 0.2, look: STARE, clip: 'take_picture'}];
-const street = (t: number, C: Cast, o: {gate?: number; folk?: boolean; traffic?: boolean; dog?: boolean} = {}) => <><Village gates={{[LOT]: o.gate ?? 1}} />{DAY()}
+const street = (t: number, C: Cast, o: {gate?: number; door?: number; folk?: boolean; traffic?: boolean; dog?: boolean} = {}) => <><Village gates={{[LOT]: o.gate ?? 1}} doors={{[LOT]: o.door ?? 0}} />{DAY()}
   <VillageLife t={t} C={o.folk === false ? undefined : C} plan={FOLK} traffic={o.traffic !== false} dog={o.dog === true} /></>;
 
 /** flip-flop that sits under a foot: centred under the foot bone, turned along the foot (drawn in world space) */
@@ -146,29 +146,38 @@ const longRoad = (t: number) => <><mesh receiveShadow rotation={[-Math.PI / 2, 0
 export const SHOT_FN: Record<string, (t: number, lt: number, C: Cast) => ShotOut> = {
   exit: (t, lt, C) => {
     // frame 0: MCU, he steps out of his front door into the morning, barefoot, stretching
-    const {w} = manHome(C, t, {from: [-3.49, 9.35], to: [-3.49, 8.9], t0: -0.1, clip: 'walk_slow_01'});
-    return {node: <>{street(t, C, {gate: 0})}<P o={w} /><>{(['L', 'R'] as const).map((sd) => <FlipFlop key={sd} side={sd === 'L' ? 'R' : 'L'} position={add3(STEP, [sd === 'L' ? -0.13 : 0.13, 0, -0.2])} rotation={[0, Math.PI, 0]} />)}</></>,
+    const {w} = manHome(C, t, {from: [-3.49, 9.42], to: [-3.49, 9.15], t0: -0.1, clip: 'walk_slow_01'});
+    return {node: <>{street(t, C, {gate: 0, door: sm((t + 0.35) / 0.4)})}<P o={w} /><>{(['L', 'R'] as const).map((sd) => <FlipFlop key={sd} side={sd === 'L' ? 'R' : 'L'} position={add3(STEP, [sd === 'L' ? -0.1 : 0.1, 0, 0.05])} rotation={[0, Math.PI, 0]} />)}</></>,
       cam: mv({pos: [-2.6, 1.55, 7.2], look: [-3.45, 1.45, 8.9], fov: 40}, lt, {arrive: 0.1, push: 0.08, roll0: -2}), bg: SKY};
   },
   gate: (t, lt, C) => {
     // wide from the yard: his house, the porch, the flip-flops waiting on the step; he walks down to them
-    const {w} = manHome(C, t, {from: [-3.49, 8.9], to: [-3.4, 8.35], t0: sh('gate').t0 + 0.1, clip: 'walk_slow_01'});
-    return {node: <>{street(t, C, {gate: 0})}<P o={w} />{(['L', 'R'] as const).map((sd) => <FlipFlop key={sd} side={sd === 'L' ? 'R' : 'L'} position={add3(STEP, [sd === 'L' ? -0.13 : 0.13, 0, -0.2])} rotation={[0, Math.PI, 0]} />)}</>,
+    const {w} = manHome(C, t, {from: [-3.49, 9.15], to: [-3.49, 8.98], t0: sh('gate').t0 + 0.05, clip: 'walk_slow_01'});
+    return {node: <>{street(t, C, {gate: 0, door: 1})}<P o={w} />{(['L', 'R'] as const).map((sd) => <FlipFlop key={sd} side={sd === 'L' ? 'R' : 'L'} position={add3(STEP, [sd === 'L' ? -0.1 : 0.1, 0, 0.05])} rotation={[0, Math.PI, 0]} />)}</>,
       cam: mv({pos: [-3.2, 1.3, 6.2], look: [-3.45, 1.05, 8.7], fov: 50}, lt, {arrive: 0.1, push: 0.06, side: 0.4}), bg: SKY};
   },
   slip: (t, lt, C) => {
-    // ECU at ground level: his bare feet step into the flip-flops — left foot into the R one, right foot into the L one
-    const I = C.naiB; hideProps(I); const g = gait([[-3.4, 8.35], [-3.4, 8.05]], t, {t0: ev('step') - 0.2, speed: 0.6});
-    const w = body(I, walker('naiB', g, t, {locoClip: 'walk_slow_01'}), t, 0.06);
-    const on = t > ev('step') + 0.35;
-    return {node: <>{street(t, C, {gate: 0, traffic: false})}<P o={w} />{on ? wornSwapped(I, 0.06) : (['L', 'R'] as const).map((sd) => <FlipFlop key={sd} side={sd === 'L' ? 'R' : 'L'} position={add3(STEP, [sd === 'L' ? -0.13 : 0.13, 0, -0.2])} rotation={[0, Math.PI, 0]} />)}</>,
-      cam: mv({pos: [-2.85, 0.32, 7.4], look: [-3.4, 0.08, 8.25], fov: 42}, lt, {arrive: 0.08, push: 0.12, roll0: 3}), bg: SKY};
+    // ECU, low from the side: standing on the step he lifts his left foot and sets it into the flip-flop marked ข, then the right foot into ซ
+    const I = C.naiB; hideProps(I); const w = body(I, ps('naiB', STEP[0], STEP[2] + 0.12, Math.PI, t, {clip: 'idle_neutral_01', lookW: [STEP[0], 0, STEP[2] - 0.4], face: 'half'}), t, 0.06); resetTurn(I);
+    const t0 = ev('step') - 0.25, lift = (u: number) => u < 0 ? 0 : u < 0.22 ? Math.sin((u / 0.22) * Math.PI * 0.5) : u < 0.42 ? Math.cos(((u - 0.22) / 0.2) * Math.PI * 0.5) : 0;
+    const kL = lift(t - t0), kR = lift(t - t0 - 0.5);
+    // rest-stance foot spots = where the flip-flops lie (measured before the lift)
+    const spot = (sd: 'L' | 'R'): V3 => { const F = bw(I, `Bip01_${sd}_Foot`), T = bw(I, `Bip01_${sd}_Toe0`); return [F[0] + (T[0] - F[0]) * 0.45, 0.06, F[2] + (T[2] - F[2]) * 0.45]; };
+    const yawOf = (sd: 'L' | 'R') => { const F = bw(I, `Bip01_${sd}_Foot`), T = bw(I, `Bip01_${sd}_Toe0`); return Math.atan2(T[0] - F[0], T[2] - F[2]); };
+    const at = {L: spot('L'), R: spot('R')}, ya = {L: yawOf('L'), R: yawOf('R')};
+    ([['L', kL], ['R', kR]] as const).forEach(([sd, k]) => { if (k > 0.001) { rot(I.bones[`Bip01_${sd}_Thigh`], 1, 0, 0, -0.55 * k, I.root); rot(I.bones[`Bip01_${sd}_Calf`], 1, 0, 0, 0.95 * k, I.root); rot(I.bones[`Bip01_${sd}_Foot`], 1, 0, 0, -0.3 * k, I.root); } });
+    w.updateMatrixWorld(true);
+    const inL = t > t0 + 0.42, inR = t > t0 + 0.92;   // the left foot wears R, the right foot wears L
+    return {node: <>{street(t, C, {gate: 0, door: 1, traffic: false})}<P o={w} />
+      {inL ? onFoot(I, 'L', 'R', 0.06) : <FlipFlop side="R" position={at.L} rotation={[0, ya.L, 0]} />}
+      {inR ? onFoot(I, 'R', 'L', 0.06) : <FlipFlop side="L" position={at.R} rotation={[0, ya.R, 0]} />}</>,
+      cam: mv({pos: [STEP[0] - 0.95, 0.5, STEP[2] - 0.5], look: [STEP[0], 0.16, STEP[2] + 0.1], fov: 40}, lt, {arrive: 0.08, push: 0.1, roll0: 3}), bg: SKY};
   },
   swapped: (t, lt, C) => {
     // top-down ECU on his feet: the letters ข on the left foot, ซ on the right — the toes bulge the wrong way (2D annotation on top)
-    const I = C.naiB; hideProps(I); const w = body(I, ps('naiB', -3.4, 8.05, Math.PI, t, {clip: 'idle_neutral_01', lookW: [-3.4, 0, 7.6]}), t, 0.06);
-    return {node: <>{street(t, C, {gate: 0, traffic: false})}<P o={w} />{wornSwapped(I, 0.06)}</>,
-      cam: mv({pos: [-3.4, 1.25, 7.86], look: [-3.4, 0.06, 7.98], fov: 34}, lt, {arrive: 0.06, push: 0.1, roll0: 4, roll: -2}), bg: SKY};
+    const I = C.naiB; hideProps(I); const w = body(I, ps('naiB', STEP[0], STEP[2] + 0.12, Math.PI, t, {clip: 'idle_neutral_01', lookW: [STEP[0], 0, STEP[2] - 0.4]}), t, 0.06);
+    return {node: <>{street(t, C, {gate: 0, door: 1, traffic: false})}<P o={w} />{wornSwapped(I, 0.06)}</>,
+      cam: mv({pos: [STEP[0] + 0.1, 0.85, STEP[2] - 0.62], look: [STEP[0], 0.08, STEP[2] + 0.14], fov: 34}, lt, {arrive: 0.06, push: 0.1, roll0: 4, roll: -2}), bg: SKY};
   },
   tangle: (t, lt, C) => {
     // low, in front: out through the gate, his feet crossing over each other more with every step
@@ -256,7 +265,7 @@ export const SHOT_FN: Record<string, (t: number, lt: number, C: Cast) => ShotOut
   },
   van: (t, lt) => {
     // the prison van drives off down a long country road past the sign: "เรือนจำจังหวัดห่างไกล 812 กม."; the right one at the barred rear window
-    const z = 4 - Math.max(0, t - ev('vanGo') + 0.6) * 5.5; const yaw = Math.PI;
+    const z = 4 - Math.max(0, t - ev('vanGo') + 0.6) * 5.5; const yaw = Math.PI / 2;   // Van (EP1) faces local +x
     return {node: <>{longRoad(t)}{DAY()}<Van t={t} position={[-1.1, 0, z]} yaw={yaw} flashing={false} />
       <FlipFlop side="R" position={[-1.1, 1.35, z + 2.42]} rotation={[-Math.PI / 2 + 0.1, 0, Math.PI]} scale={1.6} /></>,
       cam: mv({pos: [1.6, 1.2, 9.5], look: [-0.6, 1.2, -4], fov: 44}, lt, {push: 0.05, arrive: 0.08}), bg: SKY};
@@ -268,7 +277,7 @@ export const SHOT_FN: Record<string, (t: number, lt: number, C: Cast) => ShotOut
     const tEnd = TOTAL / FPS - 0.5; const tt = Math.min(t, tEnd); const L = Math.min(lt, tEnd - sh('final').t0);
     const I = C.nai; hideProps(I); const g = gait([[-3.49, 9.35], [-3.0, 6.9]], tt, {t0: ev('door'), speed: pace('walk_neutral_01')});
     const w = body(I, walker('nai', g, tt, {face: 'half'}), tt, 0.06);
-    return {node: <>{street(tt, C, {gate: 0})}{tt > ev('door') - 0.1 && <P o={w} />}<FlipFlop side="L" position={add3(STEP, [-0.13, 0, -0.2])} rotation={[0, Math.PI, 0]} /></>,
+    return {node: <>{street(tt, C, {gate: 0, door: sm((tt - ev('door') + 0.45) / 0.4)})}{tt > ev('door') - 0.1 && <P o={w} />}<FlipFlop side="L" position={add3(STEP, [-0.13, 0, -0.2])} rotation={[0, Math.PI, 0]} /></>,
       cam: mv({pos: [-2.2, 1.05, 5.4], look: [-3.4, 0.75, 8.4], fov: 50}, L, {push: 0.04, arrive: 0.08, roll: 1.5}), bg: SKY};
   },
 };

@@ -25,7 +25,7 @@ const SwapNote: React.FC<{t: number}> = ({t}) => { const s = T('swapped'); if (t
   const box = (x: number, label: string) => <div style={{position: 'absolute', left: x, top: 640, width: 300, height: 560, border: '8px dashed #E0262B', borderRadius: 28, opacity: k}}>
     <div style={{position: 'absolute', top: -96, left: 0, right: 0, textAlign: 'center', color: '#E0262B', font: '700 64px Prompt, sans-serif', textShadow: '0 0 6px #fff'}}>{label}</div>
     <div style={{position: 'absolute', bottom: -110, left: 0, right: 0, textAlign: 'center', color: '#E0262B', font: '700 110px Prompt, sans-serif', textShadow: '0 0 6px #fff'}}>✕</div></div>;
-  return <AbsoluteFill>{box(170, 'เท้าขวา')}{box(610, 'เท้าซ้าย')}</AbsoluteFill>; };
+  return <AbsoluteFill>{box(40, 'เท้าขวา')}{box(660, 'เท้าซ้าย')}</AbsoluteFill>; };
 const World: React.FC<{t: number; P: any}> = ({t, P}) => {
   const sh = shotAt(t); const out = SHOT_FN[sh.name](t, t - sh.t0, P); const [fc, fi] = FILL[PLACE(sh.name)];
   return <><CamRig cam={out.cam} bg={out.bg ?? {color: '#BFD6E4'}} /><ambientLight color={fc} intensity={fi} /><group key={sh.name}>{out.node}</group></>;

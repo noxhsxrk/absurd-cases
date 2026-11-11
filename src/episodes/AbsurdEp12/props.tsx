@@ -33,6 +33,8 @@ const Strap: React.FC<{side: 'L' | 'R'; color: string}> = ({side, color}) => { c
   return <>{curve.map((c, i) => <mesh key={i} castShadow material={mat}><tubeGeometry args={[c, 10, 0.006, 6, false]} /></mesh>)}
     <mesh castShadow position={[0.018 * m, FF_T + 0.008, 0.075]} material={mat}><cylinderGeometry args={[0.004, 0.004, 0.016, 6]} /></mesh></>;
 };
+const tagMs: Partial<Record<'L' | 'R', THREE.MeshBasicMaterial>> = {};
+const tagM = (side: 'L' | 'R') => tagMs[side] ?? (tagMs[side] = new THREE.MeshBasicMaterial({toneMapped: false, map: tex('ep12-tag-' + side, 64, 64, (g) => { g.fillStyle = '#F4EEDB'; g.beginPath(); g.arc(32, 32, 31, 0, 7); g.fill(); g.fillStyle = '#152028'; g.font = F(700, 44); g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText(side === 'L' ? 'ซ' : 'ข', 32, 34); })}));
 export type FlipFlopProps = {side: 'L' | 'R'; position?: V3; rotation?: V3; scale?: number; color?: string};
 export const FlipFlop: React.FC<FlipFlopProps> = ({side, position = [0, 0, 0], rotation = [0, 0, 0], scale = 1, color = '#2F5E9E'}) => {
   const top = useMemo(() => new THREE.MeshLambertMaterial({map: insole(side)}), [side]);
@@ -40,6 +42,7 @@ export const FlipFlop: React.FC<FlipFlopProps> = ({side, position = [0, 0, 0], r
     <mesh geometry={soleGeo(side)} material={PM('#DCD6C8', 'ff-sole')} castShadow receiveShadow />
     <mesh geometry={topGeo(side)} material={top} position={[0, FF_T + 0.0065, 0]} receiveShadow />
     <Strap side={side} color={color} />
+    <mesh position={[(side === 'L' ? 1 : -1) * 0.018, FF_T + 0.024, 0.088]} rotation={[-0.5, 0, 0]} material={tagM(side)}><circleGeometry args={[0.016, 16]} /></mesh>
   </group>;
 };
 
