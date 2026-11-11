@@ -157,7 +157,9 @@ export const drive = (I: Inst, s: PersonState, t: number) => {
   if (crouched) base = P === 'crouchTalk' || s.talkK > 0.15 ? 'crouch_gestic' : 'crouch_idle';
   else if (!seated && (P === 'chat' || s.talkK > 0)) base = 'gestic_listen_neutral_01';
   // opt-in (v2026-11-03): s.loco = 'run' runs on run_neutral_01 when installed; s.clip plays any installed clip as the base pose
-  const loco = (s as any).loco === 'run' && I.lo.run_neutral_01 ? 'run_neutral_01' : 'walk_neutral_01';
+  // opt-in (v2026-11-11, lifekit): s.locoClip = any installed walk_*/run_* clip, stepped by the odometer with that clip's own stride (no foot sliding)
+  const locoOv = (s as any).locoClip as string | undefined;
+  const loco = locoOv && I.lo[locoOv] ? locoOv : (s as any).loco === 'run' && I.lo.run_neutral_01 ? 'run_neutral_01' : 'walk_neutral_01';
   const clipOv = (s as any).clip as string | undefined;
   if (!s.moving && clipOv && I.lo[clipOv]) base = clipOv;
   if (s.moving) { add(wLo, loco, 1); add(wUp, loco, 1); }
@@ -169,12 +171,18 @@ export const drive = (I: Inst, s: PersonState, t: number) => {
     else add(wUp, base, 1);
   }
   // walking while doing something with the arms (phone, carrying, pushing the cart)
+  // opt-in (v2026-11-11, lifekit): crossfade. s.clipB + s.mix (0…1) blends from clipB into the base clip — the caller derives mix from t
+  // (smoothstep over 6–10 frames after the switch), so it is frame-order independent. clipB may be a walk/run clip (stop → idle).
+  const clipB = (s as any).clipB as string | undefined, mixK = (s as any).mix as number | undefined;
+  if (!s.moving && clipB && I.lo[clipB] && mixK !== undefined && mixK < 1) for (const w of [wLo, wUp]) { for (const k in w) w[k] *= Math.max(0, mixK); w[clipB] = (w[clipB] ?? 0) + 1 - Math.max(0, mixK); }
   const upPose = s.moving ? (s.upper ?? (s.front === 'box' ? 'carry' : s.held === 'phone' ? 'standPhone' : P === 'push' ? 'push' : '')) : '';
   if (upPose && STAND[upPose]) { for (const k in wUp) delete wUp[k]; add(wUp, STAND[upPose], 1); }
   for (const name in I.lo) {
     const d = I.dur[name];
-    const tt = name === 'walk_neutral_01' || name === 'run_neutral_01' ? (s.odo / (name === 'walk_neutral_01' ? I.stride : I.strides[name] || I.stride)) * d : t + sd * d;
-    const time = ((tt % d) + d) % d;
+    // opt-in (v2026-11-11, lifekit): s.clipT / s.clipBT = seconds into the clip (one-shot gestures start on the word; held on the last frame, not looped)
+    const oneShot = name === clipOv ? (s as any).clipT : name === clipB ? (s as any).clipBT : undefined;
+    const tt = name === 'walk_neutral_01' || name === 'run_neutral_01' || name === locoOv ? (s.odo / (name === 'walk_neutral_01' ? I.stride : I.strides[name] || I.stride)) * d : t + sd * d;
+    const time = oneShot !== undefined ? Math.min(Math.max(0, oneShot), d - 1 / 30) : ((tt % d) + d) % d;
     I.lo[name].time = time; I.lo[name].setEffectiveWeight(wLo[name] ?? 0);
     I.up[name].time = time; I.up[name].setEffectiveWeight(wUp[name] ?? 0);
   }

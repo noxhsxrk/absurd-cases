@@ -119,7 +119,8 @@ const hairTop = (id: string, f: FaceSpec) => ctex(`hairtop:${id}:${FACE_STYLE}`,
 
 // ---------------------------------------------------------------- outfits
 export type BoxLook = {face: FaceSpec; jacket: string; lapel?: string; shirt: string; tie?: string; pants: string; shoes: string; sleeves?: 'jacket' | 'shirt' | 'short';
-  cap?: string; helmet?: string; vest?: string; robe?: boolean; pocket?: boolean; badge?: boolean; belt?: string; build?: number};
+  cap?: string; helmet?: string; vest?: string; robe?: boolean; pocket?: boolean; badge?: boolean; belt?: string; build?: number;
+  /** lifekit extras (2026-11-11): shoulder-length hair, a skirt over the thighs, a wide straw hat */ hairLong?: boolean; skirt?: string; hat?: string};
 export const BOX: Record<string, BoxLook> = {};
 
 type Inst = any;
@@ -157,6 +158,7 @@ export const applyBoxLook = (I: Inst, id: string) => {
   if (L.belt) { const bt = box(31.5 * b, 3, 20, PM(L.belt)); bt.position.set(0, 9, 0); hips.add(bt); }
   if (L.vest) { const v = box(40 * b, 30, 24, PM(L.vest)); v.position.set(0, 4, 0); chest.add(v); const v2 = box(33 * b, 14, 22, PM(L.vest)); v2.position.set(0, 9, 0); belly.add(v2); }
   if (L.robe) { const r = box(42 * b, 70, 26, jacket); r.position.set(0, -38, 0); belly.add(r); }
+  if (L.skirt) { const sk = new THREE.Mesh(new THREE.CylinderGeometry(17 * b, 24 * b, 40, 8), PM(L.skirt)); sk.castShadow = true; sk.frustumCulled = false; sk.position.set(0, -14, 0); hips.add(sk); }
   // neck + head (tall thin box; face on the front)
   limb(B.Bip01_Neck, B.Bip01_Head, 8, 8, skin, 1, 8);
   const head = frame(B.Bip01_Head);
@@ -169,6 +171,8 @@ export const applyBoxLook = (I: Inst, id: string) => {
     if (L.face.hairStyle !== 'slick') { const fr = box(18, 4, 5, hm); fr.position.set(L.face.hairStyle === 'messy' ? 2 : 0, 22.5, 10.5); fr.rotation.z = L.face.hairStyle === 'messy' ? -0.18 : 0; head.add(fr); }
     const back2 = box(22, 12, 6, hm); back2.position.set(0, 19, -8.5); head.add(back2);
   }
+  if (L.hairLong && !L.face.mask) { const hm = PM(L.face.hair, 'hair'); const bk = box(25, 30, 7, hm); bk.position.set(0, 9, -9.5); head.add(bk); for (const s of [-1, 1]) { const lk = box(4, 22, 12, hm); lk.position.set(s * 12.6, 10, -3); head.add(lk); } }
+  if (L.hat) { const hm = PM(L.hat); const br = new THREE.Mesh(new THREE.CylinderGeometry(9, 27, 9, 10), hm); br.castShadow = true; br.frustumCulled = false; br.position.set(0, 31, 1.2); head.add(br); }
   for (const s of [-1, 1]) { const ear = new THREE.Mesh(new THREE.SphereGeometry(3, 6, 4), PM(L.face.skin, 'ear')); ear.scale.set(0.6, 1, 0.8); ear.position.set(s * 12.4, 13, 0); head.add(ear); }
   if (L.cap) { const c = box(25, 6, 25, PM(L.cap)); c.position.set(0, 28, 1.2); head.add(c); const brim = box(20, 1.2, 7, PM(L.cap)); brim.position.set(0, 25.6, 12.5); head.add(brim); const bdg = box(3, 3, 0.4, PM('#D8B24A', 'b2')); bdg.position.set(0, 28.5, 9.6); head.add(bdg); }
   if (L.helmet) { const hm = box(27, 11, 27, PM(L.helmet)); hm.position.set(0, 27, 1); head.add(hm); const gg = box(20, 5, 2, PM('#2C3A44', 'gog')); gg.position.set(0, 18.5, 12.2); head.add(gg); }

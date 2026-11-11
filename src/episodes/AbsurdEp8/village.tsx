@@ -18,7 +18,8 @@ const plaster = (key: string, base: string) => tm('vp-' + key, base, (g) => { sp
 const ROAD_W = 6;
 const PASTEL = ['#E0D3A8', '#C9D6BD', '#E2C7AE', '#D2CFC6', '#E4DBB8', '#C2D0D8'];
 const ROOF = ['#8C3F2A', '#4E5C6E', '#6E3524', '#5B605A'];
-const GLASS = M('#2A3A44', 0.15, 0.2); const FRAME = M('#5A3B24', 0.7); const TRIM = M('#EDEBE4', 0.8); const GATE = M('#30353A', 0.45, 0.6);
+const GLASS = M('#2A3A44', 0.15, 0.2);
+const LIT = [new THREE.MeshBasicMaterial({color: '#FFD9A0', toneMapped: false}), new THREE.MeshBasicMaterial({color: '#FFE9C4', toneMapped: false}), new THREE.MeshBasicMaterial({color: '#9CC4F0', toneMapped: false})]; const FRAME = M('#5A3B24', 0.7); const TRIM = M('#EDEBE4', 0.8); const GATE = M('#30353A', 0.45, 0.6);
 
 /** a pitched roof: triangular prism, ridge along x */
 const Roof: React.FC<{p: V3; w: number; d: number; h: number; c: string}> = ({p, w, d, h, c}) => {
@@ -35,7 +36,7 @@ const Tree: React.FC<{p: V3; seed: number}> = ({p, seed}) => {
   </group>;
 };
 /** one house; side = -1 (z < 0) or +1 (z > 0); its front faces the road */
-const House: React.FC<{x: number; side: number; i: number}> = ({x, side, i}) => {
+const House: React.FC<{x: number; side: number; i: number; night?: number; t?: number; open?: number}> = ({x, side, i, night = 0, t = 0, open = 0}) => {
   const W = 7 + hash(i) * 1.5, D = 7.5; const s = side;
   const front = s * (ROAD_W / 2 + 1.6 + 1.0 + 3.6); const zc = front + s * D / 2;
   const wall = plaster('h' + (i % 6), PASTEL[i % 6]); const fz = front - s * 0.03;
@@ -46,7 +47,7 @@ const House: React.FC<{x: number; side: number; i: number}> = ({x, side, i}) => 
     <Roof p={[x, 6.0, zc]} w={W + 1.0} d={D + 1.2} h={2.2} c={ROOF[i % 4]} />
     {[-1, 1].map((k) => [0, 1].map((fl) => (fl === 0 && k === -1) ? null :
       <group key={`${k}${fl}`} position={[x + k * W * 0.28, fl ? 4.4 : 1.6, fz]}>
-        <Bx p={[0, 0, -s * 0.01]} s={[1.75, 1.45, 0.05]} m={FRAME} cast={false} /><Bx p={[0, 0, -s * 0.03]} s={[1.6, 1.3, 0.04]} m={GLASS} cast={false} />
+        <Bx p={[0, 0, -s * 0.01]} s={[1.75, 1.45, 0.05]} m={FRAME} cast={false} /><Bx p={[0, 0, -s * 0.03]} s={[1.6, 1.3, 0.04]} m={night > 0.5 && hash(i * 9 + k * 2 + fl * 5) < 0.6 ? (hash(i * 4 + k + fl) < 0.25 ? (LIT[2].color.setHSL(0.58, 0.6, 0.62 + 0.14 * Math.sin(t * 9 + i) * Math.sin(t * 23 + i * 3)), LIT[2]) : LIT[(i + fl) % 2]) : GLASS} cast={false} />
         <Bx p={[0, -0.74, -s * 0.09]} s={[1.9, 0.06, 0.16]} m={TRIM} />
       </group>))}
     <Bx p={[x - W * 0.28, 1.1, fz - s * 0.01]} s={[1.0, 2.2, 0.06]} m={FRAME} cast={false} />
@@ -56,18 +57,23 @@ const House: React.FC<{x: number; side: number; i: number}> = ({x, side, i}) => 
     <mesh receiveShadow rotation={[-Math.PI / 2, 0, 0]} position={[x, 0.06, yard]} material={M('#5E7A3A', 0.95)}><planeGeometry args={[W + 1.0, 3.6]} /></mesh>
     <Bx p={[x - W * 0.33, 0.6, fenceZ]} s={[W * 0.34, 1.2, 0.18]} m={plaster('fence', '#E6E2D6')} />
     <Bx p={[x + W * 0.3, 0.6, fenceZ]} s={[W * 0.4, 1.2, 0.18]} m={plaster('fence', '#E6E2D6')} />
-    {Array.from({length: 10}, (_, b) => <Bx key={b} p={[x - 0.3 - 1.1 + b * 0.25, 0.75, fenceZ]} s={[0.04, 1.4, 0.05]} m={GATE} />)}
-    <Bx p={[x - 0.3, 1.43, fenceZ]} s={[2.6, 0.06, 0.06]} m={GATE} />
+    {Array.from({length: 10}, (_, b) => <Bx key={b} p={[x - 0.3 - 1.1 + b * 0.25 + open * 2.45, 0.75, fenceZ - s * 0.14 * Math.min(1, open * 4)]} s={[0.04, 1.4, 0.05]} m={GATE} />)}
+    <Bx p={[x - 0.3 + open * 2.45, 1.43, fenceZ - s * 0.14 * Math.min(1, open * 4)]} s={[2.6, 0.06, 0.06]} m={GATE} />
     {hash(i * 3) < 0.85 && <Tree p={[x + W * 0.32, 0.06, s * (ROAD_W / 2 + 4.4)]} seed={i * 11 + 3} />}
     {hash(i * 5) < 0.4 && <mesh castShadow position={[x - W * 0.42, 0.4, s * (ROAD_W / 2 + 3.2)]} material={M('#3E7D45', 0.9)}><sphereGeometry args={[0.35, 10, 8]} /></mesh>}
   </group>;
 };
 
-export const Village: React.FC<{x0?: number; x1?: number; clear?: [number, number]}> = ({x0 = -34, x1 = 34, clear}) => {
+/** the house lots of a Village(x0, x1), for dressing them (lifekit): x centre, side (−1: z < 0, +1: z > 0), width W, index i.
+ *  Per lot: fence wall along z = side·5.6 (top y 1.2) with a gate at x − 0.3; yard to z = side·9.2; house front beyond; a tree near (x + 0.32·W, side·7.4). */
+export const lots = (x0 = -34, x1 = 34) => { const out: {x: number; side: number; W: number; i: number}[] = [];
+  for (const s of [-1, 1]) { let x = x0 + hash(s + 7) * 4; while (x < x1) { out.push({x, side: s, W: 7 + hash(out.length) * 1.5, i: out.length}); x += 9.6 + hash(x) * 1.4; } }
+  return out; };
+export const Village: React.FC<{x0?: number; x1?: number; clear?: [number, number]; /** 1 = night: seeded windows lit, some TV-blue (pass t for the flicker) */ night?: number; t?: number; /** lot index → how far its sliding gate is open (0…1) */ gates?: Record<number, number>}> = ({x0 = -34, x1 = 34, clear, night = 0, t = 0, gates = {}}) => {
   const road = tm('vroad', '#3E4044', (g) => { speckle(g, 512, 512, 7000, ['#000', '#888'], 0.05, 0.18, 1, 3, 21); grime(g, 512, 512, 0.25, 6, 4); }, [24, 2], 0.92);
   const path = tm('vpath', '#A8A39A', (g) => { speckle(g, 512, 512, 2200, ['#000', '#fff'], 0.03, 0.07, 1, 3, 5); g.fillStyle = '#8A867E'; for (let k = 0; k <= 4; k++) g.fillRect(k * 128 - 1, 0, 2, 512); }, [60, 1], 0.8);
   const grass = tm('vgrass', '#5B7838', (g) => { speckle(g, 512, 512, 9000, ['#2E4A1E', '#8BA65A'], 0.08, 0.25, 1, 2, 31); }, [40, 8], 0.95);
-  const xs: [number, number][] = []; for (const s of [-1, 1]) { let x = x0 + hash(s + 7) * 4; let i = 0; while (x < x1) { xs.push([x, s]); x += 9.6 + hash(x) * 1.4; i++; } }
+  const xs = lots(x0, x1).map((l) => [l.x, l.side] as [number, number]);
   const L = x1 - x0 + 40, cx = (x0 + x1) / 2;
   return <group>
     <mesh receiveShadow rotation={[-Math.PI / 2, 0, 0]} position={[cx, -0.02, 0]} material={grass}><planeGeometry args={[L + 40, 140]} /></mesh>
@@ -78,7 +84,7 @@ export const Village: React.FC<{x0?: number; x1?: number; clear?: [number, numbe
       <mesh receiveShadow rotation={[-Math.PI / 2, 0, 0]} position={[cx, 0.12, s * (ROAD_W / 2 + 1.6)]} material={path}><planeGeometry args={[L, 1.1]} /></mesh>
       <Bx p={[cx, 0.06, s * (ROAD_W / 2 + 1.6)]} s={[L, 0.12, 1.1]} m={M('#8F8B84', 0.9)} cast={false} />
     </group>)}
-    {xs.map(([x, s], i) => <House key={i} x={x} side={s} i={i} />)}
+    {xs.map(([x, s], i) => <House key={i} x={x} side={s} i={i} night={night} t={t} open={gates[i] ?? 0} />)}
     {Array.from({length: 5}, (_, k) => x0 + 6 + k * 16).filter((x) => !clear || x < clear[0] || x > clear[1]).map((x) => <group key={x} position={[x, 0, -(ROAD_W / 2 + 0.5)]}>
       <mesh castShadow position={[0, 3.2, 0]} material={M('#6C7076', 0.5, 0.5)}><cylinderGeometry args={[0.06, 0.09, 6.4, 8]} /></mesh>
       <Bx p={[0, 6.35, 0.7]} s={[0.1, 0.1, 1.4]} m={M('#6C7076', 0.5, 0.5)} />
