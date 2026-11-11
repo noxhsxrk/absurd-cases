@@ -215,19 +215,19 @@ P(take('phone_taps', lambda: click(), 1.6), 0.18, EV['press'] - 0.35)
 # ---- traffic police: whistle, the siren light on the bike, the clamp, the tow truck
 s = loopto(take('siren', lambda: siren(6, 700, 1050, 0.9), trim=False), T('towed') - EV['siren']); s = env(s, [(0, 0), (0.15, 1), (len(s) / R - 0.5, 1), (len(s) / R, 0)])
 M.put2(to_st(rms_to(s, 0.003 * FX)), EV['siren'], 1.0, width=0.6)
-P(take('police_whistle', lambda: siren(1.0, 2600, 2900, 0.08), 2.4), 0.5, EV['cop'] + 0.1, 0.3)
-P(take('wheel_clamp', lambda: metal(260, 0.8, 6), 1.4), 0.6, EV['clamp'] - 0.03)
+P(take('police_whistle', lambda: siren(1.0, 2600, 2900, 0.08), 1.3), 0.3, EV['cop'] - 0.35, 0.3)   # before the words, short
+P(hp(take('wheel_clamp', lambda: metal(260, 0.8, 6), 1.4), 150), 0.6, EV['clamp'] - 0.03)   # the SAO take carries sub-bass rumble (peak 11 Hz)
 rev = np.concatenate([np.pad(beep(1050, 0.25), (0, int(0.25 * R)))] * 4)   # reversing beeper: electronic, synthesized
-P(rev, 0.2, EV['tow'] - 0.1, 0.4)
-P(take('tow_winch', lambda: spinup(1.2, 200, 700), 1.8), 0.4, EV['hook'] + 0.05, 0.3); P(take('chain_rattle', lambda: metal(500, 0.4, 9), 0.8), 0.25, EV['lift'], 0.3)
-P(take('truck_away', lambda: engine(3.0), 3.0), 0.45, EV['lift'] + 0.2, 0.5)
+P(rev, 0.12, EV['tow'] - 0.1, 0.4)
+P(take('tow_winch', lambda: spinup(1.2, 200, 700), 1.5), 0.17, EV['hook'] + 0.05, 0.3); P(take('chain_rattle', lambda: metal(500, 0.4, 9), 0.8), 0.25, EV['lift'], 0.3)
+P(take('truck_away', lambda: engine(3.0), 3.0), 0.22, EV['lift'] + 0.2, 0.5)
 # ---- court, cells, release, the van
 P(take('gavel', lambda: thud(110, 0.3), 0.45), 0.55, EV['gavel'] - 0.02)
 P(take('cell_door', lambda: metal(180, 1.2), 1.5), 0.6, EV['cellShut'] - 0.03)
 P(take('giant_lock', lambda: metal(220, 0.6, 6), 0.9), 0.4, EV['gate'] - 0.05)
 k = 0
 while EV['gate'] + 0.1 + k * 0.52 < T('early'): P(flap(), 0.16, EV['gate'] + 0.1 + k * 0.52, 0.1); k += 1    # it hops out, one slap per hop
-P(take('truck_away', lambda: engine(3.0), 3.0), 0.4, EV['vanGo'] - 0.4, -0.2)
+P(take('truck_away', lambda: engine(3.0), 3.0), 0.22, EV['vanGo'] - 0.4, -0.2)
 P(take('door_open', lambda: clunk(180, 0.3, 0.6), 1.0), 0.22, EV['door'] - 0.05, -0.2)
 P(take('steps_road', lambda: boots(1.2), 1.5), 0.2, EV['door'] + 0.3, -0.1)
 
@@ -237,7 +237,7 @@ m = (VOX + M.mix * (1 - 0.3 * np.clip(d, 0, 1))[:, None] + M.beds)[:int(TOTAL * 
 on = M.vo_env[:len(m)] > 0.5; rest = m - VOX[:len(m)]
 if VOICE.exists():
     print('voice over everything else while speaking: %.1f dB' % (db(VOX[:len(m)][on]) - db(rest[on])))
-    for nm, a_, b_ in [('ringing', EV['ring'], EV['pull']), ('after', EV['pull'], TOTAL)]:
+    for nm, a_, b_ in [('home', 0, T('phone')), ('police', T('cop'), T('court')), ('court+cells', T('court'), T('leftOut')), ('after', T('leftOut'), TOTAL)]:
         w = on & (np.arange(len(m)) >= a_ * R) & (np.arange(len(m)) < b_ * R); print('  %s: %.1f dB' % (nm, db(VOX[:len(m)][w]) - db(rest[w])))
 m = m / max(np.max(np.abs(m)), 1e-9) * 0.7
 w_ = wave.open(str(RAW), 'wb'); w_.setnchannels(2); w_.setsampwidth(2); w_.setframerate(R); w_.writeframes((np.clip(m, -1, 1) * 32767).astype(np.int16).tobytes()); w_.close()
