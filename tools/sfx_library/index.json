@@ -1,5 +1,49 @@
 [
  {
+  "cue": "cable_cinch",
+  "rank": 1,
+  "path": "public/absurd-cases/ep10/sfx_sao/cable_cinch_r1.wav",
+  "engine": "sao",
+  "score": null,
+  "episode": "10",
+  "prompt": "A rubber network cable whipped and wrapped tightly around plastic rods, quick rubbery swish and squeak, then a tight cinch, close foley.",
+  "target": "a cable being pulled tight and wrapped",
+  "tags": [
+   "cartoon",
+   "material"
+  ],
+  "sha": "9c466bbcae88d46fa9fd8ce007d2b50a6fa23f7b",
+  "local": true,
+  "sec": 2.0,
+  "sr": 44100,
+  "ch": 2,
+  "rms_db": -27.4,
+  "peak_db": -1.0,
+  "store": "sounds/cable_cinch/cable_cinch_r1_sao.wav"
+ },
+ {
+  "cue": "cell_door",
+  "rank": 1,
+  "path": "public/absurd-cases/ep10/sfx_sao/cell_door_r1.wav",
+  "engine": "sao",
+  "score": null,
+  "episode": "10",
+  "prompt": "a heavy steel jail cell door slides shut and slams with a loud metallic clang",
+  "target": "a jail cell door slamming",
+  "tags": [
+   "impact",
+   "mechanical"
+  ],
+  "sha": "fcd3d377e847add476829436826d843bef724455",
+  "local": true,
+  "sec": 2.5,
+  "sr": 16000,
+  "ch": 1,
+  "rms_db": -18.3,
+  "peak_db": -0.9,
+  "store": "sounds/cell_door/cell_door_r1_sao_ep9.wav"
+ },
+ {
   "cue": "cell_hum",
   "rank": 1,
   "path": "public/absurd-cases/ep10/sfx_sao/cell_hum_r1.wav",
@@ -56,7 +100,11 @@
   ],
   "sha": "5589ae1e1f4bbd705a2e1dc1e39541bc904cf916",
   "local": true,
-  "error": "unknown format: 3",
+  "sec": 10.0,
+  "sr": 16000,
+  "ch": 1,
+  "rms_db": -24.5,
+  "peak_db": -8.5,
   "store": "sounds/crickets/crickets_r1_sao_ep10.wav"
  },
  {
@@ -94,7 +142,11 @@
   "tags": [],
   "sha": "345dee5e79d622d9fde85a82e7ef8314e917b3d3",
   "local": true,
-  "error": "unknown format: 3",
+  "sec": 3.0,
+  "sr": 16000,
+  "ch": 1,
+  "rms_db": -16.7,
+  "peak_db": -1.9,
   "store": "sounds/electric_buzz/electric_buzz_r1_sao_ep10.wav"
  },
  {
@@ -134,7 +186,11 @@
   ],
   "sha": "2885feaa82f66b5923eacf4ded9b4d7c25652206",
   "local": true,
-  "error": "unknown format: 3",
+  "sec": 1.5,
+  "sr": 16000,
+  "ch": 1,
+  "rms_db": -16.6,
+  "peak_db": -3.2,
   "store": "sounds/knock/knock_r1_sao_ep10.wav"
  },
  {
@@ -151,7 +207,11 @@
   ],
   "sha": "0ffe5d0644dc67d7176725e0c622bc33b81e4145",
   "local": true,
-  "error": "unknown format: 3",
+  "sec": 10.0,
+  "sr": 16000,
+  "ch": 1,
+  "rms_db": -26.4,
+  "peak_db": -13.8,
   "store": "sounds/night_quiet/night_quiet_r1_sao_ep10.wav"
  },
  {
@@ -213,7 +273,11 @@
   ],
   "sha": "63973374660a1f635ed020fc6ade56e77617fd05",
   "local": true,
-  "error": "unknown format: 3",
+  "sec": 8.0,
+  "sr": 16000,
+  "ch": 1,
+  "rms_db": -20.1,
+  "peak_db": -7.5,
   "store": "sounds/prison_hall/prison_hall_r1_sao_ep10.wav"
  },
  {
@@ -259,6 +323,27 @@
   "rms_db": -14.5,
   "peak_db": -1.0,
   "store": "sounds/siren/siren_r1_sao_ep8.wav"
+ },
+ {
+  "cue": "steel_lid_slam",
+  "rank": 1,
+  "path": "public/absurd-cases/ep10/sfx_sao/steel_lid_slam_r1.wav",
+  "engine": "sao",
+  "score": null,
+  "episode": "10",
+  "prompt": "A heavy steel box lid slammed shut, loud metallic clang with a short ringing tail, then a padlock snapping, close foley.",
+  "target": "a heavy steel lid slamming shut",
+  "tags": [
+   "impact"
+  ],
+  "sha": "da43179301fcbabddb593a0f61fe96cceb139f8f",
+  "local": true,
+  "sec": 2.0,
+  "sr": 44100,
+  "ch": 2,
+  "rms_db": -28.3,
+  "peak_db": -1.0,
+  "store": "sounds/steel_lid_slam/steel_lid_slam_r1_sao.wav"
  },
  {
   "cue": "swat_indoor",
@@ -11089,6 +11174,266 @@
   "rms_db": -27.7,
   "peak_db": -1.0,
   "store": "sounds/steel_lid_slam/steel_lid_slam_r4_sao.wav"
+ },
+ {
+  "cue": "alarm_bell",
+  "rank": 1,
+  "path": "tools/ai-sfx/out_sao11/alarm_bell_r1.wav",
+  "engine": "sao",
+  "score": 0.4442,
+  "episode": null,
+  "prompt": "A vintage mechanical twin-bell alarm clock ringing loudly and continuously, fast metallic hammer rattling between two brass bells, close foley, dry room.",
+  "target": "a mechanical twin bell alarm clock ringing",
+  "tags": [
+   "ambience",
+   "tonal"
+  ],
+  "sha": "58f75cac9ea8ddbb1047cf6d1021d1751626b099",
+  "local": false,
+  "sec": 5.0,
+  "sr": 44100,
+  "ch": 2,
+  "rms_db": -17.3,
+  "peak_db": -1.0,
+  "store": "sounds/alarm_bell/alarm_bell_r1_sao.wav"
+ },
+ {
+  "cue": "alarm_bell",
+  "rank": 2,
+  "path": "tools/ai-sfx/out_sao11/alarm_bell_r2.wav",
+  "engine": "sao",
+  "score": 0.4404,
+  "episode": null,
+  "prompt": "A vintage mechanical twin-bell alarm clock ringing loudly and continuously, fast metallic hammer rattling between two brass bells, close foley, dry room.",
+  "target": "a mechanical twin bell alarm clock ringing",
+  "tags": [
+   "ambience",
+   "tonal"
+  ],
+  "sha": "8f6dd15c1a968caba980cbc977b565f33c7486d9",
+  "local": false,
+  "sec": 5.0,
+  "sr": 44100,
+  "ch": 2,
+  "rms_db": -15.9,
+  "peak_db": -1.0,
+  "store": "sounds/alarm_bell/alarm_bell_r2_sao.wav"
+ },
+ {
+  "cue": "alarm_bell",
+  "rank": 3,
+  "path": "tools/ai-sfx/out_sao11/alarm_bell_r3.wav",
+  "engine": "sao",
+  "score": 0.4293,
+  "episode": null,
+  "prompt": "A vintage mechanical twin-bell alarm clock ringing loudly and continuously, fast metallic hammer rattling between two brass bells, close foley, dry room.",
+  "target": "a mechanical twin bell alarm clock ringing",
+  "tags": [
+   "ambience",
+   "tonal"
+  ],
+  "sha": "bbd0eda62ee12fb8d0f525107c317553b1195278",
+  "local": false,
+  "sec": 5.0,
+  "sr": 44100,
+  "ch": 2,
+  "rms_db": -20.2,
+  "peak_db": -1.0,
+  "store": "sounds/alarm_bell/alarm_bell_r3_sao.wav"
+ },
+ {
+  "cue": "alarm_bell",
+  "rank": 4,
+  "path": "tools/ai-sfx/out_sao11/alarm_bell_r4.wav",
+  "engine": "sao",
+  "score": 0.3797,
+  "episode": null,
+  "prompt": "A vintage mechanical twin-bell alarm clock ringing loudly and continuously, fast metallic hammer rattling between two brass bells, close foley, dry room.",
+  "target": "a mechanical twin bell alarm clock ringing",
+  "tags": [
+   "ambience",
+   "tonal"
+  ],
+  "sha": "66764dbd654829ab29d6c8387347eacd0af62102",
+  "local": false,
+  "sec": 5.0,
+  "sr": 44100,
+  "ch": 2,
+  "rms_db": -17.2,
+  "peak_db": -1.0,
+  "store": "sounds/alarm_bell/alarm_bell_r4_sao.wav"
+ },
+ {
+  "cue": "clock_tick",
+  "rank": 1,
+  "path": "tools/ai-sfx/out_sao11/clock_tick_r1.wav",
+  "engine": "sao",
+  "score": 0.2705,
+  "episode": null,
+  "prompt": "A small mechanical alarm clock ticking steadily, clear dry tick tock, one tick per half second, very close microphone, quiet room.",
+  "target": "a clock ticking",
+  "tags": [
+   "ambience"
+  ],
+  "sha": "b3ebfa18f91efff9e97befda90bdf29ac1c9c27b",
+  "local": false,
+  "sec": 5.0,
+  "sr": 44100,
+  "ch": 2,
+  "rms_db": -35.0,
+  "peak_db": -1.0,
+  "store": "sounds/clock_tick/clock_tick_r1_sao.wav"
+ },
+ {
+  "cue": "clock_tick",
+  "rank": 2,
+  "path": "tools/ai-sfx/out_sao11/clock_tick_r2.wav",
+  "engine": "sao",
+  "score": 0.2328,
+  "episode": null,
+  "prompt": "A small mechanical alarm clock ticking steadily, clear dry tick tock, one tick per half second, very close microphone, quiet room.",
+  "target": "a clock ticking",
+  "tags": [
+   "ambience"
+  ],
+  "sha": "1945f57b61293382d5ef1329bd8de89a20d63277",
+  "local": false,
+  "sec": 5.0,
+  "sr": 44100,
+  "ch": 2,
+  "rms_db": -36.4,
+  "peak_db": -1.0,
+  "store": "sounds/clock_tick/clock_tick_r2_sao.wav"
+ },
+ {
+  "cue": "clock_tick",
+  "rank": 3,
+  "path": "tools/ai-sfx/out_sao11/clock_tick_r3.wav",
+  "engine": "sao",
+  "score": 0.2299,
+  "episode": null,
+  "prompt": "A small mechanical alarm clock ticking steadily, clear dry tick tock, one tick per half second, very close microphone, quiet room.",
+  "target": "a clock ticking",
+  "tags": [
+   "ambience"
+  ],
+  "sha": "57c1d224043605dfbcb260ab347271d95e5261e1",
+  "local": false,
+  "sec": 5.0,
+  "sr": 44100,
+  "ch": 2,
+  "rms_db": -35.7,
+  "peak_db": -1.0,
+  "store": "sounds/clock_tick/clock_tick_r3_sao.wav"
+ },
+ {
+  "cue": "clock_tick",
+  "rank": 4,
+  "path": "tools/ai-sfx/out_sao11/clock_tick_r4.wav",
+  "engine": "sao",
+  "score": 0.1091,
+  "episode": null,
+  "prompt": "A small mechanical alarm clock ticking steadily, clear dry tick tock, one tick per half second, very close microphone, quiet room.",
+  "target": "a clock ticking",
+  "tags": [
+   "ambience"
+  ],
+  "sha": "74839d6a0fae068388e8e94a4ed5f6d1768f5892",
+  "local": false,
+  "sec": 5.0,
+  "sr": 44100,
+  "ch": 2,
+  "rms_db": -33.6,
+  "peak_db": -1.0,
+  "store": "sounds/clock_tick/clock_tick_r4_sao.wav"
+ },
+ {
+  "cue": "singing_bowl",
+  "rank": 1,
+  "path": "tools/ai-sfx/out_sao11/singing_bowl_r1.wav",
+  "engine": "sao",
+  "score": 0.2488,
+  "episode": null,
+  "prompt": "A single soft strike on a brass meditation singing bowl, one clear warm tone with a long calm ringing decay, quiet room, no melody.",
+  "target": "a meditation singing bowl struck once",
+  "tags": [
+   "ambience",
+   "tonal"
+  ],
+  "sha": "827c5d75655aec6410725dc4c52025988aaac1ca",
+  "local": false,
+  "sec": 5.0,
+  "sr": 44100,
+  "ch": 2,
+  "rms_db": -33.5,
+  "peak_db": -1.0,
+  "store": "sounds/singing_bowl/singing_bowl_r1_sao.wav"
+ },
+ {
+  "cue": "singing_bowl",
+  "rank": 2,
+  "path": "tools/ai-sfx/out_sao11/singing_bowl_r2.wav",
+  "engine": "sao",
+  "score": 0.2177,
+  "episode": null,
+  "prompt": "A single soft strike on a brass meditation singing bowl, one clear warm tone with a long calm ringing decay, quiet room, no melody.",
+  "target": "a meditation singing bowl struck once",
+  "tags": [
+   "ambience",
+   "tonal"
+  ],
+  "sha": "5ab84e6fde254375a8e026667e9bab69ab579596",
+  "local": false,
+  "sec": 5.0,
+  "sr": 44100,
+  "ch": 2,
+  "rms_db": -36.7,
+  "peak_db": -1.0,
+  "store": "sounds/singing_bowl/singing_bowl_r2_sao.wav"
+ },
+ {
+  "cue": "singing_bowl",
+  "rank": 3,
+  "path": "tools/ai-sfx/out_sao11/singing_bowl_r3.wav",
+  "engine": "sao",
+  "score": 0.217,
+  "episode": null,
+  "prompt": "A single soft strike on a brass meditation singing bowl, one clear warm tone with a long calm ringing decay, quiet room, no melody.",
+  "target": "a meditation singing bowl struck once",
+  "tags": [
+   "ambience",
+   "tonal"
+  ],
+  "sha": "ea39fdd4b5320c7c04cba10bcc31bdf454577ae1",
+  "local": false,
+  "sec": 5.0,
+  "sr": 44100,
+  "ch": 2,
+  "rms_db": -17.9,
+  "peak_db": -1.0,
+  "store": "sounds/singing_bowl/singing_bowl_r3_sao.wav"
+ },
+ {
+  "cue": "singing_bowl",
+  "rank": 4,
+  "path": "tools/ai-sfx/out_sao11/singing_bowl_r4.wav",
+  "engine": "sao",
+  "score": 0.1865,
+  "episode": null,
+  "prompt": "A single soft strike on a brass meditation singing bowl, one clear warm tone with a long calm ringing decay, quiet room, no melody.",
+  "target": "a meditation singing bowl struck once",
+  "tags": [
+   "ambience",
+   "tonal"
+  ],
+  "sha": "a6242a668d97dd8e690d8fd7070bb0f726bce36f",
+  "local": false,
+  "sec": 5.0,
+  "sr": 44100,
+  "ch": 2,
+  "rms_db": -26.7,
+  "peak_db": -1.0,
+  "store": "sounds/singing_bowl/singing_bowl_r4_sao.wav"
  },
  {
   "cue": "beep",
