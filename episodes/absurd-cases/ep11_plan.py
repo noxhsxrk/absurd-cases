@@ -25,12 +25,12 @@ ev.update(ring=P('l002') - 0.3, wake=P('l002') + 0.35, compare=P('l002', 1) + 0.
           gavel=P('l009') + 0.75, unhand=E('l009', 0) + 0.85, cellShut=P('l009', 1) + 0.3, stamp=P('l010') + 0.3,
           gate=P('l011'), sign=P('l012', 1) + 0.1, bow=E('l013') + 0.45, end=E('l013'))
 ev = {k: round(v, 3) for k, v in ev.items()}
-SHOTS = [('sleep', 0.0), ('ring', P('l002') - .35), ('early', P('l002', 1) - .05), ('charge', P('l003') - .05), ('phone', P('l004') - .05), ('callUI', P('l004', 1) + .1),
+SHOTS = [('sleep', 0.0), ('ring', P('l002') - .35), ('early', P('l002', 1) - .05), ('point', P('l003') - .05), ('charge', P('l003', 1) - .05), ('phone', P('l004') - .05), ('callUI', P('l004', 1) + .1),
          ('raid', P('l005') - .05), ('surround', P('l005', 1) - .05), ('pliers', P('l006') - .05), ('battery', P('l006', 1) - .05),
          ('carry', P('l007') - .05), ('interro', P('l007', 1) - .05), ('file', E('l007') + .15), ('tick', P('l008') - .05), ('defy', P('l008', 1) - .05),
          ('court', P('l009') - .05), ('unhand', E('l009', 0) + .15), ('cell', P('l009', 1) - .05), ('parole', P('l010') - .05), ('onTime', P('l010', 1) - .05),
          ('release', P('l011') - .05), ('noHands', P('l011', 1) - .05), ('ordain', P('l012') - .05), ('school', P('l012', 1) - .05),
-         ('disciples', P('l013') - .05), ('nation', P('l013', 1) - .05), ('final', E('l013') + .15)]
+         ('disciples', P('l013') - .5), ('nation', P('l013', 1) - .05), ('final', E('l013') + .15)]
 TOTAL = round((speech + HOLD) * FPS)
 fr = [round(t * FPS) for _, t in SHOTS] + [TOTAL]
 shots = [{'name': n, 'from': fr[i], 'dur': fr[i + 1] - fr[i], 't0': round(fr[i] / FPS, 3), 't1': round(fr[i + 1] / FPS, 3)} for i, (n, _) in enumerate(SHOTS)]

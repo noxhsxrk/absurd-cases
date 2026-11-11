@@ -231,9 +231,15 @@ export const SHOT_FN: Record<string, (t: number, lt: number, C: Cast) => ShotOut
     return {node: <>{bedroom(t)}<P o={w} />{bedClock(t)}<PhoneTime position={ph} face={cam} scale={1.7} roll={0.06} /><pointLight position={add3(ph, [-0.2, 0, 0.15])} color="#A8CCF0" intensity={0.5} distance={1.2} /></>,
       cam: mv({pos: cam, look: [1.06, 0.95, -1.63], fov: 36}, lt, {arrive: 0.08, push: 0.07, roll0: -2}), bg: NIGHT};
   },
+  point: (t, lt, C) => {
+    // "นั่นคือ…": MCU, he glares at it and his arm comes up
+    const w = lying(C, t, {look: CK_C, face: lt > 0.25 ? 'shout' : 'angry', point: sm((lt - 0.1) / 0.2)});
+    return {node: <>{bedroom(t)}<P o={w} />{bedClock(t)}</>,
+      cam: mv({pos: [0.98, 1.38, -0.95], look: [0.3, 0.86, -1.6], fov: 36}, lt, {arrive: 0.1, push: 0.14, side: -0.4, roll0: 3}), bg: NIGHT};
+  },
   charge: (t, lt, C) => {
     // he flings a finger at it; the plate drops on "ปลอมแปลงเวลาราชการ"
-    const w = lying(C, t, {look: CK_C, face: 'shout', point: sm((t - sh('charge').t0 - 0.1) / 0.18)});
+    const w = lying(C, t, {look: CK_C, face: 'shout', point: 1});
     return {node: <>{bedroom(t)}<P o={w} />{bedClock(t)}</>,
       cam: mv({pos: [-0.7, 1.95, -0.45], look: [0.5, 0.72, -1.8], fov: 56}, lt, {arrive: 0.1, push: 0.1, roll0: -3, shake: near(t, [ev('plate1')], 0.2) ? 0.01 : 0}), bg: NIGHT};
   },

@@ -209,7 +209,7 @@ tk = loopto(take('clock_tick', lambda: np.tile(tick1(), 10), trim=False), EV['ri
 M.put(rms_to(edge(tk, 0.02, 0.02), 0.012 * FX), 0, 0.25)
 ring_len = EV['pull'] - EV['ring']
 al = loopto(take('alarm_bell', lambda: np.tile(metal(2400, 0.04, 30), 125)), ring_len)
-al = env(rms_to(al, 0.05 * FX), [(0, 1), (1.3, 1), (1.9, 0.3), (ring_len - 0.5, 0.3), (ring_len - 0.25, 0.5), (ring_len - 0.012, 0.5), (ring_len, 0)])   # full for the hook, then tucked under the voice, cut dead on the yank
+al = env(rms_to(al, 0.05 * FX), [(0, 1), (0.3, 1), (0.5, 0.4), (1.2, 0.4), (1.6, 0.13), (ring_len - 0.45, 0.13), (ring_len - 0.25, 0.3), (ring_len - 0.012, 0.3), (ring_len, 0)])   # full for the hook, then tucked under the voice, cut dead on the yank
 M.put(al, EV['ring'], 0.25)
 P(tung(), 0.5, EV['plate1']); P(thud(40, 0.9), 0.28, EV['plate1'] + 0.05)
 P(take('phone_taps', lambda: click(), 1.6), 0.18, EV['press'] - 0.35)
@@ -249,7 +249,10 @@ OUT = pathlib.Path('public/absurd-cases/ep11/mix/ep11_mix.wav'); OUT.parent.mkdi
 d = lp(np.convolve(M.vo_env, np.ones(int(0.25 * R)) / (0.25 * R), 'same'), 8, 2); M.beds *= (1 - 0.7 * np.clip(d, 0, 1))[:, None]
 m = (VOX + M.mix * (1 - 0.3 * np.clip(d, 0, 1))[:, None] + M.beds)[:int(TOTAL * R)]   # spot FX also dip ~3 dB under the voice
 on = M.vo_env[:len(m)] > 0.5; rest = m - VOX[:len(m)]
-if VOICE.exists(): print('voice over everything else while speaking: %.1f dB' % (db(VOX[:len(m)][on]) - db(rest[on])))
+if VOICE.exists():
+    print('voice over everything else while speaking: %.1f dB' % (db(VOX[:len(m)][on]) - db(rest[on])))
+    for nm, a_, b_ in [('ringing', EV['ring'], EV['pull']), ('after', EV['pull'], TOTAL)]:
+        w = on & (np.arange(len(m)) >= a_ * R) & (np.arange(len(m)) < b_ * R); print('  %s: %.1f dB' % (nm, db(VOX[:len(m)][w]) - db(rest[w])))
 m = m / max(np.max(np.abs(m)), 1e-9) * 0.7
 w_ = wave.open(str(RAW), 'wb'); w_.setnchannels(2); w_.setsampwidth(2); w_.setframerate(R); w_.writeframes((np.clip(m, -1, 1) * 32767).astype(np.int16).tobytes()); w_.close()
 COMP = 'acompressor=threshold=-24dB:ratio=3:attack=8:release=180'
