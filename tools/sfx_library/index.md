@@ -1,6 +1,6 @@
 # คลังเสียง absurd-cases (SFX library)
 
-754 ไฟล์ (754 อยู่บนคลัง GitHub, 110 อยู่ในเครื่อง) · 173 เสียง · สร้างใหม่: `python tools/sfx_index.py build` · ค้น: `python tools/sfx_index.py search <คำ>` (ไทยก็ได้)
+762 ไฟล์ (762 อยู่บนคลัง GitHub, 114 อยู่ในเครื่อง) · 178 เสียง · สร้างใหม่: `python tools/sfx_index.py build` · ค้น: `python tools/sfx_index.py search <คำ>` (ไทยก็ได้)
 
 ## วิธีใช้
 
@@ -88,6 +88,7 @@ spot ตรงเฟรมที่ตัวละครทำ ใส่ก่�
 |---|---|---|---|---|---|
 | **alarm_bell** | นาฬิกาปลุกกระดิ่งคู่ดังรัว (เปิดเรื่อง / ปลุก / สัญญาณเตือนแบบกลไก) | EP11 | ☁ `sounds/alarm_bell/alarm_bell_r1_sao.wav` | sao · 5.0 · 0.44 | 5 |
 | **clock_tick** | นาฬิกาเดินติ๊กต็อก (ห้องเงียบ รอเวลา นับถอยหลัง เข็มวินาที) | EP11 ring | ☁ `sounds/clock_tick/clock_tick_r1_sao.wav` | sao · 5.0 · 0.27 | 5 |
+| **door_creak** | ประตูไม้เปิดเอี๊ยดยาว มีเสียงลูกบิดกริ๊กก่อน (เปิดประตูบ้าน ห้อง ตู้) |  | ☁ `sounds/door_creak/door_creak_r1_sao.wav` | sao · 3.0 · 0.39 | 4 |
 | **door_open** | เปิดประตูบ้านธรรมดา | EP12, EP12 door | `public/absurd-cases/ep12/sfx_sao/door_open_r1.wav` | sao · 2.0 ·  | 3 |
 | **house_door** | เปิดประตูบ้านไม้: กดลูกบิดกริ๊ก แล้วบานพับเอี๊ยดเบาๆ (ออกจากบ้าน กลับบ้าน) |  | ☁ `sounds/house_door/house_door_r1_sao.wav` | sao · 3.0 · 0.32 | 4 |
 | **knock** | เคาะประตู ตำรวจมาเคาะ/มีคนมา | EP10 tower | `public/absurd-cases/ep10/sfx_sao/knock_r1.wav` | sao · 1.5 ·  | 3 |
@@ -265,6 +266,15 @@ bed ห้อง + spot เด่นหนึ่งเสียงต่อช�
 | **rubble_fall** | อิฐปูนถล่มลงพื้น หลังทุบ/รื้อ | EP6 rubble | ☁ `sounds/rubble_fall/rubble_fall_r1_audioldm2_ep6.wav` | audioldm2 · 3.0 · 0.21 | 4 |
 | **thud2** | ตุ้บทุ้ม รุ่นเก่า |  | ☁ `sounds/thud2/thud2_v1_r1_audioldm2.wav` | audioldm2 ·  ·  | 2 |
 | **whoosh_cloud** | วูบผ่านเมฆ ทรานซิชัน/กล้องพุ่ง | EP7 cloud | ☁ `sounds/whoosh_cloud/whoosh_cloud_r1_audioldm2_ep7.wav` | audioldm2 · 2.0 · 0.18 | 4 |
+
+## ยังไม่มีคำอธิบาย (เพิ่มใน usage.json)
+
+| เสียง | ใช้ตอนไหน | เคยใช้ | take ที่ดีที่สุด | engine · วิ · score | takes |
+|---|---|---|---|---|---|
+| **hd1** |  |  | `public/absurd-cases/ep12/sfx_sao/hd1_r1.wav` | sao · 3.0 ·  | 1 |
+| **hd2** |  |  | `public/absurd-cases/ep12/sfx_sao/hd2_r1.wav` | sao · 3.0 ·  | 1 |
+| **hd3** |  |  | `public/absurd-cases/ep12/sfx_sao/hd3_r1.wav` | sao · 3.0 ·  | 1 |
+| **hd4** |  |  | `public/absurd-cases/ep12/sfx_sao/hd4_r1.wav` | sao · 3.0 ·  | 1 |
 
 ## เสียงสังเคราะห์ (ไม่ต้องเจน — ฟังก์ชันใน `tools/premix_absurd_ep8b.py`)
 
