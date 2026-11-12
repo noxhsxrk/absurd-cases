@@ -12,43 +12,14 @@ import {Grade} from '../AbsurdEp1/ui';
 import {M} from '../../pov/lib/tex';
 import {Puffs} from '../AbsurdEp7/props';
 import {ps, body, P, CamRig, mv, strike, near, loc, hideProps, V3, Cast} from '../lifekit/stage';
-import {Echo, Reflect, Sledgehammer, SLEDGE_LEN, BrickWall, EchoJar, FoamLining} from './props';
+import {Echo, Reflect, EchoJar, FoamLining, EmptyRoom, swing} from './props';
+const Bx: React.FC<{p: V3; s: V3; c: string}> = ({p, s, c}) => <mesh position={p} castShadow receiveShadow material={M(c, 0.9)}><boxGeometry args={s} /></mesh>;
 import '../AbsurdEp1/cast';
 
 /** EP13 look-dev (gate 1): the new things only — A the echo pinballing in the empty room, B a cop's sledgehammer through the brick wall,
  *  C the jar cuffed at the lid on the court table, D the echo in the foam-lined cell. */
 const SEG = 75; export const LOOK13_TOTAL = SEG * 4;
 const IDS = ['nai', 'offA', 'offB', 'judge'];
-const Bx: React.FC<{p: V3; s: V3; c: string}> = ({p, s, c}) => <mesh position={p} castShadow receiveShadow material={M(c, 0.9)}><boxGeometry args={s} /></mesh>;
-/** the empty room: 4 × 4 m, plain walls, bare bulb; the north wall (z = −2) is the brick wall that gets smashed */
-export const EmptyRoom: React.FC<{t: number; hits?: {t: number; x: number; y: number}[]}> = ({t, hits = []}) => <group>
-  <Bx p={[0, -0.05, 0]} s={[4.2, 0.1, 4.2]} c="#A9825A" />
-  <Bx p={[0, 2.75, 0]} s={[4.2, 0.1, 4.2]} c="#EFEBE0" />
-  <Bx p={[-2.05, 1.35, 0]} s={[0.1, 2.7, 4.2]} c="#D9CFB6" /><Bx p={[2.05, 1.35, 0]} s={[0.1, 2.7, 4.2]} c="#D3C9AF" />
-  <BrickWall t={t} w={4.0} h={2.7} position={[0, 0, -2.0]} hits={hits} />
-  <mesh position={[-1.99, 1.5, -0.6]} rotation={[0, Math.PI / 2, 0]} material={new THREE.MeshBasicMaterial({color: '#CFE4F2', toneMapped: false})}><planeGeometry args={[1.0, 1.0]} /></mesh>
-  <mesh position={[0, 2.35, -0.3]} material={new THREE.MeshBasicMaterial({color: '#FFE9B8', toneMapped: false})}><sphereGeometry args={[0.05, 12, 10]} /></mesh>
-  <pointLight position={[0, 2.3, -0.3]} color="#FFE2B0" intensity={2.2} distance={7} decay={1.4} castShadow shadow-mapSize={[1024, 1024]} shadow-bias={-0.002} />
-  <hemisphereLight args={['#DCE6EE', '#5A4E40', 0.9]} />
-  <directionalLight position={[-6, 5, 6]} color="#FFF1D6" intensity={0.8} />
-  {/* daylight outside the north wall, seen through the holes */}
-  <mesh position={[0, 3, -9]} material={new THREE.MeshBasicMaterial({color: '#BFD6E4', toneMapped: false})}><planeGeometry args={[40, 12]} /></mesh>
-  <mesh position={[0, -0.06, -6]} rotation={[-Math.PI / 2, 0, 0]} material={M('#6A8742', 0.95)}><planeGeometry args={[40, 8]} /></mesh>
-</group>;
-
-/** a sledgehammer swing in front of the cop (yaw 0 = facing +z) that lands at each time in `hits`; returns where the head hits */
-export const swing = (I: any, s: any, t: number, hits: number[]) => {
-  const k = hits.reduce((a, h) => Math.max(a, strike(t, h, 0.4)), 0);         // 0 = head on the wall, 1 = raised behind the head
-  const th = Math.PI / 2 * (1 - k) - 0.35 * k;                                    // handle pitch: forward-level → over the shoulder
-  const fw = (d: number): [number, number] => [s.x + Math.sin(s.yaw) * d, s.z + Math.cos(s.yaw) * d];
-  const gd = 0.3 * (1 - k) + 0.02 * k, gy = 1.0 * (1 - k) + 1.42 * k;            // grip: waist-front → above the shoulder
-  const [gx, gz] = fw(gd);
-  const along = (u: number): V3 => { const [x, z] = fw(gd + Math.sin(th) * u); return [x, gy + Math.cos(th) * u, z]; };
-  fingers(I, 'R', 'fist', 1); fingers(I, 'L', 'fist', 1);
-  ik(I, 'R', loc(I, along(0.3)), new THREE.Vector3(-1, -0.6, -0.4), 1); ik(I, 'L', loc(I, along(0.04)), new THREE.Vector3(1, -0.6, -0.4), 1);
-  return {node: <group position={[gx, gy, gz]} rotation={[0, s.yaw, 0]}><Sledgehammer position={[0, 0, 0]} rotation={[th, 0, 0]} /></group>, head: along(SLEDGE_LEN - 0.04), hitAt: ((): V3 => { const [x, z] = fw(0.3 + SLEDGE_LEN - 0.04); return [x, 1.0, z]; })()};
-};
-
 const SHOUTS = [0.25, 1.15];
 const scA = (C: Cast, t: number, lt: number) => {
   const I = C.nai; hideProps(I); const s = ps('nai', 0.5, 0.3, Math.PI - 0.25, t, {clip: 'gestic_talk_angry_01', face: 'shout'}); const w = body(I, s, t);

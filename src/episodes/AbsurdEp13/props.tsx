@@ -3,7 +3,9 @@ import * as THREE from 'three';
 import {useThree} from '@react-three/fiber';
 import {M, tex, F} from '../../pov/lib/tex';
 import {Handcuffs} from '../AbsurdEp1/props';
-import {HANDLE} from '../AbsurdEp12/data';
+import {HANDLE} from './data';
+import {ik, fingers} from '../../pov/acting/ik';
+import {strike, loc} from '../lifekit/stage';
 
 /** EP13 คดีเสียงสะท้อน — the new things: the echo (the accused), the police sledgehammer, a brick wall that breaks, the jar cuffed at the lid, the foam cell. */
 export type V3 = [number, number, number];
@@ -157,3 +159,82 @@ export const Reflect: React.FC<{t: number; src: V3; hit: V3; normal: V3; t0s: nu
   const lit = t0s.some((t0) => t > t0 + leg && t < t0 + leg + 0.5);
   return <>{out}{lit && <pointLight position={[hit[0] + normal[0] * 0.3, hit[1], hit[2] + normal[2] * 0.3]} color={color} intensity={1.6 * power} distance={2.5} decay={1.6} />}</>;
 };
+
+// =====================================================================================================
+// THE ROOM (the accused): 4 × 4 m, plain walls, a bare bulb, a doorway in the south wall (x 1.3); the north wall (z −2) is brick and breaks.
+// night: bulb off, moonlight only (the haunted house reuses it)
+// =====================================================================================================
+const Bx: React.FC<{p: V3; s: V3; c: string}> = ({p, s, c}) => <mesh position={p} castShadow receiveShadow material={M(c, 0.9)}><boxGeometry args={s} /></mesh>;
+const DOOR_X = 1.3, DOOR_W = 0.95;
+export const EmptyRoom: React.FC<{t: number; hits?: Hit[]; night?: boolean; wall?: string}> = ({t, hits = [], night = false, wall = '#D9CFB6'}) => {
+  const sky = useMemo(() => new THREE.MeshBasicMaterial({color: night ? '#1C2540' : '#CFE4F2', toneMapped: false}), [night]);
+  const out = useMemo(() => new THREE.MeshBasicMaterial({color: night ? '#151B2C' : '#BFD6E4', toneMapped: false}), [night]);
+  const sw = (a: number, b: number) => <Bx p={[(a + b) / 2, 1.35, 2.05]} s={[b - a, 2.7, 0.1]} c={wall} />;
+  return <group>
+    <Bx p={[0, -0.05, 0]} s={[4.2, 0.1, 4.4]} c={night ? '#5E4A36' : '#A9825A'} />
+    <Bx p={[0, 2.75, 0]} s={[4.2, 0.1, 4.4]} c={night ? '#4A4A4C' : '#EFEBE0'} />
+    <Bx p={[-2.05, 1.35, 0]} s={[0.1, 2.7, 4.2]} c={wall} /><Bx p={[2.05, 1.35, 0]} s={[0.1, 2.7, 4.2]} c={wall} />
+    {sw(-2.1, DOOR_X - DOOR_W / 2)}{sw(DOOR_X + DOOR_W / 2, 2.1)}<Bx p={[DOOR_X, 2.4, 2.05]} s={[DOOR_W, 0.7, 0.1]} c={wall} />
+    <BrickWall t={t} w={4.0} h={2.7} position={[0, 0, -2.0]} hits={hits} plaster={wall} />
+    <mesh position={[-1.99, 1.5, -0.6]} rotation={[0, Math.PI / 2, 0]} material={sky}><planeGeometry args={[1.0, 1.0]} /></mesh>
+    {[0.52, -0.52].map((y) => <Bx key={y} p={[-1.97, 1.5 + y, -0.6]} s={[0.06, 0.05, 1.08]} c="#F2EFE8" />)}
+    <mesh position={[0, 2.35, -0.3]} material={new THREE.MeshBasicMaterial({color: night ? '#5A5448' : '#FFE9B8', toneMapped: false})}><sphereGeometry args={[0.05, 12, 10]} /></mesh>
+    <mesh position={[0, 2.55, -0.3]} material={M('#222222', 0.6)}><cylinderGeometry args={[0.004, 0.004, 0.36, 4]} /></mesh>
+    {night ? <><hemisphereLight args={['#5A6CA0', '#1A1C22', 1.0]} /><directionalLight position={[-6, 4, -2]} color="#8EA6E8" intensity={0.7} /></>
+      : <><pointLight position={[0, 2.3, -0.3]} color="#FFE2B0" intensity={2.2} distance={7} decay={1.4} castShadow shadow-mapSize={[1024, 1024]} shadow-bias={-0.002} />
+        <hemisphereLight args={['#DCE6EE', '#5A4E40', 0.9]} /><directionalLight position={[-6, 5, 6]} color="#FFF1D6" intensity={0.8} /></>}
+    {/* outside, seen through the holes and the doorway */}
+    <mesh position={[0, 3, -9]} material={out}><planeGeometry args={[40, 12]} /></mesh>
+    <mesh position={[0, 3, 9]} rotation={[0, Math.PI, 0]} material={out}><planeGeometry args={[40, 12]} /></mesh>
+    <mesh position={[0, -0.06, -6]} rotation={[-Math.PI / 2, 0, 0]} material={M(night ? '#26331E' : '#6A8742', 0.95)}><planeGeometry args={[40, 8]} /></mesh>
+    <mesh position={[0, -0.06, 5.5]} rotation={[-Math.PI / 2, 0, 0]} material={M(night ? '#2A2622' : '#8C8478', 0.95)}><planeGeometry args={[40, 7]} /></mesh>
+  </group>;
+};
+export const ROOM_DOOR: V3 = [DOOR_X, 0, 2.05];
+
+/** a two-handed sledgehammer swing in front of the cop (yaw 0 = facing +z) that lands at each time in `hits`; hitAt = where the head meets a wall 1.17 m ahead */
+export const swing = (I: any, s: any, t: number, hits: number[]) => {
+  const k = hits.reduce((a, h) => Math.max(a, strike(t, h, 0.4)), 0);         // 0 = head on the wall, 1 = raised behind the head
+  const th = Math.PI / 2 * (1 - k) - 0.35 * k;                                    // handle pitch: forward-level → over the shoulder
+  const fw = (d: number): [number, number] => [s.x + Math.sin(s.yaw) * d, s.z + Math.cos(s.yaw) * d];
+  const gd = 0.3 * (1 - k) + 0.02 * k, gy = 1.0 * (1 - k) + 1.42 * k;            // grip: waist-front → above the shoulder
+  const [gx, gz] = fw(gd);
+  const along = (u: number): V3 => { const [x, z] = fw(gd + Math.sin(th) * u); return [x, gy + Math.cos(th) * u, z]; };
+  fingers(I, 'R', 'fist', 1); fingers(I, 'L', 'fist', 1);
+  ik(I, 'R', loc(I, along(0.3)), new THREE.Vector3(-1, -0.6, -0.4), 1); ik(I, 'L', loc(I, along(0.04)), new THREE.Vector3(1, -0.6, -0.4), 1);
+  const [hx, hz] = fw(0.3 + SLEDGE_LEN - 0.04);
+  return {node: <group position={[gx, gy, gz]} rotation={[0, s.yaw, 0]}><Sledgehammer position={[0, 0, 0]} rotation={[th, 0, 0]} /></group>, hitAt: [hx, 1.0, hz] as V3};
+};
+
+/** ♪ notes floating up from a singer's mouth, swaying */
+const noteTex = (c: string) => tex('note13-' + c, 64, 64, (g) => { g.clearRect(0, 0, 64, 64); g.fillStyle = c; g.font = F(700, 54); g.textAlign = 'center'; g.fillText('♪', 32, 52); });
+export const Notes: React.FC<{from: V3; t: number; t0: number; n?: number; color?: string; dir?: V3}> = ({from, t, t0, n = 6, color = '#F2D04A', dir = [0, 0, 0]}) => {
+  const m = useMemo(() => new THREE.SpriteMaterial({map: noteTex(color), transparent: true, depthWrite: false, toneMapped: false}), [color]);
+  return <>{Array.from({length: n}, (_, i) => { const u = t - t0 - i * 0.18; if (u < 0) return null; const k = (u % 1.2) / 1.2;
+    return <sprite key={i} material={m} position={[from[0] + dir[0] * k + Math.sin(u * 5 + i) * 0.06, from[1] + k * 0.45 + dir[1] * k, from[2] + dir[2] * k]} scale={0.1 * (1 - k * 0.3)} />; })}</>;
+};
+
+/** a wooden sign board on two posts; text lines from the top (first line big) */
+export const SignBoard: React.FC<{position: V3; yaw?: number; lines: string[]; w?: number; h?: number; bg?: string; fg?: string}> = ({position, yaw = 0, lines, w = 1.2, h = 0.8, bg = '#3A2A20', fg = '#E8DCC0'}) => {
+  const H = Math.round(512 * h / w);
+  const mat = useMemo(() => new THREE.MeshBasicMaterial({toneMapped: false, map: tex('sign13-' + lines.join('|'), 512, H, (g) => {
+    g.fillStyle = bg; g.fillRect(0, 0, 512, H); g.strokeStyle = fg; g.lineWidth = 6; g.strokeRect(10, 10, 492, H - 20); g.fillStyle = fg; g.textAlign = 'center';
+    lines.forEach((l, i) => { g.font = F(700, i ? 34 : 70); g.fillText(l, 256, i ? 120 + i * 50 : 96); }); })}), [lines.join('|'), H]);
+  return <group position={position} rotation={[0, yaw, 0]}>
+    <mesh position={[0, h / 2 + 0.9, 0]} material={mat}><planeGeometry args={[w, h]} /></mesh>
+    <mesh position={[0, h / 2 + 0.9, -0.012]} rotation={[0, Math.PI, 0]} material={M(bg, 0.9)}><planeGeometry args={[w, h]} /></mesh>
+    {[-1, 1].map((x) => <mesh key={x} castShadow position={[x * w * 0.42, (h + 0.9) / 2, -0.03]} material={M('#4A3626', 0.9)}><boxGeometry args={[0.06, h + 0.9, 0.06]} /></mesh>)}
+  </group>;
+};
+/** planks nailed across a window, a little crooked */
+export const Boards: React.FC<{position: V3; w: number; h: number; yaw?: number}> = ({position, w, h, yaw = 0}) => <group position={position} rotation={[0, yaw, 0]}>
+  {[-0.3, 0.02, 0.3].map((y, i) => <mesh key={i} castShadow position={[0, y * h, 0]} rotation={[0, 0, (i - 1) * 0.12 + 0.05]} material={M(['#6B5038', '#5E4632', '#735640'][i], 0.95)}><boxGeometry args={[w * 1.15, 0.14, 0.03]} /></mesh>)}</group>;
+/** a rocking chair; rock = current angle */
+export const RockingChair: React.FC<{position: V3; yaw?: number; rock?: number}> = ({position, yaw = 0, rock = 0}) => { const wd = M('#6A4A30', 0.8);
+  return <group position={position} rotation={[0, yaw, 0]}><group rotation={[rock, 0, 0]} position={[0, 0.04, 0]}>
+    {[-0.22, 0.22].map((x) => <mesh key={x} castShadow position={[x, 0.32, -0.05]} rotation={[0, Math.PI / 2, Math.PI / 2 + Math.PI * 0.34]} material={wd}><torusGeometry args={[0.38, 0.018, 6, 24, Math.PI * 0.32]} /></mesh>)}
+    {[-0.22, 0.22].map((x) => [-0.2, 0.15].map((z) => <mesh key={x + ':' + z} castShadow position={[x, 0.22, z]} material={wd}><boxGeometry args={[0.04, 0.4, 0.04]} /></mesh>))}
+    <mesh castShadow position={[0, 0.43, -0.02]} material={wd}><boxGeometry args={[0.5, 0.05, 0.45]} /></mesh>
+    <mesh castShadow position={[0, 0.78, -0.24]} rotation={[-0.2, 0, 0]} material={wd}><boxGeometry args={[0.5, 0.65, 0.04]} /></mesh>
+    {[-0.24, 0.24].map((x) => <mesh key={x} castShadow position={[x, 0.6, 0.0]} material={wd}><boxGeometry args={[0.04, 0.04, 0.42]} /></mesh>)}
+  </group></group>; };

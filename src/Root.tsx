@@ -26,6 +26,7 @@ import {AbsurdEp12, TOTAL as ABSURD12_TOTAL} from './episodes/AbsurdEp12/Episode
 import {AbsurdEp10Look, LOOK_TOTAL as ABSURD10_LOOK} from './episodes/AbsurdEp10/Look';
 import {LifeKitProps, PROPS_TOTAL} from './episodes/lifekit/PropsLook';
 import {AbsurdEp13Look, LOOK13_TOTAL} from './episodes/AbsurdEp13/Look';
+import {AbsurdEp13, TOTAL as ABSURD13_TOTAL} from './episodes/AbsurdEp13/Episode';
 import {LifeKitDemo, DEMO_TOTAL} from './episodes/lifekit/Demo';
 import {qualitySchema} from './pov/ui/quality';
 
@@ -51,6 +52,7 @@ export const Root: React.FC = () => (
     {/* lifekit: living-world props + demo reel (not episodes) */}
     <Composition id="LifeKitProps" component={LifeKitProps} durationInFrames={PROPS_TOTAL} fps={30} width={1080} height={1920} schema={qualitySchema} defaultProps={{quality: 'fast' as const}} />
     <Composition id="AbsurdEp13Look" component={AbsurdEp13Look} durationInFrames={LOOK13_TOTAL} fps={30} width={1080} height={1920} schema={qualitySchema} defaultProps={{quality: 'fast' as const}} />
+    <Composition id="AbsurdEp13" component={AbsurdEp13} durationInFrames={ABSURD13_TOTAL} fps={30} width={1080} height={1920} schema={qualitySchema} defaultProps={{quality: 'fast' as const}} />
     <Composition id="LifeKitDemo" component={LifeKitDemo} durationInFrames={DEMO_TOTAL} fps={30} width={1080} height={1920} schema={qualitySchema} defaultProps={{quality: 'fast' as const}} />
     <Composition id="AbsurdEp10Look" component={AbsurdEp10Look} durationInFrames={ABSURD10_LOOK} fps={30} width={1080} height={1920} schema={qualitySchema} defaultProps={{quality: 'fast' as const}} />
     <Composition id="AbsurdEp8" component={AbsurdEp8} durationInFrames={ABSURD8_TOTAL} fps={30} width={1080} height={1920} schema={qualitySchema} defaultProps={{quality: 'fast' as const}} />
