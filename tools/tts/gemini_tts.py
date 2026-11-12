@@ -10,6 +10,12 @@
 Python 3.9+, standard library only. Reads ep1_tts_jobs.json next to this file. Existing takes are skipped unless --force.
 Stops at the first quota error (daily cap per model) and tells you which lines are still missing.
 Then: bash episodes/absurd-cases/ingest_voices.sh episodes/absurd-cases/takes
+
+Whole episode as one take (the way Nox does it in AI Studio, EP9+):
+  python tools/tts/gemini_tts.py --episode 14 --takes 3
+  → sends episodes/absurd-cases/ep14_voice_prompt.md as the prompt (voice Fenrir)
+  → public/absurd-cases/ep14/raw/narration_ep14_t1.wav … (existing takes are kept, numbering continues)
+Key: GEMINI_API_KEY env var, or the first line of ~/.gemini_api_key (outside the repo: the repo is public).
 """
 import argparse, base64, json, os, pathlib, sys, time, urllib.error, urllib.request, wave
 
@@ -48,6 +54,24 @@ def save_wav(path, pcm, mime):
         w.setnchannels(1); w.setsampwidth(2); w.setframerate(rate); w.writeframes(pcm)
     return len(pcm) / 2 / rate
 
+def get_key():
+    key = os.environ.get('GEMINI_API_KEY') or os.environ.get('GOOGLE_API_KEY')
+    f = pathlib.Path.home() / '.gemini_api_key'
+    if not key and f.exists(): key = f.read_text(encoding='utf-8').strip().splitlines()[0].strip()
+    if not key: raise SystemExit('no key: set GEMINI_API_KEY or put it in ~/.gemini_api_key')
+    return key
+
+def episode_takes(n, takes, voice, model, key):
+    root = HERE.parent.parent
+    prompt = (root / f'episodes/absurd-cases/ep{n}_voice_prompt.md').read_text(encoding='utf-8')
+    raw = root / f'public/absurd-cases/ep{n}/raw'
+    i = 1
+    for _ in range(takes):
+        while (raw / f'narration_ep{n}_t{i}.wav').exists(): i += 1
+        pcm, mime = tts(prompt, '', voice, model, key, raw_prompt=True)
+        p = raw / f'narration_ep{n}_t{i}.wav'
+        print(f'{p.relative_to(root)}  {save_wav(p, pcm, mime):.1f}s', flush=True)
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--voice', help='override the voice in the jobs file (e.g. Charon)')
@@ -57,9 +81,12 @@ def main():
     ap.add_argument('--audition', nargs='*', help='voices to compare on ep1-l003 and ep1-l012')
     ap.add_argument('--out', default=str(HERE / 'takes'))
     ap.add_argument('--force', action='store_true')
+    ap.add_argument('--episode', type=int, help='whole episode from epN_voice_prompt.md as one take')
+    ap.add_argument('--takes', type=int, default=1)
     a = ap.parse_args()
-    key = os.environ.get('GEMINI_API_KEY') or os.environ.get('GOOGLE_API_KEY')
-    if not key: raise SystemExit('set GEMINI_API_KEY first (your Google AI Studio key)')
+    key = get_key()
+    if a.episode:
+        return episode_takes(a.episode, a.takes, a.voice or 'Fenrir', a.model, key)
     jobs = json.load(open(HERE / 'ep1_tts_jobs.json', encoding='utf-8'))
     out = pathlib.Path(a.out)
 
