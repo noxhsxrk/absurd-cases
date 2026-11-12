@@ -11,16 +11,15 @@ const hash = (n: number) => { const x = Math.sin(n * 127.1) * 43758.5453; return
 const sm = (x: number) => { const c = Math.min(1, Math.max(0, x)); return c * c * (3 - 2 * c); };
 
 // =====================================================================================================
-// THE ECHO: a pale-cyan core with two dot eyes; sound rings ripple out of it, always facing the lens.
+// THE ECHO (no face — Nox): a bundle of sound, a pale-cyan core with rings rippling out of it, always facing the lens. Used where the echo is held (jar, cell, haunted house).
 // pulse 0…1 = it is "talking" (bigger, faster rings); hoarse 0…1 = after prison (dim, broken, few rings)
 // =====================================================================================================
 const add = (c: string, o = 1) => new THREE.MeshBasicMaterial({color: c, transparent: true, opacity: o, blending: THREE.AdditiveBlending, depthWrite: false, toneMapped: false, side: THREE.DoubleSide});
-export const Echo: React.FC<{t: number; position?: V3; scale?: number; pulse?: number; hoarse?: number; light?: number; look?: [number, number]}> = ({t, position = [0, 0, 0], scale = 1, pulse = 0, hoarse = 0, light = 1, look = [0, 0]}) => {
+export const Echo: React.FC<{t: number; position?: V3; scale?: number; pulse?: number; hoarse?: number; light?: number}> = ({t, position = [0, 0, 0], scale = 1, pulse = 0, hoarse = 0, light = 1}) => {
   const g = useRef<THREE.Group>(null); const {camera} = useThree();
   useLayoutEffect(() => { if (g.current) g.current.quaternion.copy(camera.quaternion); });
   const ringM = useMemo(() => [0, 1, 2, 3].map(() => add('#7FE3FF')), []);
   const halo = useMemo(() => add('#3FB8F0', 0.35), []), core = useMemo(() => new THREE.MeshBasicMaterial({color: '#E6FBFF', toneMapped: false}), []);
-  const eye = M('#10161C', 0.4);
   const speed = 1.4 + pulse * 1.6 - hoarse * 0.6, n = hoarse > 0.5 ? 2 : 4;
   const jit = hoarse * (hash(Math.floor(t * 15)) - 0.5) * 0.04;     // a hoarse echo stutters
   const breathe = 1 + 0.06 * Math.sin(t * 5) + pulse * 0.12 * Math.abs(Math.sin(t * 17));
@@ -29,7 +28,6 @@ export const Echo: React.FC<{t: number; position?: V3; scale?: number; pulse?: n
     <group ref={g}>
       <mesh material={halo} scale={breathe * (1 + pulse * 0.3)}><circleGeometry args={[0.17, 32]} /></mesh>
       <mesh material={core} scale={breathe} position={[jit, 0, 0.002]}><circleGeometry args={[0.1, 32]} /></mesh>
-      {[-1, 1].map((s) => <mesh key={s} material={eye} position={[s * 0.034 + look[0] * 0.012 + jit, 0.012 + look[1] * 0.01, 0.006]} scale={[1, hoarse > 0.5 ? 0.45 : 1, 1]}><circleGeometry args={[0.014, 12]} /></mesh>)}
       {ringM.slice(0, n).map((m, i) => { const k = ((t * speed + i / n) % 1); m.opacity = (1 - k) * 0.9 * glow * (hoarse > 0.5 && i === 1 ? 0.4 : 1);
         const r = 0.13 + k * (0.42 + pulse * 0.25);
         return <mesh key={i} material={m} scale={r} position={[0, 0, 0.001]}><ringGeometry args={[0.93, 1, 48, 1, hoarse > 0.5 ? 0.3 + i : 0, hoarse > 0.5 ? Math.PI * 1.3 : Math.PI * 2]} /></mesh>; })}
@@ -132,4 +130,30 @@ export const FoamLining: React.FC<{color?: string}> = ({color = '#59606E'}) => {
   useLayoutEffect(() => { const m = ref.current; if (!m) return; const o = new THREE.Object3D();
     cells.forEach((c, i) => { o.position.set(...c.p); o.rotation.set(...c.r); o.updateMatrix(); m.setMatrixAt(i, o.matrix); }); m.instanceMatrix.needsUpdate = true; m.computeBoundingSphere(); }, [cells]);
   return <instancedMesh ref={ref} args={[geo, mat, cells.length]} receiveShadow frustumCulled={false} />;
+};
+
+// =====================================================================================================
+// REFLECT: the ROOM is the offender. A shout leaves `src` as arcs facing the wall, crosses to `hit` on the wall, the wall ripples
+// (rings in the wall plane) and the same arcs come straight back to `src` — then again, weaker (echo of the echo).
+// =====================================================================================================
+export const Reflect: React.FC<{t: number; src: V3; hit: V3; normal: V3; t0s: number[]; speed?: number; bounces?: number; color?: string; power?: number}> = ({t, src, hit, normal, t0s, speed = 4.5, bounces = 3, color = '#2FB6EA', power = 1}) => {
+  const d = Math.hypot(hit[0] - src[0], hit[1] - src[1], hit[2] - src[2]), leg = d / speed;
+  const pool = useMemo(() => Array.from({length: 40}, () => new THREE.MeshBasicMaterial({color, transparent: true, depthWrite: false, toneMapped: false, side: THREE.DoubleSide})), [color]);   // normal blend: additive washes out on a cream wall
+  const wallQ = useMemo(() => new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0, 0, 1), new THREE.Vector3(...normal).normalize()), [normal]);
+  const out: React.ReactNode[] = []; let n = 0;
+  const arc = (p: V3, toward: V3, r: number, o: number, key: string) => { if (n >= pool.length || o <= 0.01) return; const m = pool[n++]; m.opacity = o;
+    const q = new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0, 0, 1), new THREE.Vector3(toward[0] - p[0], toward[1] - p[1], toward[2] - p[2]).normalize());
+    out.push(<mesh key={key} material={m} position={p} quaternion={q} scale={r}><ringGeometry args={[0.9, 1, 40, 1, 0, Math.PI * 2]} /></mesh>); };
+  const L = (a: V3, b: V3, k: number): V3 => [a[0] + (b[0] - a[0]) * k, a[1] + (b[1] - a[1]) * k, a[2] + (b[2] - a[2]) * k];
+  t0s.forEach((t0, si) => { for (let b = 0; b < bounces * 2; b++) {   // even legs go out to the wall, odd legs come back
+    const a = t0 + b * leg, u = (t - a) / leg, fade = Math.pow(0.6, b) * power; if (u < -0.05 || u > 1.6) continue;
+    for (let w = 0; w < 3; w++) { const k = u - w * 0.09; if (k < 0 || k > 1) continue;      // three arcs per wavefront
+      const out_ = b % 2 === 0; const p = out_ ? L(src, hit, k) : L(hit, src, k); const r = out_ ? 0.08 + k * 0.55 : 0.63 - k * 0.3;
+      arc(p, out_ ? hit : src, r, fade * (1 - w * 0.25) * (0.35 + 0.65 * Math.sin(Math.min(1, k * 1.2) * Math.PI * 0.5 + 0.4)), `${si}-${b}-${w}`); }
+    if (b % 2 === 0 && u > 1 && u < 1.6) {                     // the wall rings where the sound lands
+      const k = (u - 1) / 0.6; for (let w = 0; w < 3; w++) { const kk = k - w * 0.15; if (kk < 0) continue; if (n >= pool.length) break; const m = pool[n++]; m.opacity = (1 - kk) * fade;
+        out.push(<mesh key={`w${si}-${b}-${w}`} material={m} position={[hit[0] + normal[0] * 0.01, hit[1] + normal[1] * 0.01, hit[2] + normal[2] * 0.01]} quaternion={wallQ} scale={0.15 + kk * 0.9}><ringGeometry args={[0.88, 1, 48]} /></mesh>); } }
+  } });
+  const lit = t0s.some((t0) => t > t0 + leg && t < t0 + leg + 0.5);
+  return <>{out}{lit && <pointLight position={[hit[0] + normal[0] * 0.3, hit[1], hit[2] + normal[2] * 0.3]} color={color} intensity={1.6 * power} distance={2.5} decay={1.6} />}</>;
 };
