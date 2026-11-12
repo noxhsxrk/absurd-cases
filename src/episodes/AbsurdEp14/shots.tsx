@@ -213,6 +213,6 @@ export const SHOT_FN: Record<string, (t: number, lt: number, C: Cast) => ShotOut
     const tEnd = TOTAL / FPS - 0.5, tt = Math.min(t, tEnd), L = Math.min(lt, tEnd - sh('final').t0);
     const m = man(C, tt, {face: 'wide'});
     return {node: <>{room(tt, {crack: 1, wobble: 0.07, tipLast: tEnd - 0.22})}<P o={m.w} /></>,
-      cam: mv({pos: [MAN.x - 1.0, 0.5, LAST.z - 1.0], look: [MAN.x - 0.05, 0.5, MAN.z], fov: 50}, L, {arrive: 0.06, push: 0.08}), bg: ROOM_BG};
+      cam: mv({pos: [MAN.x - 1.3, 0.6, LAST.z - 1.55], look: [MAN.x - 0.1, 0.42, MAN.z - 0.25], fov: 56}, L, {arrive: 0.06, push: 0.08}), bg: ROOM_BG};
   },
 };

@@ -214,8 +214,8 @@ if BGM.exists(): M.bed(rms_to(read(BGM, stereo=True)[:int(END * R)], 0.018), 0, 
 
 # ---- the last domino set down, then the quake: a rising rumble under the whole room, the run goes down in one clatter
 P(take('domino_place', lambda: click(), 0.6), 0.25, EV['lastDomino'] - 0.01)
-q = take('earthquake_rumble', lambda: thunder(3.0, 0.2), T('charge') - EV['quake'] + 0.4); P(env(q, [(0, 1), (len(q) / R - 0.5, 1), (len(q) / R, 0)]), 0.8, EV['quake'])
-P(take('domino_cascade', lambda: fizz(2.0), 2.4), 0.6, EV['quake'] + 0.25, -0.2)
+q = take('earthquake_rumble', lambda: thunder(3.0, 0.2), T('charge') - EV['quake'] + 0.4); P(env(q, [(0, 1), (len(q) / R - 0.5, 1), (len(q) / R, 0)]), 0.55, EV['quake'])
+P(take('domino_cascade', lambda: fizz(2.0), 2.4), 0.45, EV['quake'] + 0.25, -0.2)
 P(tung(), 0.5, EV['plate1']); P(thud(40, 0.9), 0.28, EV['plate1'] + 0.05)
 P(take('phone_taps', lambda: click(), 1.6), 0.18, EV['press'] - 0.35)
 # ---- the patrol car: siren in, brakes, the cuff, the back door
@@ -225,12 +225,12 @@ P(take('car_brake', lambda: squeal(1.0), 2.0), 0.45, EV['park'] - 0.6, -0.3)
 P(take('cuffs', lambda: ratchet(), 1.0), 0.6, EV['cuff'] - 0.05)
 P(whoosh(0.4, 300, 2500), 0.2, T('backseat') + 0.05); P(take('car_door_slam', lambda: clunk(90, 0.4), 1.0), 0.75, EV['doorShut'] - 0.02)
 # ---- interrogation: it rumbles the whole time; the needles scribble; the machine shakes off the table
-r = take('earthquake_rumble', lambda: thunder(3.0, 0.2), T('court') - T('interro')); P(env(r, [(0, 0), (0.2, 1), (len(r) / R - 0.3, 1), (len(r) / R, 0)]) , 0.28, T('interro'))
+r = take('earthquake_rumble', lambda: thunder(3.0, 0.2), T('court') - T('interro')); P(env(r, [(0, 0), (0.2, 1), (len(r) / R - 0.3, 1), (len(r) / R, 0)]) , 0.2, T('interro'))
 P(take('needle_scribble', lambda: scrub(2.0, 9), T('court') - T('polygraph')), 0.35, T('polygraph'), 0.2)
 P(take('machine_crash', lambda: metal(260, 0.8, 6), 1.4), 0.75, EV['fall'] + 0.38 - 0.02, 0.3)
 # ---- court, cell 18
 P(take('gavel', lambda: thud(110, 0.3), 0.45), 0.55, EV['gavel'] - 0.02)
-P(take('rubber_stamp', lambda: thud(150, 0.2), 0.6), 0.5, EV['plate2'] - 0.02)
+P(take('rubber_stamp', lambda: thud(150, 0.2), 0.6), 0.4, EV['plate2'] - 0.02)
 P(take('cell_door', lambda: metal(180, 1.2), 1.5), 0.6, EV['cellShut'] - 0.03)
 # ---- home again: a domino set down; the aftershock — a low shiver and the run rattling, held to the end
 P(take('domino_place', lambda: click(), 0.6), 0.25, EV['place'] - 0.01)

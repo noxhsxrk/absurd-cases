@@ -15,7 +15,6 @@ CUES = [  # cue, seconds, CLAP target, prompt
     ('domino_place', 1, 'a single domino placed on a table', 'A single plastic domino tile is set down carefully on a wooden floor, one small soft click, very close, quiet room, dry, no music.'),
     ('car_brake', 2.5, 'a car braking and stopping', 'A car drives up and brakes to a stop on an asphalt street, short tyre squeal and the engine settling to idle, outdoor, daytime, no music.'),
     ('car_door_slam', 1.5, 'a car door slamming shut', 'A car door slammed shut hard, one solid metallic thunk with a short rattle, outdoor street, close, dry, no music.'),
-    ('needle_scribble', 3, 'a pen plotter scratching fast on paper', 'A polygraph machine: mechanical pen needles scratching very fast back and forth on a moving paper strip, a small motor whirring, clicky and frantic, close foley, no music.'),
     ('machine_crash', 2, 'a metal box falling onto a tiled floor', 'A small heavy metal machine falls off a table and crashes onto a tiled floor, a hard metallic bang with rattling parts and a short skid, indoor, close, no music.'),
 ]
 

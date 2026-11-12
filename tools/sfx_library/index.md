@@ -1,6 +1,6 @@
 # คลังเสียง absurd-cases (SFX library)
 
-848 ไฟล์ (848 อยู่บนคลัง GitHub, 148 อยู่ในเครื่อง) · 190 เสียง · สร้างใหม่: `python tools/sfx_index.py build` · ค้น: `python tools/sfx_index.py search <คำ>` (ไทยก็ได้)
+844 ไฟล์ (844 อยู่บนคลัง GitHub, 148 อยู่ในเครื่อง) · 189 เสียง · สร้างใหม่: `python tools/sfx_index.py build` · ค้น: `python tools/sfx_index.py search <คำ>` (ไทยก็ได้)
 
 ## วิธีใช้
 
@@ -169,7 +169,6 @@ bed ห้อง + spot เด่นหนึ่งเสียงต่อช�
 |---|---|---|---|---|---|
 | **gavel** | ค้อนผู้พิพากษาเคาะแท่น 2 ที ตรงคำตัดสิน (เสียงดังสุดของคลิป peak ~0.62) | EP10, EP11 gavel, EP12 gavel, EP13 gavel, EP14 gavel, EP8b gavel, EP9 | `public/absurd-cases/ep10/sfx_sao/gavel_r1.wav` | sao · 2.0 · 0.25 | 11 |
 | **lamp_click** | สวิตช์โคมไฟโต๊ะคลิกเดียว ตอนเปิดไฟส่องหน้าในห้องสอบสวน | EP11 interro, EP8b lamp | `public/absurd-cases/ep11/sfx_sao/lamp_click_r1.wav` | sao · 1.5 · 0.47 | 6 |
-| **needle_scribble** | เข็มเครื่องจับเท็จขีดกระดาษรัวๆ มอเตอร์หมุน (ห้องสอบสวน) | EP14 court | ☁ `sounds/needle_scribble/needle_scribble_r1_sao.wav` | sao · 3.0 · 0.36 | 4 |
 | **noon_bell** | ระฆังตีเที่ยงหนึ่งครั้ง หางยาว บอกเวลา/เปลี่ยนช่วง | EP8 bell, EP8b bell | `public/absurd-cases/ep8/sfx_sao/noon_bell_r1.wav` | sao · 5.0 · 0.26 | 9 |
 | **pen_scribble** | ปากกาลูกลื่นเขียนเร็วบนกระดาษแล้วขีดเส้นใต้ ตอนเจ้าหน้าที่จดบันทึก | EP9 note | ☁ `sounds/pen_scribble/pen_scribble_r1_sao.wav` | sao · 3.0 · 0.36 | 5 |
 | **rubber_stamp** | ตรายางปั๊มกระดาษตุ้บเดียว รุ่น AudioLDM2 (ใช้ stamp ก่อน) | EP11 stamp, EP13 cut, EP14 plate2, EP6 stamp, EP8 stamp | `public/absurd-cases/ep11/sfx_sao/rubber_stamp_r1.wav` | sao · 1.0 ·  | 7 |
