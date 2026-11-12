@@ -50,3 +50,9 @@ Account in-scene: `@absurd.cases` (`HANDLE` in each episode's data.ts).
 - Court ordered the hands removed (same pliers); cell 21, ขังลืม 5 ปี. Sentence cut: walked its laps exactly on time.
 - After release: handless, ordained, runs สำนักสอนสมาธิ "อาจารย์ไร้เข็ม · ที่นี่ไม่มีเวลา". The whole country follows it, including the man, the judge, the officers and the bomb squad.
 - Hooks: the man now meditates under the thing he reported (he has nothing to wake him: late for everything?); the judge and police are disciples of an ex-convict; the pulled battery and the three hands are still in evidence; cell 21 exists.
+
+## EP14 คดีแผ่นดินไหว (โลกทั้งดวง)
+- Charge: ก่อความไม่สงบ (shook down the man's all-night domino run in one second).
+- Police follow the crack across the country to the culprit: the whole planet. Rockets surround it from space; a giant chain is locked round the equator.
+- Court: จำคุกห้าพันล้านปี. A cage is built round the whole globe, so everyone on Earth is in prison with it, the man included (closer callback "รวมถึง, ชายคนนี้").
+- Hooks: every inmate from EP1–13 is now in the same prison as the man, the judge and the police; the Moon still circles the cage every night (visitor or accomplice?); aftershocks (อาฟเตอร์ช็อก) are its children, still free.
