@@ -209,6 +209,10 @@ for name, a, b, lvl, width, fb in [('room_tone', 0, T('courtJar'), 1.0, 0.6, lam
         ('crickets', T('haunted'), END, 1.0, 0.9, lambda: bed_noise(8, 3500, 7000, 0.5, 8))]:
     M.bed(to_st(rms_to(amb(name, 10, fb), BED * lvl)), a, b, width=width, xf=0.3, fade=0.6 if b == END else 0.04)
 M.bed(to_st(rms_to(amb('wind_gust', 10, lambda: wind(8)), BED * 0.6)), T('haunted'), END, width=0.9, xf=0.3, fade=0.6)
+# ---- BGM (Nox: every episode gets a quiet underscore; EP12 = bgm1, Nox's pick, EP13 = audio-studio SA3 v2): a bed, so it ducks ~10 dB under the voice
+BGM = pathlib.Path('public/absurd-cases/ep13/bgm/bgm.wav')
+if BGM.exists(): M.bed(rms_to(read(BGM, stereo=True)[:int(END * R)], 0.022), 0, END, width=1.0, xf=0.05, fade=0.8)
+
 # ---- the room throws everything back: a swish out with each shout, the wall rings when the sound lands (≈ 0.5 s later), and again on the way back
 LEG = 0.5
 for t0 in [EV['shout'], T('mimic') + 0.1]:

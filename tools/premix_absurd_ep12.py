@@ -204,6 +204,10 @@ for name, a, b, lvl, width, fb in [('village_amb', 0, T('court'), 1.1, 0.9, lamb
         ('village_amb', T('alone'), END, 1.0, 0.9, lambda: bed_noise(8, 300, 4000, 0.3, 7))]:
     M.bed(to_st(rms_to(amb(name, 10, fb), BED * lvl)), a, b, width=width, xf=0.3, fade=0.6 if b == END else 0.04)
 M.bed(to_st(rms_to(amb('morning_birds', 10, lambda: bed_noise(8, 3500, 7000, 0.5, 8)), BED * 0.7)), 0, T('court'), width=0.9, xf=0.3, fade=0.04)
+# ---- BGM (Nox: every episode gets a quiet underscore; EP12 = bgm1, Nox's pick, EP13 = audio-studio SA3 v2): a bed, so it ducks ~10 dB under the voice
+BGM = pathlib.Path('public/absurd-cases/ep12/bgm/bgm.wav')
+if BGM.exists(): M.bed(rms_to(read(BGM, stereo=True)[:int(END * R)], 0.022), 0, END, width=1.0, xf=0.05, fade=0.8)
+
 # ---- home: a door, bare feet, the slap of the flip-flops getting faster and messier
 door = lambda: env(take('door_creak', lambda: creak(0.9, 900, 1100), 1.6), [(0, 1), (1.1, 1), (1.6, 0)])   # SAO: knob click at 0.03 s, hinge creak ~1.1 kHz
 P(door(), 0.32, 0.0, -0.2)
