@@ -53,6 +53,8 @@ Account in-scene: `@absurd.cases` (`HANDLE` in each episode's data.ts).
 
 ## EP14 คดีแผ่นดินไหว (โลกทั้งดวง)
 - Charge: ก่อความไม่สงบ (shook down the man's all-night domino run in one second).
-- Police follow the crack across the country to the culprit: the whole planet. Rockets surround it from space; a giant chain is locked round the equator.
-- Court: จำคุกห้าพันล้านปี. A cage is built round the whole globe, so everyone on Earth is in prison with it, the man included (closer callback "รวมถึง, ชายคนนี้").
-- Hooks: every inmate from EP1–13 is now in the same prison as the man, the judge and the police; the Moon still circles the cage every night (visitor or accomplice?); aftershocks (อาฟเตอร์ช็อก) are its children, still free.
+- No realism: an ordinary patrol car drives to the culprit, the whole Earth; cuffed and shoved in the back seat.
+- Interrogation: it trembles nonstop; the lie detector shakes itself off the table.
+- Court: จำคุกห้าพันล้านปี, cell 18 (empty since EP6).
+- Closer: the man rebuilds his dominoes, but its child อาฟเตอร์ช็อก is still at large (last shot: they start to wobble).
+- Hooks: aftershock at large (future suspect); the Earth shares a block with the other inmates.
