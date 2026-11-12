@@ -204,7 +204,7 @@ def wall_ring(f=520, taps=4):
     for k in range(taps): x = lp(one, 4000 / (1 + k)) * 0.55 ** k; i = int(k * 0.2 * R); o[i:i + len(x)] += x
     return o
 # ---- beds per place
-for name, a, b, lvl, width, fb in [('room_tone', 0, T('patrol'), 1.0, 0.6, lambda: bed_noise(8, 100, 1500, 0.1, 3)), ('village_amb', T('patrol'), T('interro'), 1.1, 0.9, lambda: bed_noise(8, 200, 3000, 0.4, 6)),
+for name, a, b, lvl, width, fb in [('room_tone', 0, T('patrol'), 1.0, 0.6, lambda: bed_noise(8, 100, 1500, 0.1, 3)), ('village_amb', T('patrol'), T('space'), 1.1, 0.9, lambda: bed_noise(8, 200, 3000, 0.4, 6)),
         ('room_tone', T('interro'), T('court'), 0.9, 0.5, lambda: bed_noise(8, 100, 1500, 0.1, 4)), ('court_amb', T('court'), T('cell18'), 0.9, 0.8, lambda: bed_noise(10, 200, 2500, 0.2, 5)),
         ('cell_hum', T('cell18'), T('rebuild'), 0.8, 0.5, lambda: hum(5, 60)), ('room_tone', T('rebuild'), END, 1.0, 0.6, lambda: bed_noise(8, 100, 1500, 0.1, 7))]:
     M.bed(to_st(rms_to(amb(name, 10, fb), BED * lvl)), a, b, width=width, xf=0.3, fade=0.6 if b == END else 0.04)
@@ -221,7 +221,9 @@ P(take('phone_taps', lambda: click(), 1.6), 0.18, EV['press'] - 0.35)
 # ---- the patrol car: siren in, brakes, the cuff, the back door
 s = loopto(take('siren', lambda: siren(6, 700, 1050, 0.9), trim=False), T('interro') - EV['siren']); s = env(s, [(0, 0), (0.15, 1), (len(s) / R - 0.5, 1), (len(s) / R, 0)])
 M.put2(to_st(rms_to(s, 0.003 * FX)), EV['siren'], 1.0, width=0.6)
-P(take('car_brake', lambda: squeal(1.0), 2.0), 0.45, EV['park'] - 0.6, -0.3)
+P(take('rocket_liftoff', lambda: spinup(2.0), T('space') - EV['lift'] + 0.6), 0.7, EV['lift'] - 0.1, 0.2)   # the patrol car fires its jets and lifts off
+P(take('whoosh_cloud', lambda: whoosh(0.8, 300, 4000), 1.0), 0.45, T('space') - 0.15)   # out into space
+P(whoosh(0.9, 200, 2500), 0.3, T('space') + 0.3, -0.3)   # the car flies up to the Earth
 P(take('cuffs', lambda: ratchet(), 1.0), 0.6, EV['cuff'] - 0.05)
 P(whoosh(0.4, 300, 2500), 0.2, T('backseat') + 0.05); P(take('car_door_slam', lambda: clunk(90, 0.4), 1.0), 0.75, EV['doorShut'] - 0.02)
 # ---- interrogation: it rumbles the whole time; the needles scribble; the machine shakes off the table

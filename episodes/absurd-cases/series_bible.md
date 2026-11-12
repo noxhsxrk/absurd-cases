@@ -53,7 +53,7 @@ Account in-scene: `@absurd.cases` (`HANDLE` in each episode's data.ts).
 
 ## EP14 คดีแผ่นดินไหว (โลกทั้งดวง)
 - Charge: ก่อความไม่สงบ (shook down the man's all-night domino run in one second).
-- No realism: an ordinary patrol car drives to the culprit, the whole Earth; cuffed and shoved in the back seat.
+- Over the top (Nox): the patrol car fires jets and takes off from the village road into space; an officer floats up to the huge Earth and snaps a giant cuff round the whole planet, then squeezes it into the back seat (squashed face against the window).
 - Interrogation: it trembles nonstop; the lie detector shakes itself off the table.
 - Court: จำคุกห้าพันล้านปี, cell 18 (empty since EP6).
 - Closer: the man rebuilds his dominoes, but its child อาฟเตอร์ช็อก is still at large (last shot: they start to wobble).

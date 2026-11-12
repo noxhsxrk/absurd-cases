@@ -17,9 +17,9 @@ const MIX = 'absurd-cases/ep14/mix/ep14_mix.wav';
 const VOICE = 'absurd-cases/ep14/ep14_narration_tight.wav';   // until the mix exists
 const T = (n: string) => SHOTS.find((s) => s.name === n)!;
 const IN = (n: string, a: string[]) => a.includes(n);
-const PLACE = (n: string) => IN(n, ['patrol', 'cuff', 'backseat']) ? 'street' : IN(n, ['interro', 'shake', 'polygraph']) ? 'interro' : IN(n, ['court', 'sentence']) ? 'court' : n === 'cell18' ? 'cell' : 'room';
-const GRADE: Record<string, string> = {room: 'saturate(0.85) contrast(1.05)', street: 'saturate(0.9) contrast(1.03)', interro: 'saturate(0.8) contrast(1.06)', court: 'saturate(0.8) contrast(1.05)', cell: 'saturate(0.75) contrast(1.08)'};
-const FILL: Record<string, [string, number]> = {room: ['#8090C0', 0.35], street: ['#E8EEF2', 0.35], interro: ['#BFD6DA', 0.25], court: ['#FFF1DE', 0.5], cell: ['#8090B0', 0.3]};
+const PLACE = (n: string) => n === 'patrol' ? 'street' : IN(n, ['space', 'cuff', 'backseat']) ? 'space' : IN(n, ['interro', 'shake', 'polygraph']) ? 'interro' : IN(n, ['court', 'sentence']) ? 'court' : n === 'cell18' ? 'cell' : 'room';
+const GRADE: Record<string, string> = {room: 'saturate(0.85) contrast(1.05)', street: 'saturate(0.9) contrast(1.03)', space: 'saturate(1.0) contrast(1.06)', interro: 'saturate(0.8) contrast(1.06)', court: 'saturate(0.8) contrast(1.05)', cell: 'saturate(0.75) contrast(1.08)'};
+const FILL: Record<string, [string, number]> = {room: ['#8090C0', 0.35], street: ['#E8EEF2', 0.35], space: ['#3A4670', 0.25], interro: ['#BFD6DA', 0.25], court: ['#FFF1DE', 0.5], cell: ['#8090B0', 0.3]};
 const World: React.FC<{t: number; P: any}> = ({t, P}) => {
   const sh = shotAt(t); const out = SHOT_FN[sh.name](t, t - sh.t0, P); const [fc, fi] = FILL[PLACE(sh.name)];
   return <><CamRig cam={out.cam} bg={out.bg ?? {color: '#2A2420'}} /><ambientLight color={fc} intensity={fi} /><group key={sh.name}>{out.node}</group></>;

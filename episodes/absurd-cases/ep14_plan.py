@@ -20,13 +20,13 @@ for a, b in zip(cards, cards[1:]):
     if b['t0'] - a['t1'] < 0.3: a['t1'] = b['t0']
 speech = E('l012')
 ev.update(lastDomino=0.45, quake=P('l002') - 0.1, topple=P('l002', 1) + 0.05, plate1=P('l003', 1), phoneUp=P('l004') - 0.05, press=P('l004') + 0.3,
-          siren=P('l005') - 0.1, park=P('l005', 1) + 0.4, cuff=P('l006') + 0.55, doorShut=P('l006', 1) + 0.45,
+          siren=P('l005') - 0.1, lift=P('l005', 1) + 0.05, park=P('l005', 1) + 0.4, cuff=P('l006') + 0.55, doorShut=P('l006', 1) + 0.45,
           shake=P('l007', 1), needle=P('l008') + 0.05, fall=P('l008', 1) + 0.2, gavel=P('l009') + 0.45, plate2=P('l009', 1),
           cellShut=P('l010') + 0.35, place=P('l011', 1) + 0.4, wobble=P('l012') + 0.2, end=E('l012'))
 ev = {k: round(v, 3) for k, v in ev.items()}
 SHOTS = [('man', 0.0), ('dominoes', P('l001', 1) - .05), ('quake', P('l002') - .05), ('topple', P('l002', 1) - .05),
          ('charge', P('l003') - .05), ('phone', P('l004') - .05),
-         ('patrol', P('l005') - .05), ('cuff', P('l006') - .05), ('backseat', P('l006', 1) - .05),
+         ('patrol', P('l005') - .05), ('space', P('l005', 1) + .55), ('cuff', P('l006') - .05), ('backseat', P('l006', 1) - .05),
          ('interro', P('l007') - .05), ('shake', P('l007', 1) - .05), ('polygraph', P('l008') - .05),
          ('court', P('l009') - .05), ('sentence', P('l009', 1) - .05), ('cell18', P('l010') - .05),
          ('rebuild', P('l011') - .05), ('aftershock', P('l012') - .05), ('final', P('l012', 1) - .05)]

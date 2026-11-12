@@ -55,17 +55,32 @@ const man = (C: Cast, t: number, o: {place?: number | null; face?: string; stand
 };
 
 // =====================================================================================================
-// THE STREET (EP8 village, road along x): the Earth sits in a crack in the road; the patrol car pulls up behind it.
+// THE STREET (EP8 village, road along x): the patrol car tears down the road, fires its jets and takes off into the sky.
+// SPACE: the Earth hangs huge in the dark (r = EBIG); the tiny patrol car flies up to it; an officer cuffs the whole planet.
 // =====================================================================================================
-const ER = 0.55;
-const EARTH_ST: V3 = [2.0, ER - 0.08, -1.2];
-const CAR_STOP = EARTH_ST[0] - ER - 1.8 - 0.55;
-const ROAD_CRACK: [number, number][] = [[-30, -1.0], [-14, -1.5], [-4, -0.9], [EARTH_ST[0], -1.2], [9, -1.6], [30, -1.1]];
+const ROAD_CRACK: [number, number][] = [[-30, -1.0], [-14, -1.5], [-4, -0.9], [2, -1.2], [9, -1.6], [30, -1.1]];
 const street = (t: number) => <><Village /><VillageLife t={t} traffic={false} dog={false} />{DAY()}<Crack pts={ROAD_CRACK} w={0.16} y={0.012} seed={7} /></>;
-const carX = (t: number) => { const t0 = sh('patrol').t0 - 0.3, t1 = ev('park'); const k = Math.min(1, Math.max(0, (t - t0) / (t1 - t0))); return CAR_STOP - 16 * (1 - k) * (1 - k); };
-const car = (t: number, door = 0, back = 0) => { const x = carX(t); const moving = t < ev('park');
-  return <group><PoliceCar t={t} position={[x, 0, EARTH_ST[2]]} yaw={0} door={door} spin={moving ? -9 : 0} pitch={moving ? 0 : -0.03 * Math.exp(-(t - ev('park')) * 6) * Math.sin((t - ev('park')) * 20)} />
-    <group position={[x, 0, EARTH_ST[2]]}><BackDoor open={back} /></group></group>; };
+/** the car on the road: speeds along +x (nose first), lifts off at ev('lift') nose-up with jet flames */
+const roadCar = (t: number): {p: V3; pitch: number; jet: number} => { const u = t - sh('patrol').t0 + 0.4, l = Math.max(0, t - ev('lift'));
+  return {p: [-16 + 9 * u + 3 * u * u, 2.2 * l * l + 1.2 * l, -1.2], pitch: Math.min(0.7, l * 1.6), jet: sm(l / 0.15)}; };
+const EBIG = 6;
+const EARTH_SP: V3 = [0, 0, 0];
+const STARS = (() => { const r = (n: number) => { const x = Math.sin(n * 91.7) * 43758.5; return x - Math.floor(x); }; const out: number[] = [];
+  for (let i = 0; i < 1400; i++) { const u = r(i) * 2 - 1, th = r(i + 5000) * Math.PI * 2, s = Math.sqrt(1 - u * u); out.push(s * Math.cos(th) * 300, u * 300, s * Math.sin(th) * 300); } return new Float32Array(out); })();
+const space = (moon = true) => <>
+  <points><bufferGeometry><bufferAttribute attach="attributes-position" args={[STARS, 3]} /></bufferGeometry><pointsMaterial color="#F4F1E0" size={2} sizeAttenuation={false} toneMapped={false} /></points>
+  {moon && <mesh position={[38, 14, -60]}><sphereGeometry args={[4, 18, 14]} /><meshLambertMaterial color="#C9C6BC" flatShading /></mesh>}
+  <hemisphereLight args={['#4A5A8A', '#0A0C14', 0.6]} /><directionalLight position={[-20, 10, 18]} color="#FFF4E0" intensity={2.6} /></>;
+const SPACE_BG: Bg = {color: '#04060D'};
+const STEEL = new THREE.MeshStandardMaterial({color: '#C3C8CC', roughness: 0.25, metalness: 0.85});
+/** a chain whose links scale to its length (space-size) */
+const BigChain: React.FC<{a: V3; b: V3; link?: number}> = ({a, b, link = 0.14}) => { const d = Math.hypot(b[0] - a[0], b[1] - a[1], b[2] - a[2]); const n = Math.max(4, Math.ceil(d / (link * 1.6)));
+  return <>{Array.from({length: n}, (_, i) => { const f = (i + 0.5) / n; return <mesh key={i} position={[a[0] + (b[0] - a[0]) * f, a[1] + (b[1] - a[1]) * f - Math.sin(f * Math.PI) * d * 0.04, a[2] + (b[2] - a[2]) * f]} rotation={[0, i % 2 ? Math.PI / 2 : 0, Math.PI / 2]} material={STEEL}><torusGeometry args={[link, link * 0.25, 6, 12]} /></mesh>; })}</>; };
+// in space: the car floats beside the Earth; the officer floats in front of its face
+const SP_CAR: V3 = [1.6, -2.4, 9.5], SP_COP: V3 = [0.9, 1.2, 8.4];
+const CAR_STOP = 0, CAR_Z = 0;   // backseat shot: the car floats at the origin of its own patch of space
+const car = (t: number, door = 0, back = 0, at: V3 = [CAR_STOP, 0, CAR_Z], yaw = 0, jet = 0) => <group position={at} rotation={[0, yaw, 0]}>
+  <PoliceCar t={t} position={[0, 0, 0]} yaw={0} door={door} jet={jet} /><BackDoor open={back} /></group>;
 const cop = (C: Cast, id: string, x: number, z: number, yaw: number, t: number, o: {clip?: string; face?: string; look?: V3} = {}) => {
   const I = C[id]; hideProps(I); resetTurn(I); return {I, w: body(I, ps(id, x, z, yaw, t, {clip: o.clip ?? 'idle_neutral_01', face: o.face, lookW: o.look}), t)}; };
 
@@ -149,37 +164,51 @@ export const SHOT_FN: Record<string, (t: number, lt: number, C: Cast) => ShotOut
     return {node: <>{room(t, {quake: quakeT(), crack: 1})}<Phone3D cam={c.pos} look={c.look} k={k} pressed={t > ev('press')} thumb={th} /></>, cam: c, bg: ROOM_BG};
   },
   patrol: (t, lt) => {
-    // the street: the Earth sits in a crack in the road, trembling; a patrol car, siren on, pulls up behind it
-    return {node: <>{street(t)}{car(t)}<Earth t={t} position={EARTH_ST} r={ER} yaw={-0.9} mood={t > ev('park') - 0.3 ? 'wide' : 'nervous'} /></>,
-      cam: mv({pos: [5.4, 1.0, 2.6], look: [0.9, 0.7, -1.2], fov: 52}, lt, {arrive: 0.08, push: 0.07, roll0: 2}), bg: SKY};
+    // the street: the patrol car tears down the road, siren on — fires its jets and takes off, nose up, into the sky
+    const c = roadCar(t); const look: V3 = [c.p[0] + 1.0, 0.9 + c.p[1] * 0.9, -1.2];
+    return {node: <>{street(t)}<PoliceCar t={t} position={c.p} yaw={0} pitch={c.pitch} jet={c.jet} spin={c.p[1] > 0.05 ? 0 : -9} />
+      {t > ev('lift') && <Puffs at={[c.p[0] - 1.8, 0.2, -1.2]} t={t} t0={ev('lift')} n={10} size={0.4} color="#D8D2C4" />}</>,
+      cam: mv({pos: [9.5, 1.2, 2.6], look, fov: 62}, lt, {arrive: 0.06, push: 0.05, shake: near(t, [ev('lift')], 0.3) ? 0.02 : 0}), bg: SKY};
+  },
+  space: (t, lt) => {
+    // space: the Earth hangs huge; the little patrol car rockets in from below, siren flashing, and pulls up right in front of its face
+    const k = sm((t - sh('space').t0) / (sh('space').dur / 30 * 0.85)); const from: V3 = [8, -9, 9];
+    const p: V3 = [from[0] + (SP_CAR[0] - from[0]) * k, from[1] + (SP_CAR[1] - from[1]) * k, from[2] + (SP_CAR[2] - from[2]) * k];
+    return {node: <>{space()}<Earth t={t} position={EARTH_SP} r={EBIG} mood="wide" shake={0.5} />{car(t, 0, 0, p, Math.PI / 2 + 0.6, 1 - k * 0.6)}</>,
+      cam: mv({pos: [-1.5, 0.8, 23], look: [0.6, -0.8, 0], fov: 50}, lt, {arrive: 0.08, push: 0.08, roll0: -3}), bg: SPACE_BG};
   },
   cuff: (t, lt, C) => {
-    // the officer snaps a giant cuff round the whole planet
-    const a = cop(C, 'offA', EARTH_ST[0] + 0.2, EARTH_ST[2] + 1.05, Math.PI + 0.15, t, {clip: 'idle_angry_01', face: 'angry', look: EARTH_ST});
-    fingers(a.I, 'L', 'fist', 1); ik(a.I, 'L', loc(a.I, [EARTH_ST[0] + 0.45, 1.05, EARTH_ST[2] + 0.75]), new THREE.Vector3(1, -1, 0), 1); a.w.updateMatrixWorld(true);
-    const close = sm((t - ev('cuff') + 0.15) / 0.15);
-    return {node: <>{street(t)}{car(t)}<P o={a.w} /><Earth t={t} position={EARTH_ST} r={ER} yaw={0.4} mood={t > ev('cuff') ? 'shut' : 'wide'} shake={1.3} />
-      <EarthCuff center={EARTH_ST} r={ER} close={close} hand={bw(a.I, 'Bip01_L_Hand')} />
-      {t > ev('cuff') && t < ev('cuff') + 0.3 && <Stars center={[EARTH_ST[0] + ER, EARTH_ST[1] + 0.3, EARTH_ST[2] + 0.3]} t={t * 3} r={0.2} size={0.05} />}</>,
-      cam: mv({pos: [EARTH_ST[0] + 1.9, 1.3, EARTH_ST[2] + 2.3], look: [EARTH_ST[0] + 0.05, 0.75, EARTH_ST[2] + 0.1], fov: 50}, lt, {arrive: 0.08, push: 0.12, shake: near(t, [ev('cuff')], 0.12) ? 0.015 : 0}), bg: SKY};
+    // over the officer's shoulder, floating in space: a giant cuff snaps shut round the whole planet; he holds the chain
+    const a = cop(C, 'offA', SP_COP[0], SP_COP[2], Math.PI + 0.1, t, {clip: 'idle_angry_01', face: 'angry', look: EARTH_SP});
+    a.w.position.y = SP_COP[1] + Math.sin(t * 1.6) * 0.05; a.w.updateMatrixWorld(true);
+    fingers(a.I, 'L', 'fist', 1); ik(a.I, 'L', loc(a.I, [SP_COP[0] - 0.35, SP_COP[1] + 1.05, SP_COP[2] - 0.5]), new THREE.Vector3(1, -1, 0), 1); a.w.updateMatrixWorld(true);
+    const close = sm((t - ev('cuff') + 0.15) / 0.15); const tilt: V3 = [0.25, 0, 0.35];
+    const R = EBIG * (1.07 + 0.45 * (1 - close)); const lock = new THREE.Vector3(R, 0, 0).applyEuler(new THREE.Euler(...tilt));
+    return {node: <>{space()}<Earth t={t} position={EARTH_SP} r={EBIG} yaw={0.15} mood={t > ev('cuff') ? 'shut' : 'wide'} shake={1.2} />
+      {car(t, 0, 0, SP_CAR, Math.PI / 2 + 0.6, 0.3)}<P o={a.w} />
+      <EarthCuff center={EARTH_SP} r={EBIG} close={close} tilt={tilt} />
+      <BigChain a={[lock.x * 1.04, lock.y * 1.04, lock.z * 1.04]} b={bw(a.I, 'Bip01_L_Hand')} />
+      {t > ev('cuff') && t < ev('cuff') + 0.35 && <Stars center={[lock.x, lock.y + 1, lock.z + 1]} t={t * 3} r={1.6} size={0.4} />}</>,
+      cam: mv({pos: [SP_COP[0] - 3.5, SP_COP[1] + 1.8, SP_COP[2] + 9.5], look: [0.2, 0.0, 0], fov: 60}, lt, {arrive: 0.08, push: 0.08, shake: near(t, [ev('cuff')], 0.15) ? 0.05 : 0}), bg: SPACE_BG};
   },
   backseat: (t, lt, C) => {
-    // the back door: he shoves the cuffed Earth in, slams the door — it ends up squashed against the window
-    const s0 = sh('backseat').t0, ds = ev('doorShut'); const x = CAR_STOP; const hinge: V3 = [x - 0.45, 0, EARTH_ST[2] + 0.81];
+    // still in space: he shoves the cuffed Earth — squeezing it smaller — through the back door, slams it; it ends up squashed against the window
+    const s0 = sh('backseat').t0, ds = ev('doorShut'); const x = CAR_STOP, Z = CAR_Z; const hinge: V3 = [x - 0.45, 0, Z + 0.81];
     const open = t < ds - 0.15 ? 1 : 1 - sm((t - (ds - 0.15)) / 0.15);
     const push = sm((t - s0) / 0.4);
-    const ep: V3 = [x - 0.95, 0.85, EARTH_ST[2] + 1.55 - push * 0.95];
-    const a = cop(C, 'offA', x - 0.95, EARTH_ST[2] + 2.05 - push * 0.45, Math.PI, t, {clip: 'idle_angry_01', face: 'angry', look: ep});
+    const ep: V3 = [x - 0.95, 0.85, Z + 1.75 - push * 1.15];
+    const a = cop(C, 'offA', x - 0.95, Z + 2.25 - push * 0.45, Math.PI, t, {clip: 'idle_angry_01', face: 'angry', look: ep});
     if (t < ds - 0.25) { (['L', 'R'] as const).forEach((sd) => { const k = sd === 'L' ? -1 : 1; fingers(a.I, sd, 'open', 1);
-      ik(a.I, sd, loc(a.I, [ep[0] + k * 0.36, ep[1] + 0.05, ep[2] + 0.2]), new THREE.Vector3(k, -1, 0), 1); }); }
+      ik(a.I, sd, loc(a.I, [ep[0] + k * 0.4, ep[1] + 0.05, ep[2] + 0.3]), new THREE.Vector3(k, -1, 0), 1); }); }
     else { const ang = open * 1.25; fingers(a.I, 'R', 'open', 1); ik(a.I, 'R', loc(a.I, [hinge[0] - Math.cos(ang) * 0.95, 1.0, hinge[2] + Math.sin(ang) * 0.95 + 0.05]), new THREE.Vector3(1, -1, 0), 1); }
     a.w.updateMatrixWorld(true);
-    const inside = t > ds - 0.25; const squash = t > ds ? 1 + 0.25 * Math.exp(-(t - ds) * 8) * Math.cos((t - ds) * 30) : 1;
-    return {node: <>{street(t)}{car(t, 0, open)}<P o={a.w} />
-      {!inside && <Earth t={t} position={ep} r={0.42} squash={[1 + push * 0.12, 1 - push * 0.08, 1 - push * 0.15]} mood="wide" shake={1.2} />}
-      {t > ds && <Earth t={t} position={[x - 0.95, 1.08, EARTH_ST[2] + 0.86]} r={0.24} squash={[squash, squash, 0.18]} mood="shut" shake={0.6} />}
-      {near(t, [ds], 0.25) && <Puffs at={[x - 0.95, 0.9, EARTH_ST[2] + 0.85]} t={t} t0={ds} n={6} size={0.1} color="#D8D2C4" />}</>,
-      cam: mv({pos: [x + 0.55, 1.35, EARTH_ST[2] + 3.0], look: [x - 0.95, 0.9, EARTH_ST[2] + 0.6], fov: 48}, lt, {arrive: 0.08, push: 0.1, shake: near(t, [ds], 0.12) ? 0.02 : 0}), bg: SKY};
+    const inside = t > ds - 0.25; const squash = t > ds ? 1 + 0.25 * Math.exp(-(t - ds) * 8) * Math.cos((t - ds) * 30) : 1; const er = 0.75 - push * 0.33;
+    return {node: <>{space()}{car(t, 0, open)}<P o={a.w} />
+      {!inside && <Earth t={t} position={ep} r={er} squash={[1 + push * 0.2, 1 - push * 0.12, 1 - push * 0.2]} mood="wide" shake={1.2} />}
+      {!inside && <EarthCuff center={ep} r={er} close={1} />}
+      {t > ds && <Earth t={t} position={[x - 0.95, 1.08, Z + 0.86]} r={0.24} squash={[squash, squash, 0.18]} mood="shut" shake={0.6} />}
+      {near(t, [ds], 0.25) && <Puffs at={[x - 0.95, 0.9, Z + 0.85]} t={t} t0={ds} n={6} size={0.1} color="#D8D2C4" />}</>,
+      cam: mv({pos: [x + 0.55, 1.35, Z + 3.0], look: [x - 0.95, 0.9, Z + 0.6], fov: 50}, lt, {arrive: 0.08, push: 0.1, shake: near(t, [ds], 0.12) ? 0.02 : 0}), bg: SPACE_BG};
   },
   interro: (t, lt, C) => ({node: interro(C, t), cam: mv({pos: [0.15, 1.5, 1.85], look: [-0.05, 0.85, -0.85], fov: 56}, lt, {arrive: 0.1, push: 0.1})}),
   shake: (t, lt, C) => {
