@@ -67,6 +67,8 @@ spot ตรงเฟรมที่ตัวละครทำ ใส่ก่�
 |---|---|---|---|---|---|
 | **cough** | คนแก่ไอสองทีกระแอม ช่วงเงียบในศาล/ห้องสอบสวนก่อนพูด | EP8b cough | `public/absurd-cases/ep8/sfx_sao/cough_r1.wav` | sao · 2.5 · 0.36 | 5 |
 | **flipflop_steps** | รองเท้าแตะเดินตบส้นแปะๆ บนทางเท้า (เดินเล่น ออกจากบ้าน) | EP12 | ☁ `sounds/flipflop_steps/flipflop_steps_r1_sao.wav` | sao · 4.0 · 0.29 | 5 |
+| **guard_sing** | ผู้ชายร้องเพลงเสียงดังเพี้ยนๆ ในโถงคอนกรีต (ผู้คุมร้องเพลง คาราโอเกะ) | EP13 release | ☁ `sounds/guard_sing/guard_sing_r1_sao.wav` | sao · 4.0 · 0.23 | 4 |
+| **scream_short** | ผู้หญิงกรี๊ดสั้นๆ ตกใจ (โดนผีหลอก) | EP13 boo | ☁ `sounds/scream_short/scream_short_r1_sao.wav` | sao · 1.5 · 0.28 | 4 |
 | **steps_road** | เดินช้าบนถนนยาง รองเท้าผ้าใบ ฉากเดินเล่นเปิดเรื่อง (loop ได้) | EP12 door, EP8b | `public/absurd-cases/ep12/sfx_sao/steps_road_r1.wav` | sao · 5.0 · 0.24 | 6 |
 | **steps_stop** | เดิน 3 ก้าวแล้วหยุด ตรงจังหวะชะงัก/สังเกตเห็นความผิดปกติ | EP8b stop | `public/absurd-cases/ep8/sfx_sao/steps_stop_r1.wav` | sao · 2.0 · 0.13 | 5 |
 | **toothbrush** | แปรงฟันถูๆ เปียก ฟอง วนใต้ฉากแปรงฟันหน้ากระจก (EP9) | EP9 | ☁ `sounds/toothbrush/toothbrush_r1_sao.wav` | sao · 4.0 · 0.33 | 5 |
@@ -94,6 +96,7 @@ spot ตรงเฟรมที่ตัวละครทำ ใส่ก่�
 | **jar_lid** | ปิดฝาโหลแก้วหมุนแน่น ตอนเก็บ 'หลักฐาน' ใส่โหล | EP13 jarIn | `public/absurd-cases/ep13/sfx_sao/jar_lid_r1.wav` | sao · 2.0 ·  | 5 |
 | **knock** | เคาะประตู ตำรวจมาเคาะ/มีคนมา | EP10 tower | `public/absurd-cases/ep10/sfx_sao/knock_r1.wav` | sao · 1.5 ·  | 3 |
 | **ring_click** | สวิตช์พลาสติกเปิดริงไลท์ คลิกแล้วฮัมเบาๆ | EP11 unhand, EP9 ring | ☁ `sounds/ring_click/ring_click_r1_sao.wav` | sao · 1.5 · 0.35 | 6 |
+| **rocking_chair** | เก้าอี้โยกไม้ลั่นเอี๊ยดช้าๆ เป็นจังหวะ (ฉากเกษียณ บ้านเก่า กลางคืน) | EP13 retire | ☁ `sounds/rocking_chair/rocking_chair_r1_sao.wav` | sao · 4.0 · 0.39 | 4 |
 | **breaker_clunk** | สับคัตเอาต์ ไฟดับ/ติดทั้งบ้าน |  | ☁ `sounds/breaker_clunk/breaker_clunk_v1_r1_audioldm2.wav` | audioldm2 ·  ·  | 2 |
 | **fan_gear** | เฟืองพัดลมตั้งโต๊ะส่ายดังกึกๆ ฉากพัดลม |  | ☁ `sounds/fan_gear/fan_gear_r1_audioldm2_ep3.wav` | audioldm2 · 2.5 ·  | 4 |
 | **fan_motor** | มอเตอร์พัดลม รุ่นเก่า |  | ☁ `sounds/fan_motor/fan_motor_v1_r1_audioldm2.wav` | audioldm2 ·  ·  | 2 |
@@ -201,6 +204,7 @@ bed ห้อง + spot เด่นหนึ่งเสียงต่อช�
 | เสียง | ใช้ตอนไหน | เคยใช้ | take ที่ดีที่สุด | engine · วิ · score | takes |
 |---|---|---|---|---|---|
 | **fold** | พับแผ่นยางหนาครึ่ง ตบแปะ ตอนพับผู้ต้องหาที่แบน (เงา ผ้า) | EP8b fold | `public/absurd-cases/ep8/sfx_sao/fold_r1.wav` | sao · 2.0 · 0.23 | 5 |
+| **ghost_moan** | ผีครางวู้ว ก้องในบ้านร้าง (บ้านผีสิง ผีหลอก) | EP13 boo | ☁ `sounds/ghost_moan/ghost_moan_r1_sao.wav` | sao · 3.0 · 0.39 | 4 |
 | **peel** | ลอกแผ่นยางเหนียวขึ้นจากถนน ดังแคว๊ก ตอนลอกเงา/สติกเกอร์/ของติดพื้น | EP8b peel | `public/absurd-cases/ep8/sfx_sao/peel_r1.wav` | sao · 3.0 · 0.26 | 5 |
 | **sheet_fold** | พับแผ่นยาง รุ่นแรก (ใช้ fold ก่อน) | EP11 bow, EP8 fold | `public/absurd-cases/ep11/sfx_sao/sheet_fold_r1.wav` | sao · 1.5 ·  | 5 |
 | **shrink** | เสียงยางบีบเอี๊ยดสั้นๆ ใช้เป็น 'คำตอบ' ของผู้ต้องหาที่พูดไม่ได้ (ดังกว่าพากย์ +4 dB) | EP8b | `public/absurd-cases/ep8/sfx_sao/shrink_r1.wav` | sao · 1.5 · 0.27 | 5 |
@@ -258,6 +262,7 @@ bed ห้อง + spot เด่นหนึ่งเสียงต่อช�
 |---|---|---|---|---|---|
 | **baton_wood** | กระบองฟาดกรอบไม้ ป๊อกๆ ไม่มีแก้วแตก ตอนรุมตีของ (EP9 ตีกระจก) | EP9 | ☁ `sounds/baton_wood/baton_wood_r1_sao.wav` | sao · 2.0 · 0.33 | 5 |
 | **body_fall** | คนล้มหงายลงพื้นแข็ง (ผู้ต้องหาหมดสติ ช็อก) | EP12 fall, EP9 reel | `public/absurd-cases/ep12/sfx_sao/body_fall_r1.wav` | sao · 2.0 ·  | 6 |
+| **brick_smash** | ค้อนปอนด์ทุบกำแพงอิฐ อิฐแตกร่วง ตอนตำรวจทุบห้อง | EP13 hit1, EP13 rubble | ☁ `sounds/brick_smash/brick_smash_r1_sao.wav` | sao · 2.0 · 0.44 | 4 |
 | **rubble_fall** | อิฐปูนถล่มลงพื้น หลังทุบ/รื้อ | EP13 rubble, EP6 rubble | `public/absurd-cases/ep13/sfx_sao/rubble_fall_r1.wav` | sao · 3.0 ·  | 5 |
 | **thud1** | ตุ้บทุ้ม รุ่นเก่า |  | `public/absurd-cases/ep9/sfx_sao/thud1_r1.wav` | sao · 2.0 ·  | 3 |
 | **whoosh_cloud** | วูบผ่านเมฆ ทรานซิชัน/กล้องพุ่ง | EP7 cloud | `public/absurd-cases/ep13/sfx_sao/whoosh_cloud_r1.wav` | sao · 2.0 ·  | 5 |
@@ -271,15 +276,10 @@ bed ห้อง + spot เด่นหนึ่งเสียงต่อช�
 
 | เสียง | ใช้ตอนไหน | เคยใช้ | take ที่ดีที่สุด | engine · วิ · score | takes |
 |---|---|---|---|---|---|
-| **brick_smash** |  | EP13 hit1, EP13 rubble | ☁ `sounds/brick_smash/brick_smash_r1_sao.wav` | sao · 2.0 · 0.44 | 4 |
-| **ghost_moan** |  | EP13 boo | ☁ `sounds/ghost_moan/ghost_moan_r1_sao.wav` | sao · 3.0 · 0.39 | 4 |
-| **guard_sing** |  | EP13 release | ☁ `sounds/guard_sing/guard_sing_r1_sao.wav` | sao · 4.0 · 0.23 | 4 |
 | **hd1** |  |  | ☁ `sounds/house_door/house_door_r1_sao.wav` | sao · 3.0 ·  | 1 |
 | **hd2** |  |  | ☁ `sounds/house_door/house_door_r2_sao.wav` | sao · 3.0 ·  | 1 |
 | **hd3** |  |  | ☁ `sounds/house_door/house_door_r3_sao.wav` | sao · 3.0 ·  | 1 |
 | **hd4** |  |  | ☁ `sounds/house_door/house_door_r4_sao.wav` | sao · 3.0 ·  | 1 |
-| **rocking_chair** |  | EP13 retire | ☁ `sounds/rocking_chair/rocking_chair_r1_sao.wav` | sao · 4.0 · 0.39 | 4 |
-| **scream_short** |  | EP13 boo | ☁ `sounds/scream_short/scream_short_r1_sao.wav` | sao · 1.5 · 0.28 | 4 |
 
 ## เสียงสังเคราะห์ (ไม่ต้องเจน — ฟังก์ชันใน `tools/premix_absurd_ep8b.py`)
 
