@@ -1,6 +1,6 @@
 # คลังเสียง absurd-cases (SFX library)
 
-844 ไฟล์ (844 อยู่บนคลัง GitHub, 148 อยู่ในเครื่อง) · 189 เสียง · สร้างใหม่: `python tools/sfx_index.py build` · ค้น: `python tools/sfx_index.py search <คำ>` (ไทยก็ได้)
+856 ไฟล์ (856 อยู่บนคลัง GitHub, 156 อยู่ในเครื่อง) · 190 เสียง · สร้างใหม่: `python tools/sfx_index.py build` · ค้น: `python tools/sfx_index.py search <คำ>` (ไทยก็ได้)
 
 ## วิธีใช้
 
@@ -90,7 +90,7 @@ spot ตรงเฟรมที่ตัวละครทำ ใส่ก่�
 |---|---|---|---|---|---|
 | **alarm_bell** | นาฬิกาปลุกกระดิ่งคู่ดังรัว (เปิดเรื่อง / ปลุก / สัญญาณเตือนแบบกลไก) | EP11 | ☁ `sounds/alarm_bell/alarm_bell_r1_sao.wav` | sao · 5.0 · 0.44 | 5 |
 | **clock_tick** | นาฬิกาเดินติ๊กต็อก (ห้องเงียบ รอเวลา นับถอยหลัง เข็มวินาที) | EP11 ring | ☁ `sounds/clock_tick/clock_tick_r1_sao.wav` | sao · 5.0 · 0.27 | 5 |
-| **domino_place** | วางโดมิโนตัวเดียวลงพื้นเบาๆ แก๊ก (ตั้งใจ ประณีต) | EP14 lastDomino, EP14 place | ☁ `sounds/domino_place/domino_place_r1_sao.wav` | sao · 1.0 · 0.22 | 4 |
+| **domino_place** | วางโดมิโนตัวเดียวลงพื้นเบาๆ แก๊ก (ตั้งใจ ประณีต) | EP14 lastDomino, EP14 place | ☁ `sounds/domino_place/domino_place_r1_sao.wav` | sao · 1.0 · 0.22 | 5 |
 | **door_creak** | ประตูไม้เปิดเอี๊ยดยาว มีเสียงลูกบิดกริ๊กก่อน (เปิดประตูบ้าน ห้อง ตู้) | EP12, EP13 haunted | ☁ `sounds/door_creak/door_creak_r1_sao.wav` | sao · 3.0 · 0.39 | 6 |
 | **door_open** | เปิดประตูบ้านธรรมดา |  | `public/absurd-cases/ep12/sfx_sao/door_open_r1.wav` | sao · 2.0 ·  | 3 |
 | **house_door** | เปิดประตูบ้านไม้: กดลูกบิดกริ๊ก แล้วบานพับเอี๊ยดเบาๆ (ออกจากบ้าน กลับบ้าน) |  | ☁ `sounds/house_door/house_door_r1_sao.wav` | sao · 3.0 · 0.32 | 4 |
@@ -128,8 +128,8 @@ spot ตรงเฟรมที่ตัวละครทำ ใส่ก่�
 | เสียง | ใช้ตอนไหน | เคยใช้ | take ที่ดีที่สุด | engine · วิ · score | takes |
 |---|---|---|---|---|---|
 | **cable_cinch** | สายแลน/สายยางพันรัดแน่น ตอนมัดเสาอากาศไขว้หลัง | EP10 lan, EP10 tie | ☁ `sounds/cable_cinch/cable_cinch_r1_sao.wav` | sao · 2.0 · 0.24 | 5 |
-| **car_brake** | รถมาเบรกจอด ยางเอี๊ยดสั้นๆ แล้วเครื่องเดินเบา (รถตำรวจมาถึง) | EP14 park | ☁ `sounds/car_brake/car_brake_r1_sao.wav` | sao · 2.5 · 0.15 | 4 |
-| **car_door_slam** | ปิดประตูรถแรงๆ ปึ้ง (ยัดผู้ต้องหาลงเบาะหลัง) | EP14 backseat | ☁ `sounds/car_door_slam/car_door_slam_r1_sao.wav` | sao · 1.5 · 0.4 | 4 |
+| **car_brake** | รถมาเบรกจอด ยางเอี๊ยดสั้นๆ แล้วเครื่องเดินเบา (รถตำรวจมาถึง) |  | ☁ `sounds/car_brake/car_brake_r1_sao.wav` | sao · 2.5 · 0.15 | 5 |
+| **car_door_slam** | ปิดประตูรถแรงๆ ปึ้ง (ยัดผู้ต้องหาลงเบาะหลัง) | EP14 backseat | ☁ `sounds/car_door_slam/car_door_slam_r1_sao.wav` | sao · 1.5 · 0.4 | 5 |
 | **cuff_click** | กุญแจมือล็อก รุ่นเก่า (ใช้ cuffs ก่อน) | EP13 jarIn | `public/absurd-cases/ep13/sfx_sao/cuff_click_r1.wav` | sao · 1.5 ·  | 3 |
 | **cuffs** | กุญแจมือรูดล็อกกริ๊กๆ ตรงเฟรมใส่กุญแจมือ (พีกช่วงจับกุม) | EP14 cuff, EP8b cuff, EP9 cuff | `public/absurd-cases/ep14/sfx_sao/cuffs_r1.wav` | sao · 2.0 · 0.43 | 7 |
 | **door_kick** | เตะประตูห้องนอนเปิดกระแทกผนัง ตอนหน่วยบุกเข้าห้อง (ในบ้าน) | EP10 door, EP11 door, EP9 door | ☁ `sounds/door_kick/door_kick_r1_sao.wav` | sao · 2.5 · 0.29 | 7 |
@@ -233,9 +233,11 @@ bed ห้อง + spot เด่นหนึ่งเสียงต่อช�
 
 | เสียง | ใช้ตอนไหน | เคยใช้ | take ที่ดีที่สุด | engine · วิ · score | takes |
 |---|---|---|---|---|---|
-| **earthquake_rumble** | แผ่นดินไหวเขย่าบ้าน เสียงครืนต่ำ ของสั่นกระทบ (ภัยพิบัติ / ผู้ต้องหาสั่น) | EP14 charge, EP14 court, EP14 wobble | ☁ `sounds/earthquake_rumble/earthquake_rumble_r1_sao.wav` | sao · 4.0 · 0.27 | 4 |
+| **earthquake_rumble** | แผ่นดินไหวเขย่าบ้าน เสียงครืนต่ำ ของสั่นกระทบ (ภัยพิบัติ / ผู้ต้องหาสั่น) | EP14 charge, EP14 court, EP14 wobble | ☁ `sounds/earthquake_rumble/earthquake_rumble_r1_sao.wav` | sao · 4.0 · 0.27 | 5 |
 | **electric_buzz** | ไฟฟ้าซ่าต่อเนื่อง ของเสียบปลั๊กเพี้ยน | EP10 tower | `public/absurd-cases/ep10/sfx_sao/electric_buzz_r1.wav` | sao · 3.0 ·  | 3 |
 | **electric_pop** | เครื่องใช้ไฟฟ้าลัดวงจรดังป๊อก ควันขึ้น | EP11 pull, EP7 routerBoom | `public/absurd-cases/ep11/sfx_sao/electric_pop_r1.wav` | sao · 2.0 ·  | 5 |
+| **jet_takeoff** | เครื่องเจ็ตขึ้นบิน เสียงพุ่ง ตอนของพุ่งขึ้นฟ้า | EP14 space, EP7 liftoff | `public/absurd-cases/ep14/sfx_sao/jet_takeoff_r1.wav` | sao · 4.0 ·  | 5 |
+| **rocket_liftoff** | เครื่องยนต์เจ็ต/จรวดจุดติดแล้วพุ่งขึ้นฟ้า (รถตำรวจบินขึ้น ยานออกตัว) |  | ☁ `sounds/rocket_liftoff/rocket_liftoff_r1_sao.wav` | sao · 3.0 · 0.08 | 4 |
 | **truck_away** | รถกระบะออกตัวขับออกไปไกล (รถยกลากออกไป รถตำรวจพาตัวไป) | EP12 lift, EP12 vanGo | ☁ `sounds/truck_away/truck_away_r1_sao.wav` | sao · 4.0 · 0.19 | 5 |
 | **army_trucks** | รถทหารหลายคันติดเครื่องรอ ตอนรัฐส่งกำลังใหญ่เกินเหตุ | EP6 bed cranes→courtExt, EP6 cranes | ☁ `sounds/army_trucks/army_trucks_r1_audioldm2_ep6.wav` | audioldm2 · 6.0 · 0.24 | 4 |
 | **crane_lift** | เครนยกของหนัก ตอนต้องยกผู้ต้องหาที่เป็นวัตถุใหญ่ | EP6 lift | ☁ `sounds/crane_lift/crane_lift_r1_audioldm2_ep6.wav` | audioldm2 · 4.0 · 0.12 | 4 |
@@ -245,7 +247,6 @@ bed ห้อง + spot เด่นหนึ่งเสียงต่อช�
 | **glass_burst** | หน้าต่างปะทะพายุ กระจกสั่น ลมพุ่งเข้า | EP7 strike | ☁ `sounds/glass_burst/glass_burst_r1_audioldm2_ep7.wav` | audioldm2 · 2.0 · 0.05 | 4 |
 | **heli_hover** | เฮลิคอปเตอร์ลอยเหนือหัว ใบพัดตึกๆ ตอนกำลังใหญ่เกินเหตุ | EP6 lanes | ☁ `sounds/heli_hover/heli_hover_r1_audioldm2_ep6.wav` | audioldm2 · 6.0 · 0.28 | 4 |
 | **helicopter** | เฮลิคอปเตอร์ รุ่นเก่า |  | ☁ `sounds/helicopter/helicopter_v1_r1_audioldm2.wav` | audioldm2 ·  ·  | 2 |
-| **jet_takeoff** | เครื่องเจ็ตขึ้นบิน เสียงพุ่ง ตอนของพุ่งขึ้นฟ้า | EP7 liftoff | ☁ `sounds/jet_takeoff/jet_takeoff_r1_audioldm2_ep7.wav` | audioldm2 · 4.0 · 0.13 | 4 |
 | **mic_blast** | ไมค์โดนไฟระเบิดดังปัง แล้วซ่า | EP7 zap | ☁ `sounds/mic_blast/mic_blast_r1_audioldm2_ep7.wav` | audioldm2 · 2.5 · 0.05 | 4 |
 | **mosquito_swarm** | ฝูงยุงมหาศาลหวีดหึ่ง ตอนยุงยกพวกมา | EP6 notice | ☁ `sounds/mosquito_swarm/mosquito_swarm_r1_audioldm2_ep6.wav` | audioldm2 · 6.0 · 0.39 | 4 |
 | **national_alarm** | ไซเรนเตือนภัยทั้งเมืองหวอยาวไกลๆ ตอนเรื่องเล็กกลายเป็นวิกฤตชาติ | EP7 prisonTop | ☁ `sounds/national_alarm/national_alarm_r1_audioldm2_ep7.wav` | audioldm2 · 8.0 · 0.38 | 4 |
@@ -267,11 +268,11 @@ bed ห้อง + spot เด่นหนึ่งเสียงต่อช�
 | **baton_wood** | กระบองฟาดกรอบไม้ ป๊อกๆ ไม่มีแก้วแตก ตอนรุมตีของ (EP9 ตีกระจก) | EP9 | ☁ `sounds/baton_wood/baton_wood_r1_sao.wav` | sao · 2.0 · 0.33 | 5 |
 | **body_fall** | คนล้มหงายลงพื้นแข็ง (ผู้ต้องหาหมดสติ ช็อก) | EP12 fall, EP9 reel | `public/absurd-cases/ep12/sfx_sao/body_fall_r1.wav` | sao · 2.0 ·  | 6 |
 | **brick_smash** | ค้อนปอนด์ทุบกำแพงอิฐ อิฐแตกร่วง ตอนตำรวจทุบห้อง | EP13 hit1, EP13 rubble | ☁ `sounds/brick_smash/brick_smash_r1_sao.wav` | sao · 2.0 · 0.44 | 5 |
-| **domino_cascade** | โดมิโนหลายร้อยตัวล้มพร้อมกันบนพื้นไม้ กริ๊กๆ รัว | EP14 quake, EP14 wobble | ☁ `sounds/domino_cascade/domino_cascade_r1_sao.wav` | sao · 3.0 · 0.25 | 4 |
-| **machine_crash** | เครื่องจักรเหล็กเล็กตกโต๊ะกระแทกพื้นกระเบื้อง แกร๊ง | EP14 fall | ☁ `sounds/machine_crash/machine_crash_r1_sao.wav` | sao · 2.0 · 0.35 | 4 |
+| **domino_cascade** | โดมิโนหลายร้อยตัวล้มพร้อมกันบนพื้นไม้ กริ๊กๆ รัว | EP14 quake, EP14 wobble | ☁ `sounds/domino_cascade/domino_cascade_r1_sao.wav` | sao · 3.0 · 0.25 | 5 |
+| **machine_crash** | เครื่องจักรเหล็กเล็กตกโต๊ะกระแทกพื้นกระเบื้อง แกร๊ง | EP14 fall | ☁ `sounds/machine_crash/machine_crash_r1_sao.wav` | sao · 2.0 · 0.35 | 5 |
 | **rubble_fall** | อิฐปูนถล่มลงพื้น หลังทุบ/รื้อ | EP13 rubble, EP6 rubble | `public/absurd-cases/ep13/sfx_sao/rubble_fall_r1.wav` | sao · 3.0 ·  | 5 |
 | **thud1** | ตุ้บทุ้ม รุ่นเก่า |  | `public/absurd-cases/ep9/sfx_sao/thud1_r1.wav` | sao · 2.0 ·  | 3 |
-| **whoosh_cloud** | วูบผ่านเมฆ ทรานซิชัน/กล้องพุ่ง | EP7 cloud | `public/absurd-cases/ep13/sfx_sao/whoosh_cloud_r1.wav` | sao · 2.0 ·  | 5 |
+| **whoosh_cloud** | วูบผ่านเมฆ ทรานซิชัน/กล้องพุ่ง | EP14 space, EP7 cloud | `public/absurd-cases/ep13/sfx_sao/whoosh_cloud_r1.wav` | sao · 2.0 ·  | 6 |
 | **boom_hit** | ตูมหนักๆ ตรงคัตใหญ่ / เปิดเผยข้อหา (EP1 รุ่นเก่า) |  | ☁ `sounds/boom_hit/boom_hit_v1_r1_audioldm2.wav` | audioldm2 ·  ·  | 2 |
 | **glass_hit** | กระทบกระจก รุ่นเก่า |  | ☁ `sounds/glass_hit/glass_hit_v1_r1_audioldm2.wav` | audioldm2 ·  ·  | 2 |
 | **hit** | ตีกระแทกทั่วไป รุ่นเก่า |  | ☁ `sounds/hit/hit_v1_r1_audioldm2.wav` | audioldm2 ·  ·  | 2 |

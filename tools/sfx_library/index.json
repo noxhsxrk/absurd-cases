@@ -2052,6 +2052,51 @@
   "store": "sounds/wind_gust/wind_gust_r1_sao_ep13.wav"
  },
  {
+  "cue": "car_brake",
+  "rank": 1,
+  "path": "public/absurd-cases/ep14/sfx_sao/car_brake_r1.wav",
+  "engine": "sao",
+  "score": null,
+  "episode": "14",
+  "prompt": "A car drives up and brakes to a stop on an asphalt street, short tyre squeal and the engine settling to idle, outdoor, daytime, no music.",
+  "target": "a car braking and stopping",
+  "tags": [
+   "ambience",
+   "mechanical"
+  ],
+  "sha": "9efcb824f94fd27aaf3ae2a6b57c92c8fa633dfc",
+  "local": true,
+  "sec": 2.5,
+  "sr": 44100,
+  "ch": 2,
+  "rms_db": -17.1,
+  "peak_db": -1.0,
+  "store": "sounds/car_brake/car_brake_r1_sao.wav"
+ },
+ {
+  "cue": "car_door_slam",
+  "rank": 1,
+  "path": "public/absurd-cases/ep14/sfx_sao/car_door_slam_r1.wav",
+  "engine": "sao",
+  "score": null,
+  "episode": "14",
+  "prompt": "A car door slammed shut hard, one solid metallic thunk with a short rattle, outdoor street, close, dry, no music.",
+  "target": "a car door slamming shut",
+  "tags": [
+   "ambience",
+   "impact",
+   "mechanical"
+  ],
+  "sha": "5edadf37b03d443f93fd78e8b81ba6fdb9c5ce39",
+  "local": true,
+  "sec": 1.5,
+  "sr": 44100,
+  "ch": 2,
+  "rms_db": -22.7,
+  "peak_db": -1.0,
+  "store": "sounds/car_door_slam/car_door_slam_r1_sao.wav"
+ },
+ {
   "cue": "cell_door",
   "rank": 1,
   "path": "public/absurd-cases/ep14/sfx_sao/cell_door_r1.wav",
@@ -2139,6 +2184,71 @@
   "store": "sounds/cuffs/cuffs_r1_sao_ep8.wav"
  },
  {
+  "cue": "domino_cascade",
+  "rank": 1,
+  "path": "public/absurd-cases/ep14/sfx_sao/domino_cascade_r1.wav",
+  "engine": "sao",
+  "score": null,
+  "episode": "14",
+  "prompt": "Hundreds of plastic dominoes topple over and fall on a wooden floor all at once, a dense rapid clattering cascade of small clicks, close foley, indoor, dry, no music.",
+  "target": "hundreds of dominoes toppling and clattering",
+  "tags": [
+   "mechanical"
+  ],
+  "sha": "ef6ec461c0e1234de768e6aa3c401c611039a5bd",
+  "local": true,
+  "sec": 3.0,
+  "sr": 44100,
+  "ch": 2,
+  "rms_db": -35.4,
+  "peak_db": -1.0,
+  "store": "sounds/domino_cascade/domino_cascade_r1_sao.wav"
+ },
+ {
+  "cue": "domino_place",
+  "rank": 1,
+  "path": "public/absurd-cases/ep14/sfx_sao/domino_place_r1.wav",
+  "engine": "sao",
+  "score": null,
+  "episode": "14",
+  "prompt": "A single plastic domino tile is set down carefully on a wooden floor, one small soft click, very close, quiet room, dry, no music.",
+  "target": "a single domino placed on a table",
+  "tags": [
+   "ambience",
+   "mechanical"
+  ],
+  "sha": "08575987a7f025745a04ce1c7705e8d8e277174b",
+  "local": true,
+  "sec": 1.0,
+  "sr": 44100,
+  "ch": 2,
+  "rms_db": -36.3,
+  "peak_db": -1.0,
+  "store": "sounds/domino_place/domino_place_r1_sao.wav"
+ },
+ {
+  "cue": "earthquake_rumble",
+  "rank": 1,
+  "path": "public/absurd-cases/ep14/sfx_sao/earthquake_rumble_r1.wav",
+  "engine": "sao",
+  "score": null,
+  "episode": "14",
+  "prompt": "A strong earthquake hits a house at night: a deep low rumble rises fast, the floor and walls shake, windows and shelves rattle, a few objects clatter, then the rumble fades, indoor, no music.",
+  "target": "an earthquake rumbling and shaking a house",
+  "tags": [
+   "ambience",
+   "impact"
+  ],
+  "sha": "b567042b95c6a43bb2e4c7bd7c89bd7429e246f7",
+  "local": true,
+  "sec": 4.0,
+  "sr": 44100,
+  "ch": 2,
+  "rms_db": -17.1,
+  "peak_db": -1.0,
+  "store": "sounds/earthquake_rumble/earthquake_rumble_r1_sao.wav"
+ },
+ {
   "cue": "gavel",
   "rank": 1,
   "path": "public/absurd-cases/ep14/sfx_sao/gavel_r1.wav",
@@ -2159,6 +2269,49 @@
   "rms_db": -31.9,
   "peak_db": -1.0,
   "store": "sounds/gavel/gavel_r1_sao_ep8.wav"
+ },
+ {
+  "cue": "jet_takeoff",
+  "rank": 1,
+  "path": "public/absurd-cases/ep14/sfx_sao/jet_takeoff_r1.wav",
+  "engine": "sao",
+  "score": null,
+  "episode": "14",
+  "prompt": "a jet engine roaring as it takes off, rising powerful whoosh",
+  "target": "a jet engine taking off",
+  "tags": [
+   "cartoon",
+   "mechanical"
+  ],
+  "sha": "c26dbdd39a63d6781da7fd5a09dc4d471b38be69",
+  "local": true,
+  "sec": 4.0,
+  "sr": 16000,
+  "ch": 1,
+  "rms_db": -14.3,
+  "peak_db": -0.9,
+  "store": "sounds/jet_takeoff/jet_takeoff_r1_audioldm2_ep7.wav"
+ },
+ {
+  "cue": "machine_crash",
+  "rank": 1,
+  "path": "public/absurd-cases/ep14/sfx_sao/machine_crash_r1.wav",
+  "engine": "sao",
+  "score": null,
+  "episode": "14",
+  "prompt": "A small heavy metal machine falls off a table and crashes onto a tiled floor, a hard metallic bang with rattling parts and a short skid, indoor, close, no music.",
+  "target": "a metal box falling onto a tiled floor",
+  "tags": [
+   "impact"
+  ],
+  "sha": "9b0ac1f4933c91fe296528c233315846f96d45e4",
+  "local": true,
+  "sec": 2.0,
+  "sr": 44100,
+  "ch": 2,
+  "rms_db": -26.9,
+  "peak_db": -1.0,
+  "store": "sounds/machine_crash/machine_crash_r1_sao.wav"
  },
  {
   "cue": "phone_taps",
@@ -2292,6 +2445,27 @@
   "rms_db": -23.5,
   "peak_db": -1.0,
   "store": "sounds/village_amb/village_amb_r1_sao_ep8.wav"
+ },
+ {
+  "cue": "whoosh_cloud",
+  "rank": 1,
+  "path": "public/absurd-cases/ep14/sfx_sao/whoosh_cloud_r1.wav",
+  "engine": "sao",
+  "score": null,
+  "episode": "14",
+  "prompt": "a fast airy whoosh passing through a cloud, swish",
+  "target": "a fast whoosh through air",
+  "tags": [
+   "cartoon"
+  ],
+  "sha": "c615207b52c257c19bba6b54ccaf047d4ff31988",
+  "local": true,
+  "sec": 2.0,
+  "sr": 16000,
+  "ch": 1,
+  "rms_db": -19.8,
+  "peak_db": -0.9,
+  "store": "sounds/whoosh_cloud/whoosh_cloud_r1_audioldm2_ep7.wav"
  },
  {
   "cue": "beep",
@@ -14843,6 +15017,94 @@
   "rms_db": -27.9,
   "peak_db": -1.0,
   "store": "sounds/machine_crash/machine_crash_r4_sao.wav"
+ },
+ {
+  "cue": "rocket_liftoff",
+  "rank": 1,
+  "path": "tools/ai-sfx/out_sao14/rocket_liftoff_r1.wav",
+  "engine": "sao",
+  "score": 0.0822,
+  "episode": null,
+  "prompt": "A small jet engine ignites with a roar and blasts off, a rising powerful whoosh that climbs fast and fades into the sky, outdoor, cinematic, no music.",
+  "target": "a rocket engine igniting and blasting off",
+  "tags": [
+   "cartoon",
+   "mechanical"
+  ],
+  "sha": "db4e541632e3eb41c65749a958ad25d223c8dbeb",
+  "local": false,
+  "sec": 3.0,
+  "sr": 44100,
+  "ch": 2,
+  "rms_db": -17.4,
+  "peak_db": -1.0,
+  "store": "sounds/rocket_liftoff/rocket_liftoff_r1_sao.wav"
+ },
+ {
+  "cue": "rocket_liftoff",
+  "rank": 2,
+  "path": "tools/ai-sfx/out_sao14/rocket_liftoff_r2.wav",
+  "engine": "sao",
+  "score": 0.0784,
+  "episode": null,
+  "prompt": "A small jet engine ignites with a roar and blasts off, a rising powerful whoosh that climbs fast and fades into the sky, outdoor, cinematic, no music.",
+  "target": "a rocket engine igniting and blasting off",
+  "tags": [
+   "cartoon",
+   "mechanical"
+  ],
+  "sha": "a0dbd8d0747703ff7eea09426f2d585847908c03",
+  "local": false,
+  "sec": 3.0,
+  "sr": 44100,
+  "ch": 2,
+  "rms_db": -19.6,
+  "peak_db": -1.0,
+  "store": "sounds/rocket_liftoff/rocket_liftoff_r2_sao.wav"
+ },
+ {
+  "cue": "rocket_liftoff",
+  "rank": 3,
+  "path": "tools/ai-sfx/out_sao14/rocket_liftoff_r3.wav",
+  "engine": "sao",
+  "score": 0.0503,
+  "episode": null,
+  "prompt": "A small jet engine ignites with a roar and blasts off, a rising powerful whoosh that climbs fast and fades into the sky, outdoor, cinematic, no music.",
+  "target": "a rocket engine igniting and blasting off",
+  "tags": [
+   "cartoon",
+   "mechanical"
+  ],
+  "sha": "1aed63e2d398bf6f3c88d9286f38f0db1f8bc6e4",
+  "local": false,
+  "sec": 3.0,
+  "sr": 44100,
+  "ch": 2,
+  "rms_db": -18.1,
+  "peak_db": -1.0,
+  "store": "sounds/rocket_liftoff/rocket_liftoff_r3_sao.wav"
+ },
+ {
+  "cue": "rocket_liftoff",
+  "rank": 4,
+  "path": "tools/ai-sfx/out_sao14/rocket_liftoff_r4.wav",
+  "engine": "sao",
+  "score": -0.0097,
+  "episode": null,
+  "prompt": "A small jet engine ignites with a roar and blasts off, a rising powerful whoosh that climbs fast and fades into the sky, outdoor, cinematic, no music.",
+  "target": "a rocket engine igniting and blasting off",
+  "tags": [
+   "cartoon",
+   "mechanical"
+  ],
+  "sha": "ecf2a81261f65047186e55a11ff853ab7c97d906",
+  "local": false,
+  "sec": 3.0,
+  "sr": 44100,
+  "ch": 2,
+  "rms_db": -19.1,
+  "peak_db": -1.0,
+  "store": "sounds/rocket_liftoff/rocket_liftoff_r4_sao.wav"
  },
  {
   "cue": "beep",
