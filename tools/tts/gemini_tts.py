@@ -22,8 +22,8 @@ import argparse, base64, json, os, pathlib, sys, time, urllib.error, urllib.requ
 HERE = pathlib.Path(__file__).resolve().parent
 API = 'https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent'
 
-def tts(text, style, voice, model, key):
-    prompt = f"{style}\n\nRead this Thai line exactly as written, nothing else:\n{text}"
+def tts(text, style, voice, model, key, raw_prompt=False):
+    prompt = text if raw_prompt else f"{style}\n\nRead this Thai line exactly as written, nothing else:\n{text}"
     body = {'contents': [{'parts': [{'text': prompt}]}],
             'generationConfig': {'responseModalities': ['AUDIO'],
                                  'speechConfig': {'voiceConfig': {'prebuiltVoiceConfig': {'voiceName': voice}}}}}
