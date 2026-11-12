@@ -4,7 +4,7 @@ Line timing from ep12_line_timing.json (provisional until the Fenrir take is cut
 import json, pathlib
 HERE = pathlib.Path(__file__).resolve().parent; ROOT = HERE.parent.parent
 FPS = 30
-HOLD = 1.9                     # closer: the left slipper alone on the step; frame holds, then the clip ends
+HOLD = 1.5                     # closer: the left slipper alone on the step; frame holds, then the clip ends
 script = json.load(open(HERE / 'ep12_script.json', encoding='utf-8')); rows = json.load(open(HERE / 'ep12_line_timing.json'))
 timing = {r['id']: r for r in rows}
 lines, cards, ev = [], [], {}
