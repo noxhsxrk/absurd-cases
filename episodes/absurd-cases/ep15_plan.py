@@ -20,13 +20,13 @@ for a, b in zip(cards, cards[1:]):
     if b['t0'] - a['t1'] < 0.3: a['t1'] = b['t0']
 speech = E('l012')
 L = 0.2   # ref6: a cut leads its sentence by 5–9 frames
-ev.update(turnL=P('l002'), follow1=P('l002', 1) + 0.25, turnR=P('l003'), follow2=P('l003', 1) + 0.2, zoom=P('l004', 1) - 0.2, plate1=P('l004', 1),
-          phoneUp=P('l005') - 0.05, press=P('l005') + 0.3, siren=P('l006') - 0.1, reveal=P('l006', 1) - 0.1, over=P('l007', 1),
-          hook=P('l008', 1), slam=E('l008'), cuff=E('l008') + 0.45, table=P('l009') + 0.3, cross=P('l010') + 0.35, circle=P('l010', 1) + 0.05,
+ev.update(turnL=P('l002'), turnR=P('l003'), follow2=P('l003', 1) + 0.2, zoom=P('l004', 1) - 0.2, plate1=P('l004', 1),
+          phoneUp=P('l005') - 0.05, press=P('l005') + 0.3, siren=P('l006') - 0.1, lift=P('l006', 1) + 0.05, brake=P('l007', 1) + 0.25,
+          cuff=P('l008') + 0.45, table=P('l009') + 0.3, cross=P('l010') + 0.35, circle=P('l010', 1) + 0.05,
           gavel=P('l011') + 0.35, flip=P('l011', 1) + 0.1, cellShut=P('l011', 1) + 0.5, end=E('l012'))
 ev = {k: round(v, 3) for k, v in ev.items()}
 SHOTS = [('drive', 0.0), ('wide', P('l001', 1) - .1), ('left', P('l002') - L), ('right', P('l003') - L), ('charge', P('l004') - L), ('phone', P('l005') - .15),
-         ('roadblock', P('l006') - L), ('over', P('l007') - L), ('crane', P('l008') - L), ('crash', P('l008', 1) + .25), ('interro', P('l009') - L),
+         ('takeoff', P('l006') - L), ('space', P('l007') - L), ('reach', P('l007', 1) - .05), ('cuff', P('l008') - L), ('tow', P('l008', 1) - .05), ('interro', P('l009') - L),
          ('board', P('l010') - L), ('court', P('l011') - L), ('cell19', P('l011', 1) - .05), ('cells', P('l012') - L), ('orbit', P('l012', 1) + .55)]
 TOTAL = round((speech + HOLD) * FPS)
 fr = [round(t * FPS) for _, t in SHOTS] + [TOTAL]

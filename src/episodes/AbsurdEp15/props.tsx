@@ -134,27 +134,6 @@ export const TownGrid: React.FC<{moon: V3; focus?: [number, number]}> = ({moon, 
     <NightLights moon={moon} /><NightSky />
   </group>;
 };
-export const Highway: React.FC<{moon: V3}> = ({moon}) => <group>
-  <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.02, 0]} receiveShadow material={PM('#1D2A22', 'grass')}><planeGeometry args={[300, 400]} /></mesh>
-  <mesh rotation={[-Math.PI / 2, 0, 0]} receiveShadow material={PM('#33363C', 'asph')}><planeGeometry args={[26, 400]} /></mesh>
-  {[-9.5, -6, -2.5, 2.5, 6, 9.5].map((x) => <Dashes key={x} a={[x, 0, -150]} b={[x, 0, 150]} n={50} />)}
-  {[-0.12, 0.12].map((x) => <mesh key={x} rotation={[-Math.PI / 2, 0, 0]} position={[x * 2, 0.012, 0]} material={PM('#D9A93A', 'yline')}><planeGeometry args={[0.14, 400]} /></mesh>)}
-  {[-13.2, 13.2].map((x) => <React.Fragment key={x}><Bx p={[x, 0.55, 0]} s={[0.12, 0.3, 400]} c="#8E949A" k="rail" cast={false} />
-    {Array.from({length: 40}, (_, i) => <Bx key={i} p={[x, 0.3, -195 + i * 10]} s={[0.12, 0.6, 0.12]} c="#6E7479" k="rail" cast={false} />)}</React.Fragment>)}
-  {Array.from({length: 14}, (_, i) => <Lamp key={i} p={[i % 2 ? 14.2 : -14.2, 0, -120 + i * 18]} side={i % 2 ? -1 : 1} light={Math.abs(-120 + i * 18) < 24} />)}
-  {/* far skyline both ends, lit windows, sinking into the haze */}
-  {[-1, 1].map((s) => Array.from({length: 14}, (_, i) => { const h = 10 + hash(i * 3 + s) * 26, x = -78 + i * 12; return <group key={s + ':' + i} position={[x, 0, s * (150 + hash(i + s) * 30)]}>
-    <mesh position={[0, h / 2, 0]} material={PM('#1A2130', 'tower')}><boxGeometry args={[9, h, 9]} /></mesh>
-    {Array.from({length: 7}, (_, k) => <mesh key={k} position={[-3 + (k % 3) * 3, 3 + Math.floor(k / 3) * (h / 3.5), -s * 4.55]} rotation={[0, s > 0 ? Math.PI : 0, 0]} material={MB(hash(i * 11 + k) > 0.5 ? '#FFD98A' : '#22304A')}><planeGeometry args={[1.6, 1.2]} /></mesh>)}</group>; }))}
-  <NightLights moon={moon} /><NightSky />
-</group>;
-export const Cone: React.FC<{p: V3}> = ({p}) => <group position={p}><mesh position={[0, 0.38, 0]} material={PM('#E8742E', 'cone')} castShadow><coneGeometry args={[0.25, 0.75, 8]} /></mesh>
-  <mesh position={[0, 0.45, 0]} material={PM('#E9E6DC', 'coneband')}><cylinderGeometry args={[0.16, 0.19, 0.12, 8, 1, true]} /></mesh><Bx p={[0, 0.03, 0]} s={[0.55, 0.06, 0.55]} c="#2A2A2A" k="conebase" cast={false} /></group>;
-/** a searchlight on a stand: a soft additive cone from the lamp to the target */
-export const Searchlight: React.FC<{p: V3; aim: V3}> = ({p, aim}) => { const a = new THREE.Vector3(...p).setY(p[1] + 1.6), b = new THREE.Vector3(...aim), d = b.clone().sub(a), L = d.length();
-  const q = new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0, 1, 0), d.clone().normalize());
-  return <group><Bx p={[p[0], p[1] + 0.8, p[2]]} s={[0.12, 1.6, 0.12]} c="#3A3F45" k="pole" /><mesh position={[a.x, a.y, a.z]} quaternion={q} material={PM('#2A2D30', 'dash')}><cylinderGeometry args={[0.32, 0.22, 0.45, 10]} /></mesh>
-    <mesh position={[a.x + d.x / 2, a.y + d.y / 2, a.z + d.z / 2]} quaternion={q} material={glowMat('#EAF2FF', 0.03)}><cylinderGeometry args={[L * 0.014, 0.2, L, 12, 1, true]} /></mesh></group>; };
 
 // =====================================================================================================
 // THE EVIDENCE BOARD (interrogation result): left card "ชายคนนี้" gets a red ✕ (cross 0…1), right card "โลก" gets a red ring (ring 0…1)

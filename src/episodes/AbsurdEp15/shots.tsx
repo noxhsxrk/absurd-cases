@@ -6,23 +6,24 @@ import {Court, Cell, Interro, TABLE_TOP} from '../AbsurdEp1/sets';
 import {makeGavel} from '../AbsurdEp1/props';
 import {CellPlate} from '../AbsurdEp2/props';
 import {Phone3D, Stars} from '../AbsurdEp4/props';
-import {Crane} from '../AbsurdEp6/props';
+import {Chain, label} from '../AbsurdEp6/props';
 import {Puffs, PoliceCar} from '../AbsurdEp7/props';
 import {Earth, EarthCuff} from '../AbsurdEp14/props';
 import {ps, body, bw, hideProps, prop, P, CamRig, mv, strike, wobble, near, sm, loc, V3, Cast, ShotOut, Bg} from '../lifekit/stage';
 import {CourtLife} from '../lifekit/presets';
-import {Moon, ManCar, carPt, SEAT, WHEEL, TownGrid, Highway, Cone, Searchlight, Board, Cup} from './props';
+import {PM} from '../AbsurdEp1/boxcast';
+import {Moon, NightSky, ManCar, carPt, SEAT, WHEEL, TownGrid, Board, Cup} from './props';
 import type {CarPose} from './props';
 
 export {CamRig};
-/** EP15 คดีดวงจันทร์. He drives home; whichever way he turns, the Moon is still behind him. A highway roadblock, cranes that haul it out of the sky,
- *  an all-night interrogation — it was never following him, it was following the Earth (EP14, cell 18). It gets cell 19 and keeps orbiting next door. */
+/** EP15 คดีดวงจันทร์. He drives home; whichever way he turns, the Moon is still up there behind him (it has not moved: it is just very far away).
+ *  A patrol car flies out to space, cuffs it and tows it back; an all-night interrogation — it was never following him, it was following the Earth (EP14, cell 18). It gets cell 19 and keeps orbiting next door. */
 const sh = (name: string) => SHOTS.find((x: any) => x.name === name)!;
-const NIGHT: Bg = {color: '#0B1020', fog: ['#0B1020', 30, 150]} as any, HWY: Bg = {color: '#0B1020', fog: ['#0B1020', 45, 240]} as any, CELL_BG: Bg = {color: '#1E2228'};
+const NIGHT: Bg = {color: '#0B1020', fog: ['#0B1020', 30, 150]} as any, CELL_BG: Bg = {color: '#1E2228'};
 
 // =====================================================================================================
-// DRIVING. One car pose function per stretch; the Moon sits behind the car in the CAR's heading, a beat late (lag), so on every turn it
-// swings across the sky and settles behind him again — closer each time.
+// DRIVING. The Moon does nothing: it hangs where it always hangs, so far away that it never moves in the frame while the houses slide
+// past (Nox: "มันอยู่ที่เดิม บนฟ้า แต่มันอยู่ไกลมาก เราเลยมองเห็นเหมือนมันตาม"). farMoon(camera) = the same direction from wherever the camera is.
 // =====================================================================================================
 const V = 9, TURN = 0.87, RAD = 5;
 const straight = (t: number): CarPose => ({x: 0, z: -44 + V * t, yaw: 0});
@@ -36,12 +37,9 @@ const turn = (t: number, t0: number, s: CarPose, dir: 1 | -1): CarPose => {
 };
 const carL = (t: number) => turn(t, ev('turnL'), {x: 0, z: -5, yaw: 0}, 1);
 const carR = (t: number) => turn(t, ev('turnR'), {x: 35, z: 0, yaw: Math.PI / 2}, -1);
-const PARK: CarPose = {x: 40, z: 16, yaw: 0};
-/** the Moon behind a car: distance D, height H, following the heading the car had `lag` s ago, with a small overshoot once the turn is over */
-const moonBehind = (car: (t: number) => CarPose, t: number, D: number, H: number, lag = 0.32, t0?: number, dir = 1): V3 => {
-  let yaw = car(t - lag).yaw; if (t0 !== undefined) { const u = t - (t0 + TURN + lag); if (u > 0) yaw += dir * 0.3 * Math.exp(-u * 5) * Math.sin(u * 15); }
-  const c = car(t); return [c.x - Math.sin(yaw) * D, H + Math.sin(t * 1.3) * 0.15, c.z - Math.cos(yaw) * D];
-};
+const PARK: CarPose = {x: 40, z: 16, yaw: -0.85};   // slammed to a stop, skewed across the road: the Moon is over his right shoulder
+const OFF: V3 = [-18, 30, -80], FR = 7.5;   // the Moon's fixed direction (20° up) and its size at that distance
+const farMoon = (cam: V3): V3 => [cam[0] + OFF[0], cam[1] + OFF[1], cam[2] + OFF[2]];
 /** the man at the wheel. steer turns his hands with the rim; point = a world point his outside (right) arm points at */
 const driver = (C: Cast, car: CarPose, t: number, o: {steer?: number; face?: string; look?: V3; point?: V3 | null} = {}) => {
   const I = C.nai; hideProps(I); resetTurn(I); const seat = carPt(car, SEAT.f, SEAT.r, 0);
@@ -52,38 +50,28 @@ const driver = (C: Cast, car: CarPose, t: number, o: {steer?: number; face?: str
     fingers(I, sd, 'fist', 1); ik(I, sd, loc(I, carPt(car, WHEEL.f - 0.06 - Math.sin(a) * 0.05, WHEEL.r + Math.cos(a) * WHEEL.rad, WHEEL.u + Math.sin(a) * WHEEL.rad * 0.8)), new THREE.Vector3(k, -1, 0), 1); });
   w.updateMatrixWorld(true); return {I, w};
 };
-const hoodCam = (c: CarPose, fov: number) => ({pos: carPt(c, 2.15, -0.5, 1.5), look: carPt(c, -0.25, 0.34, 1.2), fov});
+/** on the bonnet, looking back and a little up: his face low in the frame, the sky behind the car above it */
+const hoodCam = (c: CarPose, fov: number) => ({pos: carPt(c, 2.3, -0.45, 1.15), look: carPt(c, -0.3, 0.3, 1.62), fov});
 const steerOf = (t: number, t0: number, dir: number) => { const u = (t - t0) / TURN; return u > 0 && u < 1 ? -dir * 1.1 * Math.sin(Math.PI * u) : 0; };
-const MR = 3.4;   // the Moon's radius while it tails him
 
 // =====================================================================================================
-// THE HIGHWAY (along z). Roadblock at z ≈ 0; the Moon comes down the road from +z at height MH, passes over the officers at ev('over'),
-// stops at z = HOOK_Z; cranes hook it (ev('hook')) and haul it down onto the back-up cars (ev('slam')).
+// THE POLICE. A patrol car floors it down the street, fires its jets and flies out to space (the Moon is where it is going). 384,400 km later:
+// a giant cuff, a tag, and the Moon is towed back to Earth on a chain.
 // =====================================================================================================
-const MH = 15, HR = 6, HOOK_Z = -26;
-const hwMoon = (t: number): V3 => { const z = 2 - 20 * (t - ev('over')); const zz = z > HOOK_Z + 8 ? z : HOOK_Z + 8 * Math.exp((z - HOOK_Z - 8) / 8);
-  const q = cl((t - ev('hook') - 0.2) / (ev('slam') - ev('hook') - 0.2)); return [0, lerp(MH, HR * 0.92, q * q) + (q <= 0 ? Math.sin(t * 1.3) * 0.2 : 0), zz]; };
-const ROWS: [number, number][] = [...[-10.4, -5.2, 0, 5.2, 10.4].map((x) => [x, 0] as [number, number]), ...[-7.8, -2.6, 2.6, 7.8].map((x) => [x, -3.4] as [number, number]), ...[-10.4, -5.2, 0, 5.2, 10.4].map((x) => [x, -6.8] as [number, number])];
-const BACKUP: [number, number][] = [[-4.2, HOOK_Z + 1], [0, HOOK_Z - 1], [4.2, HOOK_Z + 1.5]];
-const COPS: [string, number, number][] = [['offA', -1.3, 2.2], ['offB', 1.5, 2.4], ['pol3', -4.6, 2.0], ['pol4', 4.9, 2.3]];
-const TIPS: V3[] = [[-6.5, 13, -15], [6.5, 13, -15]];
 const cop = (C: Cast, id: string, x: number, z: number, yaw: number, t: number, o: {clip?: string; face?: string; look?: V3} = {}) => {
   const I = C[id]; hideProps(I); resetTurn(I); return {I, w: body(I, ps(id, x, z, yaw, t, {clip: o.clip ?? 'idle_neutral_01', face: o.face, lookW: o.look}), t)}; };
-/** the roadblock: three rows of patrol cars across every lane, cones, searchlights on the Moon, four officers. turned = they have spun round to watch it go */
-const roadblock = (C: Cast, t: number, o: {flat?: number; cranes?: boolean} = {}) => { const m = hwMoon(t); const us = t - ev('slam'); const sq = us > 0 ? 1 - 0.14 * Math.exp(-us * 6) * Math.cos(us * 22) : 1;
-  return <><Highway moon={[m[0], m[1] + 20, m[2]]} />
-    <Moon t={t} position={[m[0], m[1] * sq, m[2]]} r={HR} squash={sq} glow={us > 0 ? 0.45 : 1} spin={0.4} tag={t > ev('cuff') + 0.12 ? 'ผู้ต้องหา' : null} tagDrop={cl((t - ev('cuff') - 0.12) / 0.14)} />
-    {ROWS.map(([x, z], i) => <PoliceCar key={i} t={t} position={[x, 0, z]} yaw={0} seed={i} />)}
-    {BACKUP.map(([x, z], i) => <group key={'b' + i} position={[x, 0, z]} scale={[1, 1 - 0.82 * (o.flat ?? 0), 1]}><PoliceCar t={t} position={[0, 0, 0]} yaw={Math.PI / 2 + i} seed={i + 20} /></group>)}
-    {Array.from({length: 13}, (_, i) => <Cone key={i} p={[-12 + i * 2, 0, 3.6]} />)}
-    <Searchlight p={[-11.5, 0, 4.5]} aim={m} /><Searchlight p={[11.5, 0, 4.5]} aim={m} />
-    {COPS.map(([id, x, z], i) => { const u = t - ev('over') - 0.25 - i * 0.1; const yaw = Math.PI * sm(u / 0.35);
-      const c = cop(C, id, x, z, yaw, t, {clip: i % 2 ? 'idle_angry_01' : 'idle_neutral_01', face: u > 0 ? 'wide' : 'angry', look: m});
-      if (id === 'offA' && t > ev('hook') - 0.9) { fingers(c.I, 'R', 'point', 1); ik(c.I, 'R', loc(c.I, [x + 0.1, 2.1, z - 0.6]), new THREE.Vector3(1, -0.5, 0), 1); c.w.updateMatrixWorld(true); }
-      return <P key={id} o={c.w} />; })}
-    {o.cranes && TIPS.map((tip, i) => { const k = sm((t - (ev('hook') - 0.3)) / 0.3); const s = i ? 1 : -1; const on: V3 = [m[0] + s * HR * 0.55, m[1] + HR * 0.75, m[2] + HR * 0.3];
-      return <Crane key={i} t={t} position={[s * 10.5, 0, -8]} yaw={s > 0 ? Math.PI * 0.6 : Math.PI * 0.4} tip={tip} hook={k > 0 ? lerp3(tip, on, k) : undefined} />; })}</>;
-};
+/** the patrol car on the street: away from the camera towards the Moon (−z), nose up at ev('lift') */
+const flyCar = (t: number): {p: V3; pitch: number; jet: number} => { const u = Math.max(0, t - sh('takeoff').t0 + 0.3), l = Math.max(0, t - ev('lift'));
+  return {p: [0, 6 * l * l + 2 * l, 31 - (5 * u + 3 * u * u)], pitch: Math.min(0.9, l * 2.2), jet: sm(l / 0.15)}; };
+const SPACE_BG: Bg = {color: '#04060D'};
+const spaceLights = () => <><NightSky /><hemisphereLight args={['#4A5A8A', '#0A0C14', 0.6]} /><directionalLight position={[-20, 10, 18]} color="#FFF4E0" intensity={2.4} /></>;
+const MRAD = 6;   // the Moon up close (the patrol car is 3.6 m long)
+const SP_CAR: V3 = [1.6, -2.4, 9.5], SP_COP: V3 = [0.9, 1.2, 8.4];
+const spCar = (t: number, at: V3, yaw: number, jet = 0, pitch = 0) => <PoliceCar t={t} position={at} yaw={yaw} pitch={pitch} jet={jet} fold={1} />;
+/** a road sign floating in space */
+const SpaceSign: React.FC<{p: V3; lines: string[]; k: string; yaw?: number}> = ({p, lines, k, yaw = 0}) => <group position={p} rotation={[0, yaw, 0]}>
+  <mesh material={label('ep15sign' + k, 1024, 384, '#1E5C3A', '#F2F0E6', lines, 120, '#F2F0E6')}><planeGeometry args={[5.2, 1.95]} /></mesh>
+  {[-1.8, 1.8].map((x) => <mesh key={x} position={[x, -2.4, -0.05]} material={PM('#8E949A', 'rail')}><boxGeometry args={[0.12, 2.9, 0.12]} /></mesh>)}</group>;
 
 // =====================================================================================================
 // INTERROGATION / COURT / CELLS 18–19 (EP1 sets; the Earth of EP14 is next door)
@@ -133,66 +121,86 @@ const cellBlock = (C: Cast, t: number, o: {night?: boolean; flip?: number} = {})
 // =====================================================================================================
 export const SHOT_FN: Record<string, (t: number, lt: number, C: Cast) => ShotOut> = {
   drive: (t, lt, C) => {
-    // frame 0: MCU over the hood — he drives, half asleep; the Moon is already there, over his shoulder
-    const c = straight(t); const m = carPt(c, -34, 7.5, 7.6);   // behind him and a little to the side, so it sits over his shoulder from this camera
-    return {node: <><TownGrid moon={m} focus={[c.x, c.z]} /><ManCar car={c} t={t} roll={t * 28} steer={Math.sin(t * 3) * 0.06} /><P o={driver(C, c, t, {steer: Math.sin(t * 3) * 0.06}).w} /><Moon t={t} position={m} r={3.2} /></>,
-      cam: mv(hoodCam(c, 38), lt, {arrive: 0, push: 0.1}), bg: NIGHT};
+    // frame 0: over the bonnet — he drives, half asleep; the Moon is up there over his shoulder
+    const c = straight(t); const cam = hoodCam(c, 44); const m = farMoon(cam.pos);
+    return {node: <><TownGrid moon={m} focus={[c.x, c.z]} /><ManCar car={c} t={t} roll={t * 28} steer={Math.sin(t * 3) * 0.06} /><P o={driver(C, c, t, {steer: Math.sin(t * 3) * 0.06}).w} /><Moon t={t} position={m} r={FR} /></>,
+      cam: mv(cam, lt, {arrive: 0, push: 0.06}), bg: NIGHT};
   },
   wide: (t, lt, C) => {
-    // roadside, low: the little car comes down the empty street, the Moon big above and behind it
-    const c = straight(t); const m = moonBehind(straight, t, 42, 19, 0);
-    return {node: <><TownGrid moon={m} focus={[0, -20]} /><ManCar car={c} t={t} roll={t * 28} /><P o={driver(C, c, t).w} /><Moon t={t} position={m} r={5.5} /></>,
-      cam: mv({pos: [-3.4, 0.75, -17.5], look: [0.2, 4.6, c.z - 6], fov: 56}, lt, {arrive: 0.06, push: 0.07, roll0: -2}), bg: NIGHT};
+    // roadside, low: the little car comes down the empty street; the Moon hangs over the rooftops behind it
+    const c = straight(t); const pos: V3 = [3.4, 0.75, -17.5]; const m = farMoon(pos);
+    return {node: <><TownGrid moon={m} focus={[0, -20]} /><ManCar car={c} t={t} roll={t * 28} /><P o={driver(C, c, t).w} /><Moon t={t} position={m} r={FR} /></>,
+      cam: mv({pos, look: [-0.6, 3.4, -40], fov: 56}, lt, {arrive: 0.06, push: 0.05, roll0: 2}), bg: NIGHT};
   },
   left: (t, lt, C) => {
-    // the junction, from down the side street: he turns left, towards us — a beat later the Moon swings across the sky and parks behind him again
-    const c = carL(t); const m = moonBehind(carL, t, 15, 10.5, 0.32, ev('turnL'), 1);
-    return {node: <><TownGrid moon={m} focus={[0, 0]} /><ManCar car={c} t={t} roll={t * 28} steer={steerOf(t, ev('turnL'), 1)} /><P o={driver(C, c, t, {steer: steerOf(t, ev('turnL'), 1)}).w} /><Moon t={t} position={m} r={MR} /></>,
-      cam: mv({pos: [17.5, 1.25, 1.0], look: [c.x * 0.45 - 1.5, 3.9, c.z * 0.55], fov: 58}, lt, {arrive: 0.06, push: 0.04, shake: near(t, [ev('follow1')], 0.1) ? 0.012 : 0}), bg: NIGHT};
+    // travelling with him through the junction: he turns left, the houses sweep past — and the Moon has not moved a millimetre in the frame
+    const c = carL(t); const pos: V3 = [c.x + 2.5, 1.0, c.z + 7.0]; const m = farMoon(pos);
+    return {node: <><TownGrid moon={m} focus={[0, 0]} /><ManCar car={c} t={t} roll={t * 28} steer={steerOf(t, ev('turnL'), 1)} />
+      <P o={driver(C, c, t, {steer: steerOf(t, ev('turnL'), 1), face: t > ev('turnL') + TURN ? 'open' : 'half', look: t > ev('turnL') + TURN ? m : undefined}).w} /><Moon t={t} position={m} r={FR} /></>,
+      cam: mv({pos, look: [c.x, 2.2, c.z - 4], fov: 56}, lt, {arrive: 0, push: 0.03}), bg: NIGHT};
   },
   right: (t, lt, C) => {
-    // over the hood again: he swings right, the Moon slides out of frame — and slides straight back in behind his head, bigger. Two snap-zooms.
-    const c = carR(t); const m = moonBehind(carR, t, 10.5, 5.2, 0.34, ev('turnR'), -1); const st = steerOf(t, ev('turnR'), -1);
-    const z = sm((t - ev('follow2')) / 0.1) + sm((t - ev('follow2') - 0.3) / 0.1);
-    return {node: <><TownGrid moon={m} focus={[40, 0]} /><ManCar car={c} t={t} roll={t * 28} steer={st} /><P o={driver(C, c, t, {steer: st, face: t > ev('follow2') - 0.05 ? 'wide' : 'half'}).w} /><Moon t={t} position={m} r={MR} /></>,
-      cam: mv(hoodCam(c, 40 - z * 6.5), lt, {arrive: 0, push: 0.04}), bg: NIGHT};
+    // over the bonnet: he swings right, the street wheels round behind him — and there it is again, over his shoulder. Two snap-zooms.
+    const c = carR(t); const st = steerOf(t, ev('turnR'), -1); const z = sm((t - ev('follow2')) / 0.1) + sm((t - ev('follow2') - 0.3) / 0.1);
+    const cam = hoodCam(c, 44 - z * 6.5); const m = farMoon(cam.pos);
+    return {node: <><TownGrid moon={m} focus={[40, 0]} /><ManCar car={c} t={t} roll={t * 28} steer={st} /><P o={driver(C, c, t, {steer: st, face: t > ev('follow2') - 0.05 ? 'wide' : 'half'}).w} /><Moon t={t} position={m} r={FR} /></>,
+      cam: mv(cam, lt, {arrive: 0, push: 0.03}), bg: NIGHT};
   },
   charge: (t, lt, C) => {
-    // he has stopped; the Moon hangs right over his boot. He points back at it. Snap zoom, the plate drops.
-    const m: V3 = [PARK.x, 5.3 + Math.sin(t * 1.3) * 0.12, PARK.z - 8.5]; const z = sm((t - ev('zoom')) / 0.17);
-    return {node: <><TownGrid moon={m} focus={[40, 14]} /><ManCar car={PARK} t={t} brake={1} /><P o={driver(C, PARK, t, {face: 'shout', look: m, point: carPt(PARK, -1.0, 0.9, 1.85)}).w} /><Moon t={t} position={m} r={2.8} /></>,
-      cam: mv({pos: carPt(PARK, 3.5, 2.0, 0.85), look: carPt(PARK, -2.2, 0.1, 2.9), fov: 54 - 13 * z}, lt, {arrive: 0.08, push: 0.05, shake: near(t, [ev('plate1')], 0.1) ? 0.012 : 0}), bg: NIGHT};
+    // he has stopped in the middle of the road and points back up at it. Snap zoom, the plate drops.
+    const z = sm((t - ev('zoom')) / 0.17); const pos = carPt(PARK, 1.55, -2.65, 0.9); const m = farMoon(pos); const seat = carPt(PARK, SEAT.f, SEAT.r, 0);
+    return {node: <><TownGrid moon={m} focus={[40, 14]} /><ManCar car={PARK} t={t} brake={1} /><P o={driver(C, PARK, t, {face: 'shout', look: t > ev('plate1') + 0.15 ? pos : m, point: [seat[0] + OFF[0] * 0.015, 1.95, seat[2] + OFF[2] * 0.015]}).w} /><Moon t={t} position={m} r={FR} /></>,
+      cam: mv({pos, look: [pos[0] + OFF[0] * 0.08, pos[1] + 1.75, pos[2] + OFF[2] * 0.08], fov: 56 - 13 * z}, lt, {arrive: 0.08, push: 0.05, shake: near(t, [ev('plate1')], 0.1) ? 0.012 : 0}), bg: NIGHT};
   },
   phone: (t, lt, C) => {
-    // his POV, twisted round in the seat: the Moon fills the sky behind the car; the phone slides up, 191
-    const m: V3 = [PARK.x, 5.3 + Math.sin(t * 1.3) * 0.12, PARK.z - 8.5]; const k = sm((lt * 30) / 5); const th = sm((t - ev('press') + 0.12) / 0.12);
-    const c = mv({pos: carPt(PARK, -0.25, 0.38, 1.36), look: [m[0], m[1] - 0.6, m[2]], fov: 56}, lt, {push: 0.08, arrive: 0});
-    return {node: <><TownGrid moon={m} focus={[40, 14]} /><ManCar car={PARK} t={t} brake={1} /><Moon t={t} position={m} r={2.8} /><Phone3D cam={c.pos} look={c.look} k={k} pressed={t > ev('press')} thumb={th} /></>, cam: c, bg: NIGHT};
+    // his POV, twisted round in the seat: the Moon over the street behind the car; the phone slides up, 191
+    const k = sm((lt * 30) / 5); const th = sm((t - ev('press') + 0.12) / 0.12); const pos = carPt(PARK, -0.25, 0.38, 1.36); const m = farMoon(pos);
+    const c = mv({pos, look: [m[0] + 6, m[1] - 33, m[2]], fov: 56}, lt, {push: 0.08, arrive: 0});
+    return {node: <><TownGrid moon={m} focus={[40, 14]} /><ManCar car={PARK} t={t} brake={1} /><Moon t={t} position={m} r={FR} /><Phone3D cam={c.pos} look={c.look} k={k} pressed={t > ev('press')} thumb={th} /></>, cam: c, bg: NIGHT};
   },
-  roadblock: (t, lt, C) => {
-    // behind the line: light bars, backs of four officers, the Moon coming down the highway — then a crane-up: every lane is patrol cars
-    const k = sm((t - ev('reveal') + 0.12) / 0.24);
-    return {node: roadblock(C, t), cam: mv({pos: lerp3([0.9, 1.75, -9.2], [0.6, 10.5, -19], k), look: lerp3([0, 4.2, 22], [0, 4.6, 14], k), fov: 58}, lt, {arrive: 0.08, push: 0.04}), bg: HWY};
+  takeoff: (t, lt) => {
+    // from behind: a patrol car floors it down the street, siren on, straight at the Moon — jets, nose up, gone
+    const c = flyCar(t); const pos: V3 = [1.7, 0.65, 33.5]; const m = farMoon(pos);
+    return {node: <><TownGrid moon={m} focus={[0, 20]} /><PoliceCar t={t} position={c.p} yaw={Math.PI / 2} pitch={c.pitch} jet={c.jet} fold={sm((c.p[1] - 0.3) / 1.2)} spin={c.p[1] > 0.05 ? 0 : -9} /><Moon t={t} position={m} r={FR} />
+      {t > ev('lift') && <Puffs at={[0, 0.3, c.p[2] + 2]} t={t} t0={ev('lift')} n={10} size={0.5} color="#B9B4A6" />}</>,
+      cam: mv({pos, look: [-2.8, 4.5 + c.p[1] * 0.3, -3.5], fov: 58}, lt, {arrive: 0.06, push: 0.04, shake: near(t, [ev('lift')], 0.3) ? 0.02 : 0}), bg: NIGHT};
   },
-  over: (t, lt, C) => {
-    // from in front of the officers, low: the Moon slides overhead and on down the road; their heads follow it, then they turn, one after another
-    const k = sm((t - ev('over') + 0.25) / 0.8);
-    return {node: roadblock(C, t), cam: mv({pos: [0.5, 0.6, 7.2], look: lerp3([0, 3.4, 0], [0, 8.5, -8], k), fov: 62}, lt, {arrive: 0.06, push: 0.03, roll0: 3}), bg: HWY};
+  space: (t, lt) => {
+    // space, chasing it from behind: jets blazing, the Moon growing dead ahead; a motorway sign whips past — ดวงจันทร์ 384,400 กม.
+    const u = (t - sh('space').t0) / (sh('space').dur / FPS);
+    return {node: <>{spaceLights()}{spCar(t, [0, Math.sin(t * 5) * 0.06, 0], Math.PI, 1)}
+      <SpaceSign p={[-46 + 58 * u, 3.3, -2.9]} lines={['ดวงจันทร์', '384,400 กม.']} k="moon" yaw={Math.PI / 2} />
+      <Moon t={t} position={[-60, 12, -3]} r={4 + 6 * u} /></>,
+      cam: mv({pos: [5.5, 1.6, 1.2], look: [-10, 1.6, -0.6], fov: 52}, lt, {arrive: 0.06, push: 0.05, roll0: -3, shake: 0.006}), bg: SPACE_BG};
   },
-  crane: (t, lt, C) => {
-    // two army cranes: the hooks fly up and bite
-    const m = hwMoon(t);
-    return {node: <>{roadblock(C, t, {cranes: true})}{near(t, [ev('hook')], 0.3) && <Stars center={[m[0], m[1] + HR * 0.8, m[2] + HR * 0.4]} t={t * 3} r={2.2} size={0.5} />}</>,
-      cam: mv({pos: [-2.6, 1.3, 6.0], look: [0, 9.5, -18], fov: 64}, lt, {arrive: 0.08, push: 0.06, shake: near(t, [ev('hook')], 0.12) ? 0.03 : 0}), bg: HWY};
+  reach: (t, lt) => {
+    // the Moon, huge; the little patrol car pulls up in front of it and brakes
+    const k = sm((t - sh('reach').t0) / (ev('brake') - sh('reach').t0)); const from: V3 = [8, -9, 9];
+    return {node: <>{spaceLights()}<Moon t={t} position={[0, 0, 0]} r={MRAD} spin={0.3} />{spCar(t, lerp3(from, SP_CAR, k), Math.PI / 2 + 0.6, 1 - k * 0.8)}</>,
+      cam: mv({pos: [-1.5, 0.8, 23], look: [0.6, -0.8, 0], fov: 50}, lt, {arrive: 0.08, push: 0.08, roll0: -3}), bg: SPACE_BG};
   },
-  crash: (t, lt, C) => {
-    // hauled out of the sky: it comes down on the back-up cars. Dust. Then a giant cuff snaps round it and a tag drops: ผู้ต้องหา
-    const m = hwMoon(t); const u = t - ev('slam'); const sq = u > 0 ? 1 - 0.14 * Math.exp(-u * 6) * Math.cos(u * 22) : 1; const close = sm((t - ev('cuff') + 0.15) / 0.15);
-    return {node: <>{roadblock(C, t, {cranes: true, flat: u > 0 ? 1 : 0})}
-      {u > 0 && [-6, -3, 0, 3, 6].map((x, i) => <Puffs key={i} at={[x, 0.5, HOOK_Z + 4.5 + (i % 2)]} t={t} t0={ev('slam')} n={7} size={1.3} color="#8C8778" seed={i} />)}
-      {close > 0 && <EarthCuff center={[m[0], m[1] * sq, m[2]]} r={HR} close={close} tilt={[0.2, 0, 0.3]} />}
-      {t > ev('cuff') && t < ev('cuff') + 0.3 && <Stars center={[HR, m[1] + 2, m[2] + 3]} t={t * 3} r={1.8} size={0.45} />}</>,
-      cam: mv({pos: [2.8, 1.5, 2.6], look: [0, 5.6, HOOK_Z], fov: 62}, lt, {arrive: 0.06, push: 0.05, shake: near(t, [ev('slam')], 0.2) ? 0.07 : near(t, [ev('cuff')], 0.1) ? 0.02 : 0}), bg: HWY};
+  cuff: (t, lt, C) => {
+    // an officer floats in front of it: a giant cuff snaps shut round the whole Moon; a tag drops — ผู้ต้องหา
+    const a = cop(C, 'offA', SP_COP[0], SP_COP[2], Math.PI + 0.1, t, {clip: 'idle_angry_01', face: 'angry', look: [0, 0, 0]});
+    a.w.position.y = SP_COP[1] + Math.sin(t * 1.6) * 0.05; a.w.updateMatrixWorld(true);
+    fingers(a.I, 'L', 'fist', 1); ik(a.I, 'L', loc(a.I, [SP_COP[0] - 0.35, SP_COP[1] + 1.05, SP_COP[2] - 0.5]), new THREE.Vector3(1, -1, 0), 1); a.w.updateMatrixWorld(true);
+    const close = sm((t - ev('cuff') + 0.15) / 0.15); const tilt: V3 = [0.25, 0, 0.35];
+    const R = MRAD * (1.07 + 0.45 * (1 - close)); const lock = new THREE.Vector3(R, 0, 0).applyEuler(new THREE.Euler(...tilt));
+    return {node: <>{spaceLights()}<Moon t={t} position={[0, 0, 0]} r={MRAD} spin={0.3} shake={t > ev('cuff') ? 0.5 : 0} tag={t > ev('cuff') + 0.12 ? 'ผู้ต้องหา' : null} tagDrop={cl((t - ev('cuff') - 0.12) / 0.14)} />
+      {spCar(t, SP_CAR, Math.PI / 2 + 0.6, 0.2)}<P o={a.w} /><EarthCuff center={[0, 0, 0]} r={MRAD} close={close} tilt={tilt} />
+      <Chain a={[lock.x * 1.04, lock.y * 1.04, lock.z * 1.04]} b={bw(a.I, 'Bip01_L_Hand')} n={16} r={0.13} sag={0.3} />
+      {t > ev('cuff') && t < ev('cuff') + 0.35 && <Stars center={[lock.x, lock.y + 1, lock.z + 1]} t={t * 3} r={1.6} size={0.4} />}</>,
+      cam: mv({pos: [SP_COP[0] - 3.5, SP_COP[1] + 1.8, SP_COP[2] + 9.5], look: [0.2, 0, 0], fov: 60}, lt, {arrive: 0.08, push: 0.08, shake: near(t, [ev('cuff')], 0.15) ? 0.05 : 0}), bg: SPACE_BG};
+  },
+  tow: (t, lt) => {
+    // the long way home, straight down the frame: the little patrol car, nose to the Earth, tows the cuffed Moon behind it on a chain
+    const u = (t - sh('tow').t0) / (sh('tow').dur / FPS); const car: V3 = [Math.sin(t * 2.2) * 0.2, 0, 0]; const mp: V3 = [Math.sin(t * 1.7) * 0.5, 11.2 + Math.sin(t * 3.1) * 0.25, 0];
+    const tilt: V3 = [0.25, 0, -Math.PI / 2 + 0.15]; const lock = new THREE.Vector3(MRAD * 1.14, 0, 0).applyEuler(new THREE.Euler(...tilt));
+    return {node: <>{spaceLights()}{spCar(t, car, 0, 1, -Math.PI / 2)}
+      <Moon t={t} position={mp} r={MRAD} spin={0.3 + t * 0.25} shake={0.4} /><EarthCuff center={mp} r={MRAD} close={1} tilt={tilt} />
+      <Chain a={[car[0] + 0.5, car[1] + 1.9, 0]} b={[mp[0] + lock.x, mp[1] + lock.y, mp[2] + lock.z]} n={14} r={0.13} sag={0} />
+      <Earth t={t} position={[1.5, -17.5 + 3.5 * u, -6]} r={7} shake={0} eyes={false} /></>,
+      cam: mv({pos: [3, 2, 34], look: [0, 3, 0], fov: 50}, lt, {arrive: 0.06, push: 0.05, roll0: 3}), bg: SPACE_BG};
   },
   interro: (t, lt, C) => ({node: interroRoom(C, t), cam: mv({pos: [0.15, 1.5, 1.85], look: [-0.05, 0.85, -0.85], fov: 56}, lt, {arrive: 0.1, push: 0.1, shake: near(t, [ev('table')], 0.12) ? 0.02 : 0})}),
   board: (t, lt, C) => {
@@ -211,4 +219,4 @@ export const SHOT_FN: Record<string, (t: number, lt: number, C: Cast) => ShotOut
     return {node: cellBlock(C, t, {night: true}), cam: mv({pos: [-1.1, 1.5, 7.4], look: [-CX, 1.2, 0], fov: 50}, lt, {arrive: 0.08, push: 0.045}), bg: CELL_BG};
   },
 };
-void TOTAL; void FPS; void bw;
+void TOTAL; void lerp;

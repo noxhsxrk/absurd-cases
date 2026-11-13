@@ -21,11 +21,11 @@ const MIX = 'absurd-cases/ep15/mix/ep15_mix.wav';
 const VOICE = 'absurd-cases/ep15/ep15_narration_tight.wav';   // until the mix exists
 const T = (n: string) => SHOTS.find((s) => s.name === n)!;
 const IN = (n: string, a: string[]) => a.includes(n);
-const PLACE = (n: string) => IN(n, ['roadblock', 'over', 'crane', 'crash']) ? 'highway' : IN(n, ['interro', 'board']) ? 'interro' : n === 'court' ? 'court' : IN(n, ['cell19', 'cells', 'orbit']) ? 'cell' : 'town';
-const GRADE: Record<string, string> = {town: 'saturate(0.95) contrast(1.05)', highway: 'saturate(0.95) contrast(1.05)', interro: 'saturate(0.8) contrast(1.06)', court: 'saturate(0.8) contrast(1.05)', cell: 'saturate(0.78) contrast(1.08)'};
-const FILL: Record<string, [string, number]> = {town: ['#7088C8', 0.3], highway: ['#7088C8', 0.3], interro: ['#BFD6DA', 0.25], court: ['#FFF1DE', 0.5], cell: ['#8090B0', 0.3]};
+const PLACE = (n: string) => IN(n, ['space', 'reach', 'cuff', 'tow']) ? 'space' : IN(n, ['interro', 'board']) ? 'interro' : n === 'court' ? 'court' : IN(n, ['cell19', 'cells', 'orbit']) ? 'cell' : 'town';
+const GRADE: Record<string, string> = {town: 'saturate(0.95) contrast(1.05)', space: 'saturate(1.0) contrast(1.08)', interro: 'saturate(0.8) contrast(1.06)', court: 'saturate(0.8) contrast(1.05)', cell: 'saturate(0.78) contrast(1.08)'};
+const FILL: Record<string, [string, number]> = {town: ['#7088C8', 0.3], space: ['#6078B8', 0.25], interro: ['#BFD6DA', 0.25], court: ['#FFF1DE', 0.5], cell: ['#8090B0', 0.3]};
 /** ambient occlusion + bloom per place: night exteriors bloom on lamps and the Moon; bright interiors keep it low */
-const POST: Record<string, {ao: number; bloom: number; threshold: number}> = {town: {ao: 1, bloom: 0.7, threshold: 0.8}, highway: {ao: 1, bloom: 0.75, threshold: 0.8}, interro: {ao: 1, bloom: 0.12, threshold: 0.97}, court: {ao: 1, bloom: 0.2, threshold: 0.97}, cell: {ao: 1, bloom: 0.5, threshold: 0.88}};
+const POST: Record<string, {ao: number; bloom: number; threshold: number}> = {town: {ao: 1, bloom: 0.7, threshold: 0.8}, space: {ao: 1, bloom: 0.6, threshold: 0.85}, interro: {ao: 1, bloom: 0.12, threshold: 0.97}, court: {ao: 1, bloom: 0.2, threshold: 0.97}, cell: {ao: 1, bloom: 0.5, threshold: 0.88}};
 const World: React.FC<{t: number; P: any}> = ({t, P}) => {
   const sh = shotAt(t); const out = SHOT_FN[sh.name](t, t - sh.t0, P); const place = PLACE(sh.name); const [fc, fi] = FILL[place];
   return <><CamRig cam={out.cam} bg={out.bg ?? {color: '#2A2420'}} /><ambientLight color={fc} intensity={fi} /><group key={sh.name}>{out.node}</group><Post {...POST[place]} /></>;
@@ -45,10 +45,10 @@ export const AbsurdEp15: React.FC<{quality?: Quality}> = ({quality = 'fast'}) =>
         </ThreeCanvas>}
       </AbsoluteFill>
       <Grade frame={f30} vig={0.16} />
-      <SirenWash t={t} t0={ev('siren')} t1={T('interro').t0} amt={0.05} />
-      <HangingPlate t={t} text="สตอล์กเกอร์" drops={[ev('plate1')]} t1={T('phone').t0 - 1 / 30} top={0.19} w={0.9} />
-      <AbsoluteFill style={{transform: `scale(${1 + 0.1 * Math.max(0, t - ev('press') - 0.2)})`}}><CallScreen t={t} t0={ev('press') + 0.2} t1={T('roadblock').t0 - 0.001} /></AbsoluteFill>
-      {['hook', 'slam', 'cuff', 'table', 'gavel', 'cellShut'].map((k) => <Flash key={k} t={t} t0={ev(k)} d={0.07} max={k === 'slam' ? 0.5 : 0.2} />)}
+      <SirenWash t={t} t0={ev('siren')} t1={T('space').t0} amt={0.05} />
+      <HangingPlate t={t} text="สตอล์กเกอร์" drops={[ev('plate1')]} t1={T('phone').t0 - 1 / 30} top={0.1} w={0.9} />
+      <AbsoluteFill style={{transform: `scale(${1 + 0.1 * Math.max(0, t - ev('press') - 0.2)})`}}><CallScreen t={t} t0={ev('press') + 0.2} t1={T('takeoff').t0 - 0.001} /></AbsoluteFill>
+      {['cuff', 'table', 'gavel', 'cellShut'].map((k) => <Flash key={k} t={t} t0={ev(k)} d={0.07} max={0.2} />)}
       <Captions cards={CARDS} t={f30 / FPS} y={1395} />   {/* whole 30 fps frames: a caption swap must not be averaged into a 1-frame dissolve */}
       {audio && <Audio src={staticFile(audio)} />}
     </AbsoluteFill>
