@@ -49,7 +49,7 @@ export const AbsurdEp15: React.FC<{quality?: Quality}> = ({quality = 'fast'}) =>
       <HangingPlate t={t} text="สตอล์กเกอร์" drops={[ev('plate1')]} t1={T('phone').t0 - 1 / 30} top={0.19} w={0.9} />
       <AbsoluteFill style={{transform: `scale(${1 + 0.1 * Math.max(0, t - ev('press') - 0.2)})`}}><CallScreen t={t} t0={ev('press') + 0.2} t1={T('roadblock').t0 - 0.001} /></AbsoluteFill>
       {['hook', 'slam', 'cuff', 'table', 'gavel', 'cellShut'].map((k) => <Flash key={k} t={t} t0={ev(k)} d={0.07} max={k === 'slam' ? 0.5 : 0.2} />)}
-      <Captions cards={CARDS} t={t} y={1395} />
+      <Captions cards={CARDS} t={f30 / FPS} y={1395} />   {/* whole 30 fps frames: a caption swap must not be averaged into a 1-frame dissolve */}
       {audio && <Audio src={staticFile(audio)} />}
     </AbsoluteFill>
   );
