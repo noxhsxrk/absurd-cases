@@ -33,10 +33,11 @@ const moonGeo = () => {
   g.setAttribute('color', new THREE.BufferAttribute(col, 3)); g.computeVertexNormals(); return g;
 };
 let MOON_GEO: THREE.BufferGeometry | null = null;
-const moonMat = (glow: number) => { const m = new THREE.MeshLambertMaterial({vertexColors: true, flatShading: true, emissive: new THREE.Color('#8E8A74'), emissiveIntensity: glow}); return m; };
+// indoors (glow < 0.3) the surface is darkened so the interrogation lamp does not burn it out to a light bulb
+const moonMat = (glow: number, indoor: boolean) => new THREE.MeshLambertMaterial({vertexColors: true, flatShading: true, color: indoor ? '#8C897E' : '#FFFFFF', emissive: new THREE.Color('#8E8A74'), emissiveIntensity: glow});
 const MOON_MATS = new Map<number, THREE.Material>();
 export const Moon: React.FC<{t: number; position: V3; r: number; glow?: number; spin?: number; tag?: string | null; tagDrop?: number; squash?: number; shake?: number}> = ({t, position, r, glow = 1, spin = 0, tag = null, tagDrop = 1, squash = 1, shake = 0}) => {
-  MOON_GEO ??= moonGeo(); const gk = Math.round(glow * 10) / 10; if (!MOON_MATS.has(gk)) MOON_MATS.set(gk, moonMat(0.25 + gk * 0.75));
+  MOON_GEO ??= moonGeo(); const gk = Math.round(glow * 10) / 10; if (!MOON_MATS.has(gk)) MOON_MATS.set(gk, moonMat(gk < 0.3 ? 0.12 : 0.25 + gk * 0.75, gk < 0.3));
   const j: V3 = shake ? [Math.sin(t * 53) * 0.02 * r * shake, Math.abs(Math.sin(t * 67)) * 0.015 * r * shake, 0] : [0, 0, 0];
   const bounce = tagDrop < 1 ? 0 : 0;
   return <group position={[position[0] + j[0], position[1] + j[1], position[2]]}>

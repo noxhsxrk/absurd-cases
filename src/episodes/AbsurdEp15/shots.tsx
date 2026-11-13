@@ -134,8 +134,8 @@ const cellBlock = (C: Cast, t: number, o: {night?: boolean; flip?: number} = {})
 export const SHOT_FN: Record<string, (t: number, lt: number, C: Cast) => ShotOut> = {
   drive: (t, lt, C) => {
     // frame 0: MCU over the hood — he drives, half asleep; the Moon is already there, over his shoulder
-    const c = straight(t); const m = moonBehind(straight, t, 34, 8.6, 0);
-    return {node: <><TownGrid moon={m} focus={[c.x, c.z]} /><ManCar car={c} t={t} roll={t * 28} steer={Math.sin(t * 3) * 0.06} /><P o={driver(C, c, t, {steer: Math.sin(t * 3) * 0.06}).w} /><Moon t={t} position={m} r={4} /></>,
+    const c = straight(t); const m = carPt(c, -34, 7.5, 7.6);   // behind him and a little to the side, so it sits over his shoulder from this camera
+    return {node: <><TownGrid moon={m} focus={[c.x, c.z]} /><ManCar car={c} t={t} roll={t * 28} steer={Math.sin(t * 3) * 0.06} /><P o={driver(C, c, t, {steer: Math.sin(t * 3) * 0.06}).w} /><Moon t={t} position={m} r={3.2} /></>,
       cam: mv(hoodCam(c, 38), lt, {arrive: 0, push: 0.1}), bg: NIGHT};
   },
   wide: (t, lt, C) => {
@@ -198,7 +198,7 @@ export const SHOT_FN: Record<string, (t: number, lt: number, C: Cast) => ShotOut
   board: (t, lt, C) => {
     // the result, on a board: a red ✕ over the man, a red ring round the Earth
     const k = sm((t - ev('circle') + 0.2) / 0.25);
-    return {node: interroRoom(C, t, {board: true}), cam: mv({pos: [-0.25, 1.52, 0.2], look: onBoard(lerp(-0.2, 0.25, k), -0.02), fov: 44 - 6 * k}, lt, {arrive: 0.08, push: 0.06, roll0: -2})};
+    return {node: interroRoom(C, t, {board: true}), cam: mv({pos: [-0.25, 1.52, 0.2], look: onBoard(lerp(-0.2, 0.25, k), -0.26), fov: 46 - 6 * k}, lt, {arrive: 0.08, push: 0.06, roll0: -2})};
   },
   court: (t, lt, C) => { const {w} = judgeAt(C, t);
     return {node: <><Court t={t} /><P o={w} /><CourtLife t={t} C={C} /><Moon t={t} position={[0, DOCK_M[1] + wobble(t, [ev('gavel')], 0.03), DOCK_M[2]]} r={0.3} glow={0.1} tag="ผู้ต้องหา" /></>,

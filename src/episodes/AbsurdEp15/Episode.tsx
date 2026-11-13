@@ -25,7 +25,7 @@ const PLACE = (n: string) => IN(n, ['roadblock', 'over', 'crane', 'crash']) ? 'h
 const GRADE: Record<string, string> = {town: 'saturate(0.95) contrast(1.05)', highway: 'saturate(0.95) contrast(1.05)', interro: 'saturate(0.8) contrast(1.06)', court: 'saturate(0.8) contrast(1.05)', cell: 'saturate(0.78) contrast(1.08)'};
 const FILL: Record<string, [string, number]> = {town: ['#7088C8', 0.3], highway: ['#7088C8', 0.3], interro: ['#BFD6DA', 0.25], court: ['#FFF1DE', 0.5], cell: ['#8090B0', 0.3]};
 /** ambient occlusion + bloom per place: night exteriors bloom on lamps and the Moon; bright interiors keep it low */
-const POST: Record<string, {ao: number; bloom: number; threshold: number}> = {town: {ao: 1, bloom: 0.7, threshold: 0.8}, highway: {ao: 1, bloom: 0.75, threshold: 0.8}, interro: {ao: 1, bloom: 0.22, threshold: 0.97}, court: {ao: 1, bloom: 0.2, threshold: 0.97}, cell: {ao: 1, bloom: 0.5, threshold: 0.88}};
+const POST: Record<string, {ao: number; bloom: number; threshold: number}> = {town: {ao: 1, bloom: 0.7, threshold: 0.8}, highway: {ao: 1, bloom: 0.75, threshold: 0.8}, interro: {ao: 1, bloom: 0.12, threshold: 0.97}, court: {ao: 1, bloom: 0.2, threshold: 0.97}, cell: {ao: 1, bloom: 0.5, threshold: 0.88}};
 const World: React.FC<{t: number; P: any}> = ({t, P}) => {
   const sh = shotAt(t); const out = SHOT_FN[sh.name](t, t - sh.t0, P); const place = PLACE(sh.name); const [fc, fi] = FILL[place];
   return <><CamRig cam={out.cam} bg={out.bg ?? {color: '#2A2420'}} /><ambientLight color={fc} intensity={fi} /><group key={sh.name}>{out.node}</group><Post {...POST[place]} /></>;
