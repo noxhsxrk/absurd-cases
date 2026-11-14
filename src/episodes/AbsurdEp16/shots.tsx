@@ -51,7 +51,7 @@ const floatW = (w: THREE.Group, d: number[], c = 0.95) => { const e = new THREE.
 type GO = {clip?: string; face?: string; look?: V3; y?: number; rx?: number; fl?: number[]; c?: number; poseId?: string};
 const guy = (C: Cast, id: string, x: number, z: number, yaw: number, t: number, o: GO = {}) => { const I = C[id]; hideProps(I); resetTurn(I);
   const w = body(I, ps(id, x, z, yaw, t, {clip: o.clip ?? 'idle_neutral_01', face: o.face, lookW: o.look, ...(o.poseId ? {poseId: o.poseId} : {})}), t, o.y ?? 0, o.rx ?? 0); if (o.fl) floatW(w, o.fl, o.c); return {I, w}; };
-const hand = (I: any, sd: 'L' | 'R', to: V3, shape = 'fist') => { fingers(I, sd, shape as any, 1); ik(I, sd, loc(I, to), new THREE.Vector3(sd === 'R' ? 1 : -1, -1, 0), 1); };
+const hand = (I: any, sd: 'L' | 'R', to: V3, shape = 'fist') => { fingers(I, sd, shape as any, 1); ik(I, sd, loc(I, to), new THREE.Vector3(sd === 'R' ? -1 : 1, -1, -0.3), 1); };   // root +x is the character's LEFT: the elbow goes out, down and a little back, never into the chest
 
 // ---- the phone: one ballistic arc from the slip (τ = its own clock: real time, except the slow-motion shot)
 const HOLD: V3 = [MX, 1.2, MAN.z + 0.32], VY = 1.47, T_HIT = (VY + Math.sqrt(VY * VY + 2 * G * HOLD[1])) / G;   // 0.667 s from slip to road
@@ -83,7 +83,7 @@ const cuffsAt = (t: number): {p: V3; r: V3; air: boolean} => { const u = t - ev(
   for (const [vy, k] of [[1.6, 0.35], [0.5, 0.15]] as const) { const d = (2 * vy) / G; if (w < d) return {p: [x + vx * k * w, LAND[1] + vy * w - 0.5 * G * w * w, z + vz * k * w], r: [Math.PI / 2 + (d - w) * 3, 0.4, 0], air: false}; w -= d; x += vx * k * d; z += vz * k * d; }
   return {p: [x, LAND[1], z], r: [Math.PI / 2, 0.4, 0], air: false}; };
 const CUFF_END = cuffsAt(1e3).p;
-const thrower = (C: Cast, t: number, o: GO & {point?: V3} = {}) => { const a = guy(C, 'offA', COP.x, COP.z, Math.PI / 2, t, {clip: 'idle_angry_01', ...o}); const u = t - ev('throw');
+const thrower = (C: Cast, t: number, o: GO & {point?: V3} = {}) => { const a = guy(C, 'offA', COP.x, COP.z, Math.PI / 2, t, {clip: 'idle_neutral_01', ...o}); const u = t - ev('throw');
   if (o.point) hand(a.I, 'R', o.point, 'point');
   else if (u > -0.5 && u < 0.5) { const back: V3 = [COP.x - 0.3, 1.95, COP.z + 0.38], thru: V3 = [COP.x + 0.6, 1.15, COP.z + 0.2];
     const to = u < -0.1 ? lerp3([COP.x + 0.2, 1.2, COP.z + 0.3], back, sm((u + 0.5) / 0.3)) : u < 0 ? lerp3(back, REL, (u + 0.1) / 0.1) : lerp3(REL, thru, sm(u / 0.2));
@@ -107,13 +107,13 @@ const watchers = (C: Cast, t: number) => { const tf = TF(); const up = t > tf + 
 const rig = (C: Cast, t: number, o: {boss?: 'shout' | 'cuff' | 'float'; arrow?: boolean} = {}) => { const tp = ev('pop'), tf = TF(); const hy = hookY(t);
   const head = HEAD.map(([id, dx, side], i) => { const up = t - tp - i * 0.06; const lean = t < ev('heave') ? 0.15 : up < 0 ? 0.32 + 0.12 * Math.sin((t - ev('heave')) * 9 + i * 0.7) : Math.min(1.45, 0.32 + up * up * 16);
     const fl = t > tf + 0.3 + i * 0.15 ? drift(40 + i, t - tf - 0.3 - i * 0.15) : undefined; const x = SPOT[0] + dx + (up > 0 ? Math.min(0.5, up * 1.6) : Math.sin((t - ev('heave')) * 9 + i * 0.7) * 0.04);
-    const g = guy(C, id, x, RZ + side * 0.42, -Math.PI / 2, t, {clip: fl ? 'dancing_silly' : 'idle_angry_01', face: up > 0 ? 'wide' : 'shout', rx: -lean, y: up > 0.25 ? 0.1 : 0, fl});
+    const g = guy(C, id, x, RZ + side * 0.42, -Math.PI / 2, t, {clip: fl ? 'dancing_silly' : 'idle_neutral_01', face: up > 0 ? 'wide' : 'shout', rx: -lean, y: up > 0.25 ? 0.1 : 0, fl});
     if (up < 0.12) { hand(g.I, 'R', [x - 0.45, RY + 0.02, RZ + side * 0.06]); hand(g.I, 'L', [x - 0.25, RY - 0.02, RZ + side * 0.06]); g.w.updateMatrixWorld(true); }
     return <P key={id} o={g.w} />; });
   const slack = cl((t - tp) / 0.3); const end: V3 = [SPOT[0] + 88, RY - slack * 0.6, RZ];
   let boss: React.ReactNode = null;
   if (o.boss) { const acc = ACC(t); const fl = o.boss === 'float' && t > tf + 0.2 ? drift(50, t - tf - 0.2) : undefined;
-    const b = guy(C, 'offA', BOSS.x, BOSS.z, 2.1, t, {clip: fl ? 'dancing_silly' : 'idle_angry_01', face: fl ? 'wide' : o.boss === 'cuff' ? 'angry' : near(t, [tp], 0.6) ? 'wide' : 'shout', look: o.boss === 'shout' ? [SPOT[0] + 6, 1.4, RZ] : acc, fl});
+    const b = guy(C, 'offA', BOSS.x, BOSS.z, 2.1, t, {clip: fl ? 'dancing_silly' : 'idle_neutral_01', face: fl ? 'wide' : o.boss === 'cuff' ? 'angry' : near(t, [tp], 0.6) ? 'wide' : 'shout', look: o.boss === 'shout' ? [SPOT[0] + 6, 1.4, RZ] : acc, fl});
     if (o.boss === 'shout') hand(b.I, 'R', [BOSS.x + 0.5, 1.75 + Math.sin(t * 9) * 0.06, BOSS.z - 0.25], 'point');
     if (o.boss === 'cuff') { const k = sm((t - ev('cuff') + 0.3) / 0.25); (['R', 'L'] as const).forEach((sd) => hand(b.I, sd, lerp3([BOSS.x + 0.3, 1.2, BOSS.z - 0.2], [acc[0] - 0.42, acc[1] + 0.02, acc[2] + (sd === 'R' ? 0.3 : 0.05)], k), 'fist')); }
     b.w.updateMatrixWorld(true); boss = <P o={b.w} />; }
@@ -189,20 +189,20 @@ export const SHOT_FN: Record<string, (t: number, lt: number, C: Cast) => ShotOut
   charge: (t, lt, C) => {
     // from the road, beside the broken phone: he towers over it and points straight down at the ground. Snap zoom, the plate drops.
     const z = sm((t - ev('zoom')) / 0.17); const ph = phoneAt(9);
-    const m = man(C, t, {clip: 'idle_angry_01', face: 'shout', look: t > ev('plate1') + 0.15 ? [SPOT[0] + 0.55, 0.3, SPOT[2] + 1.1] : SPOT, point: [SPOT[0] - 0.12, 0.5, SPOT[2] + 0.05], rx: 0.16});
+    const m = man(C, t, {clip: 'idle_neutral_01', face: 'shout', look: t > ev('plate1') + 0.15 ? [SPOT[0] + 0.55, 0.3, SPOT[2] + 1.1] : SPOT, point: [SPOT[0] - 0.12, 0.5, SPOT[2] + 0.05], rx: 0.16});
     return {node: <>{street(t)}<P o={m.w} /><Phone position={ph.p} rotation={ph.r} crack={1} /></>,
       cam: mv({pos: [SPOT[0] + 0.6, 0.2, SPOT[2] + 1.45], look: [MX + 0.05, 1.85, MAN.z], fov: 62 - 10 * z}, lt, {arrive: 0.08, push: 0.05, shake: near(t, [ev('plate1')], 0.1) ? 0.01 : 0}), bg: SKY};
   },
   phone: (t, lt) => {
     // his POV down at the road: the phone comes up in his hand, glass cracked, 191
     const k = sm((lt * 30) / 5); const th = sm((t - ev('press') + 0.12) / 0.12);
-    const c = mv({pos: [MX, 1.55, MAN.z], look: [SPOT[0], 0, SPOT[2] + 0.7], fov: 54}, lt, {push: 0.08, arrive: 0});
+    const c = mv({pos: [MX, 1.55, MAN.z], look: [SPOT[0], 0, SPOT[2] + 0.7], fov: 54 - 7 * sm((t - ev('press')) / 0.17)}, lt, {push: 0.08, arrive: 0});   // punch in on the press: the call stays on the 3D phone (no 2D screen)
     return {node: <>{street(t)}<CallPhone cam={c.pos} look={c.look} k={k} pressed={t > ev('press')} thumb={th} /></>, cam: c, bg: SKY};
   },
   throw: (t, lt, C) => {
     // over the officer's shoulder: he winds up and throws the cuffs at it. They go where everything goes.
     const a = thrower(C, t, {face: t > ev('throw') + 0.5 ? 'wide' : 'angry', look: SPOT}); const u = t - ev('throw'); const c = cuffsAt(t); const cp: V3 = u < 0 ? bw(a.I, 'Bip01_R_Hand') : c.p;
-    const m = man(C, t, {yaw: -Math.PI / 2 + 0.5, clip: 'idle_angry_01', face: 'angry', look: u > 0 ? c.p : [COP.x, 1.5, COP.z], point: [SPOT[0], 0.75, SPOT[2] - 0.15]});
+    const m = man(C, t, {yaw: -Math.PI / 2 + 0.5, clip: 'idle_neutral_01', face: 'angry', look: u > 0 ? c.p : [COP.x, 1.5, COP.z], point: [SPOT[0], 0.75, SPOT[2] - 0.15]});
     const b = guy(C, 'offB', CAR[0] - 1.7, CAR[2] - 1.15, -Math.PI / 2 - 0.3, t, {clip: 'idle_neutral_01', look: u > 0 ? c.p : [COP.x, 1.5, COP.z]});
     const cam = mv({pos: [MX - 4.9, 2.0, 1.1], look: [MX - 1.15, 0.95, -0.25], fov: 54}, lt, {arrive: 0.07, push: 0.04, roll0: 2});
     return {node: <>{street(t)}<P o={a.w} /><P o={m.w} /><P o={b.w} /><PoliceCar t={t} position={CAR} yaw={CAR_YAW} />

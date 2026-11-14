@@ -10,7 +10,7 @@ import {canvasQuality, Quality} from '../../pov/ui/quality';
 import {Post} from '../../pov/lib/post';
 import {FPS, W, H, TOTAL, ev, CARDS, shotAt, SHOTS} from './data';
 import {SHOT_FN, CamRig} from './shots';
-import {Captions, Grade, Flash, CallScreen} from '../AbsurdEp1/ui';
+import {Captions, Grade, Flash} from '../AbsurdEp1/ui';
 import {HangingPlate} from '../absurdkit';
 
 export {TOTAL};
@@ -26,9 +26,6 @@ const GRADE: Record<string, string> = {town: 'saturate(0.98) contrast(1.05)', co
 const FILL: Record<string, [string, number]> = {town: ['#DCE8F2', 0.3], court: ['#FFF1DE', 0.5], cell: ['#8090B0', 0.3]};
 /** ambient occlusion + bloom per place: daylight and the bright court keep the bloom low */
 const POST: Record<string, {ao: number; bloom: number; threshold: number}> = {town: {ao: 1, bloom: 0.15, threshold: 0.95}, court: {ao: 1, bloom: 0.2, threshold: 0.97}, cell: {ao: 1, bloom: 0.5, threshold: 0.88}};
-/** the glass is cracked: the same cracks over the full-screen call UI */
-const CRACK = ['M700 1150 L560 980 L610 760 L480 560', 'M700 1150 L880 1010 L1010 1040', 'M700 1150 L790 1330 L740 1560 L860 1790', 'M700 1150 L520 1240 L330 1210 L120 1330', 'M700 1150 L760 960 L900 800 L880 560 L990 380', 'M560 980 L380 930 L210 780'];
-const CrackOverlay: React.FC = () => <AbsoluteFill><svg viewBox="0 0 1080 1920" width="100%" height="100%">{CRACK.map((d, i) => <g key={i}><path d={d} stroke="rgba(0,0,0,0.55)" strokeWidth={7} fill="none" /><path d={d} stroke="rgba(255,255,255,0.9)" strokeWidth={3} fill="none" /></g>)}</svg></AbsoluteFill>;
 const World: React.FC<{t: number; P: any}> = ({t, P}) => {
   const sh = shotAt(t); const out = SHOT_FN[sh.name](t, t - sh.t0, P); const place = PLACE(sh.name); const [fc, fi] = FILL[place];
   return <><CamRig cam={out.cam} bg={out.bg ?? {color: '#2A2420'}} /><ambientLight color={fc} intensity={fi} /><group key={sh.name}>{out.node}</group><Post {...POST[place]} /></>;
@@ -50,7 +47,6 @@ export const AbsurdEp16: React.FC<{quality?: Quality}> = ({quality = 'fast'}) =>
       <Grade frame={f30} vig={0.16} />
       <HangingPlate t={t} text="ทำให้เสียทรัพย์" drops={[ev('plate1')]} t1={T('phone').t0 - 1 / 30} top={0.1} w={0.9} />
       <HangingPlate t={t} text="ขัดขืนการจับกุม" drops={[ev('plate2')]} t1={T('army').t0 - 1 / 30} top={0.1} w={0.9} />
-      <AbsoluteFill style={{transform: `scale(${1 + 0.1 * Math.max(0, t - ev('press') - 0.2)})`}}><CallScreen t={t} t0={ev('press') + 0.2} t1={T('throw').t0 - 0.001} />{t >= ev('press') + 0.2 && t < T('throw').t0 && <CrackOverlay />}</AbsoluteFill>
       {['hit', 'clat', 'pop', 'cuff', 'gavel', 'flip'].map((k) => <Flash key={k} t={t} t0={ev(k)} d={0.07} max={0.2} />)}
       <Captions cards={CARDS} t={f30 / FPS} y={1395} />   {/* whole 30 fps frames: a caption swap must not be averaged into a 1-frame dissolve */}
       {audio && <Audio src={staticFile(audio)} />}
