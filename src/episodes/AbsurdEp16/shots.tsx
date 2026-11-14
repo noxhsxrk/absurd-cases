@@ -34,7 +34,7 @@ const HOME = LOTS.filter((l) => l.side < 0).sort((a, b) => Math.abs(a.x) - Math.
 const KEEP = [1, LOTS.length - 2];   // VillageLife hangs its laundry in these two yards: they stay on the ground
 const MX = HOME.x - 0.3, MAN = {x: MX, z: -0.7};
 const SPOT: V3 = [MX + 0.1, 0, -0.25];
-const CAR: V3 = [MX + 2.4, 0, 2.1], CAR_YAW = Math.PI + 0.25;   // the patrol car, parked skewed on the far lane (PoliceCar faces local +x)
+const CAR: V3 = [MX + 3.2, 0, 2.2], CAR_YAW = Math.PI + 0.25;   // the patrol car, parked skewed on the far lane (PoliceCar faces local +x)
 const TF = () => ev('float');
 /** how high / tilted lot i is at time t (undefined = on the ground) */
 const lotLift = (t: number, boost = 0) => (i: number): V3 | undefined => { if (KEEP.includes(i)) return undefined; const u = t - TF() - 0.6 - (i % 5) * 0.25 + boost; if (u <= 0) return undefined;
@@ -97,6 +97,12 @@ const BOSS = {x: SPOT[0] - 1.25, z: SPOT[2] + 0.75};   // offA beside the rig: h
 const hookY = (t: number) => { const u = t - ev('pop'); if (u < 0) { const k = cl((t - ev('heave')) / Math.max(0.1, ev('pop') - ev('heave'))); return -0.55 + 0.3 * k + Math.sin(t * 40) * 0.012 * k; }
   const top = 2.75; const y = -0.25 + 26 * u; return y < top ? y : top + 0.32 * Math.exp(-(u - 0.115) * 5) * Math.cos((u - 0.115) * 11); };
 const ACC = (t: number): V3 => [SPOT[0], hookY(t) - 0.95, SPOT[2]];
+const SIDE = {x: MX + 0.7, z: 1.45};   // where he watches the dig from: clear of the tripod's feet and of the pit
+const watchers = (C: Cast, t: number) => { const tf = TF(); const up = t > tf + 0.15; const done = t > ev('cuff') + 0.1;
+  const I = C.nai; hideProps(I); resetTurn(I);
+  const w = body(I, ps('nai', SIDE.x, SIDE.z, -2.8, t, {clip: up ? 'dancing_silly' : done ? 'cheer_01' : 'idle_neutral_01', face: up ? 'wide' : done ? 'open' : near(t, [ev('pop')], 0.7) ? 'wide' : 'half', lookW: up ? undefined : [SPOT[0], Math.max(1, hookY(t) - 0.5), SPOT[2]]}), t);
+  if (up) floatW(w, drift(3, t - tf - 0.15, 0.7)); const c = drift(21, t - tf - 0.35, 0.6);
+  return <><P o={w} /><PoliceCar t={t} position={[CAR[0], CAR[1] + c[0], CAR[2]]} yaw={CAR_YAW + c[3]} pitch={c[1]} roll={c[2]} /></>; };
 const rig = (C: Cast, t: number, o: {boss?: 'shout' | 'cuff' | 'float'; arrow?: boolean} = {}) => { const tp = ev('pop'), tf = TF(); const hy = hookY(t);
   const head = HEAD.map(([id, dx, side], i) => { const up = t - tp - i * 0.06; const lean = t < ev('heave') ? 0.15 : up < 0 ? 0.32 + 0.12 * Math.sin((t - ev('heave')) * 9 + i * 0.7) : Math.min(1.45, 0.32 + up * up * 16);
     const fl = t > tf + 0.3 + i * 0.15 ? drift(40 + i, t - tf - 0.3 - i * 0.15) : undefined; const x = SPOT[0] + dx + (up > 0 ? Math.min(0.5, up * 1.6) : Math.sin((t - ev('heave')) * 9 + i * 0.7) * 0.04);
@@ -112,7 +118,7 @@ const rig = (C: Cast, t: number, o: {boss?: 'shout' | 'cuff' | 'float'; arrow?: 
     b.w.updateMatrixWorld(true); boss = <P o={b.w} />; }
   const caught = t > ev('cuff') - 0.12; const fk = sm((t - tf) / 0.5);
   return <><Tripod position={SPOT} /><Rope pts={[[SPOT[0], hy, SPOT[2]], PULLEY, [SPOT[0] + 3.0, RY + 0.05, RZ], end]} /><Hook position={[SPOT[0], hy, SPOT[2]]} swing={t > tp ? Math.sin((t - tp) * 5) * 0.12 * Math.exp(-(t - tp)) : 0} />
-    {head}{boss}<CopCrowd t={t} spots={SPOTS} heave={ev('heave')} pop={tp + 0.2} float={tf + 0.5} />
+    {head}{boss}{watchers(C, t)}<CopCrowd t={t} spots={SPOTS} heave={ev('heave')} pop={tp + 0.2} float={tf + 0.5} />
     <Clods at={[SPOT[0], 0.1, SPOT[2]]} t={t} t0={tp} />{t > tp && t < tp + 0.8 && <Puffs at={[SPOT[0], 0.2, SPOT[2]]} t={t} t0={tp} n={12} size={0.35} color="#B9A58A" rise={1.6} spread={0.9} life={1.0} />}
     {caught && <Accused t={t} position={ACC(t)} k={0.6 + 0.4 * sm((t - ev('cuff') + 0.12) / 0.12)} tagK={sm((t - ev('cuff') - 0.1) / 0.14)} float={fk} arrow={o.arrow} />}
     {near(t, [ev('cuff')], 0.35) && <Stars center={[SPOT[0] + 0.5, ACC(t)[1] + 0.5, SPOT[2] + 0.4]} t={t * 3} r={0.5} size={0.14} />}</>; };
@@ -218,8 +224,8 @@ export const SHOT_FN: Record<string, (t: number, lt: number, C: Cast) => ShotOut
   },
   army: (t, lt, C) => {
     // the crane-up: a tripod over the spot, a rope — and five hundred officers on it, all the way down the road
-    const k = 1 - Math.pow(1 - cl(lt / 0.3), 3); const m = man(C, t, {yaw: Math.PI / 2, face: 'wide', look: [SPOT[0] + 20, 1, RZ]});
-    return {node: <>{street(t, {hole: 0, cracks: 0})}{rig(C, t, {boss: 'shout'})}<P o={m.w} /><PoliceCar t={t} position={CAR} yaw={CAR_YAW} /></>,
+    const k = 1 - Math.pow(1 - cl(lt / 0.3), 3);
+    return {node: <>{street(t, {hole: 0, cracks: 0})}{rig(C, t, {boss: 'shout'})}</>,
       cam: mv({pos: [SPOT[0] - 3.4 - 1.4 * k, 1.2 + 3.4 * k, RZ + 0.35], look: [SPOT[0] + 8 + 8 * k, 1.0 - 0.2 * k, RZ], fov: 60}, lt, {arrive: 0, push: 0.02}), bg: SKY};
   },
   pull: (t, lt, C) => {
@@ -233,7 +239,7 @@ export const SHOT_FN: Record<string, (t: number, lt: number, C: Cast) => ShotOut
     // it comes out: clods in the air, the hook slams up to the pulley, the whole line goes over backwards
     const k = sm((t - ev('pop')) / 0.1);
     return {node: <>{street(t, {hole: 1, burst: k, cracks: 1})}{rig(C, t, {boss: 'shout'})}</>,
-      cam: mv({pos: [SPOT[0] - 3.3, 1.5, RZ - 1.3], look: [SPOT[0] + 1.2, 1.95, RZ], fov: 62}, lt, {arrive: 0.07, push: 0.05, roll0: -3, shake: near(t, [ev('pop')], 0.25) ? 0.04 : 0.006}), bg: SKY};
+      cam: mv({pos: [SPOT[0] - 4.2, 3.2, RZ + 2.2], look: [SPOT[0] + 1.5, 1.6, RZ], fov: 62}, lt, {arrive: 0.07, push: 0.05, roll0: -3, shake: near(t, [ev('pop')], 0.25) ? 0.04 : 0.006}), bg: SKY};
   },
   cuffed: (t, lt, C) => {
     // he reaches up under the hook and snaps the cuffs shut on it. A tag: ผู้ต้องหา, g = 9.8
@@ -243,12 +249,10 @@ export const SHOT_FN: Record<string, (t: number, lt: number, C: Cast) => ShotOut
   },
   lift: (t, lt, C) => {
     // a beat. A pebble leaves the road. Then his feet do, and the officers', and the car's.
-    const tf = TF(); const m = man(C, t, {yaw: Math.PI / 2 - 0.4, clip: t > tf + 0.15 ? 'dancing_silly' : 'cheer_01', face: t > tf + 0.1 ? 'wide' : 'open', fl: t > tf + 0.15 ? drift(3, t - tf - 0.15, 0.7) : undefined});
-    const c = drift(21, t - tf - 0.35, 0.6);
-    return {node: <>{street(t, {float: true, hole: 1, burst: 1})}{rig(C, t, {boss: 'float'})}<P o={m.w} />
-      <PoliceCar t={t} position={[CAR[0], CAR[1] + c[0], CAR[2]]} yaw={CAR_YAW + c[3]} pitch={c[1]} roll={c[2]} />
+    const tf = TF();
+    return {node: <>{street(t, {float: true, hole: 1, burst: 1})}{rig(C, t, {boss: 'float'})}
       <Bits center={[SPOT[0] + 0.5, 0, 0]} size={[9, 5.5]} t={t} t0={tf - 0.25} n={60} seed={1} /></>,
-      cam: mv({pos: [MX - 3.6, 0.3, 2.3], look: [SPOT[0] + 1.0, 1.55, RZ], fov: 62}, lt, {arrive: 0.06, push: 0.03, roll: 5}), bg: SKY};
+      cam: mv({pos: [MX - 3.6, 0.3, 2.6], look: [SPOT[0] + 1.0, 1.55, RZ + 0.5], fov: 62}, lt, {arrive: 0.06, push: 0.03, roll: 5}), bg: SKY};
   },
   car: (t, lt, C) => {
     // from underneath: the patrol car, lights still going, turning over in the air; an officer swims after it
