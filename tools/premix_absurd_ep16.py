@@ -229,7 +229,7 @@ P(tung(), 0.5, EV['plate2']); P(thud(40, 0.9), 0.28, EV['plate2'] + 0.05)
 # ---- five hundred officers: boots and a whistle on the reveal; the heave, the rope, the road groaning; it comes out
 P(whoosh(0.5, 200, 2500), 0.25, T('army')); P(take('swat_boots', lambda: boots(1.4, 14), T('pull') - T('army')), 0.4, T('army') + 0.05); P(take('police_whistle', lambda: beep(2600, 0.5), 0.9), 0.28, T('army') + 0.3, -0.3)
 hv = EV['pop'] - EV['heave']
-h_ = loopto(take('crowd_heave', lambda: boots(1.2, 8), trim=False), hv + 0.1); P(env(h_, [(0, 0.5), (hv * 0.7, 1), (hv + 0.1, 1)]), 0.5, EV['heave'])
+h_ = loopto(take('crowd_heave', lambda: boots(1.2, 8), trim=False), hv + 0.1); P(env(h_, [(0, 0.5), (hv * 0.7, 1), (hv + 0.1, 1)]), 0.32, EV['heave'])   # low: the take scored 0.14 on CLAP (not checked by ear)
 r_ = loopto(take('rope_strain', lambda: creak(1.2), trim=False), hv); P(env(r_, [(0, 0.4), (hv, 1)]), 0.42, EV['heave'], -0.2)
 q_ = lp(take('earthquake_rumble', lambda: thunder(2.0, 0), hv + 0.3, trim=False), 300); P(env(q_, [(0, 0.1), (hv, 1), (hv + 0.3, 0)]), 0.35, EV['heave'])
 P(take('earth_burst', lambda: thunder(1.5), 2.0), 0.75, EV['pop'] - 0.03); P(thud(38, 0.8), 0.4, EV['pop']); P(take('rubble_fall', lambda: fizz(1.0), 1.4), 0.3, EV['pop'] + 0.15, 0.2)
