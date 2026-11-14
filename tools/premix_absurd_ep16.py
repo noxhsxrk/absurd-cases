@@ -186,7 +186,7 @@ if VOICE.exists():
 else: print('NO VOICE YET: SFX-only draft mix on the provisional timing')
 for r in json.load(open('episodes/absurd-cases/ep16_line_timing.json')):
     for a, b in r['parts']: M.vo_env[int(a * R):int(b * R)] = 1.0
-FX = 10 ** (-4.5 / 20)
+FX = 10 ** (-8 / 20)   # EP16 is dense (crowd, rope, rumble, sirens): spot FX 3.5 dB lower than EP15 so the voice stays 8 dB clear
 def P(x, pk, t, pan=0.0):
     x = peak_to(x, pk * 0.9 * FX)
     if t < 0: x = x[int(-t * R):]; t = 0

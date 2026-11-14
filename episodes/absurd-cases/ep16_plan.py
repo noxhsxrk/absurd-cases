@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """absurd-cases EP16 timing plan (คดีแรงโน้มถ่วง): the one source of timing -> public/absurd-cases/ep16/ep16_timeline.json
-Line timing from ep16_line_timing.json (provisional at EP15's measured speech rate until Nox's take is cut with tools/tighten_take.py)."""
+Line timing from ep16_line_timing.json (Nox's AI Studio take cut with tools/tighten_take.py; visual beats live in ep16_gaps.txt)."""
 import json, pathlib
 HERE = pathlib.Path(__file__).resolve().parent; ROOT = HERE.parent.parent
 FPS = 30
@@ -21,9 +21,9 @@ for a, b in zip(cards, cards[1:]):
 speech = E('l011')
 L = 0.2   # ref6: a cut leads its sentence by 5–9 frames
 FLIGHT = 0.86   # the thrown cuffs: 1.9 m up, 2 m/s upward, g = 9.8 -> on the road 0.86 s later
-slip = P('l001', 1) + 0.1; drop = slip + 0.3; hit = P('l002', 1) + 0.95; clat = P('l005', 1) + 0.62
+slip = P('l001', 1) + 0.1; drop = slip + 0.3; hit = P('l002', 1) + 0.95; clat = P('l005', 1) + 0.75
 ev.update(slip=slip, drop=drop, hit=hit, note=P('l002'), note2=P('l005', 1), zoom=P('l003', 1) - 0.2, plate1=P('l003', 1), phoneUp=P('l004') - 0.05, press=P('l004') + 0.3,
-          throw=clat - FLIGHT, clat=clat, plate2=P('l006') + 0.05, heave=P('l007', 1), pop=P('l008') + 0.4, cuff=P('l008', 1) + 0.4,
+          throw=clat - FLIGHT, clat=clat, plate2=P('l006') + 0.05, heave=P('l007', 1), pop=P('l008') + 0.28, cuff=P('l008', 1) + 0.35,
           float=E('l008') + 0.4, gavel=P('l010') + 0.5, flip=P('l010', 1) + 0.1, letgo=P('l011', 1) + 0.15, end=E('l011'))
 ev = {k: round(v, 3) for k, v in ev.items()}
 SHOTS = [('open', 0.0), ('fall', drop + 0.12), ('crack', hit - 0.07), ('charge', P('l003') - L), ('phone', P('l004') - .15),
