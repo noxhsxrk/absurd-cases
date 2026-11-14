@@ -58,3 +58,15 @@ Account in-scene: `@absurd.cases` (`HANDLE` in each episode's data.ts).
 - Court: จำคุกห้าพันล้านปี, cell 18 (empty since EP6).
 - Closer: the man rebuilds his dominoes, but its child อาฟเตอร์ช็อก is still at large (last shot: they start to wobble).
 - Hooks: aftershock at large (future suspect); the Earth shares a block with the other inmates.
+
+## EP15 คดีดวงจันทร์ (ดวงจันทร์)
+- Charge: สตอล์กเกอร์. It never moved: it is far away, so it only seemed to follow his car. A patrol car flew 384,400 km, cuffed it and towed it back.
+- Interrogation result: it was not following him, it was following the Earth (EP14, cell 18). Cell 19; every night it still orbits cell 18.
+
+## EP16 คดีแรงโน้มถ่วง (แรงโน้มถ่วง)
+- Never drawn (no body, no face): before the arrest things fall at 9.8 m/s² and a red dashed note marks it; after the arrest nothing falls. In custody it is a pair of closed cuffs round nothing with a tag "ผู้ต้องหา · g = 9.8" (the tag reads "g = 0" and floats upward once it is caught).
+- Charges: ทำให้เสียทรัพย์ (his phone slipped, it pulled it to the road, the glass cracked) → ขัดขืนการจับกุม (the officer threw cuffs at it and it pulled those down too). Two plates.
+- Arrest: a tripod and pulley over the spot in front of his gate, five hundred officers on the rope down the village road; it came out of the road and was cuffed under the hook.
+- Consequence: everything floats — the patrol car, the houses (whole lots, yards and fences), the court. The judge swung his gavel at a bench that was no longer under him and went over.
+- Sentence: จำคุกตลอดชีวิต, cell 22. Closer: his phone never falls again (he lies on nothing above the village, lets go of it, and it stays).
+- Hooks: the whole universe is weightless until it is released (every later episode could be floating, or the world petitions for its parole: "ขอประกันตัวแรงโน้มถ่วง"); the Earth in cell 18 has lost its only job, and the Moon next door (EP15) has nothing to orbit by; the hole in the road in front of his house is still open; aftershock (EP14) is still at large.

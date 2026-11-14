@@ -112,7 +112,7 @@ const House: React.FC<{x: number; side: number; i: number; night?: number; t?: n
 export const lots = (x0 = -34, x1 = 34) => { const out: {x: number; side: number; W: number; i: number}[] = [];
   for (const s of [-1, 1]) { let x = x0 + hash(s + 7) * 4; while (x < x1) { out.push({x, side: s, W: 7 + hash(out.length) * 1.5, i: out.length}); x += 9.6 + hash(x) * 1.4; } }
   return out; };
-export const Village: React.FC<{x0?: number; x1?: number; clear?: [number, number]; /** 1 = night: seeded windows lit, some TV-blue (pass t for the flicker) */ night?: number; t?: number; /** lot index → how far its sliding gate is open (0…1) */ gates?: Record<number, number>; /** lot index → front door open (0…1) */ doors?: Record<number, number>}> = ({x0 = -34, x1 = 34, clear, night = 0, t = 0, gates = {}, doors = {}}) => {
+export const Village: React.FC<{x0?: number; x1?: number; clear?: [number, number]; /** 1 = night: seeded windows lit, some TV-blue (pass t for the flicker) */ night?: number; t?: number; /** lot index → how far its sliding gate is open (0…1) */ gates?: Record<number, number>; /** lot index → front door open (0…1) */ doors?: Record<number, number>; /** lot index → [y, rx, rz]: the whole lot (house, yard, fence) lifted and tilted about the house (EP16) */ lift?: (i: number) => V3 | undefined; /** the parked pickup: [y, rx, rz] */ truck?: V3}> = ({x0 = -34, x1 = 34, clear, night = 0, t = 0, gates = {}, doors = {}, lift, truck = [0, 0, 0]}) => {
   const road = tm('vroad', '#3E4044', (g) => { speckle(g, 512, 512, 7000, ['#000', '#888'], 0.05, 0.18, 1, 3, 21); grime(g, 512, 512, 0.25, 6, 4); }, [24, 2], 0.92);
   const path = tm('vpath', '#A8A39A', (g) => { speckle(g, 512, 512, 2200, ['#000', '#fff'], 0.03, 0.07, 1, 3, 5); g.fillStyle = '#8A867E'; for (let k = 0; k <= 4; k++) g.fillRect(k * 128 - 1, 0, 2, 512); }, [60, 1], 0.8);
   const grass = tm('vgrass', '#5B7838', (g) => { speckle(g, 512, 512, 9000, ['#2E4A1E', '#8BA65A'], 0.08, 0.25, 1, 2, 31); }, [40, 8], 0.95);
@@ -127,7 +127,8 @@ export const Village: React.FC<{x0?: number; x1?: number; clear?: [number, numbe
       <mesh receiveShadow rotation={[-Math.PI / 2, 0, 0]} position={[cx, 0.123, s * (ROAD_W / 2 + 1.6)]} material={path}><planeGeometry args={[L, 1.1]} /></mesh>
       <Bx p={[cx, 0.06, s * (ROAD_W / 2 + 1.6)]} s={[L, 0.12, 1.1]} m={M('#8F8B84', 0.9)} cast={false} />
     </group>)}
-    {xs.map(([x, s], i) => <House key={i} x={x} side={s} i={i} night={night} t={t} open={gates[i] ?? 0} door={doors[i]} />)}
+    {xs.map(([x, s], i) => { const h = <House key={i} x={x} side={s} i={i} night={night} t={t} open={gates[i] ?? 0} door={doors[i]} />; const l = lift?.(i); if (!l) return h;
+      const zc = s * (ROAD_W / 2 + 6.2 + 3.75); return <group key={i} position={[x, l[0], zc]} rotation={[l[1], 0, l[2]]}><group position={[-x, 0, -zc]}>{h}</group></group>; })}
     {Array.from({length: 5}, (_, k) => x0 + 6 + k * 16).filter((x) => !clear || x < clear[0] || x > clear[1]).map((x) => <group key={x} position={[x, 0, -(ROAD_W / 2 + 0.5)]}>
       <mesh castShadow position={[0, 3.2, 0]} material={M('#6C7076', 0.5, 0.5)}><cylinderGeometry args={[0.06, 0.09, 6.4, 8]} /></mesh>
       <Bx p={[0, 6.35, 0.7]} s={[0.1, 0.1, 1.4]} m={M('#6C7076', 0.5, 0.5)} />
@@ -137,7 +138,7 @@ export const Village: React.FC<{x0?: number; x1?: number; clear?: [number, numbe
       <mesh castShadow position={[0, 4.5, 0]} material={M('#A8A49C', 0.8)}><cylinderGeometry args={[0.12, 0.16, 9, 8]} /></mesh>
       <Bx p={[0, 8.3, 0]} s={[0.12, 0.12, 1.6]} m={M('#7D7A74', 0.8)} />
     </group>)}
-    <group position={[clear ? clear[1] + 7 : x1 - 6, 0, -(ROAD_W / 2 - 1.1)]}>
+    <group position={[clear ? clear[1] + 7 : x1 - 6, truck[0], -(ROAD_W / 2 - 1.1)]} rotation={[truck[1], 0, truck[2]]}>
       <Bx p={[0, 0.75, 0]} s={[4.6, 0.8, 1.8]} m={M('#B9BCC0', 0.35, 0.3)} />
       <Bx p={[-0.6, 1.4, 0]} s={[2.2, 0.7, 1.7]} m={M('#B9BCC0', 0.35, 0.3)} />
       <Bx p={[-0.6, 1.42, 0]} s={[2.25, 0.5, 1.6]} m={GLASS} cast={false} />
