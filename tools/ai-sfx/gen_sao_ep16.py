@@ -26,7 +26,7 @@ def main():
     from transformers import ClapModel, ClapProcessor
     import librosa
     only = set(sys.argv[1:])
-    log(time.strftime('%H:%M:%S'), 'SAO EP8 start', torch.cuda.get_device_name(0))
+    log(time.strftime('%H:%M:%S'), 'SAO EP16 start', torch.cuda.get_device_name(0))
     pipe = StableAudioPipeline.from_pretrained('stabilityai/stable-audio-open-1.0', torch_dtype=torch.float16).to('cuda')
     clap = ClapModel.from_pretrained('laion/larger_clap_general').to('cuda').eval(); proc = ClapProcessor.from_pretrained('laion/larger_clap_general')
     def vec(o, *names):
@@ -61,7 +61,7 @@ def main():
             pk = np.abs(w).max() or 1; sf.write(OUT / f'{cue}_r{r}.wav', (w / pk * 0.89).astype(np.float32), 44100, subtype='PCM_16')
         scores[cue] = [round(s, 4) for s, _ in takes]; json.dump(scores, open(OUT / 'scores.json', 'w'), indent=1)
         log(cue, 'done', round(time.time() - t0, 1), 's', scores[cue])
-    log(time.strftime('%H:%M:%S'), 'SAO EP8 DONE')
+    log(time.strftime('%H:%M:%S'), 'SAO EP16 DONE')
     import subprocess; subprocess.run([sys.executable, str(HERE.parent / 'sfx_index.py'), 'publish'])   # index + upload to the store + free disk + push index
 
 if __name__ == '__main__':

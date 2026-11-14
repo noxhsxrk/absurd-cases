@@ -1,7 +1,7 @@
 import React from 'react';
 import * as THREE from 'three';
 import {resetTurn, rot, fingers, ik} from '../../pov/acting/ik';
-import {ev, SHOTS, TOTAL, FPS, lerp, lerp3, cl} from './data';
+import {ev, SHOTS, FPS, lerp, lerp3, cl} from './data';
 import {Court, Cell} from '../AbsurdEp1/sets';
 import {makeGavel, Handcuffs} from '../AbsurdEp1/props';
 import {CellPlate} from '../AbsurdEp2/props';
@@ -75,9 +75,10 @@ const man = (C: Cast, t: number, o: GO & {yaw?: number; hold?: V3 | null; grab?:
 };
 
 // ---- the officer and the thrown cuffs: real ballistics from his hand (1.9 m up, 2 m/s upward: 0.86 s to the road), two short bounces
-const COP = {x: MX - 2.6, z: -0.15}, REL: V3 = [COP.x + 0.42, 1.9, COP.z + 0.3], LAND: V3 = [SPOT[0] - 0.5, 0.03, SPOT[2] + 0.25], FL = 0.86;
+const COP = {x: MX - 2.6, z: -0.15}, REL: V3 = [COP.x + 0.42, 1.9, COP.z + 0.3], LAND: V3 = [SPOT[0] - 0.5, 0.03, SPOT[2] + 0.25];
+const FL = ev('clat') - ev('throw'), VY0 = (0.5 * G * FL * FL - (REL[1] - LAND[1])) / FL;   // the plan owns the flight time; this is the upward speed that lands them on it
 const cuffsAt = (t: number): {p: V3; r: V3; air: boolean} => { const u = t - ev('throw'); const vx = (LAND[0] - REL[0]) / FL, vz = (LAND[2] - REL[2]) / FL;
-  if (u < FL) return {p: [REL[0] + vx * u, REL[1] + 2 * u - 0.5 * G * u * u, REL[2] + vz * u], r: [u * 9, u * 4, 0.3], air: true};
+  if (u < FL) return {p: [REL[0] + vx * u, REL[1] + VY0 * u - 0.5 * G * u * u, REL[2] + vz * u], r: [u * 9, u * 4, 0.3], air: true};
   let w = u - FL, x = LAND[0], z = LAND[2];
   for (const [vy, k] of [[1.6, 0.35], [0.5, 0.15]] as const) { const d = (2 * vy) / G; if (w < d) return {p: [x + vx * k * w, LAND[1] + vy * w - 0.5 * G * w * w, z + vz * k * w], r: [Math.PI / 2 + (d - w) * 3, 0.4, 0], air: false}; w -= d; x += vx * k * d; z += vz * k * d; }
   return {p: [x, LAND[1], z], r: [Math.PI / 2, 0.4, 0], air: false}; };
@@ -136,12 +137,12 @@ const courtRoom = (C: Cast, t: number) => { const u = Math.max(0, t - ev('gavel'
   return <><Court t={t} /><P o={w} /><CourtLife t={t} />{aud}
     <Accused t={t} position={[DOCK[0], DOCK[1] + Math.sin(t * 1.2) * 0.05, DOCK[2]]} size={5} float={1} yaw={0.3} />
     {Array.from({length: 7}, (_, i) => <mesh key={i} position={[-1.2 + i * 0.4, 1.9 + (i * 0.53 % 1) * 1.2 + Math.sin(t + i) * 0.06, -2.3 + (i % 3) * 0.5]} rotation={[t * 0.6 + i, i, t * 0.4 + i * 2]}><planeGeometry args={[0.21, 0.297]} /><meshLambertMaterial color="#F4F1E6" side={THREE.DoubleSide} /></mesh>)}</>; };
-const cellBlock = (C: Cast, t: number) => { const f = sm((t - ev('flip')) / 0.1); const g = guy(C, 'offB', 1.05, 2.9, Math.PI + 0.5, t, {clip: 'dancing_silly', face: 'wide', fl: [0.25 + Math.sin(t * 1.2) * 0.05, 2.6 + t * 0.25, 0.3, 0]});
+const cellBlock = (t: number) => { const f = sm((t - ev('flip')) / 0.1);   // 9:16 has no room for a floating guard beside the plate and the tag: the cell is only the cuffs, the tag and the dust
   return <><Cell t={t} days={0.45} marks={0} /><CellPlate text="ห้อง 22" position={[0, 2.12, 1.54]} w={0.64} />
     <group position={[0, 1.9, 1.55]} rotation={[(1 - f) * 1.5, 0, 0]}><mesh position={[0, -0.16, 0]} material={label('ep16-life', 768, 256, '#B0302E', '#F2E6C8', ['ตลอดชีวิต'], 130)}><planeGeometry args={[0.9, 0.3]} /></mesh></group>
-    <Accused t={t} position={[-0.25, 1.05 + Math.sin(t * 1.4) * 0.06, 0.55]} size={6.5} float={1} yaw={0.35} /><P o={g.w} />
+    <Accused t={t} position={[0.3, 1.05 + Math.sin(t * 1.4) * 0.06, 0.55]} size={6.5} float={1} yaw={0.35} />
     <pointLight position={[0, 1.6, 0.9]} color="#FFF0D8" intensity={2.2} distance={3.5} decay={1.5} />
-    <Bits center={[0, 0.3, 1]} size={[3, 3]} t={t} t0={t - 2.2} n={26} seed={4} />
+    <Bits center={[0, 0.3, 1]} size={[3, 3]} t={t} t0={sh('cell').t0 - 2.2} n={26} seed={4} />
     <mesh receiveShadow rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.002, 3.2]}><planeGeometry args={[14, 3.6]} /><meshLambertMaterial color="#8E918B" /></mesh>
     <mesh position={[0, 1.4, 5.0]} rotation={[0, Math.PI, 0]}><planeGeometry args={[14, 2.8]} /><meshLambertMaterial color="#6F736D" /></mesh></>; };
 
@@ -226,7 +227,7 @@ export const SHOT_FN: Record<string, (t: number, lt: number, C: Cast) => ShotOut
     // the crane-up: a tripod over the spot, a rope — and five hundred officers on it, all the way down the road
     const k = 1 - Math.pow(1 - cl(lt / 0.3), 3);
     return {node: <>{street(t, {hole: 0, cracks: 0})}{rig(C, t, {boss: 'shout'})}</>,
-      cam: mv({pos: [SPOT[0] - 3.4 - 1.4 * k, 1.2 + 3.4 * k, RZ + 0.35], look: [SPOT[0] + 8 + 8 * k, 1.0 - 0.2 * k, RZ], fov: 60}, lt, {arrive: 0, push: 0.02}), bg: SKY};
+      cam: mv({pos: [SPOT[0] - 3.4 - 1.2 * k, 1.2 + 2.6 * k, RZ - 1.9], look: [SPOT[0] + 7 + 5 * k, 1.1 - 0.2 * k, RZ + 0.25], fov: 60}, lt, {arrive: 0, push: 0.02}), bg: SKY};
   },
   pull: (t, lt, C) => {
     // low at the rig: the rope sings, the road lifts and cracks round the hole
@@ -268,16 +269,15 @@ export const SHOT_FN: Record<string, (t: number, lt: number, C: Cast) => ShotOut
     return {node: <>{street(t, {float: true, boost: 3.2, hole: 1, burst: 1})}<Bits center={[HOME.x, 0.5, -8]} size={[9, 8]} t={t} t0={t - 2 - lt} n={40} seed={3} /></>,
       cam: mv({pos: [HOME.x + 3.4, 1.0, 2.4], look: [HOME.x - 0.3, 3.4 + y, -11], fov: 62}, lt, {arrive: 0.06, push: 0.03, roll0: 5}), bg: SKY};
   },
-  court: (t, lt, C) => ({node: courtRoom(C, t), cam: mv({pos: [0.7, 3.0, 5.4], look: [0, 2.2, -2.4], fov: 52}, lt, {arrive: 0.07, push: 0.06, roll0: -4})}),
+  court: (t, lt, C) => ({node: courtRoom(C, t), cam: mv({pos: [0.6, 2.9, 4.3], look: [0, 2.3, -3.0], fov: 44}, lt, {arrive: 0.07, push: 0.06, roll0: -4})}),
   gavel: (t, lt, C) => ({node: courtRoom(C, t), cam: mv({pos: [1.5, 2.3, -0.6], look: [0, 2.35, -3.2], fov: 46}, lt, {arrive: 0.08, push: 0.09, roll0: 3})}),
-  cell: (t, lt, C) => ({node: cellBlock(C, t), cam: mv({pos: [0.55, 1.45, 4.4], look: [0.05, 1.5, 0.6], fov: 50}, lt, {arrive: 0.08, push: 0.07, roll0: -3, shake: near(t, [ev('flip')], 0.12) ? 0.015 : 0}), bg: CELL_BG}),
+  cell: (t, lt) => ({node: cellBlock(t), cam: mv({pos: [0.55, 1.45, 4.4], look: [0.05, 1.5, 0.6], fov: 50}, lt, {arrive: 0.08, push: 0.07, roll0: -3, shake: near(t, [ev('flip')], 0.12) ? 0.015 : 0}), bg: CELL_BG}),
   relax: (t, lt, C) => {
     // high over the village: he lies back on nothing, holds the phone up — and lets go of it
     return {node: <>{skyWorld(C, t)}{skyMan(C, t)}</>, cam: mv({pos: [MX + 1.0, UP + 1.75, MP[2] + 0.75], look: [MX, UP + 0.3, MP[2] - 1.15], fov: 50}, lt, {arrive: 0.06, push: 0.03, roll: 4}), bg: SKY};
   },
   sky: (t, lt, C) => {
     // wide: the whole neighbourhood is up here with him. No freeze: it is all still drifting on the last frame.
-    return {node: <>{skyWorld(C, t)}{skyMan(C, t)}</>, cam: mv({pos: [MX + 2.5, UP + 2.0, MP[2] + 2.7], look: [MX - 0.1, UP + 0.5, MP[2] - 1.2], fov: 56}, lt, {arrive: 0.06, push: -0.14, roll0: 3, roll: 5}), bg: SKY};
+    return {node: <>{skyWorld(C, t)}{skyMan(C, t)}</>, cam: mv({pos: [MX + 2.0, UP + 1.7, MP[2] + 2.1], look: [MX - 0.1, UP + 0.4, MP[2] - 1.2], fov: 56}, lt, {arrive: 0.06, push: -0.1, roll0: 3, roll: 5}), bg: SKY};
   },
 };
-void TOTAL;

@@ -13,7 +13,6 @@ export type V3 = [number, number, number];
 export const G = 9.8;
 const hash = (n: number) => { const x = Math.sin(n * 127.1) * 43758.5453; return x - Math.floor(x); };
 const cl = (x: number, a = 0, b = 1) => Math.min(b, Math.max(a, x));
-const sm = (x: number) => { const c = cl(x); return c * c * (3 - 2 * c); };
 
 /** weightless drift of a loose thing released at u = 0: it eases off the ground, then rises at v m/s and tumbles slowly.
  *  Returns [rise, rx, rz, yaw]; seed gives every object its own speed and spin. */
@@ -142,20 +141,20 @@ const PARTS: {s: V3; p: V3; c: string}[] = [
   {s: [0.5, 0.1, 0.46], p: [0, 1.2, 0.3], c: '#8DB4CF'},        // both arms out to the rope
 ];
 /** n officers in four files (two either side of the rope at z), a row every `gap` m from x0 */
-export const copSpots = (x0: number, n: number, z: number, gap = 0.6): [number, number][] => Array.from({length: n}, (_, i) => [x0 + Math.floor(i / 4) * gap + (i % 2) * gap / 2, z + [-1.0, -0.42, 0.42, 1.0][i % 4]] as [number, number]);
+export const copSpots = (x0: number, n: number, z: number, gap = 0.6): [number, number][] => Array.from({length: n}, (_, i) => [x0 + Math.floor(i / 4) * gap + (i % 2) * gap / 2 + (hash(i * 1.7) - 0.5) * 0.24, z + [-1.0, -0.42, 0.42, 1.0][i % 4] + (hash(i * 2.9) - 0.5) * 0.2] as [number, number]);
 export const CopCrowd: React.FC<{t: number; spots: [number, number][]; heave?: number; pop?: number; float?: number}> = ({t, spots, heave = 0, pop = 1e9, float = 1e9}) => {
   const refs = useRef<(THREE.InstancedMesh | null)[]>([]);
   const geo = useMemo(() => new THREE.BoxGeometry(1, 1, 1), []);
   const mats = useMemo(() => PARTS.map((p) => new THREE.MeshLambertMaterial({color: p.c})), []);
   useLayoutEffect(() => {
-    const m = new THREE.Matrix4(), a = new THREE.Matrix4(), e = new THREE.Euler(); const skins = ['#C8935F', '#D6A87C', '#B98559'].map((c) => new THREE.Color(c));
+    const m = new THREE.Matrix4(), a = new THREE.Matrix4(), e = new THREE.Euler(), v = new THREE.Vector3(); const skins = ['#C8935F', '#D6A87C', '#B98559'].map((c) => new THREE.Color(c));
     for (let i = 0; i < spots.length; i++) {
       const [x, z] = spots[i]; const lag = i * 0.004;
       let lean = t > heave ? 0.3 + 0.13 * Math.sin((t - heave) * 9 - i * 0.12) : 0.12; let y = 0, rz = 0, dx = t > heave ? Math.sin((t - heave) * 9 - i * 0.12) * 0.05 : 0;
       const up = t - pop - lag; if (up > 0) { lean = Math.min(1.45, 0.3 + up * up * 16); dx += Math.min(0.5, up * 1.6); }   // the rope goes slack: over they go
       const uf = t - float - hash(i) * 0.5; if (uf > 0) { const k = 0.6 + hash(i * 3) * 0.8; y = 0.5 * k * (uf - 0.5 * (1 - Math.exp(-uf * 2))) + 0.02; lean += (hash(i * 5) - 0.3) * uf * 0.5; rz = (hash(i * 7) - 0.5) * uf * 0.6; }
-      e.set(-lean, -Math.PI / 2, rz, 'YXZ'); m.makeRotationFromEuler(e); m.setPosition(x + dx, y, z);
-      PARTS.forEach((p, k) => { const im = refs.current[k]; if (!im) return; a.makeTranslation(...p.p); a.multiplyMatrices(m, a); a.scale(new THREE.Vector3(...p.s)); im.setMatrixAt(i, a); if (k === 2) im.setColorAt(i, skins[i % 3]); });
+      e.set(-lean, -Math.PI / 2, rz, 'YXZ'); m.makeRotationFromEuler(e); m.setPosition(x + dx, y, z); m.scale(v.setScalar(0.92 + hash(i * 9.1) * 0.16));
+      PARTS.forEach((p, k) => { const im = refs.current[k]; if (!im) return; a.makeTranslation(...p.p); a.multiplyMatrices(m, a); a.scale(v.set(...p.s)); im.setMatrixAt(i, a); if (k === 2) im.setColorAt(i, skins[i % 3]); });
     }
     refs.current.forEach((im) => { if (!im) return; im.instanceMatrix.needsUpdate = true; if (im.instanceColor) im.instanceColor.needsUpdate = true; });
   });
@@ -172,4 +171,3 @@ export const DirtPatch: React.FC<{x: number; side: number; W: number}> = ({x, si
   <mesh rotation={[-Math.PI / 2, 0, 0]} position={[x, 0.004, side * 11.15]} receiveShadow material={PM('#5A4636', 'dirt')}><planeGeometry args={[W + 1.0, 11.1]} /></mesh>
   {Array.from({length: 6}, (_, i) => <mesh key={i} position={[x + (hash(i + x) - 0.5) * W, 0.08, side * (7 + hash(i * 3 + x) * 8)]} rotation={[0, hash(i) * 3, 0]} castShadow material={PM('#4A3A2C', 'dirt2')}><boxGeometry args={[0.5 + hash(i) * 0.5, 0.16, 0.4]} /></mesh>)}
 </group>;
-void sm;

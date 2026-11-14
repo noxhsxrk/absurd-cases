@@ -20,7 +20,7 @@ for a, b in zip(cards, cards[1:]):
     if b['t0'] - a['t1'] < 0.3: a['t1'] = b['t0']
 speech = E('l011')
 L = 0.2   # ref6: a cut leads its sentence by 5–9 frames
-FLIGHT = 0.86   # the thrown cuffs: 1.9 m up, 2 m/s upward, g = 9.8 -> on the road 0.86 s later
+FLIGHT = 0.86   # how long the thrown cuffs are in the air (shots.tsx works out the throw from this)
 slip = P('l001', 1) + 0.1; drop = slip + 0.3; hit = P('l002', 1) + 0.95; clat = P('l005', 1) + 0.75
 ev.update(slip=slip, drop=drop, hit=hit, note=P('l002'), note2=P('l005', 1), zoom=P('l003', 1) - 0.2, plate1=P('l003', 1), phoneUp=P('l004') - 0.05, press=P('l004') + 0.3,
           throw=clat - FLIGHT, clat=clat, plate2=P('l006') + 0.05, heave=P('l007', 1), pop=P('l008') + 0.28, cuff=P('l008', 1) + 0.35,

@@ -7,6 +7,10 @@ raw, cutp, outw, outj = sys.argv[1:5]; INNER = float(sys.argv[5]) if len(sys.arg
 GAPS = dict((k, float(v)) for k, v in (x.split(':') for x in sys.argv[6].split(','))) if len(sys.argv) > 6 else {}
 w = wave.open(raw); sr = w.getframerate(); x = np.frombuffer(w.readframes(w.getnframes()), np.int16).astype(np.float32) / 32768
 cuts = {k: v for k, v in json.load(open(cutp)).items() if not k.startswith('_')}
+for id, c in cuts.items():   # every cut edge must sit in silence, or a word gets clipped
+    for e in c['range'] + [v for s in c['splits'] for v in (s['q'] if isinstance(s, dict) else s[:2] if isinstance(s, list) else [])]:
+        lv = 20 * np.log10(np.sqrt(np.mean(x[max(0, int((e - 0.01) * sr)):int((e + 0.01) * sr)] ** 2)) + 1e-9)
+        if lv > -45: print(f'WARNING {id}: cut at {e} s is inside sound ({lv:.0f} dB)')
 fade = lambda y, n=int(0.008 * sr): (y.__setitem__(slice(0, n), y[:n] * np.linspace(0, 1, n)), y.__setitem__(slice(-n, None), y[-n:] * np.linspace(1, 0, n)), y)[2]
 out, t, rows = [], 0.0, []
 for i, (id, c) in enumerate(cuts.items()):
