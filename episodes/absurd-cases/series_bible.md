@@ -70,3 +70,11 @@ Account in-scene: `@absurd.cases` (`HANDLE` in each episode's data.ts).
 - Consequence: everything floats — the patrol car, the houses (whole lots, yards and fences), the court. The judge swung his gavel at a bench that was no longer under him and went over.
 - Sentence: จำคุกตลอดชีวิต, cell 22. Closer: his phone never falls again (he lies on nothing above the village, lets go of it, and it stays).
 - Hooks: the whole universe is weightless until it is released (every later episode could be floating, or the world petitions for its parole: "ขอประกันตัวแรงโน้มถ่วง"); the Earth in cell 18 has lost its only job, and the Moon next door (EP15) has nothing to orbit by; the hole in the road in front of his house is still open; aftershock (EP14) is still at large.
+
+## EP17 คดีไฟในปาก (ไฟ — ผู้ต้องสงสัยผิดตัว; ตัวจริงคือพริกเม็ดเดียว)
+- Charge: วางเพลิง. He ordered som tam with one chili at a roadside stall in the village; the first bite set his mouth on fire.
+- Shape (§1-R 2): the wrong suspect is arrested, the real one is never questioned. The chili is named in the first line and lies on the plate in every shot at the stall.
+- The fire has no face and only does what fire does: ten fire trucks hosed his face and it would not go out; an officer drew it out of his mouth with long tongs and cuffed it; three pairs of cuffs melted (evidence markers 1–3 on the road); it burned its own case file (สำนวนคดี 017) in interrogation room 2 and left the officer with a sooty face.
+- Sentence: locked in a fridge in cell 23 (dial 4°C → −18°C).
+- Closer: "ส่วนพริก ยังลอยนวล" — the plate is full of hose water and the chili literally floats in it. Silent coda: he takes another forkful and his mouth is on fire again.
+- Hooks: the chili is still at large on his plate (the police have the wrong one; the real arsonist could be tried later: "พริก v. ไฟ", or the fire appeals from the fridge); ten fire trucks are still parked on the village road; three melted pairs of cuffs are in evidence; the officer who lost the file has a sooty face; cell 23 exists. EP16's weightless world is not carried into this episode.
