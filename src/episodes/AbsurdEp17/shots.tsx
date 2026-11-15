@@ -36,14 +36,14 @@ const chiliW = (t: number, flood: number): V3 => add(PL, chiliPose(t, flood).p);
 const floodAt = (t: number) => sm((t - ev('jets') - 0.15) / 0.9);
 // ---- ten fire trucks, all driving −x (yaw π): three stop short of the stall in each lane's half, the rest have gone past it. One convoy, braking together.
 const PARK: [number, number][] = [[-19, 0], [-12, 0], [-5, 0], [5, 0], [12, 0], [19, 0], [-15.5, 1], [-8.5, 1], [8.5, 1], [15.5, 1]];
-const LANE = [-0.2, 1.9];
+const LANE = [-0.3, 2.0];
 const RANK = PARK.map(([x], i) => PARK.filter(([y], j) => Math.sign(y) === Math.sign(x) && (Math.abs(y) < Math.abs(x) || (Math.abs(y) === Math.abs(x) && j < i))).length);   // 0…4 on each side, nearest first
 const TP = () => ev('jets') - 0.3;                                                    // the moment they are all stopped
 const roll = (t: number) => { const u = TP() - t; return u > 0 ? 9 * u * u : 0; };       // braking at 18 m/s²
 const dive = (t: number) => { const u = TP() - t; return u > 0 ? -0.03 * cl(u * 4) : 0.025 * Math.exp(u * 7) * Math.sin(-u * 22); };
 const truckAt = (i: number, t: number): V3 => [SX + PARK[i][0] + roll(t), 0, LANE[PARK[i][1]]];
 const convoy = (t: number) => <>{PARK.map((_, i) => <FireTruck key={i} position={truckAt(i, t)} yaw={Math.PI} pitch={dive(t)} t={t} seed={i} />)}
-  <PoliceCar t={t} position={[SX + 2.4 + roll(t), 0, 2.15]} yaw={Math.PI} seed={3} /></>;
+  <PoliceCar t={t} position={[SX + 2.4 + roll(t), 0, 2.0]} yaw={Math.PI} seed={3} /></>;
 const stall = (t: number) => { const flood = floodAt(t); const wet = t > ev('jets') + 0.2;
   return <><Village x0={X0} x1={X1} /><VillageLife t={t} x0={X0} x1={X1} traffic={false} dog={false} />{DAY([SX, 0, 0])}
     <FoodCart position={CART} yaw={0} t={t} /><Table position={TB} /><Stool position={[SEAT.x, 0, SEAT.z]} /><SomTam position={PL} t={t} flood={flood} />
@@ -124,11 +124,17 @@ const room = (C: Cast, t: number, o: {soot?: boolean} = {}) => { const u = t - e
 
 // ---- court / cell
 const DOCK: V3 = [0.62, 1.5, -2.82];   // on the bench, at the judge's left hand
-const courtRoom = (C: Cast, t: number) => { const I = C.judge; hideProps(I);
-  const w = body(I, ps('judge', 0, -3.25, 0, t, {poseId: 'sitIdle', clip: 'sit_table_idle_neutral_01', lookW: add(DOCK, [0, 0.2, 0]), face: t > ev('gavel') - 0.35 && t < ev('gavel') + 0.5 ? 'shout' : 'angry'}), t, 1.25);
-  prop(I, 'gavel', 'Bip01_R_Hand', makeGavel, [8, 0, 0], [0, Math.PI / 2, 0]); const up = strike(t, ev('gavel'), 0.4);
-  rot(I.bones.Bip01_R_UpperArm, 1, 0, 0, -0.25 - up, I.root); rot(I.bones.Bip01_R_Forearm, 1, 0, 0, -0.7 - up * 0.6, I.root); w.updateMatrixWorld(true);
+const courtRoom = (C: Cast, t: number) => { const I = C.judge;
+  const pose = (tt: number) => { hideProps(I);
+    const w = body(I, ps('judge', 0, -3.25, 0, tt, {poseId: 'sitIdle', clip: 'sit_table_idle_neutral_01', lookW: [1.7, 2.1, -1.4], face: tt > ev('gavel') - 0.35 && tt < ev('gavel') + 0.5 ? 'shout' : 'angry'}), tt, 1.25);
+    const g = prop(I, 'gavel', 'Bip01_R_Hand', makeGavel, [8, 0, 0], [0, Math.PI / 2, 0]); const up = strike(tt, ev('gavel'), 0.4);
+    rot(I.bones.Bip01_R_UpperArm, 1, 0, 0, -0.25 - up, I.root); rot(I.bones.Bip01_R_Forearm, 1, 0, 0, -0.7 - up * 0.6, I.root); w.updateMatrixWorld(true); return {w, g}; };
+  let bb = new THREE.Box3(), top = -1e9; pose(ev('gavel')).g.traverse((o: any) => { if (!o.isMesh) return; const b = new THREE.Box3().setFromObject(o); const cy = (b.min.y + b.max.y) / 2; if (cy > top) { top = cy; bb = b; } });   // the gavel's head (its highest part in the strike pose)
+  const blk: V3 = [(bb.min.x + bb.max.x) / 2, bb.min.y, (bb.min.z + bb.max.z) / 2];
+  const {w} = pose(t);
   return <><Court t={t} /><P o={w} /><CourtLife t={t} C={C} look={DOCK} /><Tray position={DOCK} tag={false} /><Fire position={add(DOCK, [0, 0.02, 0])} t={t} size={0.36} seed={4} />
+    <mesh position={[blk[0], blk[1] - 0.03, blk[2]]} castShadow><boxGeometry args={[0.3, 0.06, 0.26]} /><meshLambertMaterial color="#5A3019" /></mesh>
+    {blk[1] - 0.06 > 1.5 && <mesh position={[blk[0], (blk[1] - 0.06 + 1.5) / 2, blk[2]]}><boxGeometry args={[0.07, blk[1] - 0.06 - 1.5, 0.07]} /><meshLambertMaterial color="#7A4526" /></mesh>}
     <Drips from={hw(I, [0, 20, 10])} floor={2.3} t={t} t0={0} n={4} spread={0.1} /></>; };
 const BOXP: V3 = [0.25, 0, -0.5], GUARD = {x: -0.85, z: 0.72};
 const cellBlock = (C: Cast, t: number) => { const s = ev('shut'); const door = 1 - sm((t - s + 0.2) / 0.2); const after = Math.max(0, t - s); const glow = t < s ? 1 : Math.exp(-after * 2.2); const edge = doorEdge(BOXP, door);
@@ -196,7 +202,7 @@ export const SHOT_FN: Record<string, (t: number, lt: number, C: Cast) => ShotOut
     const m = man(C, t, {face: water ? 'closed' : 'shout', rx: water ? -0.14 : 0});
     return {node: <>{stall(t)}<P o={m.w} />{mouthFire(m, t, water ? 0.7 + 0.1 * Math.sin(t * 31) : 1)}
       {PARK.map((_, i) => <Jet key={i} a={nozzle(truckAt(i, t), Math.PI)} b={add(m.mouth, [(i % 2 ? 1 : -1) * 0.03, 0.02 * (i % 3), 0.05])} t={t} t0={j0 + i * 0.012} t1={j1 + i * 0.012} lift={0.4 + RANK[i] * 0.5} r={0.1} seed={i} />)}
-      <Splash at={add(m.mouth, [0, 0, 0.08])} t={t} t0={j0 + 0.2} t1={j1 + 0.2} n={48} power={1.6} />{water && <Glow p={add(m.mouth, [0, 0.3, 0])} c="#F2FBFF" s={2.6 + Math.sin(t * 40) * 0.3} o={0.75} />}</>,
+      <Splash at={add(m.mouth, [0, 0, 0.08])} t={t} t0={j0 + 0.2} t1={j1 + 0.2} n={48} power={1.6} />{water && <Glow p={add(m.mouth, [0, 0.3, 0])} c="#F2FBFF" s={1.6 + Math.sin(t * 40) * 0.2} o={0.35} />}</>,
       cam: mv({pos: [SX, 13, -1.2], look: [SX, 0, -1.2], fov: 50}, lt, {arrive: 0.05, push: 0.06, roll0: 90, shake: water ? 0.05 : 0}), bg: SKY};
   },
   soaked: (t, lt, C) => {
@@ -217,10 +223,10 @@ export const SHOT_FN: Record<string, (t: number, lt: number, C: Cast) => ShotOut
   },
   cuff: (t, lt, C) => ({node: held(C, t, {cuffs: true}).node,
     // ECU: the cuffs come in from his other hand and snap shut round it
-    cam: mv({pos: [SX - 1.15, 1.24, -0.72], look: [OUTP[0] - 0.06, OUTP[1] + 0.07, OUTP[2]], fov: 38}, lt, {arrive: 0.08, push: 0.12, shake: near(t, [ev('cuff')], 0.12) ? 0.012 : 0}), bg: SKY}),
+    cam: mv({pos: [SX + 0.45, 1.3, -0.7], look: [OUTP[0] - 0.2, OUTP[1] + 0.2, OUTP[2] - 0.42], fov: 50}, lt, {arrive: 0.08, push: 0.12, shake: near(t, [ev('cuff')], 0.12) ? 0.012 : 0}), bg: SKY}),
   melt: (t, lt, C) => { const d = sm((t - ev('melt')) / 0.7);
     // …and go orange, sag, and run off it in drops
-    return {node: held(C, t, {cuffs: true}).node, cam: mv({pos: [SX - 1.1, 1.14 - 0.1 * d, -0.8], look: [OUTP[0] - 0.05, OUTP[1] + 0.02 - 0.2 * d, OUTP[2]], fov: 42}, lt, {arrive: 0.06, push: 0.08, roll0: -3}), bg: SKY}; },
+    return {node: held(C, t, {cuffs: true}).node, cam: mv({pos: [SX + 0.2, 1.2 - 0.1 * d, -0.85], look: [OUTP[0] - 0.12, OUTP[1] + 0.04 - 0.2 * d, OUTP[2] - 0.05], fov: 40}, lt, {arrive: 0.06, push: 0.08, roll0: -3}), bg: SKY}; },
   three: (t, lt, C) => {
     // down at the road by the table: three silver puddles, three evidence markers. The second and third pair land already melted.
     const fall = (t0: number, i: number) => { const u = t - t0 + 0.24; if (u < 0 || u > 0.24) return null; return <HotCuffs key={i} position={[PUD[i][0], 1.3 - 0.5 * 9.8 * u * u * 4.6, PUD[i][2]]} rotation={[Math.PI / 2 + u * 5, 0, 0.3]} size={4} heat={1} melt={u / 0.24 * 0.7} t={t} />; };
