@@ -3,7 +3,7 @@ import * as THREE from 'three';
 import {useThree} from '@react-three/fiber';
 import {drive} from '../../pov/cast/RbPerson';
 import {POSES} from '../../pov/cast/poses';
-import {rootLocal} from '../../pov/acting/ik';
+import {rootLocal, fingers, ik} from '../../pov/acting/ik';
 import {Gait, headTurn, chestTurn, yawTo} from '../../pov/acting/motion';
 import {autoFace, setFace} from '../AbsurdEp1/boxcast';
 import {camMove, Cam, MoveOpts} from '../absurdkit';
@@ -78,3 +78,18 @@ export const strike = (t: number, t0: number, up = 0.3) => { const u = t - t0; r
 /** decaying wobble of a thing that was hit at each time in `hits` */
 export const wobble = (t: number, hits: number[], amp = 0.05) => hits.reduce((a, h) => { const u = t - h; return u > 0 ? a + amp * Math.exp(-u * 7) * Math.sin(u * 38) : a; }, 0);
 export const near = (t: number, hits: number[], d = 0.12) => hits.some((h) => t > h && t < h + d);
+
+// ---- staging helpers shared by the episodes (moved here from AbsurdEp17/shots.tsx, 2026-11-16)
+/** daylight for the village: sun from the −x / +z side, aimed at `at` */
+export const DAY = (at: V3 = [0, 0, 0]) => <><hemisphereLight args={['#DCE8F2', '#5A5446', 1.1]} /><directionalLight position={[at[0] - 8, at[1] + 16, at[2] + 10]} target-position={at} color="#FFF1D6" intensity={2.1} castShadow shadow-mapSize={[2048, 2048]} shadow-camera-left={-16} shadow-camera-right={16} shadow-camera-top={16} shadow-camera-bottom={-16} shadow-camera-far={70} shadow-bias={-0.0006} /></>;
+export const SKY: Bg = {color: '#BFD6E4'}, CELL_BG: Bg = {color: '#2A2E33'};
+/** the point d metres from a towards b */
+export const toward = (a: V3, b: V3, d: number): V3 => { const v = new THREE.Vector3(b[0] - a[0], b[1] - a[1], b[2] - a[2]).normalize().multiplyScalar(d); return [a[0] + v.x, a[1] + v.y, a[2] + v.z]; };
+/** put a hand on a world point. Root +x is the character's LEFT, so the elbow goes out, down and a little back, never into the chest.
+ *  Call w.updateMatrixWorld(true) afterwards before reading bone positions with bw(). */
+export const hand = (I: Inst, sd: 'L' | 'R', to: V3, shape = 'fist') => { fingers(I, sd, shape as any, 1); ik(I, sd, loc(I, to), new THREE.Vector3(sd === 'R' ? -1 : 1, -1, -0.3), 1); };
+/** the head's own frame (the group the box face is built in): cm, y up, z out of the face */
+export const headFr = (I: Inst): THREE.Object3D => { const hb = I.bones.Bip01_Head as THREE.Object3D; return hb.children.find((c: any) => c.isGroup && c.children.some((m: any) => m.geometry?.type === 'CylinderGeometry')) ?? hb; };
+/** a point / a direction given in the head's frame → world. Mouth = [0, 6.5, 15], left ear [12, 12, 2], right ear [−12, 12, 2]. Follows the head turn. */
+export const hw = (I: Inst, p: V3): V3 => { const fr = headFr(I); fr.updateWorldMatrix(true, false); const v = fr.localToWorld(new THREE.Vector3(...p)); return [v.x, v.y, v.z]; };
+export const hdir = (I: Inst, d: V3): V3 => { const fr = headFr(I); fr.updateWorldMatrix(true, false); const v = new THREE.Vector3(...d).transformDirection(fr.matrixWorld); return [v.x, v.y, v.z]; };

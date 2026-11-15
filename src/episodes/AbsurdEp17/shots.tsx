@@ -1,6 +1,6 @@
 import React from 'react';
 import * as THREE from 'three';
-import {resetTurn, rot, fingers, ik} from '../../pov/acting/ik';
+import {resetTurn, rot} from '../../pov/acting/ik';
 import {ev, SHOTS, lerp, lerp3, cl, pop} from './data';
 import {Court, Cell, Interro, TABLE_TOP} from '../AbsurdEp1/sets';
 import {makeGavel} from '../AbsurdEp1/props';
@@ -11,7 +11,7 @@ import {Puffs, PoliceCar, makeSoot} from '../AbsurdEp7/props';
 import {Village} from '../AbsurdEp8/village';
 import {Glow} from '../AbsurdEp8/props';
 import {Phone} from '../AbsurdEp16/props';
-import {ps, body, bw, hideProps, prop, P, CamRig, mv, strike, near, sm, loc, V3, Cast, ShotOut, Bg} from '../lifekit/stage';
+import {ps, body, bw, hideProps, prop, P, CamRig, mv, strike, near, sm, V3, Cast, ShotOut, DAY, SKY, CELL_BG, toward, hand, headFr, hw, hdir} from '../lifekit/stage';
 import {VillageLife, CourtLife} from '../lifekit/presets';
 import {FoodCart} from '../lifekit/props';
 import {Fire, SomTam, chiliPose, Table, Stool, Fork, TABLE_H, FireTruck, nozzle, Jet, Splash, Drips, HotCuffs, Puddle, Marker, BurnFolder, Icebox, ICEBOX, doorEdge, Tongs17} from './props';
@@ -20,12 +20,28 @@ export {CamRig};
 /** EP17 คดีไฟในปาก. He orders som tam with one chili; the first bite sets his mouth on fire (arson). Ten fire trucks cannot put it out, so the
  *  police pull the fire out with tongs and cuff it; three pairs of cuffs melt. It burns its own case file in the interrogation room and is
  *  locked in a fridge. The chili — on the plate in every shot at the stall — is never even questioned.
- *  The fire only does what fire does (burns, melts, is not put out by water); all the escalation is the people's. */
+ *  The fire only does what fire does (burns, melts, is not put out by water); all the escalation is the people's.
+ *
+ *  LAYOUT (metres; yaw 0 faces +z; root +x is the character's LEFT)
+ *  stall   road along x, surface z −3…3. He sits at SEAT (5, −2.5) facing the road (+z); table (5, −1.95) with the plate on it; cart 2.2 m to his −x at the kerb.
+ *          The officer stands at OF (4.25, −2.2), at his right front. Ten trucks drive −x and stop in two lanes (z −0.3 and 2.0), five on each side of x = 5.
+ *          Cameras stand on the road side (+z) looking back at him, three-quarter from −x so the officer's face and arm are in frame.
+ *  interro EP1 Interro, table at the origin. The officer sits at z −0.85 facing the camera (+z); the fire stands on a tray at (−0.05, 0.12), the file lands at (0.25, −0.04).
+ *  court   EP1 Court. The judge sits at (0, −3.25) raised 1.25; the fire is ON the bench at his left hand (0.62, 1.5, −2.82), above the caption band.
+ *  cell    EP1 Cell, plate "ห้อง 23". The fridge stands at (0.25, −0.5), its door opens towards the camera (+z); the guard at (−0.85, 0.72) shuts it.
+ *
+ *  TRAPS OF THIS EPISODE (written before the first shot; every one of them was a re-render in an earlier episode)
+ *  1. The chili is the closer: it lies on the plate in every stall shot, and after `jets` the plate is full of hose water with the chili floating in it.
+ *  2. "สิบคัน" must be countable: only the top shot (roll0: 90) shows ten trucks and ten jets; at eye level two beams read.
+ *  3. "สามคู่": three puddles with evidence markers 1–3, lined up in depth, because 9:16 cannot hold three side by side.
+ *  4. A flame next to a face: point light ≤ ~1, the jet points out of the mouth (hdir [0, 0.32, 0.95]), three-quarter camera, never frontal.
+ *  5. The tongs must read as the officer's: the camera stands where his face and his arm are both in frame.
+ *  6. He eats with his right hand (his −x), so the bite cameras stand on his right or in front.
+ *  7. The gavel needs something under it: the sounding block is placed from the strike pose.
+ *  8. Borrowed props carry old things (EP5 tongs: a tag; EP4 fridge: food; EP16 phone: a cracked screen), so this episode has its own plain ones.
+ *  9. Cell 23 was the first free number (13 and 18–22 are taken). */
 const sh = (name: string) => SHOTS.find((x: any) => x.name === name)!;
-const SKY: Bg = {color: '#BFD6E4'}, CELL_BG: Bg = {color: '#2A2E33'};
-const DAY = (at: V3 = [0, 0, 0]) => <><hemisphereLight args={['#DCE8F2', '#5A5446', 1.1]} /><directionalLight position={[at[0] - 8, at[1] + 16, at[2] + 10]} target-position={at} color="#FFF1D6" intensity={2.1} castShadow shadow-mapSize={[2048, 2048]} shadow-camera-left={-16} shadow-camera-right={16} shadow-camera-top={16} shadow-camera-bottom={-16} shadow-camera-far={70} shadow-bias={-0.0006} /></>;
 const add = (a: V3, b: V3): V3 => [a[0] + b[0], a[1] + b[1], a[2] + b[2]];
-const toward = (a: V3, b: V3, d: number): V3 => { const v = new THREE.Vector3(b[0] - a[0], b[1] - a[1], b[2] - a[2]).normalize().multiplyScalar(d); return [a[0] + v.x, a[1] + v.y, a[2] + v.z]; };
 
 // =====================================================================================================
 // THE STALL (EP8 village, road along x, z −3…3): a som tam cart at the kerb on his side, a steel table, a red stool. He sits facing the road (+z).
@@ -54,16 +70,11 @@ const stall = (t: number) => { const flood = floodAt(t); const wet = t > ev('jet
 // ---- people
 type GO = {clip?: string; face?: string; look?: V3; y?: number; rx?: number; sit?: boolean; soot?: boolean};
 const soots = new WeakMap<any, THREE.Object3D>();
-const headFr = (I: any): THREE.Object3D => { const hb = I.bones.Bip01_Head as THREE.Object3D; return hb.children.find((c: any) => c.isGroup && c.children.some((m: any) => m.geometry?.type === 'CylinderGeometry')) ?? hb; };
-/** a point / a direction given in the head's own frame (cm; y up, z out of the face) → world */
-const hw = (I: any, p: V3): V3 => { const fr = headFr(I); fr.updateWorldMatrix(true, false); const v = fr.localToWorld(new THREE.Vector3(...p)); return [v.x, v.y, v.z]; };
-const hdir = (I: any, d: V3): V3 => { const fr = headFr(I); fr.updateWorldMatrix(true, false); const v = new THREE.Vector3(...d).transformDirection(fr.matrixWorld); return [v.x, v.y, v.z]; };
 const MOUTH: V3 = [0, 6.5, 15], EAR_L: V3 = [12, 12, 2], EAR_R: V3 = [-12, 12, 2];
 const guy = (C: Cast, id: string, x: number, z: number, yaw: number, t: number, o: GO = {}) => { const I = C[id]; hideProps(I); resetTurn(I);
   const w = body(I, ps(id, x, z, yaw, t, {clip: o.clip ?? (o.sit ? 'sit_table_idle_neutral_01' : 'idle_neutral_01'), ...(o.face ? {face: o.face} : {}), ...(o.look ? {lookW: o.look} : {}), ...(o.sit ? {poseId: 'sitIdle'} : {})}), t, o.y ?? 0, o.rx ?? 0);
   let so = soots.get(I); if (o.soot && !so) { so = makeSoot(); headFr(I).add(so); soots.set(I, so); } if (so) so.visible = !!o.soot;
   return {I, w}; };
-const hand = (I: any, sd: 'L' | 'R', to: V3, shape = 'fist') => { fingers(I, sd, shape as any, 1); ik(I, sd, loc(I, to), new THREE.Vector3(sd === 'R' ? -1 : 1, -1, -0.3), 1); };   // root +x is the character's LEFT: the elbow goes out, down and a little back, never into the chest
 /** the man on his stool. Hands default to the table top (his left is +x). Returns where his mouth is and which way it points. */
 type Hands = {R?: V3 | null; L?: V3 | null; rs?: string; ls?: string};
 const man = (C: Cast, t: number, o: GO & {hands?: (mouth: V3) => Hands} = {}) => {
