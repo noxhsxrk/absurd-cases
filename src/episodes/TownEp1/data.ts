@@ -5,8 +5,8 @@ export type V3 = [number, number, number];
 export type Card = {id: string; line: string; text: string; hl: string; t0: number; t1: number; echo?: boolean};
 export type Shot = {name: string; from: number; dur: number; t0: number; t1: number};
 export const FPS = 30, W = 1080, H = 1920;
-/** the channel handle, painted INTO the scene like the reference (jar label, news ticker, case folder) — placeholder until Nox names the channel */
-export const HANDLE = '@inthistown.th';
+/** the channel handle, painted INTO the scene like the reference (jar label, news ticker, case folder) — same channel as absurd-cases (Nox 2026-11-16) */
+export const HANDLE = '@absurd.cases';
 export const TOTAL: number = TL.total;
 export const SOURCE: string = TL.source;
 const EVS = TL.events as Record<string, number>;
