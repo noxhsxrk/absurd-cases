@@ -10,8 +10,10 @@ It only works when there is exactly one segment per caption card, in order: that
 Edges are moved into the silence (line start −0.05 s, line end +0.06 s, 0.04 s kept on each side of a comma pause) so no word is clipped;
 tighten_take.py gets that air back with inner=0.12. A pause you want to keep longer is a third number on its split: [a, b, 0.3]."""
 import json, sys, pathlib
-N = sys.argv[1]; ROOT = pathlib.Path(__file__).resolve().parent.parent; E = ROOT / 'episodes/absurd-cases'
-seg = json.load(open(ROOT / f'tools/ai-sfx/ep{N}_segments.json', encoding='utf-8')); script = json.load(open(E / f'ep{N}_script.json', encoding='utf-8'))['lines']
+N = sys.argv[1]; ROOT = pathlib.Path(__file__).resolve().parent.parent
+SER = __import__('os').environ.get('SERIES', 'absurd-cases'); TAG = '' if SER == 'absurd-cases' else SER + '-'   # SERIES=in-this-town for the second series
+E = ROOT / f'episodes/{SER}'
+seg = json.load(open(ROOT / f'tools/ai-sfx/{TAG}ep{N}_segments.json', encoding='utf-8')); script = json.load(open(E / f'ep{N}_script.json', encoding='utf-8'))['lines']
 cards = [(l['id'], c[0]) for l in script for c in l['cards']]
 if len(seg) != len(cards):
     print(f'{len(seg)} segments but {len(cards)} cards. ' + ('A breath split a card: rerun segments.py with a larger mingap (0.2), or merge the two rows in the segments json.' if len(seg) > len(cards) else 'Two cards were read without a pause: rerun segments.py with a smaller mingap (0.1), or transcribe sub-ranges (segments.py N a,b) to find the boundary and split that row by hand.') + '\n')

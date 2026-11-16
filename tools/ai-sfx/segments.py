@@ -8,7 +8,8 @@ import sys, json, pathlib, numpy as np, scipy.io.wavfile as wf, torch
 from transformers import pipeline
 HERE = pathlib.Path(__file__).resolve().parent; ROOT = HERE.parent.parent
 N = sys.argv[1]; args = sys.argv[2:]
-sr, x = wf.read(ROOT / f'public/absurd-cases/ep{N}/raw/n16.wav'); x = x.astype('float32') / 32768
+SER = __import__('os').environ.get('SERIES', 'absurd-cases'); TAG = '' if SER == 'absurd-cases' else SER + '-'   # SERIES=in-this-town for the second series
+sr, x = wf.read(ROOT / f'public/{SER}/ep{N}/raw/n16.wav'); x = x.astype('float32') / 32768
 mingap = float(args[0]) if args and ',' not in args[0] else 0.3; rng = [tuple(map(float, a.split(','))) for a in args if ',' in a]; explicit = bool(rng)
 if not rng:
     h = sr // 100; e = np.sqrt(np.mean(x[:len(x) // h * h].reshape(-1, h) ** 2, 1)); on = 20 * np.log10(e + 1e-9) > 20 * np.log10(e.max()) - 38
@@ -24,4 +25,4 @@ out = []
 for a, b in rng:
     t = asr({'raw': x[int(max(0, a - 0.05) * sr):int((b + 0.05) * sr)], 'sampling_rate': sr}, generate_kwargs={'language': 'thai', 'task': 'transcribe'})['text'].strip()
     out.append([round(a, 2), round(b, 2), t]); print(f'{a:6.2f} {b:6.2f} {b - a:5.2f}  {t}', flush=True)
-if not explicit: json.dump(out, open(HERE / f'ep{N}_segments.json', 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
+if not explicit: json.dump(out, open(HERE / f'{TAG}ep{N}_segments.json', 'w', encoding='utf-8'), ensure_ascii=False, indent=1)

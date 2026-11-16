@@ -3,7 +3,8 @@ Copies it to public/absurd-cases/epN/raw/narration_fenrir.wav and writes n16.wav
 The conversion also repairs the broken header Gemini writes (nAvgBytesPerSec), which is why nothing should read the original directly."""
 import sys, shutil, subprocess, pathlib
 n, src = sys.argv[1], pathlib.Path(sys.argv[2]); ROOT = pathlib.Path(__file__).resolve().parent.parent
-d = ROOT / f'public/absurd-cases/ep{n}/raw'; d.mkdir(parents=True, exist_ok=True); raw = d / 'narration_fenrir.wav'
+SER = __import__('os').environ.get('SERIES', 'absurd-cases'); TAG = '' if SER == 'absurd-cases' else SER + '-'   # SERIES=in-this-town for the second series
+d = ROOT / f'public/{SER}/ep{n}/raw'; d.mkdir(parents=True, exist_ok=True); raw = d / 'narration_fenrir.wav'
 if src.resolve() != raw.resolve(): shutil.copy(src, raw)
 for sr in (16000, 24000): subprocess.run(['ffmpeg', '-v', 'error', '-y', '-i', str(raw), '-ar', str(sr), '-ac', '1', str(d / f'n{sr // 1000}.wav')], check=True)
 dur = float(subprocess.run(['ffprobe', '-v', 'error', '-show_entries', 'format=duration', '-of', 'csv=p=0', str(d / 'n24.wav')], capture_output=True, text=True).stdout)

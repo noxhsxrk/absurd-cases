@@ -42,7 +42,7 @@ export const PM = (base: string, key = '', amt?: number) => {
 };
 
 // ---------------------------------------------------------------- faces
-export type FaceMode = 'open' | 'blink' | 'talk' | 'wide' | 'closed' | 'half' | 'angry' | 'shout';   // angry/shout: ink style only (EP9 judge)
+export type FaceMode = 'open' | 'blink' | 'talk' | 'wide' | 'closed' | 'half' | 'angry' | 'shout' | 'yawn' | 'gasp';   // angry/shout/yawn/gasp: ink style only (yawn/gasp: ในเมืองนี้ EP1)
 /** 'bean' = EP1–3 glossy bean eyes; 'ink' = ref8 hand-drawn ink face (edge lines, hatched hair, stubble dots, hatched blush). Set per episode before the cast is built. */
 export let FACE_STYLE: 'bean' | 'ink' = 'bean';
 export const setFaceStyle = (s: 'bean' | 'ink') => { FACE_STYLE = s; };
@@ -63,14 +63,17 @@ const inkFace = (g: CanvasRenderingContext2D, id: string, f: FaceSpec, mode: Fac
   const ey = 114, ex = [cx - 34, cx + 34];
   ex.forEach((x, i) => {
     if (mode === 'blink' || mode === 'closed') { wob(x - 12, ey + 2, x + 12, ey + 2, 4, 300 + i); return; }
+    if (mode === 'yawn') { g.lineWidth = 4.5; g.beginPath(); g.arc(x, ey + 8, 12, 1.15 * Math.PI, 1.85 * Math.PI); g.stroke();   // squeezed shut: two ∩ arcs + a tear
+      if (i) { g.fillStyle = '#7FB6D6'; g.beginPath(); g.ellipse(x + 15, ey + 10, 3, 4.5, 0, 0, Math.PI * 2); g.fill(); g.fillStyle = ink; } return; }
+    if (mode === 'gasp') { g.lineWidth = 3.5; g.beginPath(); g.arc(x, ey - 2, 16, 0, Math.PI * 2); g.stroke(); g.beginPath(); g.arc(x, ey - 2, 2.6, 0, Math.PI * 2); g.fill(); return; }   // saucer eyes, pin pupils
     if (mode === 'wide') { g.lineWidth = 3.5; g.beginPath(); g.arc(x, ey, 13, 0, Math.PI * 2); g.stroke(); g.beginPath(); g.arc(x, ey, 4.5, 0, Math.PI * 2); g.fill(); return; }
     if (mode === 'angry' || mode === 'shout') { const s2 = i ? -1 : 1; g.beginPath(); g.ellipse(x, ey + 3, 5.5, 5, 0, 0, Math.PI * 2); g.fill(); wob(x - 13 * s2, ey - 7, x + 13 * s2, ey, 4.5, 310 + i); return; }   // glare: lid slants down to the nose
     g.beginPath(); g.ellipse(x, ey + 2, 5.5, 6.5, 0, 0, Math.PI * 2); g.fill();
     wob(x - 13, ey - (mode === 'half' ? 1 : 5), x + 13, ey - (mode === 'half' ? 1 : 5), 4, 310 + i);   // the lid line
   });
   // brows: hatched strokes
-  const mad = mode === 'angry' || mode === 'shout'; const by = mode === 'wide' ? 82 : mad ? 92 : 90, tilt = f.brows ?? 0;
-  ex.forEach((x, i) => { const s2 = i ? -1 : 1; g.save(); g.translate(x, by); g.rotate(mad ? 0.5 * s2 : tilt * 0.35 * s2); for (let k = 0; k < 4; k++) wob(-14 + k * 3, 2 + k * 0.5, 12 + k * 1.5, -2 + k * 0.5, 2.6, 400 + k + i * 9); g.restore(); });
+  const mad = mode === 'angry' || mode === 'shout'; const by = mode === 'wide' ? 82 : mode === 'gasp' ? 72 : mode === 'yawn' ? 96 : mad ? 92 : 90, tilt = f.brows ?? 0;
+  ex.forEach((x, i) => { const s2 = i ? -1 : 1; g.save(); g.translate(x, by); g.rotate(mad ? 0.5 * s2 : mode === 'yawn' ? -0.35 * s2 : mode === 'gasp' ? -0.15 * s2 : tilt * 0.35 * s2); for (let k = 0; k < 4; k++) wob(-14 + k * 3, 2 + k * 0.5, 12 + k * 1.5, -2 + k * 0.5, 2.6, 400 + k + i * 9); g.restore(); });
   // nose: an ink hook
   if (!f.mask) { g.lineWidth = 3; g.beginPath(); g.moveTo(cx - 2, 124); g.quadraticCurveTo(cx + 9, 142, cx - 5, 146); g.stroke(); }
   // mouth
@@ -78,6 +81,10 @@ const inkFace = (g: CanvasRenderingContext2D, id: string, f: FaceSpec, mode: Fac
   else if (mode === 'wide') { g.lineWidth = 3; g.beginPath(); g.ellipse(cx, 180, 8, 11, 0, 0, Math.PI * 2); g.stroke(); }
   else if (mode === 'shout') { g.fillStyle = '#3A1A1A'; g.beginPath(); g.ellipse(cx, 182, 17, 12, 0, 0, Math.PI * 2); g.fill(); g.lineWidth = 3; g.stroke(); g.fillStyle = '#F4F1EA'; g.fillRect(cx - 11, 172, 22, 5); }
   else if (mode === 'angry') { g.lineWidth = 3.5; g.beginPath(); g.arc(cx, 186, 16, 1.2 * Math.PI, 1.8 * Math.PI); g.stroke(); }
+  // yawn: a huge stretched oval with a tongue, wider than the face is tall; gasp: a long dropped-jaw O, no tongue (the eyes tell them apart: shut vs saucers)
+  else if (mode === 'yawn') { g.fillStyle = '#3A1A1A'; g.beginPath(); g.ellipse(cx, 184, 24, 34, 0, 0, Math.PI * 2); g.fill(); g.lineWidth = 3.5; g.stroke();
+    g.fillStyle = '#C8605A'; g.beginPath(); g.ellipse(cx, 207, 15, 9, 0, 0, Math.PI * 2); g.fill(); }
+  else if (mode === 'gasp') { g.fillStyle = '#3A1A1A'; g.beginPath(); g.ellipse(cx, 190, 11, 30, 0, 0, Math.PI * 2); g.fill(); g.lineWidth = 3.5; g.stroke(); }
   else wob(cx - 15, 172, cx + 15, 172, 3.5, 500);
   if (f.mustache) { g.fillStyle = f.hair; g.beginPath(); g.roundRect(cx - 26, 156, 52, 10, 5); g.fill(); }
   if (f.glasses) { g.strokeStyle = '#2B2B33'; g.lineWidth = 4; ex.forEach((x) => { g.beginPath(); g.arc(x, ey, 22, 0, Math.PI * 2); g.stroke(); }); g.beginPath(); g.moveTo(cx - 12, ey); g.lineTo(cx + 12, ey); g.stroke(); }
@@ -120,7 +127,8 @@ const hairTop = (id: string, f: FaceSpec) => ctex(`hairtop:${id}:${FACE_STYLE}`,
 // ---------------------------------------------------------------- outfits
 export type BoxLook = {face: FaceSpec; jacket: string; lapel?: string; shirt: string; tie?: string; pants: string; shoes: string; sleeves?: 'jacket' | 'shirt' | 'short';
   cap?: string; helmet?: string; vest?: string; robe?: boolean; pocket?: boolean; badge?: boolean; belt?: string; build?: number;
-  /** lifekit extras (2026-11-11): shoulder-length hair, a skirt over the thighs, a wide straw hat */ hairLong?: boolean; skirt?: string; hat?: string};
+  /** lifekit extras (2026-11-11): shoulder-length hair, a skirt over the thighs, a wide straw hat */ hairLong?: boolean; skirt?: string; hat?: string;
+  /** head size (1 = adult); kids: ~1.25 with the whole character scaled down (ในเมืองนี้) */ head?: number; /** a grey bun on the crown (grandma) */ bun?: boolean};
 export const BOX: Record<string, BoxLook> = {};
 
 type Inst = any;
@@ -161,7 +169,8 @@ export const applyBoxLook = (I: Inst, id: string) => {
   if (L.skirt) { const sk = new THREE.Mesh(new THREE.CylinderGeometry(17 * b, 24 * b, 40, 8), PM(L.skirt)); sk.castShadow = true; sk.frustumCulled = false; sk.position.set(0, -14, 0); hips.add(sk); }
   // neck + head (tall thin box; face on the front)
   limb(B.Bip01_Neck, B.Bip01_Head, 8, 8, skin, 1, 8);
-  const head = frame(B.Bip01_Head);
+  const head = frame(B.Bip01_Head); if (L.head) head.scale.setScalar(L.head);
+  if (L.bun && !L.face.mask) { const bn = new THREE.Mesh(new THREE.SphereGeometry(6.5, 8, 6), PM(L.face.hair, 'hair')); bn.position.set(0, 28, -6); bn.castShadow = true; head.add(bn); }
   const fm = new THREE.MeshLambertMaterial({map: faceTex(id, L.face, 'open')});
   const capTop = PM(L.face.mask ?? (L.face.hairStyle === 'none' ? L.face.skin : L.face.hair), 'crown');
   const hg = new THREE.CylinderGeometry(11.5, 12.5, 25, 8, 1, false, Math.PI, Math.PI * 2);
