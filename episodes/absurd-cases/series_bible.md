@@ -25,8 +25,9 @@ Account in-scene: `@absurd.cases` (`HANDLE` in each episode's data.ts).
 | 15 | ดวงจันทร์ | สตอล์กเกอร์ | 1 + หักมุมในห้องสอบสวน (มันตามโลก) | (ค) ผลตรงตัว: ยังโคจรรอบห้อง 18 |
 | 16 | แรงโน้มถ่วง | ทำให้เสียทรัพย์ → ขัดขืนการจับกุม | ไม่ตรงเมนู (ใกล้ 1): จับได้แล้วผลย้อนมาโดนทุกคน ทุกอย่างลอย | (ค) มือถือเขา ไม่ตกอีกเลย |
 | 17 | ไฟในปาก (ตัวจริง: พริก) | วางเพลิง | 2: จับผิดตัว | (จ) ส่วนพริก ยังลอยนวล + (ฉ) ภาพเงียบ กินอีกคำ ไฟลุกอีก |
+| 18 | วันจันทร์ (แผ่นปฏิทินสีเหลือง) | ลักลอบเข้าเมือง | 1: ตำรวจน้ำร้อยลำ ลวดหนาม พระอาทิตย์โดนขอพาสปอร์ต (ลูกหลง) → จับ → เนรเทศ แล้วต่อองก์ความรักกับนายดาบ | (ง) กลับบทบาท: "ตอนนี้ นายดาบเกลียดวันอังคาร" ภาพเดินต่อ |
 
-**ตอนถัดไป (EP18) ห้ามใช้**: โครงเรื่องแบบ 2 (จับผิดตัว, EP17) และแบบ "จับได้แล้วผลย้อนมาโดนทุกคน" ของ EP16 (แบบ 1 ทั่วไป คือเกินเหตุ + ลูกหลง ยังใช้ได้); มุกปิดแบบ (ค), (จ), (ฉ) ตอนที่มีสองอักษรนับทั้งสอง — แก้บรรทัดนี้ทุกครั้งที่เพิ่มแถว (ดูย้อน 2 ตอน)
+**ตอนถัดไป (EP19) ห้ามใช้**: โครงเรื่องแบบ 1 (เกินเหตุ + ลูกหลง, EP18) และแบบ 2 (จับผิดตัว, EP17); มุกปิดแบบ (ง) (EP18), (จ) และ (ฉ) (EP17) — ตอนที่มีสองอักษรนับทั้งสอง แก้บรรทัดนี้ทุกครั้งที่เพิ่มแถว (ดูย้อน 2 ตอน)
 
 **ห้องขังที่ใช้แล้ว**: 13, 18, 19, 20, 21, 22, 23 (23 = ตู้เย็นของไฟ) ผู้ต้องหาใหม่ใช้ 24 ขึ้นไป กลับไปห้องเดิมเฉพาะเมื่อตั้งใจเป็น callback
 
@@ -38,7 +39,10 @@ Account in-scene: `@absurd.cases` (`HANDLE` in each episode's data.ts).
 - **ตู้กดน้ำ**: กินเหรียญ = ยักยอกทรัพย์ → ตำรวจเขย่าสอบสวน มันคายน้ำกระป๋อง = ติดสินบนเจ้าพนักงาน → ตำรวจที่รับไว้อยู่ห้องข้างๆ [สองข้อหา; ปิด (ข)]
 - **ตาชั่ง**: บอกว่าหนักเก้าสิบโล = หมิ่นประมาท → ตำรวจขึ้นชั่งพิสูจน์ = ดูหมิ่นเจ้าพนักงาน → ศาลยกฟ้องเพราะมันพูดความจริง [แบบ 3; ปิด (ค)]
 - **เครื่องซักผ้า**: ถุงเท้าคืนมาข้างเดียว = ลักทรัพย์ → มนุษย์กบดำลงถัง → "มันปั่นตำรวจทั้งคืน" → จำคุกยี่สิบปี → วันต่อมาเขาเจอถุงเท้าในขากางเกง "เขาไม่ได้บอกใคร" [แบบ 2 จับผิดตัว: ใช้กับ EP18 ไม่ได้ถ้าไม่เปลี่ยนโครง; ปิด (ก)/(ฉ)]
-- **วันจันทร์**: มาถึงโดยไม่บอก = บุกรุก → ฉีกออกจากปฏิทินทั้งประเทศ → "วันอังคาร เลยโดนเกลียดแทน" (ผู้ต้องหานามธรรมแบบ EP16) [แบบ 1; ปิด (ค)]
+- (วันจันทร์ทำเป็น EP18 แล้ว ไอเดียวันจันทร์สามข้อข้างล่างใช้ได้เฉพาะถ้าเปลี่ยนมุมจนไม่ซ้ำ)
+- **วันจันทร์ ลักพาตัววันอาทิตย์**: ตีห้ามาพาวันอาทิตย์ไป = ลักพาตัว → หน่วยเจรจาตัวประกันล้อมปฏิทิน ค่าไถ่ "ทำงานห้าวัน" → SWAT ฉีกปฏิทิน ทั้งประเทศเผาตาม → "ส่วนวันเสาร์ ไม่มีใครเห็นตั้งแต่เมื่อวาน" [แบบ 1; ปิด (ก)]
+- **วันจันทร์ ซุ่มจับเที่ยงคืน**: "มันยังไม่มาเลย นั่นแหละน่าสงสัย" → ตำรวจ 500 นายซุ่มในห้องนอนคืนวันอาทิตย์ 00:00 นาฬิกาปลุกทุกนายดังพร้อมกัน → "ทั้งกองร้อย ลาป่วยพร้อมกัน" [แบบ 3; ปิด (ข); ระวังภาพซ้ำนาฬิกาปลุก EP11]
+- **วันจันทร์เป็นคนโทร**: เห็นชายคนนี้แกล้งไอโทรลาป่วย = ฉ้อโกง → วันจันทร์โทรแจ้งเอง → "เขาได้เจ็ดวัน วันจันทร์ไปทะเลแทนเขา" [แบบ 5; ปิด (ง)]
 - **ไฟแดง**: ติดร้อยยี่สิบวิ → ตำรวจทั้งกองร้อยมาถึงแยกแต่ก็ติดไฟแดงเหมือนกัน → โทษนับถอยหลังทีละวิ [แบบ 3 ตำรวจคือตัวตลก; ปิด (ค)]
 
 ## Recurring sets
@@ -117,3 +121,11 @@ Account in-scene: `@absurd.cases` (`HANDLE` in each episode's data.ts).
 - Sentence: locked in a fridge in cell 23 (dial 4°C → −18°C).
 - Closer: "ส่วนพริก ยังลอยนวล" — the plate is full of hose water and the chili literally floats in it. Silent coda: he takes another forkful and his mouth is on fire again.
 - Hooks: the chili is still at large on his plate (the police have the wrong one; the real arsonist could be tried later: "พริก v. ไฟ", or the fire appeals from the fridge); ten fire trucks are still parked on the village road; three melted pairs of cuffs are in evidence; the officer who lost the file has a sooty face; cell 23 exists. EP16's weightless world is not carried into this episode.
+
+## EP18 คดีวันจันทร์ (วันจันทร์ — ลักลอบเข้าเมือง)
+- Charge: ลักลอบเข้าเมือง. He sat on his bed watching Sunday run out; at midnight the Sunday sheet of his tear-off calendar let go and Monday (yellow, "จันทร์ 16") was there again, with no passport (red dashed annotation, ✕).
+- Monday has no face: it is its yellow tear-off sheet (Thai day colours: Sunday red, Monday yellow, Tuesday pink), small on the wall, 2.6 m at sea, 2.1 m in court. It only arrives, every week, and leaves after a day.
+- Shape (§1-R 1 + a love act Nox asked for): a hundred police boats (10 × 10) string concertina wire along the international date line; a checkpoint pontoon with a booth (ด่านตรวจคนเข้าเมือง) and a striped barrier; the sunrise is asked for its passport (bystander); Monday is cuffed by its binding bar with giant cuffs chained to the sergeant's fist; the court deports it "back to yesterday" — towed by a police boat towards a sea road sign "เมื่อวาน →".
+- The sergeant (dab: khaki shirt, white cap, moustache) — planted as the sun's point of view in the passport shot. Monday comes back to him every week (board: วันจันทร์มาหา N ครั้ง); he becomes the one person in the world who waits for Monday (one lit booth in a dark fleet, bouquet, booth clock 23:59). They marry on the line under a flower arch, Monday in a veil, two boats spraying an arch of water; the passport is stamped อนุมัติ (pause-bait fields: เกิด ทุกสัปดาห์ / อาชีพ วันแรกของการทำงาน / คู่สมรส ด.ต. ประจำด่าน).
+- Closer (ง): "ตอนนี้ นายดาบเกลียดวันอังคาร" — Monday drifts off, Tuesday (pink, 17) glides up to the wire; he glares at it, bouquet still in his fist; the picture walks on.
+- Hooks: Tuesday vs the sergeant (Tuesday could press charges: ข่มขู่ / ทำให้เสียชื่อเสียง); the date-line checkpoint and the hundred boats exist; Monday is now a Thai citizen married to a police sergeant; the man with the calendar never appears after the call. No cell used.
