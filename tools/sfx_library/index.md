@@ -1,6 +1,6 @@
 # คลังเสียง absurd-cases (SFX library)
 
-988 ไฟล์ (988 อยู่บนคลัง GitHub, 223 อยู่ในเครื่อง) · 206 เสียง · สร้างใหม่: `python tools/sfx_index.py build` · ค้น: `python tools/sfx_index.py search <คำ>` (ไทยก็ได้)
+980 ไฟล์ (980 อยู่บนคลัง GitHub, 223 อยู่ในเครื่อง) · 204 เสียง · สร้างใหม่: `python tools/sfx_index.py build` · ค้น: `python tools/sfx_index.py search <คำ>` (ไทยก็ได้)
 
 ## วิธีใช้
 
@@ -74,7 +74,6 @@ spot ตรงเฟรมที่ตัวละครทำ ใส่ก่�
 | **crunch_bite** | กัดและเคี้ยวผักกรอบๆ หนึ่งคำ (ส้มตำ) ตอนตัวเอกกินคำแรก | EP17 dig, EP17 bite, EP17 bite2 | ☁ `sounds/crunch_bite/crunch_bite_r1_sao.wav` | sao · 1.5 · 0.36 | 5 |
 | **flipflop_steps** | รองเท้าแตะเดินตบส้นแปะๆ บนทางเท้า (เดินเล่น ออกจากบ้าน) | EP12 | ☁ `sounds/flipflop_steps/flipflop_steps_r1_sao.wav` | sao · 4.0 · 0.29 | 5 |
 | **guard_sing** | ผู้ชายร้องเพลงเสียงดังเพี้ยนๆ ในโถงคอนกรีต (ผู้คุมร้องเพลง คาราโอเกะ) | EP13 release | ☁ `sounds/guard_sing/guard_sing_r1_sao.wav` | sao · 4.0 · 0.23 | 5 |
-| **hens_cluck** | แม่ไก่กุ๊กๆ จิกพื้นตอนกลางคืน (ไก่ตกงาน ไก่ในซอย) |  | ☁ `sounds/hens_cluck/hens_cluck_r1_sao.wav` | sao · 4.0 · -0.04 | 4 |
 | **scream_short** | ผู้หญิงกรี๊ดสั้นๆ ตกใจ (โดนผีหลอก) | EP13 boo, EP17, EP17 fire2 | ☁ `sounds/scream_short/scream_short_r1_sao.wav` | sao · 1.5 · 0.28 | 6 |
 | **steps_road** | เดินช้าบนถนนยาง รองเท้าผ้าใบ ฉากเดินเล่นเปิดเรื่อง (loop ได้) | EP12 door, EP8b | `public/absurd-cases/ep12/sfx_sao/steps_road_r1.wav` | sao · 5.0 · 0.24 | 6 |
 | **steps_stop** | เดิน 3 ก้าวแล้วหยุด ตรงจังหวะชะงัก/สังเกตเห็นความผิดปกติ | EP8b stop | `public/absurd-cases/ep8/sfx_sao/steps_stop_r1.wav` | sao · 2.0 · 0.13 | 5 |
@@ -104,7 +103,6 @@ spot ตรงเฟรมที่ตัวละครทำ ใส่ก่�
 | **house_door** | เปิดประตูบ้านไม้: กดลูกบิดกริ๊ก แล้วบานพับเอี๊ยดเบาๆ (ออกจากบ้าน กลับบ้าน) |  | ☁ `sounds/house_door/house_door_r1_sao.wav` | sao · 3.0 · 0.32 | 4 |
 | **jar_lid** | ปิดฝาโหลแก้วหมุนแน่น ตอนเก็บ 'หลักฐาน' ใส่โหล | EP13 jarIn | `public/absurd-cases/ep13/sfx_sao/jar_lid_r1.wav` | sao · 2.0 ·  | 5 |
 | **knock** | เคาะประตู ตำรวจมาเคาะ/มีคนมา | EP10 tower | `public/absurd-cases/ep10/sfx_sao/knock_r1.wav` | sao · 1.5 ·  | 3 |
-| **page_flip** | ปฏิทินพลิกหน้ารัวๆ (เวลาผ่านไปหลายปี) |  | ☁ `sounds/page_flip/page_flip_r1_sao.wav` | sao · 2.0 · 0.4 | 4 |
 | **ring_click** | สวิตช์พลาสติกเปิดริงไลท์ คลิกแล้วฮัมเบาๆ | EP11 unhand, EP9 ring | ☁ `sounds/ring_click/ring_click_r1_sao.wav` | sao · 1.5 · 0.35 | 6 |
 | **rocking_chair** | เก้าอี้โยกไม้ลั่นเอี๊ยดช้าๆ เป็นจังหวะ (ฉากเกษียณ บ้านเก่า กลางคืน) | EP13 retire | ☁ `sounds/rocking_chair/rocking_chair_r1_sao.wav` | sao · 4.0 · 0.39 | 5 |
 | **scissors_snip** | กรรไกรใหญ่ตัดกระดาษหนาฉับเดียว (ตัดหนังสือ ตัดเอกสาร) |  | ☁ `sounds/scissors_snip/scissors_snip_r1_sao.wav` | sao · 1.2 · 0.26 | 4 |
