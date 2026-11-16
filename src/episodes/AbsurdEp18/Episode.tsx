@@ -22,8 +22,8 @@ const VOICE = 'absurd-cases/ep18/ep18_narration_tight.wav';   // until the mix e
 const T = (n: string) => SHOTS.find((s) => s.name === n)!;
 const IN = (n: string, a: string[]) => a.includes(n);
 /** bedroom (night) · sea at night · sea at dawn · sea by day · court. The sea's time of day follows the story: the arrest at dawn, the waiting at night, the wedding by day. */
-const PLACE = (n: string) => IN(n, ['open', 'clock', 'peel', 'note', 'charge', 'phone']) ? 'bed' : IN(n, ['fleet', 'wire', 'back', 'alone', 'wait']) ? 'night'
-  : IN(n, ['sun', 'palm', 'arrest', 'tue', 'glare']) ? 'dawn' : n === 'court' ? 'court' : 'day';
+const PLACE = (n: string) => IN(n, ['open', 'clock', 'peel', 'pile', 'mail', 'ask', 'note', 'charge', 'phone']) ? 'bed' : IN(n, ['fleet', 'checkpoint', 'wire', 'rule', 'back', 'alone', 'wait']) ? 'night'
+  : IN(n, ['map', 'linesign', 'sun', 'palm', 'glidein', 'arrest', 'tue', 'glare']) ? 'dawn' : n === 'court' ? 'court' : 'day';
 const GRADE: Record<string, string> = {bed: 'saturate(0.9) contrast(1.06)', night: 'saturate(0.95) contrast(1.06)', dawn: 'saturate(1.05) contrast(1.04)', day: 'saturate(1.0) contrast(1.05)', court: 'saturate(0.82) contrast(1.05)'};
 const FILL: Record<string, [string, number]> = {bed: ['#8FA0C8', 0.35], night: ['#7A8CC0', 0.45], dawn: ['#FFD9B8', 0.4], day: ['#DCE8F2', 0.35], court: ['#FFF1DE', 0.5]};
 /** ambient occlusion + bloom per place: the fire should glow, so the bloom is a little higher than EP16's daylight */

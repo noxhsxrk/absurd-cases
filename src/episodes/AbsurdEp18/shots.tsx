@@ -12,7 +12,7 @@ import {Jet} from '../AbsurdEp17/props';
 import {ps, body, bw, hideProps, prop, P, CamRig, mv, strike, near, sm, V3, Cast, ShotOut, toward, hand, hw, Bg} from '../lifekit/stage';
 import {CourtLife} from '../lifekit/presets';
 import {DayPage, Annotation, WallCalendar, WallClock, CAL, Sea, SkyDome, DateLine, LineSign, YesterdaySign, CountBoard, Checkpoint, PONTOON, BOOTH,
-  PoliceBoat, Bouquet, FlowerArch, Passport, RubberStamp, waveY} from './props';
+  PoliceBoat, Bouquet, FlowerArch, Passport, RubberStamp, waveY, WorkPile, Laptop, RuleSign} from './props';
 
 export {CamRig};
 /** EP18 คดีวันจันทร์. He watches Sunday run out; at midnight Monday comes in again, with no passport (illegal entry). A hundred police boats
@@ -54,7 +54,12 @@ const add = (a: V3, b: V3): V3 => [a[0] + b[0], a[1] + b[1], a[2] + b[2]];
 const CALP: V3 = [0.55, 1.45, 2.185], CLKP: V3 = [0.55, 1.9, 2.18], SEAT = {x: 0.25, z: -0.3}, STAND = {x: 0.35, z: 0.7};
 /** the clock: seconds tick to midnight on `midnight` */
 const hours = (t: number) => (24 * 3600 + Math.floor(t - ev('midnight') + 1e-6)) / 3600 % 24;
+/** Monday's luggage: the work pile lands on the bed at `pile` (gravity), the laptop beside him starts filling up at `mail` */
+const PILE: V3 = [-0.42, 0.56, -0.5], LAP: V3 = [0.78, 0.56, -0.62];
+const pileDrop = (t: number) => { const u = ev('pile') - t; return u > 0 ? Math.min(2.2, 0.5 * 9.8 * u * u) : 0; };
+const mails = (t: number) => t < ev('mail') ? 0 : Math.min(300, 300 * Math.pow(cl((t - ev('mail')) / 1.5), 1.6));
 const bedroom = (t: number) => <><Bedroom st={{t, lamp: 0.3, made: false, hideClock: true} as any} />
+  {t > ev('pile') - 0.65 && <WorkPile position={PILE} drop={pileDrop(t)} yaw={0.2} />}{t > ev('peel') && <Laptop position={LAP} yaw={-0.35} count={mails(t)} />}
   <WallCalendar position={CALP} yaw={Math.PI} t={t} peel={t - ev('peel')} floorY={0} /><WallClock position={CLKP} yaw={Math.PI} hours={hours(t)} />
   {t > ev('peel') && <pointLight position={[0.55, 1.5, 1.7]} color="#FFD65A" intensity={0.9 * sm((t - ev('peel')) / 0.3)} distance={2.5} decay={1.6} />}</>;
 type GO = {clip?: string; face?: string; look?: V3; y?: number; sit?: boolean};
@@ -89,11 +94,11 @@ const glideX = (t: number) => PAGE[0] + 62 * (1 - sm((t - (ev('glide') - 1.7)) /
 const monday = (t: number, at: V3, o: {yaw?: number; veil?: number; h?: number} = {}) => <DayPage day="mon" position={[at[0], waveY(at[0], at[2], t) * 0.5 + 0.05, at[2]]} yaw={o.yaw ?? PAGE_YAW} h={o.h ?? PH} t={t} veil={o.veil} />;
 const FLEET: V3[] = Array.from({length: 100}, (_, i) => [-12 - Math.floor(i / 10) * 5, 0, -13.5 + (i % 10) * 3]);
 const deck = (t: number) => PONTOON.top + 0.25 * waveY(-3, 0, t);
-const sea = (t: number, tod: Tod, o: {wireFrom?: number; wireTo?: number; noWire?: boolean; bar?: number; clock?: number; fleet?: 'all' | 'near' | 'none'; fleetLights?: number; at?: V3} = {}) => { const S = SKIES[tod];
+const sea = (t: number, tod: Tod, o: {noPost?: boolean; wireFrom?: number; wireTo?: number; noWire?: boolean; bar?: number; clock?: number; fleet?: 'all' | 'near' | 'none'; fleetLights?: number; at?: V3} = {}) => { const S = SKIES[tod];
   const fl = o.fleet ?? 'near';
   return <><SkyDome top={S.top} mid={S.mid} low={S.low} /><Sea t={t} color={S.sea} far={S.far} at={o.at ?? [-6, 0, 0]} />{lights(tod)}
     <DateLine t={t} z0={-40} z1={40} wireFrom={o.noWire ? 99 : o.wireFrom ?? -40} wireTo={o.noWire ? 99 : o.wireTo ?? 40} />
-    <Checkpoint t={t} night={tod === 'night'} clock={o.clock} bar={o.bar} /><LineSign position={[0, 0, -16]} yaw={-Math.PI / 2} t={t} />
+    {!o.noPost && <Checkpoint t={t} night={tod === 'night'} clock={o.clock} bar={o.bar} />}<LineSign position={[0, 0, -16]} yaw={-Math.PI / 2} t={t} />
     {fl === 'all' && FLEET.map((p, i) => <PoliceBoat key={i} position={p} t={t} seed={i} lights={o.fleetLights ?? 1} />)}
     {fl === 'near' && [[-9, 0, 6], [-12, 0, -5], [-7.5, 0, -9], [-15, 0, 9]].map((p, i) => <PoliceBoat key={i} position={p as V3} yaw={0.2 * i} t={t} seed={i} lights={o.fleetLights ?? 1} />)}</>; };
 /** the sergeant on the pontoon */
@@ -161,6 +166,22 @@ export const SHOT_FN: Record<string, (t: number, lt: number, C: Cast) => ShotOut
     return {node: <>{bedroom(t)}<P o={m.w} /><Annotation position={[CALP[0], CALP[1] - 0.02, CALP[2] - 0.03]} yaw={Math.PI} s={0.24} k={k} /></>,
       cam: mv({pos: [0.55, 1.47, 1.5], look: [0.55, 1.38, 2.18], fov: 48}, lt, {arrive: 0.06, push: 0.12}), bg: NIGHT_IN};
   },
+  pile: (t, lt, C) => {
+    // "พางานกองโต": a pile of work folders drops out of nowhere onto the bed beside him — thump, he flinches
+    const m = manSit(C, t, t > ev('pile') ? 'wide' : 'half');
+    return {node: <>{bedroom(t)}<P o={m.w} /></>, cam: mv({pos: [0.4, 1.35, 1.35], look: [0.0, 0.9, -0.4], fov: 50}, lt, {arrive: 0.06, push: 0.12, shake: near(t, [ev('pile')], 0.15) ? 0.015 : 0}), bg: NIGHT_IN};
+  },
+  mail: (t, lt, C) => {
+    // ECU: the laptop beside him, the unread count climbing to 300
+    const m = manSit(C, t, 'wide');
+    return {node: <>{bedroom(t)}<P o={m.w} /></>, cam: mv({pos: [LAP[0] + 0.2, LAP[1] + 0.34, LAP[2] + 0.5], look: [LAP[0] + 0.02, LAP[1] + 0.14, LAP[2]], fov: 46}, lt, {arrive: 0.05, push: 0.14}), bg: NIGHT_IN};
+  },
+  ask: (t, lt, C) => {
+    // he stands at the calendar and holds out his hand: passport, please
+    const k = sm((t - ev('ask') + 0.15) / 0.3); const m = manStand(C, t, 'angry');
+    const sR = bw(m.I, 'Bip01_R_UpperArm'); hand(m.I, 'R', lerp3(add(sR, [0.05, -0.45, 0.1]), toward(sR, add(CAL_LOOK, [0, -0.25, 0]), 0.5), k), 'open'); m.w.updateMatrixWorld(true);
+    return {node: <>{bedroom(t)}<P o={m.w} /></>, cam: mv({pos: [1.25, 1.35, 1.95], look: [0.42, 1.3, 0.6], fov: 52}, lt, {arrive: 0.07, push: 0.08}), bg: NIGHT_IN};
+  },
   charge: (t, lt, C) => {
     // he is up, pointing at the wall: snap zoom, the plate drops
     const z = sm((t - ev('plate') + 0.12) / 0.17); const m = manStand(C, t, 'shout');
@@ -174,6 +195,27 @@ export const SHOT_FN: Record<string, (t: number, lt: number, C: Cast) => ShotOut
     hand(m.I, 'L', add(ph, [0.03, -0.06, -0.02]), 'cup'); m.w.updateMatrixWorld(true);
     return {node: <>{bedroom(t)}<P o={m.w} /><Phone position={ph} rotation={[0, Math.atan2(CALP[0] - STAND.x, CALP[2] - STAND.z) + Math.PI / 2, 0.18 * k]} /></>,
       cam: mv({pos: [1.0, 1.52, 1.55], look: [0.38, 1.45, 0.7], fov: 44 - 7 * sm((t - ev('phoneUp') - 0.45) / 0.17)}, lt, {arrive: 0.07, push: 0.08}), bg: NIGHT_IN};
+  },
+  map: (t, lt, C) => {
+    // "every new day comes in across the date line, out at sea": high over the night ocean, the line of buoys runs to the horizon
+    void C; return {node: <>{sea(t, 'dawn', {noWire: true, noPost: true, fleet: 'none', at: [0, 0, -10]})}</>,
+      cam: mv({pos: [-12, 16, 16], look: [0, 0, -16], fov: 50}, lt, {arrive: 0, push: 0.06}), bg: bgOf('dawn')};
+  },
+  linesign: (t, lt, C) => {
+    // the sign on the line: Sunday on one side, Monday on the other
+    void C; return {node: <>{sea(t, 'dawn', {noWire: true, noPost: true, fleet: 'none', at: [0, 0, -14]})}</>,
+      cam: mv({pos: [-6.5, 2.3, -14.2], look: [0, 2.6, -16], fov: 46}, lt, {arrive: 0.07, push: 0.1}), bg: bgOf('dawn')};
+  },
+  checkpoint: (t, lt, C) => {
+    // "so they set up a checkpoint right there": the pontoon, the booth, the barrier — and the sergeant at it, boats all round
+    const d = sergeant(C, t, {face: 'angry', look: [6, 1.7, 2], R: front(t, 0.28, -0.2, 1.05), L: front(t, 0.28, 0.2, 1.05)});
+    return {node: <>{sea(t, 'night', {noWire: true})}{d.node}</>, cam: mv({pos: [6.5, 3.2, 7.5], look: [-2.2, 1.0, -0.3], fov: 46}, lt, {arrive: 0.06, push: 0.08}), bg: bgOf('night')};
+  },
+  rule: (t, lt, C) => {
+    // the rule on a yellow board at the barrier; the sergeant beside it, palm out — anyone who crosses shows a passport
+    const d = sergeant(C, t, {face: 'shout', look: [3.4, 3.0, 0.4], R: front(t, 0.5, -0.12, 1.15), rs: 'open', L: front(t, 0.5, 0.3, 1.78), ls: 'open'});
+    return {node: <>{sea(t, 'night')}{d.node}<RuleSign position={[-0.75, deck(t), 0.75]} yaw={Math.PI / 2} /></>,
+      cam: mv({pos: [3.2, 2.5, 1.3], look: [-0.85, 1.55, 0.35], fov: 50}, lt, {arrive: 0.06, push: 0.1}), bg: bgOf('night')};
   },
   fleet: (t, lt, C) => {
     // straight down over the night sea: a hundred police boats, ten by ten, light bars going, run up the frame and brake in formation
@@ -202,6 +244,12 @@ export const SHOT_FN: Record<string, (t: number, lt: number, C: Cast) => ShotOut
     const d = sergeant(C, t, {face: 'shout', look: cam, R: lerp3(front(t, 0.2, -0.2, 1.0), front(t, 0.5, -0.12, 1.15), k), rs: 'open', L: lerp3(front(t, 0.15, 0.22, 1.0), front(t, 0.5, 0.3, 1.78), k), ls: 'open'});
     return {node: <>{sea(t, 'dawn')}{d.node}<Glow p={[2.5, 3.2, 0.3]} c="#FFE2A0" s={3} o={0.25} /></>,
       cam: mv({pos: cam, look: [SG.x, deck(t) + 1.35, SG.z], fov: 40}, lt, {arrive: 0.06, push: 0.1}), bg: bgOf('dawn')};
+  },
+  glidein: (t, lt, C) => {
+    // dawn: something yellow comes gliding over the water to the wire. The sergeant turns.
+    const d = sergeant(C, t, {face: t > ev('glide') - 0.3 ? 'angry' : 'open', look: add([glideX(t), 0, PAGE[2]], [0, 1.6, 0]), R: front(t, 0.3, -0.2, 1.1), L: front(t, 0.3, 0.25, 1.15)});
+    return {node: <>{sea(t, 'dawn')}{monday(t, [glideX(t), 0, PAGE[2]])}{d.node}</>,
+      cam: mv({pos: [-4.2, 1.7, 0.2], look: [6, 1.5, -0.9], fov: 50}, lt, {arrive: 0.05, push: 0.08}), bg: bgOf('dawn')};
   },
   arrest: (t, lt, C) => {
     // no line: Monday glides up to the wire — and the giant cuffs go round its edge, chained to the sergeant's fist. Flash, stars.

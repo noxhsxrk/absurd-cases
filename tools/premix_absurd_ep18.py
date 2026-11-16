@@ -204,7 +204,7 @@ def wall_ring(f=520, taps=4):
     for k in range(taps): x = lp(one, 4000 / (1 + k)) * 0.55 ** k; i = int(k * 0.2 * R); o[i:i + len(x)] += x
     return o
 # ---- beds: the bedroom at night (a clock ticking); the sea at night / dawn / by day (waves; gulls at dawn); the court; the sea again
-SEA = T('fleet'); DAWN = T('sun'); COURT = T('court'); DEP = T('deport'); BACK = T('back'); WED = T('wedding'); TUE = T('tue')
+SEA = T('map'); FL = T('fleet'); DAWN = T('sun'); COURT = T('court'); DEP = T('deport'); BACK = T('back'); WED = T('wedding'); TUE = T('tue')
 for name, a, b, lvl, width, fb in [('night_quiet', 0, SEA, 0.9, 0.6, lambda: bed_noise(10, 150, 1500, 0.2, 2)),
         ('sea_waves', SEA, COURT, 1.2, 1.0, lambda: bed_noise(10, 100, 3000, 0.5, 4)), ('seagulls', DAWN, COURT, 0.5, 1.0, lambda: bed_noise(6, 2000, 6000, 0.4, 7)),
         ('court_amb', COURT, DEP, 0.9, 0.8, lambda: bed_noise(10, 200, 2500, 0.2, 5)),
@@ -220,16 +220,19 @@ for k in range(int(MID) + 1):
     if tk < 0.05: break
     P(take('clock_tick', lambda: click(0.04), 0.08), 0.12 if tk < T('peel') else 0.07, tk, 0.2)
 P(metal(880, 0.9, 4), 0.2, MID); P(take('paper_tear', lambda: peel(0.5), 1.2), 0.55, EV['peel'] - 0.06); P(peel(0.35), 0.4, EV['peel'] - 0.04);   # the SAO tear is only 12 % active: a synth rip on top P(whoosh(0.5, 900, 6000), 0.12, EV['peel'] + 0.15)
+P(whoosh(0.5, 200, 2500), 0.2, EV['pile'] - 0.35); P(thud(55, 0.6), 0.55, EV['pile']); P(flap(0.12), 0.4, EV['pile'] + 0.01)   # the work pile lands on the bed
+for i in range(9): P(beep(1700 + 120 * (i % 3), 0.05), 0.1 + 0.02 * i, EV['mail'] + 0.08 + i * 0.16, 0.3)   # e-mails pinging in, faster and louder
+P(whoosh(0.25, 600, 4000), 0.14, EV['ask'] - 0.15)
 P(beep(1150, 0.12), 0.22, EV['note']); P(beep(860, 0.16), 0.2, EV['note'] + 0.14)
 P(whoosh(0.3, 400, 3000), 0.2, EV['point'] - 0.2); P(tung(), 0.5, EV['plate']); P(thud(40, 0.9), 0.28, EV['plate'] + 0.05)
 P(whoosh(0.25, 600, 4000), 0.16, EV['phoneUp']); P(take('dial_beeps', lambda: np.concatenate([beep(1300, 0.08)] * 3), 1.0), 0.2, EV['phoneUp'] + 0.3, 0.3)
 # ---- a hundred boats: sirens and engines across the whole fleet, all braking together; the wire paid out coil after coil
-s_ = loopto(take('police_sirens', lambda: siren(6, 700, 1050, 0.9), trim=False), DAWN - SEA); s_ = env(s_, [(0, 0), (0.1, 1), (len(s_) / R - 0.3, 0.6), (len(s_) / R, 0)])
-M.put2(to_st(rms_to(s_, 0.0022 * FX)), SEA, 1.0, width=0.9)
-bf = take('boat_fleet', lambda: engine(3.0), EV['hundred'] + 0.6 - SEA, trim=False); P(env(bf, [(0, 0.4), (0.2, 1), (EV['hundred'] + 0.35 - SEA, 1), (len(bf) / R, 0)]), 0.45, SEA - 0.05)
-P(whoosh(0.6, 150, 2500), 0.3, SEA); P(thud(42, 0.6), 0.3, EV['hundred'] + 0.35)
-wl = EV['wireDone'] - EV['wire'] + 0.4; w_c = loopto(take('wire_coil', lambda: metal(900, 2.5, 3), trim=False), wl); P(env(w_c, [(0, 0), (0.1, 1), (wl - 0.2, 1), (wl, 0)]), 0.4, EV['wire'] - 0.1, 0.2)
-for i in range(int(wl / 0.22)): P(metal(1400 + 300 * (i % 3), 0.25, 14), 0.12, EV['wire'] + i * 0.22, 0.25)   # a clink per coil (the take is sparse)
+s_ = loopto(take('police_sirens', lambda: siren(6, 700, 1050, 0.9), trim=False), DAWN - FL); s_ = env(s_, [(0, 0), (0.1, 1), (len(s_) / R - 0.3, 0.6), (len(s_) / R, 0)])
+M.put2(to_st(rms_to(s_, 0.0022 * FX)), FL, 1.0, width=0.9)
+bf = take('boat_fleet', lambda: engine(3.0), EV['hundred'] + 0.6 - FL, trim=False); P(env(bf, [(0, 0.4), (0.2, 1), (EV['hundred'] + 0.35 - FL, 1), (len(bf) / R, 0)]), 0.28, FL - 0.05)
+P(whoosh(0.6, 150, 2500), 0.3, FL); P(thud(42, 0.6), 0.3, EV['hundred'] + 0.35); P(whoosh(0.7, 200, 2500), 0.22, SEA - 0.05)
+wl = EV['wireDone'] - EV['wire'] + 0.4; w_c = loopto(take('wire_coil', lambda: metal(900, 2.5, 3), trim=False), wl); P(env(w_c, [(0, 0), (0.1, 1), (wl - 0.2, 1), (wl, 0)]), 0.3, EV['wire'] - 0.1, 0.2)
+for i in range(int(wl / 0.22)): P(metal(1400 + 300 * (i % 3), 0.25, 14), 0.08, EV['wire'] + i * 0.22, 0.25)   # a clink per coil (the take is sparse)
 P(rms_to(engine(T('sun') - T('wire'), 55), 0.05), 0.14, T('wire'), 0.3)
 # ---- dawn: the sun comes up (a low swell); "passport" — the palm goes up; Monday glides in; the giant cuffs clank shut
 P(env(bp(nz(1.6), 80, 900), [(0, 0), (1.2, 1), (1.6, 0)]), 0.18, EV['sunUp'])
@@ -260,7 +263,7 @@ m = (VOX + M.mix * (1 - 0.3 * np.clip(d, 0, 1))[:, None] + M.beds)[:int(TOTAL * 
 on = M.vo_env[:len(m)] > 0.5; rest = m - VOX[:len(m)]
 if VOICE.exists():
     print('voice over everything else while speaking: %.1f dB' % (db(VOX[:len(m)][on]) - db(rest[on])))
-    for nm, a_, b_ in [('bedroom', 0, T('fleet')), ('fleet+wire', T('fleet'), T('sun')), ('dawn+cuffs', T('sun'), T('court')), ('court+deport', T('court'), T('back')), ('weeks+alone', T('back'), T('wedding')), ('wedding+stamp', T('wedding'), T('tue')), ('tuesday', T('tue'), TOTAL)]:
+    for nm, a_, b_ in [('bedroom', 0, T('map')), ('map+sign', T('map'), T('fleet')), ('fleet+wire', T('fleet'), T('sun')), ('dawn+cuffs', T('sun'), T('court')), ('court+deport', T('court'), T('back')), ('weeks+alone', T('back'), T('wedding')), ('wedding+stamp', T('wedding'), T('tue')), ('tuesday', T('tue'), TOTAL)]:
         w = on & (np.arange(len(m)) >= a_ * R) & (np.arange(len(m)) < b_ * R); print('  %s: %.1f dB' % (nm, db(VOX[:len(m)][w]) - db(rest[w])))
 m = m / max(np.max(np.abs(m)), 1e-9) * 0.7
 w_ = wave.open(str(RAW), 'wb'); w_.setnchannels(2); w_.setsampwidth(2); w_.setframerate(R); w_.writeframes((np.clip(m, -1, 1) * 32767).astype(np.int16).tobytes()); w_.close()

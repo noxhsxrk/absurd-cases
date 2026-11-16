@@ -279,3 +279,41 @@ export const RubberStamp: React.FC<{position: V3; s?: number}> = ({position, s =
   <mesh position={[0, 0.08, 0]} material={M('#7A4D2E', 0.7)}><cylinderGeometry args={[0.018, 0.024, 0.08, 10]} /></mesh>
   <mesh position={[0, 0.135, 0]} material={M('#7A4D2E', 0.7)}><sphereGeometry args={[0.035, 10, 8]} /></mesh>
 </group>;
+
+// =====================================================================================================
+// v2 (Nox 2026-11-17: say what Monday MEANS): the work it brings, the 300 e-mails, the passport rule at the checkpoint
+// =====================================================================================================
+const folderTex = (i: number) => tex('ep18-folder' + i, 256, 64, (g) => { g.fillStyle = ['#E9C46A', '#8FB3D9', '#E07A5F', '#CFCFC4'][i % 4]; g.fillRect(0, 0, 256, 64);
+  if (i % 2 === 0) { g.fillStyle = '#C0392B'; g.fillRect(150, 14, 96, 36); g.fillStyle = '#FFF'; g.font = F(800, 26); g.textAlign = 'center'; g.fillText('ด่วน', 198, 42); } });
+/** a tall pile of work folders (origin at its bottom); `drop` = metres above where it lands */
+export const WorkPile: React.FC<{position: V3; n?: number; drop?: number; yaw?: number}> = ({position, n = 14, drop = 0, yaw = 0}) => {
+  const mats = useMemo(() => [0, 1, 2, 3].map((i) => new THREE.MeshStandardMaterial({map: folderTex(i), roughness: 0.85})), []);
+  return <group position={[position[0], position[1] + drop, position[2]]} rotation={[0, yaw, 0]}>
+    {Array.from({length: n}, (_, i) => <mesh key={i} castShadow receiveShadow position={[0.02 * Math.sin(i * 2.3), 0.035 * i + 0.0175, 0.02 * Math.cos(i * 1.7)]} rotation={[0, 0.12 * Math.sin(i * 3.1), 0]} material={mats[i % 4]}><boxGeometry args={[0.34, 0.034, 0.25]} /></mesh>)}
+  </group>;
+};
+const mailTex = (n: number) => tex('ep18-mail' + n, 512, 340, (g) => {
+  g.fillStyle = '#F4F6FA'; g.fillRect(0, 0, 512, 340); g.fillStyle = '#2E5BBA'; g.fillRect(0, 0, 512, 60); g.fillStyle = '#FFF'; g.font = F(700, 34); g.textAlign = 'left'; g.fillText('กล่องจดหมาย', 20, 42);
+  g.fillStyle = '#D02A24'; g.beginPath(); g.roundRect(360, 10, 140, 42, 21); g.fill(); g.fillStyle = '#FFF'; g.font = F(800, 32); g.textAlign = 'center'; g.fillText(String(n), 430, 42);
+  const rows = ['ด่วนที่สุด: งานเมื่อวาน', 'ประชุม 8:00 น.', 'แก้งานอีกรอบ', 'ทำไมยังไม่ส่ง', 'ด่วน!!!']; g.textAlign = 'left';
+  rows.forEach((r, i) => { g.fillStyle = i % 2 ? '#FFFFFF' : '#EEF1F7'; g.fillRect(0, 70 + i * 54, 512, 54); g.fillStyle = '#1E1E22'; g.font = F(700, 28); g.fillText(r, 24, 106 + i * 54); g.fillStyle = '#2E5BBA'; g.beginPath(); g.arc(490, 97 + i * 54, 8, 0, 7); g.fill(); });
+});
+/** an open laptop (origin at the hinge, base towards +z, screen facing +z); count = unread e-mails (stepped by 10) */
+export const Laptop: React.FC<{position: V3; yaw?: number; count: number; s?: number}> = ({position, yaw = 0, count, s = 1}) => {
+  const n = Math.min(300, Math.round(count / 10) * 10);
+  const scr = useMemo(() => new THREE.MeshBasicMaterial({map: mailTex(n), toneMapped: false}), [n]);
+  return <group position={position} rotation={[0, yaw, 0]} scale={s}>
+    <mesh position={[0, 0.008, 0.13]} material={M('#3A3D44', 0.4, 0.5)} castShadow><boxGeometry args={[0.4, 0.016, 0.27]} /></mesh>
+    <group rotation={[-0.25, 0, 0]}><mesh position={[0, 0.135, -0.006]} material={M('#3A3D44', 0.4, 0.5)} castShadow><boxGeometry args={[0.4, 0.27, 0.012]} /></mesh>
+      <mesh position={[0, 0.135, 0.001]} material={scr}><planeGeometry args={[0.37, 0.245]} /></mesh></group>
+    <pointLight position={[0, 0.2, 0.25]} color="#CFE0FF" intensity={0.5} distance={1.5} decay={1.5} />
+  </group>;
+};
+const ruleTex = () => tex('ep18-rule', 768, 384, (g) => { g.fillStyle = '#F2C230'; g.fillRect(0, 0, 768, 384); g.strokeStyle = '#1E1E22'; g.lineWidth = 14; g.strokeRect(14, 14, 740, 356);
+  g.fillStyle = '#1E1E22'; g.font = F(800, 74); g.textAlign = 'center'; g.fillText('ข้ามเส้นนี้', 384, 140); g.font = F(800, 92); g.fillStyle = '#C0392B'; g.fillText('แสดงพาสปอร์ต', 384, 270); });
+/** the rule, on a post at the barrier: yellow board facing local +z */
+export const RuleSign: React.FC<{position: V3; yaw?: number}> = ({position, yaw = 0}) => {
+  const m = useMemo(() => new THREE.MeshStandardMaterial({map: ruleTex(), roughness: 0.7}), []);
+  return <group position={position} rotation={[0, yaw, 0]}><mesh position={[0, 1.55, 0]} material={m} castShadow><boxGeometry args={[1.1, 0.55, 0.04]} /></mesh>
+    <mesh position={[0, 0.65, -0.03]} material={M('#6A6E75', 0.5, 0.5)}><cylinderGeometry args={[0.035, 0.035, 1.3, 6]} /></mesh></group>;
+};
