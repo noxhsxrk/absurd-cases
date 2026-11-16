@@ -1,6 +1,6 @@
 # คลังเสียง absurd-cases (SFX library)
 
-956 ไฟล์ (956 อยู่บนคลัง GitHub, 219 อยู่ในเครื่อง) · 199 เสียง · สร้างใหม่: `python tools/sfx_index.py build` · ค้น: `python tools/sfx_index.py search <คำ>` (ไทยก็ได้)
+988 ไฟล์ (988 อยู่บนคลัง GitHub, 223 อยู่ในเครื่อง) · 206 เสียง · สร้างใหม่: `python tools/sfx_index.py build` · ค้น: `python tools/sfx_index.py search <คำ>` (ไทยก็ได้)
 
 ## วิธีใช้
 
@@ -34,7 +34,7 @@
 | **cell_hum** | ทางเดินคุกคอนกรีต พัดลมระบายอากาศ น้ำหยด | EP10 bed box→guardsNet, EP7 bed cell18→prisonTop, EP9 bed darkCell→release | `public/absurd-cases/ep10/sfx_sao/cell_hum_r1.wav` | sao · 6.0 ·  | 12 |
 | **court_amb** | ห้องพิจารณาคดี เสียงพึมพำ กระดาษ เก้าอี้ลั่น (ตัวหลักของศาล) | EP10 bed court→box, EP8b bed court→vest, EP9 bed court→darkCell | `public/absurd-cases/ep10/sfx_sao/court_amb_r1.wav` | sao · 6.0 · 0.02 | 14 |
 | **crickets** | จิ้งหรีดกลางคืน นอกบ้าน/หน้าบ้านดึก | EP10 bed …→lastLight | `public/absurd-cases/ep10/sfx_sao/crickets_r1.wav` | sao · 10.0 ·  | 5 |
-| **fire_crackle** | เปลวไฟเล็กลุกนิ่งๆ มีเสียงแตกเปาะเบาๆ วางเป็นพื้นตลอดช่วงที่มีไฟในฉาก | EP17 | ☁ `sounds/fire_crackle/fire_crackle_r1_sao.wav` | sao · 5.0 · 0.28 | 4 |
+| **fire_crackle** | เปลวไฟเล็กลุกนิ่งๆ มีเสียงแตกเปาะเบาๆ วางเป็นพื้นตลอดช่วงที่มีไฟในฉาก | EP17 | ☁ `sounds/fire_crackle/fire_crackle_r1_sao.wav` | sao · 5.0 · 0.28 | 5 |
 | **flood_hum** | สปอตไลต์ใหญ่กลางแจ้งหึ่ง วางหลังเปิดไฟส่องผู้ต้องหา | EP8b bed lights→interro | `public/absurd-cases/ep8/sfx_sao/flood_hum_r1.wav` | sao · 6.0 · 0.2 | 5 |
 | **fridge_hum** | ตู้เย็นหึ่งในครัวมืด ฉากดึก | EP17 | `public/absurd-cases/ep17/sfx_sao/fridge_hum_r1.wav` | sao · 6.0 ·  | 5 |
 | **morning_birds** | นกร้องตอนเช้า หน้าบ้าน/หมู่บ้าน | EP12 bed …→court, EP9 bed …→interro, EP9 bed …→newMirror | `public/absurd-cases/ep11/sfx_sao/morning_birds_r1.wav` | sao · 8.0 ·  | 7 |
@@ -66,15 +66,20 @@ spot ตรงเฟรมที่ตัวละครทำ ใส่ก่�
 
 | เสียง | ใช้ตอนไหน | เคยใช้ | take ที่ดีที่สุด | engine · วิ · score | takes |
 |---|---|---|---|---|---|
+| **applause** | คนดูในหอประชุมปรบมือ (ต้อนรับ ปิดงาน) |  | ☁ `sounds/applause/applause_r1_sao.wav` | sao · 4.0 · 0.33 | 4 |
 | **cough** | คนแก่ไอสองทีกระแอม ช่วงเงียบในศาล/ห้องสอบสวนก่อนพูด | EP17 soot, EP8b cough | `public/absurd-cases/ep17/sfx_sao/cough_r1.wav` | sao · 2.5 · 0.36 | 6 |
+| **crowd_gasp** | ฝูงคนอ้าปากค้าง สูดลมเฮือกพร้อมกัน (ตกใจทั้งเมือง) |  | ☁ `sounds/crowd_gasp/crowd_gasp_r1_sao.wav` | sao · 2.0 · 0.16 | 4 |
 | **crowd_heave** | คนหมู่มากออกแรงดึงพร้อมกัน ฮึบๆ (ชักเย่อ รุมดึง) | EP16 heave | ☁ `sounds/crowd_heave/crowd_heave_r1_sao.wav` | sao · 3.0 · 0.14 | 5 |
-| **crunch_bite** | กัดและเคี้ยวผักกรอบๆ หนึ่งคำ (ส้มตำ) ตอนตัวเอกกินคำแรก | EP17 dig, EP17 bite, EP17 bite2 | ☁ `sounds/crunch_bite/crunch_bite_r1_sao.wav` | sao · 1.5 · 0.36 | 4 |
+| **crowd_yawn** | ฝูงคนหาวพร้อมกันทั้งเมือง (ทุกคนง่วงพร้อมกัน) |  | ☁ `sounds/crowd_yawn/crowd_yawn_r1_sao.wav` | sao · 4.0 · 0.11 | 4 |
+| **crunch_bite** | กัดและเคี้ยวผักกรอบๆ หนึ่งคำ (ส้มตำ) ตอนตัวเอกกินคำแรก | EP17 dig, EP17 bite, EP17 bite2 | ☁ `sounds/crunch_bite/crunch_bite_r1_sao.wav` | sao · 1.5 · 0.36 | 5 |
 | **flipflop_steps** | รองเท้าแตะเดินตบส้นแปะๆ บนทางเท้า (เดินเล่น ออกจากบ้าน) | EP12 | ☁ `sounds/flipflop_steps/flipflop_steps_r1_sao.wav` | sao · 4.0 · 0.29 | 5 |
 | **guard_sing** | ผู้ชายร้องเพลงเสียงดังเพี้ยนๆ ในโถงคอนกรีต (ผู้คุมร้องเพลง คาราโอเกะ) | EP13 release | ☁ `sounds/guard_sing/guard_sing_r1_sao.wav` | sao · 4.0 · 0.23 | 5 |
+| **hens_cluck** | แม่ไก่กุ๊กๆ จิกพื้นตอนกลางคืน (ไก่ตกงาน ไก่ในซอย) |  | ☁ `sounds/hens_cluck/hens_cluck_r1_sao.wav` | sao · 4.0 · -0.04 | 4 |
 | **scream_short** | ผู้หญิงกรี๊ดสั้นๆ ตกใจ (โดนผีหลอก) | EP13 boo, EP17, EP17 fire2 | ☁ `sounds/scream_short/scream_short_r1_sao.wav` | sao · 1.5 · 0.28 | 6 |
 | **steps_road** | เดินช้าบนถนนยาง รองเท้าผ้าใบ ฉากเดินเล่นเปิดเรื่อง (loop ได้) | EP12 door, EP8b | `public/absurd-cases/ep12/sfx_sao/steps_road_r1.wav` | sao · 5.0 · 0.24 | 6 |
 | **steps_stop** | เดิน 3 ก้าวแล้วหยุด ตรงจังหวะชะงัก/สังเกตเห็นความผิดปกติ | EP8b stop | `public/absurd-cases/ep8/sfx_sao/steps_stop_r1.wav` | sao · 2.0 · 0.13 | 5 |
 | **toothbrush** | แปรงฟันถูๆ เปียก ฟอง วนใต้ฉากแปรงฟันหน้ากระจก (EP9) | EP9 | ☁ `sounds/toothbrush/toothbrush_r1_sao.wav` | sao · 4.0 · 0.33 | 5 |
+| **yawn** | คนหาวยาวๆ เสียงสูดลมแล้วครางออก (หาว ง่วง เบื่อ) |  | ☁ `sounds/yawn/yawn_r1_sao.wav` | sao · 3.5 · 0.16 | 4 |
 | **breath_in** | สูดหายใจลึกทางจมูกแล้วผ่อน ฉากสูดอากาศ/ดมกลิ่น |  | ☁ `sounds/breath_in/breath_in_r1_audioldm2_ep3.wav` | audioldm2 · 3.0 ·  | 4 |
 | **knee_crack** | ข้อเข่าลั่นกึก ตอนนั่งยองๆ/ลุก (มุกคนแก่) | EP6 knee | ☁ `sounds/knee_crack/knee_crack_r1_audioldm2_ep6.wav` | audioldm2 · 1.0 · 0.19 | 4 |
 | **mosquito** | ยุงบินหึ่งใกล้หู ตัวเดียว |  | ☁ `sounds/mosquito/mosquito_v1_r1_audioldm2.wav` | audioldm2 ·  ·  | 2 |
@@ -99,8 +104,10 @@ spot ตรงเฟรมที่ตัวละครทำ ใส่ก่�
 | **house_door** | เปิดประตูบ้านไม้: กดลูกบิดกริ๊ก แล้วบานพับเอี๊ยดเบาๆ (ออกจากบ้าน กลับบ้าน) |  | ☁ `sounds/house_door/house_door_r1_sao.wav` | sao · 3.0 · 0.32 | 4 |
 | **jar_lid** | ปิดฝาโหลแก้วหมุนแน่น ตอนเก็บ 'หลักฐาน' ใส่โหล | EP13 jarIn | `public/absurd-cases/ep13/sfx_sao/jar_lid_r1.wav` | sao · 2.0 ·  | 5 |
 | **knock** | เคาะประตู ตำรวจมาเคาะ/มีคนมา | EP10 tower | `public/absurd-cases/ep10/sfx_sao/knock_r1.wav` | sao · 1.5 ·  | 3 |
+| **page_flip** | ปฏิทินพลิกหน้ารัวๆ (เวลาผ่านไปหลายปี) |  | ☁ `sounds/page_flip/page_flip_r1_sao.wav` | sao · 2.0 · 0.4 | 4 |
 | **ring_click** | สวิตช์พลาสติกเปิดริงไลท์ คลิกแล้วฮัมเบาๆ | EP11 unhand, EP9 ring | ☁ `sounds/ring_click/ring_click_r1_sao.wav` | sao · 1.5 · 0.35 | 6 |
 | **rocking_chair** | เก้าอี้โยกไม้ลั่นเอี๊ยดช้าๆ เป็นจังหวะ (ฉากเกษียณ บ้านเก่า กลางคืน) | EP13 retire | ☁ `sounds/rocking_chair/rocking_chair_r1_sao.wav` | sao · 4.0 · 0.39 | 5 |
+| **scissors_snip** | กรรไกรใหญ่ตัดกระดาษหนาฉับเดียว (ตัดหนังสือ ตัดเอกสาร) |  | ☁ `sounds/scissors_snip/scissors_snip_r1_sao.wav` | sao · 1.2 · 0.26 | 4 |
 | **breaker_clunk** | สับคัตเอาต์ ไฟดับ/ติดทั้งบ้าน |  | ☁ `sounds/breaker_clunk/breaker_clunk_v1_r1_audioldm2.wav` | audioldm2 ·  ·  | 2 |
 | **fan_gear** | เฟืองพัดลมตั้งโต๊ะส่ายดังกึกๆ ฉากพัดลม |  | ☁ `sounds/fan_gear/fan_gear_r1_audioldm2_ep3.wav` | audioldm2 · 2.5 ·  | 4 |
 | **fan_motor** | มอเตอร์พัดลม รุ่นเก่า |  | ☁ `sounds/fan_motor/fan_motor_v1_r1_audioldm2.wav` | audioldm2 ·  ·  | 2 |
@@ -242,8 +249,8 @@ bed ห้อง + spot เด่นหนึ่งเสียงต่อช�
 | **earthquake_rumble** | แผ่นดินไหวเขย่าบ้าน เสียงครืนต่ำ ของสั่นกระทบ (ภัยพิบัติ / ผู้ต้องหาสั่น) | EP14 charge, EP14 court, EP14 wobble, EP16 heave | ☁ `sounds/earthquake_rumble/earthquake_rumble_r1_sao.wav` | sao · 4.0 · 0.27 | 6 |
 | **electric_buzz** | ไฟฟ้าซ่าต่อเนื่อง ของเสียบปลั๊กเพี้ยน | EP10 tower | `public/absurd-cases/ep10/sfx_sao/electric_buzz_r1.wav` | sao · 3.0 ·  | 3 |
 | **electric_pop** | เครื่องใช้ไฟฟ้าลัดวงจรดังป๊อก ควันขึ้น | EP11 pull, EP7 routerBoom | `public/absurd-cases/ep11/sfx_sao/electric_pop_r1.wav` | sao · 2.0 ·  | 5 |
-| **fire_hose** | สายดับเพลิงหลายสายฉีดน้ำแรงดันสูงกระแทกพื้น น้ำกระจาย ตอนรถดับเพลิงฉีด | EP17 | ☁ `sounds/fire_hose/fire_hose_r1_sao.wav` | sao · 4.0 · 0.18 | 4 |
-| **fire_whoosh** | ไฟลุกพรึ่บขึ้นทันที แล้วลุกค้าง ใช้ตรงจังหวะไฟติด/ไฟกลับมาลุก | EP17, EP17 flare, EP17 ignite, EP17 fire2 | ☁ `sounds/fire_whoosh/fire_whoosh_r1_sao.wav` | sao · 2.0 · 0.29 | 4 |
+| **fire_hose** | สายดับเพลิงหลายสายฉีดน้ำแรงดันสูงกระแทกพื้น น้ำกระจาย ตอนรถดับเพลิงฉีด | EP17 | ☁ `sounds/fire_hose/fire_hose_r1_sao.wav` | sao · 4.0 · 0.18 | 5 |
+| **fire_whoosh** | ไฟลุกพรึ่บขึ้นทันที แล้วลุกค้าง ใช้ตรงจังหวะไฟติด/ไฟกลับมาลุก | EP17 | ☁ `sounds/fire_whoosh/fire_whoosh_r1_sao.wav` | sao · 2.0 · 0.29 | 5 |
 | **jet_takeoff** | เครื่องเจ็ตขึ้นบิน เสียงพุ่ง ตอนของพุ่งขึ้นฟ้า | EP7 liftoff | ☁ `sounds/jet_takeoff/jet_takeoff_r1_audioldm2_ep7.wav` | sao · 4.0 ·  | 5 |
 | **rocket_liftoff** | เครื่องยนต์เจ็ต/จรวดจุดติดแล้วพุ่งขึ้นฟ้า (รถตำรวจบินขึ้น ยานออกตัว) | EP14 space, EP15 space, EP15 reach, EP15 interro | ☁ `sounds/rocket_liftoff/rocket_liftoff_r1_sao.wav` | sao · 3.0 · 0.08 | 6 |
 | **rope_strain** | เชือกเส้นใหญ่ตึงเอี๊ยดบนรอก ตอนชักเย่อ/ดึงของหนัก | EP16 heave | ☁ `sounds/rope_strain/rope_strain_r1_sao.wav` | sao · 3.0 · 0.35 | 5 |
