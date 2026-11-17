@@ -4487,6 +4487,27 @@
   "store": "sounds/cuffs/cuffs_r1_sao_ep8.wav"
  },
  {
+  "cue": "dejavu_shimmer",
+  "rank": 1,
+  "path": "public/absurd-cases/ep19/sfx_sao/dejavu_shimmer_r1.wav",
+  "engine": "sao",
+  "score": null,
+  "episode": "19",
+  "prompt": "Soft magical shimmer swell, airy glass harmonics and a gentle reversed chime rising then fading, dreamy and eerie, clean, no music.",
+  "target": "a soft magical shimmering swell",
+  "tags": [
+   "tonal"
+  ],
+  "sha": "fdf14dd7a993ea264afe94acba9b5c0d27f6b8b1",
+  "local": true,
+  "sec": 3.0,
+  "sr": 44100,
+  "ch": 2,
+  "rms_db": -23.6,
+  "peak_db": -1.0,
+  "store": "sounds/dejavu_shimmer/dejavu_shimmer_r1_sao.wav"
+ },
+ {
   "cue": "dial_beeps",
   "rank": 1,
   "path": "public/absurd-cases/ep19/sfx_sao/dial_beeps_r1.wav",
@@ -18803,98 +18824,6 @@
   "rms_db": -25.3,
   "peak_db": -1.0,
   "store": "sounds/dejavu_shimmer/dejavu_shimmer_r4_sao.wav"
- },
- {
-  "cue": "trip_scuff",
-  "rank": 1,
-  "path": "tools/ai-sfx/out_sao19/trip_scuff_r1.wav",
-  "engine": "sao",
-  "score": 0.1717,
-  "episode": null,
-  "prompt": "A man trips over his own feet on an asphalt road: one rubber shoe scuffs and catches, two quick stumbling steps, close foley, dry, outdoors.",
-  "target": "a shoe scuffing and tripping on asphalt",
-  "tags": [
-   "footsteps",
-   "material",
-   "nature"
-  ],
-  "sha": "4da48d68e21bb4b101c233f2392f56365dc0373e",
-  "local": false,
-  "sec": 1.6,
-  "sr": 44100,
-  "ch": 2,
-  "rms_db": -32.7,
-  "peak_db": -1.0,
-  "store": "sounds/trip_scuff/trip_scuff_r1_sao.wav"
- },
- {
-  "cue": "trip_scuff",
-  "rank": 2,
-  "path": "tools/ai-sfx/out_sao19/trip_scuff_r2.wav",
-  "engine": "sao",
-  "score": 0.0654,
-  "episode": null,
-  "prompt": "A man trips over his own feet on an asphalt road: one rubber shoe scuffs and catches, two quick stumbling steps, close foley, dry, outdoors.",
-  "target": "a shoe scuffing and tripping on asphalt",
-  "tags": [
-   "footsteps",
-   "material",
-   "nature"
-  ],
-  "sha": "698135735bcc17d1ad5441d4bb815fa6cc44b90a",
-  "local": false,
-  "sec": 1.6,
-  "sr": 44100,
-  "ch": 2,
-  "rms_db": -25.6,
-  "peak_db": -1.0,
-  "store": "sounds/trip_scuff/trip_scuff_r2_sao.wav"
- },
- {
-  "cue": "trip_scuff",
-  "rank": 3,
-  "path": "tools/ai-sfx/out_sao19/trip_scuff_r3.wav",
-  "engine": "sao",
-  "score": -0.0095,
-  "episode": null,
-  "prompt": "A man trips over his own feet on an asphalt road: one rubber shoe scuffs and catches, two quick stumbling steps, close foley, dry, outdoors.",
-  "target": "a shoe scuffing and tripping on asphalt",
-  "tags": [
-   "footsteps",
-   "material",
-   "nature"
-  ],
-  "sha": "eaea7a5076b784d9c69cfdd4d62e63129eafd196",
-  "local": false,
-  "sec": 1.6,
-  "sr": 44100,
-  "ch": 2,
-  "rms_db": -24.8,
-  "peak_db": -1.0,
-  "store": "sounds/trip_scuff/trip_scuff_r3_sao.wav"
- },
- {
-  "cue": "trip_scuff",
-  "rank": 4,
-  "path": "tools/ai-sfx/out_sao19/trip_scuff_r4.wav",
-  "engine": "sao",
-  "score": -0.0329,
-  "episode": null,
-  "prompt": "A man trips over his own feet on an asphalt road: one rubber shoe scuffs and catches, two quick stumbling steps, close foley, dry, outdoors.",
-  "target": "a shoe scuffing and tripping on asphalt",
-  "tags": [
-   "footsteps",
-   "material",
-   "nature"
-  ],
-  "sha": "ec61d8f054f3b46dcab345cc38281d5ea1960450",
-  "local": false,
-  "sec": 1.6,
-  "sr": 44100,
-  "ch": 2,
-  "rms_db": -36.3,
-  "peak_db": -1.0,
-  "store": "sounds/trip_scuff/trip_scuff_r4_sao.wav"
  },
  {
   "cue": "beep",
