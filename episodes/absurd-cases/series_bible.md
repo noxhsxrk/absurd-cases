@@ -26,10 +26,11 @@ Account in-scene: `@absurd.cases` (`HANDLE` in each episode's data.ts).
 | 16 | แรงโน้มถ่วง | ทำให้เสียทรัพย์ → ขัดขืนการจับกุม | ไม่ตรงเมนู (ใกล้ 1): จับได้แล้วผลย้อนมาโดนทุกคน ทุกอย่างลอย | (ค) มือถือเขา ไม่ตกอีกเลย |
 | 17 | ไฟในปาก (ตัวจริง: พริก) | วางเพลิง | 2: จับผิดตัว | (จ) ส่วนพริก ยังลอยนวล + (ฉ) ภาพเงียบ กินอีกคำ ไฟลุกอีก |
 | 18 | วันจันทร์ (แผ่นปฏิทินสีเหลือง) | ลักลอบเข้าเมือง | 1 (ตอนยาว 46 วิ): ตำรวจน้ำร้อยลำ ลวดหนาม พระอาทิตย์โดนขอพาสปอร์ต (ลูกหลง) → จับ → เนรเทศ แล้วต่อองก์ความรักกับนายดาบ | (ง) กลับบทบาท: "ตอนนี้ นายดาบเกลียดวันอังคาร" ภาพเดินต่อ |
+| 19 | เดจาวู (ก้อนเมฆความคิดสีม่วง + ร่างเงาซ้อน) | ฉ้อโกงประชาชน → มันแจ้งกลับ: อนาจารในที่สาธารณะ | 5 (กลับบทบาท: ผู้ต้องหาโทรแจ้งสวน) + หักมุมในศาล: ผู้พิพากษาเกิดเดจาวู ห้ามฟ้องซ้ำ เดจาวูยกฟ้อง ชายคนนี้ติดสิบปีคนเดียว | (ข) "ตั้งแต่วันนั้น ศาลยกฟ้องทุกคดี เพราะคุ้นไปหมด" ภาพเดินต่อ |
 
-**ตอนถัดไป (EP19) ห้ามใช้**: โครงเรื่องแบบ 1 (เกินเหตุ + ลูกหลง, EP18) และแบบ 2 (จับผิดตัว, EP17); มุกปิดแบบ (ง) (EP18), (จ) และ (ฉ) (EP17) — ตอนที่มีสองอักษรนับทั้งสอง แก้บรรทัดนี้ทุกครั้งที่เพิ่มแถว (ดูย้อน 2 ตอน)
+**ตอนถัดไป (EP20) ห้ามใช้**: โครงเรื่องแบบ 5 (กลับบทบาท, EP19) และแบบ 1 (เกินเหตุ + ลูกหลง, EP18); มุกปิดแบบ (ข) (EP19) และ (ง) (EP18) — ตอนที่มีสองอักษรนับทั้งสอง แก้บรรทัดนี้ทุกครั้งที่เพิ่มแถว (ดูย้อน 2 ตอน)
 
-**ห้องขังที่ใช้แล้ว**: 13, 18, 19, 20, 21, 22, 23 (23 = ตู้เย็นของไฟ) ผู้ต้องหาใหม่ใช้ 24 ขึ้นไป กลับไปห้องเดิมเฉพาะเมื่อตั้งใจเป็น callback
+**ห้องขังที่ใช้แล้ว**: 13, 18, 19, 20, 21, 22, 23 (23 = ตู้เย็นของไฟ), 24 (ชายคนนี้เอง, EP19) ผู้ต้องหาใหม่ใช้ 25 ขึ้นไป กลับไปห้องเดิมเฉพาะเมื่อตั้งใจเป็น callback
 
 ข้อหาที่ใช้ซ้ำแล้วสองครั้ง: ทำให้เสียทรัพย์, พยายามฆ่า, สะกดรอยตาม/สตอล์กเกอร์ — เลี่ยง
 
@@ -130,3 +131,11 @@ Account in-scene: `@absurd.cases` (`HANDLE` in each episode's data.ts).
 - The sergeant (dab: khaki shirt, white cap, moustache) — planted as the sun's point of view in the passport shot. Monday comes back to him every week (board: วันจันทร์มาหา N ครั้ง); he becomes the one person in the world who waits for Monday (one lit booth in a dark fleet, bouquet, booth clock 23:59). They marry on the line under a flower arch, Monday in a veil, two boats spraying an arch of water; the passport is stamped อนุมัติ (pause-bait fields: เกิด ทุกสัปดาห์ / อาชีพ วันแรกของการทำงาน / คู่สมรส ด.ต. ประจำด่าน).
 - Closer (ง): "ตอนนี้ นายดาบเกลียดวันอังคาร" — Monday drifts off, Tuesday (pink, 17) glides up to the wire; he glares at it, bouquet still in his fist; the picture walks on.
 - Hooks: Tuesday vs the sergeant (Tuesday could press charges: ข่มขู่ / ทำให้เสียชื่อเสียง); the date-line checkpoint and the hundred boats exist; Monday is now a Thai citizen married to a police sergeant; the man with the calendar never appears after the call. No cell used.
+
+## EP19 คดีเดจาวู (เดจาวู — ฉ้อโกงประชาชน)
+- He trips over his own feet on the village road in front of his house and it feels familiar ("ท่านี้เป๊ะ"): déjà vu, lying that it happened before = ฉ้อโกงประชาชน. He calls the police.
+- Déjà vu has no face: a violet thought-cloud with a white looping arrow (↻) round it, sparkles, a tag "เดจาวู" in its close-up; a stick arm with a white mitten when it needs hands (binoculars, phone). Its effect = see-through violet DOUBLES of whoever has it, repeating what they do (his double trips on the same spot; two more trip behind him; the judge's double slides out of him and strikes a moment after him).
+- Shape (§1-R 5 + a court twist): it floats off his head, sees through binoculars that his fly is open (red ring "ซิป") and calls the police back: อนาจารในที่สาธารณะ. Twelve patrol cars brake in from both ends of the road; he is cuffed and déjà vu is swept into a big evidence jar ("หลักฐาน · ผู้ต้องหา: เดจาวู · คดีที่ 194/2569").
+- Court: the jar on the bench; the judge gets déjà vu ("คดีนี้ ศาลเคยตัดสินไปแล้ว"), double jeopardy, he lifts the lid himself and déjà vu floats out free. The fly case is not familiar at all: ten years in cell 24 (flip plate "10 ปี"), alone; déjà vu drifts past outside the bars.
+- Closer (ข): "ตั้งแต่วันนั้น ศาลยกฟ้องทุกคดี เพราะคุ้นไปหมด" — the judge and his double strike every file of a pile, each stamped ยกฟ้อง and slid off; the picture walks on.
+- Hooks: the man is now an inmate of the block (cell 24, next to the fan / mosquito / durian), his fly still open; déjà vu is at large and the court dismisses every case (every inmate could appeal: "ขอพิจารณาใหม่ — ศาลคุ้น"); the judge keeps a violet double; twelve patrol cars on the village road.
