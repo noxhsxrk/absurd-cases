@@ -220,8 +220,8 @@ export const SHOT_FN: Record<string, (t: number, lt: number, C: Cast) => ShotOut
   charge: (t, lt, C) => {
     // low angle: he points up at the cloud over his own head. Snap zoom, the plate drops.
     const z = sm((t - ev('plate') + 0.05) / 0.17); const c = HEAD_DV(t);
-    const m = man(C, t, {face: 'shout', look: c, R: add(c, [0.25, -0.35, -0.15]), rs: 'point'});
-    return {node: <>{town(t)}<P o={m.w} />{dv(t)}</>, cam: mv({pos: [STAND + 2.1, 0.95, ZW + 1.3], look: [STAND, 2.12, ZW], fov: 62 - 10 * z}, lt, {arrive: 0.07, push: 0.14, roll: 4, shake: near(t, [ev('plate')], 0.1) ? 0.012 : 0}), bg: SKY};
+    const jab = 0.06 * Math.max(0, Math.sin((t - ev('point')) * 9)); const m = man(C, t, {face: 'shout', look: c, R: add(c, [0.25 - jab, -0.35 - jab, -0.15]), rs: 'point'});
+    return {node: <>{town(t)}<P o={m.w} />{dv(t)}</>, cam: mv({pos: [STAND + 2.1, 0.95, ZW + 1.3], look: [STAND, 2.12, ZW], fov: 62 - 10 * z}, lt, {arrive: 0.07, push: -0.05, roll: 4, shake: near(t, [ev('plate')], 0.1) ? 0.012 : 0}), bg: SKY};
   },
   phone: (t, lt, C) => {
     // the call: phone to his ear, glaring up at it
@@ -264,7 +264,7 @@ export const SHOT_FN: Record<string, (t: number, lt: number, C: Cast) => ShotOut
     // he looks down, sees it, and clamps both hands over his fly. The second plate drops.
     const cov = sm((t - ev('cover')) / 0.18); const fly: V3 = [STAND + 0.2, 0.93, ZW];
     const m = man(C, t, {face: cov > 0.5 ? 'wide' : 'angry', look: lerp3([FLEE[0], FLEE[1], FLEE[2]], fly, cov), R: lerp3([STAND + 0.2, 0.9, ZW - 0.25], add(fly, [0.02, 0.02, -0.06]), cov), L: lerp3([STAND + 0.2, 0.9, ZW + 0.25], add(fly, [0.02, -0.04, 0.06]), cov)});
-    return {node: <>{town(t)}<P o={m.w} />{dv(t)}{cloudHand(t, 'phone', 1)}</>, cam: mv({pos: [STAND + 2.0, 1.2, ZW + 1.35], look: [STAND, 1.15, ZW], fov: 46}, lt, {arrive: 0.07, push: 0.14, roll: -4, shake: near(t, [ev('plate2')], 0.1) ? 0.012 : 0}), bg: SKY};
+    return {node: <>{town(t)}<P o={m.w} />{dv(t)}{cloudHand(t, 'phone', 1)}</>, cam: mv({pos: [STAND + 1.5, 1.2, ZW + 2.45], look: [STAND, 1.08, ZW], fov: 46}, lt, {arrive: 0.07, push: -0.06, roll: -4, shake: near(t, [ev('plate2')], 0.1) ? 0.012 : 0}), bg: SKY};
   },
   arrive: (t, lt, C) => {
     // down the road from the far end: twelve patrol cars brake in from both directions, nose to tail, sirens going; he is tiny in the middle
@@ -276,7 +276,7 @@ export const SHOT_FN: Record<string, (t: number, lt: number, C: Cast) => ShotOut
     cam: mv({pos: [STAND + 3.6, 1.0, ZW + 2.9], look: [STAND + 0.95, 1.35, ZW + 0.2], fov: 52}, lt, {arrive: 0.06, push: 0.06, shake: near(t, [ev('cuff'), ev('jar')], 0.12) ? 0.014 : 0}), bg: SKY}),
   court: (t, lt, C) => ({node: courtRoom(C, t, {jar: true}),
     // wide, frontal, symmetric from the back of the room: him cuffed at the dock, the jar on the bench, the judge between
-    cam: mv({pos: [-0.3, 1.9, 3.9], look: [-0.05, 1.7, -3.0], fov: 44}, lt, {arrive: 0.07, push: 0.16})}),
+    cam: mv({pos: [-0.3, 1.9, 3.9], look: [-0.05, 1.7, -3.0], fov: 44}, lt, {arrive: 0.07, push: -0.1})}),
   judgedv: (t, lt, C) => { const g = sm((t - ev('dvj')) / 0.6);
     // MCU judge: the jar glows — and a violet double slides out of him, a moment behind
     return {node: courtRoom(C, t, {jar: true, ghost: g, judgeFace: g > 0.3 ? 'half' : 'angry'}), cam: mv({pos: [0.2, 2.35, -0.6], look: [0.1, 2.25, -3.25], fov: 34}, lt, {arrive: 0.07, push: 0.08})}; },
@@ -294,9 +294,9 @@ export const SHOT_FN: Record<string, (t: number, lt: number, C: Cast) => ShotOut
     cam: mv({pos: [1.0, 2.15, -1.2], look: [0.45, 2.15, -2.95], fov: 40}, lt, {arrive: 0.06, push: 0.06})}),
   zipcase: (t, lt, C) => { const k = sm((t - sh('zipcase').t0 - 0.35) / 0.2); const q = new THREE.Quaternion().setFromEuler(new THREE.Euler(0, 0, 0));
     // "ส่วนคดีซิป": him at the dock, from the bench — the fly still open, the ring again
-    return {node: <>{courtRoom(C, t, {man: true})}<Note position={[DOCK.x, 0.97, DOCK.z - 0.2]} quaternion={q.setFromEuler(new THREE.Euler(0, Math.PI, 0))} s={0.24} k={k} word="ซิป" /></>,
+    return {node: <>{courtRoom(C, t, {man: true, jar: true})}<Note position={[DOCK.x, 0.97, DOCK.z - 0.2]} quaternion={q.setFromEuler(new THREE.Euler(0, Math.PI, 0))} s={0.24} k={k} word="ซิป" /></>,
       cam: mv({pos: [DOCK.x + 0.2, 1.15, DOCK.z - 1.9], look: [DOCK.x, 1.1, DOCK.z], fov: 36}, lt, {arrive: 0.06, push: 0.08})}; },
-  blank: (t, lt, C) => ({node: courtRoom(C, t, {judgeFace: 'open'}),
+  blank: (t, lt, C) => ({node: courtRoom(C, t, {judgeFace: 'open', jar: true}),
     // "ท่านไม่คุ้นเลย": the judge, alone on the bench, no double, blank
     cam: mv({pos: [0.05, 2.35, -0.9], look: [0, 2.3, -3.25], fov: 30}, lt, {arrive: 0.06, push: 0.07})}),
   cell: (t, lt, C) => ({node: cellBlock(C, t),

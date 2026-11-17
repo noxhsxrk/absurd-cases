@@ -214,7 +214,7 @@ if BGM.exists(): M.bed(rms_to(read(BGM, stereo=True)[:int(END * R)], 0.018), 0, 
 def shimmer(gain=0.35, t0=0.0, pan=0.0): P(take('dejavu_shimmer', lambda: env(bp(nz(2.5), 3000, 9000), [(0, 0), (1.5, 1), (2.5, 0)]), 3.0), gain, t0, pan)
 # ---- the walk and the trip; the double trips the same way; the cloud puffs in
 for k in range(3): P(take('steps_road', lambda: thud(90, 0.12), 0.25), 0.14, EV['trip'] - 1.25 + k * 0.42, -0.1)
-P(take('trip_scuff', lambda: bp(nz(0.3), 800, 5000), 1.6), 0.5, EV['trip'] - 0.08); P(bp(nz(0.18), 900, 6000) * np.exp(-tt(0.18) * 18), 0.35, EV['trip'] - 0.02)
+P(bp(nz(0.3), 700, 5000) * np.exp(-tt(0.3) * 9), 0.4, EV['trip'] - 0.08); P(bp(nz(0.18), 900, 6000) * np.exp(-tt(0.18) * 18), 0.35, EV['trip'] - 0.02)
 P(thud(80, 0.2), 0.3, EV['trip'] + 0.2); P(thud(85, 0.2), 0.28, EV['trip'] + 0.45); P(take('breath_in', lambda: whoosh(0.4, 400, 3000), 0.6) if (AI / 'breath_in_r1.wav').exists() else whoosh(0.4, 400, 3000), 0.12, EV['trip'] + 0.05)
 shimmer(0.25, EV['ghostTrip'] - 1.4, -0.3)
 P(bp(nz(0.18), 900, 6000) * np.exp(-tt(0.18) * 18), 0.18, EV['ghostTrip'] - 0.02, -0.3); P(thud(80, 0.2), 0.14, EV['ghostTrip'] + 0.2, -0.3)

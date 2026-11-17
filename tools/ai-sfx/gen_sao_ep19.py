@@ -11,7 +11,6 @@ def log(*a):
 
 CUES = [  # cue, seconds, CLAP target, prompt — only what `sfx_index.py search` cannot find
     ('dejavu_shimmer', 3.0, 'a soft magical shimmering swell', 'Soft magical shimmer swell, airy glass harmonics and a gentle reversed chime rising then fading, dreamy and eerie, clean, no music.'),
-    ('trip_scuff', 1.6, 'a shoe scuffing and tripping on asphalt', 'A man trips over his own feet on an asphalt road: one rubber shoe scuffs and catches, two quick stumbling steps, close foley, dry, outdoors.'),
 ]
 
 NEG = 'low quality, distorted, music, speech, singing'
