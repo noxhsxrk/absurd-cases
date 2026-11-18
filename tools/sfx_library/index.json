@@ -13,7 +13,7 @@
    "material"
   ],
   "sha": "9c466bbcae88d46fa9fd8ce007d2b50a6fa23f7b",
-  "local": true,
+  "local": false,
   "sec": 2.0,
   "sr": 44100,
   "ch": 2,
@@ -35,7 +35,7 @@
    "mechanical"
   ],
   "sha": "fcd3d377e847add476829436826d843bef724455",
-  "local": true,
+  "local": false,
   "sec": 2.5,
   "sr": 16000,
   "ch": 1,
@@ -56,7 +56,7 @@
    "ambience"
   ],
   "sha": "22e6378a0ffc10195aeb30edb995e361bbaf8301",
-  "local": true,
+  "local": false,
   "sec": 6.0,
   "sr": 16000,
   "ch": 1,
@@ -78,7 +78,7 @@
    "material"
   ],
   "sha": "30fd35ede528dd2afcf34bbaafe1d1851afddfc6",
-  "local": true,
+  "local": false,
   "sec": 6.0,
   "sr": 44100,
   "ch": 2,
@@ -99,7 +99,7 @@
    "ambience"
   ],
   "sha": "5589ae1e1f4bbd705a2e1dc1e39541bc904cf916",
-  "local": true,
+  "local": false,
   "sec": 10.0,
   "sr": 16000,
   "ch": 1,
@@ -122,7 +122,7 @@
    "mechanical"
   ],
   "sha": "47ec2503d6b1d3f1a2f7da44b74dcd8537c4b4b4",
-  "local": true,
+  "local": false,
   "sec": 2.5,
   "sr": 44100,
   "ch": 2,
@@ -141,7 +141,7 @@
   "target": "loud electric shock buzzing, crackling high voltage arc, zapping sparks",
   "tags": [],
   "sha": "345dee5e79d622d9fde85a82e7ef8314e917b3d3",
-  "local": true,
+  "local": false,
   "sec": 3.0,
   "sr": 16000,
   "ch": 1,
@@ -163,7 +163,7 @@
    "impact"
   ],
   "sha": "ba9fa33a95855f259c65e81382e5e7a44995c52c",
-  "local": true,
+  "local": false,
   "sec": 2.0,
   "sr": 44100,
   "ch": 2,
@@ -185,7 +185,7 @@
    "impact"
   ],
   "sha": "2885feaa82f66b5923eacf4ded9b4d7c25652206",
-  "local": true,
+  "local": false,
   "sec": 1.5,
   "sr": 16000,
   "ch": 1,
@@ -206,7 +206,7 @@
    "nature"
   ],
   "sha": "0ffe5d0644dc67d7176725e0c622bc33b81e4145",
-  "local": true,
+  "local": false,
   "sec": 10.0,
   "sr": 16000,
   "ch": 1,
@@ -228,7 +228,7 @@
    "nature"
   ],
   "sha": "a94463393eec182f52824703ef32b1f4878541fd",
-  "local": true,
+  "local": false,
   "sec": 6.0,
   "sr": 16000,
   "ch": 1,
@@ -250,7 +250,7 @@
    "tonal"
   ],
   "sha": "19dfbe55354fc9f9d36ee2e092403fee2e1a6961",
-  "local": true,
+  "local": false,
   "sec": 2.0,
   "sr": 44100,
   "ch": 2,
@@ -272,7 +272,7 @@
    "tonal"
   ],
   "sha": "63973374660a1f635ed020fc6ade56e77617fd05",
-  "local": true,
+  "local": false,
   "sec": 8.0,
   "sr": 16000,
   "ch": 1,
@@ -294,7 +294,7 @@
    "tonal"
   ],
   "sha": "2331357da1386bf194aadac63ae15809d3feb9af",
-  "local": true,
+  "local": false,
   "sec": 6.0,
   "sr": 16000,
   "ch": 1,
@@ -316,7 +316,7 @@
    "police"
   ],
   "sha": "b326ab50635ac4d061076c78c2c4a9449ebf6a4f",
-  "local": true,
+  "local": false,
   "sec": 7.0,
   "sr": 44100,
   "ch": 2,
@@ -337,7 +337,7 @@
    "impact"
   ],
   "sha": "da43179301fcbabddb593a0f61fe96cceb139f8f",
-  "local": true,
+  "local": false,
   "sec": 2.0,
   "sr": 44100,
   "ch": 2,
@@ -360,7 +360,7 @@
    "police"
   ],
   "sha": "5e3273479b77c5779d0b70fd39dce61a4256f6a9",
-  "local": true,
+  "local": false,
   "sec": 3.0,
   "sr": 44100,
   "ch": 2,
@@ -381,7 +381,7 @@
    "impact"
   ],
   "sha": "fc044351b23eed993daa5cca72465f1e6d7ea886",
-  "local": true,
+  "local": false,
   "sec": 1.5,
   "sr": 44100,
   "ch": 2,
@@ -404,7 +404,7 @@
    "nature"
   ],
   "sha": "6dd61edc57861a6500d7c486b9d717a8de0116c6",
-  "local": true,
+  "local": false,
   "sec": 10.0,
   "sr": 44100,
   "ch": 2,
@@ -426,7 +426,7 @@
    "tonal"
   ],
   "sha": "58f75cac9ea8ddbb1047cf6d1021d1751626b099",
-  "local": true,
+  "local": false,
   "sec": 5.0,
   "sr": 44100,
   "ch": 2,
@@ -448,7 +448,7 @@
    "mechanical"
   ],
   "sha": "fcd3d377e847add476829436826d843bef724455",
-  "local": true,
+  "local": false,
   "sec": 2.5,
   "sr": 16000,
   "ch": 1,
@@ -469,7 +469,7 @@
    "ambience"
   ],
   "sha": "22e6378a0ffc10195aeb30edb995e361bbaf8301",
-  "local": true,
+  "local": false,
   "sec": 6.0,
   "sr": 16000,
   "ch": 1,
@@ -490,7 +490,7 @@
    "ambience"
   ],
   "sha": "57c1d224043605dfbcb260ab347271d95e5261e1",
-  "local": true,
+  "local": false,
   "sec": 5.0,
   "sr": 44100,
   "ch": 2,
@@ -512,7 +512,7 @@
    "material"
   ],
   "sha": "30fd35ede528dd2afcf34bbaafe1d1851afddfc6",
-  "local": true,
+  "local": false,
   "sec": 6.0,
   "sr": 44100,
   "ch": 2,
@@ -535,7 +535,7 @@
    "mechanical"
   ],
   "sha": "47ec2503d6b1d3f1a2f7da44b74dcd8537c4b4b4",
-  "local": true,
+  "local": false,
   "sec": 2.5,
   "sr": 44100,
   "ch": 2,
@@ -556,7 +556,7 @@
    "cartoon"
   ],
   "sha": "659ebcde2bd6b399554af8bc3cc45648ff9f2646",
-  "local": true,
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
@@ -578,7 +578,7 @@
    "impact"
   ],
   "sha": "ba9fa33a95855f259c65e81382e5e7a44995c52c",
-  "local": true,
+  "local": false,
   "sec": 2.0,
   "sr": 44100,
   "ch": 2,
@@ -600,7 +600,7 @@
    "mechanical"
   ],
   "sha": "7e818cd559cebabaad4f2053b011391f1ba07ce7",
-  "local": true,
+  "local": false,
   "sec": 2.5,
   "sr": 16000,
   "ch": 1,
@@ -622,7 +622,7 @@
    "footsteps"
   ],
   "sha": "85c53f9159aa9f2fab442563c28763d7af2adc21",
-  "local": true,
+  "local": false,
   "sec": 5.0,
   "sr": 16000,
   "ch": 1,
@@ -643,7 +643,7 @@
    "mechanical"
   ],
   "sha": "6891955458b0690b5731d03034cc96d96a3fc548",
-  "local": true,
+  "local": false,
   "sec": 1.5,
   "sr": 44100,
   "ch": 2,
@@ -665,7 +665,7 @@
    "nature"
   ],
   "sha": "b932cff4377023d999ebc622cc95faa6db16b16d",
-  "local": true,
+  "local": false,
   "sec": 8.0,
   "sr": 16000,
   "ch": 1,
@@ -686,7 +686,7 @@
    "nature"
   ],
   "sha": "0ffe5d0644dc67d7176725e0c622bc33b81e4145",
-  "local": true,
+  "local": false,
   "sec": 10.0,
   "sr": 16000,
   "ch": 1,
@@ -708,7 +708,7 @@
    "nature"
   ],
   "sha": "a94463393eec182f52824703ef32b1f4878541fd",
-  "local": true,
+  "local": false,
   "sec": 6.0,
   "sr": 16000,
   "ch": 1,
@@ -730,7 +730,7 @@
    "tonal"
   ],
   "sha": "19dfbe55354fc9f9d36ee2e092403fee2e1a6961",
-  "local": true,
+  "local": false,
   "sec": 2.0,
   "sr": 44100,
   "ch": 2,
@@ -752,7 +752,7 @@
    "tonal"
   ],
   "sha": "63973374660a1f635ed020fc6ade56e77617fd05",
-  "local": true,
+  "local": false,
   "sec": 8.0,
   "sr": 16000,
   "ch": 1,
@@ -774,7 +774,7 @@
    "mechanical"
   ],
   "sha": "4c663c5852a2f4d05543b154f286f3bae01ac01b",
-  "local": true,
+  "local": false,
   "sec": 1.5,
   "sr": 44100,
   "ch": 2,
@@ -796,7 +796,7 @@
    "tonal"
   ],
   "sha": "2331357da1386bf194aadac63ae15809d3feb9af",
-  "local": true,
+  "local": false,
   "sec": 6.0,
   "sr": 16000,
   "ch": 1,
@@ -818,7 +818,7 @@
    "material"
   ],
   "sha": "bb878777519ec10ae70daa4d96e401095833c697",
-  "local": true,
+  "local": false,
   "sec": 1.0,
   "sr": 16000,
   "ch": 1,
@@ -839,7 +839,7 @@
    "material"
   ],
   "sha": "65cd666ac3c760342bf9c20b7b4aeebf1a1bba11",
-  "local": true,
+  "local": false,
   "sec": 1.5,
   "sr": 16000,
   "ch": 1,
@@ -861,7 +861,7 @@
    "tonal"
   ],
   "sha": "827c5d75655aec6410725dc4c52025988aaac1ca",
-  "local": true,
+  "local": false,
   "sec": 5.0,
   "sr": 44100,
   "ch": 2,
@@ -883,7 +883,7 @@
    "police"
   ],
   "sha": "b326ab50635ac4d061076c78c2c4a9449ebf6a4f",
-  "local": true,
+  "local": false,
   "sec": 7.0,
   "sr": 44100,
   "ch": 2,
@@ -904,7 +904,7 @@
    "voice"
   ],
   "sha": "5ad3027f4c965be2713c8d66298bd2d61cc149c4",
-  "local": true,
+  "local": false,
   "sec": 6.0,
   "sr": 16000,
   "ch": 1,
@@ -927,7 +927,7 @@
    "police"
   ],
   "sha": "5e3273479b77c5779d0b70fd39dce61a4256f6a9",
-  "local": true,
+  "local": false,
   "sec": 3.0,
   "sr": 44100,
   "ch": 2,
@@ -948,7 +948,7 @@
    "impact"
   ],
   "sha": "fc044351b23eed993daa5cca72465f1e6d7ea886",
-  "local": true,
+  "local": false,
   "sec": 1.5,
   "sr": 44100,
   "ch": 2,
@@ -969,7 +969,7 @@
    "cartoon"
   ],
   "sha": "44f8fda781b29edee659d988f2da210eecb3a355",
-  "local": true,
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
@@ -990,7 +990,7 @@
    "ambience"
   ],
   "sha": "c598441bc022b7431efb348244bc2c67e8fdb384",
-  "local": true,
+  "local": false,
   "sec": 3.0,
   "sr": 16000,
   "ch": 1,
@@ -1011,7 +1011,7 @@
    "impact"
   ],
   "sha": "e513cc3c37062e500bbf47632da6e3a9fd35240a",
-  "local": true,
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
@@ -1033,7 +1033,7 @@
    "mechanical"
   ],
   "sha": "fcd3d377e847add476829436826d843bef724455",
-  "local": true,
+  "local": false,
   "sec": 2.5,
   "sr": 16000,
   "ch": 1,
@@ -1054,7 +1054,7 @@
    "ambience"
   ],
   "sha": "22e6378a0ffc10195aeb30edb995e361bbaf8301",
-  "local": true,
+  "local": false,
   "sec": 6.0,
   "sr": 16000,
   "ch": 1,
@@ -1073,7 +1073,7 @@
   "target": "heavy chains rattling",
   "tags": [],
   "sha": "86f5df63148e2612c3450f0d4f0ed2a68e7fa88c",
-  "local": true,
+  "local": false,
   "sec": 2.5,
   "sr": 16000,
   "ch": 1,
@@ -1095,7 +1095,7 @@
    "material"
   ],
   "sha": "30fd35ede528dd2afcf34bbaafe1d1851afddfc6",
-  "local": true,
+  "local": false,
   "sec": 6.0,
   "sr": 44100,
   "ch": 2,
@@ -1117,7 +1117,7 @@
    "mechanical"
   ],
   "sha": "c72e1745b403da8be2e37878b22c37d2db2f91ec",
-  "local": true,
+  "local": false,
   "sec": 3.0,
   "sr": 44100,
   "ch": 2,
@@ -1140,7 +1140,7 @@
    "mechanical"
   ],
   "sha": "4773740d7c98b3784bfd97e858775390a5812032",
-  "local": true,
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
@@ -1161,7 +1161,7 @@
    "footsteps"
   ],
   "sha": "5ef115210f02ddfb0d2d289cd8832beca47dabf5",
-  "local": true,
+  "local": false,
   "sec": 4.0,
   "sr": 44100,
   "ch": 2,
@@ -1183,7 +1183,7 @@
    "impact"
   ],
   "sha": "ba9fa33a95855f259c65e81382e5e7a44995c52c",
-  "local": true,
+  "local": false,
   "sec": 2.0,
   "sr": 44100,
   "ch": 2,
@@ -1205,7 +1205,7 @@
    "mechanical"
   ],
   "sha": "7e818cd559cebabaad4f2053b011391f1ba07ce7",
-  "local": true,
+  "local": false,
   "sec": 2.5,
   "sr": 16000,
   "ch": 1,
@@ -1303,7 +1303,7 @@
    "nature"
   ],
   "sha": "b932cff4377023d999ebc622cc95faa6db16b16d",
-  "local": true,
+  "local": false,
   "sec": 8.0,
   "sr": 16000,
   "ch": 1,
@@ -1325,7 +1325,7 @@
    "nature"
   ],
   "sha": "a94463393eec182f52824703ef32b1f4878541fd",
-  "local": true,
+  "local": false,
   "sec": 6.0,
   "sr": 16000,
   "ch": 1,
@@ -1347,7 +1347,7 @@
    "tonal"
   ],
   "sha": "19dfbe55354fc9f9d36ee2e092403fee2e1a6961",
-  "local": true,
+  "local": false,
   "sec": 2.0,
   "sr": 44100,
   "ch": 2,
@@ -1368,7 +1368,7 @@
    "police"
   ],
   "sha": "0a72cece395da627f3b0d0b20a639b54e52a652a",
-  "local": true,
+  "local": false,
   "sec": 3.0,
   "sr": 44100,
   "ch": 2,
@@ -1390,7 +1390,7 @@
    "police"
   ],
   "sha": "b326ab50635ac4d061076c78c2c4a9449ebf6a4f",
-  "local": true,
+  "local": false,
   "sec": 7.0,
   "sr": 44100,
   "ch": 2,
@@ -1411,7 +1411,7 @@
    "footsteps"
   ],
   "sha": "3f2f40a92b9e7e0b111b40fcc9a48ab95bea6df0",
-  "local": true,
+  "local": false,
   "sec": 5.0,
   "sr": 44100,
   "ch": 2,
@@ -1430,7 +1430,7 @@
   "target": "",
   "tags": [],
   "sha": "81cf0ba45e6bb1aecf1dfa203f983f4d2e76a33e",
-  "local": true,
+  "local": false,
   "sec": 4.0,
   "sr": 44100,
   "ch": 2,
@@ -1449,7 +1449,7 @@
   "target": "",
   "tags": [],
   "sha": "d08d498901f6b93c4f31a45e949f6e0ad7df6668",
-  "local": true,
+  "local": false,
   "sec": 4.0,
   "sr": 44100,
   "ch": 2,
@@ -1472,7 +1472,7 @@
    "nature"
   ],
   "sha": "6dd61edc57861a6500d7c486b9d717a8de0116c6",
-  "local": true,
+  "local": false,
   "sec": 10.0,
   "sr": 44100,
   "ch": 2,
@@ -1491,7 +1491,7 @@
   "target": "",
   "tags": [],
   "sha": "85e888c94c0eddafd4532da03428d43df87e4933",
-  "local": true,
+  "local": false,
   "sec": 2.0,
   "sr": 44100,
   "ch": 2,
@@ -1513,7 +1513,7 @@
    "impact"
   ],
   "sha": "f9e26e1f0578003a27b5d669efff49daf0c6a43d",
-  "local": true,
+  "local": false,
   "sec": 2.0,
   "sr": 44100,
   "ch": 2,
@@ -1535,7 +1535,7 @@
    "mechanical"
   ],
   "sha": "fcd3d377e847add476829436826d843bef724455",
-  "local": true,
+  "local": false,
   "sec": 2.5,
   "sr": 16000,
   "ch": 1,
@@ -1556,7 +1556,7 @@
    "ambience"
   ],
   "sha": "22e6378a0ffc10195aeb30edb995e361bbaf8301",
-  "local": true,
+  "local": false,
   "sec": 6.0,
   "sr": 16000,
   "ch": 1,
@@ -1578,7 +1578,7 @@
    "material"
   ],
   "sha": "30fd35ede528dd2afcf34bbaafe1d1851afddfc6",
-  "local": true,
+  "local": false,
   "sec": 6.0,
   "sr": 44100,
   "ch": 2,
@@ -1599,7 +1599,7 @@
    "ambience"
   ],
   "sha": "5589ae1e1f4bbd705a2e1dc1e39541bc904cf916",
-  "local": true,
+  "local": false,
   "sec": 10.0,
   "sr": 16000,
   "ch": 1,
@@ -1621,7 +1621,7 @@
    "police"
   ],
   "sha": "590070a8f12a7b856dba6da57fe70934bca04ce2",
-  "local": true,
+  "local": false,
   "sec": 1.5,
   "sr": 16000,
   "ch": 1,
@@ -1642,7 +1642,7 @@
    "mechanical"
   ],
   "sha": "e09c7c20947cdbee1551b5bb048cbaeb17867dd7",
-  "local": true,
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
@@ -1664,7 +1664,7 @@
    "mechanical"
   ],
   "sha": "c72e1745b403da8be2e37878b22c37d2db2f91ec",
-  "local": true,
+  "local": false,
   "sec": 3.0,
   "sr": 44100,
   "ch": 2,
@@ -1686,7 +1686,7 @@
    "impact"
   ],
   "sha": "ba9fa33a95855f259c65e81382e5e7a44995c52c",
-  "local": true,
+  "local": false,
   "sec": 2.0,
   "sr": 44100,
   "ch": 2,
@@ -1705,7 +1705,7 @@
   "target": "a ghostly wooo moan echoing",
   "tags": [],
   "sha": "9a9bc8932873570a3064dcbab66c5013e4732450",
-  "local": true,
+  "local": false,
   "sec": 3.0,
   "sr": 44100,
   "ch": 2,
@@ -1727,7 +1727,7 @@
    "mechanical"
   ],
   "sha": "7e818cd559cebabaad4f2053b011391f1ba07ce7",
-  "local": true,
+  "local": false,
   "sec": 2.5,
   "sr": 16000,
   "ch": 1,
@@ -1746,7 +1746,7 @@
   "target": "a man singing loudly and off-key",
   "tags": [],
   "sha": "d11fbf9a05529e306a0ea06dd85ec828a0ab2f44",
-  "local": true,
+  "local": false,
   "sec": 4.0,
   "sr": 44100,
   "ch": 2,
@@ -1768,7 +1768,7 @@
    "footsteps"
   ],
   "sha": "85c53f9159aa9f2fab442563c28763d7af2adc21",
-  "local": true,
+  "local": false,
   "sec": 5.0,
   "sr": 16000,
   "ch": 1,
@@ -1787,7 +1787,7 @@
   "target": "a lid closing on a glass jar",
   "tags": [],
   "sha": "1ac051d9bc1fc9e58a40be47b277e9f8612176d1",
-  "local": true,
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
@@ -1808,7 +1808,7 @@
    "nature"
   ],
   "sha": "0ffe5d0644dc67d7176725e0c622bc33b81e4145",
-  "local": true,
+  "local": false,
   "sec": 10.0,
   "sr": 16000,
   "ch": 1,
@@ -1830,7 +1830,7 @@
    "nature"
   ],
   "sha": "a94463393eec182f52824703ef32b1f4878541fd",
-  "local": true,
+  "local": false,
   "sec": 6.0,
   "sr": 16000,
   "ch": 1,
@@ -1852,7 +1852,7 @@
    "tonal"
   ],
   "sha": "19dfbe55354fc9f9d36ee2e092403fee2e1a6961",
-  "local": true,
+  "local": false,
   "sec": 2.0,
   "sr": 44100,
   "ch": 2,
@@ -1874,7 +1874,7 @@
    "police"
   ],
   "sha": "58aaa5ad0c3e59eee927607b6b9ccfa866a16543",
-  "local": true,
+  "local": false,
   "sec": 6.0,
   "sr": 16000,
   "ch": 1,
@@ -1895,7 +1895,7 @@
    "ambience"
   ],
   "sha": "a3ed79d7d860529fc89b27f43b510655440c0d3c",
-  "local": true,
+  "local": false,
   "sec": 4.0,
   "sr": 44100,
   "ch": 2,
@@ -1917,7 +1917,7 @@
    "tonal"
   ],
   "sha": "dc64c2f51d66fb37e39119220dd82c276147b3d1",
-  "local": true,
+  "local": false,
   "sec": 6.0,
   "sr": 44100,
   "ch": 2,
@@ -1939,7 +1939,7 @@
    "material"
   ],
   "sha": "bb878777519ec10ae70daa4d96e401095833c697",
-  "local": true,
+  "local": false,
   "sec": 1.0,
   "sr": 16000,
   "ch": 1,
@@ -1958,7 +1958,7 @@
   "target": "bricks and rubble falling",
   "tags": [],
   "sha": "00be017024c90d7479f5580e36c14a73dc2f2cd1",
-  "local": true,
+  "local": false,
   "sec": 3.0,
   "sr": 16000,
   "ch": 1,
@@ -1979,7 +1979,7 @@
    "voice"
   ],
   "sha": "0b32e7f22cdd1df5e556602bbbdc71aaeb8d0343",
-  "local": true,
+  "local": false,
   "sec": 1.5,
   "sr": 44100,
   "ch": 2,
@@ -2001,7 +2001,7 @@
    "police"
   ],
   "sha": "b326ab50635ac4d061076c78c2c4a9449ebf6a4f",
-  "local": true,
+  "local": false,
   "sec": 7.0,
   "sr": 44100,
   "ch": 2,
@@ -2022,7 +2022,7 @@
    "cartoon"
   ],
   "sha": "c615207b52c257c19bba6b54ccaf047d4ff31988",
-  "local": true,
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
@@ -2043,7 +2043,7 @@
    "ambience"
   ],
   "sha": "3ca92bf6199158dd7be4954221a7b7944ad952b3",
-  "local": true,
+  "local": false,
   "sec": 6.0,
   "sr": 16000,
   "ch": 1,
@@ -2065,7 +2065,7 @@
    "mechanical"
   ],
   "sha": "9efcb824f94fd27aaf3ae2a6b57c92c8fa633dfc",
-  "local": true,
+  "local": false,
   "sec": 2.5,
   "sr": 44100,
   "ch": 2,
@@ -2088,7 +2088,7 @@
    "mechanical"
   ],
   "sha": "5edadf37b03d443f93fd78e8b81ba6fdb9c5ce39",
-  "local": true,
+  "local": false,
   "sec": 1.5,
   "sr": 44100,
   "ch": 2,
@@ -2110,7 +2110,7 @@
    "mechanical"
   ],
   "sha": "fcd3d377e847add476829436826d843bef724455",
-  "local": true,
+  "local": false,
   "sec": 2.5,
   "sr": 16000,
   "ch": 1,
@@ -2131,7 +2131,7 @@
    "ambience"
   ],
   "sha": "22e6378a0ffc10195aeb30edb995e361bbaf8301",
-  "local": true,
+  "local": false,
   "sec": 6.0,
   "sr": 16000,
   "ch": 1,
@@ -2153,7 +2153,7 @@
    "material"
   ],
   "sha": "30fd35ede528dd2afcf34bbaafe1d1851afddfc6",
-  "local": true,
+  "local": false,
   "sec": 6.0,
   "sr": 44100,
   "ch": 2,
@@ -2175,7 +2175,7 @@
    "police"
   ],
   "sha": "ed747afad0665a578fa0bcd21be15074d89282c2",
-  "local": true,
+  "local": false,
   "sec": 2.0,
   "sr": 44100,
   "ch": 2,
@@ -2196,7 +2196,7 @@
    "mechanical"
   ],
   "sha": "ef6ec461c0e1234de768e6aa3c401c611039a5bd",
-  "local": true,
+  "local": false,
   "sec": 3.0,
   "sr": 44100,
   "ch": 2,
@@ -2218,7 +2218,7 @@
    "mechanical"
   ],
   "sha": "08575987a7f025745a04ce1c7705e8d8e277174b",
-  "local": true,
+  "local": false,
   "sec": 1.0,
   "sr": 44100,
   "ch": 2,
@@ -2240,7 +2240,7 @@
    "impact"
   ],
   "sha": "b567042b95c6a43bb2e4c7bd7c89bd7429e246f7",
-  "local": true,
+  "local": false,
   "sec": 4.0,
   "sr": 44100,
   "ch": 2,
@@ -2262,7 +2262,7 @@
    "impact"
   ],
   "sha": "ba9fa33a95855f259c65e81382e5e7a44995c52c",
-  "local": true,
+  "local": false,
   "sec": 2.0,
   "sr": 44100,
   "ch": 2,
@@ -2305,7 +2305,7 @@
    "impact"
   ],
   "sha": "9b0ac1f4933c91fe296528c233315846f96d45e4",
-  "local": true,
+  "local": false,
   "sec": 2.0,
   "sr": 44100,
   "ch": 2,
@@ -2327,7 +2327,7 @@
    "tonal"
   ],
   "sha": "19dfbe55354fc9f9d36ee2e092403fee2e1a6961",
-  "local": true,
+  "local": false,
   "sec": 2.0,
   "sr": 44100,
   "ch": 2,
@@ -2349,7 +2349,7 @@
    "police"
   ],
   "sha": "58aaa5ad0c3e59eee927607b6b9ccfa866a16543",
-  "local": true,
+  "local": false,
   "sec": 6.0,
   "sr": 16000,
   "ch": 1,
@@ -2371,7 +2371,7 @@
    "mechanical"
   ],
   "sha": "db4e541632e3eb41c65749a958ad25d223c8dbeb",
-  "local": true,
+  "local": false,
   "sec": 3.0,
   "sr": 44100,
   "ch": 2,
@@ -2393,7 +2393,7 @@
    "tonal"
   ],
   "sha": "dc64c2f51d66fb37e39119220dd82c276147b3d1",
-  "local": true,
+  "local": false,
   "sec": 6.0,
   "sr": 44100,
   "ch": 2,
@@ -2415,7 +2415,7 @@
    "material"
   ],
   "sha": "bb878777519ec10ae70daa4d96e401095833c697",
-  "local": true,
+  "local": false,
   "sec": 1.0,
   "sr": 16000,
   "ch": 1,
@@ -2437,7 +2437,7 @@
    "police"
   ],
   "sha": "b326ab50635ac4d061076c78c2c4a9449ebf6a4f",
-  "local": true,
+  "local": false,
   "sec": 7.0,
   "sr": 44100,
   "ch": 2,
@@ -2460,7 +2460,7 @@
    "nature"
   ],
   "sha": "6dd61edc57861a6500d7c486b9d717a8de0116c6",
-  "local": true,
+  "local": false,
   "sec": 10.0,
   "sr": 44100,
   "ch": 2,
@@ -2481,7 +2481,7 @@
    "cartoon"
   ],
   "sha": "c615207b52c257c19bba6b54ccaf047d4ff31988",
-  "local": true,
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
@@ -2503,7 +2503,7 @@
    "mechanical"
   ],
   "sha": "9efcb824f94fd27aaf3ae2a6b57c92c8fa633dfc",
-  "local": true,
+  "local": false,
   "sec": 2.5,
   "sr": 44100,
   "ch": 2,
@@ -2524,7 +2524,7 @@
    "cartoon"
   ],
   "sha": "18fb7b4ba19526d20cf0bae5ff63f3df4b18ec99",
-  "local": true,
+  "local": false,
   "sec": 2.5,
   "sr": 16000,
   "ch": 1,
@@ -2546,7 +2546,7 @@
    "mechanical"
   ],
   "sha": "fcd3d377e847add476829436826d843bef724455",
-  "local": true,
+  "local": false,
   "sec": 2.5,
   "sr": 16000,
   "ch": 1,
@@ -2567,7 +2567,7 @@
    "ambience"
   ],
   "sha": "22e6378a0ffc10195aeb30edb995e361bbaf8301",
-  "local": true,
+  "local": false,
   "sec": 6.0,
   "sr": 16000,
   "ch": 1,
@@ -2586,7 +2586,7 @@
   "target": "heavy chains rattling",
   "tags": [],
   "sha": "86f5df63148e2612c3450f0d4f0ed2a68e7fa88c",
-  "local": true,
+  "local": false,
   "sec": 2.5,
   "sr": 16000,
   "ch": 1,
@@ -2607,7 +2607,7 @@
    "ambience"
   ],
   "sha": "b3ebfa18f91efff9e97befda90bdf29ac1c9c27b",
-  "local": true,
+  "local": false,
   "sec": 5.0,
   "sr": 44100,
   "ch": 2,
@@ -2629,7 +2629,7 @@
    "material"
   ],
   "sha": "30fd35ede528dd2afcf34bbaafe1d1851afddfc6",
-  "local": true,
+  "local": false,
   "sec": 6.0,
   "sr": 44100,
   "ch": 2,
@@ -2650,7 +2650,7 @@
    "ambience"
   ],
   "sha": "5589ae1e1f4bbd705a2e1dc1e39541bc904cf916",
-  "local": true,
+  "local": false,
   "sec": 10.0,
   "sr": 16000,
   "ch": 1,
@@ -2672,7 +2672,7 @@
    "police"
   ],
   "sha": "ed747afad0665a578fa0bcd21be15074d89282c2",
-  "local": true,
+  "local": false,
   "sec": 2.0,
   "sr": 44100,
   "ch": 2,
@@ -2694,7 +2694,7 @@
    "police"
   ],
   "sha": "2d4016c34383ac2792e8fbcd63822a3371883f31",
-  "local": true,
+  "local": false,
   "sec": 3.0,
   "sr": 16000,
   "ch": 1,
@@ -2716,7 +2716,7 @@
    "impact"
   ],
   "sha": "ba9fa33a95855f259c65e81382e5e7a44995c52c",
-  "local": true,
+  "local": false,
   "sec": 2.0,
   "sr": 44100,
   "ch": 2,
@@ -2737,7 +2737,7 @@
    "nature"
   ],
   "sha": "0ffe5d0644dc67d7176725e0c622bc33b81e4145",
-  "local": true,
+  "local": false,
   "sec": 10.0,
   "sr": 16000,
   "ch": 1,
@@ -2758,7 +2758,7 @@
    "material"
   ],
   "sha": "09e40e0a7575be583ebaa9807b1be9dd7ed0f58f",
-  "local": true,
+  "local": false,
   "sec": 3.0,
   "sr": 44100,
   "ch": 2,
@@ -2780,7 +2780,7 @@
    "tonal"
   ],
   "sha": "19dfbe55354fc9f9d36ee2e092403fee2e1a6961",
-  "local": true,
+  "local": false,
   "sec": 2.0,
   "sr": 44100,
   "ch": 2,
@@ -2802,7 +2802,7 @@
    "mechanical"
   ],
   "sha": "db4e541632e3eb41c65749a958ad25d223c8dbeb",
-  "local": true,
+  "local": false,
   "sec": 3.0,
   "sr": 44100,
   "ch": 2,
@@ -2824,7 +2824,7 @@
    "tonal"
   ],
   "sha": "dc64c2f51d66fb37e39119220dd82c276147b3d1",
-  "local": true,
+  "local": false,
   "sec": 6.0,
   "sr": 44100,
   "ch": 2,
@@ -2846,7 +2846,7 @@
    "police"
   ],
   "sha": "b326ab50635ac4d061076c78c2c4a9449ebf6a4f",
-  "local": true,
+  "local": false,
   "sec": 7.0,
   "sr": 44100,
   "ch": 2,
@@ -2867,7 +2867,7 @@
    "impact"
   ],
   "sha": "fc044351b23eed993daa5cca72465f1e6d7ea886",
-  "local": true,
+  "local": false,
   "sec": 1.5,
   "sr": 44100,
   "ch": 2,
@@ -2886,7 +2886,7 @@
   "target": "tyres screeching",
   "tags": [],
   "sha": "3ae7d1249af51fe7fb0cdc615ef7c06e0a9c524d",
-  "local": true,
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
@@ -2907,7 +2907,7 @@
    "cartoon"
   ],
   "sha": "c615207b52c257c19bba6b54ccaf047d4ff31988",
-  "local": true,
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
@@ -2929,7 +2929,7 @@
    "cartoon"
   ],
   "sha": "f1431aa44551b5be7c5e104751e80007736c71a3",
-  "local": true,
+  "local": false,
   "sec": 3.0,
   "sr": 16000,
   "ch": 1,
@@ -2950,7 +2950,7 @@
    "impact"
   ],
   "sha": "e513cc3c37062e500bbf47632da6e3a9fd35240a",
-  "local": true,
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
@@ -2972,7 +2972,7 @@
    "mechanical"
   ],
   "sha": "fcd3d377e847add476829436826d843bef724455",
-  "local": true,
+  "local": false,
   "sec": 2.5,
   "sr": 16000,
   "ch": 1,
@@ -2993,7 +2993,7 @@
    "ambience"
   ],
   "sha": "22e6378a0ffc10195aeb30edb995e361bbaf8301",
-  "local": true,
+  "local": false,
   "sec": 6.0,
   "sr": 16000,
   "ch": 1,
@@ -3015,7 +3015,7 @@
    "material"
   ],
   "sha": "30fd35ede528dd2afcf34bbaafe1d1851afddfc6",
-  "local": true,
+  "local": false,
   "sec": 6.0,
   "sr": 44100,
   "ch": 2,
@@ -3038,7 +3038,7 @@
    "voice"
   ],
   "sha": "b5dd223caab073f5b3281cee6772e33541f782be",
-  "local": true,
+  "local": false,
   "sec": 3.0,
   "sr": 44100,
   "ch": 2,
@@ -3059,7 +3059,7 @@
    "police"
   ],
   "sha": "3c31bb84f8015ce1d988bfebee6174f2245f6421",
-  "local": true,
+  "local": false,
   "sec": 1.5,
   "sr": 44100,
   "ch": 2,
@@ -3081,7 +3081,7 @@
    "police"
   ],
   "sha": "ed747afad0665a578fa0bcd21be15074d89282c2",
-  "local": true,
+  "local": false,
   "sec": 2.0,
   "sr": 44100,
   "ch": 2,
@@ -3102,7 +3102,7 @@
    "ambience"
   ],
   "sha": "0d6bb69cf391f0724465a26f282ababffcb6ea9c",
-  "local": true,
+  "local": false,
   "sec": 2.5,
   "sr": 44100,
   "ch": 2,
@@ -3124,7 +3124,7 @@
    "impact"
   ],
   "sha": "b567042b95c6a43bb2e4c7bd7c89bd7429e246f7",
-  "local": true,
+  "local": false,
   "sec": 4.0,
   "sr": 44100,
   "ch": 2,
@@ -3146,7 +3146,7 @@
    "nature"
   ],
   "sha": "b932cff4377023d999ebc622cc95faa6db16b16d",
-  "local": true,
+  "local": false,
   "sec": 8.0,
   "sr": 16000,
   "ch": 1,
@@ -3168,7 +3168,7 @@
    "voice"
   ],
   "sha": "3f8a8ca8a39f55e3daee1ce9d79063aff7a9d9c9",
-  "local": true,
+  "local": false,
   "sec": 10.0,
   "sr": 16000,
   "ch": 1,
@@ -3189,7 +3189,7 @@
    "impact"
   ],
   "sha": "ea54fd354c4cda65ca9ee8ce12fa84c23d8a5ee6",
-  "local": true,
+  "local": false,
   "sec": 1.5,
   "sr": 44100,
   "ch": 2,
@@ -3211,7 +3211,7 @@
    "tonal"
   ],
   "sha": "19dfbe55354fc9f9d36ee2e092403fee2e1a6961",
-  "local": true,
+  "local": false,
   "sec": 2.0,
   "sr": 44100,
   "ch": 2,
@@ -3232,7 +3232,7 @@
    "police"
   ],
   "sha": "0a72cece395da627f3b0d0b20a639b54e52a652a",
-  "local": true,
+  "local": false,
   "sec": 3.0,
   "sr": 44100,
   "ch": 2,
@@ -3251,7 +3251,7 @@
   "target": "a thick rope creaking under heavy tension",
   "tags": [],
   "sha": "fbd27be4ed3c334ecb054d044449ae3958e1a006",
-  "local": true,
+  "local": false,
   "sec": 3.0,
   "sr": 44100,
   "ch": 2,
@@ -3270,7 +3270,7 @@
   "target": "bricks and rubble falling",
   "tags": [],
   "sha": "00be017024c90d7479f5580e36c14a73dc2f2cd1",
-  "local": true,
+  "local": false,
   "sec": 3.0,
   "sr": 16000,
   "ch": 1,
@@ -3292,7 +3292,7 @@
    "police"
   ],
   "sha": "b326ab50635ac4d061076c78c2c4a9449ebf6a4f",
-  "local": true,
+  "local": false,
   "sec": 7.0,
   "sr": 44100,
   "ch": 2,
@@ -3315,7 +3315,7 @@
    "police"
   ],
   "sha": "cb0dc29f619f4917d66e4b5df7f3d3edb9510631",
-  "local": true,
+  "local": false,
   "sec": 3.0,
   "sr": 16000,
   "ch": 1,
@@ -3338,7 +3338,7 @@
    "nature"
   ],
   "sha": "6dd61edc57861a6500d7c486b9d717a8de0116c6",
-  "local": true,
+  "local": false,
   "sec": 10.0,
   "sr": 44100,
   "ch": 2,
@@ -3359,7 +3359,7 @@
    "ambience"
   ],
   "sha": "ed423baa1459dc57c5bd80643505065e280e858d",
-  "local": true,
+  "local": false,
   "sec": 8.0,
   "sr": 16000,
   "ch": 1,
@@ -3380,7 +3380,7 @@
    "mechanical"
   ],
   "sha": "79ab7d816bdffa0d56388239ebdb0f4cb3eeec7d",
-  "local": true,
+  "local": false,
   "sec": 6.0,
   "sr": 16000,
   "ch": 1,
@@ -3401,7 +3401,7 @@
    "cartoon"
   ],
   "sha": "ffb429e2d670e932ea5df02afd6d3efbeee39276",
-  "local": true,
+  "local": false,
   "sec": 1.5,
   "sr": 16000,
   "ch": 1,
@@ -3423,7 +3423,7 @@
    "mechanical"
   ],
   "sha": "9efcb824f94fd27aaf3ae2a6b57c92c8fa633dfc",
-  "local": true,
+  "local": false,
   "sec": 2.5,
   "sr": 44100,
   "ch": 2,
@@ -3445,7 +3445,7 @@
    "voice"
   ],
   "sha": "e2cb8dd85b0cf7d5a13287ed3a55bc10d30ce15a",
-  "local": true,
+  "local": false,
   "sec": 2.5,
   "sr": 44100,
   "ch": 2,
@@ -3467,7 +3467,7 @@
    "material"
   ],
   "sha": "30fd35ede528dd2afcf34bbaafe1d1851afddfc6",
-  "local": true,
+  "local": false,
   "sec": 6.0,
   "sr": 44100,
   "ch": 2,
@@ -3486,7 +3486,7 @@
   "target": "a person biting and chewing crunchy raw vegetables",
   "tags": [],
   "sha": "1b9eb3a0979ccae1eb872842b5d84e67bb1682a3",
-  "local": true,
+  "local": false,
   "sec": 1.5,
   "sr": 44100,
   "ch": 2,
@@ -3508,7 +3508,7 @@
    "police"
   ],
   "sha": "ed747afad0665a578fa0bcd21be15074d89282c2",
-  "local": true,
+  "local": false,
   "sec": 2.0,
   "sr": 44100,
   "ch": 2,
@@ -3529,7 +3529,7 @@
    "mechanical"
   ],
   "sha": "e09c7c20947cdbee1551b5bb048cbaeb17867dd7",
-  "local": true,
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
@@ -3552,7 +3552,7 @@
    "nature"
   ],
   "sha": "e9a82b060fd2974e8518e5d2e03a4f79c7afe66c",
-  "local": true,
+  "local": false,
   "sec": 5.0,
   "sr": 44100,
   "ch": 2,
@@ -3574,7 +3574,7 @@
    "nature"
   ],
   "sha": "00f193a8278c3ccef4a7515de9e2952bf551f7e8",
-  "local": true,
+  "local": false,
   "sec": 4.0,
   "sr": 44100,
   "ch": 2,
@@ -3596,7 +3596,7 @@
    "nature"
   ],
   "sha": "947a2d4fcd1eb4a87895d89b1b8a225e3a176e3b",
-  "local": true,
+  "local": false,
   "sec": 2.0,
   "sr": 44100,
   "ch": 2,
@@ -3618,7 +3618,7 @@
    "mechanical"
   ],
   "sha": "a2527ddb146bdf068eba16331eab0dcdb9a0d206",
-  "local": true,
+  "local": false,
   "sec": 6.0,
   "sr": 16000,
   "ch": 1,
@@ -3640,7 +3640,7 @@
    "impact"
   ],
   "sha": "ba9fa33a95855f259c65e81382e5e7a44995c52c",
-  "local": true,
+  "local": false,
   "sec": 2.0,
   "sr": 44100,
   "ch": 2,
@@ -3662,7 +3662,7 @@
    "mechanical"
   ],
   "sha": "7e818cd559cebabaad4f2053b011391f1ba07ce7",
-  "local": true,
+  "local": false,
   "sec": 2.5,
   "sr": 16000,
   "ch": 1,
@@ -3684,7 +3684,7 @@
    "nature"
   ],
   "sha": "b932cff4377023d999ebc622cc95faa6db16b16d",
-  "local": true,
+  "local": false,
   "sec": 8.0,
   "sr": 16000,
   "ch": 1,
@@ -3706,7 +3706,7 @@
    "voice"
   ],
   "sha": "3f8a8ca8a39f55e3daee1ce9d79063aff7a9d9c9",
-  "local": true,
+  "local": false,
   "sec": 10.0,
   "sr": 16000,
   "ch": 1,
@@ -3728,7 +3728,7 @@
    "police"
   ],
   "sha": "52c04fdb7018292b1016fa8ec9257981fa182b7f",
-  "local": true,
+  "local": false,
   "sec": 6.0,
   "sr": 16000,
   "ch": 1,
@@ -3750,7 +3750,7 @@
    "tonal"
   ],
   "sha": "63973374660a1f635ed020fc6ade56e77617fd05",
-  "local": true,
+  "local": false,
   "sec": 8.0,
   "sr": 16000,
   "ch": 1,
@@ -3772,7 +3772,7 @@
    "tonal"
   ],
   "sha": "dc64c2f51d66fb37e39119220dd82c276147b3d1",
-  "local": true,
+  "local": false,
   "sec": 6.0,
   "sr": 44100,
   "ch": 2,
@@ -3793,7 +3793,7 @@
    "voice"
   ],
   "sha": "0b32e7f22cdd1df5e556602bbbdc71aaeb8d0343",
-  "local": true,
+  "local": false,
   "sec": 1.5,
   "sr": 44100,
   "ch": 2,
@@ -3815,7 +3815,7 @@
    "impact"
   ],
   "sha": "0531983649d9ce9fcaa4456cf1d8e3dec020675f",
-  "local": true,
+  "local": false,
   "sec": 1.5,
   "sr": 16000,
   "ch": 1,
@@ -3836,7 +3836,7 @@
    "impact"
   ],
   "sha": "da43179301fcbabddb593a0f61fe96cceb139f8f",
-  "local": true,
+  "local": false,
   "sec": 2.0,
   "sr": 44100,
   "ch": 2,
@@ -3857,7 +3857,7 @@
    "impact"
   ],
   "sha": "fc044351b23eed993daa5cca72465f1e6d7ea886",
-  "local": true,
+  "local": false,
   "sec": 1.5,
   "sr": 44100,
   "ch": 2,
@@ -3878,7 +3878,7 @@
    "cartoon"
   ],
   "sha": "44f8fda781b29edee659d988f2da210eecb3a355",
-  "local": true,
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
@@ -3897,7 +3897,7 @@
   "target": "tyres screeching",
   "tags": [],
   "sha": "3ae7d1249af51fe7fb0cdc615ef7c06e0a9c524d",
-  "local": true,
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
@@ -3920,7 +3920,7 @@
    "nature"
   ],
   "sha": "6dd61edc57861a6500d7c486b9d717a8de0116c6",
-  "local": true,
+  "local": false,
   "sec": 10.0,
   "sr": 44100,
   "ch": 2,
@@ -3941,7 +3941,7 @@
    "ambience"
   ],
   "sha": "5d93230d61d807af1594d653ed6aa7997ef0ea49",
-  "local": true,
+  "local": false,
   "sec": 4.0,
   "sr": 44100,
   "ch": 2,
@@ -3964,7 +3964,7 @@
    "police"
   ],
   "sha": "ca41bc78d222b6c071c28b7fdecd1e4862140742",
-  "local": true,
+  "local": false,
   "sec": 5.0,
   "sr": 44100,
   "ch": 2,
@@ -3985,7 +3985,7 @@
    "voice"
   ],
   "sha": "5663cc28365365ab9cf52e9bbc687e202b9dbe86",
-  "local": true,
+  "local": false,
   "sec": 3.0,
   "sr": 16000,
   "ch": 1,
@@ -4006,7 +4006,7 @@
    "ambience"
   ],
   "sha": "b3ebfa18f91efff9e97befda90bdf29ac1c9c27b",
-  "local": true,
+  "local": false,
   "sec": 5.0,
   "sr": 44100,
   "ch": 2,
@@ -4028,7 +4028,7 @@
    "material"
   ],
   "sha": "30fd35ede528dd2afcf34bbaafe1d1851afddfc6",
-  "local": true,
+  "local": false,
   "sec": 6.0,
   "sr": 44100,
   "ch": 2,
@@ -4050,7 +4050,7 @@
    "police"
   ],
   "sha": "ed747afad0665a578fa0bcd21be15074d89282c2",
-  "local": true,
+  "local": false,
   "sec": 2.0,
   "sr": 44100,
   "ch": 2,
@@ -4071,7 +4071,7 @@
    "mechanical"
   ],
   "sha": "e09c7c20947cdbee1551b5bb048cbaeb17867dd7",
-  "local": true,
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
@@ -4093,7 +4093,7 @@
    "nature"
   ],
   "sha": "00f193a8278c3ccef4a7515de9e2952bf551f7e8",
-  "local": true,
+  "local": false,
   "sec": 4.0,
   "sr": 44100,
   "ch": 2,
@@ -4115,7 +4115,7 @@
    "impact"
   ],
   "sha": "ba9fa33a95855f259c65e81382e5e7a44995c52c",
-  "local": true,
+  "local": false,
   "sec": 2.0,
   "sr": 44100,
   "ch": 2,
@@ -4137,7 +4137,7 @@
    "voice"
   ],
   "sha": "3f8a8ca8a39f55e3daee1ce9d79063aff7a9d9c9",
-  "local": true,
+  "local": false,
   "sec": 10.0,
   "sr": 16000,
   "ch": 1,
@@ -4158,7 +4158,7 @@
    "nature"
   ],
   "sha": "0ffe5d0644dc67d7176725e0c622bc33b81e4145",
-  "local": true,
+  "local": false,
   "sec": 10.0,
   "sr": 16000,
   "ch": 1,
@@ -4180,7 +4180,7 @@
    "material"
   ],
   "sha": "18be6ae6c4d6aaa641495696581b23ced72d21f1",
-  "local": true,
+  "local": false,
   "sec": 1.5,
   "sr": 44100,
   "ch": 2,
@@ -4202,7 +4202,7 @@
    "police"
   ],
   "sha": "52c04fdb7018292b1016fa8ec9257981fa182b7f",
-  "local": true,
+  "local": false,
   "sec": 6.0,
   "sr": 16000,
   "ch": 1,
@@ -4224,7 +4224,7 @@
    "nature"
   ],
   "sha": "98075a47bfa359cb2f1da301910523bef355c19f",
-  "local": true,
+  "local": false,
   "sec": 8.0,
   "sr": 44100,
   "ch": 2,
@@ -4245,7 +4245,7 @@
    "nature"
   ],
   "sha": "3a444f9a4aa215b70dca95ad4c53283251b02982",
-  "local": true,
+  "local": false,
   "sec": 6.0,
   "sr": 44100,
   "ch": 2,
@@ -4267,7 +4267,7 @@
    "material"
   ],
   "sha": "3dfa8cda5f64580ed214b73f1c69f6c8453a3a0b",
-  "local": true,
+  "local": false,
   "sec": 1.5,
   "sr": 44100,
   "ch": 2,
@@ -4286,7 +4286,7 @@
   "target": "",
   "tags": [],
   "sha": "81cf0ba45e6bb1aecf1dfa203f983f4d2e76a33e",
-  "local": true,
+  "local": false,
   "sec": 4.0,
   "sr": 44100,
   "ch": 2,
@@ -4307,7 +4307,7 @@
    "tonal"
   ],
   "sha": "98c7e0ef90343cb118ec2ed753bd84231c120812",
-  "local": true,
+  "local": false,
   "sec": 5.0,
   "sr": 44100,
   "ch": 2,
@@ -4326,7 +4326,7 @@
   "target": "coils of barbed wire unrolling, metal clinking",
   "tags": [],
   "sha": "36255e8c13e6fe692ae75b060f82376ca7b89c26",
-  "local": true,
+  "local": false,
   "sec": 3.0,
   "sr": 44100,
   "ch": 2,
@@ -4347,7 +4347,7 @@
    "impact"
   ],
   "sha": "e513cc3c37062e500bbf47632da6e3a9fd35240a",
-  "local": true,
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
@@ -4369,7 +4369,7 @@
    "mechanical"
   ],
   "sha": "9efcb824f94fd27aaf3ae2a6b57c92c8fa633dfc",
-  "local": true,
+  "local": false,
   "sec": 2.5,
   "sr": 44100,
   "ch": 2,
@@ -4391,7 +4391,7 @@
    "mechanical"
   ],
   "sha": "fcd3d377e847add476829436826d843bef724455",
-  "local": true,
+  "local": false,
   "sec": 2.5,
   "sr": 16000,
   "ch": 1,
@@ -4412,7 +4412,7 @@
    "ambience"
   ],
   "sha": "22e6378a0ffc10195aeb30edb995e361bbaf8301",
-  "local": true,
+  "local": false,
   "sec": 6.0,
   "sr": 16000,
   "ch": 1,
@@ -4434,7 +4434,7 @@
    "material"
   ],
   "sha": "30fd35ede528dd2afcf34bbaafe1d1851afddfc6",
-  "local": true,
+  "local": false,
   "sec": 6.0,
   "sr": 44100,
   "ch": 2,
@@ -4456,7 +4456,7 @@
    "voice"
   ],
   "sha": "2dbeaaf155a82a78960a73567840ca3fca3a2095",
-  "local": true,
+  "local": false,
   "sec": 2.0,
   "sr": 44100,
   "ch": 2,
@@ -4478,7 +4478,7 @@
    "police"
   ],
   "sha": "ed747afad0665a578fa0bcd21be15074d89282c2",
-  "local": true,
+  "local": false,
   "sec": 2.0,
   "sr": 44100,
   "ch": 2,
@@ -4499,7 +4499,7 @@
    "tonal"
   ],
   "sha": "fdf14dd7a993ea264afe94acba9b5c0d27f6b8b1",
-  "local": true,
+  "local": false,
   "sec": 3.0,
   "sr": 44100,
   "ch": 2,
@@ -4520,7 +4520,7 @@
    "mechanical"
   ],
   "sha": "e09c7c20947cdbee1551b5bb048cbaeb17867dd7",
-  "local": true,
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
@@ -4541,7 +4541,7 @@
    "material"
   ],
   "sha": "445e4e78053583f7a1687dc44d0c16326a2bdc86",
-  "local": true,
+  "local": false,
   "sec": 2.0,
   "sr": 44100,
   "ch": 2,
@@ -4563,7 +4563,7 @@
    "impact"
   ],
   "sha": "ba9fa33a95855f259c65e81382e5e7a44995c52c",
-  "local": true,
+  "local": false,
   "sec": 2.0,
   "sr": 44100,
   "ch": 2,
@@ -4582,7 +4582,7 @@
   "target": "a lid closing on a glass jar",
   "tags": [],
   "sha": "1ac051d9bc1fc9e58a40be47b277e9f8612176d1",
-  "local": true,
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
@@ -4604,7 +4604,7 @@
    "voice"
   ],
   "sha": "3f8a8ca8a39f55e3daee1ce9d79063aff7a9d9c9",
-  "local": true,
+  "local": false,
   "sec": 10.0,
   "sr": 16000,
   "ch": 1,
@@ -4626,7 +4626,7 @@
    "police"
   ],
   "sha": "58aaa5ad0c3e59eee927607b6b9ccfa866a16543",
-  "local": true,
+  "local": false,
   "sec": 6.0,
   "sr": 16000,
   "ch": 1,
@@ -4648,7 +4648,7 @@
    "police"
   ],
   "sha": "52c04fdb7018292b1016fa8ec9257981fa182b7f",
-  "local": true,
+  "local": false,
   "sec": 6.0,
   "sr": 16000,
   "ch": 1,
@@ -4669,7 +4669,7 @@
    "cartoon"
   ],
   "sha": "e4a1567fd4efd4d165502cf47186d5450e200522",
-  "local": true,
+  "local": false,
   "sec": 5.0,
   "sr": 16000,
   "ch": 1,
@@ -4691,7 +4691,7 @@
    "material"
   ],
   "sha": "bb878777519ec10ae70daa4d96e401095833c697",
-  "local": true,
+  "local": false,
   "sec": 1.0,
   "sr": 16000,
   "ch": 1,
@@ -4712,7 +4712,7 @@
    "footsteps"
   ],
   "sha": "3f2f40a92b9e7e0b111b40fcc9a48ab95bea6df0",
-  "local": true,
+  "local": false,
   "sec": 5.0,
   "sr": 44100,
   "ch": 2,
@@ -4733,7 +4733,7 @@
    "footsteps"
   ],
   "sha": "c4996a1d4b41b182f0e71664b861e63065acac1d",
-  "local": true,
+  "local": false,
   "sec": 2.0,
   "sr": 44100,
   "ch": 2,
@@ -4755,7 +4755,7 @@
    "impact"
   ],
   "sha": "dd7f2d51bbf28f8fbf106452420ffef3c100bf57",
-  "local": true,
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
@@ -4774,7 +4774,7 @@
   "target": "tyres screeching",
   "tags": [],
   "sha": "3ae7d1249af51fe7fb0cdc615ef7c06e0a9c524d",
-  "local": true,
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
@@ -4797,7 +4797,7 @@
    "nature"
   ],
   "sha": "6dd61edc57861a6500d7c486b9d717a8de0116c6",
-  "local": true,
+  "local": false,
   "sec": 10.0,
   "sr": 44100,
   "ch": 2,
@@ -4812,6 +4812,418 @@
   "engine": "sao",
   "score": null,
   "episode": "19",
+  "prompt": "a fast airy whoosh passing through a cloud, swish",
+  "target": "a fast whoosh through air",
+  "tags": [
+   "cartoon"
+  ],
+  "sha": "c615207b52c257c19bba6b54ccaf047d4ff31988",
+  "local": false,
+  "sec": 2.0,
+  "sr": 16000,
+  "ch": 1,
+  "rms_db": -19.8,
+  "peak_db": -0.9,
+  "store": "sounds/whoosh_cloud/whoosh_cloud_r1_audioldm2_ep7.wav"
+ },
+ {
+  "cue": "bars_grip",
+  "rank": 1,
+  "path": "public/absurd-cases/ep20/sfx_sao/bars_grip_r1.wav",
+  "engine": "sao",
+  "score": null,
+  "episode": "20",
+  "prompt": "Steel prison cell bars, two hands grab the bars and give them one short shake, a dull clank as they knock in their concrete sockets, then a brief settling rattle. Close foley, concrete corridor.",
+  "target": "hands grab and shake steel prison cell bars",
+  "tags": [
+   "impact"
+  ],
+  "sha": "0713a338ee7a4295d0e1402801d07e3b4dca4ec3",
+  "local": true,
+  "sec": 2.5,
+  "sr": 44100,
+  "ch": 2,
+  "rms_db": -26.7,
+  "peak_db": -1.0,
+  "store": "sounds/bars_grip/bars_grip_r1_sao_ep20.wav"
+ },
+ {
+  "cue": "cell_hum",
+  "rank": 1,
+  "path": "public/absurd-cases/ep20/sfx_sao/cell_hum_r1.wav",
+  "engine": "sao",
+  "score": null,
+  "episode": "20",
+  "prompt": "quiet concrete prison corridor, faint ventilation hum, distant drip",
+  "target": "a quiet concrete corridor",
+  "tags": [
+   "ambience"
+  ],
+  "sha": "22e6378a0ffc10195aeb30edb995e361bbaf8301",
+  "local": true,
+  "sec": 6.0,
+  "sr": 16000,
+  "ch": 1,
+  "rms_db": -16.8,
+  "peak_db": -0.9,
+  "store": "sounds/cell_hum/cell_hum_r1_sao_ep10.wav"
+ },
+ {
+  "cue": "chain_rattle",
+  "rank": 1,
+  "path": "public/absurd-cases/ep20/sfx_sao/chain_rattle_r1.wav",
+  "engine": "sao",
+  "score": null,
+  "episode": "20",
+  "prompt": "heavy iron chains rattling and being pulled taut, metal links clanking",
+  "target": "heavy chains rattling",
+  "tags": [],
+  "sha": "86f5df63148e2612c3450f0d4f0ed2a68e7fa88c",
+  "local": true,
+  "sec": 2.5,
+  "sr": 16000,
+  "ch": 1,
+  "rms_db": -15.2,
+  "peak_db": -0.9,
+  "store": "sounds/chain_rattle/chain_rattle_r1_audioldm2_ep6.wav"
+ },
+ {
+  "cue": "dial_beeps",
+  "rank": 1,
+  "path": "public/absurd-cases/ep20/sfx_sao/dial_beeps_r1.wav",
+  "engine": "sao",
+  "score": null,
+  "episode": "20",
+  "prompt": "a digital counter beeping rapidly, rising electronic beeps",
+  "target": "fast electronic beeps",
+  "tags": [
+   "mechanical"
+  ],
+  "sha": "e09c7c20947cdbee1551b5bb048cbaeb17867dd7",
+  "local": true,
+  "sec": 2.0,
+  "sr": 16000,
+  "ch": 1,
+  "rms_db": -26.3,
+  "peak_db": -0.9,
+  "store": "sounds/dial_beeps/dial_beeps_r1_audioldm2_ep7.wav"
+ },
+ {
+  "cue": "earthquake_rumble",
+  "rank": 1,
+  "path": "public/absurd-cases/ep20/sfx_sao/earthquake_rumble_r1.wav",
+  "engine": "sao",
+  "score": null,
+  "episode": "20",
+  "prompt": "A strong earthquake hits a house at night: a deep low rumble rises fast, the floor and walls shake, windows and shelves rattle, a few objects clatter, then the rumble fades, indoor, no music.",
+  "target": "an earthquake rumbling and shaking a house",
+  "tags": [
+   "ambience",
+   "impact"
+  ],
+  "sha": "b567042b95c6a43bb2e4c7bd7c89bd7429e246f7",
+  "local": true,
+  "sec": 4.0,
+  "sr": 44100,
+  "ch": 2,
+  "rms_db": -17.1,
+  "peak_db": -1.0,
+  "store": "sounds/earthquake_rumble/earthquake_rumble_r1_sao.wav"
+ },
+ {
+  "cue": "fan_hum",
+  "rank": 1,
+  "path": "public/absurd-cases/ep20/sfx_sao/fan_hum_r1.wav",
+  "engine": "sao",
+  "score": null,
+  "episode": "20",
+  "prompt": "an electric fan running on high, motor hum and whirring blades",
+  "target": "an electric fan humming",
+  "tags": [
+   "ambience",
+   "footsteps",
+   "mechanical"
+  ],
+  "sha": "2edcc1a46952a8f003d5a1ff165c71e8a0b39743",
+  "local": true,
+  "sec": 6.0,
+  "sr": 16000,
+  "ch": 1,
+  "rms_db": -9.9,
+  "peak_db": -0.9,
+  "store": "sounds/fan_hum/fan_hum_r1_audioldm2_ep5.wav"
+ },
+ {
+  "cue": "fire_crackle",
+  "rank": 1,
+  "path": "public/absurd-cases/ep20/sfx_sao/fire_crackle_r1.wav",
+  "engine": "sao",
+  "score": null,
+  "episode": "20",
+  "prompt": "A small steady flame burning, soft roar of fire with light crackles and pops, close foley, dry room, no music.",
+  "target": "a small fire burning and crackling steadily",
+  "tags": [
+   "ambience",
+   "cartoon",
+   "nature"
+  ],
+  "sha": "e9a82b060fd2974e8518e5d2e03a4f79c7afe66c",
+  "local": true,
+  "sec": 5.0,
+  "sr": 44100,
+  "ch": 2,
+  "rms_db": -44.8,
+  "peak_db": -1.0,
+  "store": "sounds/fire_crackle/fire_crackle_r1_sao.wav"
+ },
+ {
+  "cue": "fold",
+  "rank": 1,
+  "path": "public/absurd-cases/ep20/sfx_sao/fold_r1.wav",
+  "engine": "sao",
+  "score": 0.235,
+  "episode": "20",
+  "prompt": "Folding a heavy flexible rubber mat in half, soft flap and rubbery rustle, close foley.",
+  "target": "a rubber mat being folded",
+  "tags": [
+   "material"
+  ],
+  "sha": "445e4e78053583f7a1687dc44d0c16326a2bdc86",
+  "local": true,
+  "sec": 2.0,
+  "sr": 44100,
+  "ch": 2,
+  "rms_db": -32.9,
+  "peak_db": -1.0,
+  "store": "sounds/fold/fold_r1_sao_ep8.wav"
+ },
+ {
+  "cue": "fridge_hum",
+  "rank": 1,
+  "path": "public/absurd-cases/ep20/sfx_sao/fridge_hum_r1.wav",
+  "engine": "sao",
+  "score": null,
+  "episode": "20",
+  "prompt": "a refrigerator motor humming quietly in a dark kitchen at night",
+  "target": "a refrigerator humming",
+  "tags": [
+   "ambience",
+   "mechanical"
+  ],
+  "sha": "a2527ddb146bdf068eba16331eab0dcdb9a0d206",
+  "local": true,
+  "sec": 6.0,
+  "sr": 16000,
+  "ch": 1,
+  "rms_db": -11.8,
+  "peak_db": -0.9,
+  "store": "sounds/fridge_hum/fridge_hum_r1_audioldm2_ep3.wav"
+ },
+ {
+  "cue": "fridge_open",
+  "rank": 1,
+  "path": "public/absurd-cases/ep20/sfx_sao/fridge_open_r1.wav",
+  "engine": "sao",
+  "score": null,
+  "episode": "20",
+  "prompt": "opening a refrigerator door, rubber seal unsticking with a soft suction pop, then the fridge hum, close up foley",
+  "target": "a refrigerator door being opened",
+  "tags": [
+   "ambience",
+   "cartoon",
+   "material",
+   "mechanical"
+  ],
+  "sha": "2cf12138cb0eb9860942969b43c773912f169133",
+  "local": true,
+  "sec": 2.0,
+  "sr": 16000,
+  "ch": 1,
+  "rms_db": -26.7,
+  "peak_db": -0.9,
+  "store": "sounds/fridge_open/fridge_open_r1_audioldm2_ep3.wav"
+ },
+ {
+  "cue": "keys",
+  "rank": 1,
+  "path": "public/absurd-cases/ep20/sfx_sao/keys_r1.wav",
+  "engine": "sao",
+  "score": null,
+  "episode": "20",
+  "prompt": "",
+  "target": "metal handcuffs jingling, chain rattle, close up",
+  "tags": [
+   "police"
+  ],
+  "sha": "1545137224d26bc813024fac2c6ab0e6e9764ead",
+  "local": true,
+  "sec": 2.0,
+  "sr": 16000,
+  "ch": 1,
+  "rms_db": -11.5,
+  "peak_db": -0.3,
+  "store": "sounds/keys/keys_r1_sao_ep20.wav"
+ },
+ {
+  "cue": "mosquito",
+  "rank": 1,
+  "path": "public/absurd-cases/ep20/sfx_sao/mosquito_r1.wav",
+  "engine": "sao",
+  "score": null,
+  "episode": "20",
+  "prompt": "",
+  "target": "a single mosquito buzzing close to the ear in a quiet room at night",
+  "tags": [
+   "ambience",
+   "nature"
+  ],
+  "sha": "020443b1a2f5fecb4ebbe9727ee500be773b8de9",
+  "local": true,
+  "sec": 5.0,
+  "sr": 16000,
+  "ch": 1,
+  "rms_db": -29.6,
+  "peak_db": -13.2,
+  "store": "sounds/mosquito/mosquito_r1_sao_ep20.wav"
+ },
+ {
+  "cue": "phone_alert",
+  "rank": 1,
+  "path": "public/absurd-cases/ep20/sfx_sao/phone_alert_r1.wav",
+  "engine": "sao",
+  "score": null,
+  "episode": "20",
+  "prompt": "a smartphone emergency alert tone, loud repeating two tone beeps",
+  "target": "a phone emergency alert tone",
+  "tags": [
+   "ambience",
+   "mechanical",
+   "tonal"
+  ],
+  "sha": "a392d6a96f5bb5b998617171324ac2cbeb8663bb",
+  "local": true,
+  "sec": 2.0,
+  "sr": 16000,
+  "ch": 1,
+  "rms_db": -10.1,
+  "peak_db": -0.9,
+  "store": "sounds/phone_alert/phone_alert_r1_audioldm2_ep7.wav"
+ },
+ {
+  "cue": "phone_drop",
+  "rank": 1,
+  "path": "public/absurd-cases/ep20/sfx_sao/phone_drop_r1.wav",
+  "engine": "sao",
+  "score": null,
+  "episode": "20",
+  "prompt": "A smartphone falls and hits a hard asphalt road, one sharp plastic and glass smack with the screen cracking, a short brittle crunch, very close foley, outdoor, dry, no music.",
+  "target": "a smartphone dropped on concrete, the glass screen cracking",
+  "tags": [
+   "impact"
+  ],
+  "sha": "ea54fd354c4cda65ca9ee8ce12fa84c23d8a5ee6",
+  "local": true,
+  "sec": 1.5,
+  "sr": 44100,
+  "ch": 2,
+  "rms_db": -24.5,
+  "peak_db": -1.0,
+  "store": "sounds/phone_drop/phone_drop_r1_sao.wav"
+ },
+ {
+  "cue": "phone_taps",
+  "rank": 1,
+  "path": "public/absurd-cases/ep20/sfx_sao/phone_taps_r1.wav",
+  "engine": "sao",
+  "score": 0.2075,
+  "episode": "20",
+  "prompt": "Fingers tapping on a smartphone touchscreen three times, then a call ringing tone starts.",
+  "target": "tapping on a phone screen",
+  "tags": [
+   "ambience",
+   "tonal"
+  ],
+  "sha": "19dfbe55354fc9f9d36ee2e092403fee2e1a6961",
+  "local": true,
+  "sec": 2.0,
+  "sr": 44100,
+  "ch": 2,
+  "rms_db": -33.3,
+  "peak_db": -1.0,
+  "store": "sounds/phone_taps/phone_taps_r1_sao_ep8.wav"
+ },
+ {
+  "cue": "prison_hall",
+  "rank": 1,
+  "path": "public/absurd-cases/ep20/sfx_sao/prison_hall_r1.wav",
+  "engine": "sao",
+  "score": null,
+  "episode": "20",
+  "prompt": "",
+  "target": "empty prison cell block room tone, large concrete hall, faint distant echoes",
+  "tags": [
+   "ambience",
+   "tonal"
+  ],
+  "sha": "63973374660a1f635ed020fc6ade56e77617fd05",
+  "local": true,
+  "sec": 8.0,
+  "sr": 16000,
+  "ch": 1,
+  "rms_db": -20.1,
+  "peak_db": -7.5,
+  "store": "sounds/prison_hall/prison_hall_r1_sao_ep10.wav"
+ },
+ {
+  "cue": "sheet_fold",
+  "rank": 1,
+  "path": "public/absurd-cases/ep20/sfx_sao/sheet_fold_r1.wav",
+  "engine": "sao",
+  "score": null,
+  "episode": "20",
+  "prompt": "folding a heavy flexible rubber mat in half, soft flap and rustle foley",
+  "target": "a heavy rubber sheet being folded",
+  "tags": [
+   "material"
+  ],
+  "sha": "65cd666ac3c760342bf9c20b7b4aeebf1a1bba11",
+  "local": true,
+  "sec": 1.5,
+  "sr": 16000,
+  "ch": 1,
+  "rms_db": -22.4,
+  "peak_db": -0.9,
+  "store": "sounds/sheet_fold/sheet_fold_r1_audioldm2_ep8.wav"
+ },
+ {
+  "cue": "thud1",
+  "rank": 1,
+  "path": "public/absurd-cases/ep20/sfx_sao/thud1_r1.wav",
+  "engine": "sao",
+  "score": null,
+  "episode": "20",
+  "prompt": "",
+  "target": "two hands slam hard on a metal table in a quiet room",
+  "tags": [
+   "ambience",
+   "impact"
+  ],
+  "sha": "dd7f2d51bbf28f8fbf106452420ffef3c100bf57",
+  "local": true,
+  "sec": 2.0,
+  "sr": 16000,
+  "ch": 1,
+  "rms_db": -10.9,
+  "peak_db": -0.1,
+  "store": "sounds/thud1/thud1_r1_sao_ep9.wav"
+ },
+ {
+  "cue": "whoosh_cloud",
+  "rank": 1,
+  "path": "public/absurd-cases/ep20/sfx_sao/whoosh_cloud_r1.wav",
+  "engine": "sao",
+  "score": null,
+  "episode": "20",
   "prompt": "a fast airy whoosh passing through a cloud, swish",
   "target": "a fast whoosh through air",
   "tags": [
@@ -5359,7 +5771,7 @@
    "police"
   ],
   "sha": "a17fd3ca149df824eacb68f7772beac3ef5bb1a0",
-  "local": true,
+  "local": false,
   "sec": 2.0,
   "sr": 44100,
   "ch": 2,
@@ -5380,7 +5792,7 @@
    "impact"
   ],
   "sha": "e513cc3c37062e500bbf47632da6e3a9fd35240a",
-  "local": true,
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
@@ -5402,7 +5814,7 @@
    "mechanical"
   ],
   "sha": "fcd3d377e847add476829436826d843bef724455",
-  "local": true,
+  "local": false,
   "sec": 2.5,
   "sr": 16000,
   "ch": 1,
@@ -5423,7 +5835,7 @@
    "ambience"
   ],
   "sha": "22e6378a0ffc10195aeb30edb995e361bbaf8301",
-  "local": true,
+  "local": false,
   "sec": 6.0,
   "sr": 16000,
   "ch": 1,
@@ -5445,7 +5857,7 @@
    "material"
   ],
   "sha": "574cfc9a9afddcb6fde8cb65ebb060d689ef5ef0",
-  "local": true,
+  "local": false,
   "sec": 6.0,
   "sr": 44100,
   "ch": 2,
@@ -5467,7 +5879,7 @@
    "police"
   ],
   "sha": "75f77faa2a1eb37accca4f51947e962aaf87826b",
-  "local": true,
+  "local": false,
   "sec": 2.0,
   "sr": 44100,
   "ch": 2,
@@ -5490,7 +5902,7 @@
    "mechanical"
   ],
   "sha": "e2bc5ea94624cd81abb93fbc62680d1763609b79",
-  "local": true,
+  "local": false,
   "sec": 2.5,
   "sr": 44100,
   "ch": 2,
@@ -5512,7 +5924,7 @@
    "impact"
   ],
   "sha": "d74418ac323553efaa23fba0e6f041abd7a36adc",
-  "local": true,
+  "local": false,
   "sec": 2.0,
   "sr": 44100,
   "ch": 2,
@@ -5534,7 +5946,7 @@
    "nature"
   ],
   "sha": "b932cff4377023d999ebc622cc95faa6db16b16d",
-  "local": true,
+  "local": false,
   "sec": 8.0,
   "sr": 16000,
   "ch": 1,
@@ -5556,7 +5968,7 @@
    "nature"
   ],
   "sha": "a94463393eec182f52824703ef32b1f4878541fd",
-  "local": true,
+  "local": false,
   "sec": 6.0,
   "sr": 16000,
   "ch": 1,
@@ -5577,7 +5989,7 @@
    "material"
   ],
   "sha": "0ffc0bfa949bfc4fc72f8b94cfae20b50058eec8",
-  "local": true,
+  "local": false,
   "sec": 3.0,
   "sr": 44100,
   "ch": 2,
@@ -5599,7 +6011,7 @@
    "tonal"
   ],
   "sha": "db9c68cde836d0f93ce30b4bc723135da69ea7c3",
-  "local": true,
+  "local": false,
   "sec": 2.0,
   "sr": 44100,
   "ch": 2,
@@ -5618,7 +6030,7 @@
   "target": "a plastic garbage bag being shaken and pulled over something",
   "tags": [],
   "sha": "f358a8d4fe6d70e78f949eda3e191708ff69f9e2",
-  "local": true,
+  "local": false,
   "sec": 2.5,
   "sr": 44100,
   "ch": 2,
@@ -5640,7 +6052,7 @@
    "mechanical"
   ],
   "sha": "6fb77b42162b20847637638e0bf4dd74ffae8f9d",
-  "local": true,
+  "local": false,
   "sec": 1.5,
   "sr": 44100,
   "ch": 2,
@@ -5662,7 +6074,7 @@
    "tonal"
   ],
   "sha": "2331357da1386bf194aadac63ae15809d3feb9af",
-  "local": true,
+  "local": false,
   "sec": 6.0,
   "sr": 16000,
   "ch": 1,
@@ -5684,7 +6096,7 @@
    "tonal"
   ],
   "sha": "058bc7121b80f4ed9bacf4dc625eceab2b36ca24",
-  "local": true,
+  "local": false,
   "sec": 6.0,
   "sr": 44100,
   "ch": 2,
@@ -5706,7 +6118,7 @@
    "police"
   ],
   "sha": "2f17f86de6dafb3dd4916306bc70bd9e17850fa2",
-  "local": true,
+  "local": false,
   "sec": 7.0,
   "sr": 44100,
   "ch": 2,
@@ -5729,7 +6141,7 @@
    "police"
   ],
   "sha": "05bb810c9c2953470a33a0b6f7e4ae92268a7b1c",
-  "local": true,
+  "local": false,
   "sec": 3.0,
   "sr": 44100,
   "ch": 2,
@@ -5750,7 +6162,7 @@
    "impact"
   ],
   "sha": "c33f486cfe146fe93273e711359d89e5d2e7c1be",
-  "local": true,
+  "local": false,
   "sec": 1.5,
   "sr": 44100,
   "ch": 2,
@@ -5772,7 +6184,7 @@
    "impact"
   ],
   "sha": "dd7f2d51bbf28f8fbf106452420ffef3c100bf57",
-  "local": true,
+  "local": false,
   "sec": 2.0,
   "sr": 16000,
   "ch": 1,
@@ -5791,7 +6203,7 @@
   "target": "someone brushing their teeth",
   "tags": [],
   "sha": "096ce421c08f3e334e45474ee770fd448163d638",
-  "local": true,
+  "local": false,
   "sec": 4.0,
   "sr": 44100,
   "ch": 2,
@@ -18824,6 +19236,27 @@
   "rms_db": -25.3,
   "peak_db": -1.0,
   "store": "sounds/dejavu_shimmer/dejavu_shimmer_r4_sao.wav"
+ },
+ {
+  "cue": "bars_grip",
+  "rank": 1,
+  "path": "tools/ai-sfx/out_sao20/bars_grip_r1.wav",
+  "engine": "sao",
+  "score": null,
+  "episode": null,
+  "prompt": "Steel prison cell bars, two hands grab the bars and give them one short shake, a dull clank as they knock in their concrete sockets, then a brief settling rattle. Close foley, concrete corridor.",
+  "target": "hands grab and shake steel prison cell bars",
+  "tags": [
+   "impact"
+  ],
+  "sha": "0713a338ee7a4295d0e1402801d07e3b4dca4ec3",
+  "local": false,
+  "sec": 2.5,
+  "sr": 44100,
+  "ch": 2,
+  "rms_db": -26.7,
+  "peak_db": -1.0,
+  "store": "sounds/bars_grip/bars_grip_r1_sao_ep20.wav"
  },
  {
   "cue": "beep",
