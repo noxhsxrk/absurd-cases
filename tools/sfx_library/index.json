@@ -19259,6 +19259,47 @@
   "store": "sounds/bars_grip/bars_grip_r1_sao_ep20.wav"
  },
  {
+  "cue": "fogger",
+  "rank": 1,
+  "path": "tools/ai-sfx/out_sao21/fogger_r1.wav",
+  "engine": "sao",
+  "score": null,
+  "episode": null,
+  "prompt": "Handheld thermal fogging machine for mosquito control, small two-stroke pulse-jet engine; starts with a sputtering pop, then a loud steady buzzing drone with a pulsing roar and a constant hiss of fog blasting out the barrel. Concrete corridor, medium distance.",
+  "target": "handheld thermal fogging machine buzzing and blasting fog",
+  "tags": [
+   "cartoon",
+   "mechanical",
+   "nature"
+  ],
+  "sha": "85eb17d5012751925efcd958ac185954ebc31620",
+  "local": false,
+  "sec": 5.0,
+  "sr": 44100,
+  "ch": 2,
+  "store": "sounds/fogger/fogger_r1_sao.wav"
+ },
+ {
+  "cue": "skin_scratch",
+  "rank": 1,
+  "path": "tools/ai-sfx/out_sao21/skin_scratch_r1.wav",
+  "engine": "sao",
+  "score": null,
+  "episode": null,
+  "prompt": "Fingernails scratching skin and a cotton shirt frantically, fast repeated strokes, continuous, dry rasp with soft fabric rustle. Close-up foley, dry room.",
+  "target": "fingernails frantically scratching skin and a shirt",
+  "tags": [
+   "ambience",
+   "material"
+  ],
+  "sha": "66569a72071331a95b296c865c2d5738c32782ab",
+  "local": false,
+  "sec": 3.0,
+  "sr": 44100,
+  "ch": 2,
+  "store": "sounds/skin_scratch/skin_scratch_r1_sao.wav"
+ },
+ {
   "cue": "beep",
   "rank": 1,
   "path": "tools/ai-sfx/out_sao8/beep_r1.wav",
