@@ -160,12 +160,12 @@ export const Sparks7: React.FC<{at: V3; t: number; t0: number; dur?: number; n?:
 // POLICE CAR (sedan) that flies: wheels fold flat (`fold` 0→1), blue jet flames at the back (`jet`).
 // Origin at the ground under its centre, nose along +x. `burnt` = soot-black after the strike.
 // =====================================================================================================
-const carSide = () => tex('car7-side', 512, 160, (g) => {
+const carSide = (unit = 'หน่วยปราบปรามไฟฟ้าสถิต · 191') => tex('car7-side' + (unit.startsWith('หน่วยปราบปรามไฟ') ? '' : '-' + unit), 512, 160, (g) => {
   g.fillStyle = '#F2F3F5'; g.fillRect(0, 0, 512, 160); g.fillStyle = '#1F3A68'; g.fillRect(0, 86, 512, 40); g.fillStyle = '#C8323A'; g.fillRect(0, 126, 512, 7);
-  g.fillStyle = '#1F3A68'; g.font = F(700, 54); g.textAlign = 'center'; g.fillText('ตำรวจ', 256, 72); g.fillStyle = '#F2F3F5'; g.font = F(600, 21); g.fillText('หน่วยปราบปรามไฟฟ้าสถิต · 191', 256, 113);
+  g.fillStyle = '#1F3A68'; g.font = F(700, 54); g.textAlign = 'center'; g.fillText('ตำรวจ', 256, 72); g.fillStyle = '#F2F3F5'; g.font = F(600, 21); g.fillText(unit, 256, 113);
 });
-export const PoliceCar: React.FC<{t: number; position: V3; yaw?: number; pitch?: number; roll?: number; fold?: number; jet?: number; burnt?: number; door?: number; seed?: number; spin?: number}> = ({t, position, yaw = 0, pitch = 0, roll = 0, fold = 0, jet = 0, burnt = 0, door = 0, seed = 0, spin = 0}) => {
-  const side = useMemo(() => new THREE.MeshStandardMaterial({map: carSide(), roughness: 0.45}), []);
+export const PoliceCar: React.FC<{t: number; position: V3; yaw?: number; pitch?: number; roll?: number; fold?: number; jet?: number; burnt?: number; door?: number; seed?: number; spin?: number; unit?: string}> = ({t, position, yaw = 0, pitch = 0, roll = 0, fold = 0, jet = 0, burnt = 0, door = 0, seed = 0, spin = 0, unit}) => {
+  const side = useMemo(() => new THREE.MeshStandardMaterial({map: carSide(unit), roughness: 0.45}), [unit]);
   const soot = M('#1B1B1E', 0.95);
   const white = burnt > 0.5 ? soot : M('#EEF0F2', 0.45), sideM = burnt > 0.5 ? soot : side, glass = M('#1A2330', 0.15, 0.4), tyre = M('#16171A', 0.9);
   const ph = (Math.floor(t * 8 + seed) % 2); const red = ph === 0 ? 1 : 0.12, blue = ph === 1 ? 1 : 0.12;
