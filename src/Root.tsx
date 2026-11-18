@@ -33,6 +33,7 @@ import {AbsurdEp16, TOTAL as ABSURD16_TOTAL, BLUR_SUB as ABSURD16_SUB} from './e
 import {AbsurdEp17, TOTAL as ABSURD17_TOTAL, BLUR_SUB as ABSURD17_SUB} from './episodes/AbsurdEp17/Episode';
 import {AbsurdEp18, TOTAL as ABSURD18_TOTAL, BLUR_SUB as ABSURD18_SUB} from './episodes/AbsurdEp18/Episode';
 import {AbsurdEp19, TOTAL as ABSURD19_TOTAL, BLUR_SUB as ABSURD19_SUB} from './episodes/AbsurdEp19/Episode';
+import {AbsurdEp20, TOTAL as ABSURD20_TOTAL, BLUR_SUB as ABSURD20_SUB} from './episodes/AbsurdEp20/Episode';
 import {TownEp1, TOTAL as TOWN1_TOTAL, BLUR_SUB as TOWN1_SUB} from './episodes/TownEp1/Episode';
 import {LifeKitDemo, DEMO_TOTAL} from './episodes/lifekit/Demo';
 import {qualitySchema} from './pov/ui/quality';
@@ -71,6 +72,8 @@ export const Root: React.FC = () => (
     <Composition id="AbsurdEp18Blur" component={AbsurdEp18} durationInFrames={ABSURD18_TOTAL * ABSURD18_SUB} fps={30 * ABSURD18_SUB} width={1080} height={1920} schema={qualitySchema} defaultProps={{quality: 'fast' as const}} />
     <Composition id="AbsurdEp19" component={AbsurdEp19} durationInFrames={ABSURD19_TOTAL} fps={30} width={1080} height={1920} schema={qualitySchema} defaultProps={{quality: 'fast' as const}} />
     <Composition id="AbsurdEp19Blur" component={AbsurdEp19} durationInFrames={ABSURD19_TOTAL * ABSURD19_SUB} fps={30 * ABSURD19_SUB} width={1080} height={1920} schema={qualitySchema} defaultProps={{quality: 'fast' as const}} />
+    <Composition id="AbsurdEp20" component={AbsurdEp20} durationInFrames={ABSURD20_TOTAL} fps={30} width={1080} height={1920} schema={qualitySchema} defaultProps={{quality: 'fast' as const}} />
+    <Composition id="AbsurdEp20Blur" component={AbsurdEp20} durationInFrames={ABSURD20_TOTAL * ABSURD20_SUB} fps={30 * ABSURD20_SUB} width={1080} height={1920} schema={qualitySchema} defaultProps={{quality: 'fast' as const}} />
     <Composition id="TownEp1Blur" component={TownEp1} durationInFrames={TOWN1_TOTAL * TOWN1_SUB} fps={30 * TOWN1_SUB} width={1080} height={1920} schema={qualitySchema} defaultProps={{quality: 'fast' as const}} />
     <Composition id="TownEp1" component={TownEp1} durationInFrames={TOWN1_TOTAL} fps={30} width={1080} height={1920} schema={qualitySchema} defaultProps={{quality: 'fast' as const}} />
     <Composition id="LifeKitDemo" component={LifeKitDemo} durationInFrames={DEMO_TOTAL} fps={30} width={1080} height={1920} schema={qualitySchema} defaultProps={{quality: 'fast' as const}} />
