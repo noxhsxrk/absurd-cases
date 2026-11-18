@@ -210,7 +210,7 @@ BGM = pathlib.Path('public/absurd-cases/ep20/bgm/bgm.wav')
 if BGM.exists(): M.bed(rms_to(read(BGM, stereo=True)[:int(END * R)], 0.018), 0, END, width=1.0, xf=0.05, fade=0.8)
 def hangup_tone(n=3): return np.concatenate([np.concatenate([beep(425, 0.16), np.zeros(int(0.12 * R))]) for _ in range(n)])
 # ---- cell 24, the wall, the whole day going by (a time-lapse whoosh), the plate
-P(take('keys', lambda: ratchet(6, 0.3), 1.0), 0.12, 0.6, 0.5)
+P(take('bars_grip', lambda: metal(180, 0.8, 5), 2.0), 0.3, 0.25, 0.1)   # his hands on the bars of 24 (SA3 take: the AudioLDM2 keys sounded fake, Nox)
 P(take('thud1', lambda: thud(55, 0.45), 0.6), 0.3, T('wall') + 0.02)
 P(whoosh(1.0, 300, 2500), 0.16, T('allday') + 0.05)
 P(whoosh(0.3, 400, 3000), 0.2, EV['plate'] - 0.25); P(tung(), 0.5, EV['plate']); P(thud(40, 0.9), 0.28, EV['plate'] + 0.05)

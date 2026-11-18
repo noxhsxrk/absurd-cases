@@ -10,6 +10,8 @@ def log(*a):
     s = ' '.join(str(x) for x in a); print(s, flush=True); LOG.write(s + '\n'); LOG.flush()
 
 CUES = [  # cue, seconds, CLAP target, prompt — only what `sfx_index.py search` cannot find
+    # bars_grip was made with Stable Audio 3 (audio-studio, Mac) on 2026-11-18, not by this script: the prompt is kept for the index
+    ('bars_grip', 2.5, 'hands grab and shake steel prison cell bars', 'Steel prison cell bars, two hands grab the bars and give them one short shake, a dull clank as they knock in their concrete sockets, then a brief settling rattle. Close foley, concrete corridor.'),
 ]
 
 NEG = 'low quality, distorted, music, speech, singing'
