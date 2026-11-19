@@ -15,7 +15,7 @@ from transformers import pipeline
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent.parent
 spec = importlib.util.spec_from_file_location('gt', ROOT / 'tools/gemini_take.py'); gt = importlib.util.module_from_spec(spec); spec.loader.exec_module(gt)
-NUM = [('ยี่สิบสี่', '24'), ('ยี่สิบสอง', '22'), ('ยี่สิบ', '20'), ('สิบเก้า', '19'), ('สิบแปด', '18')]
+NUM = [('ยี่สิบสี่', '24'), ('ยี่สิบสาม', '23'), ('ยี่สิบสอง', '22'), ('ยี่สิบ', '20'), ('สิบเก้า', '19'), ('สิบแปด', '18'), ('สิบสอง', '12')]
 
 
 def norm(s):
