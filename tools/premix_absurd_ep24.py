@@ -253,7 +253,7 @@ tungs(EV['plate'])
 P(take('phone_drop', lambda: click(0.04), 0.4), 0.16, EV['phone0'], 0.2); P(whoosh(0.4, 900, 4000), 0.16, EV['miss'], 0.2)
 # ---- the guard swims over, breathing through the mask; snap — cuffs on air
 mb = take('mask_breath', lambda: bp(nz(1.6), 200, 1800), None, trim=False)
-for t0 in (EV['swim0'] + 1.5, T('swim') + 0.3): P(mb[:int(1.6 * R)], 0.18, t0, -0.2)
+for t0 in (T('lift2') + 0.3, T('swim') + 0.3): P(mb[:int(1.6 * R)], 0.18, t0, -0.2)   # only where the guard is in picture
 for k in range(4): P(whoosh(0.5, 300, 2400), 0.1, T('swim') + 0.2 + 0.6 * k, -0.2)
 P(take('cuff_click', lambda: ratchet(6, 0.2), 0.5), 0.36, EV['aircuff'], -0.1); P(metal(900, 0.4, 8), 0.12, EV['aircuff'] + 0.05, -0.1)
 # ---- the moon: a low riser into the black

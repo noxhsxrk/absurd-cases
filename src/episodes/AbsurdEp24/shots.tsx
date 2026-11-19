@@ -106,7 +106,9 @@ const inmate = (who: Who, t: number) => who === 'earth' ? <>
   : who === 'durian' ? <Floating t={t} h={0.9} seed={5} at={DURIAN}><Durian position={[0, 0, 0]} r={0.3} yaw={1.2} face={false} /></Floating>
   : who === 'gravity' ? <>{gravity(t)}<WallHole c={[X22, 1.3, -1.49]} r={0.75} k={holeK(t)} />
     <Rubble center={[X22, 0, -1.0]} size={[2.2, 0.8]} k={holeK(t)} lift={liftK(t)} t={t} seed={1} />
-    <FogBank t={t} center={[X22, 0, -0.6]} size={[2.6, 2.2, 1.6]} k={sm((t - ev('collapse')) / 0.3) * (1 - sm((t - ev('collapse') - 2.5) / 2))} n={40} /></>
+    <FogBank t={t} center={[X22, 0, -0.6]} size={[2.6, 2.2, 1.6]} k={sm((t - ev('collapse')) / 0.3) * (1 - sm((t - ev('collapse') - 2.5) / 2))} n={40} />
+    <FogBank t={t} center={[X22 + 0.6, 0, 2.6]} size={[3.4, 1.8, 2.0]} k={sm((t - ev('collapse') - 0.2) / 0.5) * (1 - sm((t - ev('collapse') - 3.0) / 2))} n={36} seed={2} />
+    <Rubble center={[X22 + 0.3, 0, 2.2]} size={[2.4, 1.0]} n={10} k={holeK(t)} lift={liftK(t)} t={t} seed={3} /></>
   : null;
 const jar25 = (t: number) => <><Floating t={t} h={1.1} seed={7} at={[-0.45, 0, 2.15]}><Jar position={[0, 0, 0]} scale={1.6}><Mosquito t={t} position={[0, 0.03, 0]} rotation={[Math.PI, 0, 0.3]} flap={0} fill={1} scale={2} legsUp /></Jar></Floating>
   <Floating t={t} h={1.3} seed={8} at={[-0.45, 0.36, 2.25]}><CellPlate text="ห้อง 25" position={[0, 0, 0]} w={0.16} /></Floating></>;
@@ -330,7 +332,7 @@ export const SHOT_FN: Record<string, (t: number, lt: number, C: Cast) => ShotOut
     // his hand grabs — and misses; the phone tumbles off towards the bars
     const m = man(C, t);
     return {node: <>{block(t, {only: [24]})}{m.node}{lamp([0.6, 1.8, 1.4], 1.8)}</>,
-      cam: mv({pos: [-0.35, 1.75, 1.15], look: [0.7, 2.3, 0.5], fov: 50}, lt, {arrive: 0.04, push: 0.22, roll: 4, side: 0.6}), bg: NIGHT_BG};
+      cam: mv({pos: [-0.35, 1.7, 1.25], look: [0.55, 2.25, 0.2], fov: 62}, lt, {arrive: 0.04, push: 0.22, roll: 4, side: 0.6}), bg: NIGHT_BG};
   },
   swim: (t, lt, C) => {
     // the guard, masked, swimming through the air down the corridor
@@ -353,7 +355,7 @@ export const SHOT_FN: Record<string, (t: number, lt: number, C: Cast) => ShotOut
     // through the bars of 24: him on the ceiling — and on the floor below, his shadow, lying where it lay
     const m = man(C, t);
     return {node: <>{block(t, {only: [24]})}{m.node}{lamp([0.8, 1.3, 1.2], 2.0)}</>,
-      cam: mv({pos: [1.25, 1.35, 3.6], look: [0.5, 1.3, -0.4], fov: 46}, lt, {arrive: 0.03, push: 0.22, roll: 4, side: 0.6}), bg: NIGHT_BG};
+      cam: mv({pos: [1.0, 0.6, 2.4], look: [0.5, 1.4, -0.3], fov: 66}, lt, {arrive: 0.03, push: 0.22, roll: 4, side: 0.6}), bg: NIGHT_BG};
   },
   stuck: (t, lt, C) => {
     // straight down at the floor: the shadow with its broom, flat, not floating
@@ -370,7 +372,7 @@ export const SHOT_FN: Record<string, (t: number, lt: number, C: Cast) => ShotOut
     // under the ceiling of 24: he begins to slide towards the bars — towards 18
     const m = man(C, t);
     return {node: <>{block(t, {only: [24, 18]})}{m.node}{lamp([0.4, 2.0, 1.6], 1.8, '#FFF0C8')}</>,
-      cam: mv({pos: [1.3, 1.85, 2.7], look: [0.2, 2.45, 0.2], fov: 50}, lt, {arrive: 0.03, push: 0.22, roll: 4, side: 0.6}), bg: NIGHT_BG};
+      cam: mv({pos: [1.2, 0.9, 2.2], look: [0.1, 2.3, 0.0], fov: 56}, lt, {arrive: 0.03, push: 0.22, roll: 4, side: 0.6}), bg: NIGHT_BG};
   },
   pull2: (t, lt, C) => {
     // from the corridor: moonlight from 18 on him as he drifts; his shadow stays behind on the floor. Black.

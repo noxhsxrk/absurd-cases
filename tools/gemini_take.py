@@ -53,10 +53,16 @@ def save_wav(path, pcm, mime):
 
 
 def speech(x, rate):
-    """Cut a line clip to its speech: every clip starts with a click and ends with ~0.16 s of loud junk (EP23, 3.8 flash)."""
-    x = x[int(rate * 0.03):len(x) - int(rate * 0.25)]
-    hop = rate // 50; e = np.array([np.sqrt(np.mean((x[k:k + hop] / 32768.0) ** 2)) for k in range(0, len(x) - hop, hop)])
-    on = np.nonzero(20 * np.log10(e + 1e-9) > -45)[0]
+    """Cut a line clip to its speech. 3.8 flash clips start with a click and end with ~0.16 s of loud junk after a silence (EP23);
+    2.5 Pro clips end in clean silence, and a fixed tail cut ate their last consonants (EP24 "เพดา(น)", "พื้(น)"): cut the tail
+    only where a loud burst follows a silence."""
+    x = x[int(rate * 0.03):]
+    hop = rate // 50; db = 20 * np.log10(np.array([np.sqrt(np.mean((x[k:k + hop] / 32768.0) ** 2)) for k in range(0, len(x) - hop, hop)]) + 1e-9)
+    loud = np.nonzero(db[-12:] > -10)[0]   # junk: a burst louder than any speech in the last 0.24 s …
+    if len(loud):
+        b0 = len(db) - 12 + loud[0]
+        if b0 >= 5 and (db[b0 - 5:b0] < -50).all(): x = x[:(b0 - 5) * hop]; db = db[:b0 - 5]   # … right after ≥ 0.1 s of silence
+    on = np.nonzero(db > -45)[0]
     return x[max(0, on[0] * hop - int(rate * 0.06)):min(len(x), (on[-1] + 1) * hop + int(rate * 0.12))]
 
 
