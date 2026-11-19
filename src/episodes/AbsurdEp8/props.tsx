@@ -247,12 +247,12 @@ export const ShadowSheet: React.FC<SheetProps> = (o) => {
   const s = o.s ?? 1; const L = SHEET_H * s * (o.len ?? 1) * (o.sy ?? 1); const w = sheetW(pose) * s * (o.sx ?? 1); const seg = L / N_STRIPS;
   const strips: React.ReactNode[] = []; let y = 0, z = 0;
   const EYE_V = 0.875, ei = Math.floor(EYE_V * N_STRIPS);
-  const es = (o.eyeScale ?? 1) * s * Math.max(0.55, Math.min(1, (o.len ?? 1) * 1.6)); const em = eyeMat(o.eyes ?? 'angry');
+  const es = (o.eyeScale ?? 1) * s * Math.max(0.55, Math.min(1, (o.len ?? 1) * 1.6)); const em = eyeMat(o.eyes === 'none' ? 'angry' : o.eyes ?? 'angry');   // eyes 'none' = no eyes (EP24)
   for (let i = 0; i < N_STRIPS; i++) {
     const a = sheetAngle(i / N_STRIPS, o);
     strips.push(<group key={i} position={[0, y, z]} rotation={[a, 0, 0]}>
       <mesh geometry={stripGeo[i]} material={m} customDepthMaterial={dm} castShadow={!!o.shadow} scale={[w, seg * 1.04, 1]} renderOrder={3} />
-      {i === ei && <>
+      {i === ei && o.eyes !== 'none' && <>
         <mesh position={[0, (EYE_V * N_STRIPS - ei) * seg, 0.004]} material={em} renderOrder={6}><planeGeometry args={[0.2 * es, 0.088 * es]} /></mesh>
         <mesh position={[0, (EYE_V * N_STRIPS - ei) * seg, -0.004]} rotation={[0, Math.PI, 0]} material={em} renderOrder={6}><planeGeometry args={[0.2 * es, 0.088 * es]} /></mesh>
       </>}
