@@ -182,7 +182,16 @@ M = Mix(seconds=TOTAL, sfx_dir=str(AI))
 VOICE = pathlib.Path('public/absurd-cases/ep23/ep23_narration_tight.wav')
 VOX = np.zeros_like(M.mix)
 if VOICE.exists():
-    vo = read(VOICE); sel = np.abs(vo) > 0.01; vo = vo * 10 ** ((-20.5 - db(vo[sel])) / 20); M.put(vo, 0, 0, 0.74, dst=VOX)
+    vo = read(VOICE)
+    # level-match line by line: every line is its own Gemini call (tools/gemini_take.py --per-line) and they came out 7 dB apart;
+    # the cliffhanger line keeps 1.5 dB less (hushed). Gains clamped to ±5 dB, applied over each line's range (gaps between are silence).
+    rows = json.load(open('episodes/absurd-cases/ep23_line_timing.json')); lv = {}
+    for r in rows:
+        i0, i1 = int(r['start'] * R), int(r['end'] * R) + int(0.08 * R); seg = vo[i0:i1]; on_ = np.abs(seg) > 0.01
+        if on_.any(): lv[r['id']] = (i0, i1, db(seg[on_]))
+    ref = float(np.median([v[2] for v in lv.values()]))
+    for k, (i0, i1, d) in lv.items(): vo[i0:i1] *= 10 ** (np.clip(ref - (1.5 if k.endswith('l015') else 0) - d, -5, 5) / 20)
+    sel = np.abs(vo) > 0.01; vo = vo * 10 ** ((-20.5 - db(vo[sel])) / 20); M.put(vo, 0, 0, 0.74, dst=VOX)
 else: print('NO VOICE YET: SFX-only draft mix on the provisional timing')
 for r in json.load(open('episodes/absurd-cases/ep23_line_timing.json')):
     for a, b in r['parts']: M.vo_env[int(a * R):int(b * R)] = 1.0
