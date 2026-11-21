@@ -3,6 +3,7 @@ import * as THREE from 'three';
 import {MB, M, tex} from '../../pov/lib/tex';
 import {PM} from '../AbsurdEp1/boxcast';
 import {label} from '../AbsurdEp8/props';
+import {HANDLE} from './data';
 
 /** EP28 คดีถุงเท้าหาย — the new things only. The accused is a plain top-load washing machine (no face): it washes, it spins, and it gives
  *  back one sock. Everything else (court, cell, cuffs, phone) comes from earlier episodes. */
@@ -68,7 +69,7 @@ export const Washer: React.FC<{position: V3; yaw?: number; lid?: number; spin?: 
         </group>
         <mesh position={[0, -0.031, 0]} rotation={[-Math.PI / 2, 0, 0]} material={dark}><ringGeometry args={[r + 0.022, r + 0.03, 28]} /></mesh>
       </group>
-      {tag && <mesh position={[w / 2 + 0.002, h * 0.62, 0.05]} rotation={[0, Math.PI / 2, 0]} material={label('ep28-tag', 512, 256, '#F4EFE2', '#1C1A18', ['ของกลาง', 'คดีถุงเท้า'], 84, '#A8322A')}><planeGeometry args={[0.32, 0.16]} /></mesh>}
+      {tag && <mesh position={[w / 2 + 0.002, h * 0.62, 0.05]} rotation={[0, Math.PI / 2, 0]} material={label('ep28-tag2', 512, 320, '#F4EFE2', '#1C1A18', ['ของกลาง', 'คดีถุงเท้า', HANDLE], 70, '#A8322A')}><planeGeometry args={[0.32, 0.2]} /></mesh>}
     </group>
   </group>;
 };

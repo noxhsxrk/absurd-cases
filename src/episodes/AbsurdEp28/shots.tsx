@@ -109,10 +109,10 @@ const cop = (C: Cast, t: number) => { const rc = ringAt(t); const locked = t > e
 // =====================================================================================================
 // COURT (EP17 courtRoom with the washer on the floor instead of the fire on the bench)
 // =====================================================================================================
-const CW: V3 = [0.95, 0, -1.75];
+const CW: V3 = [0.9, 0, -2.3];
 const courtRoom = (C: Cast, t: number) => { const I = C.judge;
   const pose = (tt: number) => { hideProps(I);
-    const w = body(I, ps('judge', 0, -3.25, 0, tt, {poseId: 'sitIdle', clip: 'sit_table_idle_neutral_01', lookW: [0.95, 0.8, -1.75], face: tt > ev('gavel') - 0.35 && tt < ev('gavel') + 0.5 ? 'shout' : 'angry'}), tt, 1.25);
+    const w = body(I, ps('judge', 0, -3.25, 0, tt, {poseId: 'sitIdle', clip: 'sit_table_idle_neutral_01', lookW: [0.9, 0.8, -2.3], face: tt > ev('gavel') - 0.35 && tt < ev('gavel') + 0.5 ? 'shout' : 'angry'}), tt, 1.25);
     const g = prop(I, 'gavel', 'Bip01_R_Hand', makeGavel, [8, 0, 0], [0, Math.PI / 2, 0]); const up = strike(tt, ev('gavel'), 0.4);
     rot(I.bones.Bip01_R_UpperArm, 1, 0, 0, -0.25 - up, I.root); rot(I.bones.Bip01_R_Forearm, 1, 0, 0, -0.7 - up * 0.6, I.root); w.updateMatrixWorld(true); return {w, g}; };
   let bb = new THREE.Box3(), top = -1e9; pose(ev('gavel')).g.traverse((o: any) => { if (!o.isMesh) return; const b = new THREE.Box3().setFromObject(o); const cy = (b.min.y + b.max.y) / 2; if (cy > top) { top = cy; bb = b; } });
@@ -162,7 +162,7 @@ export const SHOT_FN: Record<string, (t: number, lt: number, C: Cast) => ShotOut
     const m = man(C, t, {face: 'open', look: TUB, L: hd, ls: 'fist'});
     return {node: <>{yard(t)}<P o={m.w} /><mesh position={add(hd, [0, -0.18, 0])} rotation={[0.2, 0.4, 0.1]} material={TM.shirt}><boxGeometry args={[0.26, 0.34, 0.03]} /></mesh>
       {k > 0.3 && <Drips from={add(hd, [0, -0.3, 0])} floor={0.05} t={t} t0={0} n={6} spread={0.08} />}</>,
-      cam: mv({pos: [0.85, 1.6, -6.7], look: [1.3, 1.28, -8.55], fov: 48}, lt, {arrive: 0.06, push: 0.08}), bg: SKY};
+      cam: mv({pos: [0.5, 1.55, -7.55], look: [1.35, 1.25, -8.55], fov: 50}, lt, {arrive: 0.06, push: 0.08}), bg: SKY};
   },
   sock: (t, lt, C) => {
     // he holds up a red striped sock and looks for its pair
@@ -233,7 +233,7 @@ export const SHOT_FN: Record<string, (t: number, lt: number, C: Cast) => ShotOut
     return {node: <>{yard(t)}<P o={m.w} />{pile(C, t)}{cop(C, t)}</>,
       cam: mv({pos: [2.05, 1.0, -7.0], look: [0.95, 0.62, -8.65], fov: 46}, lt, {arrive: 0.06, push: 0.06, shake: near(t, [ev('cuff')], 0.12) ? 0.018 : 0}), bg: SKY};
   },
-  court: (t, lt, C) => ({node: courtRoom(C, t), cam: mv({pos: [2.1, 1.85, 0.6], look: [0.45, 1.35, -2.7], fov: 46}, lt, {arrive: 0.07, push: 0.06})}),
+  court: (t, lt, C) => ({node: courtRoom(C, t), cam: mv({pos: [2.1, 2.3, 1.1], look: [0.55, 1.25, -2.5], fov: 54}, lt, {arrive: 0.07, push: 0.06})}),
   gavel: (t, lt, C) => ({node: courtRoom(C, t), cam: mv({pos: [0.45, 2.2, 1.1], look: [0.3, 1.84, -3.2], fov: 30}, lt, {arrive: 0.07, push: 0.16, roll0: 1.5, shake: near(t, [ev('gavel')], 0.1) ? 0.012 : 0})}),
   cell: (t, lt, C) => ({node: <>{cellBlock(C, t)}{guard(C, t)}</>, cam: mv({pos: [0.15, 1.45, 4.0], look: [-0.1, 1.0, 0.0], fov: 50}, lt, {arrive: 0.08, push: 0.07, roll0: -2}), bg: CELL_BG}),
   queue: (t, lt, C) => ({node: <>{cellBlock(C, t, {cells: true})}{queue(C, t)}</>, cam: mv({pos: [-1.35, 1.6, 3.55], look: [2.3, 1.05, 2.2], fov: 46}, lt, {arrive: 0.06, push: 0.05}), bg: CELL_BG}),
@@ -242,9 +242,9 @@ export const SHOT_FN: Record<string, (t: number, lt: number, C: Cast) => ShotOut
     // at foot level along the row: every left foot in a white sock, every right foot bare
     return {node: <>{cellBlock(C, t, {cells: true})}{lineup(C, t)}</>, cam: mv({pos: [x + 0.4, 0.32, 3.25], look: [x - 0.25, 0.12, 2.35], fov: 52}, lt, {arrive: 0, push: 0}), bg: CELL_BG}; },
   socks: (t, lt, C) => ({node: <>{cellBlock(C, t)}{socksInTub(t)}</>,
-    // no line: down into the prison washer — one-sock singles going round, and among them a red striped one
+    // no line: down into the prison washer — nothing but single white socks going round (all white: his red one here would be a (ก) callback, banned after EP27)
     cam: mv({pos: add(CTUB, [0, 1.05, 0.001]), look: add(CTUB, [0, -0.3, 0]), fov: 50}, lt, {arrive: 0, push: 0.07, roll0: 90}), bg: CELL_BG}),
 };
 const socksInTub = (t: number) => <group position={add(CTUB, [0, -0.2, 0])}>{Array.from({length: 7}, (_, i) => { const a = t * 9 + i * 0.9, r = 0.06 + (i % 3) * 0.05;
-  return <group key={i} position={[Math.cos(a) * r, 0.01, Math.sin(a) * r]} rotation={[Math.PI / 2, 0, a]}><Sock top={[0, 0.12, 0]} c={i === 3 ? '#C8382E' : '#F2F0EA'} s={0.8} /></group>; })}</group>;
+  return <group key={i} position={[Math.cos(a) * r, 0.01, Math.sin(a) * r]} rotation={[Math.PI / 2, 0, a]}><Sock top={[0, 0.12, 0]} c="#F2F0EA" s={0.8} /></group>; })}</group>;
 void [CTUB, WASH];

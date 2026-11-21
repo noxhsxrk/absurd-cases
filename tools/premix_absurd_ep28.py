@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""absurd-cases EP28 premix (คดีถุงเท้าหาย). Stable Audio Open foley from the shared store (tools/sfx_index.py pull), plus three new cues (washer_wash, washer_spin, splash_dive). Quiet SA3 underscore.
+"""absurd-cases EP28 premix (คดีถุงเท้าหาย). Stable Audio Open foley from the shared store (tools/sfx_index.py pull), plus three new Stable Audio 3 cues (washer_wash, washer_spin, splash_dive). Quiet SA3 underscore.
 Narration is the mix; ambience ≈ −40 dBFS under it. Synth recipes shared with EP6/EP15/EP16 (copied)."""
 import json, sys, pathlib, subprocess, re, wave
 import numpy as np
