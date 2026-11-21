@@ -153,7 +153,7 @@ const gangIn = (t: number) => <>{isIn(0, t) && fireNode(t)}{isIn(1, t) && fanNod
 const gangOut = (t: number) => <>{!isIn(0, t) && fireNode(t)}{!isIn(1, t) && fanNode(t)}{!isIn(2, t) && durianNode(t)}{!isIn(3, t) && jarNode(t)}</>;
 /** the count: a tag pops over member i at c(i+1) */
 const tags = (t: number, headOf: V3) => <>{[0, 1, 2, 3, 4].map((i) => { const k = sm((t - ev(`c${i + 1}`)) / 0.12); if (k <= 0.01 || t > ev('dial') + 0.3) return null;
-  const p = i === 4 ? add(headOf, [0, 0.35, 0]) : add(gangAt(i, t).p, [0, i === 1 ? 1.75 : 0.45, 0]);
+  const p = i === 4 ? add(headOf, [0, 0.35, 0]) : add(gangAt(i, t).p, [0, i === 1 ? 1.15 : 0.32, 0.25]);
   return <group key={i} position={p} scale={0.6 + 0.4 * k}><CellPlate text={`${i + 1}`} position={[0, 0, 0]} w={0.36} bg={i === 4 ? '#B0302E' : '#152028'} /></group>; })}</>;
 
 // =====================================================================================================
@@ -190,7 +190,8 @@ const man = (C: Cast, t: number) => { const s = manPos(t);
     hand(m.I, 'R', tgt, 'point'); }
   // the call: phone up in his right hand in front of his chest (as EP26)
   if (t > ev('dial') - 0.2 && t < ev('enter')) { const r = new THREE.Vector3(0, 1, 0).cross(f).negate(); const tgt: V3 = [chest[0] + r.x * 0.15 + f.x * 0.025, chest[1] + 0.12, chest[2] + r.z * 0.15 + f.z * 0.025];
-    hand(m.I, 'R', tgt, 'cup'); m.w.updateMatrixWorld(true); const ph = add(bw(m.I, 'Bip01_R_Hand'), [0, 0.07, 0]); nodes.push(<Phone key="ph" position={ph} rotation={[0, s.yaw, 0]} lit={1} />); }
+    hand(m.I, 'R', tgt, 'cup'); m.w.updateMatrixWorld(true); const hd = bw(m.I, 'Bip01_Head');   // weightless: the phone floats on speaker in front of his face
+    const fy = [Math.sin(s.yaw), Math.cos(s.yaw)]; const ph: V3 = [hd[0] + fy[0] * 0.3, hd[1] - 0.05 + 0.02 * Math.sin(t * 2), hd[2] + fy[1] * 0.3]; nodes.push(<Phone key="ph" position={ph} rotation={[0, s.yaw + Math.PI, 0.15]} lit={1} />); }
   else if (t >= ev('enter')) { m.w.updateMatrixWorld(true); nodes.push(<Phone key="ph" position={bw(m.I, 'Bip01_R_Hand')} rotation={[0, s.yaw, 0]} lit={0.4} />); }
   m.w.updateMatrixWorld(true); flyOn(m.I);
   const wristL = bw(m.I, 'Bip01_L_Hand');
@@ -282,7 +283,7 @@ export const SHOT_FN: Record<string, (t: number, lt: number, C: Cast) => ShotOut
   count: (t, lt, C) => {
     // behind him, high: he counts them — 1, 2, 3, 4
     const {node} = IN(t, C, {only: [22, 23], tags: true});
-    return {node: <>{node}{lamp([X22 + 0.4, 2.5, 1.8], 1.6)}</>, cam: mv({pos: [X22 + 0.9, 2.3, 3.4], look: [X22 - 0.1, 1.3, -0.2], fov: 54}, lt, {arrive: 0.02, push: 0.08}), bg: NIGHT_BG};
+    return {node: <>{node}{lamp([X22 + 0.4, 2.5, 1.8], 1.6)}</>, cam: mv({pos: [X22 + 0.9, 2.3, 3.4], look: [X22 - 0.1, 1.1, -0.2], fov: 60}, lt, {arrive: 0.02, push: 0.08}), bg: NIGHT_BG};
   },
   five: (t, lt, C) => {
     // from the hole side: and five — himself
@@ -297,7 +298,7 @@ export const SHOT_FN: Record<string, (t: number, lt: number, C: Cast) => ShotOut
   call: (t, lt, C) => {
     // close from the hole side: phone up — he reports his own gang
     const {node, m} = IN(t, C, {only: [22]}); const h = m!.head;
-    return {node: <>{node}{lamp([X22 + 0.3, 2.3, 0.4], 1.8, '#FFF0C8')}</>, cam: mv({pos: [X22 + 0.8, 1.45, 2.75], look: [h[0], h[1] - 0.55, h[2]], fov: 52}, lt, {arrive: 0.03, push: 0.12}), bg: NIGHT_BG};
+    return {node: <>{node}{lamp([X22 + 0.3, 2.3, 0.4], 1.8, '#FFF0C8')}</>, cam: mv({pos: [X22 + 0.8, 1.65, 2.75], look: [h[0], h[1] - 0.25, h[2]], fov: 50}, lt, {arrive: 0.03, push: 0.12}), bg: NIGHT_BG};
   },
   pocket: (t, lt, C) => {
     // outside by car 0: the guard sits cuffed, the cops round him — and his phone, on the ground, rings
@@ -312,7 +313,7 @@ export const SHOT_FN: Record<string, (t: number, lt: number, C: Cast) => ShotOut
   cuffed: (t, lt, C) => {
     // his hands are cuffed behind his back
     const {node} = OUT(t, C, {man: false});
-    return {node: <>{node}</>, cam: mv({pos: [G_OUT[0] - 0.9, 0.9, G_OUT[2] - 0.8], look: [G_OUT[0], 0.5, G_OUT[2]], fov: 46}, lt, {arrive: 0.02, push: 0.12}), bg: OUT_BG};
+    return {node: <>{node}</>, cam: mv({pos: [G_OUT[0] - 1.25, 1.1, G_OUT[2] + 0.9], look: [G_OUT[0] - 0.05, 0.45, G_OUT[2] - 0.2], fov: 48}, lt, {arrive: 0.02, push: 0.12}), bg: OUT_BG};
   },
   cant: (t, lt, C) => {
     // he strains at the phone a metre away — can't
