@@ -229,7 +229,9 @@ const guard = (C: Cast, t: number) => {
   if (t > ev('ring') - 0.05 && t < ev('grab')) { const up = sm((t - ev('answer')) / 0.22); const lowF = add(bw(g.I, 'Bip01_Spine'), [0.0, -0.05, -0.22]);
     const ph = lerp3(lowF, hw(g.I, [12, 12, 2]), up); const buzz = t < ev('answer') ? 0.006 * Math.sin(t * 90) : 0;
     hand(g.I, 'L', add(ph, [buzz, -0.05, 0]), 'cup'); nodes.push(<Phone key="gp" position={add(ph, [buzz, 0, 0])} rotation={[0, s.yaw + Math.PI / 2 * up, 0.18 * up]} lit={1} />); }
-  else if (t >= ev('grab')) { const u = t - ev('grab'); const dp = add(bw(g.I, 'Bip01_Head'), [-0.3 - 0.25 * u, 0.2 + 0.1 * u, 0.2]); nodes.push(<Phone key="gp" position={dp} rotation={[u * 2, u * 3, 0.4]} lit={0.6} />); }
+  else if (t >= ev('grab')) { const u = t - ev('grab'); const near0 = add(bw(g.I, 'Bip01_Head'), [-0.3, 0.2, 0.2]);   // tumbles by his head, goes out of the hole with him, outside it drops to the ground
+    const ground: V3 = [X22 + 0.7, 0.02, -3.0]; const k = t < ev('out') ? 0 : cl((t - ev('out') - 0.2) / 0.5);
+    const dp = k > 0 ? lerp3(near0, ground, k * k) : near0; nodes.push(<Phone key="gp" position={dp} rotation={k >= 1 ? [-Math.PI / 2, 0, 0.4] : [u * 2, u * 3, 0.4]} lit={0.6} />); }
   // the extinguisher: grabbed from EXT0, held at the hip, horn forward (+x in his frame)
   if (t >= ev('grab') - 0.3) { const grab = sm((t - ev('grab') + 0.3) / 0.3);
     const fw = new THREE.Vector3(Math.sin(s.yaw), 0, Math.cos(s.yaw)); const spine = bw(g.I, 'Bip01_Spine');
