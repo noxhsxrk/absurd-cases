@@ -334,7 +334,7 @@ export const SHOT_FN: Record<string, (t: number, lt: number, C: Cast) => ShotOut
   chain: (t, lt, C) => {
     // close from above: round he comes, the chain runs through the fire — and parts
     const c = CUT_AT(); const {node} = all(t, C, {only: [18], guard: true});
-    return {node: <>{node}{lamp(add(c, [0.4, 0.6, 0.6]), 1.6)}</>, cam: mv({pos: [X18 + 0.05, 4.5, 0.55], look: [X18, 1.3, 0.15], fov: 56}, lt, {arrive: 0.02, push: 0.1, roll0: 90, roll: 4, shake: kick(t, ['cut'])}), bg: NIGHT_BG};
+    return {node: <>{node}{lamp(add(c, [0.4, 0.6, 0.6]), 1.6)}</>, cam: mv({pos: add(CUT_AT(), [0.05, 3.0, 0.1]), look: CUT_AT(), fov: 54}, lt, {arrive: 0.02, push: 0.12, roll0: 90, roll: 5, shake: kick(t, ['cut'])}), bg: NIGHT_BG};
   },
   free: (t, lt, C) => {
     // from above and in front: off the orbit he flies, out through the melted bars
@@ -389,18 +389,18 @@ export const SHOT_FN: Record<string, (t: number, lt: number, C: Cast) => ShotOut
   outhole: (t, lt, C) => {
     // outside, the yard: out of the hole in the prison wall he shoots
     const {node} = out(t, C, {cops: false});
-    return {node: <>{node}</>, cam: mv({pos: [X22 - 1.7, 1.45, -6.0], look: [X22, 1.25, -2.2], fov: 46}, lt, {arrive: 0.02, push: 0.08}), bg: OUT_BG};
+    return {node: <>{node}</>, cam: mv({pos: [X22 - 1.7 + 0.25 * lt, 1.45, -6.0 + 0.3 * lt], look: [X22, 1.25, -2.2], fov: 46}, lt, {arrive: 0.02, push: 0.2}), bg: OUT_BG};
   },
   hang: (t, lt, C) => {
     // out here there is gravity: he stops in the air — the red arrow — down
     const {node} = out(t, C, {cops: false}); const arrowK = sm((t - ev('hang') - 0.3) / 0.25);
     return {node: <>{node}{arrowK > 0.01 && <GravityArrow position={[HANG[0] + 0.55, 1.9, HANG[2] - 0.1]} s={0.7 * arrowK} />}</>,
-      cam: mv({pos: [X22 - 1.6, 1.1, -7.6], look: [X22, 1.5, -3.3], fov: 46}, lt, {arrive: 0.02, push: 0.1}), bg: OUT_BG};
+      cam: mv({pos: [X22 - 1.6 + 0.35 * lt, 1.1 + 0.08 * lt, -7.6 + 0.45 * lt], look: [X22, 1.5 - 0.15 * lt, -3.3], fov: 46}, lt, {arrive: 0.02, push: 0.22, roll: 3}), bg: OUT_BG};
   },
   land: (t, lt, C) => {
     // thump, on the ground of the yard
     const {node} = out(t, C, {cops: false});
-    return {node: <>{node}</>, cam: mv({pos: [X22 - 0.9, 0.85, -5.9], look: [X22, 0.45, -3.5], fov: 46}, lt, {arrive: 0.02, push: 0.1, shake: kick(t, ['land'], 0.12, 0.02)}), bg: OUT_BG};
+    return {node: <>{node}</>, cam: mv({pos: [X22 - 0.9 - 0.2 * lt, 0.85 + 0.1 * lt, -5.9 + 0.3 * lt], look: [X22, 0.45, -3.5], fov: 46}, lt, {arrive: 0.02, push: 0.22, shake: kick(t, ['land'], 0.12, 0.02)}), bg: OUT_BG};
   },
   cops: (t, lt, C) => {
     // the police outside, by their cars: someone just came out of the prison wall — they run over

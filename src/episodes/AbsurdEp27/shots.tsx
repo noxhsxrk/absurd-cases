@@ -303,7 +303,7 @@ export const SHOT_FN: Record<string, (t: number, lt: number, C: Cast) => ShotOut
   pocket: (t, lt, C) => {
     // outside by car 0: the guard sits cuffed, the cops round him — and his phone, on the ground, rings
     const {node} = OUT(t, C, {man: false});
-    return {node: <>{node}</>, cam: mv({pos: [-8.6, 1.5, -1.9], look: [-6.6, 0.6, -3.5], fov: 50}, lt, {arrive: 0.02, push: 0.08}), bg: OUT_BG};
+    return {node: <>{node}</>, cam: mv({pos: [-8.6 + 0.3 * lt, 1.5 - 0.1 * lt, -1.9 - 0.2 * lt], look: [-6.6, 0.6, -3.5], fov: 50}, lt, {arrive: 0.02, push: 0.2, roll: 2}), bg: OUT_BG};
   },
   ringcu: (t, lt, C) => {
     // close: "incoming call · cell 24"

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""absurd-cases EP26 premix (แก๊งห้อง 24 S1E6 ดาวบริวาร). Foley from the shared store (tools/sfx_index.py pull), nothing new generated. Quiet SA3 underscore.
+"""absurd-cases EP26 premix (แก๊งห้อง 24 S1E7 ผู้คุมแหกคุก). Foley from the shared store (tools/sfx_index.py pull), nothing new generated. Quiet SA3 underscore.
 Narration is the mix; ambience ≈ −40 dBFS under it. Synth recipes shared with EP6/EP15/EP16 (copied)."""
 import json, sys, pathlib, subprocess, re, wave
 import numpy as np
@@ -212,49 +212,55 @@ def wall_ring(f=520, taps=4):
     o = np.zeros(int((0.35 + taps * 0.2) * R))
     for k in range(taps): x = lp(one, 4000 / (1 + k)) * 0.55 ** k; i = int(k * 0.2 * R); o[i:i + len(x)] += x
     return o
-# ---- beds: the block hush at night, weightless
-for name, a, b, lvl, fb in [('night_quiet', 0, END, 0.85, lambda: bed_noise(10, 100, 1500, 0.1, 4)), ('crickets', 0, END, 0.45, lambda: bed_noise(10, 3000, 6000, 0.4, 8)),
-                            ('prison_hall', 0, END, 0.5, lambda: bed_noise(10, 120, 2500, 0.15, 6))]:
+# ---- beds: the block hush inside (weightless), the yard outside (gravity, cars idling) for the guard's landing and arrest
+O0, O1 = T('outhole'), T('night')
+for name, a, b, lvl, fb in [('night_quiet', 0, O0, 0.85, lambda: bed_noise(10, 100, 1500, 0.1, 4)), ('prison_hall', 0, O0, 0.5, lambda: bed_noise(10, 120, 2500, 0.15, 6)),
+                            ('outdoor_prison', O0, O1, 0.9, lambda: bed_noise(10, 80, 2500, 0.2, 7)), ('crickets', O0, O1, 0.6, lambda: bed_noise(10, 3000, 6000, 0.4, 8)),
+                            ('night_quiet', O1, END, 0.85, lambda: bed_noise(10, 100, 1500, 0.1, 4)), ('prison_hall', O1, END, 0.5, lambda: bed_noise(10, 120, 2500, 0.15, 6))]:
     M.bed(to_st(rms_to(amb(name, 10, fb), BED * lvl)), a, b, width=1.0, xf=0.3, fade=0.6 if b == END else 0.3)
 BGM = pathlib.Path('public/absurd-cases/ep26/bgm/bgm.wav')
-if BGM.exists(): M.bed(rms_to(read(BGM, stereo=True)[:int(T('night') * R)], 0.018), 0, T('night'), width=1.0, xf=0.05, fade=0.8)   # the score stops for the fridge
+if BGM.exists(): M.bed(rms_to(read(BGM, stereo=True)[:int(T('night') * R)], 0.018), 0, T('night'), width=1.0, xf=0.05, fade=0.8)   # the score stops for the empty block
 def tungs(t0): P(whoosh(0.3, 400, 3000), 0.2, t0 - 0.25); P(tung(), 0.5, t0); P(thud(40, 0.9), 0.28, t0 + 0.05)
-W = 2 * np.pi * 8 / 1.0   # placeholder, replaced below
-span = EV['cuff1'] - EV['orbit0']; k_ = round(span / 3.0 + 0.25); W = (2 * np.pi * k_ - np.pi / 2) / span; PER = 2 * np.pi / W
 def crackle(sec, rate=60):
-    """fire in an open fridge: the store take is 2 % active (sfx_check), so a synth crackle carries it"""
+    """a fire burning: the store take is mostly quiet (EP25 sfx_check), so a synth crackle carries it"""
     n = int(sec * R); o = bp(nz(sec), 200, 2500) * 0.25; r = np.random.default_rng(12)
     for i in r.integers(0, n - 400, int(sec * rate)): o[i:i + 300] += r.choice([-1, 1]) * np.exp(-np.arange(300) / 30) * r.uniform(0.3, 1)
     return o
-# ---- pulled out: the phone snatched, the slide out between the bars and down the corridor
-P(click(0.04), 0.16, EV['grab'], 0.1)
-P(whoosh(1.0, 300, 3000), 0.3, EV['out24'] - 0.3, 0.3); P(take('bars_grip', lambda: metal(180, 0.6, 6), 0.6), 0.14, EV['out24'], 0.2) if (AI / 'bars_grip_r1.wav').exists() else None
-P(whoosh(1.2, 250, 2600), 0.3, EV['in18'] - 0.9, -0.3)
-# ---- the orbit: a whoosh every time he passes the front (towards the camera side), all the way to the end
-t_ = EV['orbit0'] + PER * 0.25
-while t_ < EV['black']:
-    P(whoosh(0.7, 300, 2800), 0.16 if t_ < EV['cuff1'] else 0.13, t_ - 0.35, 0.0); t_ += PER
-P(take('dejavu_shimmer', lambda: whoosh(1.5, 800, 5000), 2.0), 0.14, EV['orbit0'], -0.2)
+# ---- the fire: flares in the fridge, floats out, rounds into a ball; a crackle follows it the whole way until the guard is gone
+P(take('fire_whoosh', lambda: whoosh(0.8, 200, 3000), 1.2), 0.3, EV['flare'] - 0.05, -0.3)
+P(whoosh(0.8, 300, 3000), 0.2, EV['fireout'] - 0.2, -0.3); P(take('dejavu_shimmer', lambda: whoosh(1.2, 800, 5000), 1.2), 0.1, EV['ball'] - 0.2, 0.0) if (AI / 'dejavu_shimmer_r1.wav').exists() else None
+fl = EV['hole'] - EV['flare']
+P(env(crackle(fl), [(0, 0), (0.4, 1), (fl - 0.5, 1), (fl, 0.5)]), 0.13, EV['flare'], -0.1)
+# ---- every bar it passes melts: a sizzle and a soft metal groan per cell
+for k, pan in (('m23', -0.3), ('m22', -0.5), ('m18', -0.1)):
+    P(take('sizzle', lambda: fizz(1.2), 1.4), 0.22, EV[k] - 0.15, pan); P(metal(140, 0.9, 4), 0.07, EV[k] + 0.2, pan)
+# ---- the chain parts in the fire: a ping, the links rattle; off the orbit he flies
+P(metal(1100, 0.5, 7), 0.22, EV['cut'], 0.0); P(take('chain_rattle', lambda: ratchet(10, 0.4), 0.9), 0.2, EV['cut'] + 0.02, 0.1)
+P(whoosh(1.0, 250, 2600), 0.3, EV['free0'], 0.2)
 tungs(EV['plate'])
-# ---- the call: dial; each time behind the Earth the line cuts (a drop blip), each time round in front it rings again; the redials speed up
+# ---- the call: he dials, the guard's phone rings a metre away, he answers
 P(take('dial_beeps', lambda: np.concatenate([beep(1300, 0.08)] * 3), 1.0), 0.2, EV['dial'], 0.2)
-t_ = EV['dial'] + 0.3
-while t_ < EV['cuff1'] - 0.4:
-    a_ = -W * (t_ - EV['orbit0'])
-    if np.sin(a_) < -0.1: P(np.concatenate([beep(480, 0.12), beep(380, 0.18)]), 0.14, t_, 0.1); t_ += PER * 0.5
-    else: P(take('phone_alert', lambda: beep(900, 0.15), 0.4), 0.12, t_, 0.1); t_ += PER * 0.5 if t_ < EV['redial0'] else PER * 0.18
-# ---- the guard swims over breathing through his mask; reaches through; click — wrist; clank — the Moon
-mb = take('mask_breath', lambda: bp(nz(1.6), 200, 1800), None, trim=False)
-for t0 in (T('guardfly') + 0.2, T('reach') + 0.3): P(mb[:int(1.6 * R)], 0.18, t0, -0.2)
-P(take('cuff_click', lambda: ratchet(6, 0.2), 0.5), 0.36, EV['cuff1'], 0.1); P(metal(900, 0.4, 8), 0.12, EV['cuff1'] + 0.03, 0.1)
-P(take('cuff_click', lambda: ratchet(6, 0.2), 0.5), 0.32, EV['cuff2'], -0.1); P(metal(500, 0.6, 5), 0.18, EV['cuff2'] + 0.02, -0.1)
-# ---- the fridge door floats open: a seal pop, a creak, the fire crackling free; a low riser into black
-P(take('fridge_open', lambda: click(0.05), 0.8), 0.24, EV['door'] - 0.1, -0.3); P(creak(0.9, 420, 300), 0.12, EV['door'], -0.3)
-fl = EV['black'] - EV['door']
-P(env(crackle(fl), [(0, 0), (0.4, 1), (fl - 0.3, 1), (fl, 0)]), 0.22, EV['door'] + 0.2, -0.2)
-P(take('fire_crackle', lambda: crackle(3.0), 3.0), 0.2, EV['door'] + 0.3, -0.2)
+pa = take('phone_alert', lambda: beep(900, 0.15), 0.5)
+for k_ in range(3):
+    t_ = EV['ring'] + k_ * 0.45
+    if t_ < EV['answer'] - 0.1: P(pa, 0.15, t_, -0.2)
+P(click(0.04), 0.14, EV['answer'], -0.2)
+# ---- he grabs the floating extinguisher and squeezes: a CO2 roar that keeps going as the recoil carries him off
+P(clunk(240, 0.12, 0.8), 0.18, EV['grab'], -0.1)
+jet = EV['out'] + 0.3 - EV['spray']; fg = take('fogger', lambda: bp(nz(jet), 600, 7000), None, trim=False)
+P(env(loopto(fg, jet), [(0, 0), (0.05, 1), (jet - 0.3, 1), (jet, 0)]), 0.3, EV['spray'], 0.1)
+P(whoosh(1.4, 200, 2600), 0.35, EV['kick'] - 0.3, -0.4); P(take('whoosh_cloud', lambda: whoosh(1.2, 300, 4000), 1.4), 0.25, EV['hole'] - 0.5, -0.5)
+P(take('rubble_fall', lambda: thud(60, 0.6), 1.0), 0.14, EV['hole'], -0.5)
+# ---- outside: he hangs a beat (silence), the fall, thump; whistle, running boots, click
+P(whoosh(0.5, 400, 2600), 0.18, EV['land'] - 0.45, 0.0); P(take('body_fall', lambda: thud(55, 0.5), 0.8), 0.42, EV['land'], 0.0); P(thud(45, 0.6), 0.25, EV['land'] + 0.02)
+P(take('trombone_down', lambda: whoosh(0.8, 200, 800), 1.4), 0.08, EV['land'] + 0.2, 0.0)
+P(take('police_whistle', lambda: beep(2600, 0.4), 0.9), 0.16, EV['run'] - 0.1, 0.4)
+P(take('swat_run', lambda: boots(1.2, 8), 1.3), 0.22, EV['run'] + 0.1, 0.3)
+P(take('cuff_click', lambda: ratchet(6, 0.2), 0.5), 0.36, EV['cuff'], 0.0)
+tungs(EV['plate2'])
+# ---- that night: the block with no guard, a low riser into black
 rs = take('riser', lambda: whoosh(2.0, 200, 3000), None, trim=False)[:int((EV['black'] - T('night')) * R)]
-P(env(rs, [(0, 0), (0.8, 0.5), (len(rs) / R - 0.05, 1)]), 0.13, T('night'))
+P(env(rs, [(0, 0), (0.8, 0.5), (len(rs) / R - 0.05, 1)]), 0.12, T('night'))
 
 OUT = pathlib.Path('public/absurd-cases/ep26/mix/ep26_mix.wav'); OUT.parent.mkdir(parents=True, exist_ok=True); RAW = OUT.with_name('raw.wav')
 d = lp(np.convolve(M.vo_env, np.ones(int(0.25 * R)) / (0.25 * R), 'same'), 8, 2); M.beds *= (1 - 0.7 * np.clip(d, 0, 1))[:, None]
@@ -262,7 +268,7 @@ m = (VOX + M.mix * (1 - 0.3 * np.clip(d, 0, 1))[:, None] + M.beds)[:int(TOTAL * 
 on = M.vo_env[:len(m)] > 0.5; rest = m - VOX[:len(m)]
 if VOICE.exists():
     print('voice over everything else while speaking: %.1f dB' % (db(VOX[:len(m)][on]) - db(rest[on])))
-    for nm, a_, b_ in [('pulled', 0, T('orbit')), ('orbit', T('orbit'), T('call')), ('call', T('call'), T('guardfly')), ('cuffs', T('guardfly'), T('night')), ('fridge', T('night'), TOTAL)]:
+    for nm, a_, b_ in [('fire', 0, T('plate')), ('call', T('plate'), T('recoil')), ('flight', T('recoil'), T('outhole')), ('outside', T('outhole'), T('night')), ('night', T('night'), TOTAL)]:
         w = on & (np.arange(len(m)) >= a_ * R) & (np.arange(len(m)) < b_ * R); print('  %s: %.1f dB' % (nm, db(VOX[:len(m)][w]) - db(rest[w])))
 # the cliffhanger cuts to black: everything fades out with the picture
 gs = np.ones(len(m)); i0, i1 = int((EV['black'] - 0.5) * R), int(EV['black'] * R); gs[i0:i1] = np.linspace(1, 0, i1 - i0); gs[i1:] = 0; m = m * gs[:, None]
