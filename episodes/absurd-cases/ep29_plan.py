@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """absurd-cases EP29 timing plan (คดีตู้กดน้ำ): the one source of timing -> public/absurd-cases/ep29/ep29_timeline.json
-Line timing from ep29_line_timing.json (PROVISIONAL: gemini-3.1-flash-tts Fenrir per-line take sped 1.3x, to be replaced by a 3.8-flash take; cut with tools/tighten_take.py; visual beats live in ep29_gaps.txt)."""
+Line timing from ep29_line_timing.json (gemini-2.5-pro-preview-tts Fenrir per-line take sped 1.25x (3.8-flash quota spent); cut with tools/tighten_take.py; visual beats live in ep29_gaps.txt)."""
 import json, pathlib
 HERE = pathlib.Path(__file__).resolve().parent; ROOT = HERE.parent.parent
 FPS = 30
