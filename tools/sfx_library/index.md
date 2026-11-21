@@ -1,6 +1,6 @@
 # คลังเสียง absurd-cases (SFX library)
 
-1263 ไฟล์ (1263 อยู่บนคลัง GitHub, 228 อยู่ในเครื่อง) · 217 เสียง · สร้างใหม่: `python3 tools/sfx_index.py build` · ค้น: `python3 tools/sfx_index.py search <คำ>` (ไทยก็ได้)
+1286 ไฟล์ (1286 อยู่บนคลัง GitHub, 243 อยู่ในเครื่อง) · 221 เสียง · สร้างใหม่: `python3 tools/sfx_index.py build` · ค้น: `python3 tools/sfx_index.py search <คำ>` (ไทยก็ได้)
 
 ## วิธีใช้
 
@@ -39,17 +39,17 @@
 | **fire_crackle** | เปลวไฟเล็กลุกนิ่งๆ มีเสียงแตกเปาะเบาๆ วางเป็นพื้นตลอดช่วงที่มีไฟในฉาก | EP17, EP20, EP25 door | ☁ `sounds/fire_crackle/fire_crackle_r1_sao.wav` | sao · 5.0 · 0.28 | 9 |
 | **flood_hum** | สปอตไลต์ใหญ่กลางแจ้งหึ่ง วางหลังเปิดไฟส่องผู้ต้องหา | EP8b bed lights→interro | `public/absurd-cases/ep8/sfx_sao/flood_hum_r1.wav` | sao · 6.0 · 0.2 | 5 |
 | **fridge_hum** | ตู้เย็นหึ่งในครัวมืด ฉากดึก | EP17, EP20 | ☁ `sounds/fridge_hum/fridge_hum_r1_audioldm2_ep3.wav` | sao · 6.0 ·  | 6 |
-| **morning_birds** | นกร้องตอนเช้า หน้าบ้าน/หมู่บ้าน | EP12 bed …→court, EP9 bed …→interro, EP9 bed …→newMirror | ☁ `sounds/morning_birds/morning_birds_r1_sao_ep9.wav` | sao · 8.0 ·  | 9 |
+| **morning_birds** | นกร้องตอนเช้า หน้าบ้าน/หมู่บ้าน | EP12 bed …→court, EP9 bed …→interro, EP9 bed …→newMirror | ☁ `sounds/morning_birds/morning_birds_r1_sao_ep9.wav` | sao · 8.0 ·  | 10 |
 | **murmur** | เสียงพึมพำฝูงคน รุ่นเก่า (ศาล/ฝูงชน) | EP16 court, EP17 court, EP18 gavel, EP19 | ☁ `sounds/murmur/murmur_r1_sao_ep16.wav` | sao · 10.0 ·  | 6 |
 | **night_quiet** | กลางคืนเงียบ รุ่นเก่า | EP10 bed …→interro | ☁ `sounds/night_quiet/night_quiet_r1_sao_ep10.wav` | sao · 10.0 ·  | 14 |
 | **noon_amb** | เที่ยงร้อนป้ายรถเมล์ จักจั่นดัง รถผ่าน (ตัวหลักของกลางวันร้อน) | EP8b bed vest→report | `public/absurd-cases/ep8/sfx_sao/noon_amb_r1.wav` | sao · 10.0 · 0.18 | 5 |
 | **outdoor_prison** | ลานโล่งหน้าอาคาร ลมเบา นกไกลๆ (หน้าคุก/หน้าสถานที่ราชการ) | EP10 bed release→jobHunt, EP6 bed prisonFront→notice, EP8 bed vest→sun, EP9 bed release→ringLive | ☁ `sounds/outdoor_prison/outdoor_prison_r1_sao_ep10.wav` | sao · 6.0 ·  | 13 |
-| **prison_hall** | ทางเดินคุก รุ่นเก่า | EP10 bed guardsNet→release | ☁ `sounds/prison_hall/prison_hall_r1_sao_ep10.wav` | sao · 8.0 ·  | 14 |
+| **prison_hall** | ทางเดินคุก รุ่นเก่า | EP10 bed guardsNet→release | ☁ `sounds/prison_hall/prison_hall_r1_sao_ep10.wav` | sao · 8.0 ·  | 15 |
 | **room_hum** | ห้องสอบสวน ไฟนีออนหึ่ง รุ่น AudioLDM2 | EP10 bed interro→court, EP7 bed interro→court, EP8 bed interro→court, EP9 bed interro→court | ☁ `sounds/room_hum/room_hum_r1_sao_ep10.wav` | sao · 6.0 ·  | 7 |
 | **room_tone** | ห้องสอบสวน ไฟนีออน+แอร์เบาๆ (ตัวหลักของห้องสอบสวน) | EP8b bed interro→court, EP9 bed ringLive→newMirror | ☁ `sounds/room_tone/room_tone_r1_sao_ep8.wav` | sao · 6.0 · 0.15 | 10 |
 | **sea_waves** | ทะเลเปิดกลางคืน คลื่นเบาๆ กระทบแพ/ทุ่น (เสียงพื้นฉากกลางทะเล) |  | ☁ `sounds/sea_waves/sea_waves_r1_sao.wav` | sao · 8.0 · 0.21 | 5 |
 | **seagulls** | นกนางนวลร้องเหนือทะเลตอนรุ่งเช้า คลื่นไกลๆ |  | ☁ `sounds/seagulls/seagulls_r1_sao.wav` | sao · 6.0 · 0.32 | 5 |
-| **village_amb** | ถนนในหมู่บ้านไทยบ่ายแดดดี นกร้อง (ตัวหลักของฉากหมู่บ้าน) | EP10 bed jobHunt→lastLight, EP8b bed …→interro | ☁ `sounds/village_amb/village_amb_r1_sao_ep8.wav` | sao · 10.0 · 0.22 | 12 |
+| **village_amb** | ถนนในหมู่บ้านไทยบ่ายแดดดี นกร้อง (ตัวหลักของฉากหมู่บ้าน) | EP10 bed jobHunt→lastLight, EP8b bed …→interro | ☁ `sounds/village_amb/village_amb_r1_sao_ep8.wav` | sao · 10.0 · 0.22 | 13 |
 | **wind_gap** | ลมหวีดผ่านช่องแคบในตึกปูน หลอนๆ | EP11 noHands, EP6 answer | ☁ `sounds/wind_gap/wind_gap_r1_audioldm2_ep6.wav` | sao · 3.0 ·  | 5 |
 | **wind_gust** | ลมกระโชก รุ่นเก่า | EP13 bed …→haunted, EP23 turn, EP24 escape | ☁ `sounds/wind_gust/wind_gust_r1_sao_ep13.wav` | sao · 6.0 ·  | 5 |
 | **wind_high** | ลมบนที่สูงเหนือเมือง โล่งๆ (ช็อตมุมสูง/บนฟ้า) | EP7 bed prisonTop→alert | ☁ `sounds/wind_high/wind_high_r1_audioldm2_ep7.wav` | sao · 8.0 ·  | 5 |
@@ -70,6 +70,7 @@ spot ตรงเฟรมที่ตัวละครทำ ใส่ก่�
 |---|---|---|---|---|---|
 | **applause** | คนดูในหอประชุมปรบมือ (ต้อนรับ ปิดงาน) | EP18 | ☁ `sounds/applause/applause_r1_sao.wav` | sao · 4.0 · 0.33 | 5 |
 | **breath_in** | สูดหายใจลึกทางจมูกแล้วผ่อน ฉากสูดอากาศ/ดมกลิ่น | EP18 wedding, EP19 trip, EP23 | ☁ `sounds/breath_in/breath_in_r1_audioldm2_ep3.wav` | sao · 3.0 ·  | 5 |
+| **can_open_gulp** | เปิดกระป๋องฟู่ แล้วกลืนอึกๆ (EP29) | EP29 grab | `public/absurd-cases/ep29/sfx_sao/can_open_gulp_r1.wav` | sao · 3.0 ·  | 3 |
 | **cough** | คนแก่ไอสองทีกระแอม ช่วงเงียบในศาล/ห้องสอบสวนก่อนพูด | EP17 soot, EP23 window, EP23 dial, EP23 faint, EP8b cough | ☁ `sounds/cough/cough_r1_sao_ep8.wav` | sao · 2.5 · 0.36 | 7 |
 | **crowd_gasp** | ฝูงคนอ้าปากค้าง สูดลมเฮือกพร้อมกัน (ตกใจทั้งเมือง) | EP19 blank | ☁ `sounds/crowd_gasp/crowd_gasp_r1_sao.wav` | sao · 2.0 · 0.16 | 5 |
 | **crowd_heave** | คนหมู่มากออกแรงดึงพร้อมกัน ฮึบๆ (ชักเย่อ รุมดึง) | EP16 heave | ☁ `sounds/crowd_heave/crowd_heave_r1_sao.wav` | sao · 3.0 · 0.14 | 5 |
@@ -80,7 +81,7 @@ spot ตรงเฟรมที่ตัวละครทำ ใส่ก่�
 | **mosquito** | ยุงบินหึ่งใกล้หู ตัวเดียว | EP20, EP21 | `public/absurd-cases/ep20/sfx_sao/mosquito_r1.wav` | sao · 5.0 ·  | 5 |
 | **scream_short** | ผู้หญิงกรี๊ดสั้นๆ ตกใจ (โดนผีหลอก) | EP13 boo, EP17, EP17 fire2 | ☁ `sounds/scream_short/scream_short_r1_sao.wav` | sao · 1.5 · 0.28 | 6 |
 | **skin_scratch** | เล็บเกาผิว/เสื้อรัวๆ — คันไปทั้งตัว EP21 | EP21 plate2 | `public/absurd-cases/ep21/sfx_sao/skin_scratch_r1.wav` | sao · 3.0 ·  | 2 |
-| **steps_road** | เดินช้าบนถนนยาง รองเท้าผ้าใบ ฉากเดินเล่นเปิดเรื่อง (loop ได้) | EP12 door, EP19 trip, EP27 walk, EP28 queue, EP8b | ☁ `sounds/steps_road/steps_road_r1_sao_ep8.wav` | sao · 5.0 · 0.24 | 9 |
+| **steps_road** | เดินช้าบนถนนยาง รองเท้าผ้าใบ ฉากเดินเล่นเปิดเรื่อง (loop ได้) | EP12 door, EP19 trip, EP27 walk, EP28 queue, EP29 cops, EP8b | ☁ `sounds/steps_road/steps_road_r1_sao_ep8.wav` | sao · 5.0 · 0.24 | 10 |
 | **steps_stop** | เดิน 3 ก้าวแล้วหยุด ตรงจังหวะชะงัก/สังเกตเห็นความผิดปกติ | EP8b stop | ☁ `sounds/steps_stop/steps_stop_r1_sao_ep8.wav` | sao · 2.0 · 0.13 | 6 |
 | **tired_steps** | ขึ้นบันไดปูนช้าๆ หอบ ตอนเดินขึ้นตึก/ไปรับโทษ | EP6 stairsUp | `public/absurd-cases/ep23/sfx_sao/tired_steps_r1.wav` | sao · 4.0 ·  | 5 |
 | **toothbrush** | แปรงฟันถูๆ เปียก ฟอง วนใต้ฉากแปรงฟันหน้ากระจก (EP9) | EP9 | ☁ `sounds/toothbrush/toothbrush_r1_sao.wav` | sao · 4.0 · 0.33 | 5 |
@@ -100,6 +101,7 @@ spot ตรงเฟรมที่ตัวละครทำ ใส่ก่�
 |---|---|---|---|---|---|
 | **alarm_bell** | นาฬิกาปลุกกระดิ่งคู่ดังรัว (เปิดเรื่อง / ปลุก / สัญญาณเตือนแบบกลไก) | EP11 | ☁ `sounds/alarm_bell/alarm_bell_r1_sao.wav` | sao · 5.0 · 0.44 | 5 |
 | **clock_tick** | นาฬิกาเดินติ๊กต็อก (ห้องเงียบ รอเวลา นับถอยหลัง เข็มวินาที) | EP11 ring, EP18 peel | ☁ `sounds/clock_tick/clock_tick_r1_sao.wav` | sao · 5.0 · 0.27 | 7 |
+| **coin_insert** | หยอดเหรียญลงช่องตู้ เหรียญไหลกริ๊ก (EP29) | EP29 eat | `public/absurd-cases/ep29/sfx_sao/coin_insert_r1.wav` | sao · 1.5 ·  | 3 |
 | **domino_place** | วางโดมิโนตัวเดียวลงพื้นเบาๆ แก๊ก (ตั้งใจ ประณีต) | EP14 lastDomino, EP14 place | ☁ `sounds/domino_place/domino_place_r1_sao.wav` | sao · 1.0 · 0.22 | 5 |
 | **door_creak** | ประตูไม้เปิดเอี๊ยดยาว มีเสียงลูกบิดกริ๊กก่อน (เปิดประตูบ้าน ห้อง ตู้) | EP12, EP13 haunted | ☁ `sounds/door_creak/door_creak_r1_sao.wav` | sao · 3.0 · 0.39 | 6 |
 | **door_open** | เปิดประตูบ้านธรรมดา |  | ☁ `sounds/door_open/door_open_r1_sao_ep12.wav` | sao · 2.0 ·  | 3 |
@@ -140,10 +142,10 @@ spot ตรงเฟรมที่ตัวละครทำ ใส่ก่�
 | เสียง | ใช้ตอนไหน | เคยใช้ | take ที่ดีที่สุด | engine · วิ · score | takes |
 |---|---|---|---|---|---|
 | **cable_cinch** | สายแลน/สายยางพันรัดแน่น ตอนมัดเสาอากาศไขว้หลัง | EP10 lan, EP10 tie | ☁ `sounds/cable_cinch/cable_cinch_r1_sao.wav` | sao · 2.0 · 0.24 | 5 |
-| **car_brake** | รถมาเบรกจอด ยางเอี๊ยดสั้นๆ แล้วเครื่องเดินเบา (รถตำรวจมาถึง) | EP15 charge, EP15 reach, EP17, EP19 cars, EP22 cars1 | ☁ `sounds/car_brake/car_brake_r1_sao.wav` | sao · 2.5 · 0.15 | 9 |
-| **car_door_slam** | ปิดประตูรถแรงๆ ปึ้ง (ยัดผู้ต้องหาลงเบาะหลัง) | EP14 backseat | ☁ `sounds/car_door_slam/car_door_slam_r1_sao.wav` | sao · 1.5 · 0.4 | 5 |
+| **car_brake** | รถมาเบรกจอด ยางเอี๊ยดสั้นๆ แล้วเครื่องเดินเบา (รถตำรวจมาถึง) | EP15 charge, EP15 reach, EP17, EP19 cars, EP22 cars1, EP29 cops | ☁ `sounds/car_brake/car_brake_r1_sao.wav` | sao · 2.5 · 0.15 | 10 |
+| **car_door_slam** | ปิดประตูรถแรงๆ ปึ้ง (ยัดผู้ต้องหาลงเบาะหลัง) | EP14 backseat, EP29 cops | ☁ `sounds/car_door_slam/car_door_slam_r1_sao.wav` | sao · 1.5 · 0.4 | 6 |
 | **cuff_click** | กุญแจมือล็อก รุ่นเก่า (ใช้ cuffs ก่อน) | EP13 jarIn, EP21 cuff, EP22 cuff, EP23 cuff, EP24 aircuff, EP25 cuff1, EP25 cuff2, EP26 cuff | ☁ `sounds/cuff_click/cuff_click_r1_sao_ep13.wav` | sao · 1.5 ·  | 9 |
-| **cuffs** | กุญแจมือรูดล็อกกริ๊กๆ ตรงเฟรมใส่กุญแจมือ (พีกช่วงจับกุม) | EP14 cuff, EP15 cuff, EP16 cuff, EP17 cuff, EP18 cuff, EP19 cuff, EP8b cuff, EP9 cuff | ☁ `sounds/cuffs/cuffs_r1_sao_ep8.wav` | sao · 2.0 · 0.43 | 13 |
+| **cuffs** | กุญแจมือรูดล็อกกริ๊กๆ ตรงเฟรมใส่กุญแจมือ (พีกช่วงจับกุม) | EP14 cuff, EP15 cuff, EP16 cuff, EP17 cuff, EP18 cuff, EP19 cuff, EP29 cuffd, EP8b cuff, EP9 cuff | ☁ `sounds/cuffs/cuffs_r1_sao_ep8.wav` | sao · 2.0 · 0.43 | 14 |
 | **cuffs_drop** | กุญแจมือเหล็กตกถนน กระเด้งสองที (โยนของโลหะลงพื้น) | EP16 clat, EP22 slip2 | ☁ `sounds/cuffs_drop/cuffs_drop_r1_sao.wav` | sao · 1.5 · 0.42 | 7 |
 | **door_kick** | เตะประตูห้องนอนเปิดกระแทกผนัง ตอนหน่วยบุกเข้าห้อง (ในบ้าน) | EP10 door, EP11 door, EP9 door | ☁ `sounds/door_kick/door_kick_r1_sao.wav` | sao · 2.5 · 0.29 | 7 |
 | **engine_rev** | รถตำรวจหลายคันเร่งเครื่องพร้อมกัน ก่อนออกไล่ล่า | EP15 lift, EP7 tyres | ☁ `sounds/engine_rev/engine_rev_r1_audioldm2_ep7.wav` | sao · 3.0 ·  | 5 |
@@ -155,7 +157,7 @@ spot ตรงเฟรมที่ตัวละครทำ ใส่ก่�
 | **plastic_bag** | ถุงดำพลาสติกสะบัดคลุมของ ดังกรอบแกรบ ตรงจังหวะคลุมถุง | EP23 wrap0, EP9 bag | ☁ `sounds/plastic_bag/plastic_bag_r1_sao.wav` | sao · 2.5 · 0.31 | 6 |
 | **police_arrive** | รถตำรวจมาจอด รุ่นเก่า | EP22 cars0 | ☁ `sounds/police_arrive/police_arrive_r1_sao_ep13.wav` | sao · 6.0 ·  | 6 |
 | **police_sirens** | ไซเรนตำรวจหลายคันบนถนนเมือง (กำลังมาก) | EP17 tongs, EP18, EP19, EP22, EP6 courtExt, EP7 interro, EP8 scrape | ☁ `sounds/police_sirens/police_sirens_r1_audioldm2_ep7.wav` | sao · 6.0 ·  | 12 |
-| **police_whistle** | นกหวีดตำรวจจราจรเป่า (ตำรวจจราจรมาถึง สั่งหยุด เรียกรถ) | EP12 cop, EP16 army, EP26 run, EP28 frogs | ☁ `sounds/police_whistle/police_whistle_r1_sao.wav` | sao · 3.0 · 0.27 | 8 |
+| **police_whistle** | นกหวีดตำรวจจราจรเป่า (ตำรวจจราจรมาถึง สั่งหยุด เรียกรถ) | EP12 cop, EP16 army, EP26 run, EP28 frogs, EP29 cops | ☁ `sounds/police_whistle/police_whistle_r1_sao.wav` | sao · 3.0 · 0.27 | 9 |
 | **radio_squelch** | วิทยุสื่อสารตำรวจซ่า-แกร๊ก ก่อน/หลังสั่งการ | EP22 lookup | `public/absurd-cases/ep22/sfx_sao/radio_squelch_r1.wav` | sao · 1.5 ·  | 3 |
 | **siren** | ไซเรนตำรวจคันเดียวใกล้ๆ ถนนเงียบ เข้าก่อนภาพตำรวจ แล้ว loop ใต้ช็อตบุก | EP10 interro, EP11 interro, EP12 towed, EP13 mediate, EP14 interro, EP15 reach, EP16 army, EP8b scrape, EP9 bag | ☁ `sounds/siren/siren_r1_sao_ep8.wav` | sao · 7.0 · 0.34 | 13 |
 | **spotlight_on** | สปอตไลต์สนามเปิดปึก+หึ่งไต่ รุ่น AudioLDM2 (ใช้ flood_on ก่อน) | EP22 spot, EP8 | `public/absurd-cases/ep22/sfx_sao/spotlight_on_r1.wav` | sao · 2.0 ·  | 5 |
@@ -205,10 +207,10 @@ bed ห้อง + spot เด่นหนึ่งเสียงต่อช�
 |---|---|---|---|---|---|
 | **bars_grip** | มือจับลูกกรงห้องขังแล้วเขย่าครั้งเดียว ดังกึงทุ้ม + สั่นสั้น (เปิดเรื่องในคุก; SA3 บน Mac) | EP20, EP21, EP21 stuck, EP22 pull, EP22 lodge, EP23 grab, EP23 peer, EP24 quake0, EP25 out24 | `public/absurd-cases/ep20/sfx_sao/bars_grip_r1.wav` | sao · 2.5 ·  | 6 |
 | **beep** | กำไล EM ที่ข้อเท้าร้องสองที ตอนรับโทษคุมประพฤติ | EP8b em | `public/absurd-cases/ep8/sfx_sao/beep_r1.wav` | sao · 2.0 · 0.33 | 5 |
-| **cell_door** | ประตูห้องขังเลื่อนปิดดังกึง ตรงคัตเข้าคุก | EP10 lidOpen, EP11 cellShut, EP12 cellShut, EP13 cellShut, EP14 cellShut, EP15 flip, EP16 cell, EP17 fridge, EP19 cell, EP28, EP5 clang, EP7 cellDoor, EP9 darkCell, EP9 release | ☁ `sounds/cell_door/cell_door_r1_sao_ep9.wav` | sao · 2.5 ·  | 22 |
-| **chain_rattle** | โซ่เหล็กลากตึง ตอนพันธนาการเกินเหตุ | EP12 hook, EP15 interro, EP20 turn, EP26 cut, EP27 strain, EP28 lift, EP28 cuff, EP6 chain | ☁ `sounds/chain_rattle/chain_rattle_r1_audioldm2_ep6.wav` | sao · 2.5 ·  | 10 |
+| **cell_door** | ประตูห้องขังเลื่อนปิดดังกึง ตรงคัตเข้าคุก | EP10 lidOpen, EP11 cellShut, EP12 cellShut, EP13 cellShut, EP14 cellShut, EP15 flip, EP16 cell, EP17 fridge, EP19 cell, EP28, EP29, EP5 clang, EP7 cellDoor, EP9 darkCell, EP9 release | ☁ `sounds/cell_door/cell_door_r1_sao_ep9.wav` | sao · 2.5 ·  | 23 |
+| **chain_rattle** | โซ่เหล็กลากตึง ตอนพันธนาการเกินเหตุ | EP12 hook, EP15 interro, EP20 turn, EP26 cut, EP27 strain, EP28 lift, EP28 cuff, EP29 cuffm, EP29 cuffd, EP6 chain | ☁ `sounds/chain_rattle/chain_rattle_r1_audioldm2_ep6.wav` | sao · 2.5 ·  | 11 |
 | **concrete_bars** | ก้อนปูนกระแทกลูกกรง ตอนขังของแปลกๆ (เสา/ก้อนปูน) | EP6 | `public/absurd-cases/ep24/sfx_sao/concrete_bars_r1.wav` | sao · 2.0 ·  | 5 |
-| **giant_lock** | แม่กุญแจยักษ์ล็อกดังกึงก้อง ปิดท้ายการขัง | EP11 gate, EP12 gate, EP13 gate, EP28 cuff, EP6 cuff | ☁ `sounds/giant_lock/giant_lock_r1_audioldm2_ep6.wav` | sao · 2.5 ·  | 9 |
+| **giant_lock** | แม่กุญแจยักษ์ล็อกดังกึงก้อง ปิดท้ายการขัง | EP11 gate, EP12 gate, EP13 gate, EP28 cuff, EP29 cuffm, EP6 cuff | ☁ `sounds/giant_lock/giant_lock_r1_audioldm2_ep6.wav` | sao · 2.5 ·  | 10 |
 | **keys** | พวงกุญแจกรุ๊งกริ๊ง ผู้คุมเปิดห้องขัง | EP23 lead | `public/absurd-cases/ep20/sfx_sao/keys_r1.wav` | sao · 2.0 ·  | 4 |
 | **steel_lid_slam** | ฝากล่องเหล็กกระแทกปิด+แม่กุญแจล็อก ตอนขังของในกล่อง | EP10 boxShut, EP17 fridge | ☁ `sounds/steel_lid_slam/steel_lid_slam_r1_sao.wav` | sao · 2.0 · 0.37 | 6 |
 | **vest** | สวมเสื้อกั๊กสะท้อนแสง ผ้า+ตีนตุ๊กแก ตอนเริ่มบริการสังคม | EP8b vest | `public/absurd-cases/ep8/sfx_sao/vest_r1.wav` | sao · 2.0 · 0.13 | 5 |
@@ -267,6 +269,7 @@ bed ห้อง + spot เด่นหนึ่งเสียงต่อช�
 | **rope_strain** | เชือกเส้นใหญ่ตึงเอี๊ยดบนรอก ตอนชักเย่อ/ดึงของหนัก | EP16 heave | ☁ `sounds/rope_strain/rope_strain_r1_sao.wav` | sao · 3.0 · 0.35 | 5 |
 | **swarm** | ฝูงแมลงหึ่ง รุ่นเก่า | EP21 | `public/absurd-cases/ep21/sfx_sao/swarm_r1.wav` | sao · 10.0 ·  | 3 |
 | **truck_away** | รถกระบะออกตัวขับออกไปไกล (รถยกลากออกไป รถตำรวจพาตัวไป) | EP12 lift, EP12 vanGo | ☁ `sounds/truck_away/truck_away_r1_sao.wav` | sao · 4.0 · 0.19 | 5 |
+| **vending_rattle** | เขย่าตู้กดน้ำ ตู้โยกกระแทก กระป๋องข้างในกระทบกัน (EP29; ซ้อน thud synth) | EP29 drop | `public/absurd-cases/ep29/sfx_sao/vending_rattle_r1.wav` | sao · 3.0 ·  | 3 |
 | **washer_spin** | เครื่องซักผ้าเข้าโหมดปั่น เสียงหวีดไต่ขึ้น ตัวเครื่องสั่นกระแทก (EP28) | EP28 land | `public/absurd-cases/ep28/sfx_sao/washer_spin_r1.wav` | sao · 5.0 ·  | 3 |
 | **crane_lift** | เครนยกของหนัก ตอนต้องยกผู้ต้องหาที่เป็นวัตถุใหญ่ | EP6 lift | ☁ `sounds/crane_lift/crane_lift_r1_audioldm2_ep6.wav` | audioldm2 · 4.0 · 0.12 | 4 |
 | **electric_crackle** | ไฟแรงสูงแลบเป็นสาย ตอนของเริ่มมีพลังผิดปกติ | EP7 phone | ☁ `sounds/electric_crackle/electric_crackle_r1_audioldm2_ep7.wav` | audioldm2 · 4.0 · 0.24 | 4 |
@@ -293,6 +296,7 @@ bed ห้อง + spot เด่นหนึ่งเสียงต่อช�
 | **baton_wood** | กระบองฟาดกรอบไม้ ป๊อกๆ ไม่มีแก้วแตก ตอนรุมตีของ (EP9 ตีกระจก) | EP9 | ☁ `sounds/baton_wood/baton_wood_r1_sao.wav` | sao · 2.0 · 0.33 | 5 |
 | **body_fall** | คนล้มหงายลงพื้นแข็ง (ผู้ต้องหาหมดสติ ช็อก) | EP12 fall, EP16 pop, EP23 faint, EP26 land, EP27 ld4, EP28 fling, EP9 reel | ☁ `sounds/body_fall/body_fall_r1_sao_ep9.wav` | sao · 2.0 ·  | 14 |
 | **brick_smash** | ค้อนปอนด์ทุบกำแพงอิฐ อิฐแตกร่วง ตอนตำรวจทุบห้อง | EP13 hit1, EP13 rubble, EP24 collapse | ☁ `sounds/brick_smash/brick_smash_r1_sao.wav` | sao · 2.0 · 0.44 | 6 |
+| **can_drop** | กระป๋องตกลงถาดตู้กดน้ำ ตึง (EP29) | EP29 drop | `public/absurd-cases/ep29/sfx_sao/can_drop_r1.wav` | sao · 1.5 ·  | 3 |
 | **domino_cascade** | โดมิโนหลายร้อยตัวล้มพร้อมกันบนพื้นไม้ กริ๊กๆ รัว | EP14 quake, EP14 wobble | ☁ `sounds/domino_cascade/domino_cascade_r1_sao.wav` | sao · 3.0 · 0.25 | 5 |
 | **hit** | ตีกระแทกทั่วไป รุ่นเก่า |  | `public/absurd-cases/ep22/sfx_sao/hit_r1.wav` | sao · 2.0 ·  | 3 |
 | **machine_crash** | เครื่องจักรเหล็กเล็กตกโต๊ะกระแทกพื้นกระเบื้อง แกร๊ง | EP14 fall | ☁ `sounds/machine_crash/machine_crash_r1_sao.wav` | sao · 2.0 · 0.35 | 5 |
