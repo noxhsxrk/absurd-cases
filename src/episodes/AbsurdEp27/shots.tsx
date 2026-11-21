@@ -73,7 +73,7 @@ const heatK = (no: number, t: number) => !MELT[no] ? 0 : sm((t - ev(MELT[no]!) +
 // ---- the gang: 0 fire · 1 fan · 2 durian · 3 jar · 4 him. Positions are the centre (fire, durian, jar) / the base (fan) / the feet (him).
 const N = 5;
 const HOME = (): V3[] => [[X18 + 2.6, 1.9, 2.6], FAN, DURIAN0, [-0.45, 1.1, 2.15], [X23 + 1.6, 0.5, 3.0]];
-const SLOT: V3[] = [[X22 + 0.75, 1.75, -0.35], [X22 + 0.95, 0.45, 0.25], [X22 - 0.75, 1.3, -0.2], [X22 - 0.35, 1.95, 0.35], [X22 + 0.05, 0.25, 0.75]];
+const SLOT: V3[] = [[X22 - 1.05, 1.55, 0.2], [X22 + 0.65, 0.35, 0.05], [X22 - 0.45, 1.25, 0.1], [X22 + 0.1, 1.6, 0.25], [X22 + 1.15, 0.25, 0.55]];   // a row across 22 in front of the hole, him at the right end facing the corridor
 const HOLE_IN: V3 = [X22, 1.3, -1.35], HOLE_OUT: V3 = [X22, 1.2, -2.05];
 const LAND: V3[] = [[X22 - 1.2, 0, -3.4], [X22 - 0.7, 0, -2.55], [X22 + 1.15, 0.3, -3.0], [X22 - 0.15, 0, -3.55], [X22 + 0.45, 0, -2.55]];
 const LAMP_SPOT: V3[] = [[-11.2, 0, -2.55], [-11.95, 0, -2.9], [-12.6, 0.3, -2.45], [-11.6, 0, -3.25], [-12.2, 0, -3.6]];
@@ -83,7 +83,7 @@ type Phase = 'home' | 'float' | 'hole' | 'fall' | 'ground' | 'walk' | 'lamp';
 /** where gang member i is at t, and in which phase */
 const gangAt = (i: number, t: number): {p: V3; ph: Phase} => {
   const ex = ev(`ex${i}`), ld = ev(`ld${i}`);
-  if (t >= ev('walk')) { const k = sm((t - ev('walk') - i * 0.1) / (ev('lamp') - ev('walk') + 0.2)); return {p: lerp3(LAND[i], LAMP_SPOT[i], k), ph: k < 1 ? 'walk' : 'lamp'}; }
+  if (t >= ev('walk')) { const k = sm((t - ev('walk') - i * 0.05) / Math.max(0.5, ev('lamp') - 0.15 - ev('walk') - i * 0.05)); return {p: lerp3(LAND[i], LAMP_SPOT[i], k), ph: k < 1 ? 'walk' : 'lamp'}; }
   if (t >= ld) return {p: LAND[i], ph: 'ground'};
   if (t >= ex) { const k = (t - ex) / (ld - ex); const a: V3 = HOLE_OUT, b: V3 = add(LAND[i], [0, i === 0 ? 0.2 : i === 2 ? 0 : i === 3 ? 0.25 : 0, 0]);
     return {p: [lerp(a[0], b[0], k), lerp(a[1], b[1], k * k), lerp(a[2], b[2], k)], ph: 'fall'}; }
@@ -152,9 +152,10 @@ const isIn = (i: number, t: number) => { const ph = gangAt(i, t).ph; return ph =
 const gangIn = (t: number) => <>{isIn(0, t) && fireNode(t)}{isIn(1, t) && fanNode(t)}{isIn(2, t) && durianNode(t)}{isIn(3, t) && jarNode(t)}</>;
 const gangOut = (t: number) => <>{!isIn(0, t) && fireNode(t)}{!isIn(1, t) && fanNode(t)}{!isIn(2, t) && durianNode(t)}{!isIn(3, t) && jarNode(t)}</>;
 /** the count: a tag pops over member i at c(i+1) */
-const tags = (t: number, headOf: V3) => <>{[0, 1, 2, 3, 4].map((i) => { const k = sm((t - ev(`c${i + 1}`)) / 0.12); if (k <= 0.01 || t > ev('dial') + 0.3) return null;
-  const p = i === 4 ? add(headOf, [0, 0.35, 0]) : add(gangAt(i, t).p, [0, i === 1 ? 1.15 : 0.32, 0.25]);
-  return <group key={i} position={p} scale={0.6 + 0.4 * k}><CellPlate text={`${i + 1}`} position={[0, 0, 0]} w={0.36} bg={i === 4 ? '#B0302E' : '#152028'} /></group>; })}</>;
+const ORDER = [0, 2, 3, 1, 4];   // left to right along the row as the camera pans: fire, durian, jar, fan, him
+const tags = (t: number, headOf: V3) => <>{ORDER.map((i, n) => { const k = sm((t - ev(`c${n + 1}`)) / 0.12); if (k <= 0.01 || t > ev('dial') + 0.3) return null;
+  const p = i === 4 ? add(headOf, [-0.3, 0.32, 0.1]) : add(gangAt(i, t).p, [0, i === 1 ? 1.7 : 0.45, 0.3]);
+  return <group key={i} position={p} scale={0.6 + 0.4 * k}><CellPlate text={`${n + 1}`} position={[0, 0, 0]} w={0.46} bg={i === 4 ? '#B0302E' : '#152028'} /></group>; })}</>;
 
 // =====================================================================================================
 // PEOPLE
@@ -173,12 +174,11 @@ const facing = (I: any): THREE.Vector3 => { const l = bw(I, 'Bip01_L_UpperArm'),
 
 // ---- him (flat)
 const manPos = (t: number): {feet: V3; yaw: number; rx: number; clip: string} => { const g = gangAt(4, t);
-  if (g.ph === 'home' || g.ph === 'float') { const turn = sm((t - ev('c5') + 0.35) / 0.3) * (1 - sm((t - ev('enter') + 0.6) / 0.4));   // turns round to count himself, faces us for the call
-    return {feet: g.p, yaw: lerp(Math.PI, 0, turn), rx: 0, clip: 'idle_neutral_01'}; }
-  if (g.ph === 'hole') { const k = sm((t - ev('ex4') + 0.9) / 0.5); return {feet: add(g.p, [0, -0.45 * k, 0]), yaw: Math.PI, rx: 1.35 * k, clip: 'idle_neutral_01'}; }   // dives head first through the hole
+  if (g.ph === 'home' || g.ph === 'float') return {feet: g.p, yaw: 0, rx: 0, clip: 'idle_neutral_01'};   // faces the corridor (thin axis z): counts the row to his right
+  if (g.ph === 'hole') { const k = sm((t - ev('ex4') + 0.9) / 0.5); return {feet: add(g.p, [0, -0.45 * k, 0]), yaw: lerp(0, Math.PI, sm((t - ev('ex4') + 0.9) / 0.3)), rx: 1.35 * k, clip: 'idle_neutral_01'}; }   // dives head first through the hole
   if (g.ph === 'fall') { const k = (t - ev('ex4')) / (ev('ld4') - ev('ex4')); return {feet: g.p, yaw: Math.PI, rx: 1.35 * (1 - sm(k * 1.3)), clip: 'idle_neutral_01'}; }
-  if (g.ph === 'ground') { const turn = sm((t - ev('walk') + 0.5) / 0.5); return {feet: g.p, yaw: lerp(Math.PI, -Math.PI / 2, turn), rx: 0, clip: 'idle_neutral_01'}; }
-  return {feet: g.p, yaw: lerp(-Math.PI / 2, -Math.PI, sm((t - ev('lamp') + 0.1) / 0.4)), rx: 0, clip: g.ph === 'walk' ? 'walk_neutral_01' : 'idle_neutral_01'}; };   // at the lamp he turns to face the yard (−z)
+  if (g.ph === 'ground') { const turn = sm((t - ev('walk') + 0.5) / 0.5); return {feet: g.p, yaw: lerp(Math.PI, 1.5 * Math.PI, turn), rx: 0, clip: 'idle_neutral_01'}; }
+  return {feet: g.p, yaw: lerp(1.5 * Math.PI, Math.PI, sm((t - ev('lamp') + 0.1) / 0.4)), rx: 0, clip: g.ph === 'walk' ? 'walk_neutral_01' : 'idle_neutral_01'}; };   // at the lamp he turns to face the yard (−z)
 const manFace = (t: number) => t < ev('c1') ? 'open' : t < ev('plate') ? 'half' : t < ev('dial') + 1.5 ? 'shout' : t < ev('ld4') ? 'wide' : t < ev('lamp') ? 'open' : 'wide';
 const man = (C: Cast, t: number) => { const s = manPos(t);
   const m = guy(C, 'nai', s.feet[0], s.feet[2], s.yaw, t, {face: manFace(t), y: s.feet[1], rx: s.rx, clip: s.clip});
@@ -186,7 +186,7 @@ const man = (C: Cast, t: number) => { const s = manPos(t);
   const nodes: React.ReactNode[] = []; const f = facing(m.I); const chest = bw(m.I, 'Bip01_Spine2');
   // the count: his right hand points ahead at each tag, then at his own chest for 5
   if (t > ev('c1') - 0.2 && t < ev('dial') - 0.2) { const self = t > ev('c5') - 0.15; const r = new THREE.Vector3(0, 1, 0).cross(f).negate();
-    const tgt: V3 = self ? [chest[0] + f.x * 0.02, chest[1] + 0.05, chest[2] + f.z * 0.02] : [chest[0] + f.x * 0.05 + r.x * (0.25 - 0.12 * Math.floor((t - ev('c1')) / 0.3)), chest[1] + 0.35, chest[2] + f.z * 0.05 + r.z * (0.25 - 0.12 * Math.floor((t - ev('c1')) / 0.3))];
+    const tgt: V3 = self ? [chest[0], chest[1] + 0.05, chest[2] + 0.02] : [chest[0] - 0.55, chest[1] + 0.25 - 0.05 * Math.floor((t - ev('c1')) / 0.3), chest[2] + 0.04];   // the row is at −x, his right; flattened along z, so no z offset
     hand(m.I, 'R', tgt, 'point'); }
   // the call: phone up in his right hand in front of his chest (as EP26)
   if (t > ev('dial') - 0.2 && t < ev('enter')) { const r = new THREE.Vector3(0, 1, 0).cross(f).negate(); const tgt: V3 = [chest[0] + r.x * 0.15 + f.x * 0.025, chest[1] + 0.12, chest[2] + r.z * 0.15 + f.z * 0.025];
@@ -248,6 +248,8 @@ const IN = (t: number, C: Cast, o: {only?: number[]; man?: boolean; tags?: boole
   return {m, node: <>{inside(t, o.only ? {only: o.only} : {})}{m?.node}{m && o.tags && tags(t, m.head)}</>}; };
 const OUT = (t: number, C: Cast, o: {man?: boolean} = {}) => { const m = o.man === false ? null : man(C, t);
   return {m, node: <>{outside(t)}{guard(C, t)}{cops(C, t)}{gangOut(t)}{m?.node}{shadows(t)}</>}; };
+/** the count shot pans along the row with the tags: member 1 (left) to him (right) */
+const countLook = (t: number): V3 => [lerp(X22 - 1.05, X22 + 1.15, sm((t - ev('c1') + 0.25) / (ev('c5') - ev('c1') + 0.3))), 1.35, 0.25];
 const kick = (t: number, hits: string[], d = 0.1, a = 0.012) => near(t, hits.map(ev), d) ? a : 0;
 export const SHOT_FN: Record<string, (t: number, lt: number, C: Cast) => ShotOut> = {
   open: (t, lt, C) => {
@@ -283,12 +285,12 @@ export const SHOT_FN: Record<string, (t: number, lt: number, C: Cast) => ShotOut
   count: (t, lt, C) => {
     // behind him, high: he counts them — 1, 2, 3, 4
     const {node} = IN(t, C, {only: [22, 23], tags: true});
-    return {node: <>{node}{lamp([X22 + 0.4, 2.5, 1.8], 1.6)}</>, cam: mv({pos: [X22 + 0.9, 2.3, 3.4], look: [X22 - 0.1, 1.1, -0.2], fov: 60}, lt, {arrive: 0.02, push: 0.08}), bg: NIGHT_BG};
+    return {node: <>{node}{lamp([X22 + 0.4, 2.5, 1.8], 1.6)}</>, cam: mv({pos: add(countLook(t), [0.15, 0.25, 2.25]), look: add(countLook(t), [0, 0.1, 0]), fov: 54}, lt, {arrive: 0.01, push: 0.06}), bg: NIGHT_BG};
   },
   five: (t, lt, C) => {
     // from the hole side: and five — himself
     const {node, m} = IN(t, C, {only: [22, 23], tags: true}); const h = m!.head;
-    return {node: <>{node}{lamp([X22 + 0.2, 2.4, 0.2], 1.8, '#FFF0C8')}</>, cam: mv({pos: [X22 + 0.6, 1.75, 2.5], look: [h[0], h[1] - 0.1, h[2]], fov: 44}, lt, {arrive: 0.02, push: 0.1, shake: kick(t, ['c5'])}), bg: NIGHT_BG};
+    return {node: <>{node}{lamp([X22 + 0.2, 2.4, 0.2], 1.8, '#FFF0C8')}</>, cam: mv({pos: [X22 + 1.35, 1.95, 2.55], look: [h[0], h[1] - 0.05, h[2]], fov: 44}, lt, {arrive: 0.02, push: 0.1, shake: kick(t, ['c5'])}), bg: NIGHT_BG};
   },
   plate: (t, lt, C) => {
     // the institution, frontal: cell 22, the gang of five at the hole. The plate drops.
@@ -298,7 +300,7 @@ export const SHOT_FN: Record<string, (t: number, lt: number, C: Cast) => ShotOut
   call: (t, lt, C) => {
     // close from the hole side: phone up — he reports his own gang
     const {node, m} = IN(t, C, {only: [22]}); const h = m!.head;
-    return {node: <>{node}{lamp([X22 + 0.3, 2.3, 0.4], 1.8, '#FFF0C8')}</>, cam: mv({pos: [X22 + 0.8, 1.65, 2.75], look: [h[0], h[1] - 0.25, h[2]], fov: 50}, lt, {arrive: 0.03, push: 0.12}), bg: NIGHT_BG};
+    return {node: <>{node}{lamp([X22 + 0.3, 2.3, 0.4], 1.8, '#FFF0C8')}</>, cam: mv({pos: [X22 + 1.45, 1.75, 2.7], look: [h[0], h[1] - 0.2, h[2]], fov: 48}, lt, {arrive: 0.03, push: 0.12}), bg: NIGHT_BG};
   },
   pocket: (t, lt, C) => {
     // outside by car 0: the guard sits cuffed, the cops round him — and his phone, on the ground, rings
@@ -344,7 +346,7 @@ export const SHOT_FN: Record<string, (t: number, lt: number, C: Cast) => ShotOut
   stand: (t, lt, C) => {
     // outside the wall, on his feet, free
     const {node, m} = OUT(t, C); const h = m!.head;
-    return {node: <>{node}</>, cam: mv({pos: [h[0] - 0.25, h[1] - 0.15, h[2] - 1.9], look: [h[0], h[1] - 0.3, h[2]], fov: 44}, lt, {arrive: 0.03, push: 0.12}), bg: OUT_BG};
+    return {node: <>{node}</>, cam: mv({pos: [h[0] - 1.35 + 0.25 * lt, h[1] - 0.2 + 0.05 * lt, h[2] - 1.45 - 0.2 * lt], look: [h[0], h[1] - 0.3, h[2]], fov: 44}, lt, {arrive: 0.03, push: 0.2, roll: 2}), bg: OUT_BG};
   },
   free: (t, lt, C) => {
     // wide from the dark beyond the wall's end: the gang walks out towards us, the prison behind
@@ -354,7 +356,7 @@ export const SHOT_FN: Record<string, (t: number, lt: number, C: Cast) => ShotOut
   lamp: (t, lt, C) => {
     // under the lamp at the corner: four shadows on the ground — and none under him
     const {node} = OUT(t, C);
-    return {node: <>{node}</>, cam: mv({pos: [-11.9, 3.3, -6.9], look: [-11.9, 0.35, -2.9], fov: 48}, lt, {arrive: 0.02, push: 0.1}), bg: OUT_BG};
+    return {node: <>{node}</>, cam: mv({pos: [-11.9 - 0.3 * lt, 3.3 - 0.15 * lt, -6.9 + 0.3 * lt], look: [-11.9, 0.35, -2.9], fov: 48}, lt, {arrive: 0.02, push: 0.2}), bg: OUT_BG};
   },
   cell24: (t, lt, C) => {
     // inside, cell 24, barred: his shadow, still on the floor

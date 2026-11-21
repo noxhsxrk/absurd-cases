@@ -33,7 +33,7 @@ ev.update(m19=P('l001', 1) + 0.25, m20=P('l001', 1) + 1.05, out0=P('l002') + 0.1
           c1=P('l003') + 0.25, c2=P('l003') + 0.55, c3=P('l003') + 0.85, c4=P('l003') + 1.15, c5=P('l003', 1) + 0.1, plate=P('l004', 1), dial=P('l005') + 0.1,
           ring=P('l006') + 0.15, strain=P('l007', 1) + 0.1, enter=P('l008', 1) - 0.3,
           **{f'ex{i}': ex0 + 0.5 * i for i in range(5)}, **{f'ld{i}': ex0 + 0.5 * i + 0.5 for i in range(5)},
-          stand=P('l010') + 0.15, walk=P('l010', 1) + 0.3, lamp=P('l011'), cell24=P('l011', 1), slide=P('l012', 2) + 0.1, black=E('l012') + 1.3, end=E(LAST))
+          stand=P('l010') + 0.15, walk=P('l010', 1) - 0.1, lamp=P('l011'), cell24=P('l011', 1), slide=P('l012', 2) + 0.1, black=E('l012') + 1.3, end=E(LAST))
 ev = {k: round(v, 3) for k, v in ev.items()}
 # TODO one entry per cut, (name, time), in order. Cut L (0.2 s) before a sentence and 0.05–0.08 s before a line's second card;
 #      a silent beat that shows a new picture is its own shot (≥ 0.5 s: raise that line's gap in epN_gaps.txt, do not squeeze the shot).
