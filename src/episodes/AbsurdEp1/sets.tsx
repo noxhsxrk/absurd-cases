@@ -323,7 +323,7 @@ const tally = (n: number) => {
   });
   return c;
 };
-export const Cell: React.FC<{t: number; days: number; marks: number; rails?: number[]}> = ({days, marks, rails = [0.15, 1.2, 2.6]}) => {
+export const Cell: React.FC<{t: number; days: number; marks: number; rails?: number[]; bars?: boolean}> = ({days, marks, rails = [0.15, 1.2, 2.6], bars = true}) => {   // bars=false: an episode draws its own (EP26 melts them)
   const wall = paint('cell-wall', '#AEB3AA', [2, 1], 0.3), floor = paint('cell-floor', '#8E918B', [2, 2], 0.2);
   const tallyTex = useMemo(() => tally(marks), [marks]);
   // sun patch from the high window moves across the back wall once per "day"
@@ -332,8 +332,8 @@ export const Cell: React.FC<{t: number; days: number; marks: number; rails?: num
     <group>
       <Room w={3} d={3} h={2.8} wall={wall} floor={floor} ceil={paint('cell-ceil', '#6F736D', [1, 1], 0)} skip={['s']} base="#5D615B" />
       {/* bars */}
-      {Array.from({length: 13}, (_, i) => <mesh key={i} castShadow position={[-1.45 + i * 0.24, 1.4, 1.5]} material={M('#3A3E42', 0.4, 0.8)}><cylinderGeometry args={[0.018, 0.018, 2.8, 8]} /></mesh>)}
-      {rails.map((y) => <Bx key={y} p={[0, y, 1.5]} s={[3, 0.05, 0.06]} m={M('#3A3E42', 0.4, 0.8)} />)}
+      {bars && Array.from({length: 13}, (_, i) => <mesh key={i} castShadow position={[-1.45 + i * 0.24, 1.4, 1.5]} material={M('#3A3E42', 0.4, 0.8)}><cylinderGeometry args={[0.018, 0.018, 2.8, 8]} /></mesh>)}
+      {bars && rails.map((y) => <Bx key={y} p={[0, y, 1.5]} s={[3, 0.05, 0.06]} m={M('#3A3E42', 0.4, 0.8)} />)}
       {/* bench + blanket */}
       <Bx p={[-0.6, 0.42, -1.2]} s={[1.6, 0.08, 0.5]} m={M('#7A6A55', 0.8)} />
       <Bx p={[-1.3, 0.21, -1.2]} s={[0.08, 0.42, 0.4]} m={M('#55585A', 0.6, 0.5)} /><Bx p={[0.1, 0.21, -1.2]} s={[0.08, 0.42, 0.4]} m={M('#55585A', 0.6, 0.5)} />
