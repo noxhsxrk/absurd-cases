@@ -69,7 +69,7 @@ export const Washer: React.FC<{position: V3; yaw?: number; lid?: number; spin?: 
         </group>
         <mesh position={[0, -0.031, 0]} rotation={[-Math.PI / 2, 0, 0]} material={dark}><ringGeometry args={[r + 0.022, r + 0.03, 28]} /></mesh>
       </group>
-      {tag && <mesh position={[w / 2 + 0.002, h * 0.62, 0.05]} rotation={[0, Math.PI / 2, 0]} material={label('ep28-tag2', 512, 320, '#F4EFE2', '#1C1A18', ['ของกลาง', 'คดีถุงเท้า', HANDLE], 70, '#A8322A')}><planeGeometry args={[0.32, 0.2]} /></mesh>}
+      {tag && <mesh position={[w / 2 + 0.002, h * 0.6, 0.0]} rotation={[0, Math.PI / 2, 0]} material={label('ep28-tag3', 512, 340, '#F4EFE2', '#1C1A18', ['ของกลาง', 'คดีถุงเท้า', HANDLE], 82, '#A8322A')}><planeGeometry args={[0.5, 0.33]} /></mesh>}
     </group>
   </group>;
 };

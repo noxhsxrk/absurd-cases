@@ -237,7 +237,7 @@ export const SHOT_FN: Record<string, (t: number, lt: number, C: Cast) => ShotOut
   gavel: (t, lt, C) => ({node: courtRoom(C, t), cam: mv({pos: [0.45, 2.2, 1.1], look: [0.3, 1.84, -3.2], fov: 30}, lt, {arrive: 0.07, push: 0.16, roll0: 1.5, shake: near(t, [ev('gavel')], 0.1) ? 0.012 : 0})}),
   cell: (t, lt, C) => ({node: <>{cellBlock(C, t)}{guard(C, t)}</>, cam: mv({pos: [0.15, 1.45, 4.0], look: [-0.1, 1.0, 0.0], fov: 50}, lt, {arrive: 0.08, push: 0.07, roll0: -2}), bg: CELL_BG}),
   queue: (t, lt, C) => ({node: <>{cellBlock(C, t, {cells: true})}{queue(C, t)}</>, cam: mv({pos: [-1.35, 1.6, 3.55], look: [2.3, 1.05, 2.2], fov: 46}, lt, {arrive: 0.06, push: 0.05}), bg: CELL_BG}),
-  line: (t, lt, C) => ({node: <>{cellBlock(C, t, {cells: true})}{lineup(C, t)}</>, cam: mv({pos: [3.6, 1.35, 5.9], look: [-0.1, 0.95, 2.35], fov: 46}, lt, {arrive: 0.06, push: 0.05}), bg: CELL_BG}),
+  line: (t, lt, C) => ({node: <>{cellBlock(C, t, {cells: true})}{lineup(C, t)}</>, cam: mv({pos: [3.9, 1.45, 6.9], look: [0.3, 0.95, 2.35], fov: 54}, lt, {arrive: 0.06, push: 0.05}), bg: CELL_BG}),
   feet: (t, lt, C) => { const k = (t - sh('feet').t0) / (sh('feet').t1 - sh('feet').t0); const x = lerp(1.25, -0.45, k);
     // at foot level along the row: every left foot in a white sock, every right foot bare
     return {node: <>{cellBlock(C, t, {cells: true})}{lineup(C, t)}</>, cam: mv({pos: [x + 0.4, 0.32, 3.25], look: [x - 0.25, 0.12, 2.35], fov: 52}, lt, {arrive: 0, push: 0}), bg: CELL_BG}; },
